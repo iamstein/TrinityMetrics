@@ -1,6 +1,7 @@
 * Case Studies
 
   * Live video recording of creatig a Shiny App from a model that has been fit already.
+  * Ask Matt Fidler to post something about using Claude Code for nlimxr2 development - he had an interesting perspective.
 
 * Code libraries
 
