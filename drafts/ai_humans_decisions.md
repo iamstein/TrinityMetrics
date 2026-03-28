@@ -31,11 +31,7 @@ This has practical implications.
 There are existing frameworks that help with some of the implications above.  
 
 - A modeling report with clear recommendations, assumptions, and risks must be authored and approved by experts.
-- Making reasoning visible can be done using the tools below:
-  
-  - [Context of Use Table](../references/ContextOfUse_Table_1page.pdf)
-  - [Uncertainty Checklist](../references/Uncertainty_Assessment_Pedigree_Table.pdf)
- 
+- Making reasoning visible can be done using the [Context of Use Table](../references/ContextOfUse_Table_1page.pdf) and [Uncertainty Checklist](../references/Uncertainty_Assessment_Pedigree_Table.pdf)
 - Careful, structured validation using a [Validation Checklist](../references/Validation_Checklist.pdf) can help experts focus on key elements of the analysis where errors are most likely.
 
 These tools force explicit articulation of what is being claimed, how it will be used, what uncertainties remain, and what the risks are of an incorrect decision.  Further discussion of these tools will be the subject of future posts.
