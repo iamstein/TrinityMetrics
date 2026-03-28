@@ -6,7 +6,7 @@ Generative AI is rapidly becoming capable of writing code, fitting models, and p
 - A model interpretation shapes clinical strategy.
 - A clinical trial directs hundreds of millions of dollars and years of work.
 
-These are not outputs to be generated and passed along; they are decisions that someone must be willing to stand behind.  And the person making a claim must be exposed to what happens if that claim is wrong—scientifically, professionally, and ethically. That exposure is what drives rigor.
+These are not outputs to be generated and passed along; they are decisions that someone must be willing to stand behind.  Furthermore, the person making a claim must be exposed to what happens if that claim is wrong—scientifically, professionally, and ethically. That exposure is what drives rigor.
 
 AI systems cannot own decisions in this way; they generate outputs without stake. They optimize for plausibility and coherence, not for correctness under consequence; and there is risk that well-formed AI outputs can carry authority without corresponding responsibility.  As AI enables faster and more polished analyses, there is risk that:
 
