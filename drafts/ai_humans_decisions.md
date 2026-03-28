@@ -22,20 +22,20 @@ This has practical implications.
 
 - **Analysis and decision must remain distinct.** AI can accelerate modeling and exploration, but concluding—turning results into a decision—must remain human.
 
-- **Reasoning must be visible.** Conclusions should not be buried in reports. It should be clear what is being claimed, what supports it, and what could be wrong.
+- **Reasoning must be visible.** Conclusions should not be buried in reports. It should be clear what is being claimed, what supports the claim, what could be wrong, and what the consequences are of being wrong.
 
-- **Completeness is not correctness.** As outputs become more polished, the burden on the reviewer increases, rather than decreases.
+- **More output, even when well written, is not stronger proof.** As outputs become longer, smoother, and more persuasive, the burden on the reviewer increases rather than decreases.
 
-## Tools for Making Reasoning Visible
+## Frameworks for Defensible Analysis and Decision-Making
 
-There are existing frameworks that help with some of the implications above.  
+There are already practical frameworks that support explicit reasoning, accountability, and validation.
 
-- A modeling report with clear recommendations, assumptions, and risks must be authored and approved by experts.
-- Making reasoning visible can be done using the [Context of Use Table](../references/ContextOfUse_Table_1page.pdf) and [Uncertainty Checklist](../references/Uncertainty_Assessment_Pedigree_Table.pdf)
-- Careful, structured validation using a [Validation Checklist](../references/Validation_Checklist.pdf) can help experts focus on key elements of the analysis where errors are most likely.
+- A structured modeling report with a clear synopsis can make recommendations, assumptions, risks, and decision relevance explicit, while ensuring that expert authors and approvers are clearly accountable.
+- The [Context of Use Table](../references/ContextOfUse_Table_1page.pdf) and [Uncertainty Checklist](../references/Uncertainty_Assessment_Pedigree_Table.pdf) help document intended use, key assumptions, and important uncertainties.
+- A [Validation Checklist](../references/Validation_Checklist.pdf) can help experts focus review on the areas where errors and most likel yand most consequential.
 
 These tools force explicit articulation of what is being claimed, how it will be used, what uncertainties remain, and what the risks are of an incorrect decision.  Further discussion of these tools will be the subject of future posts.
 
 ## Closing
 
-**TrinityMetrics** explores how AI can be used in regulated scientific workflows, ensuring data integrity without weakening accountability. The goal is not to automate judgment; but to accelerate analysis while ensuring that responsibility does not disappear with it.
+**TrinityMetrics** explores how AI can support regulated scientific workflows without weakening data integrity or accountability. The goal is not to automate judgment, but to accelerate analysis while preserving human responsibility.
