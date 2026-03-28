@@ -4,7 +4,7 @@ A repository and community focused on integrating **human expertise**, **generat
 
 ## What this is
 
-TrinityMetrics explores how biostatisticians and pharmacometricians can effectively use modern AI tools within the real constraints of clinical development:
+TrinityMetrics explores how biostatisticians and pharmacometricians can effectively use modern AI tools within the real constraints of clinical drug development:
 - protected and regulated data
 - reproducibility and auditability requirements
 - complex, structured datasets (e.g., CDISC / ADaM)
