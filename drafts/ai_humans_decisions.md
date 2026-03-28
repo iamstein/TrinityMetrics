@@ -1,4 +1,4 @@
-# AI Can Assist. Humans Must Own the Decision.
+# In Drug Development, AI Can Assist, but Humans Must Own the Decisions.
 
 Generative AI is rapidly becoming capable of writing code, fitting models, and producing analyses in minutes that only a year ago would have taken days. This creates clear productivity gains.  But in drug development, analytical outputs are not just information—they lead to **claims with consequences**.  These claims ultimately support decisions that must be owned.
 
