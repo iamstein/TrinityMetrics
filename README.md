@@ -37,7 +37,7 @@ The focus is on:
 That means:
 - embracing constraints, not ignoring them  
 - prioritizing reproducibility over novelty  
-- combining domain expertise with AI, not replacing it  
+- enhancing domain expertise with AI, not replacing it  
 
 ## Who this is for
 
