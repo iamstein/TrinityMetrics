@@ -4,7 +4,7 @@
 
 * Code libraries
 
-  * Code for creating simulated datasets that match exactly the structure and data type of a modeling dataset.  First example could use something from the ACoP ISoP data standard page.
+  * Code for creating simulated datasets that match exactly the structure and data type of a modeling dataset.  First example could use something from the ACoP ISoP data standard page.  Could use a dataset from here https://pharmaverse.github.io/admiral/articles/pk_adnca.html
 
 * AI context/configuration files
 
