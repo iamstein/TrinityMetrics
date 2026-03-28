@@ -16,7 +16,7 @@ AI systems cannot own decisions in this way; they generate outputs without stake
 
 Over time, authority may shift from **owned judgment** to **generated output**. This looks like efficiency, but in a regulated setting, it is unacceptable. The goal then is to integrate AI without transferring authority.
 
-> **AI may assist in generating and analyzing claims, but humans must explicitly own any claim that informs a decision.**
+> **AI may assist in generating and analyzing claims, but humans must explicitly own any claim that informs a consequential decision.**
 
 This has practical implications.
 
