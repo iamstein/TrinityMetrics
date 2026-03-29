@@ -11,3 +11,4 @@
 
   * Skill files say for working with xgx or for evaluating a NLME fit.
   * Recommended project setup template like for data, synthetic data, nlme runs, scritps, etc.
+  * Skill file for making shiny apps out of model simulators and evaluating the apps.
