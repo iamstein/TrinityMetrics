@@ -3,10 +3,10 @@ page-layout: full
 toc: false
 ---
 
-![](TrinityMetrics_DetailedImage.png){fig-align="left" width="330"}
-
 TrinityMetrics explores how biostatisticians, pharmacometricians, and clinical data scientists can use modern AI tools while maintaining accountability, reproducibility, and data integrity. It contains:
 
 * [Blog](blog/index.qmd): mainly about tools for making GenAI-assisted analysis more transparent and reproducible.
 * [Code](code.qmd): reusable scripts, templates, and utilities that support practical work.
 * [Resources](resources.qmd): documents, checklists, and implementation-oriented materials that support reviewable work.
+
+![](TrinityMetrics_DetailedImage.png){fig-align="center" width="600px"}

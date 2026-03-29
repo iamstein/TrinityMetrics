@@ -5,6 +5,10 @@ toc: false
 
 TrinityMetrics explores how AI can be used in regulated clinical and pharmacometric workflows without obscuring reasoning, responsibility, or data integrity.
 
+## Authors
+
+* [Andy Stein](https://sites.google.com/site/andrewsteinphd/home)
+
 ## Audience
 
 The primary audience includes:
