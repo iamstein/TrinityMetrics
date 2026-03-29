@@ -1,55 +1,93 @@
 # TrinityMetrics
 
-A repository and community focused on integrating **human expertise**, **generative AI**, and **regulated clinical data environments** for statistical and pharmacometric analysis.
+A repository and publishing site focused on integrating human expertise, generative AI, and regulated clinical data workflows for statistical and pharmacometric analysis.
 
-## What this is
+## Purpose
 
-TrinityMetrics explores how biostatisticians and pharmacometricians can effectively use modern AI tools within the real constraints of clinical drug development:
-- protected and regulated data
-- reproducibility and auditability requirements
-- complex, structured datasets (e.g., CDISC / ADaM)
-- domain-specific modeling workflows (PK/PD, exposure–response)
+TrinityMetrics explores how AI can be used in clinical, statistical, and pharmacometric work without weakening accountability, reproducibility, or data integrity.
 
-## What you'll find
+The repository is designed to support two connected goals:
 
-- **Case studies**  
-  Practical examples of using GenAI in real analysis workflows
+- a **Quarto website/blog** for public-facing writing
+- a **code repository** for reusable materials, examples, and workflow assets
 
-- **Code and templates**  
-  Reusable scripts, Quarto reports, and workflow scaffolds
+## Site structure
 
-- **AI skill patterns**  
-  Structured approaches for guiding LLMs in statistical and PMX tasks
+The Quarto site is organized around a small set of stable pages:
 
-- **Synthetic data approaches**  
-  Methods for safely enabling AI-assisted workflows without exposing clinical data
+- **Home** for project framing and current direction
+- **Blog** for essays, working positions, and implementation notes
+- **Resources** for reference documents, checklists, and practical guides
+- **Code** for repository layout, examples, and reusable materials
+- **About** for scope, audience, and project status
 
-- **Tools and packages**  
-  Curated notes on useful R packages, modeling tools, and emerging practices in drug development
+## Repository layout
 
-## Philosophy
+~~~~text
+.
+├─ _quarto.yml
+├─ index.qmd
+├─ about.qmd
+├─ blog/
+│  ├─ index.qmd
+│  └─ posts/
+├─ resources.qmd
+├─ code.qmd
+├─ drafts/
+├─ code/
+├─ examples/
+├─ skills/
+├─ references/
+├─ styles.css
+└─ docs/
+~~~~
 
-This is not a general AI repository.
+### Key directories
 
-The focus is on:
-> **making GenAI actually usable in regulated clinical environments**
+- `drafts/` contains working Markdown drafts that are not yet published
+- `blog/posts/` contains published Quarto posts
+- `code/` contains reusable scripts, templates, and utilities
+- `examples/` contains worked examples and case studies
+- `skills/` contains specialized AI guidance/context files
+- `references/` contains PDFs and other static support materials
+- `docs/` contains the rendered site output for GitHub Pages
 
-That means:
-- embracing constraints, not ignoring them  
-- prioritizing reproducibility over novelty  
-- enhancing domain expertise with AI, not replacing it  
+## Current publishing plan
 
-## Who this is for
+The initial public launch is planned around two posts published together:
 
-- Pharmacometricians
-- Biostatisticians
-- Statistical programmers
-- Clinical data scientists
+- a short philosophy post on AI assistance and human decision ownership
+- a practical post on synthetic data workflows
 
-## Status
+That should make the purpose of the repository clear from the start.
 
-Early-stage and evolving. Expect working ideas, not polished frameworks.
+## Local development
 
-![](TrinityMetrics_DetailedImage.png)
+To preview the site locally:
 
+```bash
+quarto preview
+```
 
+To render the site into `docs/`:
+
+```bash
+quarto render
+```
+
+## GitHub Pages publishing
+
+The site is configured to render to `docs/`.
+
+There are two workable publishing patterns:
+
+- **render locally and commit `docs/`**
+- **use GitHub Actions to render and deploy automatically**
+
+This repository includes a GitHub Actions workflow for automated publishing.
+
+## Notes
+
+- The Quarto configuration lives in `_quarto.yml`.
+- Site styling adjustments live in `styles.css`.
+- The repository is intentionally early-stage and will evolve as posts, examples, and reusable materials are added.

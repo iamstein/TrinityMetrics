@@ -12,3 +12,4 @@
   * Skill files say for working with xgx or for evaluating a NLME fit.
   * Recommended project setup template like for data, synthetic data, nlme runs, scritps, etc.
   * Skill file for making shiny apps out of model simulators and evaluating the apps.
+  * Make a skill file for evaluate graphs following teh good graphics principles from Alison and others. Is this even possible given it's a graph?  Would you need ggplot2 code?  Or the graph itself?  Would be best if it worked on images somehow...  Like you save the image in a file, I wonder if that could work...

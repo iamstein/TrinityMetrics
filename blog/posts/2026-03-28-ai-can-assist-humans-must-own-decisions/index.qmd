@@ -1,0 +1,77 @@
+---
+title: "AI Can Assist. Humans Must Own Decisions."
+date: 2026-03-28
+description: "AI can accelerate analysis, but responsibility for decision-relevant findings must remain explicit and human-owned."
+categories:
+  - ai
+  - governance
+  - pharmacometrics
+  - clinical-data
+listing: false
+toc: false
+---
+
+Generative AI is rapidly becoming capable of producing analyses, summaries, and even recommendations in scientific workflows.
+
+That creates a risk that is easy to miss.
+
+As analysis becomes easier to generate, responsibility can become easier to obscure.
+
+In regulated scientific work, that is not acceptable.
+
+## Core principle
+
+At TrinityMetrics, the working constraint is simple:
+
+> **AI may assist in analyzing data and assessing claims, but humans must explicitly own any finding that informs a decision.**
+
+## What this implies
+
+### Analysis and decision must remain distinct
+
+AI can accelerate modeling, simulation, and exploratory analysis.
+
+Turning results into a decision remains a human responsibility.
+
+### Reasoning must be visible
+
+Conclusions should not be buried in outputs or reports.
+
+It should be clear:
+
+- what is being claimed
+- what supports the claim
+- what could be wrong
+- what the consequences are of being wrong
+
+Three practical frameworks that help make this visible are:
+
+- [Context of Use Table](../../../references/ContextOfUse_Table_1page.pdf)
+- [Uncertainty Checklist](../../../references/Uncertainty_Assessment_Pedigree_Table.pdf)
+- [Validation Checklist](../../../references/Validation_Checklist.pdf)
+
+### More output is not more evidence
+
+As AI-generated outputs become longer, smoother, and more persuasive, the burden on the reviewer increases rather than decreases.
+
+Persuasiveness is not validity.
+
+## What TrinityMetrics focuses on
+
+Rather than producing abstract guidance, TrinityMetrics focuses on:
+
+- tools that reduce friction in real workflows
+- patterns that make reasoning more transparent
+- guardrails that preserve scientific and data integrity
+
+## Scope
+
+The goal is not to automate judgment.
+
+> **The goal is to accelerate analysis while ensuring that responsibility does not disappear with it.**
+
+## Closing
+
+TrinityMetrics explores how AI can be used in regulated scientific workflows while keeping accountability visible.
+
+This post is intended to define that baseline.

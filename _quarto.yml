@@ -1,0 +1,50 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "blog/**/*.qmd"
+    - "!drafts/**"
+    - "!Post_Ideas.md"
+  resources:
+    - references/**
+    - TrinityMetrics_DetailedImage.png
+    - TrinityMetrics_SimplerImage.png
+
+website:
+  title: "TrinityMetrics"
+  site-url: "https://steinanf.github.io/TrinityMetrics/"
+  repo-url: "https://github.com/steinanf/TrinityMetrics"
+  repo-actions: [source, issue]
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: blog/index.qmd
+        text: Blog
+      - href: resources.qmd
+        text: Resources
+      - href: code.qmd
+        text: Code
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: "https://github.com/steinanf/TrinityMetrics"
+        aria-label: GitHub
+  page-footer:
+    left: "TrinityMetrics"
+    right: "Built with [Quarto](https://quarto.org/)."
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    anchor-sections: true
+
+execute:
+  freeze: auto

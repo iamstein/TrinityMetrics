@@ -1,0 +1,34 @@
+---
+title: "About"
+toc: false
+---
+
+# About TrinityMetrics
+
+TrinityMetrics explores how AI can be used in regulated clinical and pharmacometric workflows without obscuring reasoning, responsibility, or data integrity.
+
+## Focus
+
+The emphasis is practical.
+
+This repository is for work that helps make AI usable under real constraints, including:
+
+- reproducibility and auditability expectations
+- structured clinical and modeling datasets
+- domain-specific review requirements
+- the need for explicit human judgment
+
+## Audience
+
+The primary audience includes:
+
+- pharmacometricians
+- biostatisticians
+- statistical programmers
+- clinical data scientists
+
+## Project status
+
+This is an early-stage working repository.
+
+The goal is to build a useful collection of writing, code, examples, and reusable workflow patterns over time.

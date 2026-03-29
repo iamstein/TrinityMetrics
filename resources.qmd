@@ -1,0 +1,34 @@
+---
+title: "Resources"
+toc: false
+---
+
+# Resources
+
+This section is for practical materials that support the writing and code in the repository.
+
+## Reference documents
+
+Current references include:
+
+- [Context of Use Table](references/ContextOfUse_Table_1page.pdf)
+- [Uncertainty Assessment Pedigree Table](references/Uncertainty_Assessment_Pedigree_Table.pdf)
+- [Validation Checklist](references/Validation_Checklist.pdf)
+
+These are useful anchors for making claims, reviewing uncertainty, and documenting validation work.
+
+## Planned resource types
+
+This page can grow into a stable landing page for:
+
+- review checklists
+- project setup templates
+- skill files for specialized tasks
+- short implementation notes
+- links to example workflows
+
+## Planned near-term additions
+
+- a synthetic data workflow guide
+- project structure guidance for regulated analyses
+- skill files for reviewing modeling outputs and graphics

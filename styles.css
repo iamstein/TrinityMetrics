@@ -1,0 +1,18 @@
+/* Minimal site-level styling for the initial Quarto website. */
+
+.navbar-title {
+  font-weight: 600;
+}
+
+.quarto-title-banner {
+  margin-bottom: 1.5rem;
+}
+
+.callout.callout-note {
+  border-left-width: 0.4rem;
+}
+
+.hero-note {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
