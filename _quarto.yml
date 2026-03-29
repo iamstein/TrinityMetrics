@@ -13,8 +13,8 @@ project:
 
 website:
   title: "TrinityMetrics"
-  site-url: "https://steinanf.github.io/TrinityMetrics/"
-  repo-url: "https://github.com/steinanf/TrinityMetrics"
+  site-url: "https://iamstein.github.io/TrinityMetrics/"
+  repo-url: "https://github.com/iamstein/TrinityMetrics"
   repo-actions: [source, issue]
   page-navigation: true
   back-to-top-navigation: true
@@ -32,7 +32,7 @@ website:
         text: About
     right:
       - icon: github
-        href: "https://github.com/steinanf/TrinityMetrics"
+        href: "https://github.com/iamstein/TrinityMetrics"
         aria-label: GitHub
   page-footer:
     left: "TrinityMetrics"
