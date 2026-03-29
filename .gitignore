@@ -49,8 +49,8 @@ po/*~
 rsconnect/
 
 # Draft compiled files
-drafts/*.html
-drafts/*_files/
+blog/drafts/*.html
+blog/drafts/*_files/
 
 /.quarto/
 **/*.quarto_ipynb
