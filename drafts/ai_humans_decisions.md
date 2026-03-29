@@ -1,10 +1,10 @@
 # In Drug Development, AI Can Assist, but Humans Must Own the Decisions.
 
-Generative AI is rapidly becoming capable of writing code, fitting models, and producing analyses in minutes that only a year ago would have taken days. This creates clear productivity gains.  But in drug development, analytical outputs are not just information—they lead to **claims with consequences**.  These claims ultimately support decisions that must be owned.
+Generative AI is capable of writing code, fitting models, and producing analyses in minutes that only a year ago would have taken days. This creates clear productivity gains.  But in drug development, analytical outputs are not just information—they lead to **claims with consequences**.  These claims ultimately support decisions that must be owned.
 
-- A dose selection affects patient safety.
-- A model interpretation shapes clinical strategy.
-- A clinical trial directs hundreds of millions of dollars and years of work.
+- Dose selection affects patient safety.
+- Model interpretation shapes clinical strategy.
+- Clinical trial execution directs hundreds of millions of dollars and years of work.
 
 These are not outputs to be generated and passed along; they are decisions that someone must be willing to stand behind.  Furthermore, the person making a claim must be exposed to what happens if that claim is wrong—scientifically, professionally, and ethically. That exposure is what drives rigor.
 

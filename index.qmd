@@ -1,16 +1,11 @@
 ---
-title: "TrinityMetrics"
 page-layout: full
 toc: false
 ---
 
-# TrinityMetrics
-
-AI, reproducibility, and regulated scientific workflows.
+![](TrinityMetrics_DetailedImage.png){fig-align="left" width="330"}
 
 TrinityMetrics explores how biostatisticians, pharmacometricians, and clinical data scientists can use modern AI tools without weakening accountability, reproducibility, or data integrity.
-
-![TrinityMetrics illustration](TrinityMetrics_SimplerImage.png)
 
 ## What this site is for
 

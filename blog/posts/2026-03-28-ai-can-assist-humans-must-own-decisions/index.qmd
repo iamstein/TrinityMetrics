@@ -11,67 +11,32 @@ listing: false
 toc: false
 ---
 
-Generative AI is rapidly becoming capable of producing analyses, summaries, and even recommendations in scientific workflows.
+Generative AI is capable of writing code, fitting models, and producing analyses in minutes that only a year ago would have taken days. This creates clear productivity gains.  But in drug development, analytical outputs are not just information—they lead to claims with consequences.  These claims ultimately support decisions that must be owned.
 
-That creates a risk that is easy to miss.
+- Dose selection affects patient safety.
+- Model interpretation shapes clinical strategy.
+- Clinical trial execution directs hundreds of millions of dollars and years of work.
 
-As analysis becomes easier to generate, responsibility can become easier to obscure.
-
-In regulated scientific work, that is not acceptable.
+These are not outputs to be generated and passed along; they are decisions that someone must be willing to stand behind.  Furthermore, the person making a claim must be exposed to what happens if that claim is wrong—scientifically, professionally, and ethically. That exposure is what drives rigor.
 
 ## Core principle
 
-At TrinityMetrics, the working constraint is simple:
+>**At TrinityMetrics, AI may assist in analyzing data and assessing claims, but humans must explicitly own any finding that informs a decision.**
 
-> **AI may assist in analyzing data and assessing claims, but humans must explicitly own any finding that informs a decision.**
+**Analysis and decision must remain distinct.** AI can accelerate modeling, simulation, and exploratory analysis, but turning results into a decision remains a human responsibility.
 
-## What this implies
-
-### Analysis and decision must remain distinct
-
-AI can accelerate modeling, simulation, and exploratory analysis.
-
-Turning results into a decision remains a human responsibility.
-
-### Reasoning must be visible
-
-Conclusions should not be buried in outputs or reports.
-
-It should be clear:
-
-- what is being claimed
-- what supports the claim
-- what could be wrong
-- what the consequences are of being wrong
-
-Three practical frameworks that help make this visible are:
+**Reasoning must be visible.** Conclusions should not be buried in outputs or reports. It should be clear: what is being claimed; what supports the claim; what could be wrong; and what the consequences are of being wrong.  Three practical frameworks that help make this visible are:
 
 - [Context of Use Table](../../../references/ContextOfUse_Table_1page.pdf)
 - [Uncertainty Checklist](../../../references/Uncertainty_Assessment_Pedigree_Table.pdf)
 - [Validation Checklist](../../../references/Validation_Checklist.pdf)
 
-### More output is not more evidence
-
-As AI-generated outputs become longer, smoother, and more persuasive, the burden on the reviewer increases rather than decreases.
-
-Persuasiveness is not validity.
+**More output is not more evidence.**  As AI-generated outputs become longer, smoother, and more persuasive, the burden on the reviewer increases rather than decreases.  Persuasiveness is not validity.
 
 ## What TrinityMetrics focuses on
 
-Rather than producing abstract guidance, TrinityMetrics focuses on:
+- Tools that reduce friction in real workflows
+- Patterns (templates and skill files) that make reasoning more transparent
+- Guardrails that preserve scientific and data integrity
 
-- tools that reduce friction in real workflows
-- patterns that make reasoning more transparent
-- guardrails that preserve scientific and data integrity
-
-## Scope
-
-The goal is not to automate judgment.
-
-> **The goal is to accelerate analysis while ensuring that responsibility does not disappear with it.**
-
-## Closing
-
-TrinityMetrics explores how AI can be used in regulated scientific workflows while keeping accountability visible.
-
-This post is intended to define that baseline.
+The goal is to accelerate analysis while ensuring that responsibility does not disappear with it.

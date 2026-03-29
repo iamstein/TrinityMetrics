@@ -1,8 +1,6 @@
 # AI Can Assist. Humans Must Own Decisions.
 
-Generative AI is rapidly becoming capable of producing analyses, summaries, and even recommendations in scientific workflows.
-
-This creates a risk that is easy to miss:  
+Generative AI is rapidly becoming capable of producing analyses, summaries, and even recommendations in scientific workflows.  This creates a risk that is easy to miss:  
 **as analysis becomes easier to generate, responsibility can more easily become obscured.**
 
 In regulated scientific work, this is not acceptable.
@@ -44,8 +42,7 @@ Three frameworks that can help with the above are:
 
 ### 3. More Output Is Not More Evidence
 
-As AI-generated outputs become longer, smoother, and more persuasive,  
-the burden on the reviewer increases—not decreases.  Persuasiveness is not validity.
+As AI-generated outputs become longer, smoother, and more persuasive,  the burden on the reviewer increases—not decreases.  Persuasiveness is not validity.
 
 ---
 
