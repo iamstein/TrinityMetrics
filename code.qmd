@@ -3,13 +3,7 @@ title: "Code"
 toc: false
 ---
 
-# Code
-
-The repository is intended to support both publishing and practical reuse.
-
-## Recommended repository layout
-
-The code-facing side of the repository should grow around a few stable directories:
+Could should grow around a few stable directories:
 
 - `code/` for reusable scripts, templates, and utilities
 - `examples/` for worked examples and case studies
@@ -48,9 +42,3 @@ Examples:
 - evaluating NLME fits
 - reviewing graphics
 - guiding Shiny app evaluation
-
-## Publishing approach
-
-The public site should describe and point to these materials.
-
-The repository itself remains the source of truth for the code.

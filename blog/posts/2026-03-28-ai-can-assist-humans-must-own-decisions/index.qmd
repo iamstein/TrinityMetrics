@@ -3,10 +3,7 @@ title: "AI Can Assist. Humans Must Own Decisions."
 date: 2026-03-28
 description: "AI can accelerate analysis, but responsibility for decision-relevant findings must remain explicit and human-owned."
 categories:
-  - ai
-  - governance
-  - pharmacometrics
-  - clinical-data
+  - principles
 listing: false
 toc: false
 ---
