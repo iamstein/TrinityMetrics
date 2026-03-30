@@ -126,3 +126,10 @@ When possible:
 - recommend the smallest set of changes needed to make the post publishable
 
 Default to substance over style.
+
+## Categorization requirement
+
+- Classify posts as principle and/or tool.
+- Classify as ai if about ai.
+- Classify as biostats or pmx when either are referenced.
+- Keep a tally of how many "tools" and "principles" there are.  Aim for 3-4x more tools than principle posts and point this out if there are too many "principle" posts.
