@@ -1,0 +1,80 @@
+---
+title: "Datasets"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+---
+
+This page displays the data specifications for the various datasets used throughout the website.
+
+## Setup
+
+```{r, echo = TRUE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(xgxr)
+
+xgx_theme_set()
+```
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/AE_xgx.md")
+
+```
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/AUC_Safety.md")
+
+```
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/Data_Checking.md")
+
+```
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/dzz_PKConc.md")
+
+```
+
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/mt12345.md")
+
+```
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/Multiple_Ascending_Dose_Dataset2.md")
+
+```
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/PPtmp_NCA.md")
+
+```
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/RO_BCMA.md")
+
+```
+
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/Single_Ascending_Dose_Dataset2.md")
+
+```
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/Oncology_Efficacy_Data.md")
+
+```
+
+```{r, warning = FALSE, message = FALSE}
+htmltools::includeMarkdown("../Data/Oncology_Efficacy_Dose.md")
+
+```
+
+

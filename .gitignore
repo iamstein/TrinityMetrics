@@ -54,3 +54,5 @@ blog/drafts/*_files/
 
 /.quarto/
 **/*.quarto_ipynb
+
+.DS_STore
