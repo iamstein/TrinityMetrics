@@ -12,10 +12,13 @@ These are working outlines for five essay ideas that fit the newer direction of 
 
 ### Why this matters
 - In science, drug development, and AI, polished stories are becoming cheaper and easier to produce.
+
 - That raises the premium on distinguishing:
+
   - what is explanatory,
   - what is predictive,
   - what is merely persuasive.
+
 - A beautiful explanation can still fail as a decision tool.
 
 ### Key tensions to explore
@@ -72,7 +75,9 @@ These are working outlines for five essay ideas that fit the newer direction of 
 
 ### Practical claim
 - The answer is not “pick a side.”
+
 - The answer is:
+
   - do the best exploratory work you can,
   - make the uncertainty visible,
   - distinguish clearly between planned and unplanned analyses,
@@ -94,8 +99,10 @@ These are working outlines for five essay ideas that fit the newer direction of 
 - Start with a familiar conflict on a project team
 - Explain why both camps are partly right
 - Describe bad resolutions:
+
   - ignore exploration
   - oversell exploratory findings
+
 - Propose the real path: brilliant exploration plus explicit uncertainty
 - End with a practical framework for communicating mixed-strength evidence
 
@@ -207,6 +214,9 @@ These are working outlines for five essay ideas that fit the newer direction of 
 - Offer a few practical heuristics for teams
 - End by arguing that responsible modeling must care about the decay rate of knowledge
 
+### Possible new direction
+- Could AI somehow help track the half-life of facts?  Or at least estimate the heterogeneity in facts.  I.e. how should a memory T cell be defined.  How does that definition change with time.
+
 ---
 
 ## 5. Self-Experimentation Under Extreme Heterogeneity
@@ -223,21 +233,28 @@ These are working outlines for five essay ideas that fit the newer direction of 
 
 ### Three kinds of evidence
 - Theory / narrative
+
   - suggests mechanisms
   - generates ideas worth trying
   - motivates action
+
 - Population evidence
+
   - offers average effects
   - can rule out obviously bad claims
   - may still be thin or inconclusive
+
 - Individual experience
+
   - tests local fit
   - reveals context dependence
   - is necessary but vulnerable to bias
 
 ### Main claim
 - The right move is usually not to choose one evidence type over the others
+
 - It is to combine them:
+
   - use theory to generate candidate interventions,
   - use studies to bound belief,
   - use lived experience to adapt and decide
@@ -306,9 +323,10 @@ These are working outlines for five essay ideas that fit the newer direction of 
 
 ## Notes to self
 - Keep the public-facing frame narrower than the full inner worldview
-- Let spirituality, myth, and meaning remain part of the substrate, not always the headline
+- Let spirituality, myth, and meaning remain part of the substrate, not  the headline
 - Lead with the most earned, useful, practitioner-grounded material
 - The strongest recurring move is:
+
   - name a real tension,
   - refuse false resolution,
   - offer a way to operate inside it
