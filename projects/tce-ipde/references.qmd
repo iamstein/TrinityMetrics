@@ -77,7 +77,7 @@ to read.
 *Clinical Pharmacology & Therapeutics*.
 <https://doi.org/10.1002/cpt.3361>
 
-Read the section on dose escalation.  Talks about using small cohorts (n=1), large steps (3x), and strating around MABEL dosing but didn't actually talk about intrapatient escalation. I don't think this was really done for most of teh TCEs that are approved.
+Read the section on dose escalation.  Talks about using small cohorts (n=1), large steps (3x), and strating around MABEL dosing but didn't actually talk about intrapatient escalation. I don't think this was really done for most of the TCEs that are approved.
 
 ### 2. Zhou et al. 2025 — modified MABEL starting dose for a solid-tumor TCE ✅
 
@@ -105,9 +105,9 @@ with adaptively updated starting doses. The modern successor to
 accelerated titration.
 
 **Answer while reading.**
-I read the introduction, I think this method is more complex and not what we're during in 
-immunology stutdies (CRM).  I mean maybe that's worth considering, but that would be a future step.
-This is something to add to a future considerations section.  Not sure where that sits here.
+I read the introduction, I think this method is more complex and not what we're doing in 
+immunology studies (CRM).  I mean maybe that's worth considering, but that would be a future step.
+This is future work, and it now sits in Section 27b of the specification.
 
 ### 4. Carryover toxicity in phase 1 trials with intra-patient dose escalation, 2025 ❌
 

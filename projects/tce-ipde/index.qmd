@@ -387,7 +387,8 @@ Model-based escalation designs (continual reassessment method, BOIN and
 variants) are out of scope. They allocate patients across dose levels
 more efficiently under a toxicity model, and the binding constraint here
 is pharmacology in a range believed to be subtherapeutic rather than
-toxicity statistics. State this once and move on.
+toxicity statistics. Section 27b carries the argument for deferring them
+and what would bring them back.
 
 ### Conventional escalation --- Design A
 
@@ -1971,6 +1972,35 @@ that comparator, the result should say so.
 That last comparison is particularly important. Otherwise a team can
 reasonably dismiss the work as comparing IPDE against an unnecessarily
 slow Phase 1 design.
+
+------------------------------------------------------------------------
+
+## 27b. Future work
+
+Deferred deliberately, with the reason recorded, so that a later version
+does not have to rediscover the argument. Nothing here is a v1
+dependency.
+
+**Model-based dose finding.** The continual reassessment method, BOIN
+and Bayesian logistic regression models all allocate patients across
+dose levels under a fitted toxicity model, and Section 6 rules them out
+of v1. Two reasons hold that line. The binding constraint in this
+project is pharmacology in a range believed to be subtherapeutic rather
+than toxicity statistics, so a better toxicity allocator does not
+address it. And these designs are less common in the immunology studies
+this project is aimed at than in oncology dose finding, so adopting one
+would add machinery the reader would have to be sold on before the
+simple version had been shown to work.
+
+What would bring it back is the $F_{\rm start}$ question in Section 6.
+Guo et al. 2025 places intra-patient escalation inside a CRM with an
+adaptively updated starting dose, which is that question treated
+formally rather than as a fixed cap. Work applying Bayesian logistic
+regression models to the same problem has not been located yet; when it
+is, it goes on the references page. The successor version of this
+project is the one where the escalation rule is fit rather than
+prescribed, and it should be attempted only after the prescribed version
+has a result to compare against.
 
 ------------------------------------------------------------------------
 
