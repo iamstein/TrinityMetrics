@@ -337,56 +337,94 @@ project:
     The novelty is the PD-triggered stop and the scout/backfill split,
     not within-patient escalation itself.
 
-#### Read Simon 1997 before building anything
+#### What to read before building
 
-It is the cheapest available test of whether this project's expected
-results are already known, and it is a 10-page paper against a
-four-phase implementation.
+Read the literature before Phase 1, because it is a handful of papers
+against a four-phase implementation, and two of them could change the
+premise. Simon 1997 is the design ancestry but it is not the most
+useful thing to read first, and it is not the most recent treatment of
+intra-patient escalation.
 
-What it contains, to confirm on reading: four designs, the first a
-standard 3+3 with roughly 40% dose steps, the other three using
-single-patient cohorts and intra-patient escalation during an
-accelerated phase that ends at the first dose-limiting toxicity or the
-second instance of moderate toxicity. The designs were compared by
-simulation against data from a set of real phase 1 trials, using a
-fitted model carrying within-patient and between-patient variability
-and a cumulative-toxicity term. None of that has been verified from the
-paper itself for this document.
+The list below is ordered so that each entry makes the next one easier
+to read. Nothing here has been read for this document: the titles,
+venues and identifiers are from a literature search, and the one-line
+characterizations come from abstracts. Verify each before citing it.
 
-Two things in this project are probably already answered there.
+1.  **Elmeliegy et al. 2024**, *Clin Pharmacol Ther*, dosing strategies
+    and quantitative clinical pharmacology for bispecific TCEs. Covers
+    dose selection across the first eight approved TCEs, including
+    model-based adaptive escalation and virtual testing of step-up
+    regimens. It is the closest published treatment of this project's
+    actual problem, and it is 2024 rather than 1997.
+
+2.  **Zhou et al. 2025**, *Clin Pharmacol Ther*, a modified MABEL
+    approach to the FIH starting dose for a solid-tumor TCE, reported
+    to have justified a 10-fold higher starting dose and saved at least
+    two escalation cohorts. **Read this second because it can change
+    the premise.** It attacks the same gap from the other end, by
+    moving $D_{\rm start}$ up rather than by traversing the gap faster.
+    A generally applicable version of it shrinks
+    $R_{\rm predicted-gap}$ in Section 12, and the value of IPDE with
+    it. The two strategies are not exclusive and the simulation can
+    carry both, since a higher starting dose is a change to one
+    parameter.
+
+3.  **Guo et al. 2025**, *Pharmaceutical Statistics*, a phase 1
+    dose-finding design incorporating intra-patient dose escalation
+    (IP-CRM), placing intra-patient escalation inside a continual
+    reassessment method with adaptively updated starting doses. The
+    adaptively updated starting dose is the same question as
+    $F_{\rm start}$ above, treated formally.
+
+4.  **Carryover toxicity in phase 1 trials with intra-patient dose
+    escalation**, 2025. The methodological treatment of the confound in
+    Section 16: attributing an event in a patient who has already
+    received every lower dose on the ladder.
+
+5.  **Simon et al. 1997**, *J Natl Cancer Inst*, accelerated titration
+    designs. Read last of these five, for the origin of the mechanism
+    and because designs 2 to 4 define what an efficient conventional
+    comparator looks like.
+
+Two things in this project are probably already answered in Simon.
 Hypothesis 3 in Section 26, that catch-up escalation benefits
 participants more than it shortens the trial, is the accelerated
 titration literature's own reported result. The shape of an efficient
 conventional comparator, which the critical comparator issue above
-leaves as a parameter, is what their designs 2 to 4 already specify.
-Both should be cited rather than re-derived.
+leaves as a parameter, is what their designs 2 to 4 specify. Both
+should be cited rather than re-derived.
 
-One thing is not answered there. Their escalation stops on toxicity and
-the quantity being sought is the maximum tolerated dose. There is no
-pharmacodynamic stopping rule, no scout-and-backfill split, and no
-requirement that a separate cohort confirm an interpretable regimen, so
-nothing in the paper bears on $T_{3,\rm eval}$, on the confirmation
-penalty, or on the prediction-error axis of Section 12. Their driver is
+One thing is not answered in any of the five. Their escalation rules
+stop on toxicity and the quantity sought is a tolerated dose. None of
+them carries a pharmacodynamic stopping rule, a scout-and-backfill
+split, or a requirement that a separate cohort confirm an interpretable
+regimen, so none bears directly on $T_{3,\rm eval}$, on the
+confirmation penalty, or on the prediction-error axis. Their driver is
 uncertainty about where toxicity begins; this project's driver is
-uncertainty about where activity begins, in a range believed to be
+uncertainty about where activity begins, in a range believed to sit
 below the toxic one.
 
-Answer three questions while reading, because they decide how much of
+Four questions to answer while reading, because they decide how much of
 Phase 1 is worth building:
 
-1.  Does the paper report the calendar-time saving separately from the
-    reduction in patients treated at subtherapeutic doses? If it does,
+1.  Does Simon report the calendar-time saving separately from the
+    reduction in patients treated at subtherapeutic doses? If so,
     hypothesis 3 is settled and comes out of the simulation.
 2.  What conventional comparator did they use, and does the accelerated
-    design above match it? If it does, adopt theirs rather than
+    design above match it? If so, adopt theirs rather than
     parameterizing a new one.
-3.  Does the cumulative-toxicity term give a usable structure for the
-    delayed-toxicity stress test in Section 17?
+3.  Does the carryover-toxicity work give a usable structure for the
+    delayed-toxicity stress test in Section 17, or does the Friberg
+    model remain the better vehicle?
+4.  How general is the modified-MABEL starting dose in Zhou 2025? If a
+    10-fold higher starting dose is routinely defensible, run the
+    simulation with $D_{\rm start}$ raised and report how much of the
+    IPDE advantage survives.
 
-The simulation is not made redundant by the paper, but it is narrower
-than it looks. If question 1 comes back yes, what remains to be shown
-is the value of the pharmacodynamic stop and the size of the
-confirmation penalty, which is where the novelty sat in any case.
+The simulation is not made redundant by any of this, but it is narrower
+than it looks. What remains to be shown is the value of the
+pharmacodynamic stop, the size of the confirmation penalty, and whether
+either survives a starting dose chosen by a better MABEL.
 
 Model-based escalation designs (continual reassessment method, BOIN and
 variants) are out of scope. They allocate patients across dose levels
@@ -703,7 +741,10 @@ fires: the retained PK gives an effective half-life of roughly 8 days
 recovery ($t_{1/2}\approx30$ days) is slower still, so partial
 depletion carries forward from step to step. The nominated $D^*$ can
 therefore sit one or more grid steps below the dose whose conventional
-regimen depletes a fresh patient. That is the dynamics working as
+regimen depletes a fresh patient. The PD-guided escalation rule in
+Section 13 is the main lever against this, since a scout that
+decelerates once the marker moves stops nearer to the dose responsible
+for the depletion. That is the dynamics working as
 specified, and it means backfill non-confirmation is an expected event
 the protocol must handle, not an edge case.
 
@@ -960,22 +1001,96 @@ BCMA TCE.
 
 ## 13. Dose escalation factor
 
-Make this a parameter rather than embedding one arbitrary ladder.
+**Set the step size from the PD signal rather than fixing it.** The
+scout is already measured before every escalation decision (Section
+11), and the measurement says which regime the ladder is in. While the
+B-cell count has not moved, the scout is far below the active dose and
+a large step costs nothing but crosses more of the gap. Once the count
+starts to move, the active dose is close and a large step overshoots
+it.
 
-Base:
+The rule operates on $B/B_0$, the most recent available B-cell count as
+a fraction of that scout's own baseline:
 
-$$
-D_{k+1}=3D_k.
-$$
+| PD state | Condition | Next step |
+|:---|:---|:---|
+| No movement | $B \ge \theta_{\rm move} B_0$ | $F_{\rm quiet}$, base 10-fold |
+| Movement | $\theta_{\rm move} B_0 > B \ge 5/\mu L$ | $F_{\rm move}$, base 3-fold |
+| Profound depletion | $B < 5/\mu L$ | Stop; nominate (Section 7) |
 
-Sensitivities $2\times,\quad3\times,\quad4\times$.
+: The PD-guided escalation rule {tbl-colwidths="[22,40,38]"}
 
-The simulation should quantify the obvious tradeoff:
+with $\theta_{\rm move}=0.70$, a 30% decline from baseline, as the base
+case.
 
-larger jumps -\> faster traversal, potentially larger pharmacologic
-overshoot.
+The rule is one-way in practice. B cells do not recover while dosing
+continues, so the ladder decelerates once and does not re-accelerate,
+and no oscillation between the two step sizes is possible.
 
-No need for complicated modified-Fibonacci algorithms in v1.
+Three parameters, and a comparator:
+
+-   $\theta_{\rm move}$ --- the fraction of baseline at which the marker
+    counts as having moved. Base 0.70; sensitivities 0.50 and 0.85.
+-   $F_{\rm quiet}$ --- the step while the marker has not moved. Base
+    10; sensitivities 3 and 30.
+-   $F_{\rm move}$ --- the step after it has. Base 3; sensitivity 2.
+-   **Fixed multiplier**, $D_{k+1}=FD_k$ with $F$ = 2, 3 or 4
+    throughout, as the reference arm. Every claim for the PD-guided
+    rule is a difference against this.
+
+### What the rule can get wrong
+
+Both failure directions are simulatable and should be reported
+separately.
+
+A **false brake** is a measurement that crosses $\theta_{\rm move}$
+through assay and biological variability rather than through drug
+effect. It drops the ladder into 3-fold steps early, and the scout then
+crawls through a range it could have crossed quickly, which is a direct
+charge against $\Delta T$. A 30% decline in an absolute B-cell count is
+not obviously outside the day-to-day variability of the measurement, so
+$\theta_{\rm move}$ may need a confirmatory second sample rather than a
+single crossing. This cannot appear before Phase 4, since Phases 1 to 3
+have no variability to generate it.
+
+A **missed brake** is the opposite: the marker has moved but the sample
+that would have shown it is not yet available, so a 10-fold step lands
+past the active dose. The nominated $D^*$ is then too high, and Section
+5 scores it as overshoot rather than as lost time.
+
+Report the number of steps spent in each regime. The interval between
+$\theta_{\rm move} B_0$ and $5/\mu L$ spans a 14-fold change in B cells
+at $B_0=100$ cells/uL, and how many 3-fold dose steps that interval
+takes under the Section 9 model is what decides whether the brake costs
+calendar time or merely places the nomination better. That is a
+simulation output, not something to assert here.
+
+### What this changes elsewhere
+
+The brake should raise the nominated $D^*$ relative to the fixed-ladder
+case, because the scout approaches the depletion threshold in smaller
+increments and stops nearer to the dose that actually caused it. If so,
+the undershoot described in Section 7 shrinks and the non-confirmation
+cycles with it. That is one of the more valuable things this rule could
+buy, and it is worth reporting separately from the change in
+$T_{3,\rm eval}$.
+
+It also separates this design further from the accelerated titration
+designs above. Their step size changes on toxicity; this one changes on
+pharmacology, using a marker measured for the purpose.
+
+### Precedent for the step sizes
+
+The MCLA-117 scheme in Section 6 gives within-patient increments of
+1.5 to 3-fold in its early cohorts: cohort 1 runs 25, 50, 100, 200,
+300, 450 and 675 µg, decelerating from 2-fold to 1.5-fold as it climbs.
+Larger within-patient increments do appear later, with cohorts 10, 11
+and 12 stepping from 25 mg on D8 to 120, 240 and 400 mg on D15, a 4.8
+to 16-fold increase. Those larger steps go into doses already cleared
+in earlier cohorts, so they are not blind escalation. A 10-fold blind
+step in a scout has no precedent in that scheme, and $F_{\rm quiet}=10$
+should be presented as an extrapolation rather than as established
+practice.
 
 ------------------------------------------------------------------------
 
@@ -1423,7 +1538,9 @@ The highest-value sensitivity analyses are:
 
 1.  Prediction error $D_{\rm true}/D_{\rm pred}$.
 2.  Predicted starting-to-active gap.
-3.  2x vs 3x vs 4x escalation.
+3.  PD-guided escalation against a fixed 2x, 3x or 4x multiplier, and
+    the movement threshold $\theta_{\rm move}$ = 0.50, 0.70, 0.85
+    (Section 13).
 4.  One (base) vs two standard step-up doses.
 5.  Low-dose conventional cohort size 1 vs 3.
 6.  PD turnaround 2--7 days.
@@ -1825,6 +1942,11 @@ Expected hypotheses are:
     an earlier scout recovers most of it.
 13. Two scouts run in parallel cost little calendar time relative to
     one, and two run in sequence cost close to a second discovery.
+14. PD-guided escalation reaches profound depletion no later than a
+    fixed 3-fold ladder, because the large steps while the marker is
+    quiet buy back the small steps taken after it moves, and it
+    nominates a $D^*$ closer to $D_{\rm true}$, so fewer backfill
+    cohorts fail to confirm.
 
 ------------------------------------------------------------------------
 
@@ -1941,3 +2063,33 @@ parameter transcription in this document.
     Poster: https://merus.nl/app/uploads/2020/06/EHA-2020-MCLA-117-CL01-e-poster.pdf\
     EHA library record: https://library.ehaweb.org/eha/2020/eha25th/294456/\
     Registration: https://clinicaltrials.gov/study/NCT03038230
+
+8.  **TCE dosing strategies and quantitative clinical pharmacology** ---
+    Elmeliegy M, et al. *Clin Pharmacol Ther* 2024. Dose selection
+    across the first eight approved T-cell engagers.\
+    https://doi.org/10.1002/cpt.3361
+
+9.  **Modified MABEL FIH starting dose for a solid-tumor TCE** --- Zhou
+    et al. *Clin Pharmacol Ther* 2025. The competing strategy in
+    Section 6: raise the starting dose rather than traverse the gap
+    faster.\
+    https://doi.org/10.1002/cpt.3431
+
+10. **FIH dose selection for T-cell engaging bispecific antibodies** ---
+    de Graaf et al. *Clin Pharmacol Ther* 2025, an AAPS working-group
+    position on starting dose, early development and RP2D selection.\
+    https://doi.org/10.1002/cpt.3487
+
+11. **IP-CRM, a phase 1 design incorporating intra-patient dose
+    escalation** --- Guo et al. *Pharmaceutical Statistics* 2025. The
+    modern successor to accelerated titration, with adaptively updated
+    starting doses.\
+    https://doi.org/10.1002/pst.2461
+
+12. **Carryover toxicity in phase 1 trials with intra-patient dose
+    escalation**, 2025.\
+    https://pubmed.ncbi.nlm.nih.gov/40405047/
+
+None of references 8 to 12 has been read for this document. Titles,
+venues and identifiers come from a literature search and the
+characterizations come from abstracts, so verify each before citing it.
