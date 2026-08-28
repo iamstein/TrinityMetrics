@@ -39,20 +39,14 @@ against a four-phase implementation, and the second one can change the
 project's premise. They are ordered so that each makes the next easier
 to read.
 
-### 1. Elmeliegy et al. 2024 — TCE dosing strategies and quantitative clinical pharmacology ❌
+### 1. Elmeliegy et al. 2024 — TCE dosing strategies and quantitative clinical pharmacology ✅
 
 *Clinical Pharmacology & Therapeutics*.
 <https://doi.org/10.1002/cpt.3361>
 
-Dose selection across the first eight approved T-cell engagers,
-including model-based adaptive escalation and virtual testing of step-up
-regimens. The closest published treatment of this project's problem, and
-2024 rather than 1997.
+Read the section on dose escalation.  Talks about using small cohorts (n=1), large steps (3x), and strating around MABEL dosing but didn't actually talk about intrapatient escalation. I don't think this was really done for most of teh TCEs that are approved.
 
-**Answer while reading.** Which of the eight programmes used
-within-patient escalation, and what did it buy them?
-
-### 2. Zhou et al. 2025 — modified MABEL starting dose for a solid-tumor TCE ❌
+### 2. Zhou et al. 2025 — modified MABEL starting dose for a solid-tumor TCE ✅
 
 *Clinical Pharmacology & Therapeutics*.
 <https://doi.org/10.1002/cpt.3431>
@@ -65,12 +59,11 @@ applicable version shrinks $R_{\rm predicted-gap}$ and the value of IPDE
 with it. The two strategies are not exclusive, and the simulation
 carries both, since a higher starting dose is a change to one parameter.
 
-**Answer while reading.** How general is the approach? If a 10-fold
-higher starting dose is routinely defensible, run the simulation with
-$D_{\rm start}$ raised and report how much of the IPDE advantage
-survives.
+**Decision not to read**
+Decided not to read.  This is a completely different topic.  Related in that
+MABEL-based doses are a good approach and this IPDE can complement it.
 
-### 3. Guo et al. 2025 — IP-CRM, intra-patient escalation inside a CRM ❌
+### 3. Guo et al. 2025 — IP-CRM, intra-patient escalation inside a CRM ✅
 
 *Pharmaceutical Statistics*. <https://doi.org/10.1002/pst.2461>
 
