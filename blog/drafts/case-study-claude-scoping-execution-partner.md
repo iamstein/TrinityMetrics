@@ -14,17 +14,19 @@ the idea already has a name, and then narrowing the work when that prior art
 turns out to shrink it.
 
 **What the talk does not claim.** That any of it is verified. The
-specification is a hypothesis, the reference list was assembled from abstracts
-that nobody has read, and the document says so about itself in its own callout.
+specification is a hypothesis and the reference list was assembled from
+abstracts. The last hour of the arc is the part where that starts to be
+checked, and the first paper checked did not say what the model said it said.
 That is a slide, not a footnote — see "The honest slide" below.
 
 ---
 
 ## The timeline
 
-All nine commits are authored `Claude`. The direction is in the prompts, which
-are not in the repository, so the commit record shows what was built and not
-what was asked. Bring the terminal history.
+The first ten commits are authored `Claude` and the last two are Andy's. The
+direction is in the prompts, which are not in the repository, so the commit
+record shows what was built and not what was asked. Bring the terminal
+history.
 
 | Time | Commit | What changed | Lines |
 |:--|:--|:--|:--|
@@ -36,10 +38,14 @@ what was asked. Bring the terminal history.
 | 21:25 | `743eac2` | The escalation interval is held at one week for v1. | +17 −3 |
 | 21:26 | `d858775` | A worked example that depicted a patient at a flat dose is corrected. | +10 −5 |
 | 21:46 | `980ec51` | PD-guided escalation, and the reading list is rewritten. Simon 1997 drops from first to fifth. | +207 −55 |
+| 21:53 | `2af4e1b` | The references move onto their own page, every entry carrying a status marker for whether it has been checked. | +208 −155 |
 | 22:06 | `304b174` | A Guides section, and a method for reading the five papers. | +182 |
+| 22:10 | `add612c` | **Andy's.** Two entries read and marked, with what they actually said. | +7 −14 |
+| 22:11 | `aec5101` | **Andy's.** A third entry's status corrected. | +1 −1 |
 
-The document is 2,136 lines at the end. The 262 deletions at 20:53 are the
-interesting number in that column: publishing it cut it.
+The 262 deletions at 20:53 are the interesting number in that column:
+publishing the document cut it. The two commits at the end are the other one,
+because they are the first in the sequence a human wrote.
 
 ---
 
@@ -129,32 +135,49 @@ first thing to read".
 
 ---
 
-## Beat 5 — The reading method, and what it generalized into
+## Beat 5 — The reading method, and the first paper that was actually read
 
-**Show:** `#### How to read them` in the project document, then
-`guides/reading-papers.qmd`.
+**Show:** `projects/tce-ipde/references.qmd`, then `guides/reading-papers.qmd`,
+then Andy's two entries.
 
 Reading the paper that had just been demoted raised an ordinary question — how
-should I read this, and for how long — and the answer had two halves. The
-project-specific half is in the project document: an hour on Simon, aimed at
-the two questions it can answer, with the outcome to watch for written down in
-advance. The reusable half became a site page summarizing Keshav's three-pass
-method and Pain's Science Careers piece.
+should I read this, and for how long — and the answer had three parts. The
+reusable part became a site page summarizing Keshav's three-pass method and
+Pain's Science Careers piece. The project-specific part is on the references
+page: an hour on Simon, aimed at the two questions it can answer, with the
+outcome to watch for written down in advance.
 
-**The point.** The specification names four questions to answer while reading,
-so the reading has a stopping rule. Reading with a stopping rule is a different
-activity from reading a paper.
+The third part is the status marker. Every reference now carries ❌ not
+checked, ⚠️ transcribed but unverified, or ✅ checked, and the page opens by
+saying that nothing on it has been checked against its source.
 
----
+Then the first two papers were read, and the top of the queue did not survive
+contact. Elmeliegy 2024 had been characterized, from its abstract, as "the
+closest published treatment of this project's actual problem". The note on the
+entry now reads:
+
+> Talks about using small cohorts (n=1), large steps (3x), and starting around
+> MABEL dosing but didn't actually talk about intrapatient escalation.
+
+Zhou 2025, the paper flagged as the one that could change the premise, was
+closed with a decision not to read it: a different topic, complementary rather
+than competing.
+
+**The point.** The status markers earned their keep within twenty minutes of
+existing. A characterization written from an abstract is a prediction about a
+paper, and the first one checked was wrong. A reading queue with no marker on
+each entry would have carried that claim into the specification, where it
+would have looked like a finding.
 
 ## The honest slide
 
 Put this in the middle of the talk, not at the end.
 
-1. **Nothing in the reference list has been read.** The document says so, in
-   the section that introduces it: "the titles, venues and identifiers are
-   from a literature search, and the one-line characterizations come from
-   abstracts. Verify each before citing it."
+1. **The reference list is unchecked, and it says so on every entry.** The
+   references page opens with "Nothing on this page has been read and checked
+   against its source", and each entry carries ❌, ⚠️ or ✅. The two entries
+   that have since been checked are the evidence that this is not decoration:
+   one of them did not say what the model said it said.
 2. **The document declines to model what it cannot.** Section 16 is titled
    "ICANS: critical limitation, not a fabricated model", and it states that no
    established exposure-to-ICANS relationship was found and that the
@@ -166,9 +189,11 @@ Put this in the middle of the talk, not at the end.
    to replace it with the program's real number. It is written down before any
    results exist, so the threshold is not negotiated against results already
    seen.
-4. **Every commit is authored by Claude.** The judgement in the room was
+4. **Ten of the twelve commits are authored by Claude.** The judgement was
    exercised through prompts and through what got rejected, and none of that
-   is visible in the repository.
+   is visible in the repository. The two human-authored commits are the ones
+   that record a paper having been read, which is the division of labour the
+   talk is arguing for.
 
 This is the accountability argument the site already makes, with an artifact
 attached: see the post "AI can assist, humans must own decisions".
@@ -184,7 +209,7 @@ attached: see the post "AI can assist, humans must own decisions".
 | 4–6 | Beat 2, prior art. | The Prior art section. |
 | 6–7 | Beat 3, publishing cut it. | The `fd1f14d` diffstat. |
 | 7–11 | Beat 4, the two errors. | The flat-dose diff, then the two headings side by side. |
-| 11–13 | Beat 5, the reading method. | `#### How to read them`, then the Guides page. |
+| 11–13 | Beat 5, the reading method and the first check. | The references page with its markers, then Elmeliegy's entry before and after. |
 | 13–15 | The honest slide, and questions. | The four numbered points. |
 
 Beat 4 is the one to protect if the talk runs long. Cut Beat 3 first, then
@@ -201,6 +226,8 @@ Beat 5.
 - `git show 980ec51 -- projects/tce-ipde/index.qmd` for the demotion, which
   needs the old heading and the new one on one slide rather than a raw diff.
 - `guides/reading-papers.qmd`.
+- `projects/tce-ipde/references.qmd`, and `git show add612c` for the two
+  entries that were checked.
 
 ## Before the talk
 

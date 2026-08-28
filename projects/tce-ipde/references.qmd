@@ -32,6 +32,39 @@ where its sources live.
 Nothing is ✅ yet. Change a marker when the check is done, not when the
 paper is opened.
 
+## How to read these
+
+Read against the question under each entry rather than through the paper
+front to back. The general method is on the
+[Reading Papers](../../guides/reading-papers.qmd) page: three passes, and you
+stop at the pass that answers the question. An hour is the budget for a paper
+read this way.
+
+Simon 1997 is the one that needs the full hour.
+
+- Ten minutes on the abstract, the numbered definitions of designs 1 to 4,
+  and the *column headers* of the simulation results tables. Which outcome
+  metrics they chose to report answers the calendar-time question by itself.
+- Forty-five minutes on two targets: the definition of design 1 and the rule
+  for leaving the accelerated phase, which is the comparator question; and the
+  results tables, for whether trial duration appears at all beside patients
+  treated and patients treated at subtherapeutic doses.
+- One conditional extra hour. If their dose-toxicity model carries a
+  cumulative or carryover term, that is the carryover-toxicity entry's
+  question already parameterized. Otherwise do not reconstruct the model,
+  because nothing downstream of it is being reused.
+
+Watch for the answer that runs the other way. If duration is not among the
+reported outcomes, hypothesis 3 in Section 26 is not settled by Simon, it
+stays in the simulation, and Simon is cited for the mechanism rather than for
+the result. The entries below are characterizations from abstracts, so each
+one is a prediction about what the paper says.
+
+Notes go one line per question, carrying an answer and the table or page
+number it came from, plus anything that contradicts the specification. Write
+what the paper actually said into the entry, and change its status marker when
+the check is done.
+
 ## Reading queue
 
 Read these five before building Phase 1. It is a handful of papers
