@@ -96,7 +96,7 @@ carries both, since a higher starting dose is a change to one parameter.
 Decided not to read.  This is a completely different topic.  Related in that
 MABEL-based doses are a good approach and this IPDE can complement it.
 
-### 3. Guo et al. 2025 — IP-CRM, intra-patient escalation inside a CRM ❌
+### 3. Guo et al. 2025 — IP-CRM, intra-patient escalation inside a CRM ✅ 
 
 *Pharmaceutical Statistics*. <https://doi.org/10.1002/pst.2461>
 
@@ -104,10 +104,10 @@ Places intra-patient escalation inside a continual reassessment method,
 with adaptively updated starting doses. The modern successor to
 accelerated titration.
 
-**Answer while reading.** The adaptively updated starting dose is the
-$F_{\rm start}$ question in Section 6 treated formally. Does their rule
-replace the fixed cap, and does it need a toxicity model this project
-does not have?
+**Answer while reading.**
+I read the introduction, I think this method is more complex and not what we're during in 
+immunology stutdies (CRM).  I mean maybe that's worth considering, but that would be a future step.
+This is something to add to a future considerations section.  Not sure where that sits here.
 
 ### 4. Carryover toxicity in phase 1 trials with intra-patient dose escalation, 2025 ❌
 
