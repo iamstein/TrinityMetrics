@@ -109,7 +109,7 @@ I read the introduction, I think this method is more complex and not what we're 
 immunology studies (CRM).  I mean maybe that's worth considering, but that would be a future step.
 This is future work, and it now sits in Section 27b of the specification.
 
-### 4. Carryover toxicity in phase 1 trials with intra-patient dose escalation, 2025 ❌
+### 4. Carryover toxicity in phase 1 trials with intra-patient dose escalation, 2025 ✅ 
 
 <https://pubmed.ncbi.nlm.nih.gov/40405047/>
 
@@ -117,9 +117,8 @@ The methodological treatment of the confound in Section 16: attributing
 an event in a patient who has already received every lower dose on the
 ladder.
 
-**Answer while reading.** Does it give a usable structure for the
-delayed-toxicity stress test in Section 17, or does the Friberg model
-remain the better vehicle?
+**Answer while reading.** 
+I decided to defer this till later.  I'm not trying to come up with a quantitative safety model here.
 
 ### 5. Simon et al. 1997 — accelerated titration designs ❌
 
@@ -130,6 +129,24 @@ The origin of the mechanism. Designs 2 to 4 combine single-patient
 cohorts in the low-dose region with intra-patient escalation, and define
 what an efficient conventional comparator looks like. Read last of the
 five.
+
+#### Notes
+
+Definitions: 
+- Conventional Design = Fibonacci Method.  dose increments are 100, 67, 50, 40%, and uses a 3+3-like approach
+- Accelerated = 1 patient cohorts when safe (instead of 3) until DLT or 2 G2 tox
+
+Four models
+
+1. Single Steps + Conventional Design
+2. Single Steps + Accelerated until events in first cohort, then Conventional
+3. Double Steps + Accelerated until events in first cohort, then Conventional
+4. Double Steps + Accelerated until events in any course,   then Conventional
+
+Also two different interpationt escalation options
+
+A. No escalation
+B. Escalation if G0 or G1 tox.
 
 **Answer while reading.** Does the paper report the calendar-time saving
 separately from the reduction in patients treated at subtherapeutic
