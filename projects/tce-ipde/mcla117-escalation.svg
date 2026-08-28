@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 470" width="100%" role="img" aria-label="MCLA-117 Cycle 1 dose escalation, dose against study day, log scale, thirteen cohorts">
+<style>text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}</style>
+<rect width="780" height="470" fill="#ffffff"/>
+<line x1="62" y1="409.7" x2="662" y2="409.7" stroke="#e3e7ea" stroke-width="1"/>
+<text x="54" y="413.7" text-anchor="end" font-size="11" fill="#6b7580">25 µg</text>
+<line x1="62" y1="358.0" x2="662" y2="358.0" stroke="#e3e7ea" stroke-width="1"/>
+<text x="54" y="362.0" text-anchor="end" font-size="11" fill="#6b7580">100 µg</text>
+<line x1="62" y1="317.1" x2="662" y2="317.1" stroke="#e3e7ea" stroke-width="1"/>
+<text x="54" y="321.1" text-anchor="end" font-size="11" fill="#6b7580">300 µg</text>
+<line x1="62" y1="272.3" x2="662" y2="272.3" stroke="#e3e7ea" stroke-width="1"/>
+<text x="54" y="276.3" text-anchor="end" font-size="11" fill="#6b7580">1 mg</text>
+<line x1="62" y1="231.4" x2="662" y2="231.4" stroke="#e3e7ea" stroke-width="1"/>
+<text x="54" y="235.4" text-anchor="end" font-size="11" fill="#6b7580">3 mg</text>
+<line x1="62" y1="186.5" x2="662" y2="186.5" stroke="#e3e7ea" stroke-width="1"/>
+<text x="54" y="190.5" text-anchor="end" font-size="11" fill="#6b7580">10 mg</text>
+<line x1="62" y1="145.6" x2="662" y2="145.6" stroke="#e3e7ea" stroke-width="1"/>
+<text x="54" y="149.6" text-anchor="end" font-size="11" fill="#6b7580">30 mg</text>
+<line x1="62" y1="100.7" x2="662" y2="100.7" stroke="#e3e7ea" stroke-width="1"/>
+<text x="54" y="104.7" text-anchor="end" font-size="11" fill="#6b7580">100 mg</text>
+<line x1="62" y1="49.1" x2="662" y2="49.1" stroke="#e3e7ea" stroke-width="1"/>
+<text x="54" y="53.1" text-anchor="end" font-size="11" fill="#6b7580">400 mg</text>
+<line x1="88.1" y1="34" x2="88.1" y2="418" stroke="#e3e7ea" stroke-width="1"/>
+<text x="88.1" y="436" text-anchor="middle" font-size="11" fill="#6b7580">D1</text>
+<line x1="140.3" y1="34" x2="140.3" y2="418" stroke="#e3e7ea" stroke-width="1"/>
+<text x="140.3" y="436" text-anchor="middle" font-size="11" fill="#6b7580">D3</text>
+<line x1="192.4" y1="34" x2="192.4" y2="418" stroke="#e3e7ea" stroke-width="1"/>
+<text x="192.4" y="436" text-anchor="middle" font-size="11" fill="#6b7580">D5</text>
+<line x1="270.7" y1="34" x2="270.7" y2="418" stroke="#e3e7ea" stroke-width="1"/>
+<text x="270.7" y="436" text-anchor="middle" font-size="11" fill="#6b7580">D8</text>
+<line x1="349.0" y1="34" x2="349.0" y2="418" stroke="#e3e7ea" stroke-width="1"/>
+<text x="349.0" y="436" text-anchor="middle" font-size="11" fill="#6b7580">D11</text>
+<line x1="453.3" y1="34" x2="453.3" y2="418" stroke="#e3e7ea" stroke-width="1"/>
+<text x="453.3" y="436" text-anchor="middle" font-size="11" fill="#6b7580">D15</text>
+<line x1="635.9" y1="34" x2="635.9" y2="418" stroke="#e3e7ea" stroke-width="1"/>
+<text x="635.9" y="436" text-anchor="middle" font-size="11" fill="#6b7580">D22</text>
+<line x1="62" y1="418" x2="662" y2="418" stroke="#1f2933" stroke-width="1"/>
+<line x1="62" y1="34" x2="62" y2="418" stroke="#1f2933" stroke-width="1"/>
+<polyline points="88.1,409.7 140.3,383.9 192.4,358.0 270.7,332.2 349.0,317.1 453.3,302.0 635.9,286.9" fill="none" stroke="#9ec4e0" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="409.7" r="3" fill="#9ec4e0"/>
+<circle cx="140.3" cy="383.9" r="3" fill="#9ec4e0"/>
+<circle cx="192.4" cy="358.0" r="3" fill="#9ec4e0"/>
+<circle cx="270.7" cy="332.2" r="3" fill="#9ec4e0"/>
+<circle cx="349.0" cy="317.1" r="3" fill="#9ec4e0"/>
+<circle cx="453.3" cy="302.0" r="3" fill="#9ec4e0"/>
+<circle cx="635.9" cy="286.9" r="3" fill="#9ec4e0"/>
+<text x="644.9" y="290.9" font-size="11" fill="#9ec4e0" font-weight="600">Cohort 1</text>
+<polyline points="88.1,358.0 140.3,332.2 192.4,306.4 270.7,283.0 349.0,272.3 453.3,264.0 635.9,257.2" fill="none" stroke="#92b8d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="358.0" r="3" fill="#92b8d6"/>
+<circle cx="140.3" cy="332.2" r="3" fill="#92b8d6"/>
+<circle cx="192.4" cy="306.4" r="3" fill="#92b8d6"/>
+<circle cx="270.7" cy="283.0" r="3" fill="#92b8d6"/>
+<circle cx="349.0" cy="272.3" r="3" fill="#92b8d6"/>
+<circle cx="453.3" cy="264.0" r="3" fill="#92b8d6"/>
+<circle cx="635.9" cy="257.2" r="3" fill="#92b8d6"/>
+<line x1="638.9" y1="257.2" x2="642.9" y2="259.5" stroke="#92b8d6" stroke-width="1" opacity="0.55"/>
+<text x="644.9" y="263.5" font-size="11" fill="#92b8d6" font-weight="600">Cohort 2</text>
+<polyline points="88.1,317.1 166.3,272.3 270.7,246.5 453.3,246.5 635.9,246.5" fill="none" stroke="#86accc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="317.1" r="3" fill="#86accc"/>
+<circle cx="166.3" cy="272.3" r="3" fill="#86accc"/>
+<circle cx="270.7" cy="246.5" r="3" fill="#86accc"/>
+<circle cx="453.3" cy="246.5" r="3" fill="#86accc"/>
+<circle cx="635.9" cy="246.5" r="3" fill="#86accc"/>
+<text x="644.9" y="250.5" font-size="11" fill="#86accc" font-weight="600">Cohort 3</text>
+<polyline points="88.1,291.3 166.3,246.5 270.7,205.5 453.3,205.5 635.9,205.5" fill="none" stroke="#79a1c3" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="291.3" r="3" fill="#79a1c3"/>
+<circle cx="166.3" cy="246.5" r="3" fill="#79a1c3"/>
+<circle cx="270.7" cy="205.5" r="3" fill="#79a1c3"/>
+<circle cx="453.3" cy="205.5" r="3" fill="#79a1c3"/>
+<circle cx="635.9" cy="205.5" r="3" fill="#79a1c3"/>
+<text x="644.9" y="209.5" font-size="11" fill="#79a1c3" font-weight="600">Cohort 4</text>
+<polyline points="88.1,291.3 166.3,246.5 270.7,190.4 453.3,190.4 635.9,190.4" fill="none" stroke="#6d95b9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="291.3" r="3" fill="#6d95b9"/>
+<circle cx="166.3" cy="246.5" r="3" fill="#6d95b9"/>
+<circle cx="270.7" cy="190.4" r="3" fill="#6d95b9"/>
+<circle cx="453.3" cy="190.4" r="3" fill="#6d95b9"/>
+<circle cx="635.9" cy="190.4" r="3" fill="#6d95b9"/>
+<text x="644.9" y="194.4" font-size="11" fill="#6d95b9" font-weight="600">Cohort 5</text>
+<polyline points="88.1,272.3 166.3,231.4 270.7,171.4 453.3,171.4 635.9,171.4" fill="none" stroke="#6189af" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="272.3" r="3" fill="#6189af"/>
+<circle cx="166.3" cy="231.4" r="3" fill="#6189af"/>
+<circle cx="270.7" cy="171.4" r="3" fill="#6189af"/>
+<circle cx="453.3" cy="171.4" r="3" fill="#6189af"/>
+<circle cx="635.9" cy="171.4" r="3" fill="#6189af"/>
+<line x1="638.9" y1="171.4" x2="642.9" y2="173.9" stroke="#6189af" stroke-width="1" opacity="0.55"/>
+<text x="644.9" y="177.9" font-size="11" fill="#6189af" font-weight="600">Cohort 6</text>
+<polyline points="88.1,272.3 166.3,231.4 270.7,171.4 453.3,152.4 635.9,152.4" fill="none" stroke="#547ea6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="272.3" r="3" fill="#547ea6"/>
+<circle cx="166.3" cy="231.4" r="3" fill="#547ea6"/>
+<circle cx="270.7" cy="171.4" r="3" fill="#547ea6"/>
+<circle cx="453.3" cy="152.4" r="3" fill="#547ea6"/>
+<circle cx="635.9" cy="152.4" r="3" fill="#547ea6"/>
+<line x1="638.9" y1="152.4" x2="642.9" y2="160.9" stroke="#547ea6" stroke-width="1" opacity="0.55"/>
+<text x="644.9" y="164.9" font-size="11" fill="#547ea6" font-weight="600">Cohort 7</text>
+<polyline points="88.1,272.3 166.3,231.4 270.7,152.4 453.3,134.9 635.9,134.9" fill="none" stroke="#48729c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="272.3" r="3" fill="#48729c"/>
+<circle cx="166.3" cy="231.4" r="3" fill="#48729c"/>
+<circle cx="270.7" cy="152.4" r="3" fill="#48729c"/>
+<circle cx="453.3" cy="134.9" r="3" fill="#48729c"/>
+<circle cx="635.9" cy="134.9" r="3" fill="#48729c"/>
+<text x="644.9" y="138.9" font-size="11" fill="#48729c" font-weight="600">Cohort 8a</text>
+<polyline points="88.1,231.4 166.3,186.5 270.7,152.4 453.3,134.9 635.9,134.9" fill="none" stroke="#3c6692" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="231.4" r="3" fill="#3c6692"/>
+<circle cx="166.3" cy="186.5" r="3" fill="#3c6692"/>
+<circle cx="270.7" cy="152.4" r="3" fill="#3c6692"/>
+<circle cx="453.3" cy="134.9" r="3" fill="#3c6692"/>
+<circle cx="635.9" cy="134.9" r="3" fill="#3c6692"/>
+<line x1="638.9" y1="134.9" x2="642.9" y2="147.9" stroke="#3c6692" stroke-width="1" opacity="0.55"/>
+<text x="644.9" y="151.9" font-size="11" fill="#3c6692" font-weight="600">Cohort 8b</text>
+<polyline points="88.1,212.3 166.3,171.4 270.7,152.4 453.3,119.8 635.9,119.8" fill="none" stroke="#305a88" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="212.3" r="3" fill="#305a88"/>
+<circle cx="166.3" cy="171.4" r="3" fill="#305a88"/>
+<circle cx="270.7" cy="152.4" r="3" fill="#305a88"/>
+<circle cx="453.3" cy="119.8" r="3" fill="#305a88"/>
+<circle cx="635.9" cy="119.8" r="3" fill="#305a88"/>
+<text x="644.9" y="123.8" font-size="11" fill="#305a88" font-weight="600">Cohort 9</text>
+<polyline points="88.1,212.3 166.3,171.4 270.7,152.4 453.3,94.0 635.9,94.0" fill="none" stroke="#244e7e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="212.3" r="3" fill="#244e7e"/>
+<circle cx="166.3" cy="171.4" r="3" fill="#244e7e"/>
+<circle cx="270.7" cy="152.4" r="3" fill="#244e7e"/>
+<circle cx="453.3" cy="94.0" r="3" fill="#244e7e"/>
+<circle cx="635.9" cy="94.0" r="3" fill="#244e7e"/>
+<text x="644.9" y="98.0" font-size="11" fill="#244e7e" font-weight="600">Cohort 10</text>
+<polyline points="88.1,212.3 166.3,171.4 270.7,152.4 453.3,68.1 635.9,68.1" fill="none" stroke="#174375" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="212.3" r="3" fill="#174375"/>
+<circle cx="166.3" cy="171.4" r="3" fill="#174375"/>
+<circle cx="270.7" cy="152.4" r="3" fill="#174375"/>
+<circle cx="453.3" cy="68.1" r="3" fill="#174375"/>
+<circle cx="635.9" cy="68.1" r="3" fill="#174375"/>
+<text x="644.9" y="72.1" font-size="11" fill="#174375" font-weight="600">Cohort 11</text>
+<polyline points="88.1,212.3 166.3,171.4 270.7,152.4 453.3,49.1 635.9,49.1" fill="none" stroke="#0b376b" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88.1" cy="212.3" r="3" fill="#0b376b"/>
+<circle cx="166.3" cy="171.4" r="3" fill="#0b376b"/>
+<circle cx="270.7" cy="152.4" r="3" fill="#0b376b"/>
+<circle cx="453.3" cy="49.1" r="3" fill="#0b376b"/>
+<circle cx="635.9" cy="49.1" r="3" fill="#0b376b"/>
+<text x="644.9" y="53.1" font-size="11" fill="#0b376b" font-weight="600">Cohort 12</text>
+<text x="62" y="460" font-size="11" fill="#6b7580">Study day, Cycle 1</text>
+<text x="14" y="20" font-size="11" fill="#6b7580">Dose (log scale)</text>
+</svg>

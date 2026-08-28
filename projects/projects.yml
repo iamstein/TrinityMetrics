@@ -14,7 +14,7 @@
     teaching material, and tooling can be developed and shared without
     exposing real clinical data.
   categories: [R, synthetic data]
-  path: https://github.com/iamstein/synpmx
+  path: https://iamstein.github.io/synpmx/
 
 - title: "xgx"
   subtitle: "Open-source resource"
