@@ -237,6 +237,37 @@ Those are valid later questions but obscure the current decision.
 
 Use three main designs.
 
+### Prior art
+
+Designs B and C are not new in structure, and the document should say so
+before a reviewer does.
+
+Simon and colleagues published accelerated titration designs in 1997
+(Simon R, Freidlin B, Rubinstein L, Arbuck SG, Collins J, Christian MC,
+*J Natl Cancer Inst* 89:1138--1147). Their designs 2, 3 and 4 combine
+single-patient cohorts in the low-dose region with **intra-patient dose
+escalation** for patients who neither respond nor experience toxicity.
+Design B here is that mechanism, and the accelerated single-patient
+cohorts in Design A are the same family. Two consequences for this
+project:
+
+-   The literature already reports the expected Design B result, that
+    within-patient escalation gives participants access to higher doses
+    without shortening the trial much. Present Section 26 hypothesis 3
+    as a replication of a known finding rather than as a new claim.
+-   What is different in Design C is the **stopping rule**. Simon's
+    designs escalate within a patient until toxicity or lack of response
+    over a fixed schedule. Design C escalates until a pharmacodynamic
+    threshold fires, then stops and hands off to a conventional cohort.
+    The novelty is the PD-triggered stop and the scout/backfill split,
+    not within-patient escalation itself.
+
+Model-based escalation designs (continual reassessment method, BOIN and
+variants) are out of scope. They allocate patients across dose levels
+more efficiently under a toxicity model, and the binding constraint here
+is pharmacology in a range believed to be subtherapeutic rather than
+toxicity statistics. State this once and move on.
+
 ### Design A --- Conventional between-patient escalation
 
 Patients receive a conventional TCE regimen with one or two step-up
@@ -820,6 +851,36 @@ calibrated to plausible CRS rates.
 Do not spend much time optimizing this before the speed/PD simulation
 works.
 
+### The ladder is itself a step-up schedule
+
+The document elsewhere treats within-patient escalation only as a risk
+to be gated. For CRS specifically there is an argument in the other
+direction, and it should be stated rather than left for a reviewer to
+raise.
+
+An IPDE patient arrives at each dose level having already received every
+lower level on the ladder. A conventional patient arrives at the same
+target dose after two step-up doses. On the tolerance/priming component
+of the published TCE CRS models referenced above, where prior exposure
+reduces the hazard at a given current exposure, the IPDE patient is the
+better-primed of the two at that dose. The IPDE ladder is a longer
+step-up schedule, not an unprimed jump.
+
+Two limits on how far this argument goes:
+
+-   It applies to CRS, where priming is an established and quantified
+    mechanism. It does not transfer to ICANS (Section 16), where the
+    exposure-response relationship is not established well enough to
+    claim priming protects anyone.
+-   The IPDE patient also reaches **higher absolute doses** than any
+    conventional patient of the same era in the trial, so better priming
+    at a given dose does not mean lower total risk.
+
+The net effect on CRS is therefore ambiguous, and that is the honest
+statement. Record it as a reason not to assume the acute-safety
+comparison runs against IPDE, and revisit it if the optional RTTE
+extension is built.
+
 ------------------------------------------------------------------------
 
 ## 15. Critical point about safety-decision windows
@@ -1189,6 +1250,34 @@ These can dominate calendar time and therefore should not be omitted.
 A simple discrete-event engine is preferable to pretending all patients
 appear instantaneously.
 
+### Backfill pre-screening
+
+Make this an explicit design lever, because it plausibly matters more
+than PD turnaround.
+
+After the scout depletes, IPDE must enroll 3 fresh backfill patients.
+At $\lambda_{\rm enroll}=0.5$/week that is roughly 6 weeks of accrual
+before the $W_{\rm full}$ clocks even start, while the conventional arm
+has been enrolling continuously throughout. The confirmation penalty
+$T_{3,\rm eval}-T_{\rm BCD}$ is therefore an accrual quantity at low
+enrollment rates, and PD turnaround (Section 11), measured in days,
+cannot compete with it.
+
+Simulate two policies:
+
+-   **Reactive.** Backfill screening begins when the scout depletes.
+    This is the base case.
+-   **Anticipatory.** A pool of $n$ patients is screened and held ready
+    during the scout escalation, so backfill dosing starts after the
+    review lag alone. Screening is speculative and some pool patients
+    are never dosed, so count them in the operational burden of
+    Section 19.
+
+The comparison bounds how much of the confirmation penalty is
+recoverable by operations rather than by pharmacology. If anticipatory
+pre-screening removes most of it, that is a cheaper program change than
+faster assays and should be reported as such.
+
 ------------------------------------------------------------------------
 
 ## 21. Important design variants / sensitivity analyses
@@ -1209,6 +1298,7 @@ The highest-value sensitivity analyses are:
 12. IPDE escalation gate 7 vs 14 days.
 13. Backfill nomination offset (nominate $D^*$ vs $3D^*$) and the cost
     of non-confirmation cycles.
+14. Reactive vs anticipatory backfill pre-screening (Section 20).
 
 Avoid large factorial designs initially. Start with interpretable
 scenario sets.
@@ -1216,6 +1306,34 @@ scenario sets.
 ------------------------------------------------------------------------
 
 ## 22. Suggested archetypes
+
+### Patient population
+
+State the population for each archetype. It decides whether $B_0=100$
+cells/uL and the $5$ cells/uL threshold are sensible, and the two
+candidate populations differ enough to change the PD model's starting
+conditions.
+
+-   **Relapsed/refractory oncology**, the teclistamab-like setting.
+    Baseline B cells are disease-affected and prior therapy is common.
+-   **Autoimmune / immune reset**, the setting where the eventual
+    regimen may be 1--2 administrations. Some candidates have had prior
+    B-cell-depleting therapy such as rituximab and can enter with
+    baseline counts already low or still recovering.
+
+The second population breaks the design's central signal where a patient
+enrolls near or below the threshold, because a scout who starts at
+$B<5/\mu L$ has no escalation signal at all and a scout who starts low
+depletes early and nominates a dose far below $D_{\rm true}$. Handle it
+as an eligibility criterion rather than as a modeling problem: require a
+documented baseline above a protocol-specified minimum (a value several
+fold above the $5$ cells/uL threshold) for scout eligibility, and record
+how many screened patients that excludes. Section 19's operational
+counters should include screen failures on this criterion.
+
+For v1, run Archetype 1 as oncology with $B_0=100$ cells/uL. Introduce a
+low-baseline population when IIV enters in Phase 4, where a distribution
+of $B_0$ is representable.
 
 ### Archetype 1 --- novel B-cell-depleting TCE
 
@@ -1511,6 +1629,22 @@ unnecessary.
 
 Illustrate Friberg ANC trajectories alongside escalating doses.
 
+**Draw the conventional arm on the same axes.** A panel showing only
+IPDE trajectories reads as an exhibit against IPDE, which misstates the
+finding. Section 15 establishes that a conventional program escalating
+on short between-cohort windows also commits to new dose levels before
+delayed toxicity from earlier levels is observable. The figure should
+show both arms so the reader can see where the two differ:
+
+-   Conventional: latency outruns the **program**, and each individual
+    patient sits at one dose level.
+-   IPDE: latency outruns the program on the same terms, and
+    additionally the same individual accumulates sequential higher
+    exposures inside the latency window.
+
+The second row is the IPDE-specific risk, and it is visible only against
+the first.
+
 The message is not:
 
 > IPDE causes neutropenia.
@@ -1533,7 +1667,9 @@ Expected hypotheses are:
 2.  IPDE advantage decreases sharply when the active dose is accurately
     predicted.
 3.  Catch-up IPDE primarily benefits participants rather than trial
-    calendar time.
+    calendar time. This replicates the accelerated-titration literature
+    (Section 6) rather than establishing something new, and a result
+    contradicting it is a reason to check the engine first.
 4.  The advantage of prospective IPDE persists after requiring 3
     conventional backfill patients, but is smaller than the apparent
     gain in $T_{\rm BCD}$.
@@ -1552,7 +1688,50 @@ Expected hypotheses are:
 10. At low enrollment rates the confirmation penalty
     $T_{3,\rm eval}-T_{\rm BCD}$ is dominated by enrolling the 3
     backfill patients, not by PD turnaround; if so, hypothesis 5 is
-    demoted.
+    demoted and anticipatory pre-screening (Section 20) recovers more
+    time than a faster assay.
+11. Better priming at a given dose does not make the acute-safety
+    comparison favour IPDE, because IPDE patients also reach higher
+    absolute doses (Section 14).
+
+------------------------------------------------------------------------
+
+## 26b. What result would make IPDE not worth doing
+
+Prespecify this before running the simulation, so the team is not
+negotiating the threshold against results it has already seen.
+
+The simulation quantifies a benefit against a risk it explicitly cannot
+quantify (Section 16). No arithmetic resolves that trade, so the
+defensible move is to state in advance how large the benefit must be
+before the ICANS discussion is worth having at all.
+
+Proposed decision structure:
+
+$$
+\Delta T = T_{3,\rm conventional} - T_{3,\rm IPDE}
+$$
+
+-   $\Delta T$ below a prespecified minimum $\Delta T_{\min}$: IPDE is
+    not worth the unquantified delayed-toxicity risk in that scenario.
+    Recommend the accelerated conventional design and stop. No safety
+    argument is needed, because there is no benefit to weigh against it.
+-   $\Delta T$ above $\Delta T_{\min}$: the acceleration is material,
+    and the decision moves to the clinical and regulatory judgement in
+    Section 27, which the simulation informs but does not make.
+
+Set $\Delta T_{\min}$ from program considerations rather than from the
+simulation. A starting value of 8 weeks is suggested on the grounds that
+it is roughly one conventional cohort cycle at
+$W_{\rm cohort}=28$ days plus its accrual, and a saving smaller than one
+cohort cycle is within the noise of ordinary trial execution. Replace it
+with the program's real number where one exists.
+
+Report $\Delta T$ against $\Delta T_{\min}$ for every scenario, and name
+the scenarios falling on each side. The expected shape of the answer is
+that IPDE clears the threshold only when prediction error is large
+(Section 12), which is the same conclusion as Section 26 hypothesis 2
+stated as a decision rather than as a trend.
 
 ------------------------------------------------------------------------
 
@@ -1661,6 +1840,15 @@ in this handoff.
     clinical/regulatory sources to verify incidence and onset
     distributions before quoting them in final work.\
     https://pmc.ncbi.nlm.nih.gov/articles/PMC11649460/
+
+6.  **Accelerated titration designs** --- Simon R, Freidlin B,
+    Rubinstein L, Arbuck SG, Collins J, Christian MC. Accelerated
+    titration designs for phase I clinical trials in oncology. *J Natl
+    Cancer Inst* 1997;89(15):1138--1147. The prior art for Design B and
+    for single-patient accelerated cohorts (Section 6). Verify the
+    design definitions and the reported behaviour of intra-patient
+    escalation before citing the comparison in final work.\
+    https://doi.org/10.1093/jnci/89.15.1138
 
 ------------------------------------------------------------------------
 
