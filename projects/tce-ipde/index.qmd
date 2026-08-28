@@ -421,6 +421,47 @@ Phase 1 is worth building:
     simulation with $D_{\rm start}$ raised and report how much of the
     IPDE advantage survives.
 
+#### How to read them
+
+Read against the four questions rather than through each paper front to back.
+The method is on the [Reading Papers](../../guides/reading-papers.qmd) page;
+what it comes to here is one hour on Simon and a shorter, narrower pass on the
+other four.
+
+**Simon 1997, about an hour.** Ten minutes on the abstract, the numbered
+definitions of designs 1 to 4, and the *column headers* of the simulation
+results tables. What outcome metrics they chose to report answers question 1
+by itself. Then forty-five minutes on two targets: the exact definition of
+design 1 and the rule for leaving the accelerated phase, which is question 2
+and which decides whether the comparator above stays a parameter or becomes a
+citation; and the results tables themselves, for whether trial duration
+appears at all beside patients treated and patients treated at subtherapeutic
+doses.
+
+Watch for the answer that runs the other way. If duration is not among the
+reported outcomes, question 1 resolves against the prediction above:
+hypothesis 3 in Section 26 is not settled by Simon, it stays in the
+simulation, and Simon is cited for the mechanism rather than for the result.
+Read the paper to find that out. The paragraph above it is a prediction from
+an abstract and has not been checked against the paper.
+
+One conditional third target. If their dose-toxicity model carries a
+cumulative or carryover term, spend another hour on it, because that is
+question 3's structure already parameterized. Otherwise do not reconstruct the
+model; nothing downstream of it is being reused.
+
+**The other four, thirty to sixty minutes each**, in the order listed above
+rather than this one. Zhou 2025 gets question 4 and nothing else, since a
+starting dose that moves ten-fold is either general or it is not, and the
+answer sets one parameter.
+
+Notes are four lines, one per question, each carrying an answer and the table
+or page number it came from, plus a short list of anything that contradicts
+this specification. As each paper is read, its entry in Section 28 stops being
+provisional and says so. The disclaimer above --- that nothing here has been
+read for this document --- has to stay true of the entries that still have
+not been.
+
 The simulation is not made redundant by any of this, but it is narrower
 than it looks. What remains to be shown is the value of the
 pharmacodynamic stop, the size of the confirmation penalty, and whether

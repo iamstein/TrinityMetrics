@@ -1,0 +1,110 @@
+---
+title: "Reading Papers"
+description: >
+  A three-pass method for reading a paper, what each pass costs in time, and
+  how to stop early when you are reading with a question in hand.
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+Read a paper in passes, and stop at the pass that answers your question. Most
+papers are worth ten minutes, some are worth an hour, and a few are worth an
+afternoon. Deciding which is the first thing the method does.
+
+This page summarizes two published guides and adapts them to a clinical or
+pharmacometric paper. It does not cover literature searching, systematic
+review, or formal critical appraisal of clinical evidence.
+
+## The three passes
+
+| Pass | Time | What you read | What you have at the end |
+|:--|:--|:--|:--|
+| 1 | 5–10 min | Title, abstract, introduction. Section and subsection headings only. Conclusions. A glance at the reference list for what you have already read. | The paper's category and its claim, and a decision about whether to do pass 2. |
+| 2 | up to 1 hour | The body, carefully, skipping proofs and derivations. Figures and tables in full: axes, units, error bars, sample sizes. | Enough to state the claim and its supporting evidence to someone else. Not enough to reproduce it. |
+| 3 | 1–5 hours | Everything, with the paper's assumptions reconstructed from scratch as though you were doing the work yourself. | The hidden assumptions and the failure modes, and what you would have done differently. |
+
+: Keshav's three-pass method {tbl-colwidths="[8,14,44,34]"}
+
+Pass 3 is for a paper you are reviewing, building on, or reimplementing.
+Keshav puts it at four to five hours for someone new to the area and about an
+hour for someone who is not, so the range measures your familiarity rather
+than the paper.
+
+The same passes do a literature survey. Pass 1 across a dozen candidates finds
+the shape of the field, and the citations and author names that repeat across
+them are the papers to read properly. Pass 2 goes to those, and pass 3 to none
+of them unless you are going to build something.
+
+## Reading with a question
+
+When you already know why you are reading — you have a specification, a design
+decision, or a claim you suspect is already published — write the questions
+down before opening the paper. The passes then change shape:
+
+1. Pass 1 becomes a search for where the answers would live: which table,
+   which section, which figure.
+2. Pass 2 reads those places and little else.
+3. Pass 3 usually does not happen.
+
+An hour is a normal budget for a paper read this way.
+
+Write the questions so the paper can answer them the other way. "Does this
+paper confirm X" gets confirmed. "What did they report, and does it bear on X"
+can come back no, and no is the answer that changes what you do next.
+
+## Clinical and pharmacometric papers
+
+**Pass 1.** Design, sample size, population, endpoint, and what was measured
+against what was modelled. The abstract of a clinical paper reports the result
+and leaves out the design; the methods decide whether the result means
+anything.
+
+**Pass 2.** Go to the figures before the prose. Check whether the axis is log
+or linear, whether the y axis starts at zero, what the error bars are — SD, SE
+or CI — how many subjects sit behind each point, and whether a model
+prediction is overlaid on the data or on a summary of the data. This is the
+[xgx](https://opensource.nibr.com/xgx/) reading applied to someone else's
+figures. Where a figure and the paragraph describing it disagree, find out
+why.
+
+**Pass 3.** Ask whether you could regenerate the analysis from the paper. For
+a modelling paper that means the structural model, the parameter estimates
+with their uncertainty, the covariate relationships, and the data the model
+saw. Where one of those is missing, note which one, because it is what a
+reader of your own work will ask for.
+
+## Notes
+
+One page per paper, written the same way every time so that two papers can be
+compared later.
+
+For a paper read against questions: one line per question, each carrying an
+answer and the table or page number it came from. For a paper read cold: the
+claim in your own words, the evidence offered for it, and what you did not
+follow.
+
+Write the summary in your own words rather than the authors'. A summary that
+reuses the abstract's phrasing shows only that you read the paper.
+
+Keep a second short list of what surprised you or contradicted what you
+expected. That is the part you will want six months later and the part you
+will not remember.
+
+## Sources
+
+- S. Keshav, "How to Read a Paper", *ACM SIGCOMM Computer Communication
+  Review* 37(3), 2007.
+  [PDF](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf).
+  Two pages. The three-pass method above, and the literature-survey procedure
+  built on it.
+
+- Elisabeth Pain, "How to (seriously) read a scientific paper", *Science
+  Careers*, 2016.
+  [Article](https://www.science.org/content/article/how-seriously-read-scientific-paper).
+  Working scientists describing their own habits, so there is no single method
+  in it. What recurs: start from the question the paper is answering, take
+  notes in your own words, judge the figures yourself before reading what the
+  authors say about them, look up the terms you do not know rather than
+  reading past them, and do not expect a first pass to leave you understanding
+  everything.
