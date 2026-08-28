@@ -1,0 +1,23 @@
+---
+title: "Projects"
+listing:
+  id: project-listing
+  contents: projects.yml
+  type: grid
+  grid-columns: 2
+  sort: false
+  fields: [title, description, categories]
+  categories: false
+  feed: false
+toc: false
+---
+
+Longer-running work: open-source tools, and working documents for methods
+problems that do not fit in a blog post.
+
+Some of these live in this repository and some are hosted elsewhere. Working
+documents here are drafts kept in the open — they record how a problem is
+currently being thought about, not a finished result.
+
+::: {#project-listing}
+:::

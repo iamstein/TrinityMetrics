@@ -1,0 +1,35 @@
+- title: "TCE-IPDE"
+  subtitle: "Working document"
+  description: >
+    When does intrapatient dose escalation actually shorten a first-in-human
+    T-cell engager trial, and what safety information does that acceleration
+    cost? A specification for the simulation that would answer it.
+  categories: [trial design, simulation, working document]
+  path: tce-ipde/index.qmd
+
+- title: "synpmx"
+  subtitle: "R package"
+  description: >
+    Generating realistic synthetic PK/PD datasets, so that analysis workflows,
+    teaching material, and tooling can be developed and shared without
+    exposing real clinical data.
+  categories: [R, synthetic data]
+  path: https://github.com/iamstein/synpmx
+
+- title: "xgx"
+  subtitle: "Open-source resource"
+  description: >
+    eXploratory Graphics for Xenobiotics: a guide to the graphics that make
+    pharmacokinetic and pharmacodynamic data interpretable, with worked
+    examples for each figure type.
+  categories: [graphics, pharmacometrics]
+  path: https://opensource.nibr.com/xgx/
+
+- title: "xgxr"
+  subtitle: "R package"
+  description: >
+    The R package behind xgx: helper functions for the axes, scales, and
+    summaries that exploratory pharmacokinetic and pharmacodynamic graphics
+    keep needing.
+  categories: [R, graphics]
+  path: https://cran.r-project.org/package=xgxr

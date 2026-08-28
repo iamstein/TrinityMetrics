@@ -4,6 +4,7 @@ project:
   render:
     - "*.qmd"
     - "blog/**/*.qmd"
+    - "projects/**/*.qmd"
     - "!drafts/**"
     - "!blog/drafts/**"
     - "!Post_Ideas.md"
@@ -25,6 +26,8 @@ website:
         text: Home
       - href: blog/index.qmd
         text: Blog
+      - href: projects/index.qmd
+        text: Projects
       - href: resources.qmd
         text: Resources
       - href: code.qmd
