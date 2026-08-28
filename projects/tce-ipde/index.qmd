@@ -339,87 +339,44 @@ project:
 
 #### What to read before building
 
-Read the literature before Phase 1, because it is a handful of papers
-against a four-phase implementation, and two of them could change the
-premise. Simon 1997 is the design ancestry but it is not the most
-useful thing to read first, and it is not the most recent treatment of
-intra-patient escalation.
+Read the literature before Phase 1. It is five papers against a
+four-phase implementation, and one of them can change the premise.
+[References](references.qmd) carries the queue in reading order, with
+the question to answer against each. Two of the five bear on this
+section directly.
 
-The list below is ordered so that each entry makes the next one easier
-to read. Nothing here has been read for this document: the titles,
-venues and identifiers are from a literature search, and the one-line
-characterizations come from abstracts. Verify each before citing it.
+**Simon 1997 is the design ancestry, not the place to start.** Designs 2
+to 4 there combine single-patient cohorts with intra-patient escalation,
+which is the catch-up design and the accelerated cohorts above.
+Elmeliegy 2024 is closer to this project's problem and covers dose
+selection across the first eight approved TCEs.
 
-1.  **Elmeliegy et al. 2024**, *Clin Pharmacol Ther*, dosing strategies
-    and quantitative clinical pharmacology for bispecific TCEs. Covers
-    dose selection across the first eight approved TCEs, including
-    model-based adaptive escalation and virtual testing of step-up
-    regimens. It is the closest published treatment of this project's
-    actual problem, and it is 2024 rather than 1997.
+**Zhou 2025 can change the premise.** A modified MABEL approach reported
+to justify a 10-fold higher first-in-human starting dose attacks the
+same gap from the other end, by moving $D_{\rm start}$ up rather than
+traversing the gap faster. A generally applicable version shrinks
+$R_{\rm predicted-gap}$ in Section 12 and the value of IPDE with it. The
+two strategies are not exclusive and the simulation carries both, since
+a higher starting dose is a change to one parameter. Run the scenarios
+with $D_{\rm start}$ raised and report how much of the advantage
+survives.
 
-2.  **Zhou et al. 2025**, *Clin Pharmacol Ther*, a modified MABEL
-    approach to the FIH starting dose for a solid-tumor TCE, reported
-    to have justified a 10-fold higher starting dose and saved at least
-    two escalation cohorts. **Read this second because it can change
-    the premise.** It attacks the same gap from the other end, by
-    moving $D_{\rm start}$ up rather than by traversing the gap faster.
-    A generally applicable version of it shrinks
-    $R_{\rm predicted-gap}$ in Section 12, and the value of IPDE with
-    it. The two strategies are not exclusive and the simulation can
-    carry both, since a higher starting dose is a change to one
-    parameter.
-
-3.  **Guo et al. 2025**, *Pharmaceutical Statistics*, a phase 1
-    dose-finding design incorporating intra-patient dose escalation
-    (IP-CRM), placing intra-patient escalation inside a continual
-    reassessment method with adaptively updated starting doses. The
-    adaptively updated starting dose is the same question as
-    $F_{\rm start}$ above, treated formally.
-
-4.  **Carryover toxicity in phase 1 trials with intra-patient dose
-    escalation**, 2025. The methodological treatment of the confound in
-    Section 16: attributing an event in a patient who has already
-    received every lower dose on the ladder.
-
-5.  **Simon et al. 1997**, *J Natl Cancer Inst*, accelerated titration
-    designs. Read last of these five, for the origin of the mechanism
-    and because designs 2 to 4 define what an efficient conventional
-    comparator looks like.
-
-Two things in this project are probably already answered in Simon.
-Hypothesis 3 in Section 26, that catch-up escalation benefits
-participants more than it shortens the trial, is the accelerated
-titration literature's own reported result. The shape of an efficient
-conventional comparator, which the critical comparator issue above
-leaves as a parameter, is what their designs 2 to 4 specify. Both
-should be cited rather than re-derived.
+Two things in this project are probably already answered in the
+accelerated titration literature. Hypothesis 3 in Section 26, that
+catch-up escalation benefits participants more than it shortens the
+trial, is that literature's own reported result. The shape of an
+efficient conventional comparator, which the critical comparator issue
+above leaves as a parameter, is what Simon's designs 2 to 4 specify.
+Both should be cited rather than re-derived.
 
 One thing is not answered in any of the five. Their escalation rules
-stop on toxicity and the quantity sought is a tolerated dose. None of
-them carries a pharmacodynamic stopping rule, a scout-and-backfill
-split, or a requirement that a separate cohort confirm an interpretable
-regimen, so none bears directly on $T_{3,\rm eval}$, on the
-confirmation penalty, or on the prediction-error axis. Their driver is
-uncertainty about where toxicity begins; this project's driver is
-uncertainty about where activity begins, in a range believed to sit
-below the toxic one.
-
-Four questions to answer while reading, because they decide how much of
-Phase 1 is worth building:
-
-1.  Does Simon report the calendar-time saving separately from the
-    reduction in patients treated at subtherapeutic doses? If so,
-    hypothesis 3 is settled and comes out of the simulation.
-2.  What conventional comparator did they use, and does the accelerated
-    design above match it? If so, adopt theirs rather than
-    parameterizing a new one.
-3.  Does the carryover-toxicity work give a usable structure for the
-    delayed-toxicity stress test in Section 17, or does the Friberg
-    model remain the better vehicle?
-4.  How general is the modified-MABEL starting dose in Zhou 2025? If a
-    10-fold higher starting dose is routinely defensible, run the
-    simulation with $D_{\rm start}$ raised and report how much of the
-    IPDE advantage survives.
+stop on toxicity and the quantity sought is a tolerated dose. None
+carries a pharmacodynamic stopping rule, a scout-and-backfill split, or
+a requirement that a separate cohort confirm an interpretable regimen,
+so none bears directly on $T_{3,\rm eval}$, on the confirmation penalty,
+or on the prediction-error axis. Their driver is uncertainty about where
+toxicity begins; this project's driver is uncertainty about where
+activity begins, in a range believed to sit below the toxic one.
 
 The simulation is not made redundant by any of this, but it is narrower
 than it looks. What remains to be shown is the value of the
@@ -2017,79 +1974,15 @@ slow Phase 1 design.
 
 ------------------------------------------------------------------------
 
-## 28. Key references to verify/use during implementation
+## 28. References
 
-Retrieve and verify the original publications rather than relying on the
-parameter transcription in this document.
+Every source this document draws on is on the
+[references page](references.qmd), in reading order, each carrying a
+marker recording whether it has been checked against its source. Nothing
+is marked checked yet.
 
-1.  **Teclistamab population PK model** --- published PopPK model
-    describing SC absorption, two-compartment disposition, and
-    time-dependent clearance.\
-    https://pmc.ncbi.nlm.nih.gov/articles/PMC10518021/
-
-2.  **Friberg neutropenia model** --- classic semimechanistic
-    myelosuppression model.\
-    https://ascopubs.org/doi/10.1200/JCO.2002.02.140
-
-3.  **Mosunetuzumab translational/TCE modeling** --- useful precedent
-    for T-cell-mediated B-cell killing and translational pharmacology.\
-    https://pmc.ncbi.nlm.nih.gov/articles/PMC7455723/
-
-4.  **Clinical pharmacology / dose optimization of T-cell engagers** ---
-    useful for historical FIH escalation, step-up dosing, and safety
-    considerations.\
-    https://ascpt.onlinelibrary.wiley.com/doi/10.1002/cpt.3308
-
-5.  **Teclistamab ICANS clinical experience** --- use original
-    clinical/regulatory sources to verify incidence and onset
-    distributions before quoting them in final work.\
-    https://pmc.ncbi.nlm.nih.gov/articles/PMC11649460/
-
-6.  **Accelerated titration designs** --- Simon R, Freidlin B,
-    Rubinstein L, Arbuck SG, Collins J, Christian MC. Accelerated
-    titration designs for phase I clinical trials in oncology. *J Natl
-    Cancer Inst* 1997;89(15):1138--1147. The prior art for the catch-up design and
-    for single-patient accelerated cohorts (Section 6). Verify the
-    design definitions and the reported behaviour of intra-patient
-    escalation before citing the comparison in final work.\
-    https://doi.org/10.1093/jnci/89.15.1138
-
-7.  **MCLA-117 (tepoditamab) phase 1 dose escalation** --- the
-    within-patient escalation scheme reproduced in Section 6. The
-    scheme comes from the study's e-poster at the 25th EHA Congress,
-    June 2020; the trial is registered as NCT03038230. The transcription
-    in Section 6 has not been checked against the poster, so verify
-    every number before citing it.\
-    Poster: https://merus.nl/app/uploads/2020/06/EHA-2020-MCLA-117-CL01-e-poster.pdf\
-    EHA library record: https://library.ehaweb.org/eha/2020/eha25th/294456/\
-    Registration: https://clinicaltrials.gov/study/NCT03038230
-
-8.  **TCE dosing strategies and quantitative clinical pharmacology** ---
-    Elmeliegy M, et al. *Clin Pharmacol Ther* 2024. Dose selection
-    across the first eight approved T-cell engagers.\
-    https://doi.org/10.1002/cpt.3361
-
-9.  **Modified MABEL FIH starting dose for a solid-tumor TCE** --- Zhou
-    et al. *Clin Pharmacol Ther* 2025. The competing strategy in
-    Section 6: raise the starting dose rather than traverse the gap
-    faster.\
-    https://doi.org/10.1002/cpt.3431
-
-10. **FIH dose selection for T-cell engaging bispecific antibodies** ---
-    de Graaf et al. *Clin Pharmacol Ther* 2025, an AAPS working-group
-    position on starting dose, early development and RP2D selection.\
-    https://doi.org/10.1002/cpt.3487
-
-11. **IP-CRM, a phase 1 design incorporating intra-patient dose
-    escalation** --- Guo et al. *Pharmaceutical Statistics* 2025. The
-    modern successor to accelerated titration, with adaptively updated
-    starting doses.\
-    https://doi.org/10.1002/pst.2461
-
-12. **Carryover toxicity in phase 1 trials with intra-patient dose
-    escalation**, 2025.\
-    https://pubmed.ncbi.nlm.nih.gov/40405047/
-
-None of references 8 to 12 has been read for this document. Titles,
-venues and identifiers come from a literature search and the
-characterizations come from abstracts, so verify each before citing it.
+Two things there need verifying before anything from this document goes
+into final work: the teclistamab PK parameters in Section 8 and the
+Friberg system values in Section 17, both transcribed rather than
+verified, and the MCLA-117 dose table in Section 6, transcribed from an
+image of the poster rather than from the poster.

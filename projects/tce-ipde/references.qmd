@@ -1,0 +1,160 @@
+---
+title: "References for the TCE-IPDE working document"
+subtitle: "What to read, in what order, and what has actually been checked"
+description: "The reading queue and source list for the intrapatient dose escalation working document, with a status marker on every entry recording whether it has been verified against its source."
+categories: [trial design, pharmacometrics, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing on this page has been read and checked against its source.**
+Every entry carries a status marker, and the markers are the point of
+the page. A parameter transcribed from an abstract, or a table
+transcribed from an image, is not a number that can go into final work.
+:::
+
+The working document is [the specification](index.qmd). This page is
+where its sources live.
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the working document has been verified
+  against this source. Where the working document characterizes it, the
+  characterization comes from an abstract or a search result.
+- ⚠️ **Transcribed, unverified.** A number, table or model structure in
+  the working document came from this source but has not been checked
+  against it.
+- ✅ **Checked.** Verified against the source.
+
+Nothing is ✅ yet. Change a marker when the check is done, not when the
+paper is opened.
+
+## Reading queue
+
+Read these five before building Phase 1. It is a handful of papers
+against a four-phase implementation, and the second one can change the
+project's premise. They are ordered so that each makes the next easier
+to read.
+
+### 1. Elmeliegy et al. 2024 — TCE dosing strategies and quantitative clinical pharmacology ❌
+
+*Clinical Pharmacology & Therapeutics*.
+<https://doi.org/10.1002/cpt.3361>
+
+Dose selection across the first eight approved T-cell engagers,
+including model-based adaptive escalation and virtual testing of step-up
+regimens. The closest published treatment of this project's problem, and
+2024 rather than 1997.
+
+**Answer while reading.** Which of the eight programmes used
+within-patient escalation, and what did it buy them?
+
+### 2. Zhou et al. 2025 — modified MABEL starting dose for a solid-tumor TCE ❌
+
+*Clinical Pharmacology & Therapeutics*.
+<https://doi.org/10.1002/cpt.3431>
+
+Reported to have justified a 10-fold higher first-in-human starting dose
+and saved at least two escalation cohorts. **This can change the
+premise.** It attacks the same gap from the other end, moving
+$D_{\rm start}$ up rather than traversing the gap faster, so a generally
+applicable version shrinks $R_{\rm predicted-gap}$ and the value of IPDE
+with it. The two strategies are not exclusive, and the simulation
+carries both, since a higher starting dose is a change to one parameter.
+
+**Answer while reading.** How general is the approach? If a 10-fold
+higher starting dose is routinely defensible, run the simulation with
+$D_{\rm start}$ raised and report how much of the IPDE advantage
+survives.
+
+### 3. Guo et al. 2025 — IP-CRM, intra-patient escalation inside a CRM ❌
+
+*Pharmaceutical Statistics*. <https://doi.org/10.1002/pst.2461>
+
+Places intra-patient escalation inside a continual reassessment method,
+with adaptively updated starting doses. The modern successor to
+accelerated titration.
+
+**Answer while reading.** The adaptively updated starting dose is the
+$F_{\rm start}$ question in Section 6 treated formally. Does their rule
+replace the fixed cap, and does it need a toxicity model this project
+does not have?
+
+### 4. Carryover toxicity in phase 1 trials with intra-patient dose escalation, 2025 ❌
+
+<https://pubmed.ncbi.nlm.nih.gov/40405047/>
+
+The methodological treatment of the confound in Section 16: attributing
+an event in a patient who has already received every lower dose on the
+ladder.
+
+**Answer while reading.** Does it give a usable structure for the
+delayed-toxicity stress test in Section 17, or does the Friberg model
+remain the better vehicle?
+
+### 5. Simon et al. 1997 — accelerated titration designs ❌
+
+*J Natl Cancer Inst* 89(15):1138–1147.
+<https://doi.org/10.1093/jnci/89.15.1138>
+
+The origin of the mechanism. Designs 2 to 4 combine single-patient
+cohorts in the low-dose region with intra-patient escalation, and define
+what an efficient conventional comparator looks like. Read last of the
+five.
+
+**Answer while reading.** Does the paper report the calendar-time saving
+separately from the reduction in patients treated at subtherapeutic
+doses? If it does, hypothesis 3 in Section 26 is settled and comes out
+of the simulation. And does the conventional comparator match the
+accelerated design in Section 6? If it does, adopt theirs rather than
+parameterizing a new one.
+
+## Sources the specification's numbers come from
+
+Retrieve and verify these rather than relying on the transcription in
+the working document.
+
+| Status | Source | Taken from it | Used in |
+|:---|:---|:---|:---|
+| ⚠️ | [Teclistamab population PK model](https://pmc.ncbi.nlm.nih.gov/articles/PMC10518021/) | SC absorption, two-compartment disposition, time-dependent clearance, and the typical parameter estimates | Section 8 |
+| ⚠️ | [Friberg semimechanistic myelosuppression model](https://ascopubs.org/doi/10.1200/JCO.2002.02.140) | Model structure, $MTT \approx 116$–$125$ h, $\gamma \approx 0.17$ | Section 17 |
+| ❌ | [Mosunetuzumab translational TCE modeling](https://pmc.ncbi.nlm.nih.gov/articles/PMC7455723/) | Precedent for T-cell-mediated B-cell killing as a PD output | Section 9 |
+| ❌ | [Clinical pharmacology and dose optimization of T-cell engagers](https://ascpt.onlinelibrary.wiley.com/doi/10.1002/cpt.3308) | Historical FIH escalation, step-up dosing, safety considerations | Sections 6, 14 |
+| ❌ | [Teclistamab ICANS clinical experience](https://pmc.ncbi.nlm.nih.gov/articles/PMC11649460/) | Incidence and onset distribution claims | Section 16 |
+
+: Sources behind the specification's parameters {tbl-colwidths="[8,38,34,20]"}
+
+## The MCLA-117 worked example
+
+The Cycle 1 escalation scheme in Section 6 is transcribed from an image
+of the poster's dose table, not from the poster itself. Every number in
+those two tables and in the figure needs checking before it is cited.
+The study is MCLA-117 (tepoditamab), a CLEC12A x CD3 bispecific, in
+relapsed or refractory AML.
+
+| Status | Source | Link |
+|:---|:---|:---|
+| ⚠️ | EHA 2020 e-poster, MCLA-117 CL01 | <https://merus.nl/app/uploads/2020/06/EHA-2020-MCLA-117-CL01-e-poster.pdf> |
+| ❌ | EHA library record | <https://library.ehaweb.org/eha/2020/eha25th/294456/> |
+| ❌ | Trial registration, NCT03038230 | <https://clinicaltrials.gov/study/NCT03038230> |
+
+: The worked example in Section 6 {tbl-colwidths="[10,42,48]"}
+
+The study protocol has not been located. Registered protocol documents,
+where posted, appear on the registration page above.
+
+## Related, not yet placed
+
+Relevant, but not on the critical path to building Phase 1.
+
+| Status | Source | Why it may matter |
+|:---|:---|:---|
+| ❌ | [de Graaf et al. 2025, FIH dose selection for TCE bispecifics](https://doi.org/10.1002/cpt.3487) | An AAPS working-group position on starting dose, early development and RP2D selection. What an industry consensus currently expects of a design like this one. |
+| ❌ | [Model-informed dose priming strategy for T cell engagers](https://doi.org/10.70534/HAZS6681) | A QSP framework using early cohort data to choose step-up regimens, rather than setting them empirically as Section 6 does. |
+| ❌ | [Impact of FDA Project Optimus guidance on early-phase design](https://ascopubs.org/doi/10.1200/OA-25-00084) | Project Optimus pushes dose finding toward PK/PD-guided rules, which is what the escalation rule in Section 13 is. Useful for framing that rule as current practice rather than as a novelty. |
+| ❌ | [Statistical and practical considerations in dose-optimization trials](https://pmc.ncbi.nlm.nih.gov/articles/PMC11134987/) | The design-methodology side of the same shift. |
+
+: Related work {tbl-colwidths="[8,42,50]"}
