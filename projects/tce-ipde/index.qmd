@@ -443,19 +443,24 @@ However, patients enrolled at earlier low target doses can subsequently
 increase their own target dose once the higher dose has been cleared by
 the trial.
 
-Example:
+Example. A patient enrolled in the 1 mg cohort receives the step-up
+dose and then the 1 mg target:
 
 $$
-0.3\rightarrow0.3\rightarrow0.3...
+0.3\rightarrow1
 $$
 
-becomes
+and under the conventional design would continue at 1 mg. Under
+catch-up the same patient moves up as each higher level is cleared:
 
 $$
-0.3\rightarrow1\rightarrow3\rightarrow10
+0.3\rightarrow1\rightarrow3\rightarrow10.
 $$
 
-as those doses become available.
+Each arrow is one weekly administration. The higher levels are opened
+by the trial's between-patient escalation, not by this patient, so
+catch-up changes which patients sit at a dose level and not when that
+level opens.
 
 Expected result:
 
