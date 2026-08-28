@@ -477,7 +477,11 @@ $$
 D_0\rightarrow D_1\rightarrow D_2\rightarrow D_3\rightarrow...
 $$
 
-with QW escalation.
+with escalation every 7 days. **Hold the step interval at one week for
+v1.** It matches the safety gate $W_{\rm decision}$ in Section 15 and
+the PD turnaround in Section 11, so nothing else in the engine has to
+move to support it. Shorter intervals are a later question, not a v1
+parameter.
 
 Continue escalation when $B\ge5/\mu L$ and the protocol-defined safety
 gate permits another dose.
@@ -585,8 +589,18 @@ Four things in this scheme bear directly on the design being simulated.
 Observation 3 is the one that changes this project's design, and the
 next subsection takes it up. Observations 2 and 4 supply real values
 where Sections 13 and 15 currently carry assumptions: an escalation
-multiplier of roughly 2 to 3-fold per step, step intervals of 2 to 7
-days, and five to seven steps inside a 28-day cycle.
+multiplier of roughly 2 to 3-fold per step, and five to seven steps
+inside a 28-day cycle.
+
+The step interval is where this trial and the simulated design differ.
+Cohort 1 doses on D1, D3, D5, D8, D11, D15 and D22, so its first
+intervals are 2 and 3 days rather than 7. Scout-and-backfill holds the
+interval at one week, which makes the simulated ladder slower than the
+precedent rather than faster, and any acceleration it reports
+conservative on that axis. Whether a sub-weekly scout ladder is worth
+simulating is a later question; a 7-day interval is the v1 assumption
+because it is what the safety gate in Section 15 and the PD turnaround
+in Section 11 already support.
 
 ### The scout's first dose is constrained, and a second scout re-runs the ladder
 
