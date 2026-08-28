@@ -5,6 +5,7 @@ project:
     - "*.qmd"
     - "blog/**/*.qmd"
     - "!drafts/**"
+    - "!blog/drafts/**"
     - "!Post_Ideas.md"
   resources:
     - references/**

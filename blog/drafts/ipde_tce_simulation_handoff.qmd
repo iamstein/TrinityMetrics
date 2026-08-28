@@ -1,8 +1,26 @@
-# Intrapatient Dose Escalation for First-in-Human T-Cell Engagers
+---
+title: "Intrapatient Dose Escalation for First-in-Human T-Cell Engagers"
+subtitle: "Simulation and operational strategy --- handoff specification"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    toc-expand: true
+    number-sections: false
+    embed-resources: true
+    theme: cosmo
+    fontsize: 1.05em
+    linestretch: 1.5
+    max-width: 900px
+    code-line-numbers: false
+    html-math-method: mathjax
+    link-external-newwindow: true
+draft: true
+---
 
-## Handoff specification
-
-### 1. High-level objective
+## 1. High-level objective
 
 Develop a simulation and operational framework to answer:
 
@@ -504,16 +522,18 @@ Published teclistamab PopPK uses:
 
 Published typical estimates:
 
-  Parameter                             Value
-  ----------------------- -------------------
-  $CL_1$                          0.449 L/day
-  $V_c$                                4.13 L
-  $Q$                            0.0390 L/day
-  $V_p$                                1.34 L
-  $k_a$                      0.133 day$^{-1}$
-  $F$                                   0.718
-  time-dependent $CL_2$           0.547 L/day
-  $k_{\rm DES}$             0.0292 day$^{-1}$
+| Parameter               | Value            |
+|:-----------------------|-----------------:|
+| $CL_1$                 | 0.449 L/day      |
+| $V_c$                  | 4.13 L           |
+| $Q$                    | 0.0390 L/day     |
+| $V_p$                  | 1.34 L           |
+| $k_a$                  | 0.133 day$^{-1}$ |
+| $F$                    | 0.718            |
+| time-dependent $CL_2$  | 0.547 L/day      |
+| $k_{\rm DES}$          | 0.0292 day$^{-1}$ |
+
+: Published teclistamab population-PK typical estimates {tbl-colwidths="[55,45]"}
 
 For this project:
 
@@ -1181,17 +1201,19 @@ Report the components separately.
 
 For every simulated design track:
 
-  Element                              Metric
-  ------------------------------------ --------------
-  Additional clinic visits             count
-  Drug administrations                 count
-  Individual dose changes              count
-  Pharmacy preparations                count
-  Real-time dose decisions             count
-  Safety committee reviews             count
-  PD results needed before next dose   count
-  Observation/hospitalization          patient-days
-  Total trial calendar time            days
+| Element                            | Metric       |
+|:-----------------------------------|:-------------|
+| Additional clinic visits           | count        |
+| Drug administrations               | count        |
+| Individual dose changes            | count        |
+| Pharmacy preparations              | count        |
+| Real-time dose decisions           | count        |
+| Safety committee reviews           | count        |
+| PD results needed before next dose | count        |
+| Observation/hospitalization        | patient-days |
+| Total trial calendar time          | days         |
+
+: Patient and operational burden components, reported per simulated design track {tbl-colwidths="[70,30]"}
 
 The key quantity is **incremental burden relative to what patients would
 otherwise undergo**.
