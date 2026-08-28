@@ -1981,26 +1981,42 @@ Deferred deliberately, with the reason recorded, so that a later version
 does not have to rediscover the argument. Nothing here is a v1
 dependency.
 
-**Model-based dose finding.** The continual reassessment method, BOIN
-and Bayesian logistic regression models all allocate patients across
-dose levels under a fitted toxicity model, and Section 6 rules them out
-of v1. Two reasons hold that line. The binding constraint in this
-project is pharmacology in a range believed to be subtherapeutic rather
-than toxicity statistics, so a better toxicity allocator does not
-address it. And these designs are less common in the immunology studies
-this project is aimed at than in oncology dose finding, so adopting one
-would add machinery the reader would have to be sold on before the
-simple version had been shown to work.
+**Model-based dose finding.** Three families sit behind the exclusion in
+Section 6 and they are not the same thing. The continual reassessment
+method and Bayesian logistic regression models fit a dose-toxicity curve
+and choose the next dose from it, so they are model-based. BOIN and mTPI
+decide from the data at the current dose against precomputed
+boundaries, without fitting a curve, so they are model-assisted. 3+3 is
+neither.
 
-What would bring it back is the $F_{\rm start}$ question in Section 6.
-Guo et al. 2025 places intra-patient escalation inside a CRM with an
-adaptively updated starting dose, which is that question treated
+Two reasons defer all of them. The binding constraint in this project is
+pharmacology in a range believed to be subtherapeutic rather than
+toxicity statistics, so a better toxicity allocator does not address it.
+And these designs are less common in the immunology studies this project
+is aimed at than in oncology dose finding, so adopting one would add
+machinery the reader has to be sold on before the simple version has
+been shown to work.
+
+The second reason is a judgement about current practice rather than a
+documented one, and it is weakest in exactly this space. A
+B-cell-depleting TCE in autoimmune disease imports oncology dose-finding
+practice along with the modality. Treat it as a reason to defer rather
+than as a reason it will never apply, and check it before repeating it
+to a review board.
+
+What would reopen the question is the $F_{\rm start}$ question in
+Section 6. Guo et al. 2025 places intra-patient escalation inside a CRM
+with an adaptively updated starting dose, which is that question treated
 formally rather than as a fixed cap. Work applying Bayesian logistic
-regression models to the same problem has not been located yet; when it
-is, it goes on the references page. The successor version of this
-project is the one where the escalation rule is fit rather than
-prescribed, and it should be attempted only after the prescribed version
-has a result to compare against.
+regression models to the same problem has not been located; when it is,
+it goes on the references page.
+
+The nearer neighbour is not a toxicity allocator at all. This project's
+escalation rule fires on pharmacodynamics, and the Project Optimus
+material listed under "Related, not yet placed" on the references page
+is the literature for PK/PD-guided dose finding. If anything on that
+page changes the escalation rule in Section 13, it is more likely to be
+that than a CRM.
 
 ------------------------------------------------------------------------
 
