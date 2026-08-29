@@ -1,5 +1,7 @@
 # TrinityMetrics
 
+Site: <https://iamstein.github.io/TrinityMetrics/>
+
 A repository and publishing site focused on integrating human expertise, generative AI, and regulated clinical data workflows for statistical and pharmacometric analysis.
 
 ## Purpose

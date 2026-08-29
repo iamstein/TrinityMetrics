@@ -1,0 +1,20 @@
+---
+title: "Site integration"
+subtitle: "Merging the Google Sites personal site into TrinityMetrics"
+description: "Index of the documents in the site-integration project: the working specification for porting sites.google.com/site/andrewsteinphd into this site."
+categories: [site, migration, working document]
+date: last-modified
+toc: false
+---
+
+The personal site at
+[sites.google.com/site/andrewsteinphd](https://sites.google.com/site/andrewsteinphd/home)
+and this site should be one site, with nothing dropped without a recorded
+decision to drop it. The migration has been specified and not started.
+
+## Documents
+
+- [Working specification](specification.qmd). What moves, where it lands, what
+  happens to the old URLs, and in what order to do it. Its **In brief** section
+  is one screen and says what the rest argues. The content inventory in Section
+  5 is empty and filling it is the first phase of the work.

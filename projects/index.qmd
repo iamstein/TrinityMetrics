@@ -12,8 +12,8 @@ listing:
 toc: false
 ---
 
-Longer-running work: open-source tools, and working documents for methods
-problems that do not fit in a blog post.
+Longer-running work: open-source tools, and working documents for problems
+that do not fit in a blog post.
 
 Some of these live in this repository and some are hosted elsewhere. Working
 documents here are drafts kept in the open — they record how a problem is

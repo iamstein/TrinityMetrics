@@ -1,0 +1,425 @@
+---
+title: "Porting andrewsteinphd into TrinityMetrics"
+subtitle: "Working specification for merging the Google Sites personal site into this site"
+description: "The personal site at sites.google.com/site/andrewsteinphd and TrinityMetrics should be one site. This specifies what moves, where it lands, what happens to the old URLs, and in what order to do it."
+categories: [site, migration, working document]
+date: last-modified
+toc: true
+toc-depth: 3
+toc-location: left
+toc-expand: true
+number-sections: false
+---
+
+::: {.callout-important appearance="simple"}
+**The content inventory in Section 5 is empty.** The session that wrote this
+specification could not reach `sites.google.com`; the network egress policy
+returned a 403 on the CONNECT. Everything here about the old site's structure
+is inference from its public description and from what this repository already
+links to. Section 5 is a table to fill, and Phase 0 in Section 13 is the work
+of filling it. Nothing downstream of it should be treated as settled until it
+is filled.
+:::
+
+## In brief
+
+**The goal.** One site, at one URL, holding both what is now on
+`sites.google.com/site/andrewsteinphd` and what is now on TrinityMetrics, with
+no content dropped without a recorded decision to drop it.
+
+**The two sites are about different things.** The Google site is about a
+person: bio, publications, talks, software, contact. TrinityMetrics is about a
+topic: AI in regulated clinical and pharmacometric work. Merging them means the
+merged site has to answer two questions on arrival, "who is this" and "what is
+this for", and the navigation has to make both findable without either burying
+the other.
+
+**Recommendation on naming.** Keep the site at
+`https://iamstein.github.io/TrinityMetrics/` and keep TrinityMetrics as the
+site title. Add the personal material as its own section rather than renaming
+the site around it. Section 3 argues this against the alternative and says what
+would change the answer.
+
+**Recommendation on placement.** Person-level pages become top-level
+(`cv.qmd`, `publications.qmd`, `talks.qmd`), grouped in the navbar under one
+menu; the existing `about.qmd` becomes the person's landing page and stops
+being a project description. Section 4 maps every kind of content.
+
+**Files and old URLs.** A Google Site's PDFs, slides and images live at URLs
+that stop existing when the site does, and those URLs are cited from CVs,
+papers and conference bios that cannot be edited. Section 8 and Section 11
+cover this, and it is the reason the old site should be kept alive as a set of
+pointers rather than deleted.
+
+**Where to start.** Phase 0: export the site and fill in Section 5. Every other
+decision here gets easier once the actual page and file list exists, and two of
+the open questions in Section 14 may answer themselves.
+
+------------------------------------------------------------------------
+
+## 1. Scope
+
+In scope: every page, file and link currently reachable from
+`sites.google.com/site/andrewsteinphd`, and the changes to this repository
+needed to hold them.
+
+Out of scope, stated once:
+
+-   **A visual redesign.** The merged site uses the existing `cosmo` theme and
+    `styles.css`. If the merge makes a design problem obvious, record it and
+    handle it separately.
+-   **A custom domain.** Registering a personal domain and pointing it at
+    GitHub Pages is a short job that can be done at any time, before or after
+    the merge, and it does not change what content goes where. Section 3 notes
+    where it would change the naming decision.
+-   **Rewriting the ported prose.** Ported pages come across as they are, with
+    dead links repaired and formatting converted. Improving the writing is a
+    separate pass on a separate day, and mixing it into the migration makes it
+    impossible to tell what moved from what changed.
+-   **The other sites.** `synpmx`, `xgx` and `xgxr` stay where they are. They
+    are already listed in `projects/projects.yml` and are linked, not absorbed.
+
+## 2. What each site is for
+
+|  | andrewsteinphd | TrinityMetrics |
+|---|---|---|
+| Subject | A person | A topic |
+| Reader arrives from | A paper, a talk, a search for the name | A link to a post, GitHub |
+| Reader wants | Who is this, what have they published, how do I contact them | Is this idea any good, can I use this code |
+| Update rate | Yearly | Weekly to monthly |
+| Built with | Google Sites | Quarto, rendered by GitHub Actions on push to `main` |
+
+The update rates matter for placement. A publications list changes a few times
+a year and a blog changes constantly, so putting them in the same listing
+machinery makes the slow content look stale next to the fast content. They
+should be separate listings.
+
+The reader columns matter for the home page. Both readers land on `index.qmd`
+today if the sites are merged naively, and they want different things. Section
+10 handles this in the navbar rather than by writing a home page that tries to
+be both.
+
+## 3. Decision 1 --- whose name the merged site carries
+
+Three options, and the recommendation is A.
+
+**A. TrinityMetrics absorbs the personal site.** Title stays "TrinityMetrics",
+URL stays `iamstein.github.io/TrinityMetrics/`, the person becomes a section.
+Costs nothing, breaks no existing link. The objection is that a personal
+site titled after a project reads oddly to someone arriving from a paper
+looking for a CV, and that objection is answered by the About page opening
+with the person rather than the project.
+
+**B. Rebrand as a personal site with TrinityMetrics inside it.** Title becomes
+"Andrew Stein"; TrinityMetrics becomes the name of the blog and projects
+section. Truer to what the merged site is. Costs a repository rename, which
+breaks `iamstein.github.io/TrinityMetrics/` and every link to it, including the
+one now in `about.qmd` and any already shared. GitHub redirects a renamed
+repository's git remotes; it does not redirect the Pages URL of a project site.
+
+**C. Two Quarto projects in one repository.** Rejected. Two navbars, two
+searches, two sets of styles, and a reader who crosses between them leaves one
+site and enters another. This is the situation being fixed.
+
+**Recommendation: A.** The URL is the asset. It is in `_quarto.yml` as
+`site-url`, it is the GitHub Pages path derived from the repository name, and
+it is what any link shared to date points at. Option B buys a name, and a name
+is the one thing a custom domain buys later for less. If a custom domain is
+registered, B becomes cheap, because the domain carries the personal identity
+and the repository name stops being visible to readers. Revisit the decision
+then, not now.
+
+## 4. Decision 2 --- where each kind of content lands
+
+Presumed contents of the old site in the left column. Confirm against Section 5
+once the export exists; a row with no matching page is deleted, and a page with
+no matching row gets one.
+
+| Old content | Lands at | Form |
+|---|---|---|
+| Home page bio | `about.qmd`, rewritten to open with the person | Prose, one screen |
+| Long bio, career history | `about.qmd`, below the short bio | Prose |
+| CV | `cv.qmd`, plus the PDF as a download | Page and file |
+| Publications | `publications.qmd` driven by `publications.yml` | Listing |
+| Talks, posters, slides | `talks.qmd` driven by `talks.yml`, slides as files | Listing plus files |
+| Teaching, courses | `teaching.qmd`, or a section of `cv.qmd` if thin | Depends on volume |
+| Software: xgx, xgxr, synpmx | Nothing new. Already in `projects/projects.yml` | Link out |
+| Other software or code not yet listed | New rows in `projects/projects.yml` | Link out |
+| Contact details | Bottom of `about.qmd` | Prose |
+| News, updates | Dropped, or folded into the blog | See Section 14, Q2 |
+| Photos, personal material | Case by case; record the decision in Section 5 | --- |
+
+Two rules govern the mapping.
+
+**A listing gets its own YAML file.** `projects/projects.yml` and
+`guides/guides.yml` are the existing pattern and the new listings follow it, so
+that a publication entry and a project entry are edited the same way. Section 9
+covers the alternative for publications.
+
+**A page that would hold fewer than about five entries is a section, not a
+page.** Three talks do not need a Talks page in a seven-item navbar. Where the
+export shows a thin section, fold it into `cv.qmd` and record that in Section 5
+as a merge rather than a port.
+
+## 5. Content inventory
+
+One row per page and per file on the old site. This is the artifact Phase 0
+produces, and every later phase reads from it.
+
+Disposition codes:
+
+-   **PORT** --- comes across substantially as it is.
+-   **MERGE** --- content folds into an existing or new page with other content.
+-   **LINK** --- not ported; the merged site links to the canonical copy
+    elsewhere.
+-   **DROP** --- deliberately not carried over. Requires a reason in the row.
+
+| # | Old URL | Title | Kind | Files on it | Disposition | Lands at | Reason / note |
+|---|---|---|---|---|---|---|---|
+| *e1* | *`/home`* | *Home* | *page* | *---* | *MERGE* | *`about.qmd`* | *Example row. Bio opens the About page.* |
+| *e2* | *`/cv/stein-cv.pdf`* | *CV* | *file* | *---* | *PORT* | *`files/stein-cv.pdf`* | *Example row. Old URL likely cited; needs a pointer per Section 11.* |
+| 1 |  |  |  |  |  |  |  |
+
+The two italic rows are the format, not content. Delete them once the real rows
+are in.
+
+Fill rules:
+
+-   Every page reachable from the old site's navigation gets a row, including
+    pages that are empty or say only "under construction". An empty page is a
+    DROP with "empty" as the reason, and recording it is what makes the
+    inventory a proof of completeness, and not a list of what someone happened
+    to notice.
+-   Every attached file gets its own row, because files and pages have separate
+    old URLs and separate inbound links.
+-   The count of rows is the acceptance criterion in Section 12. Write it down
+    once the table is filled.
+
+## 6. Where the two sites already overlap
+
+Three known overlaps, and each needs one canonical location with the other
+pointing at it.
+
+**xgx and xgxr.** Already in `projects/projects.yml`, pointing at
+`opensource.nibr.com/xgx/` and the CRAN page. If the old site describes them at
+length, that description does not get a second home here. Canonical: the
+existing `projects.yml` rows, extended if the old descriptions say something
+the current ones do not.
+
+**The link from `about.qmd` to the old site.** `about.qmd` currently lists
+Andy Stein as an author and links to
+`sites.google.com/site/andrewsteinphd/home`. That link becomes self-referential
+the moment the merge lands and must be removed in the same commit that
+rewrites `about.qmd`.
+
+**The bio.** A short bio probably exists in more than one place already. Pick
+one, put it in `about.qmd`, and have anything else quote or link it rather than
+restate it.
+
+## 7. Getting the content out of Google Sites
+
+The URL shape `sites.google.com/site/...` is a Classic Sites address. Classic
+Sites was retired in 2021 and surviving addresses of that shape have been
+converted to new Google Sites, so treat the live site as a new Site with a
+legacy URL until the export shows otherwise. The two have different export
+paths.
+
+Three routes, in the order to try them.
+
+1.  **Google Takeout.** Select Sites only. Produces the pages as HTML with
+    attachments. Best fidelity for files, which is what is hardest to
+    reconstruct by hand.
+2.  **Save each page from the browser.** Viable at the page counts a personal
+    site usually has. Do this if Takeout produces something awkward to work
+    with, and do it page by page against the Section 5 inventory so nothing is
+    missed.
+3.  **A crawler.** Only if the page count turns out to be large. New Google
+    Sites renders through JavaScript, so a plain `curl` may return a shell
+    rather than the content, and a headless browser would be needed. Chromium
+    and Playwright are available in this environment.
+
+Then convert HTML to Quarto Markdown. `pandoc -f html -t markdown` handles the
+body; the front matter, the callouts and the listing entries are written by
+hand. Expect to hand-fix tables and any embedded Google Drive viewers, which do
+not convert to anything meaningful.
+
+**Network access.** `sites.google.com` is blocked by this environment's egress
+policy, so a Claude session cannot fetch the pages until that host is added to
+the environment's network allowlist. Either add it, or do the export locally
+and commit the raw files to a scratch branch for a session to convert.
+
+## 8. Files and assets
+
+Where they go: a new top-level `files/` directory, listed under `resources:` in
+`_quarto.yml` so Quarto copies it into `docs/` unrendered. Existing PDFs stay
+in `references/`, which is already listed there; `references/` is for the
+reference documents the Resources page links, and `files/` is for the CV,
+slides and posters that come across from the old site. Two directories with a
+stated split beats one directory with two unrelated kinds of thing in it.
+
+Naming: lower case, hyphens, no spaces, and a date prefix on anything with a
+date attached to it, matching `blog/posts/`. `2019-acop-poster.pdf`, not
+`ACoP Poster (final) v2.pdf`. A Google Sites filename usually has spaces in it,
+and spaces in a URL survive but read badly and break in some link checkers.
+
+Size: check the total before committing. The repository already carries a
+1.7 MB PNG at the root, and a decade of slide decks can be far larger than the
+rest of the repository combined. If the total exceeds roughly 100 MB, do not
+reach for Git LFS on a GitHub Pages site; keep the largest decks on the service
+that hosts them now and use a LINK disposition for those rows.
+
+**PDFs are the ported form for slides.** A PowerPoint file on a static site is
+a download rather than a page, and a reader on a phone cannot open it. Convert
+decks to PDF and keep the source file only where there is a reason to.
+
+## 9. Publications: how the list is built
+
+Two options.
+
+**A. A YAML file plus a Quarto listing**, matching `projects.yml` and
+`guides.yml`. Each entry carries title, authors, journal, year, DOI, and a link.
+Consistent with everything else on this site, editable without a toolchain, and
+the listing gives sorting and categories.
+
+**B. A BibTeX file rendered through Quarto's citation support.** Correct
+formatting for free, exports cleanly for anyone who wants to cite the work, and
+`.bib` can be exported from Google Scholar in one step rather than typed.
+
+**Recommendation: A, with the `.bib` file committed alongside it as a
+download.** The YAML drives what a reader sees, so the page looks like the rest
+of the site and can carry a note on a paper where a note is useful. The `.bib`
+serves the reader who wants to cite something and costs one export to produce.
+The duplication is real and is the price; it is bounded by publications being
+added a few times a year, one entry at a time.
+
+Do not hand-type the publication list. Export from the Google Scholar profile,
+then check it, because Scholar merges and mis-attributes entries and a
+publication list with someone else's paper in it is worse than a short one.
+
+## 10. Navigation after the merge
+
+The navbar has seven left-hand items now and the merge adds at least three.
+Ten flat items do not fit on a laptop width and do not survive on a phone.
+
+Proposed structure:
+
+```
+Home | Blog | Projects | Guides | Resources | Code | About ▾
+                                                      ├─ About
+                                                      ├─ CV
+                                                      ├─ Publications
+                                                      └─ Talks
+```
+
+The person's material sits under one menu, the topic material stays flat, and
+the site's shape barely changes for a reader who is already using it. A reader
+arriving from a paper looks for a name, finds About, and everything about the
+person is one click below it.
+
+The alternative, a second navbar row or a `right:` group, splits the navigation
+into two zones and asks the reader to work out what the split means.
+
+**The home page stays as it is.** `index.qmd` frames the project and links to
+the five sections. It gains one line pointing at About for the reader who came
+for the person. It does not become a personal landing page; Section 3 chose
+the project as the site's identity and the home page is where that choice is
+visible.
+
+## 11. Old URLs and inbound links
+
+Every old URL breaks unless something is done, and the ones that matter are the
+ones printed in places that cannot be edited: papers, conference bios, slide
+footers, the Google Scholar profile, other people's link lists.
+
+**Google Sites cannot redirect to an external site.** There is no redirect
+feature and no server to configure. The workable substitute is to keep the old
+site published and replace each page's body with a short pointer to the new
+address, page by page, matching the Section 5 inventory. A reader following a
+ten-year-old citation lands on a live page that tells them where to go.
+
+**Do not delete the old site.** Not at the end of the migration, not a year
+later. It costs nothing to leave a Google Site published and it is the only
+thing standing between an old citation and a 404.
+
+**Files need pointers too.** A PDF cannot carry a pointer. Where a file's old
+URL is likely to be cited, replace the attachment with a one-page PDF giving
+the new address, or leave the original in place and accept that the two copies
+diverge. Decide per row in Section 5.
+
+**Update what can be updated.** The Google Scholar profile's homepage field,
+the GitHub profile, LinkedIn, ORCID, and any conference bio still within reach.
+This is a short list and it catches most live traffic.
+
+## 12. Acceptance checks
+
+The migration is done when all of these hold.
+
+1.  Every row of the Section 5 inventory has a disposition, and every DROP row
+    has a reason.
+2.  The number of pages and files ported plus merged plus linked plus dropped
+    equals the row count recorded in Section 5.
+3.  A link checker over the rendered `docs/` reports no broken internal links.
+    `quarto render` then a link checker over the output; `lychee` or
+    `linkchecker` will do.
+4.  No page on the merged site links to `sites.google.com/site/andrewsteinphd`
+    as a live destination. `grep -r andrewsteinphd` returns hits only inside
+    `projects/site-integration/`, where the old address is the subject rather
+    than a reference.
+5.  Every file referenced from a ported page exists under `files/` or
+    `references/` and is listed under `resources:` in `_quarto.yml`.
+6.  Every page on the old site shows either its original content or a pointer
+    to the new address. No page is left half-migrated.
+7.  The site renders and publishes from `.github/workflows/publish.yml` without
+    manual steps.
+
+## 13. Sequence
+
+Phases are ordered so that each one leaves the site in a publishable state.
+None of them requires the next one to start.
+
+**Phase 0 --- inventory.** Export the site, fill in Section 5, record the row
+count. Answer the open questions in Section 14 that the export settles. This
+phase produces no site change and it is the phase that makes the rest
+estimable. Do not skip it and port pages as they are noticed; that is how a
+page gets left behind.
+
+**Phase 1 --- the person, at minimum.** Rewrite `about.qmd` to open with the
+bio, remove the self-referential link, add `cv.qmd` with the CV PDF in
+`files/`. Add the About menu from Section 10. After this phase the merged site
+already answers "who is this" and the old site is optional rather than load
+bearing.
+
+**Phase 2 --- publications and talks.** Add `publications.yml`,
+`publications.qmd`, the `.bib`, and the same for talks if the volume in Section
+5 justifies a page. Copy slides and posters into `files/`.
+
+**Phase 3 --- everything else.** The remaining PORT and MERGE rows. Extend
+`projects/projects.yml` with any software the old site lists that this one does
+not.
+
+**Phase 4 --- the old site becomes pointers.** Only after Phases 1 to 3 are
+published and checked. Replace each old page's body with its pointer, and
+update the external profiles listed in Section 11.
+
+**Phase 5 --- acceptance.** Run Section 12 end to end and record the result at
+the bottom of Section 5.
+
+## 14. Open questions
+
+Ordered by how much the answer changes the work. Q1 and Q3 are Andy's to
+answer; Q2 and Q4 may be settled by the Phase 0 export.
+
+1.  **Is a custom domain wanted?** If yes, buy it before Phase 1, because it
+    reopens Decision 1 in Section 3 in favour of a personal-site framing, and
+    changing the framing after the pages are written is more work than deciding
+    it now.
+2.  **Is there a news or updates section, and does it survive?** A stale news
+    list is worse than no news list. If the last entry is years old, the answer
+    is DROP, and if it is current the answer is that the blog already does this.
+3.  **Is any of the old site's content out of date rather than merely old?** A
+    superseded position or an affiliation that has changed should not be ported
+    verbatim, and the migration is where it gets caught. Section 1 rules
+    rewriting out of scope; correcting a fact is not rewriting.
+4.  **How much material is there in total?** The whole shape of the work
+    changes between a 6-page site and a 40-page one, and Section 8's file-size
+    ceiling depends on it. Unanswerable until Phase 0.
