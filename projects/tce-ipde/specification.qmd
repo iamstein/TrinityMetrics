@@ -81,8 +81,32 @@ Develop a simulation and operational framework to answer:
 > Under what conditions does intrapatient dose escalation (IPDE)
 > materially shorten the time required in a first-in-human T-cell
 > engager study to reach and conventionally evaluate a biologically
-> active dose/regimen, and what safety and operational risks accompany
-> that acceleration?
+> active dose/regimen, or reach that point at the same time having
+> treated fewer patients at subtherapeutic exposures, and what safety
+> and operational risks accompany either?
+
+**Two axes, not one.** The saving can arrive as calendar time or as
+patients, and a design can win on one without the other. Catch-up
+escalation is expected to be exactly that case: little change in
+$T_{3,\rm eval}$, substantially less patient-time at clearly subactive
+doses (Section 6). An objective stated on time alone scores that design
+as a failure when it is not one.
+
+The two headline quantities are therefore:
+
+-   **Time.** $T_{3,\rm eval}$, and $\Delta T$ against the conventional
+    comparator (Section 4).
+-   **Patients spent reaching the answer.** The number enrolled before
+    the first profound B-cell depletion, and patient-weeks with B cells
+    at or above 5 cells/uL (Section 5).
+
+**There is no cost model and there should not be one yet.** Turning
+visits, doses, hospital days and patients into a single number requires
+weights, and a sponsor, a site and a patient weigh them differently.
+Section 19 reports the components separately for that reason, and
+Section 5 keeps the list short. The two quantities above are the
+headline pair because they are what a programme argues about; the rest
+stay components.
 
 The main use case is a **B-cell-depleting TCE**, with profound
 peripheral B-cell depletion as the rapid pharmacodynamic signal.
@@ -2011,10 +2035,38 @@ with the program's real number where one exists.
 Report $\Delta T$ against $\Delta T_{\min}$ for every scenario, and name
 the scenarios falling on each side. The expected shape of the answer is
 that IPDE clears the threshold only when prediction error is large
-(Section 12), which is the same conclusion as the **good prediction of active
-dose removes benefit of intrapatient escalation** hypothesis in
-Section 26
-stated as a decision rather than as a trend.
+(Section 12), which is the same conclusion as the **good prediction of
+active dose removes benefit of intrapatient escalation** hypothesis in
+Section 26, stated as a decision rather than as a trend.
+
+### A result that saves patients but not time
+
+$\Delta T$ alone cannot register a design that takes the same calendar
+time and reaches the answer having exposed fewer patients to subactive
+doses. Catch-up escalation is expected to be that design, so the
+decision structure needs a second arm rather than scoring it as a
+failure.
+
+Report the pair $(\Delta T,\ \Delta N_{\rm sub})$ for every scenario,
+where $\Delta N_{\rm sub}$ is the reduction in patients treated only at
+subactive exposures against the conventional comparator. Four cases:
+
+-   **Neither material.** Recommend the accelerated conventional design
+    and stop.
+-   **$\Delta T$ material.** The acceleration is real and the decision
+    moves to Section 27.
+-   **$\Delta N_{\rm sub}$ material, $\Delta T$ not.** The design is a
+    patient-benefit argument rather than a programme-acceleration one,
+    and it is the weaker case for accepting an unquantified
+    delayed-toxicity risk. The patients spared subactive dosing are the
+    same patients carrying the escalation risk, where a calendar-time
+    saving spreads its benefit to the programme and to later patients
+    while the risk stays with the trial's participants. State the
+    result in those terms rather than as a saving.
+-   **Both material.** The strongest case available.
+
+Set $\Delta N_{\rm sub,\min}$ the way $\Delta T_{\min}$ is set, from
+programme considerations rather than from the simulation.
 
 ------------------------------------------------------------------------
 
