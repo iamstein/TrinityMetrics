@@ -10,10 +10,14 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**Nothing on this page has been read and checked against its source.**
-Every entry carries a status marker, and the markers are the point of
-the page. A parameter transcribed from an abstract, or a table
-transcribed from an image, is not a number that can go into final work.
+**The reading queue is closed. The numbers are not.** All five papers in
+the queue have been dispositioned and the notes under each say what came
+of it. Every source below the queue still carries the marker it started
+with, and those are the ones that matter for final work: the teclistamab
+PK parameters in Section 8, the Friberg system values in Section 17, and
+the MCLA-117 dose table in Section 6 were transcribed rather than
+verified. A parameter taken from an abstract, or a table taken from an
+image of a poster, is not a number that can go into final work.
 :::
 
 The working document is [the specification](index.qmd). This page is
@@ -29,8 +33,14 @@ where its sources live.
   against it.
 - ✅ **Checked.** Verified against the source.
 
-Nothing is ✅ yet. Change a marker when the check is done, not when the
-paper is opened.
+On a **reading-queue** entry, ✅ means the question posed against that
+entry has been answered — by reading the paper, or by deciding it is out
+of scope. The note on the entry says which. All five are ✅.
+
+On a **source** entry below the queue, ✅ keeps its stricter meaning:
+the claim the specification draws from it has been checked against the
+source. None is ✅ yet. Change a marker when the check is done, not when
+the paper is opened.
 
 ## How to read these
 
