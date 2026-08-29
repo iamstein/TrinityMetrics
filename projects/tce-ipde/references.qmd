@@ -10,9 +10,9 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**The reading queue is closed. The numbers are not.** All five papers in
-the queue have been dispositioned and the notes under each say what came
-of it. Every source below the queue still carries the marker it started
+**One paper open, and the numbers are not checked.** Five of the six
+queue entries have been dispositioned and the notes under each say what
+came of it; GB261 is unread. Every source below the queue still carries the marker it started
 with, and those are the ones that matter for final work: the teclistamab
 PK parameters in Section 8, the Friberg system values in Section 17, and
 the MCLA-117 dose table in Section 6 were transcribed rather than
@@ -35,7 +35,7 @@ folder's other documents are on [the project index](index.qmd).
 
 On a **reading-queue** entry, ✅ means the question posed against that
 entry has been answered — by reading the paper, or by deciding it is out
-of scope. The note on the entry says which. All five are ✅.
+of scope. The note on the entry says which. Five of the six are ✅.
 
 On a **source** entry below the queue, ✅ keeps its stricter meaning:
 the claim the specification draws from it has been checked against the
@@ -78,10 +78,9 @@ the check is done.
 
 ## Reading queue
 
-Read these five before building Phase 1. It is a handful of papers
-against a four-phase implementation, and the second one can change the
-project's premise. They are ordered so that each makes the next easier
-to read.
+Read these before building Phase 1. They are ordered so that each makes
+the next easier to read. Entry 6 is the one still open, and it is the
+one that bears on the stopping rule.
 
 ### 1. Elmeliegy et al. 2024 — TCE dosing strategies and quantitative clinical pharmacology ✅
 
@@ -210,6 +209,41 @@ that are resolved between A and B are the toxicity grades.
 **The comparator is 3A**, and the finding that transfers is that time is
 bought with dose step size rather than with who escalates.
 
+
+### 6. Song et al. 2023 — GB261 first-in-human dose escalation ❌
+
+*Blood* 2023;142(Supplement 1):1719. Trial NCT04923048.
+[Abstract](https://ashpublications.org/blood/article/142/Supplement%201/1719/503947/GB261-an-Fc-Function-Enabled-and-CD3-Affinity-De) ·
+[Poster](https://genorbio.com/media/1382/poster-number-1719.pdf)
+
+Song Y, et al. GB261, an Fc-Function Enabled and CD3 Affinity De-Tuned
+CD20/CD3 Bispecific Antibody, Demonstrated a Highly Advantageous
+Safety/Efficacy Balance in an Ongoing First-in-Human Dose-Escalation
+Study in Patients with Relapsed/Refractory Non-Hodgkin Lymphoma.
+
+Read for the intra-patient stopping rule. The escalation ran accelerated
+titration followed by 3+3, across flat and step-up regimens at doses
+from 1 mg to 300 mg in 47 patients with relapsed or refractory B-NHL.
+That is the shape of the scout design, in the same target class.
+
+**The question to answer from the source.** What rule ended the
+accelerated phase and started the 3+3. Whether that rule was a toxicity
+event in the Simon sense, a pharmacodynamic threshold, or both, and
+whether the patient who triggered it stopped escalating alone or every
+patient stopped. The abstract states the two phases and the dose range
+without stating the rule, so the answer is in the poster or the
+protocol.
+
+**Second reason to read it.** CD20+ cells were undetectable 24 hours
+after infusion across the dose range studied. Where that holds, blood
+B-cell count does not separate dose levels for this class, and a
+depletion threshold can serve as a stopping trigger without serving as a
+dose-ranging endpoint. Section 10 of the specification calibrates
+$EC_{50}$ so that the threshold does separate adjacent dose levels, so
+this is a check on that assumption rather than a detail.
+
+Neither host is reachable from the container these notes were written
+in, so both links need a browser.
 
 ## Sources the specification's numbers come from
 

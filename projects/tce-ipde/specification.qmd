@@ -106,17 +106,20 @@ The three headline quantities are:
 -   **What the trial consumes.** Total patient-visits, and total
     observation and hospitalization time in patient-hours (Section 19).
 
-**The third axis can run against IPDE while the first two run for it.**
-A scout accumulates a visit, a dose, a pharmacy preparation and an
-observation window at every rung of the ladder, where a conventional
-patient sits at one dose level for the same period. A design that
-reaches the answer sooner and with fewer patients can still consume more
-per patient enrolled. Section 19 expects the size of that to depend on
-what the patients were scheduled for anyway: close to free for a QW
-oncology TCE where the visits are already planned, substantial for an
-immune-reset programme whose eventual treatment is one or two
-administrations. Report this axis as a level and not only as a
-difference, so that a design buying time with visits is visible as one.
+**Report the third axis per patient and per trial, because they point
+opposite ways.** A scout accumulates a visit, a dose, a pharmacy
+preparation and an observation window at every rung, where a
+conventional patient sits at one dose level for the same period, so per
+patient the ladder is heavier. Across the trial it may be lighter: the
+scouts are few and each rung costs one patient's visits, where a
+conventional escalation spreads a smaller per-patient burden across
+three patients at every rung. A single total hides that, and the two
+readings answer different questions, one about what a participant
+undergoes and one about what the trial consumes. Section 19 expects the
+per-patient size to depend on what the patients were scheduled for
+anyway: close to free for a QW oncology TCE where the visits are already
+planned, substantial for an immune-reset programme whose eventual
+treatment is one or two administrations.
 
 **There is no cost model and there should not be one yet.** Turning
 visits, doses, hospital hours and patients into a single number requires
@@ -656,16 +659,48 @@ Parameterize this explicitly:
 -   **Scout entry policy**, one of: a fixed low first dose for every
     scout; the highest dose already cleared in a previous scout; or the
     previous scout's first dose times $F_{\rm start}$.
--   **Scout staggering** --- parallel scouts share the discovery
-    ladder and the exposure, sequential scouts confirm one from the
-    other and pay a second ladder.
 
-Report what happens when two scouts disagree, since the nomination rule
-in Section 7 assumes one $D^*$. Two scouts depleting at different dose
-levels is not a failure of the design and the protocol needs a rule for
-it in advance: nominating the lower of the two is the conservative
-choice and costs the non-confirmation cycles of Section 7 when it is
-too low.
+Scouts run one at a time in the base design, as Simon's accelerated
+phase does. Where a second scout is climbing when the first triggers,
+the second continues to the dose at which the first stopped and stops
+there. That scout is then a second observation at the nominated dose,
+which the declaration in Section 4 needs anyway.
+
+#### One patient stops the ladder; three declare the dose
+
+**The first scout to reach $B<5/\mu L$ ends the accelerated phase.** Not
+two of two, not a confirmed pattern. Act on the first value below the
+threshold and confirm afterwards for the record; a repeat sample before
+acting only delays the stop.
+
+The asymmetry against the three patients required to declare the dose in
+Section 4 is deliberate, and someone will challenge it, so state the
+reason. The two errors point in opposite directions. One patient's
+depletion is a noisy observation, and an atypical subject can cross the
+threshold at a dose the population would not, but that error ends the
+accelerated phase early and costs only speed. Requiring two or three
+would keep scouts climbing past a dose already shown to be active in
+someone, which is the error that cannot be taken back. Declaring
+$D_{\rm true}$ on one patient would be the opposite mistake, an
+overclaim, which is why the declaration keeps its three. One to stop,
+three to declare.
+
+Simon accepts the same asymmetry: the accelerated phase there ends on
+the first qualifying event in any patient rather than on a confirmed
+pattern. Reusing an escalation-slowing trigger that a protocol already
+carries also makes the ethics discussion a question of precedent rather
+than a fresh argument.
+
+The confirmatory-sample question in Section 13 is a different rule and
+keeps its answer. That one governs $\theta_{\rm move}$, the threshold
+that slows the ladder, where a false positive costs acceleration across
+the remaining rungs. This one governs the stop, where a false positive
+costs one rung.
+
+Where two scouts do deplete at different dose levels, the nomination
+rule in Section 7 assumes one $D^*$. Nominating the lower is the
+conservative choice and costs the non-confirmation cycles of Section 7
+when it is too low.
 
 ------------------------------------------------------------------------
 
@@ -1416,6 +1451,13 @@ For every simulated design track:
 
 : Patient and operational burden components, reported per simulated design track {tbl-colwidths="[70,30]"}
 
+**Report every row twice, per patient and across the trial.** Serial
+scouts concentrate a heavy burden on very few patients; conventional
+escalation spreads a lighter one across three patients per rung. The two
+totals can point in opposite directions, and which one a reader wants
+depends on whether they are asking what a participant undergoes or what
+the trial consumes (Section 1).
+
 **Record observation and hospitalization in patient-hours, not
 patient-days.** Counting in days hides the case this design creates most
 of, a short post-dose observation window repeated at every rung of the
@@ -1603,9 +1645,22 @@ enrolls near or below the threshold, because a scout who starts at
 $B<5/\mu L$ has no escalation signal at all and a scout who starts low
 depletes early and nominates a dose far below $D_{\rm true}$. Handle it
 as an eligibility criterion rather than as a modeling problem: require a
-documented baseline above a protocol-specified minimum (a value several
-fold above the $5$ cells/uL threshold) for scout eligibility, and record
-how many screened patients that excludes. Section 19's operational
+documented baseline B-cell count within the normal range for scout
+eligibility, and record how many screened patients that excludes.
+
+**Pin the floor as a number, not as "the normal range."** Reference
+intervals for CD19+ counts vary between laboratories, and a multi-site
+trial reading a site-specific range gives a stopping trigger whose
+meaning shifts by site. Choose one value and write it into the
+protocol.
+
+Whether the floor also applies to the three patients declaring the dose
+in Section 4 is open. They need it for the same reason the scout does,
+since a patient entering at 30 cells/uL reaching $B<1$ is a weaker
+observation than one entering at 250. Applying it to everyone
+contributing to the depletion endpoint will cost eligibility in an
+autoimmune population with prior B-cell-directed therapy, so decide it
+before it arrives as a screening-failure review. Section 19's operational
 counters should include screen failures on this criterion.
 
 For v1, run Archetype 1 as oncology with $B_0=100$ cells/uL. Introduce a
