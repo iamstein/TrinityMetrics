@@ -122,13 +122,20 @@ repository's git remotes; it does not redirect the Pages URL of a project site.
 searches, two sets of styles, and a reader who crosses between them leaves one
 site and enters another. This is the situation being fixed.
 
-**Recommendation: A.** The URL is the asset. It is in `_quarto.yml` as
-`site-url`, it is the GitHub Pages path derived from the repository name, and
-it is what any link shared to date points at. Option B buys a name, and a name
-is the one thing a custom domain buys later for less. If a custom domain is
-registered, B becomes cheap, because the domain carries the personal identity
-and the repository name stops being visible to readers. Revisit the decision
-then, not now.
+**Decision: A, and the domain settles it.** Andy holds `trinitymetrics.com`
+and it already points at this site. The argument for B was that a custom
+domain would carry a personal identity and make the repository name invisible
+to readers; the domain he holds carries the project identity instead,
+so it argues for A rather than against it. The site is called TrinityMetrics
+because its address is TrinityMetrics.
+
+**`site-url` is wrong and should be corrected in Phase 1.** `_quarto.yml`
+declares `https://iamstein.github.io/TrinityMetrics/`. Quarto uses `site-url`
+to build absolute links in the sitemap, the blog's RSS feed and the social
+preview cards, so every feed entry currently advertises the `github.io`
+address rather than the domain. There is also no `CNAME` file in the
+repository, so how the domain is wired needs checking against the repository's
+Pages settings before the value is changed.
 
 ## 4. Decision 2 --- where each kind of content lands
 
@@ -140,7 +147,7 @@ no matching row gets one.
 |---|---|---|
 | Home page bio | `about.qmd`, rewritten to open with the person | Prose, one screen |
 | Long bio, career history | `about.qmd`, below the short bio | Prose |
-| CV | Link out to the CV document in Google Docs | Link out |
+| CV | Link out to the Google Doc, and publish a PDF copy fetched at build time | Link plus built file |
 | Publications | `publications.qmd` driven by `publications.yml` | Listing |
 | Talks, posters, slides | `talks.qmd` driven by `talks.yml`, slides as files | Listing plus files |
 | Teaching, courses | `teaching.qmd`, or a section of `about.qmd` if thin | Depends on volume |
@@ -344,6 +351,53 @@ repository's Actions-based Pages build could serve LFS content by setting
 `lfs: true` on `actions/checkout`, which the older branch-based Pages build
 could not.
 
+### The CV is a Google Doc, and the build exports it
+
+The CV stays in Google Docs so that editing it is the only step; nobody has to
+remember to export a PDF afterwards. The build does the exporting.
+
+A Google Doc shared as **anyone with the link, Viewer** exports over plain HTTP
+with no authentication:
+
+```
+https://docs.google.com/document/d/DOC_ID/export?format=pdf
+```
+
+So `.github/workflows/publish.yml` gains one step between **Render site** and
+**Upload Pages artifact**:
+
+```yaml
+      - name: Export the CV from Google Docs
+        run: |
+          mkdir -p docs/files
+          curl --fail --silent --show-error --location \
+            "https://docs.google.com/document/d/${{ vars.CV_DOC_ID }}/export?format=pdf" \
+            -o docs/files/stein-cv.pdf
+```
+
+`CV_DOC_ID` is a repository variable rather than a secret, since the document
+is link-shared and its ID is public in the share URL anyway.
+
+Four properties this has:
+
+-   **The published PDF is never stale.** It is refetched on every push to
+    `main`, so it matches the Doc as of the last build.
+-   **Nothing is committed.** The PDF is written into `docs/` during the build
+    and travels in the Pages artifact, so it never enters git history and
+    Section 8's size arithmetic is unaffected.
+-   **A broken share setting fails the build.** `--fail` makes `curl` exit
+    non-zero on an error response. Without it, Google's HTML error page would
+    be written to `stein-cv.pdf` and published as a corrupt file, which is the
+    failure nobody notices.
+-   **The reader never meets Google.** The site links its own
+    `files/stein-cv.pdf`, so there is no account prompt, no Drive viewer, and
+    no dependency on Google being up when someone opens the CV. Offer the Doc
+    link beside it only if there is a reason to.
+
+The export endpoint is not part of a documented API and Google could change it.
+The build failing loudly is the detection mechanism; the fallback is to commit
+a PDF by hand until it is fixed.
+
 ## 9. Publications: how the list is built
 
 Two options.
@@ -460,8 +514,9 @@ no site change and it is the phase that makes the rest estimable. Do not skip
 it and port pages as they are noticed; that is how a page gets left behind.
 
 **Phase 1 --- the person, at minimum.** Rewrite `about.qmd` to open with the
-bio from the Google site, remove the self-referential link, and point the CV
-entry at the Google Docs CV. Add the About menu from Section 10. After this
+bio from the Google site and remove the self-referential link. Add the CV
+export step to `publish.yml` and set the `CV_DOC_ID` variable. Correct
+`site-url` to the domain. Add the About menu from Section 10. After this
 phase the merged site
 already answers "who is this" and the old site is optional rather than load
 bearing.
@@ -483,13 +538,13 @@ the bottom of Section 5.
 
 ## 14. Open questions
 
-Ordered by how much the answer changes the work. Q1 and Q3 are Andy's to
-answer; Q2 and Q4 may be settled by the Phase 0 export.
+Ordered by how much the answer changes the work. Q3 is Andy's to answer; Q2
+and Q4 may be settled by the Phase 0 export. Q1 is closed.
 
-1.  **Is a custom domain wanted?** If yes, buy it before Phase 1, because it
-    reopens Decision 1 in Section 3 in favour of a personal-site framing, and
-    changing the framing after the pages are written is more work than deciding
-    it now.
+1.  ~~Is a custom domain wanted?~~ **Closed.** `trinitymetrics.com` is held
+    and already points here. It carries the project identity rather than a
+    personal one, so it confirms option A in Section 3. What remains is
+    mechanical: correct `site-url` and check how the domain is wired.
 2.  **Is there a news or updates section, and does it survive?** A stale news
     list is worse than no news list. If the last entry is years old, the answer
     is DROP, and if it is current the answer is that the blog already does this.
