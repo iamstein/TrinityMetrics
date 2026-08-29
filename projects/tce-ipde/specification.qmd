@@ -639,14 +639,12 @@ patient's B-cell trajectory. A programme that will open a backfill
 cohort on that basis may reasonably want a second scout to reproduce
 it.
 
-Together these cost more than either alone. If the second scout's first
-dose is capped at 3-fold the first scout's first dose, the second
-ladder repeats most of the first, takes comparable calendar time, and
-confirmation becomes nearly as slow as the original discovery. The
-$\Delta T$ advantage in Section 5 falls accordingly. The escape is to
-let the second scout start at a dose already administered to the first
-scout without incident, which is the catch-up rule applied to
-scouts rather than to backfill patients.
+Together these cost calendar time only if the scouts run one after the
+other. If a second scout must start near the bottom and does so after
+the first has finished, the second ladder repeats most of the first and
+confirmation takes nearly as long as the original discovery. Running
+the scouts concurrently removes that cost, and the next subsection sets
+out how.
 
 Parameterize this explicitly:
 
@@ -655,16 +653,62 @@ Parameterize this explicitly:
     and 10, where 10 stands for effectively unconstrained and
     reproduces the current specification.
 -   $n_{\rm scout}$ --- the number of scout patients. Base 1;
-    sensitivity 2.
+    sensitivities 2 and 3.
 -   **Scout entry policy**, one of: a fixed low first dose for every
     scout; the highest dose already cleared in a previous scout; or the
     previous scout's first dose times $F_{\rm start}$.
 
-Scouts run one at a time in the base design, as Simon's accelerated
-phase does. Where a second scout is climbing when the first triggers,
-the second continues to the dose at which the first stopped and stops
-there. That scout is then a second observation at the nominated dose,
-which the declaration in Section 4 needs anyway.
+#### Rolling scout entry
+
+There is no reason for a second scout to wait for the first to finish.
+Once the leading scout has taken a dose and cleared it, that rung is
+cleared for anyone, so a following scout can start and climb behind.
+Scouts enter on a rolling basis, each one one or more rungs behind the
+one ahead, and the ladder carries several patients at once.
+
+Two things constrain how tight the stagger can be, and they are what
+"as soon as it clears" has to mean in a protocol.
+
+1.  **A follower's next dose waits on the leader's result, not on the
+    leader's dose.** The leader is dosed at rung $k$, and the PD result
+    and safety review for that rung arrive $T_{\rm PD,ready}$ plus the
+    review lag later (Section 11). A follower must not be dosed at rung
+    $k$ before that arrives, or the trial has put two patients at an
+    uncleared dose and gained nothing over dosing them together. The
+    minimum stagger is therefore the turnaround, not the escalation
+    interval.
+2.  **Sentinel rules constrain the first dose in each patient.** A
+    protocol that staggers first doses between patients applies to
+    scouts too, and that gap is usually longer than the PD turnaround.
+
+Two rules complete it. A follower never enters a rung the leader has
+not cleared. And when the leading scout triggers the stop, every
+following scout climbs to that dose and stops there, so each becomes an
+observation at the nominated dose, which the declaration in Section 4
+needs anyway.
+
+**What rolling entry costs is patients inside the latency window.**
+Section 15 already establishes that a scout escalates on acute safety
+before delayed toxicity from earlier rungs is observable. One scout
+carries that risk alone. Three scouts climbing a rung apart carry it
+concurrently, so a delayed signal that appears at rung $k$ arrives when
+three patients have been dosed past it rather than one. That is the
+real price of the concurrency and it is not visible in $\Delta T$.
+Count it: report the number of patients dosed above a rung at the
+moment that rung's delayed-toxicity information becomes available, and
+carry it alongside the burden rows in Section 19.
+
+Parameterize the stagger as $\Delta_{\rm scout}$, the gap between
+successive scout entries. Base one rung; sensitivities two rungs and
+the serial case, where the next scout starts only after the previous
+one stops. The serial case is the comparator that says what the
+concurrency bought.
+
+What real protocols do here is the open question, and it is the same
+question the GB261 entry on the [references page](references.qmd) asks:
+what ended the accelerated phase, and whether the patient who triggered
+it stopped alone or everyone stopped. Answer it from a protocol before
+fixing the rule.
 
 #### One patient stops the ladder; three declare the dose
 
@@ -1447,6 +1491,7 @@ For every simulated design track:
 | Safety committee reviews           | count        |
 | PD results needed before next dose | count        |
 | Observation/hospitalization        | patient-hours |
+| Patients dosed above a rung when its delayed-toxicity information arrives | count |
 | Total trial calendar time          | days         |
 
 : Patient and operational burden components, reported per simulated design track {tbl-colwidths="[70,30]"}
@@ -1614,8 +1659,9 @@ The highest-value sensitivity analyses are:
 14. Reactive vs anticipatory backfill pre-screening (Section 20).
 15. Cap on the between-cohort increase in the first dose given to a
     drug-naive patient, $F_{\rm start}$ = 2, 3 or 10 (Section 6).
-16. One vs two scouts, and the scout entry policy (Section 6).
-17. Parallel vs sequential scouts (Section 6).
+16. One vs two vs three scouts, the scout entry policy, and the scout
+    stagger $\Delta_{\rm scout}$ = one rung, two rungs or serial
+    (Section 6).
 
 Avoid large factorial designs initially. Start with interpretable
 scenario sets.
@@ -2019,15 +2065,20 @@ Expected hypotheses are:
 11. **Priming does not rescue acute safety.** Better priming at a given
     dose does not make the acute-safety comparison favour IPDE, because
     IPDE patients also reach higher absolute doses (Section 14, CRS).
-12. **A second scout repeats the first ladder.** Constraining the first
-    dose in a drug-naive patient to a 3-fold
-    between-cohort increase removes much of the scout advantage when a
-    second scout is required, because the second ladder repeats the
-    first. Allowing a later scout to start at a dose already cleared in
-    an earlier scout recovers most of it.
-13. **Parallel scouts are cheap, sequential ones are not.** Two scouts
-    run in parallel cost little calendar time relative to one, and two
-    run in sequence cost close to a second discovery.
+12. **A second scout repeats the first ladder, and that only costs time
+    when the scouts run in series.** Constraining the first dose in a
+    drug-naive patient to a 3-fold between-cohort increase forces a
+    later scout to start near the bottom. Under serial entry that
+    repeats the first ladder and removes much of the scout advantage;
+    under rolling entry (Section 6) the repeat overlaps the first
+    ladder and costs patients rather than weeks.
+13. **Rolling scouts are cheap in time and expensive in exposure.**
+    Scouts entering a rung apart reach the nominated dose at close to
+    the calendar time of a single scout, and deliver the observations
+    the declaration needs without a separate backfill wait. The price
+    is that a delayed-toxicity signal at a given rung arrives with
+    $n_{\rm scout}$ patients dosed above it rather than one, so
+    rolling entry buys time with exposure rather than with visits.
 14. **PD-guided beats a fixed ladder.** PD-guided escalation reaches
     profound depletion no later than a
     fixed 3-fold ladder, because the large steps while the marker is
