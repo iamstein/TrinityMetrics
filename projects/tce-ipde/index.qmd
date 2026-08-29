@@ -1,7 +1,7 @@
 ---
 title: "TCE-IPDE"
 subtitle: "Intrapatient dose escalation for first-in-human T-cell engagers"
-description: "Index of the documents in the TCE-IPDE project: the working specification, its references, and the code that draws its figure."
+description: "Index of the documents in the TCE-IPDE project: the working specification, its references, reading notes, and the code that draws its figure."
 categories: [trial design, simulation, working document]
 date: last-modified
 toc: false
@@ -18,7 +18,10 @@ that would answer this has been specified and not built.
   Its **In brief** section is one screen and says what the rest argues.
 - [References](references.qmd). What to read and in what order, and a marker
   on every source recording whether the specification's use of it has been
-  checked. Nothing is marked checked.
+  checked.
+- [Simon 1997 reading notes](simon97-notes.qmd). What the accelerated
+  titration designs paper reports when intrapatient escalation is switched on
+  and off, with every number sourced to a page.
 
 ## Code
 

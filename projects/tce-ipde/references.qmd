@@ -10,10 +10,14 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**Nothing on this page has been read and checked against its source.**
-Every entry carries a status marker, and the markers are the point of
-the page. A parameter transcribed from an abstract, or a table
-transcribed from an image, is not a number that can go into final work.
+**The reading queue is closed. The numbers are not.** All five papers in
+the queue have been dispositioned and the notes under each say what came
+of it. Every source below the queue still carries the marker it started
+with, and those are the ones that matter for final work: the teclistamab
+PK parameters in Section 8, the Friberg system values in Section 17, and
+the MCLA-117 dose table in Section 6 were transcribed rather than
+verified. A parameter taken from an abstract, or a table taken from an
+image of a poster, is not a number that can go into final work.
 :::
 
 The working document is [the specification](specification.qmd), and the
@@ -29,8 +33,48 @@ folder's other documents are on [the project index](index.qmd).
   against it.
 - ✅ **Checked.** Verified against the source.
 
-Nothing is ✅ yet. Change a marker when the check is done, not when the
-paper is opened.
+On a **reading-queue** entry, ✅ means the question posed against that
+entry has been answered — by reading the paper, or by deciding it is out
+of scope. The note on the entry says which. All five are ✅.
+
+On a **source** entry below the queue, ✅ keeps its stricter meaning:
+the claim the specification draws from it has been checked against the
+source. None is ✅ yet. Change a marker when the check is done, not when
+the paper is opened.
+
+## How to read these
+
+Read against the question under each entry rather than through the paper
+front to back. The general method is on the
+[Reading Papers](../../guides/reading-papers.qmd) page: three passes, and you
+stop at the pass that answers the question. An hour is the budget for a paper
+read this way.
+
+Simon 1997 is the one that needs the full hour.
+
+- Ten minutes on the abstract, the numbered definitions of designs 1 to 4,
+  and the *column headers* of the simulation results tables. Which outcome
+  metrics they chose to report answers the calendar-time question by itself.
+- Forty-five minutes on two targets: the definition of design 1 and the rule
+  for leaving the accelerated phase, which is the comparator question; and the
+  results tables, for whether trial duration appears at all beside patients
+  treated and patients treated at subtherapeutic doses.
+- One conditional extra hour. If their dose-toxicity model carries a
+  cumulative or carryover term, that is the carryover-toxicity entry's
+  question already parameterized. Otherwise do not reconstruct the model,
+  because nothing downstream of it is being reused.
+
+Watch for the answer that runs the other way. If duration is not among the
+reported outcomes, the **catch-up helps patients, not the clock**
+hypothesis in Section 26 is not settled by Simon, it stays in the
+simulation, and Simon is cited for the mechanism rather than for
+the result. The entries below are characterizations from abstracts, so each
+one is a prediction about what the paper says.
+
+Notes go one line per question, carrying an answer and the table or page
+number it came from, plus anything that contradicts the specification. Write
+what the paper actually said into the entry, and change its status marker when
+the check is done.
 
 ## Reading queue
 
@@ -39,20 +83,14 @@ against a four-phase implementation, and the second one can change the
 project's premise. They are ordered so that each makes the next easier
 to read.
 
-### 1. Elmeliegy et al. 2024 — TCE dosing strategies and quantitative clinical pharmacology ❌
+### 1. Elmeliegy et al. 2024 — TCE dosing strategies and quantitative clinical pharmacology ✅
 
 *Clinical Pharmacology & Therapeutics*.
 <https://doi.org/10.1002/cpt.3361>
 
-Dose selection across the first eight approved T-cell engagers,
-including model-based adaptive escalation and virtual testing of step-up
-regimens. The closest published treatment of this project's problem, and
-2024 rather than 1997.
+Read the section on dose escalation.  Talks about using small cohorts (n=1), large steps (3x), and strating around MABEL dosing but didn't actually talk about intrapatient escalation. I don't think this was really done for most of the TCEs that are approved.
 
-**Answer while reading.** Which of the eight programmes used
-within-patient escalation, and what did it buy them?
-
-### 2. Zhou et al. 2025 — modified MABEL starting dose for a solid-tumor TCE ❌
+### 2. Zhou et al. 2025 — modified MABEL starting dose for a solid-tumor TCE ✅
 
 *Clinical Pharmacology & Therapeutics*.
 <https://doi.org/10.1002/cpt.3431>
@@ -65,12 +103,11 @@ applicable version shrinks $R_{\rm predicted-gap}$ and the value of IPDE
 with it. The two strategies are not exclusive, and the simulation
 carries both, since a higher starting dose is a change to one parameter.
 
-**Answer while reading.** How general is the approach? If a 10-fold
-higher starting dose is routinely defensible, run the simulation with
-$D_{\rm start}$ raised and report how much of the IPDE advantage
-survives.
+**Decision not to read**
+Decided not to read.  This is a completely different topic.  Related in that
+MABEL-based doses are a good approach and this IPDE can complement it.
 
-### 3. Guo et al. 2025 — IP-CRM, intra-patient escalation inside a CRM ❌
+### 3. Guo et al. 2025 — IP-CRM, intra-patient escalation inside a CRM ✅ 
 
 *Pharmaceutical Statistics*. <https://doi.org/10.1002/pst.2461>
 
@@ -78,24 +115,27 @@ Places intra-patient escalation inside a continual reassessment method,
 with adaptively updated starting doses. The modern successor to
 accelerated titration.
 
-**Answer while reading.** The adaptively updated starting dose is the
-$F_{\rm start}$ question in Section 6 treated formally. Does their rule
-replace the fixed cap, and does it need a toxicity model this project
-does not have?
+**Answer while reading.**
+I read the introduction, I think this method is more complex and not what we're doing in 
+immunology studies (CRM).  I mean maybe that's worth considering, but that would be a future step.
+This is future work, and it now sits in Section 27b of the specification.
 
-### 4. Carryover toxicity in phase 1 trials with intra-patient dose escalation, 2025 ❌
+### 4. Falke et al. 2025 — carryover toxicity with intra-patient dose escalation ✅ 
 
-<https://pubmed.ncbi.nlm.nih.gov/40405047/>
+*Statistics in Medicine*.
+[doi:10.1002/sim.70059](https://doi.org/10.1002/sim.70059) ·
+[PMC12098223](https://pmc.ncbi.nlm.nih.gov/articles/PMC12098223/) ·
+[PubMed 40405047](https://pubmed.ncbi.nlm.nih.gov/40405047/).
+Journal and authors identified from a search rather than from the paper.
 
 The methodological treatment of the confound in Section 16: attributing
 an event in a patient who has already received every lower dose on the
 ladder.
 
-**Answer while reading.** Does it give a usable structure for the
-delayed-toxicity stress test in Section 17, or does the Friberg model
-remain the better vehicle?
+**Answer while reading.** 
+I decided to defer this till later.  I'm not trying to come up with a quantitative safety model here.
 
-### 5. Simon et al. 1997 — accelerated titration designs ❌
+### 5. Simon et al. 1997 — accelerated titration designs ✅
 
 *J Natl Cancer Inst* 89(15):1138–1147.
 <https://doi.org/10.1093/jnci/89.15.1138>
@@ -105,12 +145,71 @@ cohorts in the low-dose region with intra-patient escalation, and define
 what an efficient conventional comparator looks like. Read last of the
 five.
 
-**Answer while reading.** Does the paper report the calendar-time saving
-separately from the reduction in patients treated at subtherapeutic
-doses? If it does, hypothesis 3 in Section 26 is settled and comes out
-of the simulation. And does the conventional comparator match the
-accelerated design in Section 6? If it does, adopt theirs rather than
-parameterizing a new one.
+#### Methods
+
+Definitions: 
+- Conventional Design = Fibonacci Method.  dose increments are 100, 67, 50, 40%, and uses a 3+3-like approach
+- Accelerated = 1 patient cohorts when safe (instead of 3) until DLT or 2 G2 tox
+- Intrapatient Escalation = If tox is G0-1, then next dose can increase 100%
+
+Four models
+
+1. Single Steps + Conventional Design
+2. Single Steps + Accelerated until AE in first cycle, then Conventional
+3. Double Steps + Accelerated until AE in first cycle, then Conventional
+4. Double Steps + Accelerated until AE in any cycle,   then Conventional
+
+A. No itrapatient escalation
+B. With intrapatient escalation.
+
+
+#### Results
+
+Full numbers with the page each came from are in the
+[reading notes](simon97-notes.qmd). The short version:
+
+**Fewer patients is not a shorter trial.** Cohorts are tabulated
+separately from patients as a duration proxy (Fig. 3, p.1143). Model 2
+removes 15 patients against model 1 and saves no cohorts at all — model
+1 needs slightly fewer, since model 2 overshoots and spends cohorts
+de-escalating (p.1142). The saving appears only with double steps
+(p.1142).
+
+| Model | Patients, mean | Patients, median | Cohorts vs model 1 |
+|:--|:--|:--|:--|
+| 1 | 39.9 | 36.7 | baseline |
+| 2 | 24.4 | 21.8 | no advantage |
+| 3 | 20.7 | 19.3 | substantial saving |
+| 4 | 21.2 | 19.1 | substantial saving |
+
+: Sample size p.1141, cohorts p.1142. Model 1 is option A, models 2 to 4 are option B {tbl-colwidths="[16,28,28,28]"}
+
+**A against B moves undertreated patients and nothing else measured.**
+
+| Metric | 3A, no IPDE | 3B, with IPDE | Source |
+|:--|:--|:--|:--|
+| Patients, mean | not reported | 20.7 | 3B p.1141 |
+| Cohorts | not reported | Fig. 3 only | p.1143 |
+| Worst toxicity grade 0–1 | 6.5 | 3.9 | 3A p.1144, 3B p.1142 |
+| Grade 3 | 5.7 | 6.8 | 3A p.1143, 3B p.1142 |
+| Grade 4 | 3.2 | 4.3 | 3A p.1143, 3B p.1142 |
+
+: Model 3, double steps, with and without intrapatient escalation. Simon's letters, not this project's designs A/B/C {tbl-colwidths="[34,16,16,34]"}
+
+On 1A against 1B, where no acceleration is involved, intrapatient
+escalation has "no effect on the number of patients or number of
+cohorts" and moves undertreated patients from 23.3 to 19.3 (p.1143).
+
+**The qualification.** No figure or table splits A from B. On patients
+and cohorts the comparison is the phrase "little or no effect"
+(p.1143), so the **catch-up helps patients, not the clock** hypothesis
+in Section 26 is supported in direction with no published number to cite
+in place of the simulation. The numbers
+that are resolved between A and B are the toxicity grades.
+
+**The comparator is 3A**, and the finding that transfers is that time is
+bought with dose step size rather than with who escalates.
+
 
 ## Sources the specification's numbers come from
 

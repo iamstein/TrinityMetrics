@@ -1,0 +1,7 @@
+- title: "Reading Papers"
+  subtitle: "How-to"
+  description: >
+    A three-pass method for reading a paper, what each pass costs in time,
+    and how to stop early when you are reading with a question in hand.
+  categories: [reading, practice]
+  path: reading-papers.qmd

@@ -22,6 +22,7 @@ repository:
 | `blog/posts/*/index.qmd` | Following one argument | explanation | thin |
 | `projects/*/index.qmd` | Finding the right document in the folder | how-to | thin |
 | `projects/*/*.qmd` | Working on the project | reference | as long as the work needs |
+| `guides/*.qmd` | Looking up how to do something | how-to | thin |
 | `about.qmd`, `code.qmd`, `resources.qmd` | Looking one thing up | reference | thin |
 | `blog/drafts/*` | Andy, later | draft | unconstrained |
 

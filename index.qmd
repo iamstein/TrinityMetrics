@@ -7,6 +7,7 @@ TrinityMetrics explores how biostatisticians, pharmacometricians, and clinical d
 
 * [Blog](blog/index.qmd): mainly about tools for making GenAI-assisted analysis more transparent and reproducible.
 * [Projects](projects/index.qmd): open-source tools and working documents for longer-running methods problems.
+* [Guides](guides/index.qmd): working practices, starting with how to read a paper.
 * [Code](code.qmd): reusable scripts, templates, and utilities that support practical work.
 * [Resources](resources.qmd): documents, checklists, and implementation-oriented materials that support reviewable work.
 
