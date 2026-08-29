@@ -1,9 +1,9 @@
 - title: "TCE-IPDE"
   subtitle: "Working document"
   description: >
-    When does intrapatient dose escalation actually shorten a first-in-human
-    T-cell engager trial, and what safety information does that acceleration
-    cost? A specification for the simulation that would answer it.
+    Does escalating dose within a patient reach a confirmable active dose
+    sooner in a first-in-human T-cell engager trial, and does the time it
+    saves outweigh the extra visits and hospital time it costs?
   categories: [trial design, simulation, working document]
   path: tce-ipde/index.qmd
 

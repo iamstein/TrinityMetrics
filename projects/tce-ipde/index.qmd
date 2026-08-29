@@ -7,9 +7,10 @@ date: last-modified
 toc: false
 ---
 
-Does escalating dose within a patient shorten a first-in-human T-cell engager
-trial by enough to be worth the safety information it costs? The simulation
-that would answer this has been specified and not built.
+Does escalating dose within a patient reach a confirmable active dose sooner
+in a first-in-human T-cell engager trial, and does the time it saves outweigh
+the extra visits and hospital time it costs? The simulation that would answer
+this has been specified and not built.
 
 ## Documents
 

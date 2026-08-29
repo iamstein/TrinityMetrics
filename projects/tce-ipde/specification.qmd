@@ -1,7 +1,7 @@
 ---
 title: "Intrapatient dose escalation for first-in-human T-cell engagers"
 subtitle: "Working specification for a trial-design simulation"
-description: "When does within-patient dose escalation actually shorten a first-in-human T-cell engager trial, and what safety information does it cost? A specification for the simulation that would answer it."
+description: "Does escalating dose within a patient reach a confirmable active dose sooner, and does the time it saves outweigh the extra visits and hospital time it costs, or is it a wash? A specification for the simulation that would answer it."
 categories: [trial design, simulation, pharmacometrics, oncology]
 date: last-modified
 toc: true
@@ -26,9 +26,12 @@ folder, and [References](references.qmd) carries the sources.
 **The question.** In a first-in-human T-cell engager trial, the starting
 dose may sit orders of magnitude below the biologically active one, and
 conventional escalation crosses that gap one cohort at a time. Escalating
-*within* a patient crosses it faster. Under what conditions does that
-actually shorten the trial, and what does the acceleration cost in
-safety information?
+*within* a patient crosses it faster. Does that actually get the trial
+to a confirmable active dose sooner, and does the time it saves outweigh
+what it costs in extra visits, doses and hospital time? It can save more
+than it costs, cost more than it saves, or come out a wash, and which of
+those it is depends on the scenario. Section 1 sets out the three axes
+the answer is reported on.
 
 **Why it might work.** The value of the strategy does not come from the
 size of the gap between the starting and active dose. It comes from
@@ -47,7 +50,7 @@ primary endpoint. The strategy is a scouting device with a
 pharmacodynamic stopping rule, not a replacement for conventional dose
 characterisation.
 
-**What it costs.** Escalating weekly inside a toxicity process with a
+**What cannot be quantified.** Escalating weekly inside a toxicity process with a
 longer latency means a normal observation at the next dose decision is
 incomplete reassurance. For CRS this is tractable and the ladder is
 arguably protective, since the scout is better primed at any given dose.
