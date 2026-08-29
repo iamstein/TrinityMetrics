@@ -109,7 +109,7 @@ I read the introduction, I think this method is more complex and not what we're 
 immunology studies (CRM).  I mean maybe that's worth considering, but that would be a future step.
 This is future work, and it now sits in Section 27b of the specification.
 
-### 4. Carryover toxicity in phase 1 trials with intra-patient dose escalation, 2025 ❌
+### 4. Carryover toxicity in phase 1 trials with intra-patient dose escalation, 2025 ✅ 
 
 <https://pubmed.ncbi.nlm.nih.gov/40405047/>
 
@@ -117,9 +117,8 @@ The methodological treatment of the confound in Section 16: attributing
 an event in a patient who has already received every lower dose on the
 ladder.
 
-**Answer while reading.** Does it give a usable structure for the
-delayed-toxicity stress test in Section 17, or does the Friberg model
-remain the better vehicle?
+**Answer while reading.** 
+I decided to defer this till later.  I'm not trying to come up with a quantitative safety model here.
 
 ### 5. Simon et al. 1997 — accelerated titration designs ✅
 
@@ -131,22 +130,70 @@ cohorts in the low-dose region with intra-patient escalation, and define
 what an efficient conventional comparator looks like. Read last of the
 five.
 
-**Read.** Yes to both questions, with one qualification.
-[Reading notes](simon97-notes.qmd) carry the numbers and the page each
-came from.
+#### Methods
 
-Cohorts are tabulated separately from patients as a duration proxy
-(Fig. 3, p.1143), and fewer patients turns out not to mean a shorter
-trial: design 2 removes 15 patients and saves no cohorts at all
-(p.1142). The time saving comes from double dose steps, not from
-single-patient cohorts and not from intrapatient escalation.
+Definitions: 
+- Conventional Design = Fibonacci Method.  dose increments are 100, 67, 50, 40%, and uses a 3+3-like approach
+- Accelerated = 1 patient cohorts when safe (instead of 3) until DLT or 2 G2 tox
+- Intrapatient Escalation = If tox is G0-1, then next dose can increase 100%
 
-The comparator is design 3A. The qualification is that the
-option A against option B comparison is numeric only for toxicity
-grades. On patients and duration it is a sentence — "little or no
-effect" (p.1143) — so hypothesis 3 in Section 26 is supported in
-direction but has no published number to cite in place of the
-simulation.
+Four models
+
+1. Single Steps + Conventional Design
+2. Single Steps + Accelerated until AE in first cycle, then Conventional
+3. Double Steps + Accelerated until AE in first cycle, then Conventional
+4. Double Steps + Accelerated until AE in any cycle,   then Conventional
+
+A. No itrapatient escalation
+B. With intrapatient escalation.
+
+
+#### Results
+
+Full numbers with the page each came from are in the
+[reading notes](simon97-notes.qmd). The short version:
+
+**Fewer patients is not a shorter trial.** Cohorts are tabulated
+separately from patients as a duration proxy (Fig. 3, p.1143). Model 2
+removes 15 patients against model 1 and saves no cohorts at all — model
+1 needs slightly fewer, since model 2 overshoots and spends cohorts
+de-escalating (p.1142). The saving appears only with double steps
+(p.1142).
+
+| Model | Patients, mean | Patients, median | Cohorts vs model 1 |
+|:--|:--|:--|:--|
+| 1 | 39.9 | 36.7 | baseline |
+| 2 | 24.4 | 21.8 | no advantage |
+| 3 | 20.7 | 19.3 | substantial saving |
+| 4 | 21.2 | 19.1 | substantial saving |
+
+: Sample size p.1141, cohorts p.1142. Model 1 is option A, models 2 to 4 are option B {tbl-colwidths="[16,28,28,28]"}
+
+**A against B moves undertreated patients and nothing else measured.**
+
+| Metric | 3A | 3B | Source |
+|:--|:--|:--|:--|
+| Patients, mean | not reported | 20.7 | 3B p.1141 |
+| Cohorts | not reported | Fig. 3 only | p.1143 |
+| Worst toxicity grade 0–1 | 6.5 | 3.9 | 3A p.1144, 3B p.1142 |
+| Grade 3 | 5.7 | 6.8 | 3A p.1143, 3B p.1142 |
+| Grade 4 | 3.2 | 4.3 | 3A p.1143, 3B p.1142 |
+
+: Model 3 with and without intrapatient escalation {tbl-colwidths="[34,16,16,34]"}
+
+On 1A against 1B, where no acceleration is involved, intrapatient
+escalation has "no effect on the number of patients or number of
+cohorts" and moves undertreated patients from 23.3 to 19.3 (p.1143).
+
+**The qualification.** No figure or table splits A from B. On patients
+and cohorts the comparison is the phrase "little or no effect"
+(p.1143), so hypothesis 3 in Section 26 is supported in direction with
+no published number to cite in place of the simulation. The numbers
+that are resolved between A and B are the toxicity grades.
+
+**The comparator is 3A**, and the finding that transfers is that time is
+bought with dose step size rather than with who escalates.
+
 
 ## Sources the specification's numbers come from
 
