@@ -121,7 +121,7 @@ ladder.
 delayed-toxicity stress test in Section 17, or does the Friberg model
 remain the better vehicle?
 
-### 5. Simon et al. 1997 — accelerated titration designs ❌
+### 5. Simon et al. 1997 — accelerated titration designs ✅
 
 *J Natl Cancer Inst* 89(15):1138–1147.
 <https://doi.org/10.1093/jnci/89.15.1138>
@@ -131,12 +131,22 @@ cohorts in the low-dose region with intra-patient escalation, and define
 what an efficient conventional comparator looks like. Read last of the
 five.
 
-**Answer while reading.** Does the paper report the calendar-time saving
-separately from the reduction in patients treated at subtherapeutic
-doses? If it does, hypothesis 3 in Section 26 is settled and comes out
-of the simulation. And does the conventional comparator match the
-accelerated design in Section 6? If it does, adopt theirs rather than
-parameterizing a new one.
+**Read.** Yes to both questions, with one qualification.
+[Reading notes](simon97-notes.qmd) carry the numbers and the page each
+came from.
+
+Cohorts are tabulated separately from patients as a duration proxy
+(Fig. 3, p.1143), and fewer patients turns out not to mean a shorter
+trial: design 2 removes 15 patients and saves no cohorts at all
+(p.1142). The time saving comes from double dose steps, not from
+single-patient cohorts and not from intrapatient escalation.
+
+The comparator is design 3A. The qualification is that the
+option A against option B comparison is numeric only for toxicity
+grades. On patients and duration it is a sentence — "little or no
+effect" (p.1143) — so hypothesis 3 in Section 26 is supported in
+direction but has no published number to cite in place of the
+simulation.
 
 ## Sources the specification's numbers come from
 
