@@ -101,7 +101,7 @@ be both.
 
 ## 3. Decision 1 --- whose name the merged site carries
 
-Three options, and the recommendation is A.
+Three options, and the recommendation is A.  Andrew Stein agrees with option A.
 
 **A. TrinityMetrics absorbs the personal site.** Title stays "TrinityMetrics",
 URL stays `iamstein.github.io/TrinityMetrics/`, the person becomes a section.
