@@ -18,3 +18,11 @@ decision to drop it. The migration has been specified and not started.
   happens to the old URLs, and in what order to do it. Its **In brief** section
   is one screen and says what the rest argues. The content inventory in Section
   5 is empty and filling it is the first phase of the work.
+
+## Code
+
+- `import_google_site.py` reads an unzipped Google Takeout export and does two
+  things: `inventory` prints the Section 5 table rows, and `convert` writes one
+  `.qmd` draft per page with the site chrome stripped. Standard library only,
+  so the site build never runs it and nothing needs installing. Section 7 of
+  the specification is the procedure it belongs to.

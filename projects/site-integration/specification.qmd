@@ -224,29 +224,61 @@ converted to new Google Sites, so treat the live site as a new Site with a
 legacy URL until the export shows otherwise. The two have different export
 paths.
 
-Three routes, in the order to try them.
+**The route is Google Takeout, and `import_google_site.py` does the rest.**
+Takeout is the only export that carries the attachments, and the attachments
+are the part that cannot be reconstructed by hand.
 
-1.  **Google Takeout.** Select Sites only. Produces the pages as HTML with
-    attachments. Best fidelity for files, which is what is hardest to
-    reconstruct by hand.
-2.  **Save each page from the browser.** Viable at the page counts a personal
-    site usually has. Do this if Takeout produces something awkward to work
-    with, and do it page by page against the Section 5 inventory so nothing is
-    missed.
-3.  **A crawler.** Only if the page count turns out to be large. New Google
-    Sites renders through JavaScript, so a plain `curl` may return a shell
-    rather than the content, and a headless browser would be needed. Chromium
-    and Playwright are available in this environment.
+1.  Export from [takeout.google.com](https://takeout.google.com), Sites only.
+    Google emails a download link when the archive is ready.
+2.  Unzip it and commit the folder to a scratch branch, `import/google-site-raw`.
+    It never merges to `main`; it exists so a session can read it.
+3.  Run `import_google_site.py inventory` on the unzipped folder. It prints the
+    Markdown rows for Section 5, one per page and one per file, with the
+    disposition columns blank and the row count at the bottom. Paste them in
+    and decide the dispositions.
+4.  Run `import_google_site.py convert` on the same folder. It writes one `.qmd`
+    draft per page, with the site chrome removed and the front matter stubbed.
+5.  Check each draft against the live page, then move it to where Section 4
+    says it lands.
 
-Then convert HTML to Quarto Markdown. `pandoc -f html -t markdown` handles the
-body; the front matter, the callouts and the listing entries are written by
-hand. Expect to hand-fix tables and any embedded Google Drive viewers, which do
-not convert to anything meaningful.
+Steps 3 and 4 replace the transcription. What is left is the judgement: what
+each page is worth, where it belongs, and what is out of date.
 
-**Network access.** `sites.google.com` is blocked by this environment's egress
-policy, so a Claude session cannot fetch the pages until that host is added to
-the environment's network allowlist. Either add it, or do the export locally
-and commit the raw files to a scratch branch for a session to convert.
+### How the converter avoids Google's markup
+
+New Google Sites renders through JavaScript into deeply nested `div`s with
+generated class names, so a converter that keys on those names breaks the next
+time Google changes them. The script keys on nothing. It converts every page to
+blocks, counts how often each block appears across all pages, and drops any
+block appearing on 60% or more of them. Navigation and footers repeat by
+definition; content does not. A single-page export skips the step, since there
+is nothing to compare against.
+
+The script is standard library only, with no `pandoc` and no `beautifulsoup4`,
+so `python3 import_google_site.py` runs with nothing installed.
+
+### The faster variant, if the allowlist changes
+
+Adding `sites.google.com` to this environment's
+[network allowlist](https://code.claude.com/docs/en/claude-code-on-the-web)
+lets a session crawl the live site with the Chromium and Playwright already
+installed here, run the same two steps, and open a pull request with the drafts
+in it. That removes the export and the branch, and it lets the drafts be
+checked against the live pages in the same session that writes them. It does
+not replace the Takeout export: Takeout is the snapshot of the attachments and
+is worth having whether or not the allowlist changes.
+
+### What the drafts still need by hand
+
+-   **Links between pages.** They point at old Google URLs and must be repointed
+    at the new `.qmd` paths.
+-   **File paths.** An image or PDF reference points into the export tree, not
+    at `files/`.
+-   **Front matter.** `title` is carried across; `description` and `categories`
+    are stubs.
+-   **Anything the converter flattened.** Multi-column layouts, embedded Google
+    Drive viewers and buttons have no Markdown equivalent and come out as plain
+    text or vanish. Compare against the live page.
 
 ## 8. Files and assets
 
@@ -377,11 +409,12 @@ The migration is done when all of these hold.
 Phases are ordered so that each one leaves the site in a publishable state.
 None of them requires the next one to start.
 
-**Phase 0 --- inventory.** Export the site, fill in Section 5, record the row
-count. Answer the open questions in Section 14 that the export settles. This
-phase produces no site change and it is the phase that makes the rest
-estimable. Do not skip it and port pages as they are noticed; that is how a
-page gets left behind.
+**Phase 0 --- inventory.** Take the Takeout export, commit it to
+`import/google-site-raw`, and run `import_google_site.py inventory` to generate
+the Section 5 rows. Decide the dispositions and record the row count. Answer
+the open questions in Section 14 that the export settles. This phase produces
+no site change and it is the phase that makes the rest estimable. Do not skip
+it and port pages as they are noticed; that is how a page gets left behind.
 
 **Phase 1 --- the person, at minimum.** Rewrite `about.qmd` to open with the
 bio, remove the self-referential link, add `cv.qmd` with the CV PDF in
