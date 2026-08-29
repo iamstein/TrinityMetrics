@@ -85,28 +85,42 @@ Develop a simulation and operational framework to answer:
 > treated fewer patients at subtherapeutic exposures, and what safety
 > and operational risks accompany either?
 
-**Two axes, not one.** The saving can arrive as calendar time or as
-patients, and a design can win on one without the other. Catch-up
-escalation is expected to be exactly that case: little change in
-$T_{3,\rm eval}$, substantially less patient-time at clearly subactive
-doses (Section 6). An objective stated on time alone scores that design
-as a failure when it is not one.
+**Three axes, not one.** The saving can arrive as calendar time, as
+patients, or as what the trial consumes, and a design can win on one
+without the others. Catch-up escalation is expected to be exactly that
+case: little change in $T_{3,\rm eval}$, substantially less patient-time
+at clearly subactive doses (Section 6). An objective stated on time
+alone scores that design as a failure when it is not one.
 
-The two headline quantities are therefore:
+The three headline quantities are:
 
 -   **Time.** $T_{3,\rm eval}$, and $\Delta T$ against the conventional
     comparator (Section 4).
 -   **Patients spent reaching the answer.** The number enrolled before
     the first profound B-cell depletion, and patient-weeks with B cells
     at or above 5 cells/uL (Section 5).
+-   **What the trial consumes.** Total patient-visits, and total
+    observation and hospitalization time in patient-hours (Section 19).
+
+**The third axis can run against IPDE while the first two run for it.**
+A scout accumulates a visit, a dose, a pharmacy preparation and an
+observation window at every rung of the ladder, where a conventional
+patient sits at one dose level for the same period. A design that
+reaches the answer sooner and with fewer patients can still consume more
+per patient enrolled. Section 19 expects the size of that to depend on
+what the patients were scheduled for anyway: close to free for a QW
+oncology TCE where the visits are already planned, substantial for an
+immune-reset programme whose eventual treatment is one or two
+administrations. Report this axis as a level and not only as a
+difference, so that a design buying time with visits is visible as one.
 
 **There is no cost model and there should not be one yet.** Turning
-visits, doses, hospital days and patients into a single number requires
+visits, doses, hospital hours and patients into a single number requires
 weights, and a sponsor, a site and a patient weigh them differently.
 Section 19 reports the components separately for that reason, and
-Section 5 keeps the list short. The two quantities above are the
-headline pair because they are what a programme argues about; the rest
-stay components.
+Section 5 keeps the list short. The three quantities above are the
+headline set because they are what a programme argues about, and a
+programme wanting a currency figure can price its own counts.
 
 The main use case is a **B-cell-depleting TCE**, with profound
 peripheral B-cell depletion as the rapid pharmacodynamic signal.
@@ -1478,10 +1492,17 @@ For every simulated design track:
 | Real-time dose decisions           | count        |
 | Safety committee reviews           | count        |
 | PD results needed before next dose | count        |
-| Observation/hospitalization        | patient-days |
+| Observation/hospitalization        | patient-hours |
 | Total trial calendar time          | days         |
 
 : Patient and operational burden components, reported per simulated design track {tbl-colwidths="[70,30]"}
+
+**Record observation and hospitalization in patient-hours, not
+patient-days.** Counting in days hides the case this design creates most
+of, a short post-dose observation window repeated at every rung of the
+ladder. Eight hours after each of six escalations and one overnight
+admission are different things that round to the same number of
+patient-days. Aggregate to days for reporting where that reads better.
 
 Two of these rows are not patient burden and should not be read as such.
 Individual dose changes and real-time dose decisions are counts of
@@ -2067,6 +2088,12 @@ subactive exposures against the conventional comparator. Four cases:
 
 Set $\Delta N_{\rm sub,\min}$ the way $\Delta T_{\min}$ is set, from
 programme considerations rather than from the simulation.
+
+The third axis in Section 1, what the trial consumes, stays out of this
+rule. A cheaper trial is worth having and is reported, but cost is not a
+reason to accept an unquantified delayed-toxicity risk, and a design
+that saves visits while saving neither time nor patients does not clear
+this threshold. Say so explicitly, because the argument will be made.
 
 ------------------------------------------------------------------------
 
