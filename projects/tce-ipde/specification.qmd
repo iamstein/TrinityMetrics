@@ -68,13 +68,13 @@ flowchart TD
     E --> F["Ordinary expansion / dose optimisation"]
 ```
 
-**How to decide.** The simulation quantifies a benefit against a risk it
-explicitly cannot quantify, so the threshold is prespecified instead. A
-saving smaller than 8 weeks, roughly one conventional cohort cycle plus
-its accrual, does not justify an unquantified delayed-toxicity risk, and
-the recommendation is then an accelerated conventional design. Section 1
-lists what has to be fixed before the simulation runs and Section 26b
-argues the numbers.
+**How to read the answer.** The simulation quantifies a benefit against
+a risk it explicitly cannot quantify, so no region of the result is a
+recommendation on its own. What it can say is where the saving is large
+enough for the safety discussion to be worth having, and where it is
+small enough that the discussion is unnecessary. A saving under about
+eight weeks, one conventional cohort cycle plus its accrual, is inside
+the noise of ordinary trial execution. Section 26b reads the map.
 
 ------------------------------------------------------------------------
 
@@ -126,32 +126,34 @@ Section 5 keeps the list short. The three quantities above are the
 headline set because they are what a programme argues about, and a
 programme wanting a currency figure can price its own counts.
 
-### Decide these before running anything
+### What comes out of this
 
-Prespecified means before the simulation produces a number, so that the
-team is not negotiating a threshold against results it has already seen.
-Three things are fixed in advance.
+A map of the design space, not a verdict on a programme. The question is
+which conditions favour IPDE and which do not, so the deliverable is
+$\Delta T$, $\Delta N_{\rm sub}$ and the burden counts reported across
+the scenario grid in Section 21, with the regions where each is
+material named.
 
-1.  $\Delta T_{\min}$, the smallest time saving that would justify the
-    strategy. Start at 8 weeks, roughly one conventional cohort cycle at
-    $W_{\rm cohort}=28$ days plus its accrual, on the grounds that a
-    smaller saving sits inside the noise of ordinary trial execution.
-    Replace it with the programme's own number where one exists.
-2.  $\Delta N_{\rm sub,\min}$, the same thing for patients spared
-    dosing at subactive exposures. No default is proposed; it comes from
-    programme considerations.
-3.  That the third axis, what the trial consumes, is reported but does
-    not enter the decision. A cheaper trial is worth having, and cost is
-    not a reason to accept an unquantified delayed-toxicity risk.
+**Report contours, not a pass or fail.** A figure such as eight weeks
+saved is a line drawn on the map for reading it, not a bar the design
+has to clear. Eight weeks is roughly one conventional cohort cycle at
+$W_{\rm cohort}=28$ days plus its accrual, so a saving smaller than that
+sits inside the noise of ordinary trial execution and is worth marking
+as such. A programme applying this work later brings its own number.
+Section 26b works through how to read the map, including the case where
+the saving is patients rather than time.
 
-This structure exists because the simulation quantifies a benefit
-against a risk it cannot quantify. Section 16 sets out why no defensible
-quantitative model of ICANS is available, and that is a limitation of
-the strategy rather than of the simulation. With the risk side
-unquantifiable, the only defensible move is to say in advance how large
-the benefit must be before the safety discussion is worth having.
-Section 26b works the rule through and names the four cases the pair
-$(\Delta T,\ \Delta N_{\rm sub})$ can fall into.
+**The safety side is unquantified wherever the map is read.** Section 16
+sets out why no defensible quantitative model of ICANS is available, and
+that is a limitation of the strategy rather than of the simulation. No
+region of the map is a recommendation on its own. What a region says is
+whether the benefit there is large enough for the safety discussion to
+be worth having at all.
+
+Once this stops being an exploration and starts supporting a specific
+programme decision, that is the point to fix a threshold in advance, so
+that the team is not negotiating one against results it has already
+seen. That is a later step and not what this document is for.
 
 ### Scope
 
@@ -1944,13 +1946,17 @@ Expected hypotheses are:
 
 ## 26b. What result would make IPDE not worth doing
 
-The thresholds themselves are in Section 1, because they are fixed
-before the simulation runs. This section is the rule that uses them.
+How to read the map, once the scenarios have been run. Section 1 says
+what comes out; this section says which parts of it point away from
+IPDE.
 
 The simulation quantifies a benefit against a risk it explicitly cannot
-quantify (Section 16). No arithmetic resolves that trade, so the
-defensible move is to state in advance how large the benefit must be
-before the ICANS discussion is worth having at all.
+quantify (Section 16). No arithmetic resolves that trade, so the useful
+output is not a recommendation but a statement of where the benefit is
+large enough for the safety discussion to be worth having. The
+thresholds below are contours for reading the result. A programme
+carrying this into a real decision replaces them with its own and fixes
+them before it looks at the numbers.
 
 On the time axis, with $\Delta T = T_{3,\rm conventional} -
 T_{3,\rm IPDE}$:
