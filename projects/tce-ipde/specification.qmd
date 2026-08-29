@@ -1469,6 +1469,7 @@ At minimum parameterize $\lambda_{\rm enroll}$ with scenarios such as:
 -   0.5 patients/week.
 -   1 patient/week.
 -   2 patients/week.
+-   Accrual not binding: 5 patients/week, or an unlimited queue.
 
 Include:
 
@@ -1482,6 +1483,41 @@ These can dominate calendar time and therefore should not be omitted.
 
 A simple discrete-event engine is preferable to pretending all patients
 appear instantaneously.
+
+### Which resource is binding
+
+Calendar time is set by whichever is slower, waiting for patients or
+waiting for the safety review between cohorts. Which one binds changes
+what every other lever buys, and it differs by archetype.
+
+Where accrual is slow, patients and calendar time move together. A
+3-patient cohort takes three enrolment slots to fill and the trial
+waits, so cutting to 1-patient cohorts saves both.
+
+Where accrual is fast, which is the expectation for the autoimmune and
+immune-reset archetype in Section 22, that inverts. Cohorts fill
+quickly and calendar time becomes the number of cohorts multiplied by
+$W_{\rm cohort}$. A 1-patient cohort then saves patients at subactive
+doses and saves little time, because the review window runs regardless
+of how many patients sat in the cohort.
+
+Two things follow, both predictions to check rather than assumptions to
+build in.
+
+-   The 1-versus-3 cohort size lever in Section 6 reports on the patient
+    axis and not the time axis once accrual is fast. That is the same
+    shape as the catch-up result.
+-   What moves the clock under fast accrual is the number of cohorts,
+    which is set by the dose step size. This is Simon's finding in
+    Section 6, that time is bought by step size rather than by
+    escalating within a patient, arriving from the other direction. It
+    also suggests where scout-and-backfill earns its keep: not by
+    removing waiting, but because seeing PD in the same patient is what
+    makes a larger step defensible. On that reading the PD-guided rule
+    in Section 13 is the time mechanism and the ladder is what licenses
+    it. The simulation should confirm or refute this, since it is the
+    difference between a design that saves time and one that only saves
+    patients.
 
 ### Backfill pre-screening
 
@@ -1558,7 +1594,9 @@ conditions.
 -   **Autoimmune / immune reset**, the setting where the eventual
     regimen may be 1--2 administrations. Some candidates have had prior
     B-cell-depleting therapy such as rituximab and can enter with
-    baseline counts already low or still recovering.
+    baseline counts already low or still recovering. Accrual is expected
+    to be fast here rather than rate-limiting, which changes what cohort
+    size buys (Section 20).
 
 The second population breaks the design's central signal where a patient
 enrolls near or below the threshold, because a scout who starts at
@@ -1941,6 +1979,12 @@ Expected hypotheses are:
     quiet buy back the small steps taken after it moves, and it
     nominates a $D^*$ closer to $D_{\rm true}$, so fewer backfill
     cohorts fail to confirm.
+15. **Cohort size is a patient lever, not a clock lever, when accrual is
+    fast.** Cutting low-dose cohorts from three patients to one reduces
+    the number treated at subactive doses without materially changing
+    $T_{3,\rm eval}$, because the between-cohort review window runs
+    regardless of cohort size. Where accrual is slow the same change
+    moves both.
 
 ------------------------------------------------------------------------
 
