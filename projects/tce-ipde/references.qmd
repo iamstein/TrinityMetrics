@@ -130,23 +130,27 @@ cohorts in the low-dose region with intra-patient escalation, and define
 what an efficient conventional comparator looks like. Read last of the
 five.
 
-#### Notes
+#### Methods
 
 Definitions: 
 - Conventional Design = Fibonacci Method.  dose increments are 100, 67, 50, 40%, and uses a 3+3-like approach
 - Accelerated = 1 patient cohorts when safe (instead of 3) until DLT or 2 G2 tox
+- Intrapatient Escalation = If tox is G0-1, then next dose can increase 100%
 
 Four models
 
 1. Single Steps + Conventional Design
-2. Single Steps + Accelerated until events in first cohort, then Conventional
-3. Double Steps + Accelerated until events in first cohort, then Conventional
-4. Double Steps + Accelerated until events in any course,   then Conventional
+2. Single Steps + Accelerated until AE in first cycle, then Conventional
+3. Double Steps + Accelerated until AE in first cycle, then Conventional
+4. Double Steps + Accelerated until AE in any cycle,   then Conventional
 
-Also two different interpationt escalation options
+A. No itrapatient escalation
+B. With intrapatient escalation.
 
-A. No escalation
-B. Escalation if G0 or G1 tox.
+
+#### Results
+
+
 
 **Answer while reading.** Does the paper report the calendar-time saving
 separately from the reduction in patients treated at subtherapeutic
