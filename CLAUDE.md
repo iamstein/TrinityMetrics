@@ -20,13 +20,21 @@ repository:
 | `README.md` | Deciding whether to clone | how-to | thin |
 | `index.qmd` | Deciding whether to read further | how-to | thin |
 | `blog/posts/*/index.qmd` | Following one argument | explanation | thin |
-| `projects/*/index.qmd` | Working on the project | reference | as long as the work needs |
+| `projects/*/index.qmd` | Finding the right document in the folder | how-to | thin |
+| `projects/*/*.qmd` | Working on the project | reference | as long as the work needs |
 | `about.qmd`, `code.qmd`, `resources.qmd` | Looking one thing up | reference | thin |
 | `blog/drafts/*` | Andy, later | draft | unconstrained |
 
 The machine-prose tics in the guide's Part 1 apply to everything, including
 conversation and commit messages, whether or not the guide has been read this
 session.
+
+## Project folders
+
+Each folder under `projects/` carries an `index.qmd` listing the documents in
+it, the working specification first, as a plain list rather than a Quarto
+listing. When a document there is added, renamed or removed, update that list
+in the same commit.
 
 ## Other conventions in this repository
 

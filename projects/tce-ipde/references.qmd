@@ -16,8 +16,8 @@ the page. A parameter transcribed from an abstract, or a table
 transcribed from an image, is not a number that can go into final work.
 :::
 
-The working document is [the specification](index.qmd). This page is
-where its sources live.
+The working document is [the specification](specification.qmd), and the
+folder's other documents are on [the project index](index.qmd).
 
 ## Status markers
 
