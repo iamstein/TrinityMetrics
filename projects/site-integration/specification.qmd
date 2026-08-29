@@ -294,15 +294,56 @@ date attached to it, matching `blog/posts/`. `2019-acop-poster.pdf`, not
 `ACoP Poster (final) v2.pdf`. A Google Sites filename usually has spaces in it,
 and spaces in a URL survive but read badly and break in some link checkers.
 
-Size: check the total before committing. The repository already carries a
-1.7 MB PNG at the root, and a decade of slide decks can be far larger than the
-rest of the repository combined. If the total exceeds roughly 100 MB, do not
-reach for Git LFS on a GitHub Pages site; keep the largest decks on the service
-that hosts them now and use a LINK disposition for those rows.
-
 **PDFs are the ported form for slides.** A PowerPoint file on a static site is
 a download rather than a page, and a reader on a phone cannot open it. Convert
-decks to PDF and keep the source file only where there is a reason to.
+decks to PDF and keep the source file only where there is a reason to. Do not
+commit the `.pptx` beside the `.pdf`: it doubles the storage, and git keeps
+every version of it for the life of the repository.
+
+### Size limits
+
+Every presentation can live in this repository. The numbers, from GitHub's own
+documentation:
+
+| Limit | Value | Hard? |
+|---|---|---|
+| One file | 100 MB, with a warning at 50 MiB | Yes, the push is rejected |
+| One push | 2 GB | Yes |
+| Published Pages site | 1 GB | Yes |
+| Pages bandwidth | 100 GB/month | Soft |
+| Repository total | under 1 GB ideal, under 5 GB strongly recommended | Guidance |
+
+The binding one is the 1 GB published site, not the 100 MB per-file limit. A
+slide deck exported to PDF is nowhere near 100 MB, so no single file is at
+risk; what could reach 1 GB is the sum.
+
+### Compress every deck before committing it
+
+Uncompressed exports are what makes the sum a problem, and Ghostscript
+removes it:
+
+```bash
+gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dCompatibilityLevel=1.4 \
+   -dNOPAUSE -dQUIET -dBATCH -sOutputFile=out.pdf in.pdf
+```
+
+Measured on `references/Uncertainty_Assessment_Presentation.pdf`, the 105-page
+deck already in this repository: 14.8 MB at source, 2.5 MB at `/ebook`, 1.5 MB
+at `/screen`, page count unchanged in both. On the most image-heavy page in the
+deck, `/ebook` is indistinguishable from the source and `/screen` visibly
+softens the small annotation labels. **Use `/ebook`.** Re-run the comparison on
+a deck of your own before trusting it on a hundred of them.
+
+That ratio is what decides whether everything fits. At source size the 1 GB
+Pages ceiling arrives at roughly 65 decks; at `/ebook` size, at roughly 400.
+Compress before the first commit, because a file committed uncompressed and
+recompressed later leaves both copies in the history permanently.
+
+Git LFS is not needed. It exists for the 100 MB per-file limit, and a deck
+compressed as above is 40 times smaller than that. Were it ever needed, this
+repository's Actions-based Pages build could serve LFS content by setting
+`lfs: true` on `actions/checkout`, which the older branch-based Pages build
+could not.
 
 ## 9. Publications: how the list is built
 
