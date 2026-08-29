@@ -41,9 +41,10 @@ the site around it. Section 3 argues this against the alternative and says what
 would change the answer.
 
 **Recommendation on placement.** Person-level pages become top-level
-(`cv.qmd`, `publications.qmd`, `talks.qmd`), grouped in the navbar under one
-menu; the existing `about.qmd` becomes the person's landing page and stops
-being a project description. Section 4 maps every kind of content.
+(`publications.qmd`, `talks.qmd`), grouped in the navbar under one menu with
+the CV as a link out to Google Docs; the existing `about.qmd` becomes the
+person's landing page and stops being a project description. Section 4 maps
+every kind of content.
 
 **Files and old URLs.** A Google Site's PDFs, slides and images live at URLs
 that stop existing when the site does, and those URLs are cited from CVs,
@@ -139,10 +140,10 @@ no matching row gets one.
 |---|---|---|
 | Home page bio | `about.qmd`, rewritten to open with the person | Prose, one screen |
 | Long bio, career history | `about.qmd`, below the short bio | Prose |
-| CV | this should link direftly to google sites CV doc in google docs | Page and file |
+| CV | Link out to the CV document in Google Docs | Link out |
 | Publications | `publications.qmd` driven by `publications.yml` | Listing |
 | Talks, posters, slides | `talks.qmd` driven by `talks.yml`, slides as files | Listing plus files |
-| Teaching, courses | `teaching.qmd`, or a section of `cv.qmd` if thin | Depends on volume |
+| Teaching, courses | `teaching.qmd`, or a section of `about.qmd` if thin | Depends on volume |
 | Software: xgx, xgxr, synpmx | Nothing new. Already in `projects/projects.yml` | Link out |
 | Other software or code not yet listed | New rows in `projects/projects.yml` | Link out |
 | Contact details | Bottom of `about.qmd` | Prose |
@@ -158,8 +159,8 @@ covers the alternative for publications.
 
 **A page that would hold fewer than about five entries is a section, not a
 page.** Three talks do not need a Talks page in a seven-item navbar. Where the
-export shows a thin section, fold it into `cv.qmd` and record that in Section 5
-as a merge rather than a port.
+export shows a thin section, fold it into `about.qmd` and record that in
+Section 5 as a merge rather than a port.
 
 ## 5. Content inventory
 
@@ -177,7 +178,7 @@ Disposition codes:
 | # | Old URL | Title | Kind | Files on it | Disposition | Lands at | Reason / note |
 |---|---|---|---|---|---|---|---|
 | *e1* | *`/home`* | *Home* | *page* | *---* | *MERGE* | *`about.qmd`* | *Example row. Bio opens the About page.* |
-| *e2* | *`/cv/stein-cv.pdf`* | *CV* | *file* | *---* | *PORT* | *`files/stein-cv.pdf`* | *Example row. Old URL likely cited; needs a pointer per Section 11.* |
+| *e2* | *`/talks/acop-poster.pdf`* | *Poster* | *file* | *---* | *PORT* | *`files/2019-acop-poster.pdf`* | *Example row. Old URL likely cited; needs a pointer per Section 11.* |
 | 1 |  |  |  |  |  |  |  |
 
 The two italic rows are the format, not content. Delete them once the real rows
@@ -212,7 +213,7 @@ Andy Stein as an author and links to
 the moment the merge lands and must be removed in the same commit that
 rewrites `about.qmd`.
 
-**The bio.** use the buonfrom the google site
+**The bio.** Use the bio from the Google site.
 
 ## 7. Getting the content out of Google Sites
 
@@ -377,10 +378,13 @@ Proposed structure:
 ```
 Home | Blog | Projects | Guides | Resources | Code | About ▾
                                                       ├─ About
-                                                      ├─ CV
+                                                      ├─ CV  (→ Google Docs)
                                                       ├─ Publications
                                                       └─ Talks
 ```
+
+The CV entry is an external link, per Section 4. Quarto takes a full URL in a
+navbar `href`, so it needs no page of its own.
 
 The person's material sits under one menu, the topic material stays flat, and
 the site's shape barely changes for a reader who is already using it. A reader
@@ -456,8 +460,9 @@ no site change and it is the phase that makes the rest estimable. Do not skip
 it and port pages as they are noticed; that is how a page gets left behind.
 
 **Phase 1 --- the person, at minimum.** Rewrite `about.qmd` to open with the
-bio, remove the self-referential link, add `cv.qmd` with the CV PDF in
-`files/`. Add the About menu from Section 10. After this phase the merged site
+bio from the Google site, remove the self-referential link, and point the CV
+entry at the Google Docs CV. Add the About menu from Section 10. After this
+phase the merged site
 already answers "who is this" and the old site is optional rather than load
 bearing.
 
