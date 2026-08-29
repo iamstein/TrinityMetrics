@@ -66,11 +66,12 @@ flowchart TD
 ```
 
 **How to decide.** The simulation quantifies a benefit against a risk it
-explicitly cannot quantify, so the threshold is prespecified instead:
-below a minimum time saving, the acceleration is not worth an
-unquantified delayed-toxicity risk and the recommendation is an
-accelerated conventional design. The kill criterion in Section 26b sets
-that out.
+explicitly cannot quantify, so the threshold is prespecified instead. A
+saving smaller than 8 weeks, roughly one conventional cohort cycle plus
+its accrual, does not justify an unquantified delayed-toxicity risk, and
+the recommendation is then an accelerated conventional design. Section 1
+lists what has to be fixed before the simulation runs and Section 26b
+argues the numbers.
 
 ------------------------------------------------------------------------
 
@@ -121,6 +122,35 @@ Section 19 reports the components separately for that reason, and
 Section 5 keeps the list short. The three quantities above are the
 headline set because they are what a programme argues about, and a
 programme wanting a currency figure can price its own counts.
+
+### Decide these before running anything
+
+Prespecified means before the simulation produces a number, so that the
+team is not negotiating a threshold against results it has already seen.
+Three things are fixed in advance.
+
+1.  $\Delta T_{\min}$, the smallest time saving that would justify the
+    strategy. Start at 8 weeks, roughly one conventional cohort cycle at
+    $W_{\rm cohort}=28$ days plus its accrual, on the grounds that a
+    smaller saving sits inside the noise of ordinary trial execution.
+    Replace it with the programme's own number where one exists.
+2.  $\Delta N_{\rm sub,\min}$, the same thing for patients spared
+    dosing at subactive exposures. No default is proposed; it comes from
+    programme considerations.
+3.  That the third axis, what the trial consumes, is reported but does
+    not enter the decision. A cheaper trial is worth having, and cost is
+    not a reason to accept an unquantified delayed-toxicity risk.
+
+This structure exists because the simulation quantifies a benefit
+against a risk it cannot quantify. Section 16 sets out why no defensible
+quantitative model of ICANS is available, and that is a limitation of
+the strategy rather than of the simulation. With the risk side
+unquantifiable, the only defensible move is to say in advance how large
+the benefit must be before the safety discussion is worth having.
+Section 26b works the rule through and names the four cases the pair
+$(\Delta T,\ \Delta N_{\rm sub})$ can fall into.
+
+### Scope
 
 The main use case is a **B-cell-depleting TCE**, with profound
 peripheral B-cell depletion as the rapid pharmacodynamic signal.
@@ -2027,31 +2057,24 @@ Expected hypotheses are:
 
 ## 26b. What result would make IPDE not worth doing
 
-Prespecify this before running the simulation, so the team is not
-negotiating the threshold against results it has already seen.
+The thresholds themselves are in Section 1, because they are fixed
+before the simulation runs. This section is the rule that uses them.
 
 The simulation quantifies a benefit against a risk it explicitly cannot
 quantify (Section 16). No arithmetic resolves that trade, so the
 defensible move is to state in advance how large the benefit must be
 before the ICANS discussion is worth having at all.
 
-Proposed decision structure $\Delta T = T_{3,\rm conventional} -
-T_{3,\rm IPDE}$.
+On the time axis, with $\Delta T = T_{3,\rm conventional} -
+T_{3,\rm IPDE}$:
 
--   $\Delta T$ below a prespecified minimum $\Delta T_{\min}$: IPDE is
-    not worth the unquantified delayed-toxicity risk in that scenario.
-    Recommend the accelerated conventional design and stop. No safety
-    argument is needed, because there is no benefit to weigh against it.
+-   $\Delta T$ below $\Delta T_{\min}$: IPDE is not worth the
+    unquantified delayed-toxicity risk in that scenario. Recommend the
+    accelerated conventional design and stop. No safety argument is
+    needed, because there is no benefit to weigh against it.
 -   $\Delta T$ above $\Delta T_{\min}$: the acceleration is material,
     and the decision moves to the clinical and regulatory judgement in
     Section 27, which the simulation informs but does not make.
-
-Set $\Delta T_{\min}$ from program considerations rather than from the
-simulation. A starting value of 8 weeks is suggested on the grounds that
-it is roughly one conventional cohort cycle at
-$W_{\rm cohort}=28$ days plus its accrual, and a saving smaller than one
-cohort cycle is within the noise of ordinary trial execution. Replace it
-with the program's real number where one exists.
 
 Report $\Delta T$ against $\Delta T_{\min}$ for every scenario, and name
 the scenarios falling on each side. The expected shape of the answer is
