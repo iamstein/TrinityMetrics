@@ -101,7 +101,7 @@ be both.
 
 ## 3. Decision 1 --- whose name the merged site carries
 
-Three options, and the recommendation is A.
+Three options, and the recommendation is A.  Andrew Stein agrees with option A.
 
 **A. TrinityMetrics absorbs the personal site.** Title stays "TrinityMetrics",
 URL stays `iamstein.github.io/TrinityMetrics/`, the person becomes a section.
@@ -139,7 +139,7 @@ no matching row gets one.
 |---|---|---|
 | Home page bio | `about.qmd`, rewritten to open with the person | Prose, one screen |
 | Long bio, career history | `about.qmd`, below the short bio | Prose |
-| CV | `cv.qmd`, plus the PDF as a download | Page and file |
+| CV | this should link direftly to google sites CV doc in google docs | Page and file |
 | Publications | `publications.qmd` driven by `publications.yml` | Listing |
 | Talks, posters, slides | `talks.qmd` driven by `talks.yml`, slides as files | Listing plus files |
 | Teaching, courses | `teaching.qmd`, or a section of `cv.qmd` if thin | Depends on volume |
@@ -212,9 +212,7 @@ Andy Stein as an author and links to
 the moment the merge lands and must be removed in the same commit that
 rewrites `about.qmd`.
 
-**The bio.** A short bio probably exists in more than one place already. Pick
-one, put it in `about.qmd`, and have anything else quote or link it rather than
-restate it.
+**The bio.** use the buonfrom the google site
 
 ## 7. Getting the content out of Google Sites
 
