@@ -19,6 +19,9 @@ that would answer this has been specified and not built.
 - [References](references.qmd). What to read and in what order, and a marker
   on every source recording whether the specification's use of it has been
   checked.
+- [MCLA-117 notes](mcla117-notes.qmd). The published Cycle 1 escalation
+  scheme the specification cites as precedent, its dose tables, and the
+  four features of it that bear on the design.
 - [Simon 1997 reading notes](simon97-notes.qmd). What the accelerated
   titration designs paper reports when intrapatient escalation is switched on
   and off, with every number sourced to a page.

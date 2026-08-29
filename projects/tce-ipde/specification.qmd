@@ -155,6 +155,11 @@ $(\Delta T,\ \Delta N_{\rm sub})$ can fall into.
 The main use case is a **B-cell-depleting TCE**, with profound
 peripheral B-cell depletion as the rapid pharmacodynamic signal.
 
+Raising the starting dose is out of scope. A better MABEL attacks the
+same gap from the other end, and it is complementary rather than
+competing, but this project holds $D_{\rm start}$ fixed and varies what
+happens above it.
+
 This is primarily a **FIH / high-dose-uncertainty strategy**. It is not
 intended as a general later-development strategy. Once the biologically
 active neighborhood is known, the rationale for traversing a large dose
@@ -385,134 +390,62 @@ only it stops on pharmacology rather than on a cohort review.
 
 ### Prior art
 
-The catch-up and scout-and-backfill designs are not new in structure, and the document should say so
-before a reviewer does.
-
-Simon and colleagues published accelerated titration designs in 1997
-(Simon R, Freidlin B, Rubinstein L, Arbuck SG, Collins J, Christian MC,
-*J Natl Cancer Inst* 89:1138--1147). Their designs 2, 3 and 4 combine
-single-patient cohorts in the low-dose region with **intra-patient dose
-escalation** for patients who neither respond nor experience toxicity.
+The catch-up and scout-and-backfill designs are not new in structure,
+and the document should say so before a reviewer does. Simon and
+colleagues published accelerated titration designs in 1997 (*J Natl
+Cancer Inst* 89:1138--1147). Their designs 2, 3 and 4 combine
+single-patient cohorts in the low-dose region with intrapatient dose
+escalation for patients who neither respond nor experience toxicity.
 The catch-up design is that mechanism, and the accelerated
-single-patient cohorts in the conventional design are the same family. Two consequences for this
-project:
+single-patient cohorts in the conventional design are the same family.
+What is new here is the **stopping rule**: Simon's designs escalate
+within a patient until toxicity or lack of response over a fixed
+schedule, where scout-and-backfill escalates until a pharmacodynamic
+threshold fires and then hands off to a conventional cohort.
 
--   The literature already reports the expected catch-up result, that
-    within-patient escalation gives participants access to higher doses
-    without shortening the trial much. Present the **catch-up helps patients, but
-    not time to evaluate active dose** hypothesis (Section 26) as a replication of
-    a known finding rather than as a new claim.
--   What is different in scout-and-backfill is the **stopping rule**. Simon's
-    designs escalate within a patient until toxicity or lack of response
-    over a fixed schedule. Scout-and-backfill escalates until a pharmacodynamic
-    threshold fires, then stops and hands off to a conventional cohort.
-    The novelty is the PD-triggered stop and the scout/backfill split,
-    not within-patient escalation itself.
+The paper has been read and checked; the [reading
+notes](simon97-notes.qmd) carry the numbers and their page citations.
+Simon's designs are numbered 1 to 4 and his intrapatient options
+lettered A and B, which are not this document's designs A, B and C.
 
-#### What to read before building
-
-Read the literature before Phase 1. It is five papers against a
-four-phase implementation, and one of them can change the premise.
-[References](references.qmd) carries the queue in reading order, with
-the question to answer against each. Two of the five bear on this
-section directly.
-
-**Simon 1997 is the design ancestry, not the place to start.** Designs 2
-to 4 there combine single-patient cohorts with intra-patient escalation,
-which is the catch-up design and the accelerated cohorts above.
-Elmeliegy 2024 is closer to this project's problem and covers dose
-selection across the first eight approved TCEs.
-
-Raising the starting dose is out of scope. A better MABEL attacks the
-same gap from the other end, and it is a complementary strategy rather
-than a competing one, but this project holds $D_{\rm start}$ fixed and
-varies what happens above it.
-
-#### What Simon 1997 establishes
-
-Read and checked against the paper. Page numbers are from *J Natl Cancer
-Inst* 1997;89(15):1138–1147; the [reading
-notes](simon97-notes.qmd) carry the rest. Simon's designs are numbered 1
-to 4 and his intrapatient options are lettered A and B, which are not
-this document's designs A, B and C.
-
-::: {.callout-important appearance="simple"}
-**Fewer patients is not a shorter trial.** Simon's design 2, accelerated
-single-patient cohorts with single dose steps, uses 24.4 patients on
-average against 39.9 for the standard design (p.1141) and saves no time
-at all. Design 1 needs slightly *fewer* cohorts, "because design 2
-sometimes overshoots its target and requires more cohorts at
-de-escalated levels" (p.1142).
-
-**Time is bought with dose step size.** Designs 3 and 4 "show
-substantial savings over designs 1 and 2 because of their use of double
-dose steps during the initial stage of the trials" (p.1142). Cohort
-count is the paper's duration proxy, valid "when there is an excess of
-patients available for entry in the trial" (Fig. 3 caption, p.1143).
-
-**Intrapatient escalation moves no clock.** Adding it to the standard
-design "has no effect on the number of patients or number of cohorts
-compared with 1A" (p.1143). Removing it from the accelerated designs has
-"little or no effect on the number of patients or cohorts required"
-(p.1143).
-
-**What it does buy is undertreated patients.** Patients whose worst
-toxicity was grade 0–1 fall from 23.3 to 19.3 when intrapatient
-escalation is added to the standard design (p.1143), and from 6.5 to 3.9
-when it is added to the accelerated double-step design (p.1144 and
-p.1142).
-
-**No published number exists for the time effect.** No figure or table
-in the paper splits the intrapatient options apart; cohort counts appear
-only as histograms for the four default designs (Fig. 3, p.1143). The
-comparison is the phrase "little or no effect". A literature search
+The finding that matters here is that **intrapatient escalation moves no
+clock**. Adding it changes neither the number of patients nor the number
+of cohorts, in either the standard or the accelerated design. What it
+buys is patients: those whose worst toxicity was grade 0-1 fall from
+23.3 to 19.3 in the standard design. Time is bought by dose step size
+instead. No table in the paper splits the intrapatient options apart, so
+the size of the time effect is unpublished, and a literature search
 found no other paper that quantifies it.
-:::
 
-Three consequences for this document.
+Three consequences:
 
 1.  The **catch-up helps patients, but not time to evaluate active
     dose** hypothesis in Section 26 is supported in direction and
     unquantified in size. Cite Simon for the direction; the simulation
     still has to produce $\Delta T$.
-2.  The efficient conventional comparator is Simon's design 3 with
-    option A: accelerated single-patient cohorts, double dose steps, no
+2.  The efficient conventional comparator, left as a parameter by the
+    critical comparator issue below, is Simon's design 3 with option A:
+    accelerated single-patient cohorts, double dose steps, no
     intrapatient escalation, reverting to the standard design at the
-    first first-course DLT or the second first-course grade 2 event
-    (Appendix, p.1147).
+    first first-course DLT or the second first-course grade 2 event.
 3.  The dose escalation factor in Section 13 stops being a parameter and
-    becomes the mechanism. Simon's accelerated ladder moves about 2×
-    per double step once past the bottom of a modified Fibonacci scale,
-    and about 3.3× at the first step; the scout ladder in Section 6
-    holds ~3.3× throughout.
+    becomes the mechanism. Simon's accelerated ladder moves about 2-fold
+    per double step and about 3.3-fold at the first step; the scout
+    ladder holds roughly 3.3-fold throughout.
 
-Two things in this project are probably already answered in the
-accelerated titration literature. The **catch-up helps patients, but not
-time to evaluate active dose** hypothesis in Section 26 is that literature's own reported
-result. The shape of an
-efficient conventional comparator, which the critical comparator issue
-above leaves as a parameter, is what Simon's designs 2 to 4 specify.
-Both should be cited rather than re-derived.
-
-One thing is not answered in any of the five. Their escalation rules
-stop on toxicity and the quantity sought is a tolerated dose. None
-carries a pharmacodynamic stopping rule, a scout-and-backfill split, or
-a requirement that a separate cohort confirm an interpretable regimen,
-so none bears directly on $T_{3,\rm eval}$, on the confirmation penalty,
-or on the prediction-error axis. Their driver is uncertainty about where
-toxicity begins; this project's driver is uncertainty about where
-activity begins, in a range believed to sit below the toxic one.
-
-The simulation is not made redundant by any of this, but it is narrower
-than it looks. What remains to be shown is the value of the
+None of the accelerated titration literature bears on the rest. Those
+escalation rules stop on toxicity and seek a tolerated dose, with no
+pharmacodynamic stopping rule, no scout-and-backfill split, and no
+requirement that a separate cohort confirm an interpretable regimen, so
+none of it touches $T_{3,\rm eval}$, the confirmation penalty, or the
+prediction-error axis. What remains to be shown is the value of the
 pharmacodynamic stop and the size of the confirmation penalty.
 
 Model-based escalation designs (continual reassessment method, BOIN and
 variants) are out of scope. They allocate patients across dose levels
 more efficiently under a toxicity model, and the binding constraint here
 is pharmacology in a range believed to be subtherapeutic rather than
-toxicity statistics. Future work (Section 27b) carries the argument for
-deferring them
+toxicity statistics. Section 27b carries the argument for deferring them
 and what would bring them back.
 
 ### Conventional escalation --- Design A
@@ -649,85 +582,36 @@ increases. Verify a specific citation before relying on this point.
 
 ### A published within-patient escalation ladder --- MCLA-117
 
-MCLA-117 (tepoditamab) is a CLEC12A x CD3 bispecific antibody whose
-first-in-human phase 1 study in relapsed or refractory AML
-(NCT03038230) escalated within patients across four orders of
-magnitude. The Cycle 1 scheme below is transcribed from the study's
-EHA 2020 e-poster (Section 28, references). Verify the transcription
-against the
-poster before citing any of these numbers in final work.
-
-| Cohort | D1 | D3 | D5 | D8 | D11 | D15 | D22 |
-|:---|---:|---:|---:|---:|---:|---:|---:|
-| 1 | 25 µg | 50 µg | 100 µg | 200 µg | 300 µg | 450 µg | 675 µg |
-| 2 | 100 µg | 200 µg | 400 µg | 750 µg | 1000 µg | 1250 µg | 1500 µg |
-
-: Cohorts 1 and 2, dosed on seven days in Cycle 1 {tbl-colwidths="[16,12,12,12,12,12,12,12]"}
-
-| Cohort | D1 | D4 | D8 | D15 | D22 |
-|:---|---:|---:|---:|---:|---:|
-| 3 | 300 µg | 1 mg | 2 mg | 2 mg | 2 mg |
-| 4 | 600 µg | 2 mg | 6 mg | 6 mg | 6 mg |
-| 5 | 600 µg | 2 mg | 9 mg | 9 mg | 9 mg |
-| 6 | 1 mg | 3 mg | 15 mg | 15 mg | 15 mg |
-| 7 | 1 mg | 3 mg | 15 mg | 25 mg | 25 mg |
-| 8a | 1 mg | 3 mg | 25 mg | 40 mg | 40 mg |
-| 8b | 3 mg | 10 mg | 25 mg | 40 mg | 40 mg |
-| 9 | 5 mg | 15 mg | 25 mg | 60 mg | 60 mg |
-| 10 | 5 mg | 15 mg | 25 mg | 120 mg | 120 mg |
-| 11 | 5 mg | 15 mg | 25 mg | 240 mg | 240 mg |
-| 12 | 5 mg | 15 mg | 25 mg | 400 mg | 400 mg |
-
-: Cohorts 3 to 12, dosed on five days in Cycle 1 {tbl-colwidths="[16,17,17,17,17,16]"}
+The MCLA-117 (tepoditamab) first-in-human study in AML escalated within
+patients from a 25 µg first dose to a 400 mg target dose, a factor of
+16,000, with cohort 1 taking seven doses in 22 days. A long
+within-patient ladder is precedented and does not have to be argued for
+here.
 
 ![MCLA-117 Cycle 1 dose escalation. Each line is one cohort's
 within-patient ladder; the dose axis is logarithmic and spans the
 25 µg first dose of cohort 1 to the 400 mg target dose of cohort
 12.](mcla117-escalation.svg){#fig-mcla117}
 
-Four things in this scheme bear directly on the design being simulated.
+Three features of the scheme bear on this design, and the
+[MCLA-117 notes](mcla117-notes.qmd) carry the dose tables and the
+sourcing caveat.
 
-1.  **Within-patient traversal of four orders of magnitude is
-    precedented and was executed.** The programme ran from a 25 µg
-    first dose to a 400 mg target dose, a factor of 16,000. Scout-and-backfill
-    does not need to argue that a long ladder is possible.
+-   The number of within-patient steps was not capped, which is what
+    the subsection above assumes.
+-   The first dose moved slowly between cohorts, by 4-fold at most and
+    mostly 3-fold or less, while the target dose rose 600-fold over the
+    same sequence. The constraint sits on the first dose in a
+    drug-naive patient, not on the ladder above it. The next subsection
+    takes this up.
+-   From cohort 9 the step-up prefix is fixed at 5, 15 and 25 mg and
+    only the target changes, which is the structure Section 7 assumes
+    for the backfill regimen.
 
-2.  **The number of within-patient steps was not capped.** Cohort 1
-    administers seven doses in 22 days and ends 27-fold above its own
-    first dose. The rejection of a rule such as "maximum three
-    escalations" earlier in this section describes what this trial
-    already did.
-
-3.  **The first dose moved slowly while the target dose moved fast.**
-    Across the thirteen cohorts the D1 doses are 25, 100, 300, 600 and
-    600 µg, then 1, 1, 1, 3, 5, 5, 5 and 5 mg. The largest single
-    increase in the D1 dose is 4-fold and most are 3-fold or less,
-    while the D22 dose rises from 675 µg to 400 mg over the same
-    sequence. The constraint sits on the first dose given to a patient
-    who has had no drug, not on the ladder above it.
-
-4.  **From cohort 9 the step-up prefix is fixed and only the target
-    dose changes.** Cohorts 9 to 12 all give 5 mg, 15 mg and 25 mg on
-    D1, D4 and D8, and differ only in the D15/D22 target: 60, 120, 240
-    and 400 mg. That is the structure the backfill regimen in Section 7 assumes for the
-    backfill regimen, a fixed step-up prefix with an escalating target,
-    reached here empirically.
-
-Observation 3 is the one that changes this project's design, and the
-next subsection takes it up. Observations 2 and 4 supply real values
-where Sections 13 and 15 currently carry assumptions: an escalation
-multiplier of roughly 2 to 3-fold per step, and five to seven steps
-inside a 28-day cycle.
-
-The step interval is where this trial and the simulated design differ.
-Cohort 1 doses on D1, D3, D5, D8, D11, D15 and D22, so its first
-intervals are 2 and 3 days rather than 7. Scout-and-backfill holds the
-interval at one week, which makes the simulated ladder slower than the
-precedent rather than faster, and any acceleration it reports
-conservative on that axis. Whether a sub-weekly scout ladder is worth
-simulating is a later question; a 7-day interval is the v1 assumption
-because it is what the safety gate in Section 15 and the PD turnaround
-in Section 11 already support.
+The step interval is where the precedent and this design differ. Cohort
+1 escalates at 2 to 3-day intervals; scout-and-backfill holds one week,
+so the simulated ladder is slower than the precedent and any
+acceleration it reports is conservative on that axis.
 
 ### The scout's first dose is constrained, and a second scout re-runs the ladder
 
