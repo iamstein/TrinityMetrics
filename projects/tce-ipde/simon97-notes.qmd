@@ -127,7 +127,8 @@ tabulates cohorts separately in order to show it (p.1142).
 
 ## What this settles for the specification
 
-**Hypothesis 3 is supported in direction and unquantified in size.** Catch-up
+**Catch-up helps patients, not the clock: supported in direction,
+unquantified in size.** Catch-up
 escalation helping participants more than it shortens the trial is what this
 paper reports, and the participant half has a number attached: 3.9 against 6.5
 patients at subtherapeutic doses (p.1142, p.1144). The trial-duration half is
@@ -153,3 +154,35 @@ in Section 6 is exactly that and inherits the null result. The scout in the
 scout-and-backfill design is not: no cohort opens the levels it climbs into,
 and it moves on a weekly interval rather than at a cohort review. The null
 result applies to the catch-up design and not to the scout.
+
+## Nobody else appears to report it either
+
+A literature search for a paper that quantifies the calendar-time effect of
+intrapatient dose escalation did not find one. Everything below comes from
+search results and abstracts. None of it has been read.
+
+**The one paper that could still carry it is Guo et al. 2025** (IP-CRM,
+*Pharmaceutical Statistics*, [doi:10.1002/pst.2461](https://doi.org/10.1002/pst.2461)).
+It is the only design paper that puts intrapatient escalation inside a
+comparative simulation framework. Its stated motivation is patient scarcity —
+pediatric and rare-cancer trials where accrual limits the design — rather than
+calendar time, so its tables most likely resolve sample size rather than
+duration.
+
+**The literature that does quantify trial duration attacks a different
+mechanism.** The time-to-event family, beginning with TITE-CRM (Cheung and
+Chappell, *Biometrics* 2000;56:1177–1182), reports trial duration directly in
+its simulations. It shortens trials by letting the next patient enrol before
+the current one has completed the DLT observation window, not by moving any
+individual patient's dose.
+
+That split is itself consistent with the null result above. The field treats
+trial duration as a problem of accrual and observation windows, which is what
+the frontier argument predicts: within-patient escalation moves patients
+through territory that has already been cleared, so it cannot make the frontier
+advance faster.
+
+One consequence for this project. The time-to-event mechanism is orthogonal to
+the scout, and is a separate candidate lever on $\Delta T$ that this
+specification does not currently carry. It belongs in future work rather than
+in v1.

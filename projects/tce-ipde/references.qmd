@@ -55,8 +55,9 @@ Simon 1997 is the one that needs the full hour.
   because nothing downstream of it is being reused.
 
 Watch for the answer that runs the other way. If duration is not among the
-reported outcomes, hypothesis 3 in Section 26 is not settled by Simon, it
-stays in the simulation, and Simon is cited for the mechanism rather than for
+reported outcomes, the **catch-up helps patients, not the clock**
+hypothesis in Section 26 is not settled by Simon, it stays in the
+simulation, and Simon is cited for the mechanism rather than for
 the result. The entries below are characterizations from abstracts, so each
 one is a prediction about what the paper says.
 
@@ -109,9 +110,13 @@ I read the introduction, I think this method is more complex and not what we're 
 immunology studies (CRM).  I mean maybe that's worth considering, but that would be a future step.
 This is future work, and it now sits in Section 27b of the specification.
 
-### 4. Carryover toxicity in phase 1 trials with intra-patient dose escalation, 2025 ✅ 
+### 4. Falke et al. 2025 — carryover toxicity with intra-patient dose escalation ✅ 
 
-<https://pubmed.ncbi.nlm.nih.gov/40405047/>
+*Statistics in Medicine*.
+[doi:10.1002/sim.70059](https://doi.org/10.1002/sim.70059) ·
+[PMC12098223](https://pmc.ncbi.nlm.nih.gov/articles/PMC12098223/) ·
+[PubMed 40405047](https://pubmed.ncbi.nlm.nih.gov/40405047/).
+Journal and authors identified from a search rather than from the paper.
 
 The methodological treatment of the confound in Section 16: attributing
 an event in a patient who has already received every lower dose on the
@@ -187,8 +192,9 @@ cohorts" and moves undertreated patients from 23.3 to 19.3 (p.1143).
 
 **The qualification.** No figure or table splits A from B. On patients
 and cohorts the comparison is the phrase "little or no effect"
-(p.1143), so hypothesis 3 in Section 26 is supported in direction with
-no published number to cite in place of the simulation. The numbers
+(p.1143), so the **catch-up helps patients, not the clock** hypothesis
+in Section 26 is supported in direction with no published number to cite
+in place of the simulation. The numbers
 that are resolved between A and B are the toxicity grades.
 
 **The comparator is 3A**, and the finding that transfers is that time is
