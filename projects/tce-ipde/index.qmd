@@ -330,8 +330,8 @@ project:
 
 -   The literature already reports the expected catch-up result, that
     within-patient escalation gives participants access to higher doses
-    without shortening the trial much. Present the **catch-up helps
-    patients, not the clock** hypothesis (Section 26) as a replication of
+    without shortening the trial much. Present the **catch-up helps patients, but
+    not time to evaluate active dose** hypothesis (Section 26) as a replication of
     a known finding rather than as a new claim.
 -   What is different in scout-and-backfill is the **stopping rule**. Simon's
     designs escalate within a patient until toxicity or lack of response
@@ -354,19 +354,72 @@ which is the catch-up design and the accelerated cohorts above.
 Elmeliegy 2024 is closer to this project's problem and covers dose
 selection across the first eight approved TCEs.
 
-**Zhou 2025 can change the premise.** A modified MABEL approach reported
-to justify a 10-fold higher first-in-human starting dose attacks the
-same gap from the other end, by moving $D_{\rm start}$ up rather than
-traversing the gap faster. A generally applicable version shrinks
-$R_{\rm predicted-gap}$ in Section 12 and the value of IPDE with it. The
-two strategies are not exclusive and the simulation carries both, since
-a higher starting dose is a change to one parameter. Run the scenarios
-with $D_{\rm start}$ raised and report how much of the advantage
-survives.
+Raising the starting dose is out of scope. A better MABEL attacks the
+same gap from the other end, and it is a complementary strategy rather
+than a competing one, but this project holds $D_{\rm start}$ fixed and
+varies what happens above it.
+
+#### What Simon 1997 establishes
+
+Read and checked against the paper. Page numbers are from *J Natl Cancer
+Inst* 1997;89(15):1138–1147; the [reading
+notes](simon97-notes.qmd) carry the rest. Simon's designs are numbered 1
+to 4 and his intrapatient options are lettered A and B, which are not
+this document's designs A, B and C.
+
+::: {.callout-important appearance="simple"}
+**Fewer patients is not a shorter trial.** Simon's design 2, accelerated
+single-patient cohorts with single dose steps, uses 24.4 patients on
+average against 39.9 for the standard design (p.1141) and saves no time
+at all. Design 1 needs slightly *fewer* cohorts, "because design 2
+sometimes overshoots its target and requires more cohorts at
+de-escalated levels" (p.1142).
+
+**Time is bought with dose step size.** Designs 3 and 4 "show
+substantial savings over designs 1 and 2 because of their use of double
+dose steps during the initial stage of the trials" (p.1142). Cohort
+count is the paper's duration proxy, valid "when there is an excess of
+patients available for entry in the trial" (Fig. 3 caption, p.1143).
+
+**Intrapatient escalation moves no clock.** Adding it to the standard
+design "has no effect on the number of patients or number of cohorts
+compared with 1A" (p.1143). Removing it from the accelerated designs has
+"little or no effect on the number of patients or cohorts required"
+(p.1143).
+
+**What it does buy is undertreated patients.** Patients whose worst
+toxicity was grade 0–1 fall from 23.3 to 19.3 when intrapatient
+escalation is added to the standard design (p.1143), and from 6.5 to 3.9
+when it is added to the accelerated double-step design (p.1144 and
+p.1142).
+
+**No published number exists for the time effect.** No figure or table
+in the paper splits the intrapatient options apart; cohort counts appear
+only as histograms for the four default designs (Fig. 3, p.1143). The
+comparison is the phrase "little or no effect". A literature search
+found no other paper that quantifies it.
+:::
+
+Three consequences for this document.
+
+1.  The **catch-up helps patients, but not time to evaluate active
+    dose** hypothesis in Section 26 is supported in direction and
+    unquantified in size. Cite Simon for the direction; the simulation
+    still has to produce $\Delta T$.
+2.  The efficient conventional comparator is Simon's design 3 with
+    option A: accelerated single-patient cohorts, double dose steps, no
+    intrapatient escalation, reverting to the standard design at the
+    first first-course DLT or the second first-course grade 2 event
+    (Appendix, p.1147).
+3.  The dose escalation factor in Section 13 stops being a parameter and
+    becomes the mechanism. Simon's accelerated ladder moves about 2×
+    per double step once past the bottom of a modified Fibonacci scale,
+    and about 3.3× at the first step; the scout ladder in Section 6
+    holds ~3.3× throughout.
 
 Two things in this project are probably already answered in the
-accelerated titration literature. The **catch-up helps patients, not the
-clock** hypothesis in Section 26 is that literature's own reported
+accelerated titration literature. The **catch-up helps patients, but not
+time to evaluate active dose** hypothesis in Section 26 is that literature's own reported
 result. The shape of an
 efficient conventional comparator, which the critical comparator issue
 above leaves as a parameter, is what Simon's designs 2 to 4 specify.
@@ -383,8 +436,7 @@ activity begins, in a range believed to sit below the toxic one.
 
 The simulation is not made redundant by any of this, but it is narrower
 than it looks. What remains to be shown is the value of the
-pharmacodynamic stop, the size of the confirmation penalty, and whether
-either survives a starting dose chosen by a better MABEL.
+pharmacodynamic stop and the size of the confirmation penalty.
 
 Model-based escalation designs (continual reassessment method, BOIN and
 variants) are out of scope. They allocate patients across dose levels
@@ -1870,13 +1922,15 @@ The simulation should be capable of disproving these.
 
 Expected hypotheses are:
 
-1.  **Big gap, big gain.** IPDE produces substantial acceleration when
-    the true active dose is many escalation steps above the FIH starting
-    dose.
-2.  **Good prediction erases it.** The IPDE advantage decreases sharply
-    when the active dose is accurately predicted.
-3.  **Catch-up helps patients, not the clock.** Catch-up IPDE primarily
-    benefits participants rather than trial calendar time. This replicates the accelerated-titration literature
+1.  **Big gap in predicted active dose, big gain from intrapatient
+    escalation.** IPDE produces substantial acceleration when the true
+    active dose is many escalation steps above the FIH starting dose.
+2.  **Good prediction of active dose removes benefit of intrapatient
+    escalation.** The advantage decreases sharply when the active dose is
+    accurately predicted.
+3.  **Catch-up helps patients, but not time to evaluate active dose.**
+    Catch-up IPDE primarily benefits participants rather than trial
+    calendar time. This replicates the accelerated-titration literature
     (the prior art in Section 6) rather than establishing something new,
     and a result
     contradicting it is a reason to check the engine first.
@@ -1956,8 +2010,9 @@ with the program's real number where one exists.
 Report $\Delta T$ against $\Delta T_{\min}$ for every scenario, and name
 the scenarios falling on each side. The expected shape of the answer is
 that IPDE clears the threshold only when prediction error is large
-(Section 12), which is the same conclusion as the **good prediction erases it**
-hypothesis in Section 26
+(Section 12), which is the same conclusion as the **good prediction of active
+dose removes benefit of intrapatient escalation** hypothesis in
+Section 26
 stated as a decision rather than as a trend.
 
 ------------------------------------------------------------------------

@@ -176,7 +176,7 @@ de-escalating (p.1142). The saving appears only with double steps
 
 **A against B moves undertreated patients and nothing else measured.**
 
-| Metric | 3A | 3B | Source |
+| Metric | 3A, no IPDE | 3B, with IPDE | Source |
 |:--|:--|:--|:--|
 | Patients, mean | not reported | 20.7 | 3B p.1141 |
 | Cohorts | not reported | Fig. 3 only | p.1143 |
@@ -184,7 +184,7 @@ de-escalating (p.1142). The saving appears only with double steps
 | Grade 3 | 5.7 | 6.8 | 3A p.1143, 3B p.1142 |
 | Grade 4 | 3.2 | 4.3 | 3A p.1143, 3B p.1142 |
 
-: Model 3 with and without intrapatient escalation {tbl-colwidths="[34,16,16,34]"}
+: Model 3, double steps, with and without intrapatient escalation. Simon's letters, not this project's designs A/B/C {tbl-colwidths="[34,16,16,34]"}
 
 On 1A against 1B, where no acceleration is involved, intrapatient
 escalation has "no effect on the number of patients or number of

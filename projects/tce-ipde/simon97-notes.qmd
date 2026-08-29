@@ -17,6 +17,10 @@ J Natl Cancer Inst 1997;89(15):1138–1147.
 Read for the design definitions and the simulation results. The model-fitting
 sections and the worked trial example were not read. Every number below
 carries the journal page it came from.
+
+Simon's cohort designs are numbered 1 to 4 and his intrapatient options are
+lettered A and B. Neither is this project's designs A (conventional), B
+(catch-up) and C (scout-and-backfill).
 :::
 
 ## The question these notes answer
@@ -46,14 +50,14 @@ Option B is the mechanism this project's catch-up design uses. Grade 2 is
 implicit in the Appendix definition, which states only the escalate and
 de-escalate conditions.
 
-## Design 3, option A against option B
+## Double steps, with and without intrapatient escalation (3A vs 3B)
 
 Design 3 is one patient per dose level with double dose steps during the
 accelerated stage, reverting to design 1 at the first first-course DLT or the
 second first-course grade 2 event. 3A and 3B differ only in whether an
 individual patient's dose escalates.
 
-| Metric | 3A | 3B | Difference | Source |
+| Metric | 3A, no IPDE | 3B, with IPDE | Difference | Source |
 |:--|:--|:--|:--|:--|
 | Patients, mean | not reported | 20.7 | stated as "little or no effect" | 3B p.1141; claim p.1143 |
 | Patients, median | not reported | 19.3 | — | p.1141 |
@@ -67,13 +71,13 @@ individual patient's dose escalates.
 The only quantities resolved numerically between A and B are the toxicity-grade
 counts. Patients and cohorts are reported as a qualitative claim, not a number.
 
-## Design 1, option A against option B
+## Standard cohorts, with and without intrapatient escalation (1A vs 1B)
 
 The cleaner isolation, because no acceleration is involved. Design 1 is
 cohorts of three expanding to six, single dose steps throughout, so 1A against
 1B is intrapatient escalation on its own.
 
-| Metric | 1A | 1B | Source |
+| Metric | 1A, no IPDE | 1B, with IPDE | Source |
 |:--|:--|:--|:--|
 | Patients | 39.9 mean, 36.7 median | "no effect ... compared with 1A" | 1A p.1141; claim p.1143 |
 | Cohorts | baseline | "no effect ... compared with 1A" | p.1143 |
