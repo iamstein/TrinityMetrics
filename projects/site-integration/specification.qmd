@@ -29,16 +29,20 @@ no content dropped without a recorded decision to drop it.
 
 **The two sites are about different things.** The Google site is about a
 person: bio, publications, talks, software, contact. TrinityMetrics is about a
-topic: AI in regulated clinical and pharmacometric work. Merging them means the
-merged site has to answer two questions on arrival, "who is this" and "what is
-this for", and the navigation has to make both findable without either burying
-the other.
+subject. Merging them means the merged site has to answer two questions on
+arrival, "who is this" and "what is this for", and the navigation has to make
+both findable without either burying the other.
 
-**Recommendation on naming.** Keep the site at
-`https://iamstein.github.io/TrinityMetrics/` and keep TrinityMetrics as the
-site title. Add the personal material as its own section rather than renaming
-the site around it. Section 3 argues this against the alternative and says what
-would change the answer.
+**Decision on naming.** The site stays TrinityMetrics, at the
+`trinitymetrics.com` address Andy already holds, and the personal material
+becomes a section rather than the site's title. Section 3 argues this against
+the two alternatives.
+
+**Decision on the subject.** Three legs: pharmacometrics, teaching and
+education, GenAI, in that order. Teaching is how someone learns to make a
+defensible quantitative claim, pharmacometrics is making them, and GenAI is
+what happens to both when producing a plausible claim becomes cheap. Section 3
+records what this rejects and why.
 
 **Recommendation on placement.** Person-level pages become top-level
 (`publications.qmd`, `talks.qmd`), grouped in the navbar under one menu with
@@ -100,7 +104,9 @@ today if the sites are merged naively, and they want different things. Section
 10 handles this in the navbar rather than by writing a home page that tries to
 be both.
 
-## 3. Decision 1 --- whose name the merged site carries
+## 3. Decision 1 --- what the site is called and what it is about
+
+### The name
 
 Three options, and the recommendation is A.  Andrew Stein agrees with option A.
 
@@ -137,6 +143,72 @@ address rather than the domain. There is also no `CNAME` file in the
 repository, so how the domain is wired needs checking against the repository's
 Pages settings before the value is changed.
 
+### The three legs
+
+**Decision: pharmacometrics, teaching and education, GenAI, in that order.**
+
+| Leg | Holds | Already on the site as |
+|---|---|---|
+| Pharmacometrics | Tools and research | Projects, Code, Resources |
+| Teaching and education | Pharmacometrics teaching, and guides to learning such as how to read a paper | Guides |
+| GenAI | Using it in real work today | Blog |
+
+**The joining sentence comes before the list.** Three interests listed without
+a relationship read as a menu, and the relationship here is not temporal:
+
+-   Teaching and education is how someone learns to make a defensible
+    quantitative claim.
+-   Pharmacometrics is making them.
+-   GenAI is what happens to both when producing a *plausible* claim becomes
+    cheap.
+
+That is what earns GenAI a leg beside two lifelong practices. It acts on both
+of them.
+
+**Three durations, not three tenses.** A past / present / future reading is
+available and does not hold: the guides are being written now, GenAI is in
+daily use, and pharmacometrics is 17 years of past as much as it is today. The
+honest version is that the legs run for different lengths of time. A lifetime
+of teaching and learning, 17 years of pharmacometrics, two years of GenAI.
+State the asymmetry, because it says the newest and fastest-moving of the
+three is being judged by someone holding the two longest-running commitments.
+
+**Order: pharmacometrics first.** A reader arriving from a paper wants the
+professional work first, and it is the largest body of material. Teaching and
+GenAI follow.
+
+### What this rejects, and why
+
+Recorded so the same three candidates are not re-argued later.
+
+-   **The original modelling triad** --- mathematical analysis, biological
+    modelling and storytelling, statistically supported models. It states a
+    belief, which the chosen triad does not, but it has no home for the
+    teaching, career and GenAI material, which is most of what is arriving.
+-   **The AI triad** --- human expertise, generative AI, regulated clinical
+    data. This is what `index.qmd` and `README.md` open with today. It is the
+    narrowest of the candidates in the widest position, it names one leg of
+    the chosen triad as though it were all three, and it is the only candidate
+    tied to a technology moment rather than to a practice.
+-   **The shape alone** --- that the name means three legs, none sufficient by
+    itself, the failure being to mistake one for all three. True of every
+    candidate and therefore not a choice between them. It survives as the
+    reason the name has outlasted a change of triad, not as the home page's
+    content.
+
+Of the four, only the chosen one contains "metrics" by right, in
+pharmaco**metrics**.
+
+### What this changes
+
+-   `index.qmd` and `README.md` both open with the AI framing and must be
+    rewritten to the three legs. Phase 1.
+-   The navbar in Section 10 already carries all three legs across its flat
+    items, so the decision changes the home page's organizing sentence rather
+    than the navigation. Whether the flat items regroup under the three legs
+    is a later question, and not one to answer before the ported pages exist.
+-   Teaching material in Section 4 lands by right rather than by exception.
+
 ## 4. Decision 2 --- where each kind of content lands
 
 Presumed contents of the old site in the left column. Confirm against Section 5
@@ -150,7 +222,7 @@ no matching row gets one.
 | CV | Link out to the Google Doc, and publish a PDF copy fetched at build time | Link plus built file |
 | Publications | `publications.qmd` driven by `publications.yml` | Listing |
 | Talks, posters, slides | `talks.qmd` driven by `talks.yml`, slides as files | Listing plus files |
-| Teaching, courses | `teaching.qmd`, or a section of `about.qmd` if thin | Depends on volume |
+| Teaching, courses | `guides/`, beside the existing guides; it is a leg in its own right per Section 3 | Pages or listing entries |
 | Software: xgx, xgxr, synpmx | Nothing new. Already in `projects/projects.yml` | Link out |
 | Other software or code not yet listed | New rows in `projects/projects.yml` | Link out |
 | Contact details | Bottom of `about.qmd` | Prose |
@@ -516,7 +588,8 @@ it and port pages as they are noticed; that is how a page gets left behind.
 **Phase 1 --- the person, at minimum.** Rewrite `about.qmd` to open with the
 bio from the Google site and remove the self-referential link. Add the CV
 export step to `publish.yml` and set the `CV_DOC_ID` variable. Correct
-`site-url` to the domain. Add the About menu from Section 10. After this
+`site-url` to the domain. Rewrite `index.qmd` and `README.md` to the three
+legs in Section 3. Add the About menu from Section 10. After this
 phase the merged site
 already answers "who is this" and the old site is optional rather than load
 bearing.
@@ -538,8 +611,8 @@ the bottom of Section 5.
 
 ## 14. Open questions
 
-Ordered by how much the answer changes the work. Q3 and Q5 are Andy's to
-answer; Q2 and Q4 may be settled by the Phase 0 export. Q1 is closed.
+Ordered by how much the answer changes the work. Q3 is Andy's to answer; Q2
+and Q4 may be settled by the Phase 0 export. Q1 and Q5 are closed.
 
 1.  ~~Is a custom domain wanted?~~ **Closed.** `trinitymetrics.com` is held
     and already points here. It carries the project identity rather than a
@@ -555,26 +628,5 @@ answer; Q2 and Q4 may be settled by the Phase 0 export. Q1 is closed.
 4.  **How much material is there in total?** The whole shape of the work
     changes between a 6-page site and a 40-page one, and Section 8's file-size
     ceiling depends on it. Unanswerable until Phase 0.
-5.  **Which trinity does the home page name?** Four readings are live.
-
-    a.  **Pharmacometrics, teaching and education, GenAI.** Andy's leading
-        candidate. It is the only one that maps onto the site's actual
-        sections without forcing, and the navigation falls out of it:
-        Projects and Code, Guides, Blog.
-    b.  The original modelling triad: mathematical analysis, biological
-        modelling and storytelling, statistically supported models.
-    c.  The AI triad this repository currently leads with in `index.qmd` and
-        `README.md`, which is the narrowest of the four sitting in the widest
-        position, and which the incoming teaching and career material does
-        not fit under.
-    d.  That the name is about the shape rather than any particular three:
-        three legs, none sufficient alone, the failure being to mistake one
-        for all three.
-
-    (a) organizes the site and (b) and (d) state a belief, so the choice is
-    partly between a structure and a claim, and the home page can carry (a)
-    as its sections with the joining sentence coming from (d). Whichever is
-    picked, decide after Phase 0 rather than after the full integration: the
-    inventory shows how much of the site is each kind of material, and that
-    weight decides the framing. Deciding later means writing the framing
-    twice and porting pages into a structure chosen under the wrong one.
+5.  ~~Which trinity does the home page name?~~ **Closed.** Pharmacometrics,
+    teaching and education, GenAI. Recorded in Section 3.
