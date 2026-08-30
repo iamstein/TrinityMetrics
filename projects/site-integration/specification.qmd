@@ -555,15 +555,26 @@ answer; Q2 and Q4 may be settled by the Phase 0 export. Q1 is closed.
 4.  **How much material is there in total?** The whole shape of the work
     changes between a 6-page site and a 40-page one, and Section 8's file-size
     ceiling depends on it. Unanswerable until Phase 0.
-5.  **Which trinity does the home page name?** Three readings are live: the
-    original modelling triad of mathematical analysis, biological modelling
-    and storytelling, and statistically supported models; the AI triad this
-    repository currently leads with; and the possibility that the name is
-    about the shape rather than any particular three. `index.qmd` and
-    `README.md` both open with the AI framing, which is the narrowest of the
-    three sitting in the widest position, and the incoming pharmacometrics,
-    teaching and career material does not fit under it. Decide after Phase 0
-    rather than after the full integration: the inventory shows how much of
-    the site is each kind of material, and that weight decides the framing.
-    Deciding later means writing the framing twice and porting pages into a
-    structure chosen under the wrong one.
+5.  **Which trinity does the home page name?** Four readings are live.
+
+    a.  **Pharmacometrics, teaching and education, GenAI.** Andy's leading
+        candidate. It is the only one that maps onto the site's actual
+        sections without forcing, and the navigation falls out of it:
+        Projects and Code, Guides, Blog.
+    b.  The original modelling triad: mathematical analysis, biological
+        modelling and storytelling, statistically supported models.
+    c.  The AI triad this repository currently leads with in `index.qmd` and
+        `README.md`, which is the narrowest of the four sitting in the widest
+        position, and which the incoming teaching and career material does
+        not fit under.
+    d.  That the name is about the shape rather than any particular three:
+        three legs, none sufficient alone, the failure being to mistake one
+        for all three.
+
+    (a) organizes the site and (b) and (d) state a belief, so the choice is
+    partly between a structure and a claim, and the home page can carry (a)
+    as its sections with the joining sentence coming from (d). Whichever is
+    picked, decide after Phase 0 rather than after the full integration: the
+    inventory shows how much of the site is each kind of material, and that
+    weight decides the framing. Deciding later means writing the framing
+    twice and porting pages into a structure chosen under the wrong one.
