@@ -5,3 +5,11 @@
     and how to stop early when you are reading with a question in hand.
   categories: [reading, practice]
   path: reading-papers.qmd
+
+- title: "Reading List"
+  subtitle: "Running list"
+  description: >
+    What is queued to read and the question each one is queued against, with
+    entries leaving the list by graduating to a project or by being dropped.
+  categories: [reading, practice]
+  path: reading-list.qmd

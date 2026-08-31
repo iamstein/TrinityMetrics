@@ -13,7 +13,7 @@ toc: false
 ---
 
 Working practices that come up often enough to be written down once, as
-opposed to methods or code.
+opposed to methods or code, and the running list of what is queued to read.
 
 ::: {#guide-listing}
 :::

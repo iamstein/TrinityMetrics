@@ -37,6 +37,14 @@ it, the working specification first, as a plain list rather than a Quarto
 listing. When a document there is added, renamed or removed, update that list
 in the same commit.
 
+A project that reads sources also carries a `references.qmd` in the same
+folder: the reading queue, the source list, and a status marker on every entry
+recording whether the claim the project draws from it has been checked against
+the source. `projects/tce-ipde/references.qmd` is the shape to copy, markers
+and section order included. The site-wide `guides/reading-list.qmd` is the
+inbox that feeds these; a paper being read to settle something in a project
+moves from there to the project's own page.
+
 ## Other conventions in this repository
 
 - `.github/copilot-instructions.md` — Markdown mechanics: blank lines around
