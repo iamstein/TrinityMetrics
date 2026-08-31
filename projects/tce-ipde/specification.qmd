@@ -380,21 +380,38 @@ Those are valid later questions but obscure the current decision.
 
 ## 6. Designs to compare
 
-Three designs. They differ in who is allowed to escalate and in what
-stops the escalation.
+Four designs, varying two things independently: how many patients sit at
+each low dose level, and whether a patient may move up within their own
+treatment.
 
-| Design | Who escalates | Escalation stops when | The question it answers |
+| Design | Low-dose cohort | Within-patient escalation | Escalation stops when |
 |:---|:---|:---|:---|
-| **Conventional** (A) | The trial, between cohorts. Each patient stays at the dose their cohort opened at. | A cohort reaches profound B-cell depletion. | The comparator. How fast is a well-run conventional escalation? |
-| **Catch-up** (B) | The trial, between cohorts, but a patient already enrolled may move up to a dose the trial has since cleared. | As conventional. | Does letting enrolled patients off subactive doses speed up the trial, or only benefit those patients? |
-| **Scout-and-backfill** (C) | One scout patient, within themself, on a weekly ladder. | That scout's B cells fall below 5/uL. A fresh conventional cohort then confirms the nominated dose. | The hypothesis. Does within-patient scouting reach a confirmable active dose sooner? |
+| **Conventional** (A) | 3 patients | None | A cohort reaches profound B-cell depletion. |
+| **Accelerated** (A2) | 1 patient, reverting to 3 once activity or toxicity appears | None | As conventional. |
+| **Catch-up** (B) | 3 patients | A patient already enrolled may move up to a dose the trial has since cleared | As conventional. |
+| **Scout-and-backfill** (C) | 1 scout | The scout leads the escalation on a weekly ladder | That scout's B cells fall below 5/uL. A fresh conventional cohort then confirms the nominated dose. |
 
-: The three designs {tbl-colwidths="[18,26,24,32]"}
+: The four designs {tbl-colwidths="[20,24,30,26]"}
+
+Three contrasts, and each isolates one mechanism:
+
+-   **A against A2** is the micro-cohort effect on its own. Fewer
+    patients per rung, nothing else changed.
+-   **A against B** is within-patient escalation on its own, since both
+    keep 3-patient cohorts and the same escalation decisions.
+-   **A2 and B against C** asks whether prospective scouting delivers
+    more than the two mechanisms separately, and what the
+    pharmacodynamic stop adds beyond either.
+
+This is the shape of Simon's comparison, where escalation scheme and
+intra-patient escalation are varied independently rather than bundled.
+Reporting only A against C would credit scouting with a saving that a
+1-patient cohort produces by itself.
 
 The letters are kept because the figures and the rest of this document
-use them. Conventional and catch-up escalate the *trial*; only
-scout-and-backfill escalates a *patient* toward an unknown dose, and
-only it stops on pharmacology rather than on a cohort review.
+use them. Conventional, accelerated and catch-up escalate the *trial*;
+only scout-and-backfill escalates a *patient* toward an unknown dose,
+and only it stops on pharmacology rather than on a cohort review.
 
 ### Prior art
 
@@ -431,11 +448,8 @@ Three consequences:
     dose** hypothesis in Section 26 is supported in direction and
     unquantified in size. Cite Simon for the direction; the simulation
     still has to produce $\Delta T$.
-2.  The efficient conventional comparator, left as a parameter by the
-    critical comparator issue below, is Simon's design 3 with option A:
-    accelerated single-patient cohorts, double dose steps, no
-    intrapatient escalation, reverting to the standard design at the
-    first first-course DLT or the second first-course grade 2 event.
+2.  The efficient conventional comparator is Simon's design 3 with option
+    A, which is now Design A2 below rather than a parameter.
 3.  The dose escalation factor in Section 13 stops being a parameter and
     becomes the mechanism. Simon's accelerated ladder moves about 2-fold
     per double step and about 3.3-fold at the first step; the scout
@@ -481,20 +495,36 @@ a reasonable reference regimen.
 After adequate safety review of dose level $D_k$, a new cohort receives
 $D_{k+1}$.
 
-#### Critical comparator issue
+### Accelerated escalation --- Design A2
 
-Do not construct a straw-man conventional design requiring 3 patients at
-every extremely low dose.
+One patient per dose level in the low-dose region, reverting to
+3-patient cohorts once activity or toxicity appears. Everything else
+matches the conventional design: the same step-up regimen, the same
+between-cohort review, no within-patient escalation.
 
-Make cohort size a parameter $n_{\rm low}=1\ \text{or}\ 3$.
+This exists as a design rather than as a sensitivity analysis because it
+is the honest comparator. A conventional design requiring 3 patients at
+every extremely low dose is a straw man, published TCE experience
+includes accelerated early cohorts with small cohort sizes across very
+large dose ranges, and scout-and-backfill should beat a reasonably
+efficient conventional design rather than an intentionally inefficient
+one. Making it a design also means the micro-cohort saving is reported
+on its own instead of arriving inside the scouting result.
 
-A particularly important sensitivity analysis is **one-patient
-accelerated cohorts in the obviously low-dose region**, followed by
-3-patient cohorts once activity emerges.
+Simon's design 3 with option A is the specific form to use: accelerated
+single-patient cohorts, double dose steps, no intrapatient escalation,
+reverting to the standard design at the first first-course DLT or the
+second first-course grade 2 event.
 
-Published TCE experience includes accelerated early cohorts with small
-cohort sizes and very large dose ranges. IPDE should beat a reasonably
-efficient conventional design, not an intentionally inefficient one.
+Two parameters:
+
+-   $n_{\rm low}$ --- patients per cohort in the low-dose region. 1
+    here, 3 in the conventional design.
+-   **The rule that ends the accelerated phase.** Simon's is a toxicity
+    event. A pharmacodynamic version, ending the accelerated phase at
+    the first sign of B-cell movement, is worth running as a variant,
+    since it is the same signal scout-and-backfill stops on and it
+    separates the trigger from the escalation mechanism.
 
 ### Catch-up escalation --- Design B
 
@@ -1646,7 +1676,8 @@ The highest-value sensitivity analyses are:
     the movement threshold $\theta_{\rm move}$ = 0.50, 0.70, 0.85
     (Section 13, dose escalation factor).
 4.  One (base) vs two standard step-up doses.
-5.  Low-dose conventional cohort size 1 vs 3.
+5.  The rule that ends the accelerated phase in Design A2: toxicity, as
+    in Simon, or first B-cell movement.
 6.  PD turnaround 2--7 days.
 7.  Enrollment rate.
 8.  Safety decision window.
@@ -1867,7 +1898,7 @@ Implement:
 
 -   Teclistamab-like PK.
 -   Indirect-response B cells.
--   All three designs.
+-   All four designs.
 -   Enrollment/calendar engine.
 -   $T_{\rm BCD}$.
 -   $T_{3,\rm eval}$.
@@ -1897,7 +1928,7 @@ Add:
 -   Review delays.
 -   PD turnaround.
 -   One (base) vs two step-up doses.
--   Cohort-size variants.
+-   The Design A2 accelerated-phase rule.
 -   Operational counters.
 
 ### Phase 3 --- safety stress test
@@ -2072,20 +2103,28 @@ Expected hypotheses are:
     repeats the first ladder and removes much of the scout advantage;
     under rolling entry (Section 6) the repeat overlaps the first
     ladder and costs patients rather than weeks.
-13. **Rolling scouts are cheap in time and expensive in exposure.**
+13. **Most of the low-dose saving is the micro-cohort, not the
+    ladder.** The A-to-A2 contrast accounts for a large share of the
+    patients saved at subactive doses and of any calendar-time saving in
+    the low-dose region, and the A2-to-C contrast is smaller than the
+    A-to-C contrast that bundles them. If so, the case for
+    scout-and-backfill rests on the pharmacodynamic stop and the
+    confirmation it enables rather than on speed through the
+    subtherapeutic range.
+14. **Rolling scouts are cheap in time and expensive in exposure.**
     Scouts entering a rung apart reach the nominated dose at close to
     the calendar time of a single scout, and deliver the observations
     the declaration needs without a separate backfill wait. The price
     is that a delayed-toxicity signal at a given rung arrives with
     $n_{\rm scout}$ patients dosed above it rather than one, so
     rolling entry buys time with exposure rather than with visits.
-14. **PD-guided beats a fixed ladder.** PD-guided escalation reaches
+15. **PD-guided beats a fixed ladder.** PD-guided escalation reaches
     profound depletion no later than a
     fixed 3-fold ladder, because the large steps while the marker is
     quiet buy back the small steps taken after it moves, and it
     nominates a $D^*$ closer to $D_{\rm true}$, so fewer backfill
     cohorts fail to confirm.
-15. **Cohort size is a patient lever, not a clock lever, when accrual is
+16. **Cohort size is a patient lever, not a clock lever, when accrual is
     fast.** Cutting low-dose cohorts from three patients to one reduces
     the number treated at subactive doses without materially changing
     $T_{3,\rm eval}$, because the between-cohort review window runs
