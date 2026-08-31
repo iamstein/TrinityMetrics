@@ -455,16 +455,26 @@ Three consequences:
     per double step and about 3.3-fold at the first step; the scout
     ladder holds roughly 3.3-fold throughout.
 
-**The prior art is oncology's.** A search of the non-oncology
-literature found no immunology trial that escalates within a patient in
-order to find a dose. What the field does instead is escalate within a
-patient on a schedule fixed in advance, as teclistamab and teplizumab
-do, or escalate to a limit belonging to one patient, as allergen
-immunotherapy does. The second reading queue on the
-[references page](references.qmd) carries what was found, what was
-searched for and not found, and the question each entry has to answer.
-Nothing there has been read, so this paragraph is a statement about a
-search rather than about a set of papers.
+**The prior art is not only oncology's.** Immunology finds doses by
+intrapatient escalation too, and in the autoimmune cytopenias it is
+ordinary practice. Rilzabrutinib's phase 1--2 in immune thrombocytopenia
+is an adaptive dose-finding study whose escalation mechanism is
+within-patient, stepping every 28 days on platelet response; the same
+molecule's pemphigus study gates the step on clinical response and
+Bruton tyrosine kinase occupancy, which is a target-engagement marker
+doing what B-cell count does in Section 13. A first-in-human study in
+Graves' disease is registered as a within-subject dose-escalating
+design. The second reading queue on the
+[references page](references.qmd) carries these with the question each
+has to answer, and nothing there has been read, so this paragraph
+reports a search rather than a set of papers.
+
+Those escalations run the other way from this one. They climb until the
+patient responds and stop because the patient is treated, where a scout
+climbs until the marker moves and stops because the programme has found
+its dose. What the search did not find is a ladder whose purpose is to
+nominate a dose for a separate confirming cohort, so the stopping rule
+and the scout-and-backfill split remain what is new here.
 
 None of the accelerated titration literature bears on the rest. Those
 escalation rules stop on toxicity and seek a tolerated dose, with no
