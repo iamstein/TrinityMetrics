@@ -11,4 +11,4 @@ TrinityMetrics combines a lifetime love of teaching and learning, 17 years of ph
 | **Education** | Guides and frameworks for learning and career development. | [Guides](guides/index.qmd) |
 | **GenAI** | Project development using GenAI, skill files to support development, and a nascent blog. | [Blog](blog/index.qmd) |
 
-![A triquetra of three interlocking loops: a pharmacokinetic time course, an open book, and a brain drawn as a circuit. Wordmark: trinity metrics.](trinitymetrics-logo-light.png){fig-align="center" width="600px"}
+![](trinitymetrics-logo-light.png){fig-align="center" width="600px" fig-alt="A triquetra of three interlocking loops: a pharmacokinetic time course, an open book, and a brain drawn as a circuit. Wordmark: trinity metrics."}
