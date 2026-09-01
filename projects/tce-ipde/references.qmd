@@ -10,9 +10,14 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**One paper open, and the numbers are not checked.** Five of the six
-queue entries have been dispositioned and the notes under each say what
-came of it; GB261 is unread. Every source below the queue still carries the marker it started
+**One paper open in the first queue, a second queue entirely unread, and
+the numbers are not checked.** Five of the six entries in the first
+queue have been dispositioned and the notes under each say what came of
+it; GB261 is unread. The second queue, on intrapatient escalation in
+immunology, was assembled on 2026-08-31 from search results because no
+journal, registry or regulator host was reachable, so every entry there
+is a prediction about a paper rather than a reading of one.
+Every source below the queues still carries the marker it started
 with, and those are the ones that matter for final work: the teclistamab
 PK parameters in Section 8, the Friberg system values in Section 17, and
 the MCLA-117 dose table in Section 6 were transcribed rather than
@@ -34,8 +39,9 @@ folder's other documents are on [the project index](index.qmd).
 - ✅ **Checked.** Verified against the source.
 
 On a **reading-queue** entry, ✅ means the question posed against that
-entry has been answered — by reading the paper, or by deciding it is out
-of scope. The note on the entry says which. Five of the six are ✅.
+entry has been answered, by reading the paper or by deciding it is out
+of scope. The note on the entry says which. Five of the six are ✅ in
+the first queue and none of the fourteen in the second.
 
 On a **source** entry below the queue, ✅ keeps its stricter meaning:
 the claim the specification draws from it has been checked against the
@@ -244,6 +250,379 @@ this is a check on that assumption rather than a detail.
 
 Neither host is reachable from the container these notes were written
 in, so both links need a browser.
+
+## Reading queue: intrapatient escalation in immunology
+
+Searched 2026-08-31, oncology excluded. **Yes, it is done, and three of
+the studies found escalate on a biomarker rather than on toxicity.** The
+autoimmune cytopenias are where dose finding by intrapatient escalation
+is established practice: rilzabrutinib's phase 1--2 in immune
+thrombocytopenia is an adaptive dose-finding study whose escalation
+mechanism is within-patient, and its sibling study in pemphigus
+vulgaris gates the step on target engagement. Antigen-specific
+immunotherapy supplies a second family, where the within-patient ladder
+is a fixed titration and one first-in-human study is registered as a
+within-subject dose-escalating design.
+
+Nothing in this queue has been read. The container could not reach
+clinicaltrials.gov, PubMed, PMC, Nature, Wiley or ema.europa.eu, so
+every entry is a characterization from a search result and carries ❌.
+Several quote a search summary rather than the paper or the registry
+record, and those are marked where they appear.
+
+### The direction of the ladder is the difference
+
+| Study | Indication | Ladder | What governs the step |
+|:---|:---|:---|:---|
+| Rilzabrutinib phase 1--2 | Immune thrombocytopenia | 200 mg QD to 400 mg BID over 24 weeks | Platelet response, reviewed every 28 days |
+| PRN1008 phase 2 | Pemphigus vulgaris | 400 mg QD to 400 BID to 600 BID | Clinical response and BTK occupancy |
+| BMS-986004 | Immune thrombocytopenia | One step, at day 50 | A platelet threshold not reached |
+| ATX-GD-59 first-in-human | Graves' hyperthyroidism | 25, 50, 100, 400, 800 µg, 10 doses at 2-week intervals | Prespecified titration |
+| ATX-MS-1467 | Relapsing multiple sclerosis | The same five doses at 14-day intervals | Prespecified titration |
+| Nexvax2 phase 1 | Celiac disease | 3 µg to 900 µg over nine weeks | Prespecified, amended after an adverse event |
+
+: Within-patient dose escalation in immunology, from a search of the published literature {tbl-colwidths="[22,20,28,30]"}
+
+Every biomarker-gated study in that table escalates *until the patient
+responds* and stops climbing when the marker moves the right way.
+Scout-and-backfill escalates until the marker moves and stops for the
+opposite reason: the response is the signal that the programme has found
+its dose, not that this patient is treated. The mechanism is the same
+and the sign is reversed, which makes the rilzabrutinib and PRN1008
+escalation rules the closest published relatives of the Section 13 rule
+and worth reading before it is finalized.
+
+What was not found is the combination the specification proposes: a
+scout whose ladder exists to nominate a dose for the programme, with a
+separate cohort confirming it. Section 6's claim that the stopping rule
+is what is new survives. Its claim that the prior art is oncology's does
+not.
+
+### Where to start
+
+Entries 7 and 8 first, since they are the two escalation rules to read
+the Section 13 rule against. Entry 12 next, because it is the only
+published measurement anywhere of how much a within-patient ladder
+raises the tolerated dose, which is the Section 3 confound with a number
+on it. Then 13 and 17, which decide what the T-cell-engager field
+already does. Entry 20 is the objection the design has to survive.
+
+### 7. Kuter et al. 2022 — rilzabrutinib in immune thrombocytopenia ❌
+
+*New England Journal of Medicine* 386:1421--1431.
+<https://doi.org/10.1056/NEJMoa2110297> ·
+[NCT03395210](https://clinicaltrials.gov/study/NCT03395210)
+
+An international, adaptive, open-label, dose-finding phase 1--2 study in
+60 previously treated patients, reported as using intrapatient dose
+escalation with a 3+3, over 24 weeks. Starting doses 200 mg once daily,
+400 mg once daily, 300 mg twice daily and 400 mg twice daily.
+Escalation was permitted every 28 days on the investigator's judgement
+to improve response, with a data and safety monitoring committee
+reviewing safety and efficacy before any patient escalated. The primary
+endpoints were safety and platelet response, defined as two consecutive
+counts at or above 50×10⁹/L with a rise of at least 20×10⁹/L from
+baseline.
+
+The nearest published relative of this project's design: an autoimmune
+disease, a dose-finding study, escalation inside the patient, and a
+blood-count threshold deciding each step.
+
+**The question.** What the escalation rule actually was. "Investigator's
+judgement" and a 3+3 are two different mechanisms and the paper reports
+both, so which one moved a patient up matters. Whether the
+dose-response conclusion used the within-patient data or only the
+starting doses. Whether the 28-day cycle was set by the platelet
+turnover time, which is the $W_{\rm decision}$ question in Section 15
+answered from the biology of the marker rather than from a safety
+committee's habit.
+
+### 8. PRN1008 in pemphigus vulgaris ❌
+
+[NCT02704429](https://clinicaltrials.gov/study/NCT02704429), phase 2
+open-label, the same molecule as entry 7.
+
+Reported as a starting dose of 400 mg twice daily with intra-patient
+dose escalation to a maximum of 600 mg twice daily, based on clinical
+response **and BTK occupancy**. Part B is reported as starting at 400 mg
+once daily, escalating to 400 mg twice daily at or after week 3 for
+insufficient clinical response, and again to 600 mg twice daily at or
+after week 5.
+
+This is the only study found in which a target-engagement measurement
+gates a within-patient dose step. Bruton tyrosine kinase occupancy plays
+the part that peripheral B-cell count plays in Section 13.
+
+**The question.** How occupancy entered the rule: a numeric threshold,
+a cohort-level check, or a supporting observation beside the clinical
+response. What happened when occupancy was high and response was
+absent, which is the case that decides whether the marker can stop a
+ladder on its own. Section 13 assumes it can.
+
+### 9. BMS-986004 in immune thrombocytopenia ❌
+
+Anti-CD40L domain antibody.
+[NCT02273960](https://clinicaltrials.gov/study/NCT02273960)
+
+A single conditional within-patient step, reported as taken after the
+response phase. A subject receives the next higher dose if a clinically
+significant response has not been achieved on the last two consecutive
+platelet counts at days 43 and 50, where the response is a count at or
+above 50,000/mm³ with a rise of at least 20,000/mm³ from baseline and
+no bleeding, and if safety is favourable. The subject then stays at the
+higher dose for the rest of the study.
+
+The rule is numeric, prespecified and published in the protocol, which
+is what Section 13's rule needs to be and is the shape to copy.
+
+**The question.** Why one step rather than a ladder, and what the
+protocol says about a subject who responds at the lower dose. Also
+whether the two consecutive counts requirement was there to defend
+against the false brake described in Section 13, which would be a
+precedent for the confirmatory-sample question that section leaves open.
+
+### 10. ATX-GD-59 in Graves' hyperthyroidism ❌
+
+Thyrotropin-receptor peptide immunotherapy. Pearce et al., phase 1.
+[NCT02973802](https://clinicaltrials.gov/study/NCT02973802) ·
+[PMC6648194](https://pmc.ncbi.nlm.nih.gov/articles/PMC6648194/)
+
+Registered as a phase 1, first-in-human, open-label **within-subject
+dose-escalating** study in about 12 subjects. Upward titration over five
+dose levels of 25, 50, 100, 400 and 800 µg, then five further injections
+at the top dose, ten injections in all at two-week intervals. Ten
+subjects received all ten doses and five had free triiodothyronine
+inside the reference interval by week 18.
+
+A first-in-human study in an autoimmune disease whose escalation design
+is within-subject rather than between-cohort. The specification should
+stop describing that as an oncology practice.
+
+**The question.** What the first-in-human rationale was, given that the
+whole dose range is traversed inside every subject including the first.
+What the starting dose was set from, and whether a subject could stop
+early. The design has no scouting purpose, so the entry decides how far
+the precedent reaches.
+
+### 11. ATX-MS-1467 in relapsing multiple sclerosis ❌
+
+Myelin basic protein peptide immunotherapy.
+[Neurology 2018](https://www.neurology.org/doi/10.1212/WNL.0000000000005118) ·
+[NCT01973491](https://clinicaltrials.gov/study/NCT01973491)
+
+The same ladder as entry 10 in a different disease: 25, 50, 100, 400 and
+800 µg at 14-day intervals over 8 weeks, then four further 800 µg doses,
+in 43 participants across intradermal and subcutaneous cohorts. An
+earlier first-in-human study in six people with secondary progressive
+disease used six injections on the same ascending scheme. Slow titration
+with a longer full-dose period is reported to be associated with the
+reduction in gadolinium-enhancing lesions.
+
+**The question.** Whether the titration exists for tolerance induction,
+so that the ladder is part of the mechanism, or for safety, so that it
+is a step-up regimen. If the former, this family is not a precedent for
+scouting at all and should be cited only for the fact that within-patient
+escalation is routine in immunology.
+
+### 12. Goel et al. 2017 — Nexvax2 in celiac disease ❌
+
+*EBioMedicine*.
+[PubMed 29191561](https://pubmed.ncbi.nlm.nih.gov/29191561/) ·
+[ScienceDirect](https://www.sciencedirect.com/science/article/pii/S2352396417304619) ·
+[NCT02528799](https://clinicaltrials.gov/study/NCT02528799)
+
+Randomized, double-blind, placebo-controlled phase 1 testing whether
+stepwise dose escalation attenuates the first-dose effect. Fixed dosing
+without escalation is reported to limit the maximum tolerated dose to
+150 µg; with escalation, cohort 3 received 3, 9, 30, 60, 90, 150, 300,
+450, 600, 750 and then eight doses of 900 µg over nine weeks. The
+escalation was amended mid-study to add 3 µg and 9 µg steps after a
+participant withdrew with gastrointestinal events at 30 and 60 µg.
+
+**Read this one for Section 3.** The specification's central caution is
+that a patient who arrived at a dose up a ladder is not the same as a
+patient who arrived at it directly, and this is the only study found
+that measures the size of that difference: a sixfold rise in the
+tolerated dose, in an autoimmune indication, with the ladder as the only
+change. Section 14 makes the same argument for cytokine release and
+calls the net effect ambiguous.
+
+**The question.** Whether the 150 µg and 900 µg figures are tolerability
+limits in the same sense, and what the escalation bought at the doses
+both regimens reached. If a ladder raises the tolerated dose sixfold,
+the backfill non-confirmation Section 7 expects is not a modelling
+artefact and the confirmation penalty is larger than the specification
+assumes.
+
+### 13. de Graaf et al. 2025 — FIH dose selection for TCE bispecifics ❌
+
+*Clinical Pharmacology & Therapeutics*.
+<https://doi.org/10.1002/cpt.3487> ·
+[PubMed 39690707](https://pubmed.ncbi.nlm.nih.gov/39690707/)
+
+Also listed below under "Related, not yet placed". A search summary of
+this paper returns the sentence that intra-patient dose escalation may
+be permitted to maximize collection of information at relevant doses and
+minimize patient exposure to sub-optimal doses, with individual patient
+doses increased to the highest cleared dose level tolerated by completed
+cohorts. That is Design B, stated as acceptable practice. The sentence
+comes from a search engine and the same wording appears in oncology
+protocols, so it may not be de Graaf's.
+
+**The question.** Whether that sentence, or anything like it, is in the
+paper. If it is, Section 6 cites it for catch-up escalation instead of
+resting the case on Simon 1997. Also whether the paper treats
+non-oncology indications.
+
+### 14. Blinatumomab in refractory systemic sclerosis ❌
+
+Case series, five patients.
+[PubMed 41792022](https://pubmed.ncbi.nlm.nih.gov/41792022/) ·
+[ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0003496726000774)
+
+Reported as a 14-day continuous infusion at 9 µg/day for 7 days
+escalated to 28 µg/day for 7 days. A separate report of the same drug in
+the same indication describes four cycles at 9, 9, 28 and 28 µg/day. A
+3-fold within-patient increase in a CD19 T-cell engager in an autoimmune
+population, at one rung.
+
+**The question.** Whether the step to 28 µg/day was scheduled or
+conditional on what happened at 9 µg/day, and what would have held a
+patient at 9.
+
+### 15. Bucci et al. 2024 — blinatumomab in refractory rheumatoid arthritis ❌
+
+*Nature Medicine*. <https://doi.org/10.1038/s41591-024-02964-1> ·
+[PubMed 38671240](https://pubmed.ncbi.nlm.nih.gov/38671240/)
+
+Six patients under compassionate use, 2 to 3 cycles of 96-hour
+continuous infusion, cumulative doses reported elsewhere as 77 to 189
+µg. B cells depleted and disease activity fell in all six. The spread of
+cumulative doses suggests the dose differed between patients or between
+cycles.
+
+**The question.** Whether a patient's dose rose across cycles, and on
+what rule.
+
+### 16. Bucci et al. 2025 — BCMA T-cell engager in refractory autoimmune disease ❌
+
+*New England Journal of Medicine*.
+<https://www.nejm.org/doi/full/10.1056/NEJMc2506740>
+
+Ten patients across systemic sclerosis, myositis, IgG4-related disease,
+Sjögren's, Graves' disease and rheumatoid arthritis. Teclistamab at
+0.06, 0.3 and 1.5 mg/kg on days 1, 3 and 5, then a single 1.5 mg/kg dose
+four weeks later. Eight of ten in drug-free remission at a median six
+months.
+
+**The question.** Whether the step-up was compressed against the
+myeloma label, which places these doses on days 1, 4 and 8, and what
+justified it. Section 15 sets $W_{\rm decision}$ at 7 days partly on the
+argument that approved products escalate within a patient every 2 to 4
+days. If an autoimmune population tolerates a 2-day interval, the weekly
+scout ladder is more conservative than Section 15 claims.
+
+### 17. CLN-978 first-in-human, systemic lupus and Sjögren's disease ❌
+
+CD19xCD3 T-cell engager, subcutaneous.
+[NCT06613360](https://clinicaltrials.gov/study/NCT06613360) (SLE) ·
+[NCT07041099](https://clinicaltrials.gov/study/NCT07041099) (Sjögren's)
+
+Reported as a modified single-ascending-dose escalation over target
+doses of 10, 20, 30 and 45 µg with at least three patients per cohort,
+where every cohort above 10 µg receives a 10 µg step-up on day 1 and the
+cohort target on day 8. Deep, dose-dependent B-cell depletion is
+reported, with B cells unquantifiable in half the patients dosed at
+20 µg or above.
+
+Design A with one step-up, in the population Section 22 calls the
+immune-reset archetype, running now. This is the comparator the
+simulation argues against and it is not a straw man.
+
+**The question.** Three. The between-cohort review window, which is the
+largest single driver of the conventional timeline in Section 15.
+Whether the protocol lets an enrolled patient move up to a cleared dose
+level, which is Design B. And what the fixed 10 µg step-up implies for
+Section 7, which assumes a step-up proportional to the target rather
+than fixed across cohorts. MCLA-117 fixes its prefix from cohort 9, so
+two programmes now disagree with the base-case rule.
+
+### 18. Teplizumab, the 14-day ascending regimen ❌
+
+Anti-CD3 in type 1 diabetes. Reported as 51, 103, 206 and 413 µg/m² on
+days 1 to 4, then 826 µg/m² on days 5 to 14, cumulative 9,034 µg/m².
+
+The oldest within-patient ladder in immunology, roughly 16-fold over
+four days and fixed rather than conditional. Its 2-fold daily steps sit
+close to Simon's double steps and far below the $F_{\rm quiet}=10$ of
+Section 13.
+
+**The question.** What set the ramp, and whether the cytokine-release
+argument for it is the priming mechanism Section 14 invokes.
+
+### 19. Individualized build-up: venom, aeroallergen and oral immunotherapy ❌
+
+[Rush and cluster build-up protocols compared](https://pmc.ncbi.nlm.nih.gov/articles/PMC10527491/) ·
+[AR101 peanut oral immunotherapy, PALISADE](https://clinicaltrials.gov/study/NCT02635776)
+
+Where immunology escalates within a patient to that patient's own limit
+rather than to a programme dose. Rush venom immunotherapy is reported as
+0.02 µg to a 100 µg maintenance dose in 15 increments over three days;
+AR101's initial escalation runs 0.5 mg to 6 mg of peanut protein in one
+day at 20 to 30-minute intervals, and a patient not tolerating 3 mg
+leaves the study. A systemic reaction sends the patient back down the
+ladder rather than stopping the programme.
+
+**The question.** How the field handles the confound in Section 16,
+attributing a reaction in a patient who has already received every lower
+dose. Also what a stopping-dose choice buys: rush protocols are reported
+to have been compared at stopping doses of 1%, 4% and 10% of
+maintenance, which is the Section 13 brake question in another
+vocabulary.
+
+### 20. EMA 2017 first-in-human guideline ❌
+
+[Guideline on strategies to identify and mitigate risks for first-in-human and early clinical trials](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-strategies-identify-and-mitigate-risks-first-human-and-early-clinical-trials-investigational-medicinal-products-revision-1_en.pdf)
+(EMEA/CHMP/SWP/28367/07 Rev. 1). Host unreachable from the container.
+
+A search summary reports that including the same subject across multiple
+cohorts is possible but must be scientifically justified in the
+protocol, and that re-enrolment into a higher dose cohort requires an
+appropriately defined washout period. It also reports that a dose level
+may not be repeated once a stopping rule has been met.
+
+Read as written, a washout requirement is incompatible with a weekly
+ladder in a molecule whose effective half-life is about 8 days (Section
+7). Entry 10 is a registered first-in-human study that escalates within
+the subject with no washout, so either the constraint does not reach a
+patient population or it is read more loosely than the summary suggests.
+
+**The question.** What the guideline says, whether the passage covers
+patient trials or only healthy volunteers, and how ATX-GD-59 was
+authorized against it.
+
+### What was searched and did not turn up
+
+Recorded so the search is not repeated. No study was found in which
+within-patient escalation exists to nominate a dose for the programme
+rather than to treat the patient climbing, and none in which a separate
+cohort then confirms an interpretable regimen. No accelerated titration
+design was found in an autoimmune indication. Registry search was not
+possible, so the negative covers the published literature and search
+results, not protocols.
+
+Cat-PAD is worth recording as a deliberate counterexample: the peptide
+was designed to be given at therapeutic doses from the first
+administration specifically to avoid the dose escalation that
+conventional immunotherapy requires. Where the first-dose reaction can
+be engineered out, the ladder disappears.
+
+The methodological papers on intrapatient escalation are motivated by
+oncology or by rare disease rather than by immunology: Guo et al. 2025
+in the first queue, AIDE (Zhou et al. 2023, *Pharmaceutical Statistics*,
+<https://doi.org/10.1002/pst.2272>), the patient-retreat PRIDE scheme
+for rare diseases, and TWICEBEE for multi-cycle immunotherapy. They
+belong with Section 27b and none is a v1 dependency.
 
 ## Sources the specification's numbers come from
 
