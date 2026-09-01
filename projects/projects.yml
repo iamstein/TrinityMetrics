@@ -15,6 +15,15 @@
   categories: [trial design, simulation, working document]
   path: tce-ipde/index.qmd
 
+- title: "TCE-CRS-tolerance"
+  subtitle: "Working document"
+  description: >
+    Cytokine release syndrome risk often falls as step-up doses rise. Can the
+    published epcoritamab tolerance model explain that, and can it be fit to
+    publicly available data from approved T-cell engagers?
+  categories: [pharmacometrics, safety, working document]
+  path: tce-crs-tolerance/index.qmd
+
 - title: "synpmx"
   subtitle: "R package"
   description: >
