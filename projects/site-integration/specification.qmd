@@ -11,14 +11,13 @@ toc-expand: true
 number-sections: false
 ---
 
-::: {.callout-important appearance="simple"}
-**The content inventory in Section 5 is empty.** The session that wrote this
-specification could not reach `sites.google.com`; the network egress policy
-returned a 403 on the CONNECT. Everything here about the old site's structure
-is inference from its public description and from what this repository already
-links to. Section 5 is a table to fill, and Phase 0 in Section 13 is the work
-of filling it. Nothing downstream of it should be treated as settled until it
-is filled.
+::: {.callout-note appearance="simple"}
+**Section 5 is filled and Phase 0 is done.** The site was crawled from a local
+machine on 2026-09-01: eleven pages, nineteen linked files, none of them hosted
+on the old site. Section 7 still describes the Google Takeout route, which the
+crawl makes unnecessary, and Sections 8 and 11 were written expecting hosted
+files to rescue. Those three sections need revising against Section 5. What
+Sections 3, 4, 9 and 10 decide is unaffected.
 :::
 
 ## In brief
@@ -254,14 +253,58 @@ Disposition codes:
     elsewhere.
 -   **DROP** --- deliberately not carried over. Requires a reason in the row.
 
+Crawled from the live site on 2026-09-01. Page URLs are relative to
+`https://sites.google.com/site/andrewsteinphd`; file rows give the full target,
+because no file is hosted on the old site.
+
 | # | Old URL | Title | Kind | Files on it | Disposition | Lands at | Reason / note |
 |---|---|---|---|---|---|---|---|
-| *e1* | *`/home`* | *Home* | *page* | *---* | *MERGE* | *`about.qmd`* | *Example row. Bio opens the About page.* |
-| *e2* | *`/talks/acop-poster.pdf`* | *Poster* | *file* | *---* | *PORT* | *`files/2019-acop-poster.pdf`* | *Example row. Old URL likely cited; needs a pointer per Section 11.* |
-| 1 |  |  |  |  |  |  |  |
+| 1 | `/home` | Andrew M Stein | page | none hosted; 2 external | MERGE | `about.qmd` | Bio opens About per Section 6. Affiliation confirmed current (Q3), so it ports verbatim. Contact, Scholar and Medium links go to the bottom of About per Section 4. |
+| 2 | `/now` | Now | page | none | PORT | `now.qmd` | Kept: a Derek Sivers "now page", not a news list (Q2). Last updated 2026-03-27. Placement to confirm; it adds a fifth item to the About menu in Section 10. |
+| 3 | `/effective-learning` | Effective-Learning | page | none hosted; 1 Google Doc | PORT | `guides/effective-learning.qmd` | Largest page on the old site. The A-B-C-D-E-F-G learning checklist. Teaching leg per Section 3; `guides/` per Section 4. |
+| 4 | `/pmx-tools` | PMX-Tools | page | none hosted; 5 external | MERGE | `resources.qmd` | Curated list of checklists and cheat sheets. `resources.qmd` is a stub today. Confirm this against a `guides/` page instead. |
+| 5 | `/career-advice` | Career-Advice | page | none hosted; 1 external | PORT | `guides/career-advice.qmd` | Academia-to-industry transition checklist; the page that led to the SIAM News article. |
+| 6 | `/software` | Software | page | none | MERGE | `projects/projects.yml` | AIRE, FIRE and BEAMS, the 2007-2011 thesis tools, with three papers. Confirm: three new `projects.yml` rows, or fold into publications instead. |
+| 7 | `/cv` | CV | page | none hosted; Google Doc | LINK | navbar `CV`, out to Google Docs | Section 4 and Section 10: an external navbar link, no page of its own. Needs `CV_DOC_ID` for the build-time export in Section 8. |
+| 8 | `/talks` | Talks | page | none hosted; 12 external | PORT | `talks.qmd` + `talks.yml` | Twelve decks clears the five-entry bar in Section 4, so it earns its own page. |
+| 9 | `/recommended-reading` | Recommended Resources | page | none | MERGE | `guides/reading-list.qmd` | Books with a note on what each is for. Overlaps the reading list already on this site: a fourth overlap, not among the three in Section 6. |
+| 10 | `/equations` | Equations | page | none hosted; Google Doc | *open* | *open* | Orphan, not in the navbar. The body is one Google Doc link and nothing else. Andy to decide LINK or DROP. |
+| 11 | `/pmx-career-links` | PMX-Career-Links | page | none | MERGE | `guides/career-advice.qmd` | Orphan, not in the navbar. Mailing lists, the ISoP career page, and US programs that may be hiring postdocs. Folds under career advice. |
+| 12 | `opensource.nibr.com/xgx/Resources/Uncertainty_Assessment_Pedigree_Table.pdf` | Uncertainty Pedigree Table | link | --- | LINK | --- | On `/home`. Canonical on the xgx site; Section 6 keeps xgx linked, not absorbed. |
+| 13 | `github.com/Novartis/xgx/.../ContextOfUse_Table_1page.pdf` | Context of Use Table | link | --- | LINK | --- | On `/home`. Canonical in the Novartis xgx repository. |
+| 14 | `github.com/Novartis/xgx/.../Uncertainty_Assessment_Presentation.pdf` | Managing Uncertainty presentation | link | --- | LINK | --- | On `/pmx-tools`. |
+| 15 | `opensource.nibr.com/xgx/Resources/Graphics_Principles_Cheat_Sheet_v1.1.pdf` | Graphics Principles Cheat Sheet | link | --- | LINK | --- | On `/pmx-tools`. |
+| 16 | `opensource.nibr.com/xgx/Resources/PKPD_Exploratory_Graphics_(xGx)_Cheat_Sheet.pdf` | xGx Cheat Sheet | link | --- | LINK | --- | On `/pmx-tools`. |
+| 17 | `github.com/Novartis/xgx/.../Presentation_Checklist_v2.03.pdf` | Presentation Checklist | link | --- | LINK | --- | On `/pmx-tools`. |
+| 18 | `opensource.nibr.com/xgx/Resources/Presentation_Checklist_v2.03.pdf` | Presentation Checklist | link | --- | LINK | --- | On `/career-advice`. The same document as row 17 at a second host; link one of them and pick which. |
+| 19 | `.../Presentations/2019-08-01_Training_FundamentalPK_2019.pptx` | Intro to Fundamental PK Concepts | file | --- | PORT | `files/2019-08-01-fundamental-pk.pdf` | In `iamstein/Publications`. Convert to PDF per Section 8; do not commit the `.pptx` beside it. |
+| 20 | `.../Presentations/2019-08-01_FundamentalPD_AndyStein_Hackathon_2019.pptx` | Intro to Fundamental PD Concepts | file | --- | PORT | `files/2019-08-01-fundamental-pd.pdf` | As row 19. |
+| 21 | `.../Presentations/2021-10-12_Stein_Causal_Diagram_Hackathon.pptx` | Causal Diagrams for Exposure-Response | file | --- | PORT | `files/2021-10-12-causal-diagrams.pdf` | As row 19. |
+| 22 | `.../Presentations/2020-03-24_Stein_QSP_Uncertainty_Meetup.pdf` | Uncertainty and Predictive Accuracy, CML | file | --- | PORT | `files/2020-03-24-qsp-uncertainty.pdf` | Already a PDF. Has a YouTube recording linked beside it on `/talks`. |
+| 23 | `.../Presentations/2017-10-18_RaueStein_Identifiability_LLW_LLP_ACoP8_v2.pptx.pdf` | Model Convergence and Identifiability | file | --- | PORT | `files/2017-10-18-identifiability.pdf` | Already a PDF. ACoP 2018 on the old page, 2017 in the filename; check the year. |
+| 24 | `.../Presentations/2021-11-10_Stein_ACoP2021_CART_Review_Presentation.pptx` | CAR-T Cellular Kinetic-PD Review | file | --- | PORT | `files/2021-11-10-cart-review.pdf` | As row 19. |
+| 25 | `.../Presentations/2019-10-22_Stein_CART_Modeling_ACoP.pdf` | Cellular Kinetics of Kymriah | file | --- | PORT | `files/2019-10-22-kymriah.pdf` | Already a PDF. |
+| 26 | `.../Presentations/2013-05-13_ACoP_TumorModeling_AndyStein_v8.pptx` | Longitudinal Solid Tumor Data | file | --- | PORT | `files/2013-05-13-solid-tumor.pdf` | As row 19. |
+| 27 | `.../Presentations/2013-06-20-PhUSE_AndyStein.pptx` | PhUSE 2013 | file | --- | PORT | `files/2013-06-20-phuse.pdf` | As row 19. Title on the old page to confirm. |
+| 28 | `.../Presentations/2009-12-01-ASH09_StemCells.ppt` | ASH 2009, stem cells | file | --- | PORT | `files/2009-12-01-ash-stem-cells.pdf` | Oldest deck, and a `.ppt` rather than `.pptx`. |
+| 29 | `.../Presentations/2016-07-13_Stein_SIAM_LS_Presentation.pptx` | SIAM Life Sciences 2016 | file | --- | PORT | `files/2016-07-13-siam-ls.pdf` | As row 19. |
+| 30 | `.../Presentations/2017-10-17_Stein_ACoP_Math_LumpedParameters_v2.pptx` | Lumped Parameters, ACoP 2017 | file | --- | PORT | `files/2017-10-17-lumped-parameters.pdf` | As row 19. |
 
-The two italic rows are the format, not content. Delete them once the real rows
-are in.
+**Row count: 30.** Eleven pages and nineteen linked files, which is the number
+Section 12 checks against.
+
+**No file is hosted on the old site.** Every one of the nineteen already lives
+in `iamstein/Publications` or on the xgx site, so the export that Section 7 was
+written to obtain has nothing in it that cannot be reached another way, and
+Section 11's dead-file-URL problem does not arise. Only the eleven page URLs
+need pointers. Rows 19 to 30 are marked PORT rather than LINK because
+Section 8 rules that a deck a reader cannot open on a phone is not a link worth
+keeping; the sources stay in `iamstein/Publications` either way.
+
+**Rows still open.** Row 10 is Andy's. Rows 2, 4, 6 and 18 carry a proposed
+disposition with the alternative named in the note, and rows 19 to 30 assume
+Section 8's convert-to-PDF rule applies to decks hosted in a repository as well
+as to decks hosted on the old site.
 
 Fill rules:
 
@@ -611,22 +654,28 @@ the bottom of Section 5.
 
 ## 14. Open questions
 
-Ordered by how much the answer changes the work. Q3 is Andy's to answer; Q2
-and Q4 may be settled by the Phase 0 export. Q1 and Q5 are closed.
+All five are closed. Q2, Q3 and Q4 closed on 2026-09-01, Q2 and Q3 by Andy
+and Q4 by the crawl in Section 5.
 
 1.  ~~Is a custom domain wanted?~~ **Closed.** `trinitymetrics.com` is held
     and already points here. It carries the project identity rather than a
     personal one, so it confirms option A in Section 3. What remains is
     mechanical: correct `site-url` and check how the domain is wired.
-2.  **Is there a news or updates section, and does it survive?** A stale news
-    list is worse than no news list. If the last entry is years old, the answer
-    is DROP, and if it is current the answer is that the blog already does this.
-3.  **Is any of the old site's content out of date rather than merely old?** A
-    superseded position or an affiliation that has changed should not be ported
-    verbatim, and the migration is where it gets caught. Section 1 rules
-    rewriting out of scope; correcting a fact is not rewriting.
-4.  **How much material is there in total?** The whole shape of the work
-    changes between a 6-page site and a 40-page one, and Section 8's file-size
-    ceiling depends on it. Unanswerable until Phase 0.
+2.  ~~Is there a news or updates section, and does it survive?~~ **Closed.**
+    The `/now` page survives. It is not a news list; it is a
+    [now page](https://nownownow.com/about) in Derek Sivers's sense, which is a
+    standing statement of current work rather than a log of events, so the
+    argument that the blog already does this does not apply to it. Last updated
+    2026-03-27. Row 2 of Section 5.
+3.  ~~Is any of the old site's content out of date rather than merely old?~~
+    **Closed.** Andy confirms the affiliation on `/home` is unchanged, so the
+    bio ports verbatim into `about.qmd`. Two smaller checks remain and are
+    recorded in Section 5 rather than here: the ACoP year on row 23, and the
+    talk title on row 27.
+4.  ~~How much material is there in total?~~ **Closed.** Eleven pages and
+    nineteen linked files, at the small end of the range this question
+    anticipated. Section 8's file-size ceiling is not in play: no file is
+    hosted on the old site, and twelve slide decks converted to PDF come
+    nowhere near the 1 GB published-site limit.
 5.  ~~Which trinity does the home page name?~~ **Closed.** Pharmacometrics,
     teaching and education, GenAI. Recorded in Section 3.
