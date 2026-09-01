@@ -3,11 +3,48 @@ title: "About"
 toc: false
 ---
 
-TrinityMetrics explores how AI can be used in regulated clinical and pharmacometric workflows without obscuring reasoning, responsibility, or data integrity.
+## Andrew M. Stein
 
-## Authors
+I'm a Senior Director of Pharmacometrics at [Novartis](http://www.nibr.com/) in
+Cambridge, MA. I did postdoctoral research at the
+[Institute for Math and its Applications](http://www.ima.umn.edu/), a PhD in
+Applied Mathematics at [University of Michigan](https://www.umich.edu/), and a
+Bachelors and Masters in Mechanical Engineering at [MIT](http://www.mit.edu).
 
-* [Andy Stein](https://sites.google.com/site/andrewsteinphd/home)
+I use mechanistic and statistical models of preclinical and clinical data to
+guide drug development. My expertise is in oncology and immunology, with
+experience in leukemia
+[[1](http://clincancerres.aacrjournals.org/content/17/21/6812.short),
+[2](https://bmccancer.biomedcentral.com/articles/10.1186/1471-2407-13-173)],
+solid tumors
+[[3](http://onlinelibrary.wiley.com/doi/10.1002/cpt.7/full),
+[4](http://www.sciencedirect.com/science/article/pii/S0302283812014078),
+[5](https://bmccancer.biomedcentral.com/articles/10.1186/1471-2407-12-311),
+[6](http://www.sciencedirect.com/science/article/pii/S0006349507708330)],
+chimeric antigen receptor T-cells
+[[7](https://ash.confex.com/ash/2017/webprogram/Paper102479.html),
+[8](https://ascpt.onlinelibrary.wiley.com/doi/full/10.1002/psp4.12388)],
+T cell engagers, and target mediated drug disposition of biologics
+[[9](http://onlinelibrary.wiley.com/doi/10.1002/psp4.12169/full),
+[10](http://biorxiv.org/content/early/2017/04/03/123240),
+[11](https://ascpt.onlinelibrary.wiley.com/doi/full/10.1002/psp4.12316),
+[12](https://rd.springer.com/article/10.1007/s10928-019-09638-3)].
+
+For building understanding, it is useful to imagine that we understand
+biological systems well enough to write down equations that describe them. But
+for informing decisions, it is critical to acknowledge that we often do not
+understand biology well enough to write down equations that make accurate
+predictions. To support model-informed decision-making in the face of
+uncertainty, I have co-developed an
+[Uncertainty Pedigree Table](https://opensource.nibr.com/xgx/Resources/Uncertainty_Assessment_Pedigree_Table.pdf)
+(discussed in
+[this presentation](https://drive.google.com/open?id=1YlNvRkbrviEuW_CQcFYwuUaGiTjP32ht))
+and adapted the FDA's
+[Context of Use Table](https://github.com/Novartis/xgx/blob/master/Resources/ContextOfUse_Table_1page.pdf).
+
+I am a member of the
+[exploratory graphics (xGx)](http://opensource.nibr.com/xgx/) team. I also have
+a [ukulele webpage](https://www.ukeskywalker.com).
 
 ## Audience
 
@@ -23,3 +60,9 @@ The primary audience includes:
 This is an early-stage working repository.
 
 The goal is to build a useful collection of writing, code, examples, and reusable workflow patterns over time.
+
+## Contact
+
+- Email: [andy.stein@gmail.com](mailto:andy.stein@gmail.com)
+- Blog: [medium.com/@andy.stein](https://medium.com/@andy.stein)
+- Google Scholar: [citations](https://scholar.google.com/citations?user=wZf0KKsAAAAJ&hl=en)

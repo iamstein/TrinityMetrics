@@ -297,9 +297,9 @@ Section 12 checks against.
 in `iamstein/Publications` or on the xgx site, so the export that Section 7 was
 written to obtain has nothing in it that cannot be reached another way, and
 Section 11's dead-file-URL problem does not arise. Only the eleven page URLs
-need pointers. Rows 19 to 30 are marked PORT rather than LINK because
-Section 8 rules that a deck a reader cannot open on a phone is not a link worth
-keeping; the sources stay in `iamstein/Publications` either way.
+need pointers. Rows 19 to 30 are marked PORT because Section 8 rules that a
+deck ports as a PDF, which a reader can open on a phone; the sources stay in
+`iamstein/Publications` either way.
 
 **Rows still open.** Row 10 is Andy's. Rows 2, 4, 6 and 18 carry a proposed
 disposition with the alternative named in the note, and rows 19 to 30 assume
@@ -662,11 +662,9 @@ and Q4 by the crawl in Section 5.
     personal one, so it confirms option A in Section 3. What remains is
     mechanical: correct `site-url` and check how the domain is wired.
 2.  ~~Is there a news or updates section, and does it survive?~~ **Closed.**
-    The `/now` page survives. It is not a news list; it is a
-    [now page](https://nownownow.com/about) in Derek Sivers's sense, which is a
-    standing statement of current work rather than a log of events, so the
-    argument that the blog already does this does not apply to it. Last updated
-    2026-03-27. Row 2 of Section 5.
+    The `/now` page survives. It is a [now page](https://nownownow.com/about)
+    in Derek Sivers's sense: one standing statement of current work, updated in
+    place. Last updated 2026-03-27. Row 2 of Section 5.
 3.  ~~Is any of the old site's content out of date rather than merely old?~~
     **Closed.** Andy confirms the affiliation on `/home` is unchanged, so the
     bio ports verbatim into `about.qmd`. Two smaller checks remain and are
@@ -675,7 +673,7 @@ and Q4 by the crawl in Section 5.
 4.  ~~How much material is there in total?~~ **Closed.** Eleven pages and
     nineteen linked files, at the small end of the range this question
     anticipated. Section 8's file-size ceiling is not in play: no file is
-    hosted on the old site, and twelve slide decks converted to PDF come
-    nowhere near the 1 GB published-site limit.
+    hosted on the old site, and twelve decks at the 2.5 MB Section 8 measured
+    for `/ebook` is about 30 MB against a 1 GB limit.
 5.  ~~Which trinity does the home page name?~~ **Closed.** Pharmacometrics,
     teaching and education, GenAI. Recorded in Section 3.

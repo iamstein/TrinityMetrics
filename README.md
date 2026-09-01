@@ -19,9 +19,11 @@ The Quarto site is organized around a small set of stable pages:
 
 - **Home** for project framing and current direction
 - **Blog** for essays, working positions, and implementation notes
+- **Projects** for open-source tools and longer-running working documents
+- **Guides** for working practices, such as how to read a paper
 - **Resources** for reference documents, checklists, and practical guides
 - **Code** for repository layout, examples, and reusable materials
-- **About** for scope, audience, and project status
+- **About** for the bio, audience, and project status, with the CV linked beside it
 
 ## Repository layout
 
@@ -30,38 +32,41 @@ The Quarto site is organized around a small set of stable pages:
 ├─ _quarto.yml
 ├─ index.qmd
 ├─ about.qmd
-├─ blog/
-│  ├─ index.qmd
-│  └─ posts/
 ├─ resources.qmd
 ├─ code.qmd
-├─ drafts/
+├─ blog/
+│  ├─ index.qmd
+│  ├─ drafts/
+│  └─ posts/
+├─ projects/
+│  ├─ index.qmd
+│  ├─ projects.yml
+│  └─ <project>/
+├─ guides/
+│  ├─ index.qmd
+│  └─ guides.yml
 ├─ code/
+├─ data/
 ├─ examples/
 ├─ skills/
 ├─ references/
+├─ .github/workflows/
 ├─ styles.css
 └─ docs/
 ~~~~
 
 ### Key directories
 
-- `drafts/` contains working Markdown drafts that are not yet published
+- `blog/drafts/` contains working Markdown drafts that are not yet published
 - `blog/posts/` contains published Quarto posts
+- `projects/` contains one directory per project, listed by `projects/projects.yml`
+- `guides/` contains working-practice guides, listed by `guides/guides.yml`
+- `data/` contains datasets used by posts and examples
 - `code/` contains reusable scripts, templates, and utilities
 - `examples/` contains worked examples and case studies
 - `skills/` contains specialized AI guidance/context files
 - `references/` contains PDFs and other static support materials
 - `docs/` contains the rendered site output for GitHub Pages
-
-## Current publishing plan
-
-The initial public launch is planned around two posts published together:
-
-- a short philosophy post on AI assistance and human decision ownership
-- a practical post on synthetic data workflows
-
-That should make the purpose of the repository clear from the start.
 
 ## Local development
 
@@ -81,12 +86,11 @@ quarto render
 
 The site is configured to render to `docs/`.
 
-There are two workable publishing patterns:
-
-- **render locally and commit `docs/`**
-- **use GitHub Actions to render and deploy automatically**
-
-This repository includes a GitHub Actions workflow for automated publishing.
+`.github/workflows/publish.yml` renders the site and deploys it on every push
+to `main`. That workflow also fetches the CV from Google Docs into
+`docs/files/stein-cv.pdf` at build time, so the published PDF always matches
+the document. It needs a repository variable, `CV_DOC_ID`, set under
+Settings, Secrets and variables, Actions, Variables.
 
 ## Notes
 
