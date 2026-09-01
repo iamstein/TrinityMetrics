@@ -1,0 +1,514 @@
+---
+title: "CRS risk during step-up dosing of T-cell engagers"
+subtitle: "Working specification for a stimulation/tolerance model fit to public data"
+description: "Cytokine release syndrome risk falls as step-up doses rise, which means prior exposure is doing something. This specifies a model of that effect, built by reusing the published epcoritamab repeated time-to-event model and testing how far public aggregate data can carry it."
+categories: [pharmacometrics, safety, oncology, working document]
+date: last-modified
+toc: true
+toc-depth: 3
+toc-location: left
+toc-expand: true
+number-sections: false
+html-math-method: mathjax
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing here has been read, fit, or checked.** The epcoritamab paper this
+project is built on has not been read; every statement below about what Li et
+al. did is a prediction about the paper, written from its title and abstract,
+and Section 3 is the work of replacing those predictions with what the paper
+says. The equations in Sections 6 and 7 are a candidate parameterization
+chosen to be replaced, not a reconstruction of the published model. The
+[project index](index.qmd) lists the other documents in this folder and
+[References](references.qmd) carries the sources and their status markers.
+:::
+
+## In brief
+
+**The question.** During step-up dosing of a T-cell engager, cytokine release
+syndrome risk often falls as the dose rises. A model in which risk depends on
+the current dose alone cannot produce that, so something about the dosing
+history is carrying risk down while dose carries it up. This specifies a model
+of that something, and asks how large a dose step can be taken, given a
+particular dosing history, at an acceptable predicted risk.
+
+**The mechanism assumed.** A dose induces a transient tolerance state that
+lowers the risk attached to later doses and decays between them. Risk after a
+dose is then the product of what the current exposure stimulates and what
+prior exposure has suppressed.
+
+**The starting point is somebody else's model.** Li et al. published a
+repeated time-to-event model of epcoritamab step-up dosing that already has
+this structure and was fit to patient-level data. This project reuses it. It
+does not build a new one unless reading the paper shows the published
+structure cannot be carried to the data available here.
+
+**The hard part is the data, not the model.** The published model was fit to
+individual patients with individual pharmacokinetics and event times. What is
+public is counts: how many patients got a dose, how many had CRS afterwards.
+Whether the tolerance parameters survive that loss of resolution is the
+feasibility question in Section 4, and it is answered before anything is said
+about other drugs.
+
+**Out of scope, stated once.**
+
+- ❌ **A re-analysis of the epcoritamab trials.** No patient-level data is
+  available to this project.
+- ❌ **A dose recommendation.** Nothing here is a regulatory-grade CRS risk
+  model, and no clinical regimen should be taken from it.
+- ❌ **A mechanistic cytokine model.** No interleukin-6, no T-cell
+  trafficking, no receptor-level dynamics. Tolerance is an empirical state
+  variable fit to incidence, and its biological interpretation is not part of
+  the claim.
+
+```{mermaid}
+flowchart LR
+    E["Exposure(t)<br/>dose or PK-derived"] --> S["Stimulation<br/>raises hazard"]
+    E --> T["Tolerance(t)<br/>accumulates, then decays"]
+    T --> I["Inhibition<br/>lowers hazard"]
+    S --> H["Hazard of CRS"]
+    I --> H
+    H --> P["P(CRS after dose j)"]
+```
+
+**How the answer is reported.** Three models are fit to the same public data:
+current dose only, current dose plus empirical history terms, and the dynamic
+tolerance model. The tolerance model earns its place only by beating the other
+two on the same data, and by reproducing the qualification behaviours in
+Section 9. If it cannot be identified from aggregate counts, the finding that
+it cannot is the deliverable, and the objective narrows rather than the model
+growing.
+
+------------------------------------------------------------------------
+
+## 1. Objective
+
+Develop a quantitative model of cytokine release syndrome (CRS) risk during
+step-up dosing of T-cell engagers (TCEs), using the published epcoritamab
+repeated time-to-event (RTTE) model as the methodological template.
+
+The model predicts the probability of CRS after each administration as a
+function of four things:
+
+- the current dose, or the exposure it produces;
+- the dose and exposure history before it;
+- the tolerance induced by that history;
+- the time since the previous dose.
+
+**Primary endpoint: CRS Grade $\ge 2$.** Grade $\ge 1$ is the secondary
+endpoint. Grade $\ge 2$ leads because it is the grade that changes clinical
+management and the grade the published model targets; Grade $\ge 1$ is
+reported alongside because it is more frequently tabulated in public sources
+and carries more events.
+
+The longer-term objective is to determine whether the framework generalizes
+past epcoritamab, fit to publicly available data from approved oncology TCEs.
+
+## 2. Central hypothesis
+
+CRS risk is not determined by the current dose alone. A prior TCE dose induces
+a transient tolerance or desensitization state that reduces the CRS risk of
+subsequent doses.
+
+Five consequences follow, and each is a prediction the model must be able to
+make:
+
+- a larger first dose produces greater CRS risk;
+- prior exposure reduces the risk of a later dose;
+- a very small priming dose induces little tolerance;
+- a large step after inadequate priming produces greater risk than the same
+  step after adequate priming;
+- tolerance decays, so a long enough interruption restores the risk of an
+  untreated patient.
+
+The behaviour that motivates the whole model is the fourth column of any
+step-up safety table: CRS risk falls while dose rises. Section 9 makes that
+and the four others into acceptance tests.
+
+## 3. Dissecting the epcoritamab model
+
+This is the first work, and nothing downstream of it should start before it is
+done. Read the main paper and the supplementary material of:
+
+> Li et al. (2026). *Epcoritamab Step-Up Dosing Regimen Selection and
+> Optimization Using Repeated Time-to-Event Modeling for Cytokine Release
+> Syndrome Risk Mitigation.* Clinical Pharmacology & Therapeutics.
+> [doi:10.1002/cpt.70362](https://doi.org/10.1002/cpt.70362)
+
+The deliverable is one filled-in dissection, roughly a page of summary over
+the four subsections below. Write the answers down even where they are
+negative: a question the paper does not answer is a parameter this project
+will have to fix or drop.
+
+### 3.1 What the model was fit to
+
+- Number of patients, studies, and cohorts.
+- Which epcoritamab regimens are represented, and the range of priming,
+  intermediate and full doses in each.
+- Number and timing of step-up doses.
+- The modelled CRS endpoint, and whether Grade $\ge 1$ and Grade $\ge 2$ were
+  both fit.
+- What onset-time information was used, and at what resolution.
+- How repeat CRS events within a patient were handled.
+- How pharmacokinetic (PK) exposure was obtained per patient: measured,
+  predicted from a population PK model, or a typical profile.
+
+### 3.2 The mathematics
+
+Write out the model as equations, not as a description. Seven pieces:
+
+- the baseline hazard;
+- the exposure-driven stimulation term;
+- the tolerance or inhibition term;
+- tolerance induction;
+- tolerance recovery;
+- covariates;
+- the repeated-event structure.
+
+Give every parameter its interpretation and its units, including the ones the
+abstract names — the maximum stimulatory effect, $S_{50}$, $I_{50}$,
+$k_{\rm in}$, $k_{\rm out}$, any Hill coefficients, and the baseline hazard
+parameters.
+
+**Settle what drives tolerance.** Instantaneous concentration, cumulative
+exposure, an effect compartment, a turnover model, or another state variable.
+Everything in Section 7 depends on this answer, because it decides whether a
+dose-only approximation can stand in for exposure.
+
+### 3.3 Estimation and identifiability
+
+- Which parameters were estimated and which were fixed, and the stated reason
+  for each fixing.
+- Uncertainty on the tolerance parameters specifically.
+- Which clinical regimens carried the information: the answer is expected to
+  be the dose-escalation cohorts rather than the registrational regimen, and
+  that expectation decides what Section 5 must find.
+- Whether tolerance recovery was identifiable at all, or fixed.
+- Parameter correlations, and any sensitivity analysis.
+
+### 3.4 What the model was used to simulate
+
+Document how the fitted model was used to compare priming doses, intermediate
+doses, two-step against three-step regimens, full-dose risk, prophylactic
+intervention, and dose delays or interruptions if they were evaluated.
+
+### 3.5 The question the dissection answers
+
+> What is the minimum mathematical structure that reproduces the step-up
+> behaviour, and which features of the data identify each part of it?
+
+Do not design anything broader until that sentence can be answered.
+
+## 4. The feasibility question
+
+The next question is not whether the framework generalizes across drugs. It
+is:
+
+> Can a useful approximation to the Li et al. model be fit using only publicly
+> available epcoritamab data?
+
+One drug, one framework, one data-availability problem. A pooled cross-drug
+analysis inherits every difficulty of this question and adds its own, so it
+waits for the answer in Section 14.
+
+## 5. Public epcoritamab data inventory
+
+Search publications, supplements, conference abstracts and posters, regulatory
+review documents, and prescribing information for CRS data reported per
+dosing occasion. For every cohort or regimen found, record one row per dosing
+occasion with these fields.
+
+| Field | What it holds |
+|---|---|
+| `study`, `cohort`, `indication` | Provenance of the row |
+| `dose_number` | Position in the step-up sequence, 1 for the priming dose |
+| `dose`, `dose_unit`, `route` | The administration this row is about |
+| `time_since_previous_dose` | Days; blank for `dose_number` 1 |
+| `previous_dose` | The dose before this one |
+| `priming_dose`, `intermediate_dose`, `full_dose` | The regimen this row sits in |
+| `n_dosed` | Patients who received this administration |
+| `n_crs_ge1`, `n_crs_ge2` | Patients with CRS at each threshold after it |
+| `crs_grading_system` | Lee 2014, ASTCT 2019, CTCAE, or as stated |
+| `steroid_prophylaxis`, `tocilizumab_prophylaxis`, `other_crs_prophylaxis` | Premedication, as reported |
+| `source`, `table_or_figure`, `notes` | Where the numbers came from |
+
+: The inventory schema {tbl-colwidths="[38,62]"}
+
+**Prioritize the dose-escalation cohorts over the registrational regimen.**
+The feasibility question depends on variation in dosing history, not on the
+approved schedule, and the approved schedule contributes one history no matter
+how many patients received it. Early-phase cohorts in which several
+priming and intermediate dose combinations were tried are where the
+information is; published summaries indicate 17 such combinations were
+explored in EPCORE NHL-1. Confirming that count, and finding the CRS numerator
+and denominator behind each combination, is the first extraction to attempt.
+
+**Record what cannot be found, in the same table.** A regimen reported only as
+a pooled all-cycles CRS rate is a row that cannot be used, and Section 13
+needs the count of those.
+
+## 6. Model formulation for aggregate data
+
+The published analysis is a patient-level RTTE model. Public data give
+aggregate incidence after a dosing occasion, so the likelihood changes even
+where the hazard does not.
+
+For dosing occasion $j$:
+
+$$
+y_j \sim \mathrm{Binomial}(N_j, p_j)
+$$
+
+with $N_j$ the number of patients who received that dose, $y_j$ the number
+with CRS above the chosen grade threshold, and $p_j$ the model-predicted
+probability of CRS after that dose.
+
+Retaining the hazard model, $p_j$ is the probability of at least one event in
+the interval before the next dose:
+
+$$
+p_j = 1 - \exp\left(-\int_{t_j}^{t_{j+1}} h(t)\,dt\right)
+$$
+
+and the hazard keeps the published structure:
+
+$$
+h(t) = h_0(t) \times \mathrm{STIM}\big(E(t)\big) \times \mathrm{INH}\big(A(t)\big)
+$$
+
+where $E(t)$ is the exposure driver of Section 7 and $A(t)$ is the tolerance
+state.
+
+**Take the functional forms from the paper.** Pending Section 3, the
+placeholders below are the conventional ones,
+
+$$
+\mathrm{STIM}(E) = 1 + \frac{S_{\max}\,E^{\gamma}}{S_{50}^{\gamma} + E^{\gamma}},
+\qquad
+\mathrm{INH}(A) = 1 - \frac{I_{\max}\,A}{I_{50} + A},
+\qquad
+\frac{dA}{dt} = k_{\rm in}\,E(t) - k_{\rm out}\,A
+$$
+
+with $I_{\max} < 1$ and $A(0) = 0$ in a treatment-naive patient. In the
+turnover form, $k_{\rm out}$ alone sets the tolerance recovery half-life,
+$\ln 2 / k_{\rm out}$, which is the parameter that decides what a dose delay
+does. Replace all three with the published equations at Milestone 1 and note
+in the same commit anything the substitution changes downstream.
+
+## 7. The exposure driver
+
+Two implementations, fit in this order.
+
+**Version A, dose as the driver.** Substitute dose for exposure. This is the
+simplest test of whether the tolerance structure is estimable from public
+data, and it is the version that works for every drug and cohort in the
+inventory, because dose is always reported and PK usually is not.
+
+**Version B, typical PK.** Generate a typical concentration-time profile per
+regimen from a published population PK model and drive the model with it, or
+with a summary of it: early area under the curve, $C_{\max}$, the
+concentration at 24 hours, or receptor occupancy where a model for it exists.
+Version B is closer to the published analysis and is preferred wherever a
+usable population PK model is public.
+
+**Write the code so the driver is an argument.** $E(t)$ enters the hazard and
+the tolerance equation at one place each; nothing in the tolerance
+architecture should know which version produced it. That is what makes
+Version B a substitution rather than a rewrite, and it is also what makes the
+Section 14 comparison of the two possible.
+
+## 8. The model hierarchy
+
+Fit three models to the same data and the same endpoint, in this order.
+
+| Model | Structure | What it establishes |
+|---|---|---|
+| 0 | $\mathrm{logit}(p_j) = \alpha + \beta \log D_j$ | The benchmark. Current dose only, no history |
+| 1 | Model 0 plus empirical history terms, such as $\log(D_j/D_{j-1})$ or cumulative prior dose | Whether history improves prediction at all, without a tolerance state |
+| 2 | The dynamic tolerance model of Section 6 | The target model |
+
+: The three models {tbl-colwidths="[10,45,45]"}
+
+Model 0 is the null and must be reported whatever happens to the others. Model
+1 is descriptive and is not the intended final model; its purpose is to
+separate two claims that are otherwise confounded, that history matters and
+that a *tolerance state* is the right description of how it matters. Model 2
+has to beat Model 1 as well as Model 0 to be worth its parameters.
+
+Compare on the same criterion across all three, on the primary endpoint, and
+report the secondary endpoint fit for each.
+
+## 9. Qualification behaviours
+
+Five behaviours a useful model reproduces. These are simulation checks on the
+fitted model, run before any conclusion is drawn from it, and a model that
+fails one has failed a test rather than revealed a finding about biology.
+
+| # | Behaviour | What it tests |
+|---|---|---|
+| 1 | The same full dose carries higher risk on first administration than after prior exposure to that dose | That current dose alone is inadequate |
+| 2 | $D_1 < D_2 < D_3$ with $P(\mathrm{CRS}_1) > P(\mathrm{CRS}_2) > P(\mathrm{CRS}_3)$ | Tolerance can outrun the dose increase |
+| 3 | An excessively small priming dose lowers risk at dose 1 and raises it at dose 2 | Tolerance induction saturates at low exposure |
+| 4 | Two regimens reaching the same target dose by different paths give it different risk | The path to a dose changes its risk |
+| 5 | A long enough gap before a dose restores something close to naive risk | Tolerance recovery is in the model and is signed correctly |
+
+: The acceptance tests {tbl-colwidths="[6,52,42]"}
+
+Behaviour 3 is the external one. The published elranatamab dose-optimization
+work compared alternative priming regimens, and whether a smaller first
+priming dose left more CRS at the second dose is a qualitative result this
+model can be held to without being fit to it. Behaviour 4 is the one that
+matters for the use case in Section 16: for the paths $1 \to 10 \to 100$ and
+$10 \to 30 \to 100$, the 100-unit dose need not carry the same risk.
+
+## 10. Extension to other T-cell engagers
+
+Only after Section 14 is answered. Candidates, in priority order:
+
+1. **Elranatamab.** First, because alternative priming regimens were studied
+   and published, which is the variation this model needs.
+2. **Teclistamab.**
+3. **Glofitamab.**
+4. **Mosunetuzumab.**
+5. **Talquetamab.**
+
+**Include a drug only where public sources report CRS by individual dosing
+occasion, across more than one dosing history.** Approval status is not the
+criterion. A drug reported only as a total CRS rate for one
+approved regimen contributes a single point and no information about
+tolerance.
+
+## 11. The cross-drug dataset
+
+The Section 5 schema, with these fields added:
+
+| Field | What it holds |
+|---|---|
+| `drug`, `target` | Molecule and target antigen |
+| `normalized_dose` | Dose on a scale comparable across drugs |
+| `previous_previous_dose` | Two doses back, for three-step regimens |
+| `anti_target_pretreatment` | Prior therapy against the same target, such as chimeric antigen receptor (CAR) T-cell therapy |
+
+: Added for the pooled dataset {tbl-colwidths="[38,62]"}
+
+The initial normalization is dose as a fraction of the target dose,
+
+$$
+D^{*} = \frac{D}{D_{\rm target}}
+$$
+
+which is an empirical scaling and nothing more. An exposure-based
+normalization is preferable and is what Version B of Section 7 makes possible.
+
+`anti_target_pretreatment` earns its column. Prior CAR T-cell therapy is
+reported to reduce the maximum stimulatory effect in the epcoritamab model by
+about 70%, in a fifth of the modelled patients ([References](references.qmd),
+entry 1, unverified). A pooled fit that ignores
+it will attribute that reduction to a tolerance parameter instead.
+
+## 12. The cross-drug question
+
+> Can one structural stimulation/tolerance model describe step-up CRS
+> behaviour across several T-cell engagers, using drug-specific exposure
+> scaling with common or partially shared tolerance parameters?
+
+The parameters that plausibly differ by drug are exposure-response potency,
+baseline CRS propensity, PK, route, and maximum CRS risk. The parameters that
+plausibly do not are the shape of tolerance induction, the tolerance recovery
+half-life, and the maximum tolerance effect.
+
+**Do not assume the second list is shared. Test it.** Fit shared and
+drug-specific versions of each candidate and report which pooling the data
+support. A shared tolerance half-life that is assumed rather than tested is
+the finding this project would most easily fake.
+
+## 13. Limitations of public aggregate data
+
+The public-data model is not equivalent to the original RTTE analysis, and the
+gap is stated rather than modelled away.
+
+- No exact CRS event times.
+- No individual PK.
+- No recurrent-event history within a patient.
+- Different patients contribute to different dosing occasions, because of
+  discontinuation between steps, so $N_j$ falls with $j$ for reasons unrelated
+  to risk.
+- No within-patient correlation can be represented.
+- Grade $\ge 1$ and Grade $\ge 2$ are inconsistently reported.
+- Grading systems differ across studies and eras.
+- Prophylaxis is incompletely reported and is confounded with dose level and
+  calendar time.
+- Some tolerance parameters will not be independently estimable.
+
+**Where a parameter cannot be identified, say so and fix it.** Four
+acceptable responses, in order of preference: fix it to the Li et al.
+estimate; place an informative prior on it from Li et al.; estimate only
+relative tolerance effects; or simplify the structure until what remains is
+identifiable. Adding complexity to cover an identifiability failure is not on
+that list.
+
+## 14. Decision point
+
+Answer these before broadening the project. Each has a written answer in the
+project, not an impression.
+
+1. **Recovery.** Can public epcoritamab data recover the qualitative behaviour
+   of the published RTTE model?
+2. **Separation.** Can the data distinguish a current-exposure effect from a
+   prior-exposure effect, or do the two trade off along a ridge?
+3. **Identifiability.** Which tolerance parameters are estimable from
+   aggregate counts, and which have to be fixed?
+4. **Cost of aggregation.** How much information is lost by using aggregate
+   incidence instead of patient-level RTTE data? Simulate patient-level data
+   from the Section 6 model, aggregate it to the shape of the public data,
+   refit, and compare. That comparison answers this question without any
+   patient-level data.
+5. **Exposure.** Does published PK materially improve the fit over dose alone?
+
+**If the answers are unfavourable, narrow the scientific objective.** A
+qualitative model that reproduces Section 9 with fixed tolerance parameters is
+a result. An unidentifiable pooled model fit to force the original objective
+through is not.
+
+## 15. Milestones
+
+| # | Milestone | Deliverable |
+|---|---|---|
+| 1 | Understand the published model | The Section 3 dissection: the mathematics, which parameters were estimated against fixed, and which data features identify tolerance |
+| 2 | Public epcoritamab inventory | The Section 5 table, filled, with the count of unusable rows, and a verdict on whether there is enough to fit an aggregate model |
+| 3 | Reproduce the structure | The published model implemented and simulated, not fit. Verify that risk rises with exposure in a naive patient, that tolerance develops after exposure, that successive doses are attenuated, and that a gap restores risk |
+| 4 | Aggregate-data fit | Models 0, 1 and 2 of Section 8 fit to the Section 5 data, on Grade $\ge 2$ with Grade $\ge 1$ reported alongside |
+| 5 | External test | Section 9 behaviour 3, tested against published elranatamab priming data with no refitting |
+| 6 | Cross-drug model | Only if Section 14 justifies it: a pooled or hierarchical fit across drugs |
+
+: Order of work {tbl-colwidths="[6,28,66]"}
+
+Milestone 3 comes before Milestone 4 deliberately. A structural implementation
+that reproduces the four qualitative behaviours by simulation is a working
+model of the mechanism, and it is worth having even if Milestone 4 shows the
+public data cannot estimate the parameters.
+
+## 16. The intended use
+
+Given a proposed first dose, one or more step-up doses, a target dose, and the
+intervals between them, predict:
+
+- the probability of Grade $\ge 1$ CRS after each administration;
+- the probability of Grade $\ge 2$ CRS after each administration;
+- the tolerance state before each dose;
+- the effect of changing the size of any one step;
+- the effect of changing any one interval;
+- whether adding a priming dose materially reduces risk at the target dose.
+
+The practical question all of that serves:
+
+> How large a dose step can be taken, given the dosing history, while holding
+> predicted CRS risk at an acceptable level?
+
+## 17. Guiding principle
+
+Start by reusing and simplifying a clinically validated model, then find out
+how far public data carry it. Build a new CRS tolerance model from scratch
+only if reading the epcoritamab paper shows its structure is unsuitable for
+that application, and record what made it unsuitable if that happens.

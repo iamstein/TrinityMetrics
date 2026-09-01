@@ -1,0 +1,246 @@
+---
+title: "References for the TCE-CRS-tolerance working document"
+subtitle: "What to read, in what order, and what has actually been checked"
+description: "The reading queue and source list for the CRS step-up tolerance working document, with a status marker on every entry recording whether it has been verified against its source."
+categories: [pharmacometrics, safety, oncology, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing here has been read.** Every entry below is a characterization
+written from a title, an abstract, or a web search summary, and every marker
+is ❌. That includes the numbers the specification quotes: the 17
+priming/intermediate combinations in Section 5, the CAR T covariate in Section
+11, and the elranatamab priming comparison in Section 9 all come from search
+summaries rather than from the papers. A search summary is weaker evidence
+than an abstract, which is itself weaker than the paper. Treat each entry as
+a prediction about what its source says, and correct the entry when the
+source is read.
+:::
+
+The working document is [the specification](specification.qmd), and the
+folder's other documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the working document has been verified
+  against this source. Where the working document characterizes it, the
+  characterization comes from an abstract or a search result.
+- ⚠️ **Transcribed, unverified.** A number, table or model structure in the
+  working document came from this source but has not been checked against it.
+- ✅ **Checked.** Verified against the source.
+
+On a **reading-queue** entry, ✅ means the question posed against that entry
+has been answered, by reading the paper or by deciding it is out of scope, and
+the note on the entry says which. On a **source** entry below the queue, ✅
+keeps the stricter meaning: the claim the specification draws from it has been
+checked against the source. None is ✅ yet.
+
+## Where to start
+
+Entry 1 is the project. Sections 3 and 6 of the specification are written to
+be replaced by what it says, so nothing else is worth reading first and
+Milestone 1 is finished when entry 1 is.
+
+- **Entry 1 first, twice.** One pass on the abstract, the model schematic and
+  the parameter table; a second pass on the supplement for the equations and
+  the estimated-against-fixed table. Budget two hours, which is longer than
+  the one-hour default on the [Reading Papers](../../guides/reading-papers.qmd)
+  page, because the deliverable is the equations rather than the conclusion.
+- **Entry 3 next**, and it may take fifteen minutes. It is the conference
+  version of entry 1 and it is where the count of priming and intermediate
+  dose combinations is expected to appear.
+- **Entries 2 and 4 together**, as the data inventory. Entry 4 is the
+  escalation cohorts and entry 2 is the exposure-response analysis, and
+  between them they either supply Section 5's table or show that it cannot be
+  filled.
+- **Entry 5 only after Milestone 3.** It is the external test in Section 9,
+  behaviour 3, and reading it early risks fitting the model to a result it is
+  supposed to predict.
+- **Entry 6 last**, for the label regimens and the interruption rules.
+
+Journal domains are blocked from the container these notes were written in, so
+every link below needs a browser.
+
+## Reading queue
+
+### 1. Li et al. 2026 — epcoritamab step-up dosing, RTTE model for CRS ❌
+
+*Clinical Pharmacology & Therapeutics*.
+[doi:10.1002/cpt.70362](https://doi.org/10.1002/cpt.70362) ·
+[Wiley](https://ascpt.onlinelibrary.wiley.com/doi/10.1002/cpt.70362)
+
+Li et al. Epcoritamab Step-Up Dosing Regimen Selection and Optimization Using
+Repeated Time-to-Event Modeling for Cytokine Release Syndrome Risk Mitigation.
+
+**The question.** All of Section 3, and the answers go into the specification
+rather than into this entry. The two that decide the rest of the project: what
+state variable drives tolerance, and which tolerance parameters were estimated
+rather than fixed.
+
+**What a search summary says the paper contains**, all unverified: 600
+patients with aggressive and indolent non-Hodgkin lymphoma given subcutaneous
+epcoritamab in 28-day cycles, pooled from EPCORE NHL-1 and EPCORE NHL-3; a
+Grade $\ge 2$ CRS endpoint; a stimulatory effect of exposure on the hazard
+with a maximum, that maximum reduced by 69.7% in the 125 of 600 patients
+(20.8%) with prior CAR T-cell therapy; an exposure-response analysis
+supporting 48 mg as the full dose; and an assessment of intravenous fluids
+and corticosteroids on CRS risk.
+
+**Read the supplement, not only the paper.** The equations, the fixed
+parameters, and the reason each was fixed are the deliverable, and those live
+in supplementary material more often than in the main text.
+
+### 2. Li et al. 2025 — optimal epcoritamab dosing regimen in large B-cell lymphoma ❌
+
+*Clinical Pharmacology & Therapeutics*.
+[doi:10.1002/cpt.3588](https://doi.org/10.1002/cpt.3588) ·
+[PMC11993285](https://pmc.ncbi.nlm.nih.gov/articles/PMC11993285/)
+
+The population PK and exposure-response analysis behind the approved regimen,
+by the same first author and a year earlier.
+
+**The question.** Two. Does it publish a population PK model complete enough
+to simulate typical concentration-time profiles per regimen — this is Version
+B of Section 7, and this entry decides whether Version B is possible at all.
+And does it report CRS by dosing occasion, or only response and full-dose
+safety?
+
+Open access on PMC, so this is the cheapest of the four epcoritamab entries to
+check.
+
+### 3. AACR 2023, abstract 2798 — the conference version of entry 1 ❌
+
+*Cancer Research* 83(7_Supplement):2798.
+[AACR](https://aacrjournals.org/cancerres/article/83/7_Supplement/2798/722541/Abstract-2798-Simplifying-selection-and)
+
+Simplifying selection and optimization of step-up dosing of subcutaneous
+epcoritamab to mitigate CRS risk using repeated time-to-event modeling.
+Authors not yet recorded; the abstract predates entry 1 by three years and
+covers the same modelling.
+
+**The question.** The dose combinations. A search summary reports priming
+doses of 0.004 to 0.16 mg and intermediate doses of 0.0128 to 1.6 mg across 17
+combinations, with 0.16/0.8/48 mg selected on CRS event rate. If that is what
+the abstract says, it answers the feasibility question halfway: 17
+combinations is the variation in dosing history Section 5 needs, and the
+approved regimen alone does not provide it.
+
+**Then ask the harder question.** Whether the CRS counts per combination are
+published anywhere, or only the conclusion drawn from them. A model
+comparison of 17 regimens with no per-regimen numerator and denominator is not
+data this project can fit.
+
+### 4. Hutchings et al. 2021 — EPCORE NHL-1 dose escalation ❌
+
+*The Lancet* 398(10306):1157–1169.
+[Lancet](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)00889-8/abstract) ·
+[PubMed 34508654](https://pubmed.ncbi.nlm.nih.gov/34508654/)
+
+Dose escalation of subcutaneous epcoritamab in patients with relapsed or
+refractory B-cell non-Hodgkin lymphoma: an open-label, phase 1/2 study. Full
+doses from 0.0128 to 60 mg, ten sites, four countries, no dose-limiting
+toxicity and 48 mg taken forward.
+
+**The question.** Section 5's table, for this study. Whether CRS is reported
+per dosing occasion — priming, intermediate, first full dose — or pooled over
+cycle 1, and whether the supplementary tables break CRS down by dose cohort at
+each of Grade $\ge 1$ and Grade $\ge 2$.
+
+**This is the feasibility question in one paper.** If the escalation cohorts
+are reported only as pooled all-grade CRS, the public inventory is thin
+whatever else is found, and Section 14's first answer is already leaning
+negative. Check the supplementary appendix before concluding either way.
+
+The dose-expansion companion is
+[Thieblemont et al., *JCO* 2023](https://ascopubs.org/doi/10.1200/JCO.22.01725),
+which reports the selected regimen rather than the alternatives, and the
+[two-year follow-up](https://www.nature.com/articles/s41375-024-02410-8)
+in *Leukemia* 2024.
+
+### 5. Elranatamab dose optimization for CRS mitigation ❌
+
+*Clinical Pharmacology & Therapeutics* 2025.
+[PMC11933221](https://pmc.ncbi.nlm.nih.gov/articles/PMC11933221/) ·
+ASH 2022 abstract, *Blood* 140(Supplement 1):7174.
+[ASH](https://ashpublications.org/blood/article/140/Supplement%201/7174/489706/Dose-Optimization-to-Mitigate-the-Risk-of-CRS-with)
+
+The external test, Section 9 behaviour 3, and the first candidate for
+Milestone 5.
+
+**The question.** Which priming regimens were compared, and what CRS incidence
+followed each dose of each. A search summary reports 12 mg on day 1 and 32 mg
+on day 4 before 76 mg on day 8 as the selected regimen, an alternative of 4 mg
+and 20 mg before 76 mg, exposure-response modelling of 88 patients from
+MagnetisMM-1 using $C_{\max,24h}$ against any-grade and Grade $\ge 2$ CRS, and
+in MagnetisMM-3 CRS in 67 of 119 patients (56.3%) on the selected regimen with
+44.5% of events after dose 1 and 20.2% after dose 2.
+
+**What would confirm behaviour 3, and what would refute it.** Confirmation is
+the smaller 4/20 priming carrying less CRS at dose 1 and more at dose 2 than
+12/32 does. Refutation is the smaller priming carrying less at both. Write
+down which it is before fitting anything, because the model can be made to
+produce either.
+
+**Read this after Milestone 3, not before.** A structural model tuned to a
+result it was shown first has not predicted it.
+
+### 6. Prescribing information, Epkinly and Elrexfio ❌
+
+The label regimens, the step-up schedules, the premedication requirements, and
+the restart rules after an interruption.
+
+**The question.** What the labels say to do after a missed or delayed dose.
+That rule is the clinical expression of tolerance decay: if a label requires
+repeating the step-up after a gap, the gap length it names is an implicit
+estimate of the tolerance recovery half-life in Section 6, contributed by
+whoever wrote the label. It is a sanity check on $k_{\rm out}$ and it is free.
+
+## Sources the specification's numbers come from
+
+Every number the specification quotes from outside itself, and where it came
+from. None came from the source; all came from a search summary of the source.
+
+| Status | Number | Used in | Source |
+|:---|:---|:---|:---|
+| ❌ | 17 priming/intermediate combinations, priming 0.004–0.16 mg, intermediate 0.0128–1.6 mg | Section 5 | Entry 3 |
+| ❌ | Prior CAR T-cell therapy reduces the maximum stimulatory effect by 69.7%, in 125 of 600 patients | Section 11 | Entry 1 |
+| ❌ | Alternative elranatamab priming regimens were studied and published | Sections 9, 10 | Entry 5 |
+| ❌ | Full doses of 0.0128 to 60 mg in the epcoritamab escalation | Entry 4 note | Entry 4 |
+
+: What the specification borrowed {tbl-colwidths="[8,44,16,32]"}
+
+## Candidate sources for the Section 5 inventory
+
+Searched but not yet retrieved. The inventory is built from these, and an
+entry leaves this list when its rows are in the table or when it is recorded
+as carrying none.
+
+| Status | Source | Expected to hold |
+|:---|:---|:---|
+| ❌ | Entry 4 and its supplementary appendix | CRS by dose cohort in the escalation phase |
+| ❌ | Entry 3 | The count of priming/intermediate combinations, possibly per-combination CRS |
+| ❌ | Entry 2 | Population PK for Version B, exposure-response for the full dose |
+| ❌ | [EPCORE FL-1 dosing analysis, *Blood* 2025](https://ashpublications.org/blood/article/146/Supplement%201/1820/549920/Optimal-dose-regimen-of-epcoritamab-in-combination) | Epcoritamab with lenalidomide and rituximab, a different background therapy at the same doses |
+| ❌ | [EPCORE NHL-6, outpatient step-up](https://lymphomahub.com/medical-information/epcore-nhl-6-phase-ii-interim-analysis-outpatient-epcoritamab-for-2l-dlbcl) | The approved regimen with different prophylaxis, which is a prophylaxis covariate rather than a dosing history |
+| ❌ | FDA and EMA review documents for Epkinly | Per-occasion CRS tables that did not reach publication |
+
+: Where Section 5's rows would come from {tbl-colwidths="[8,52,40]"}
+
+## Related, not yet placed
+
+- **The other four T-cell engagers of Section 10** — teclistamab, glofitamab,
+  mosunetuzumab, talquetamab. No entries yet, deliberately: they are Milestone
+  6 and each needs the same inventory question asked of it before it earns a
+  reading entry.
+- **Real-world elranatamab step-up dosing**, the AMbreLA interim analysis in
+  *Blood* 2025. Deviations from the label schedule in practice are natural
+  variation in dosing interval, which is the hardest quantity to identify from
+  trial data.
+- **CRS grading systems.** Lee 2014 against ASTCT 2019 against CTCAE. The
+  `crs_grading_system` column exists because these disagree, and how much they
+  disagree at the Grade 1/2 boundary decides whether pooling across eras is
+  defensible.

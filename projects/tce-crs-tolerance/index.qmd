@@ -1,0 +1,25 @@
+---
+title: "TCE-CRS-tolerance"
+subtitle: "Cytokine release syndrome risk during step-up dosing of T-cell engagers"
+description: "Index of the documents in the TCE-CRS-tolerance project: the working specification and its references."
+categories: [pharmacometrics, safety, oncology, working document]
+date: last-modified
+toc: false
+---
+
+Cytokine release syndrome risk often falls as step-up doses rise, so prior
+exposure is doing something that the current dose cannot explain. This project
+models that something by reusing the published epcoritamab repeated
+time-to-event model, and asks how far publicly available data can carry it.
+Nothing has been read or fit yet.
+
+## Documents
+
+- [Working specification](specification.qmd). The objective, the hypothesis,
+  the model hierarchy, the data inventory, and the order of work. Its **In
+  brief** section is one screen and says what the rest argues. Section 3, the
+  dissection of the published epcoritamab model, is the first work and
+  everything after it is written to be revised by what it finds.
+- [References](references.qmd). What to read and in what order, and a marker
+  on every source recording whether the specification's use of it has been
+  checked. Every marker is currently ❌.
