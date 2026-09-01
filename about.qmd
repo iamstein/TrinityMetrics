@@ -64,5 +64,5 @@ The goal is to build a useful collection of writing, code, examples, and reusabl
 ## Contact
 
 - Email: [andy.stein@gmail.com](mailto:andy.stein@gmail.com)
-- Blog: [medium.com/@andy.stein](https://medium.com/@andy.stein)
+- Medium Blog: [medium.com/@andy.stein](https://medium.com/@andy.stein)
 - Google Scholar: [citations](https://scholar.google.com/citations?user=wZf0KKsAAAAJ&hl=en)
