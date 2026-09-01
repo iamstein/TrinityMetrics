@@ -1,0 +1,21 @@
+---
+title: "Now"
+description: "What I'm working on or thinking about right now."
+date: last-modified
+toc: false
+---
+
+The purpose of the "now" page is to tell you what I'm working on or thinking
+about right now. The idea comes from [Derek Sivers](https://nownownow.com/about).
+
+## Projects
+
+**T Cell Engagers.** Supporting drug development and dose selection of T cell
+engagers in oncology and immunology indications.
+
+**GenAI.** TrinityMetrics: exploring agentic coding with GitHub Copilot and
+Positron, focused on supporting clinical PK/PD analysis in restricted
+environments where agents cannot be given direct access to sensitive clinical
+data.
+
+Last update: 2026-03-27

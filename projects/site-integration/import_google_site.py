@@ -30,6 +30,9 @@ DEFAULT_BASE_URL = "https://sites.google.com/site/andrewsteinphd"
 
 PAGE_EXTS = {".html", ".htm"}
 SKIP_CONTENT = {"script", "style", "noscript", "head", "title", "meta", "link"}
+# Void elements: they have no end tag, so they must never open a skip depth
+# that nothing closes.
+VOID_SKIP = {"meta", "link"}
 HEADINGS = {"h1": 1, "h2": 2, "h3": 3, "h4": 4, "h5": 5, "h6": 6}
 BLOCK_TAGS = {
     "p", "div", "section", "article", "header", "footer", "nav", "main",
@@ -112,7 +115,7 @@ class PageParser(HTMLParser):
         if tag in SKIP_CONTENT:
             if tag == "title":
                 self._in_title = True
-            else:
+            elif tag not in VOID_SKIP:
                 self.skip_depth += 1
             return
         if self.skip_depth:
@@ -171,7 +174,7 @@ class PageParser(HTMLParser):
         if tag in SKIP_CONTENT:
             if tag == "title":
                 self._in_title = False
-            elif self.skip_depth:
+            elif tag not in VOID_SKIP and self.skip_depth:
                 self.skip_depth -= 1
             return
         if self.skip_depth:

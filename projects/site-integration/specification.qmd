@@ -260,7 +260,7 @@ because no file is hosted on the old site.
 | # | Old URL | Title | Kind | Files on it | Disposition | Lands at | Reason / note |
 |---|---|---|---|---|---|---|---|
 | 1 | `/home` | Andrew M Stein | page | none hosted; 2 external | MERGE | `about.qmd` | Bio opens About per Section 6. Affiliation confirmed current (Q3), so it ports verbatim. Contact, Scholar and Medium links go to the bottom of About per Section 4. The ukulele site stays an outbound link. |
-| 2 | `/now` | Now | page | none | PORT | `now.qmd` | Kept: a Derek Sivers "now page", not a news list (Q2). Last updated 2026-03-27. Placement to confirm; it adds a fifth item to the About menu in Section 10. |
+| 2 | `/now` | Now | page | none | PORT ✅ | `now.qmd` | Done 2026-09-01. A Derek Sivers "now page" (Q2), last updated 2026-03-27. Sits under the About menu, which now has four items. |
 | 3 | `/effective-learning` | Effective-Learning | page | none hosted; 1 Google Doc | PORT | `guides/effective-learning.qmd` | Largest page on the old site. The A-B-C-D-E-F-G learning checklist. Teaching leg per Section 3; `guides/` per Section 4. |
 | 4 | `/pmx-tools` | PMX-Tools | page | none hosted; 5 external | MERGE | `resources.qmd` | Curated list of checklists and cheat sheets. `resources.qmd` is a stub today. Confirm this against a `guides/` page instead. |
 | 5 | `/career-advice` | Career-Advice | page | none hosted; 1 external | PORT | `guides/career-advice.qmd` | Academia-to-industry transition checklist; the page that led to the SIAM News article. |
@@ -365,6 +365,15 @@ are the part that cannot be reconstructed by hand.
 Steps 3 and 4 replace the transcription. What is left is the judgement: what
 each page is worth, where it belongs, and what is out of date.
 
+### A bug that made the converter silently produce nothing
+
+`SKIP_CONTENT` listed `meta` and `link`, which are void elements with no end
+tag. Each one incremented the parser's skip depth and nothing ever decremented
+it, so on any real page the depth climbed early and the whole body was skipped.
+Every page converted to zero blocks. Fixed on 2026-09-01 by never opening a
+skip depth for a void element. Before the fix, 11 pages gave 0 blocks; after
+it, 9 to 126 blocks each and 20 repeated blocks correctly dropped as chrome.
+
 ### How the converter avoids Google's markup
 
 New Google Sites renders through JavaScript into deeply nested `div`s with
@@ -400,6 +409,11 @@ is worth having whether or not the allowlist changes.
 -   **Anything the converter flattened.** Multi-column layouts, embedded Google
     Drive viewers and buttons have no Markdown equivalent and come out as plain
     text or vanish. Compare against the live page.
+-   **Bullet lists.** Confirmed on 2026-09-01: the bullets a reader sees on
+    `/career-advice`, `/effective-learning` and `/recommended-reading` are
+    styled text blocks, not `ul`/`li`. The only list markup in those pages is
+    the navigation. No converter can recover the list structure, so restoring
+    it is hand-work on every ported page.
 
 ## 8. Files and assets
 
@@ -672,7 +686,9 @@ Andy on 2026-09-01, to be done as its own piece of work.
 `publications.qmd`, the `.bib`, and the same for talks if the volume in Section
 5 justifies a page. Copy slides and posters into `files/`.
 
-**Phase 3 --- everything else. ❌** The remaining PORT and MERGE rows. Extend
+**Phase 3 --- everything else. ⚠️** Row 2 (`now.qmd`) is ported. The
+remaining PORT and MERGE rows are untouched, and rows 4, 6 and 9 still need
+their disposition confirmed before they can be. Extend
 `projects/projects.yml` with any software the old site lists that this one does
 not.
 
