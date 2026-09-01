@@ -35,8 +35,12 @@ website:
         text: Resources
       - href: code.qmd
         text: Code
-      - href: about.qmd
-        text: About
+      - text: About
+        menu:
+          - href: about.qmd
+            text: About
+          - text: CV
+            href: "https://docs.google.com/document/d/1gl52JUJqrf8wL0irCn-mFp_pw0Z5w0ZalvLnKw9GSyc/edit"
     right:
       - icon: github
         href: "https://github.com/iamstein/TrinityMetrics"

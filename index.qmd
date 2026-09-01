@@ -3,12 +3,12 @@ page-layout: full
 toc: false
 ---
 
-TrinityMetrics explores how biostatisticians, pharmacometricians, and clinical data scientists can use modern AI tools while maintaining accountability, reproducibility, and data integrity. It contains:
+TrinityMetrics combines a lifetime love of teaching and learning, 17 years of pharmacometrics experience, and a recent interest in using GenAI tools to support both education and drug development. This site contains:
 
-* [Blog](blog/index.qmd): mainly about tools for making GenAI-assisted analysis more transparent and reproducible.
-* [Projects](projects/index.qmd): open-source tools and working documents for longer-running methods problems.
-* [Guides](guides/index.qmd): working practices, starting with how to read a paper.
-* [Code](code.qmd): reusable scripts, templates, and utilities that support practical work.
-* [Resources](resources.qmd): documents, checklists, and implementation-oriented materials that support reviewable work.
+| | Holds | On this site |
+|---|---|---|
+| **Pharmacometrics** | Tools, guides, checklists and talks I've developed and contributed to, that support model-informed drug development. | [Projects](projects/index.qmd), [Resources](resources.qmd) |
+| **Education** | Guides and frameworks for learning and career development. | [Guides](guides/index.qmd) |
+| **GenAI** | Project development using GenAI, skill files to support development, and a nascent blog. | [Blog](blog/index.qmd) |
 
 ![](TrinityMetrics_DetailedImage.png){fig-align="center" width="600px"}

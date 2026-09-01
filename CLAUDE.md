@@ -2,15 +2,17 @@
 
 ## Writing guide
 
-Read `.claude/WRITING_FOR_ANDY.md` before drafting a new document, or before
+Read `.github/skills/writing-for-andy/SKILL.md` before drafting a new document, or before
 substantially rewriting an existing one — a `.qmd` page, a blog post, a project
 document, `README.md`. Read it once per session, on the first such task, and
 again whenever Andy asks for it by name. Do not read it for code, configuration,
 a typo fix, a link change, or as a session preamble.
 
-The guide is maintained in `iamstein/synpmx` at `design/WRITING_FOR_ANDY.md`,
-and the copy here is a copy. Do not edit it during a session; say in the
-conversation what looks wrong and let Andy decide, in synpmx.
+The guide originates in `iamstein/synpmx` at `design/WRITING_FOR_ANDY.md`. The
+copy here is adapted for this repository and has diverged from that one. It sits
+in `.github/skills/` rather than `.claude/skills/` so that it loads when this
+instruction says to read it, and not on every session. Do not edit it during a
+session; say in the conversation what looks wrong and let Andy decide.
 
 Its Part 1 document contract lists synpmx files. The equivalent for this
 repository:
