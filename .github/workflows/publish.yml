@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir -p docs/files
           curl --fail --silent --show-error --location \
-            "https://docs.google.com/document/d/${{ vars.CV_DOC_ID }}/export?format=pdf" \
+            "https://docs.google.com/document/d/1gl52JUJqrf8wL0irCn-mFp_pw0Z5w0ZalvLnKw9GSyc/export?format=pdf" \
             -o docs/files/stein-cv.pdf
 
       - name: Upload Pages artifact

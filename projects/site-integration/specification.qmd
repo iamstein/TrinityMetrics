@@ -259,7 +259,7 @@ because no file is hosted on the old site.
 
 | # | Old URL | Title | Kind | Files on it | Disposition | Lands at | Reason / note |
 |---|---|---|---|---|---|---|---|
-| 1 | `/home` | Andrew M Stein | page | none hosted; 2 external | MERGE | `about.qmd` | Bio opens About per Section 6. Affiliation confirmed current (Q3), so it ports verbatim. Contact, Scholar and Medium links go to the bottom of About per Section 4. |
+| 1 | `/home` | Andrew M Stein | page | none hosted; 2 external | MERGE | `about.qmd` | Bio opens About per Section 6. Affiliation confirmed current (Q3), so it ports verbatim. Contact, Scholar and Medium links go to the bottom of About per Section 4. The ukulele site stays an outbound link. |
 | 2 | `/now` | Now | page | none | PORT | `now.qmd` | Kept: a Derek Sivers "now page", not a news list (Q2). Last updated 2026-03-27. Placement to confirm; it adds a fifth item to the About menu in Section 10. |
 | 3 | `/effective-learning` | Effective-Learning | page | none hosted; 1 Google Doc | PORT | `guides/effective-learning.qmd` | Largest page on the old site. The A-B-C-D-E-F-G learning checklist. Teaching leg per Section 3; `guides/` per Section 4. |
 | 4 | `/pmx-tools` | PMX-Tools | page | none hosted; 5 external | MERGE | `resources.qmd` | Curated list of checklists and cheat sheets. `resources.qmd` is a stub today. Confirm this against a `guides/` page instead. |
@@ -268,7 +268,7 @@ because no file is hosted on the old site.
 | 7 | `/cv` | CV | page | none hosted; Google Doc | LINK | navbar `CV`, out to Google Docs | Section 4 and Section 10: an external navbar link, no page of its own. Needs `CV_DOC_ID` for the build-time export in Section 8. |
 | 8 | `/talks` | Talks | page | none hosted; 12 external | PORT | `talks.qmd` + `talks.yml` | Twelve decks clears the five-entry bar in Section 4, so it earns its own page. |
 | 9 | `/recommended-reading` | Recommended Resources | page | none | MERGE | `guides/reading-list.qmd` | Books with a note on what each is for. Overlaps the reading list already on this site: a fourth overlap, not among the three in Section 6. |
-| 10 | `/equations` | Equations | page | none hosted; Google Doc | *open* | *open* | Orphan, not in the navbar. The body is one Google Doc link and nothing else. Andy to decide LINK or DROP. |
+| 10 | `/equations` | Equations | page | none hosted; Google Doc | DROP | --- | Orphan, not in the navbar, and its body is one Google Doc link. Andy: not wanted as a page; the material belongs in the pharmacometrics guides. Doc `1t9omSVTz4lf2RT6GF3dTYTALM-Yy0tCk5UVIyxQlWZQ`, recorded so the link survives the drop. |
 | 11 | `/pmx-career-links` | PMX-Career-Links | page | none | MERGE | `guides/career-advice.qmd` | Orphan, not in the navbar. Mailing lists, the ISoP career page, and US programs that may be hiring postdocs. Folds under career advice. |
 | 12 | `opensource.nibr.com/xgx/Resources/Uncertainty_Assessment_Pedigree_Table.pdf` | Uncertainty Pedigree Table | link | --- | LINK | --- | On `/home`. Canonical on the xgx site; Section 6 keeps xgx linked, not absorbed. |
 | 13 | `github.com/Novartis/xgx/.../ContextOfUse_Table_1page.pdf` | Context of Use Table | link | --- | LINK | --- | On `/home`. Canonical in the Novartis xgx repository. |
@@ -301,10 +301,10 @@ need pointers. Rows 19 to 30 are marked PORT because Section 8 rules that a
 deck ports as a PDF, which a reader can open on a phone; the sources stay in
 `iamstein/Publications` either way.
 
-**Rows still open.** Row 10 is Andy's. Rows 2, 4, 6 and 18 carry a proposed
-disposition with the alternative named in the note, and rows 19 to 30 assume
-Section 8's convert-to-PDF rule applies to decks hosted in a repository as well
-as to decks hosted on the old site.
+**Rows still open.** Rows 2, 4, 6 and 18 carry a proposed disposition with the
+alternative named in the note, and rows 19 to 30 assume Section 8's
+convert-to-PDF rule applies to decks hosted in a repository as well as to decks
+hosted on the old site. Row 10 closed on 2026-09-01.
 
 Fill rules:
 
@@ -490,8 +490,12 @@ So `.github/workflows/publish.yml` gains one step between **Render site** and
             -o docs/files/stein-cv.pdf
 ```
 
-`CV_DOC_ID` is a repository variable rather than a secret, since the document
-is link-shared and its ID is public in the share URL anyway.
+**As built, the ID is written into the workflow rather than held in
+`vars.CV_DOC_ID`.** The document is link-shared and its ID is public in the
+share URL, so a variable protects nothing, and an unset variable fails the
+build. The published document is
+`1gl52JUJqrf8wL0irCn-mFp_pw0Z5w0ZalvLnKw9GSyc`. Verified on 2026-09-01: the
+export URL returns an 8-page, 316 KB PDF with no authentication.
 
 Four properties this has:
 
@@ -621,35 +625,62 @@ The migration is done when all of these hold.
 Phases are ordered so that each one leaves the site in a publishable state.
 None of them requires the next one to start.
 
-**Phase 0 --- inventory.** Take the Takeout export, commit it to
-`import/google-site-raw`, and run `import_google_site.py inventory` to generate
-the Section 5 rows. Decide the dispositions and record the row count. Answer
-the open questions in Section 14 that the export settles. This phase produces
-no site change and it is the phase that makes the rest estimable. Do not skip
-it and port pages as they are noticed; that is how a page gets left behind.
+### Status markers
 
-**Phase 1 --- the person, at minimum.** Rewrite `about.qmd` to open with the
-bio from the Google site and remove the self-referential link. Add the CV
-export step to `publish.yml` and set the `CV_DOC_ID` variable. Correct
-`site-url` to the domain. Rewrite `index.qmd` and `README.md` to the three
-legs in Section 3. Add the About menu from Section 10. After this
-phase the merged site
+- ✅ **Done.** Built, rendered and on a branch or on `main`.
+- ⚠️ **Part done.** Some items complete; the phase names which remain.
+- ❌ **Not started**, or blocked on something named in the phase.
+
+Change a marker when the work is done, not when it is planned. A phase is ✅
+only when every item under it is.
+
+**Phase 0 --- inventory. ✅** Done on 2026-09-01, by crawling the live site
+from a local machine rather than by Takeout: Section 7's export route was
+written when `sites.google.com` was unreachable, and Takeout no longer offers
+Sites as a product in any case. Section 5 holds 30 rows and Q2, Q3 and Q4 are
+closed. No `import/google-site-raw` branch was needed, because no file is
+hosted on the old site.
+
+**Phase 1 --- the person, at minimum. ⚠️** After this phase the merged site
 already answers "who is this" and the old site is optional rather than load
 bearing.
 
-**Phase 2 --- publications and talks.** Add `publications.yml`,
+| Item | Status |
+|---|---|
+| `about.qmd` opens with the bio; self-referential link removed | ✅ |
+| CV export step in `publish.yml` | ✅ |
+| About menu from Section 10 in the navbar | ✅ |
+| `README.md` structure, layout and publishing sections | ✅ |
+| `index.qmd` and `README.md` framing rewritten to the three legs | ⚠️ Andy is writing the prose; `index.qmd` carries the three legs as a table |
+| `site-url` corrected to the domain | ❌ Blocked; see the domain item below |
+
+**The domain is not wired to GitHub Pages, and `site-url` must not change until
+it is. ❌** Checked on 2026-09-01: `trinitymetrics.com` answers with a 301 to
+`https://iamstein.github.io/TrinityMetrics/`, its A records are `3.33.251.168`
+and `15.197.225.128`, `www.trinitymetrics.com` does not resolve, and the
+repository has no `CNAME` file. That is a registrar-level forward, not a custom
+domain, so a reader who types the domain ends with `iamstein.github.io` in the
+address bar. Setting `site-url` to `trinitymetrics.com` now would point every
+canonical URL, sitemap entry and RSS link at a forwarder. The order is: point
+DNS at the GitHub Pages addresses `185.199.108.153` through `185.199.111.153`,
+or `www` at `iamstein.github.io`; add a `CNAME` file holding the domain; set
+the custom domain in the repository's Pages settings; wait for the certificate;
+then correct `site-url`. The DNS step needs Andy's registrar login. Deferred by
+Andy on 2026-09-01, to be done as its own piece of work.
+
+**Phase 2 --- publications and talks. ❌** Add `publications.yml`,
 `publications.qmd`, the `.bib`, and the same for talks if the volume in Section
 5 justifies a page. Copy slides and posters into `files/`.
 
-**Phase 3 --- everything else.** The remaining PORT and MERGE rows. Extend
+**Phase 3 --- everything else. ❌** The remaining PORT and MERGE rows. Extend
 `projects/projects.yml` with any software the old site lists that this one does
 not.
 
-**Phase 4 --- the old site becomes pointers.** Only after Phases 1 to 3 are
+**Phase 4 --- the old site becomes pointers. ❌** Only after Phases 1 to 3 are
 published and checked. Replace each old page's body with its pointer, and
 update the external profiles listed in Section 11.
 
-**Phase 5 --- acceptance.** Run Section 12 end to end and record the result at
+**Phase 5 --- acceptance. ❌** Run Section 12 end to end and record the result at
 the bottom of Section 5.
 
 ## 14. Open questions
@@ -659,8 +690,10 @@ and Q4 by the crawl in Section 5.
 
 1.  ~~Is a custom domain wanted?~~ **Closed.** `trinitymetrics.com` is held
     and already points here. It carries the project identity rather than a
-    personal one, so it confirms option A in Section 3. What remains is
-    mechanical: correct `site-url` and check how the domain is wired.
+    personal one, so it confirms option A in Section 3. The wiring was checked
+    on 2026-09-01 and is a registrar forward rather than a GitHub Pages custom
+    domain, so what remains is not mechanical. Section 13, Phase 1 holds the
+    finding and the steps.
 2.  ~~Is there a news or updates section, and does it survive?~~ **Closed.**
     The `/now` page survives. It is a [now page](https://nownownow.com/about)
     in Derek Sivers's sense: one standing statement of current work, updated in

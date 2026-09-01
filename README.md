@@ -88,9 +88,9 @@ The site is configured to render to `docs/`.
 
 `.github/workflows/publish.yml` renders the site and deploys it on every push
 to `main`. That workflow also fetches the CV from Google Docs into
-`docs/files/stein-cv.pdf` at build time, so the published PDF always matches
-the document. It needs a repository variable, `CV_DOC_ID`, set under
-Settings, Secrets and variables, Actions, Variables.
+`docs/files/stein-cv.pdf` at build time, so the published PDF matches the
+document as of the last build. The document must stay shared as *anyone with
+the link, Viewer* for the fetch to work.
 
 ## Notes
 
