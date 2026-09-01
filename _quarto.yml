@@ -11,7 +11,8 @@ project:
     - "!Post_Ideas.md"
   resources:
     - references/**
-    - trinitymetrics-logo.png
+    - trinitymetrics-logo-light.png
+    - trinitymetrics-logo-dark.png
     - TrinityMetrics_DetailedImage.png
     - TrinityMetrics_SimplerImage.png
 
