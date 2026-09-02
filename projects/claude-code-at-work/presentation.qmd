@@ -191,12 +191,10 @@ and do the training.
 ## If you want to try it
 
 1. Do the training, so `claude.ai` is not blocked
-2. Pick a repository with **no** sensitive data
-3. Give it a small, checkable task — a failing test, a CI workflow
+2. Pick a repository, or just create your own on GitHub
+3. Give it a small, checkable task — a failing test, or use GitHub Actions to
+   set up publishing
 4. Have it publish a site, so you can read the output rather than run it
-5. Write a `CLAUDE.md` for the repository once the conventions matter
-
-## Questions
 
 ## Appendix: the full diagnosis {visibility="uncounted"}
 
