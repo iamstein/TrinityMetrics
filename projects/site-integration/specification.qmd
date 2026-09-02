@@ -261,15 +261,15 @@ because no file is hosted on the old site.
 |---|---|---|---|---|---|---|---|
 | 1 | `/home` | Andrew M Stein | page | none hosted; 2 external | MERGE | `about.qmd` | Bio opens About per Section 6. Affiliation confirmed current (Q3), so it ports verbatim. Contact, Scholar and Medium links go to the bottom of About per Section 4. The ukulele site stays an outbound link. |
 | 2 | `/now` | Now | page | none | PORT ✅ | `now.qmd` | Done 2026-09-01. A Derek Sivers "now page" (Q2), last updated 2026-03-27. Sits under the About menu, which now has four items. |
-| 3 | `/effective-learning` | Effective-Learning | page | none hosted; 1 Google Doc | PORT | `guides/effective-learning.qmd` | Largest page on the old site. The A-B-C-D-E-F-G learning checklist. Teaching leg per Section 3; `guides/` per Section 4. |
-| 4 | `/pmx-tools` | PMX-Tools | page | none hosted; 5 external | MERGE | `resources.qmd` | Curated list of checklists and cheat sheets. `resources.qmd` is a stub today. Confirm this against a `guides/` page instead. |
-| 5 | `/career-advice` | Career-Advice | page | none hosted; 1 external | PORT | `guides/career-advice.qmd` | Academia-to-industry transition checklist; the page that led to the SIAM News article. |
-| 6 | `/software` | Software | page | none | MERGE | `projects/projects.yml` | AIRE, FIRE and BEAMS, the 2007-2011 thesis tools, with three papers. Confirm: three new `projects.yml` rows, or fold into publications instead. |
+| 3 | `/effective-learning` | Effective-Learning | page | none hosted; 1 Google Doc | PORT ✅ | `guides/effective-learning.qmd` | Done 2026-09-02. Headings and bullets restored by hand, the page's own table of contents replaced by Quarto's, and Google anchor artifacts removed. |
+| 4 | `/pmx-tools` | PMX-Tools | page | none hosted; 5 external | SPLIT ✅ | `guides/pmx-tools.qmd` and `projects/projects.yml` | Done 2026-09-02. Andy: distribute between PMX guides and R packages. The checklists and cheat sheets became a PMX guide; xgxr, nlmixr2 and ggPMX became R-package rows. |
+| 5 | `/career-advice` | Career-Advice | page | none hosted; 1 external | PORT ✅ | `guides/career-advice.qmd` | Done 2026-09-02, with row 11 merged in as its last section. Andy will revise the prose. |
+| 6 | `/software` | Software | page | none | PORT ✅ | `software.qmd` | Done 2026-09-02. Andy: keep the page, but not prominent. xGx dropped from it, being an R-package row. AIRE, FIRE and BEAMS are MATLAB from the thesis and postdoc, so the page sits under the About menu rather than in Projects. |
 | 7 | `/cv` | CV | page | none hosted; Google Doc | LINK | navbar `CV`, out to Google Docs | Section 4 and Section 10: an external navbar link, no page of its own. Needs `CV_DOC_ID` for the build-time export in Section 8. |
 | 8 | `/talks` | Talks | page | none hosted; 12 external | PORT | `talks.qmd` + `talks.yml` | Twelve decks clears the five-entry bar in Section 4, so it earns its own page. |
 | 9 | `/recommended-reading` | Recommended Resources | page | none | MERGE | `guides/reading-list.qmd` | Books with a note on what each is for. Overlaps the reading list already on this site: a fourth overlap, not among the three in Section 6. |
 | 10 | `/equations` | Equations | page | none hosted; Google Doc | DROP | --- | Orphan, not in the navbar, and its body is one Google Doc link. Andy: not wanted as a page; the material belongs in the pharmacometrics guides. Doc `1t9omSVTz4lf2RT6GF3dTYTALM-Yy0tCk5UVIyxQlWZQ`, recorded so the link survives the drop. |
-| 11 | `/pmx-career-links` | PMX-Career-Links | page | none | MERGE | `guides/career-advice.qmd` | Orphan, not in the navbar. Mailing lists, the ISoP career page, and US programs that may be hiring postdocs. Folds under career advice. |
+| 11 | `/pmx-career-links` | PMX-Career-Links | page | none | MERGE ✅ | `guides/career-advice.qmd` | Done 2026-09-02, as that page's last section. Google redirect wrappers unwrapped to the real URLs. |
 | 12 | `opensource.nibr.com/xgx/Resources/Uncertainty_Assessment_Pedigree_Table.pdf` | Uncertainty Pedigree Table | link | --- | LINK | --- | On `/home`. Canonical on the xgx site; Section 6 keeps xgx linked, not absorbed. |
 | 13 | `github.com/Novartis/xgx/.../ContextOfUse_Table_1page.pdf` | Context of Use Table | link | --- | LINK | --- | On `/home`. Canonical in the Novartis xgx repository. |
 | 14 | `github.com/Novartis/xgx/.../Uncertainty_Assessment_Presentation.pdf` | Managing Uncertainty presentation | link | --- | LINK | --- | On `/pmx-tools`. |
@@ -317,6 +317,27 @@ Fill rules:
     old URLs and separate inbound links.
 -   The count of rows is the acceptance criterion in Section 12. Write it down
     once the table is filled.
+
+## 5b. How the listings are grouped
+
+Decided by Andy on 2026-09-02, after the ported pages made the old flat
+listings hard to scan. Four groups over two pages:
+
+| Page | Group | Holds |
+|---|---|---|
+| Projects | R packages | synpmx, xgx, xgxr, and the third-party packages the guides point at |
+| Projects | R projects | TCE-IPDE, TCE-CRS-tolerance |
+| Guides | PMX guides | Pharmacometrics Tools, Reading Papers |
+| Guides | Learning guides | Effective Learning, Career Advice, Reading List |
+
+Each page carries one Quarto listing per group, filtered on the `categories`
+field of a single source YAML, so a row changes group by changing one word.
+`Site integration` is in neither group and sits under its own heading.
+
+Two things to settle: whether `R project` is the right name for a
+pharmacometrics modelling project, which Andy raised when proposing it, and
+whether third-party packages belong in a listing that until now held only his
+own work.
 
 ## 6. Where the two sites already overlap
 
@@ -686,9 +707,9 @@ Andy on 2026-09-01, to be done as its own piece of work.
 `publications.qmd`, the `.bib`, and the same for talks if the volume in Section
 5 justifies a page. Copy slides and posters into `files/`.
 
-**Phase 3 --- everything else. ⚠️** Row 2 (`now.qmd`) is ported. The
-remaining PORT and MERGE rows are untouched, and rows 4, 6 and 9 still need
-their disposition confirmed before they can be. Extend
+**Phase 3 --- everything else. ⚠️** Rows 2, 3, 4, 5, 6 and 11 are done. Row 9
+is the only content row left, and rows 19 to 30 are the decks in Phase 2.
+Extend
 `projects/projects.yml` with any software the old site lists that this one does
 not.
 
