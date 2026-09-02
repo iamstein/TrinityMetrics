@@ -26,13 +26,13 @@ format:
 
 ![](../../files/xgxr-issue-72-report.png){width="76%" fig-align="center" fig-alt="GitHub issue 72 reporting that xgx_stat_ci breaks produces incorrect binning with scale_x_log10 in ggplot2 4.0 and later."}
 
-## 1. xgxr: Source of bug: we used a hand-copied "fork" of ggplot2 (now outdated)
+## 1. xgxr: Source of bug was using a hand-copied "fork" of ggplot2 function
 
 
 - `xgxr::StatSummaryBinQuant` is a hand-copied fork of ggplot2's
   `stat-summary-bin.R`, pinned in its roxygen block to ggplot2 commit
   `351eb41`. It never picked up a transform step ggplot2 added later.
--  In this old version it had: `breaks <- breaks'
+-  In this old version it had: `breaks <- breaks`
 -  ggplot2 since changed with `breaks <- scales[[x]]$transform(breaks)`
 
 ## 1. xgxr: Fixed bug and got package ready for CRAN
@@ -61,6 +61,7 @@ Allows for workflows, teaching material and tooling can
 be developed and shared without exposing real clinical data.
 
 This is still a work in progress, with three different synthetic data generators explored so far, each with their own strengths.
+
 - PMX models
 - Principle Component Analysis *PCA*
 - AVATAR - Patient blending
@@ -73,9 +74,9 @@ This is still a work in progress, with three different synthetic data generators
 
 The above lets me tell if the syntehtic data looks reasonable.  
 
-Once I have an algorithm that works well and can is acceptable by our data privacy office, I'll then validate the code, but to this point, it's all been "vibe-coded" with Claude Code.  
+Once I have an algorithm that works well and the process as acceptable by data privacy, I can validate the code.  Thus far, it's all been "vibe-coded" with Claude Code.  
 
-It's been helpful having a working prototype for building my own understanding and in discussions with others.
+It's very helpful having a working prototype for building my own understanding for discussing with others.  
 
 ## 4. Exploring Strategic Questions
 
@@ -92,7 +93,9 @@ the EHA 2020 poster.
 A specification, a reading queue, and a references page marking, for every
 source, whether the claim drawn from it had been checked against the source.
 
-## Claude and I build websites in GitHub for development
+[Working specification](../tce-ipde/specification.qmd)
+
+## Workflow
 
 - For an R package, `pkgdown`. For anything else, Quarto and `quarto_render()`.
 - Sites are published by Continuous Integration (CI) through GitHub Actions.
@@ -102,7 +105,7 @@ source, whether the claim drawn from it had been checked against the source.
 For things that aren't their own R package and github repo, I've been a repository I set up.
 [TrinityMetrics](https://iamstein.github.io/TrinityMetrics/).
 
-![](../../files/trinitymetrics-site.png){width="58%" fig-align="center" fig-alt="The TrinityMetrics site: navigation bar, the three-category table, and the triquetra logo."}
+![](../../files/trinitymetrics-site.png){width="58%" fig-align="center" fig-alt="The TrinityMetrics site: navigation bar, the three-category table, and the triquetra logo with the trinity metrics wordmark."}
 
 ## Why Claude Code rather than Positron
 
