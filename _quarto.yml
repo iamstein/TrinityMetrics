@@ -28,28 +28,20 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: blog/index.qmd
-        text: Blog
       - href: projects/index.qmd
         text: Projects
       - href: guides/index.qmd
         text: Guides
       - href: pmx-tools.qmd
         text: PMX Tools
-      - href: resources.qmd
-        text: Resources
-      - href: code.qmd
-        text: Code
+      - href: talks.qmd
+        text: Talks
       - text: About
         menu:
           - href: about.qmd
             text: About
           - href: now.qmd
             text: Now
-          - href: talks.qmd
-            text: Talks
-          - href: software.qmd
-            text: Earlier Software
           - text: CV
             href: "https://docs.google.com/document/d/1gl52JUJqrf8wL0irCn-mFp_pw0Z5w0ZalvLnKw9GSyc/edit"
     right:

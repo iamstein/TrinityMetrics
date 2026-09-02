@@ -25,7 +25,7 @@ repository:
 | `projects/*/index.qmd` | Finding the right document in the folder | how-to | thin |
 | `projects/*/*.qmd` | Working on the project | reference | as long as the work needs |
 | `guides/*.qmd` | Looking up how to do something | how-to | thin |
-| `about.qmd`, `code.qmd`, `resources.qmd` | Looking one thing up | reference | thin |
+| `about.qmd`, `code.qmd` | Looking one thing up | reference | thin |
 | `blog/drafts/*` | Andy, later | draft | unconstrained |
 
 The machine-prose tics in the guide's Part 1 apply to everything, including

@@ -7,9 +7,10 @@ TrinityMetrics combines a lifetime love of teaching and learning, 17 years of ph
 
 ::: {.legs-table}
 
+|   |   |   |
 |---|---|---|
-| **Pharmacometrics** | Tools, guides, checklists and talks I've developed and contributed to, that support model-informed drug development. | [Projects](projects/index.qmd), [Resources](resources.qmd) |
-| **Education** | Guides and frameworks for learning and career development. | [Guides](guides/index.qmd) |
+| **Pharmacometrics** | Tools, guides, checklists and talks I've developed and contributed to, that support model-informed drug development. | [Projects](projects/index.qmd), [PMX Tools](pmx-tools.qmd) |
+| **Education** | Guides and frameworks for learning and career development. | [Guides](guides/index.qmd), [Talks](talks.qmd) |
 | **GenAI** | Project development using GenAI, skill files to support development, and a nascent blog. | [Blog](blog/index.qmd) |
 
 :::

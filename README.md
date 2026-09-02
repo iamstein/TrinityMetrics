@@ -32,7 +32,6 @@ The Quarto site is organized around a small set of stable pages:
 ├─ _quarto.yml
 ├─ index.qmd
 ├─ about.qmd
-├─ resources.qmd
 ├─ code.qmd
 ├─ blog/
 │  ├─ index.qmd

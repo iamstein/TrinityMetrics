@@ -601,12 +601,28 @@ Ten flat items do not fit on a laptop width and do not survive on a phone.
 Proposed structure:
 
 ```
-Home | Blog | Projects | Guides | Resources | Code | About ▾
-                                                      ├─ About
-                                                      ├─ CV  (→ Google Docs)
-                                                      ├─ Publications
-                                                      └─ Talks
+Home | Projects | Guides | PMX Tools | Talks | About ▾
+                                                 ├─ About
+                                                 ├─ Now
+                                                 └─ CV  (→ Google Docs)
 ```
+
+**As built, 2026-09-02.** ✅ The proposal above put every person-level page
+under About and kept the seven original items. Andy cut it the other way, and
+the result is shorter than either: five left-hand items rather than the eight
+the ported pages had grown to.
+
+-   **Blog and Code left the navbar** but keep their pages. The home page still
+    links Blog from the GenAI row; Code is reachable only by URL until it holds
+    something.
+-   **Resources was deleted.** Its three links were already on PMX Tools, apart
+    from the Validation Checklist PDF, which was added there beside its Google
+    Doc.
+-   **Talks is top-level**, not under About, and is linked from the Education
+    row of the home page.
+-   **Earlier Software moved to Projects**, under an *Earlier work* heading at
+    the bottom, rather than sitting under About.
+-   **Publications** is still unbuilt, and will need a place here.
 
 The CV entry is an external link, per Section 4. Quarto takes a full URL in a
 navbar `href`, so it needs no page of its own.

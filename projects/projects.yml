@@ -50,3 +50,12 @@
     where it lands, what happens to the old URLs, and in what order to do it.
   categories: [Site]
   path: site-integration/index.qmd
+
+- title: "Earlier Software"
+  subtitle: "MATLAB, before 2011"
+  description: >
+    AIRE, FIRE and BEAMS: MATLAB tools written during the PhD thesis and
+    postdoc, for tumour spheroid invasive radii, network geometry from
+    confocal images, and beam network deformation.
+  categories: [Earlier work]
+  path: ../software.qmd

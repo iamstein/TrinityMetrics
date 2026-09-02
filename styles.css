@@ -57,3 +57,9 @@
     padding-top: 0.25rem;
   }
 }
+
+/* The legs table carries no column headings. Pandoc still needs a header row
+   for the block to parse as a table, so the row exists and is hidden. */
+.legs-table thead {
+  display: none;
+}

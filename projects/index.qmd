@@ -31,6 +31,16 @@ listing:
     fields: [title, description]
     categories: false
     feed: false
+  - id: earlier-work
+    contents: projects.yml
+    include:
+      categories: "Earlier work"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, description]
+    categories: false
+    feed: false
 toc: false
 ---
 
@@ -56,4 +66,9 @@ being thought about, not a finished result.
 ## This site
 
 ::: {#site-projects}
+:::
+
+## Earlier work
+
+::: {#earlier-work}
 :::
