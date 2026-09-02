@@ -46,21 +46,6 @@ I am a member of the
 [exploratory graphics (xGx)](http://opensource.nibr.com/xgx/) team. I also have
 a [ukulele webpage](https://www.ukeskywalker.com).
 
-## Audience
-
-The primary audience includes:
-
-- pharmacometricians
-- biostatisticians
-- statistical programmers
-- clinical data scientists
-
-## Project status
-
-This is an early-stage working repository.
-
-The goal is to build a useful collection of writing, code, examples, and reusable workflow patterns over time.
-
 ## Contact
 
 - Email: [andy.stein@gmail.com](mailto:andy.stein@gmail.com)
