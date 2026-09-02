@@ -22,11 +22,11 @@ format:
 
 # What it built
 
-## xgxr: User reported a bug
+## 1. xgxr: User reported a bug
 
 ![](../../files/xgxr-issue-72-report.png){width="76%" fig-align="center" fig-alt="GitHub issue 72 reporting that xgx_stat_ci breaks produces incorrect binning with scale_x_log10 in ggplot2 4.0 and later."}
 
-## xgxr: Source of bug: we used a hand-copied "fork" of ggplot2 (now outdated)
+## 1. xgxr: Source of bug: we used a hand-copied "fork" of ggplot2 (now outdated)
 
 
 - `xgxr::StatSummaryBinQuant` is a hand-copied fork of ggplot2's
@@ -87,7 +87,7 @@ a first-in-human T-cell engager trial?**
 MCLA-117: a published within-patient ladder, 25 µg to 400 mg, transcribed from
 the EHA 2020 poster.
 
-## 4. Output (so far) a specification. 
+## 4. Output is currently a specification. 
 
 A specification, a reading queue, and a references page marking, for every
 source, whether the claim drawn from it had been checked against the source.
@@ -99,7 +99,7 @@ source, whether the claim drawn from it had been checked against the source.
 - I read the rendered output — on my phone, at home, or at work.
 - It sets all of that up itself: the Actions workflow, the publishing, the theme.
 
-For things that aren't their own R package and github repo, I've been using
+For things that aren't their own R package and github repo, I've been a repository I set up.
 [TrinityMetrics](https://iamstein.github.io/TrinityMetrics/).
 
 ![](../../files/trinitymetrics-site.png){width="58%" fig-align="center" fig-alt="The TrinityMetrics site: navigation bar, the three-category table, and the triquetra logo."}
@@ -118,8 +118,7 @@ For things that aren't their own R package and github repo, I've been using
 ## Getting access
 
 Running Claude directly at `claude.ai` is blocked until you have done the
-short internal training. When you hit the block, click the link it gives you
-and do the training.
+short internal training that is linked to whenever you hit the block. 
 
 ## If you want to try it
 
