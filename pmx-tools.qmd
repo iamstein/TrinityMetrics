@@ -20,8 +20,10 @@ tools.
 
 The checklists and cheat sheets below come from the
 [Novartis xgx project](https://github.com/Novartis/xgx) and are mirrored on
-this site so that they open on networks that block the original hosts. Google
-Docs are linked at Google, since those are the editable copies.
+this site so that they open on networks that block the original hosts. Each
+Google Doc is linked twice: a **PDF** exported here when the site is built,
+which opens anywhere, and the **Google** original, which is the editable copy
+and the one to use when you want to comment or suggest an edit.
 
 ## Scoping
 
@@ -29,9 +31,13 @@ Docs are linked at Google, since those are the editable copies.
   for scoping modeling activity
 - [Uncertainty Checklist](https://zenodo.org/record/4409236)
 - [Presentation on Managing Uncertainty](references/Uncertainty_Assessment_Presentation.pdf)
-- [Causality Checklist and Guidance for PMX](https://docs.google.com/document/d/1Hc3RoTJXS-PQCUm-rG_RCuEa3ykRj5FiAtqRwgSiX6M/edit)
+- Causality Checklist and Guidance for PMX:
+  [PDF](files/causality-checklist.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1Hc3RoTJXS-PQCUm-rG_RCuEa3ykRj5FiAtqRwgSiX6M/edit)
 - [Dose Finding Framework](https://ascpt.onlinelibrary.wiley.com/doi/epdf/10.1002/psp4.12701)
-- [How to Read a Paper](https://docs.google.com/document/d/1jtZHKJ88PEjVr2mxWzNjG51t97CyO8rv4zoenTH_RWE/edit)
+- How to Read a Paper:
+  [PDF](files/how-to-read-a-paper.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1jtZHKJ88PEjVr2mxWzNjG51t97CyO8rv4zoenTH_RWE/edit)
 
 ## Graphics
 
@@ -47,22 +53,33 @@ Docs are linked at Google, since those are the editable copies.
 ## Presentations and soft skills
 
 - [Presentation Checklist](references/Presentation_Checklist_v2.03.pdf)
-- [Presentation Evaluation Feedback Form](https://docs.google.com/document/d/1K_lcsG6sClLQcd5sm_ezcvtD9ccmm0uM/edit?usp=sharing&ouid=104181681028732168572&rtpof=true&sd=true)
+- Presentation Evaluation Feedback Form:
+  [PDF](files/presentation-evaluation-form.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1K_lcsG6sClLQcd5sm_ezcvtD9ccmm0uM/edit)
 - [Guide to Giving and Receiving Feedback](references/Giving_and_Receiving_Feedback.docx)
-- [Communication Methods](https://docs.google.com/document/d/1678jBK-ffeoPMD2Q6nR-Dn8N8HnyJE1NEoF9enf8GUA/edit)
-  (email vs video call vs in person)
-- [Holding people accountable](https://docs.google.com/document/d/1cuONopvVPAjFoieWZ13et9CjJ8DAcvmhuOFwGG31-z4/edit)
+- Communication Methods (email vs video call vs in person):
+  [PDF](files/communication-methods.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1678jBK-ffeoPMD2Q6nR-Dn8N8HnyJE1NEoF9enf8GUA/edit)
+- Holding people accountable:
+  [PDF](files/holding-people-accountable.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1cuONopvVPAjFoieWZ13et9CjJ8DAcvmhuOFwGG31-z4/edit)
 
 ## PMX principles
 
-- [Intro. to Fundamental PK Concepts](https://docs.google.com/presentation/d/1_0wrRgCmRGN3TEFx87I0en6TiSckjbOp/edit)
-- [Intro. to Fundamental PD Concepts](https://docs.google.com/presentation/d/1IjaNyPhachTDWn2TO9YuVegsCTOSpiCp/edit)
+- Intro. to Fundamental PK Concepts:
+  [PDF](files/2019-08-01-fundamental-pk.pdf) ·
+  [Google Slides](https://docs.google.com/presentation/d/1_0wrRgCmRGN3TEFx87I0en6TiSckjbOp/edit)
+- Intro. to Fundamental PD Concepts:
+  [PDF](files/2019-08-01-fundamental-pd.pdf) ·
+  [Google Slides](https://docs.google.com/presentation/d/1IjaNyPhachTDWn2TO9YuVegsCTOSpiCp/edit)
 - [Practical PK Calculator](https://drughunter.com/resource/practical-pk-calculators/)
 - [FDA search for drug reviews](https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm)
 
 ## Open source code (R)
 
-- [R Coding Checklist](https://docs.google.com/document/d/17ec8YaARWZ6wppv3AfZCdaHfPwvOFUABXyXmENgHnpE/edit?usp=sharing)
+- R Coding Checklist:
+  [PDF](files/r-coding-checklist.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/17ec8YaARWZ6wppv3AfZCdaHfPwvOFUABXyXmENgHnpE/edit)
 - Validation Checklist: [PDF](references/Validation_Checklist.pdf) · [Google Doc](https://docs.google.com/document/d/1rXf7mfFpjg1EWafuMaT_Dw29pa-onqr--n2LRULrS1Q/edit)
 - [xgxr Package for Exploratory Graphics](https://cran.r-project.org/package=xgxr)
 - [nlmixr2 Package for Nonlinear Mixed Effect Modeling](https://nlmixr2.org/)

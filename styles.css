@@ -74,3 +74,26 @@
   height: auto;
   max-height: 50vh;
 }
+
+/* The About page headshot. Small enough to sit beside the opening paragraph
+   rather than announce itself, large enough to recognise a face; it drops out
+   of the float on a phone, where a 180px column beside text is unreadable. */
+.about-photo {
+  float: right;
+  width: 180px;
+  margin: 0 0 1rem 1.5rem;
+}
+
+.about-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+@media (max-width: 575.98px) {
+  .about-photo {
+    float: none;
+    width: 140px;
+    margin: 0 0 1rem 0;
+  }
+}

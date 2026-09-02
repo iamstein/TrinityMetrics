@@ -11,7 +11,7 @@ toc: true
 toc-depth: 3
 ---
 
-[Checklist Template](https://docs.google.com/document/d/1eXmTy0NHVlU1x5V-xzxwAPEHgYFjMzk8KvhF7gB0R98/edit)
+Checklist Template ([PDF](../files/learning-checklist-template.pdf) · [Google Doc](https://docs.google.com/document/d/1eXmTy0NHVlU1x5V-xzxwAPEHgYFjMzk8KvhF7gB0R98/edit))
 
 ## 1. Motivation
 
@@ -35,7 +35,7 @@ However,
 and techniques that work for 95% of the population may not work for you. I
 invite you to try out anything that appeals to you; if you get the sense it's
 not working, then let it go. I created a
-[Google Doc template](https://docs.google.com/document/d/1eXmTy0NHVlU1x5V-xzxwAPEHgYFjMzk8KvhF7gB0R98/edit?usp=sharing)
+[Google Doc template](https://docs.google.com/document/d/1eXmTy0NHVlU1x5V-xzxwAPEHgYFjMzk8KvhF7gB0R98/edit) ([PDF](../files/learning-checklist-template.pdf))
 to help in applying the checklist to an area of interest for you.
 
 ## 3. Learning Checklist (A-B-C-D-E-F-G)
@@ -146,7 +146,9 @@ then keep going, otherwise try something else.
   [PSQ5R](https://www.indiastudychannel.com/resources/126257-PSQSR-Model-for-Reading.aspx)
   method: (Purpose), Survey, Question, Read, (Record), Recite, Review,
   (Reflect).
-- [How to read a journal article](https://docs.google.com/document/d/1jtZHKJ88PEjVr2mxWzNjG51t97CyO8rv4zoenTH_RWE/edit)
+- How to read a journal article:
+  [PDF](../files/how-to-read-a-paper.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1jtZHKJ88PEjVr2mxWzNjG51t97CyO8rv4zoenTH_RWE/edit)
 
 ### Organizing
 
