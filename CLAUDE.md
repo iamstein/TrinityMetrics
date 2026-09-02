@@ -25,6 +25,7 @@ repository:
 | `projects/*/index.qmd` | Finding the right document in the folder | how-to | thin |
 | `projects/*/*.qmd` | Working on the project | reference | as long as the work needs |
 | `guides/*.qmd` | Looking up how to do something | how-to | thin |
+| `projects/*/presentation.qmd` | Sitting in the room | explanation | one idea per slide |
 | `about.qmd`, `code.qmd` | Looking one thing up | reference | thin |
 | `blog/drafts/*` | Andy, later | draft | unconstrained |
 

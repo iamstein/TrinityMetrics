@@ -1,8 +1,9 @@
 ---
 title: "Claude Code at Work"
 subtitle: "How I use it for open-source pharmacometrics"
-author: "Andrew Stein"
-date: last-modified
+author: "Andy Stein"
+date: "2026-09-23"
+date-format: long
 format:
   revealjs:
     theme: default
@@ -16,7 +17,7 @@ format:
 ## Overview
 
 * Four pieces of open-source work I did with Claude Code 
-* Why I use Claude Code rather than Positron
+* When and why I use Claude Code rather than Positron
 * How I set up Claude Code.
 
 # What it built
@@ -25,11 +26,11 @@ format:
 
 ![](../../files/xgxr-issue-72-report.png){width="76%" fig-align="center" fig-alt="GitHub issue 72 reporting that xgx_stat_ci breaks produces incorrect binning with scale_x_log10 in ggplot2 4.0 and later."}
 
-A good report: a reprex, and a diagnosis. Reported as a ggplot2 4.0 regression.
+A clear report, with a reprex and a diagnosis.
 
 ## 1. xgxr: what it actually was
 
-The diagnosis was wrong in the way that mattered.
+The report blamed ggplot2 4.0. The bug is about five years older than that.
 
 - ggplot2 3.5.1 was installed alongside 4.0.2 and the reprex run against both.
   It failed **identically** on 3.5.1.
@@ -59,8 +60,7 @@ so `cut()` compared transformed data against untransformed break points and
 dropped nearly everything.
 
 ::: {.notes}
-Silently wrong plots is the part that lands with this room. Not a crash. A
-plot that looked fine and was not.
+No error and no warning. The plots came out looking fine and were wrong.
 :::
 
 ## 1. xgxr: and then the release
@@ -88,6 +88,10 @@ Before, the rendered HTML lived in the repository, and someone had to remember
 to rebuild it and commit the result. Now `build-site.yml` renders on every
 push and deploys from `master`, and the Pages source was switched from a
 branch to GitHub Actions.
+
+[opensource.nibr.com/xgx](https://opensource.nibr.com/xgx/)
+
+![](../../files/xgx-site.png){width="62%" fig-align="center" fig-alt="The xGx website: navigation bar, the Exploratory Graphics overview, and the row of topic icons."}
 
 ## 2. xgx: the HTML left the repository
 
@@ -117,39 +121,67 @@ Linger here. CI plumbing and a dead-code sweep are exactly the jobs that never
 get done because nobody wants to spend a weekend on them.
 :::
 
-## 3. A new package: synpmx
+## 3. synpmx: what it is
 
 **Structurally Faithful Synthetic Pharmacometric Data**
 
-Generating realistic synthetic PK/PD datasets, so workflows, teaching material
-and tooling can be developed and shared without exposing real clinical data.
+Synthetic PK/PD datasets, so that workflows, teaching material and tooling can
+be developed and shared without exposing real clinical data.
 
-Written from nothing to a working package with a pkgdown site.
+Three generators so far — **AVATAR**, **PCA**, and a **PMX model** route — each
+carrying the same four documents: algorithm, demo, fingerprint, and public-data
+examples. It is still moving.
 
-## 4. A strategic question, not a coding task
+## 3. synpmx: build the scaffold first
+
+That is the part I would repeat. Before any generator was any good:
+
+- **The same public datasets throughout** — warfarin, mad, pheno_sd — so every
+  algorithm runs on the same ground
+- **A scorecard** that asks two questions of any output:
+  - **A.** Is the dataset valid? Legal PMX dataset, endpoints survived, strata
+    sizes survived, observation and dose counts survived, discrete stayed
+    discrete
+  - **B.** Is any individual patient identifiable from it?
+
+So I can tell whether a generator is producing meaningful output before anyone
+can say whether it is right.
+
+Validation comes later. First get the workflow right. This already gives me
+something concrete to use, and generating it was not the hard part.
+
+## 4. Exploring Strategic Questions
 
 **Does intra-patient dose escalation reach a confirmable active dose sooner in
 a first-in-human T-cell engager trial?**
 
-What came back was not code. It was a specification, a reading queue, and a
-references page marking, for every source, whether the claim drawn from it had
-actually been checked against the source.
+![](../tce-ipde/mcla117-escalation.svg){width="62%" fig-align="center" fig-alt="MCLA-117 Cycle 1 dose escalation. Each line is one cohort's within-patient ladder, on a log dose axis from 25 micrograms to 400 milligrams."}
+
+MCLA-117: a published within-patient ladder, 25 µg to 400 mg, transcribed from
+the EHA 2020 poster.
+
+## 4. What came back was not a script
+
+A specification, a reading queue, and a references page marking, for every
+source, whether the claim drawn from it had been checked against the source.
 
 ::: {.notes}
-This is the one that surprised me. Worth dwelling on.
+This is the one that surprised me. Slow down here.
 :::
 
 # How it is set up
 
-## The pattern: it builds a website, and I read the website
+## Claude and I build a website in GitHub
 
-- It works, commits, and pushes
-- CI publishes the site
-- I look at the rendered output — on my phone, at home, or at work
-- No local environment, no screen sharing, no "can you paste the output"
+- For an R package, `pkgdown`. For anything else, Quarto and `quarto render`.
+- The site is published by Continuous Integration (CI) through GitHub Actions.
+- I read the rendered output — on my phone, at home, or at work.
+- It sets all of that up itself: the Actions workflow, the publishing, the theme.
 
-**And it sets all of that up itself.** The Actions workflow, the publishing,
-the theme.
+So I keep things in
+[TrinityMetrics](https://iamstein.github.io/TrinityMetrics/).
+
+![](../../files/trinitymetrics-site.png){width="58%" fig-align="center" fig-alt="The TrinityMetrics site: navigation bar, the three-category table, and the triquetra logo."}
 
 ::: {.notes}
 This is the transferable idea. Everything else is detail.
@@ -157,22 +189,18 @@ This is the transferable idea. Everything else is detail.
 
 ## Why Claude Code rather than Positron
 
-1. **It runs longer with less input.** Fewer round trips per unit of work.
+1. **It runs longer with less input.**
 2. **It runs on my own machine at home, against ordinary GitHub.** No
-   confusion with the GitHub Copilot setup and the corporate GitHub account.
+   confusion with the GitHub Copilot setup.
 3. **I can drive it from my phone, my home machine, or my work machine**
-   with remote control.
+   with `/remote-control`.
 4. **I can choose to use the latest model (Fable).** Though it kicked me back
    to Opus because I was working on "bio".
 
-## Remote work is one line: `/remote-control`
-
-One command from my home machine, and often not even that. A fresh session
-checks the repository out and picks up where the last one stopped, because the
-state lives in the repository rather than in the session.
-
 ::: {.notes}
-Show the web interface here. Keep it short — the demo carries this.
+Show the web interface here. Keep it short — the demo carries this. A fresh
+session checks the repository out and picks up where the last one stopped,
+because the state lives in the repository rather than in the session.
 :::
 
 ## Demo

@@ -8,8 +8,9 @@ description: Use this skill when drafting a new document or substantially rewrit
 Who the reader is, and how to write a document he will not have to send back.
 
 **When to read this.** When asked to draft a new document, or to substantially
-rewrite an existing one — a blog post, a resource page, `README.md`, or a long
-summary. Not for code, test, or configuration work, and not as a session
+rewrite an existing one — a blog post, a resource page, a slide deck,
+`README.md`, or a long summary. Re-read Part 1's tic list, or at least re-run
+its search, before handing over any document drafted later in the same session. Not for code, test, or configuration work, and not as a session
 preamble. Part 1 is what to do; Parts 2 and 3 are the evidence behind it. The
 machine-prose tics in Part 1 apply to *everything*, including conversation,
 commit messages and comments.
@@ -23,6 +24,10 @@ the wrong claim was.
 plain numbers for the writing rules. The gaps in both are deliberate. The
 numbers are how he refers to them in conversation, so do not renumber to close
 them.
+
+**Changes here.** 2026-09-02, at Andy's instruction: checklist item 11 became
+a search to run rather than a list to remember, after a slide shipped with a
+tic that was already on the list.
 
 **Origin.** Developed in the `synpmx` repository during August 2026, from
 Andy's hand edits of Claude-drafted prose there. Copied here 2026-08-28 with
@@ -101,9 +106,27 @@ documents.
    number such as a default or a property of the formula stays (rule 14).
 10. A survey ends with a ranked entry path (O9), and repeated things hold the
     same shape in the same order (O17).
-11. The tics above are *searched for*, not read for: crucial, key, worth,
-    honestly, honest, delve, leverage, robust, seamless, "not just", "it is worth
-    noting", "here is why", "the point is", matters, "the difference matters".
+11. The tics above are *searched for*, not read for. Run the search over the
+    file you changed, as the last step before handing it over. Reading the list
+    once, early in a session, does not survive to the end of one.
+
+    ```
+    grep -nEi "crucial|\bkey\b|\bworth\b|honestly|honest|delve|leverage|robust|\
+    seamless|not just|it is worth noting|here is why|the point is|\
+    matter(s|ed|ing)?\b|the difference matters|underscore|highlight|testament|\
+    pivotal|fundamental|ultimately|in conclusion|the takeaway" <file>
+    ```
+
+    Search the whole file, speaker notes and comments included. The grep catches
+    single words; four tics it cannot catch are contrastive antithesis ("not a
+    crash, a plot that looked fine"), the rule of three, symmetric sentence
+    pairs, and the aphoristic section opener. Those are read for, on a second
+    pass.
+
+    **Evidence.** On 2026-09-02 a slide shipped reading "wrong in the way that
+    mattered", and a speaker note reading "Not a crash. A plot that looked fine
+    and was not." `matters` was already on the list above. The guide had been
+    read that session; the search had not been run on that file.
 
 ---
 
