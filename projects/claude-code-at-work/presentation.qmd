@@ -222,7 +222,3 @@ and do the training.
 ## Demo
 
 *[live]*
-
-## Appendix: the full diagnosis {visibility="uncounted"}
-
-![](../../files/xgxr-issue-72-reply.png){width="50%" fig-align="center" fig-alt="The reply on issue 72, correcting the diagnosis and tracing the cause to the hand-copied stat."}
