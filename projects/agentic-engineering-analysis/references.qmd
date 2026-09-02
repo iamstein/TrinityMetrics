@@ -1,0 +1,94 @@
+---
+title: "References for the agentic engineering guide"
+subtitle: "What this draws on, and what has actually been read"
+description: "The sources behind the agentic-engineering-analysis project, with a marker on each recording whether the claim drawn from it has been checked against the source."
+categories: [GenAI, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Neither source has been read in full.** Both were retrieved on 2026-09-02
+through an automated fetch that returns a summary rather than the page, so
+every quotation and section heading below reached this project second-hand.
+The working document's Section 1 and Section 2 characterize both sources, and
+those characterizations are what needs checking. The observations in Sections
+3, 4 and 5 come from this repository's own history and do not depend on either
+paper.
+:::
+
+The working document is [the specification](specification.qmd), and the
+folder's documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the working document has been verified
+  against this source.
+- ⚠️ **Transcribed, unverified.** A quotation, heading or claim in the working
+  document came from this source but has not been checked against it.
+- ✅ **Checked.** The claim the working document draws from it has been
+  verified against the source.
+
+Change a marker when the check is done, not when the page is opened.
+
+## Reading queue
+
+Both, and the playbook first.
+
+1.  ⚠️ **The AI-Native SDLC Playbook.** Read first. Section 2 of the working
+    document maps this repository's existing artifacts onto its vocabulary, so
+    if the mapping is wrong the whole section is wrong. Read against: what does
+    it put in `intent.md` as against `spec.md`, what does it gate on, and what
+    does it say a human must still do at each of the six stages?
+
+2.  ⚠️ **Silva, 2026.** Read second, and quickly. It is the piece that prompted
+    the project and it argues a position rather than supplying a procedure.
+    Read against: what does owning "the specifications, the tests, the quality
+    assurance process" mean concretely, and does it name a verification
+    mechanism the working document's Section 5 does not have?
+
+## Sources
+
+**⚠️ Anthropic. The AI-Native SDLC Playbook.**
+[claude.com/blog/the-ai-native-sdlc-playbook](https://claude.com/blog/the-ai-native-sdlc-playbook)
+
+Six stages: plan, design, build, test, deploy, maintain. Version-controlled
+markdown as the thread through them, with `intent.md` holding the problem
+statement and constraints, `spec.md` the requirements and design, `plan.md` the
+implementation plan, and `CLAUDE.md` the standing conventions. Humans approve
+at gates and remain accountable for decisions that need judgement; agents draft
+the spec from the intent, the plan from the spec, and the implementation from
+the plan.
+
+Used in Section 2 for the artifact vocabulary and in Section 3 for the
+intent-then-spec split. The stage names and the artifact list came from the
+fetch summary rather than the page.
+
+**⚠️ Silva DW. Why vibe code when you can engineer?** Substack, 31 August 2026.
+[davidwsilva.substack.com](https://davidwsilva.substack.com/p/why-vibe-code-when-you-can-engineer)
+
+Contrasts vibe coding, which accepts suggestions without reading them, with
+agentic engineering, where the developer owns the specifications, the tests and
+the quality assurance, and requirements are engineering artifacts that a human
+and an agent can both consume: architecture constraints, security requirements,
+coding standards, compliance policies, stated before implementation. Agents
+generate; humans inspect, direct and govern.
+
+Used in Section 1 for the framing and the phrase "requirements written so that
+a human and an agent can both consume them". The section headings recorded from
+the fetch were "There is a better way", "Go beyond markdown files" and "An
+important distinction"; those are unverified.
+
+## Not yet read
+
+Candidates, none of them retrieved.
+
+- Karpathy's original description of vibe coding, quoted second-hand by Silva.
+- Anthropic's published guidance on skills and on `CLAUDE.md`, which Section 2
+  treats as the constraint mechanism without citing it.
+- Anything on specification practice from outside software: a statistical
+  analysis plan is the closest analogue in Andy's own field, and Section 7's
+  open question about whether this generalizes is really a question about how
+  a SAP and a `spec.md` differ.

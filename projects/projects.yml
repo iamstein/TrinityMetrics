@@ -52,12 +52,21 @@
   categories: [GenAI]
   path: claude-code-at-work/index.qmd
 
+- title: "Agentic engineering for data analysis tools"
+  subtitle: "Working document"
+  description: >
+    Writing the requirements and the checks before commissioning an agent to
+    build inside them: what is already in place here, how the initial spec
+    gets written, and how the work divides between Andy and the agent.
+  categories: [GenAI]
+  path: agentic-engineering-analysis/index.qmd
+
 - title: "Exposure metric guide"
   subtitle: "Working document"
   description: >
     Turning the Choosing a PK Metric R Markdown file into a PMX Tools page:
     what the source holds, what changed in the conversion, and what is left.
-  categories: [Pharmacometrics]
+  categories: [Site]
   path: exposure-metric/index.qmd
 
 - title: "Site integration"

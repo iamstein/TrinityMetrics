@@ -1,0 +1,185 @@
+---
+title: "Agentic engineering for data analysis tools"
+subtitle: "Working specification, and the template for new projects here"
+description: "How to specify analysis work before an agent builds it: what is already in place in this repository, how the initial spec gets written, how the work divides between Andy and the agent, and what verification is available."
+categories: [GenAI, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-note appearance="simple"}
+**Started 2026-09-02, and evergreen rather than finishable.** Sections 3 and 4
+are the current answers to "how is the spec written" and "who writes what".
+They are drawn from how this repository has actually been worked in, so they
+change as that changes. Section 7 lists what is unsettled.
+:::
+
+## 1. Scope
+
+Two sources describe an engineering discipline for commissioning agents:
+requirements written so that a human and an agent can both consume them,
+constraints stated before implementation, and verification that the work done
+is the work intended. Both are written for software teams shipping services.
+This document works out the version for analysis work, where the deliverable is
+an argument supported by numbers, the reader is often the author six months
+later, and there is no production system to break.
+
+**Out of scope.** This is not a guide to prompting, and it does not evaluate
+models or tools. It assumes an agent that can read a repository, run commands
+and edit files, and asks what should be written down before it is asked to.
+
+## 2. What is already in place
+
+The practice the sources describe is partly running here already, under
+different names. Naming it is the first step, because the gaps are only visible
+against the parts that exist.
+
+| Artifact here | What it is | The playbook's name for it |
+|---|---|---|
+| `CLAUDE.md` | Repository conventions: which guide to read when, the project folder rules, the site build | `CLAUDE.md`, institutional knowledge |
+| `.github/skills/writing-for-andy/SKILL.md` | The reader, the document contract, the prose rules, and a grep to run before handing over a draft | A skill: policy encoded as a constraint |
+| `.github/copilot-instructions.md` | Markdown mechanics | Coding standards |
+| `projects/*/specification.qmd` | The working document for one problem | `spec.md` |
+| `projects/*/references.qmd` | Every source, with ❌ / ⚠️ / ✅ recording whether the claim drawn from it has been checked | A verification mechanism, and one the playbook does not have |
+| Acceptance checks, as in `projects/site-integration` | A numbered list of conditions, and a script that runs the mechanical ones | Test stage |
+| GitHub Actions publishing on push | The site builds and deploys with no manual step | Deploy stage |
+
+Three things are missing against the sources.
+
+**There is no `intent.md`.** Work starts from a spoken or typed instruction that
+is not written down anywhere, and the specification is drafted directly from
+it. The instruction is where the constraints and the acceptance conditions
+actually live, and it is currently lost.
+
+**There is no gate between spec and build.** The specification and the thing it
+specifies are often written in the same session, so the spec is a record as
+much as an instruction. `projects/site-integration/specification.qmd` was 803
+lines and was cut to 228 on 2026-09-02, because most of it argued decisions
+that had since been made and built.
+
+**Nothing checks that the spec still describes what was built.** That drift was
+found by reading, not by a check.
+
+## 3. How the initial spec gets written
+
+The failure mode observed here is a specification that argues at length, gets
+built, and then describes a system that no longer matches it. Separating what
+is decided from what is still to decide prevents it.
+
+**Write the intent first, in your own words, and keep it short.** The problem,
+the constraints that are not negotiable, and what would make the result wrong.
+A paragraph is usually enough. This is the part an agent cannot draft, because
+it is the statement of what you want, and it is the artifact that survives
+every later rewrite.
+
+**Have the agent draft the specification from the intent, and read it as a
+proposal.** The agent is good at enumerating cases, finding prior art, and
+turning a constraint into a check. It overshoots on length, and it will argue
+decisions rather than record them.
+
+**Separate the decisions from the record.** A specification holds the decisions
+not yet made and the constraints the work must satisfy. Once a decision is
+made and built, it stops being a specification and becomes a note in the
+inventory, or it comes out. The evergreen half is small.
+
+**State the acceptance conditions before the work starts, as a numbered list,
+and make as many of them mechanical as possible.** A condition a script can
+check replaces several that need reading. Write the ones that need reading
+anyway, and mark them as such: the list is the record of what "done" meant.
+
+**A check that passes before the work is done is not a check.** Acceptance check
+6 in the site-integration project asked that no old page be left half-migrated.
+It passes on a page nobody has touched and on a page correctly replaced with a
+pointer, so it measured nothing. Test each condition against the state before
+the work as well as the state after.
+
+## 4. Who writes which part
+
+The division that has held so far: **do the work yourself where being wrong is
+expensive and would not be caught; commission it where being wrong is cheap or
+a check would catch it.**
+
+| Andy | The agent |
+|---|---|
+| The intent, and the constraints | Drafting the specification from it |
+| Taste, and anything he will be the reader of | Mechanical conversion, restructuring, moving content between formats |
+| Deciding what a project is for, and when it is finished | Measuring, and reporting the measurement |
+| Judgement calls where the evidence is ambiguous | Finding the evidence that makes them unambiguous |
+| Reading the paper the claim rests on | Fetching it, recording it, and marking it unchecked |
+| Prose he cares about the sound of | Repairing the debris in prose he has already edited |
+
+Two asymmetries in that split.
+
+**The agent should surface what a human cannot see from the outside.** On
+2026-09-02 the site's Google Docs export was thought safe because `curl --fail`
+would catch a bad share setting. It does not: an unshared Doc returns HTTP 200
+with a sign-in page, measured at about 907 KB of `text/html`. That defect was
+invisible from the specification and visible from one command. Anything of that
+kind should be reported without being asked for.
+
+**A taste question should come back as a measurement and a recommendation, not
+as a menu.** Asked how large the home page logo should be, the useful answer was
+that at 600px the wordmark fell below the fold on a 1440x820 laptop, that a
+fixed pixel width cannot know the viewport, and that 400px capped at 50vh
+fits. The recommendation is the deliverable; the alternatives are one line at
+the end.
+
+## 5. Verification
+
+Available here, in increasing order of what they cost:
+
+1.  **A script.** Link checks, file existence, counts against a recorded total,
+    magic bytes on a downloaded file. `projects/site-integration/acceptance_checks.py`
+    is the shape. Written once, re-runnable, and the only kind that survives
+    the author losing interest.
+2.  **A grep with a documented reason.** The tic search in the writing guide is
+    one: a list of markers, run over the changed file as the last step. It
+    catches what reading does not, because reading the list early in a session
+    does not survive to the end of one.
+3.  **The status marker.** ❌ / ⚠️ / ✅ on every source in `references.qmd`,
+    recording whether the claim drawn from it has been checked. It converts an
+    unverifiable bibliography into a queue with a state.
+4.  **Reading the output.** Rendering the page and looking at it. Expensive and
+    not delegable, which is why the first three exist.
+
+The gap: nothing checks a specification against the repository it describes.
+Cheapest first version is a list of the paths and identifiers a spec names, and
+a script that reports the ones that no longer exist.
+
+## 6. What a new project starts with
+
+Four files, in this order.
+
+1.  `index.qmd`. Thin. What the project is, and a plain list of its documents
+    with the working specification first. Per `CLAUDE.md`.
+2.  The intent, in Andy's words, at the top of the specification. A paragraph.
+3.  `specification.qmd`. The decisions not yet made, the constraints, and the
+    numbered acceptance conditions. Short at the start.
+4.  `references.qmd`, if the project reads sources. The reading queue, the
+    source list, and a marker on every entry.
+    `projects/tce-ipde/references.qmd` is the shape to copy.
+
+Then a row in `projects/projects.yml`, with a `categories` value that matches
+one of the listings in `projects/index.qmd`. A category with no listing renders
+nowhere.
+
+Two habits that make the project closable rather than permanent: a **What
+remains** section, kept current, and a **status marker** on each phase or item
+that is changed when the work is done rather than when it is planned.
+
+## 7. What is unsettled
+
+**Whether the intent should be its own file.** The playbook uses `intent.md`.
+Here it would be a section at the top of the specification, which is one fewer
+file and one more thing to keep from drifting.
+
+**How much of the spec an agent should draft.** The argument for all of it is
+speed. The argument against is that reading a draft is not the same as deciding,
+and the decisions are the part that has to be Andy's.
+
+**Whether this generalizes past this repository.** Everything above is drawn
+from documentation and site work. Analysis work with a real dataset, a model
+that fits, and numbers that go into a decision has failure modes this has not
+met yet.

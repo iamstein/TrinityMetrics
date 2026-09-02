@@ -1,0 +1,30 @@
+---
+title: "Agentic engineering for data analysis tools"
+subtitle: "Writing the spec first, then commissioning the agent to build inside it"
+description: "Index of the documents in the agentic-engineering-analysis project: an evergreen guide to specifying analysis work before an agent builds it, and the template new projects here start from."
+categories: [GenAI, working document]
+date: last-modified
+toc: false
+---
+
+Vibe coding accepts whatever the agent produces. Agentic engineering writes the
+requirements, the constraints and the checks first, then commissions the agent
+to build inside them. This project works out what that means for
+pharmacometrics and data analysis work, where the deliverable is usually an
+argument supported by numbers rather than a running service.
+
+Two questions drive it. How is the initial specification written, and who
+writes it. Everything else follows from those.
+
+The guide is evergreen: it is revised as the practice changes rather than
+finished. It is also the template that new projects in this repository start
+from.
+
+## Documents
+
+- [Working specification](specification.qmd). What is already in place here,
+  how to write the initial spec, how the work divides between Andy and the
+  agent, and what a new project starts with.
+- [References](references.qmd). The two sources this draws on, and a marker on
+  each recording whether the claim drawn from it has been checked against the
+  source.
