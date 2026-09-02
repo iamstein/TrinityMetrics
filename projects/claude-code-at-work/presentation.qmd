@@ -163,20 +163,14 @@ This is the transferable idea. Everything else is detail.
    account.
 3. **I can drive it from my phone, my home machine, or my work machine**
    with remote control.
-4. **I can choose the model.** Though I was moved from Fable to Opus once the
-   work touched biology.
+4. **I can choose to use the latest model (Fable).** Though it kicked me back
+   to Opus because I was working on "bio".
 
-## What I actually do
+## Remote work is one line: `/remote-control`
 
-One command from my home machine:
-
-```
-/remote-control
-```
-
-And often not even that. A fresh session checks the repository out and picks
-up where the last one stopped, because the state lives in the repository
-rather than in the session.
+One command from my home machine, and often not even that. A fresh session
+checks the repository out and picks up where the last one stopped, because the
+state lives in the repository rather than in the session.
 
 ::: {.notes}
 Show the web interface here. Keep it short — the demo carries this.
@@ -188,49 +182,11 @@ Show the web interface here. Keep it short — the demo carries this.
 
 ## Getting access
 
-Running Claude directly at `claude.ai` requires the internal training first.
-Without it, you are blocked.
+Running Claude directly at `claude.ai` is blocked until you have done the
+short internal training. When you hit the block, click the link it gives you
+and do the training.
 
-*[TODO: name the training and where to find it]*
-
-# The parts that need care
-
-## What I check, every time
-
-The model produces plausible output. Plausible is not the same as correct, and
-the reviewer is still the author.
-
-- Does the code run, and do the tests pass?
-- Is every number traceable to something I can open?
-- For a claim from a paper, has it been checked against the paper?
-
-The TCE-IPDE references page carries a status marker on every source for
-exactly this reason.
-
-::: {.notes}
-Ties to the "AI can assist, humans must own decisions" position. Do not skip
-this slide — it is what makes the rest credible to this room.
-:::
-
-## The data boundary
-
-Everything here is **public, open-source work**.
-
-The interesting question for us is what changes when the data cannot leave the
-building — and that is a different problem, not a smaller one.
-
-*[TODO: say where you actually stand on this, since it is the question you
-will be asked]*
-
-## Where it falls short
-
-*[TODO: fill from your own experience — a talk with no failures in it gets
-discounted. Candidates:]*
-
-- Confidently wrong about APIs it half-remembers
-- Long sessions drift without a written specification to anchor them
-- It will produce volume when what you wanted was a decision
-- Cost, and who pays
+*[Maybe Alex can send me the link?]*
 
 ## If you want to try it
 

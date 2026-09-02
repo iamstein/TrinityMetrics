@@ -28,18 +28,13 @@ touches clinical data.
 
 ## What still needs Andy
 
-Five places in the deck are marked `TODO`, because they are yours rather than
-mine:
-
-- The name of the internal training that unblocks `claude.ai`
-- Where you stand on the data boundary, which is the question the room will ask
-- Where it falls short, from your own experience
-- What it costs, and who pays
 - The demo itself
+- Asking Alex for the training link, noted on the *Getting access* slide
 
-## Suggested, and easy to cut
+## Cut on 2026-09-02
 
-Four slides were not in the original outline and were added because a talk to
-this audience is weaker without them: **What I check, every time**, **The data
-boundary**, **Where it falls short**, and **If you want to try it**. Cut any
-that do not earn their place.
+Three slides suggested in the first draft were removed: **What I check, every
+time**, **The data boundary**, and **Where it falls short**. The deck now makes
+its case on the four worked examples and the setup, and says only on the
+opening slide that none of the work touches clinical data. **If you want to
+try it** stayed, as the closing entry path.
