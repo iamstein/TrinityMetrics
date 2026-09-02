@@ -43,9 +43,7 @@ A project that reads sources also carries a `references.qmd` in the same
 folder: the reading queue, the source list, and a status marker on every entry
 recording whether the claim the project draws from it has been checked against
 the source. `projects/tce-ipde/references.qmd` is the shape to copy, markers
-and section order included. The site-wide `guides/reading-list.qmd` is the
-inbox that feeds these; a paper being read to settle something in a project
-moves from there to the project's own page.
+and section order included.
 
 ## Other conventions in this repository
 

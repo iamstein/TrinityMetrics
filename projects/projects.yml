@@ -10,7 +10,7 @@
 - title: "xgx"
   subtitle: "Open-source resource"
   description: >
-    eXploratory Graphics for Xenobiotics: a guide to the graphics that make
+    Eploratory Graphics : a guide to the graphics that make
     pharmacokinetic and pharmacodynamic data interpretable, with worked
     examples for each figure type.
   categories: [R package]

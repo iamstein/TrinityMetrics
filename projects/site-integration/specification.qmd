@@ -267,7 +267,7 @@ because no file is hosted on the old site.
 | 6 | `/software` | Software | page | none | PORT ✅ | `software.qmd` | Done 2026-09-02. Andy: keep the page, but not prominent. xGx dropped from it, being an R-package row. AIRE, FIRE and BEAMS are MATLAB from the thesis and postdoc, so the page sits under the About menu rather than in Projects. |
 | 7 | `/cv` | CV | page | none hosted; Google Doc | LINK | navbar `CV`, out to Google Docs | Section 4 and Section 10: an external navbar link, no page of its own. Needs `CV_DOC_ID` for the build-time export in Section 8. |
 | 8 | `/talks` | Talks | page | none hosted; 12 external | PORT ✅ | `talks.qmd` | Done 2026-09-02. Written as a plain page rather than the `talks.yml` listing Section 4 proposed: the talks are nested three deep and each carries two or three links, which a listing card cannot show. |
-| 9 | `/recommended-reading` | Recommended Resources | page | none | PORT ✅ | `guides/recommended-reading.qmd` | Done 2026-09-02. Andy asked for it under Guides. Not merged into `reading-list.qmd`: that page is an inbox whose stated rule is that an entry carries a question and is supposed to leave, and these are finished recommendations that stay. Its "Oh Shit Git" link pointed at a Kotaku article on the old site and was repaired to `ohshitgit.com`. |
+| 9 | `/recommended-reading` | Recommended Resources | page | none | PORT ✅ | `guides/recommended-reading.qmd` | Done 2026-09-02, as its own Guides page. Its "Oh Shit Git" link pointed at a Kotaku article on the old site and was repaired to `ohshitgit.com`. The page originally proposed as the merge target, `guides/reading-list.qmd`, was deleted the same day: it held one stub entry with its title, authors and question unfilled. |
 | 10 | `/equations` | Equations | page | none hosted; Google Doc | DROP | --- | Orphan, not in the navbar, and its body is one Google Doc link. Andy: not wanted as a page; the material belongs in the pharmacometrics guides. Doc `1t9omSVTz4lf2RT6GF3dTYTALM-Yy0tCk5UVIyxQlWZQ`, recorded so the link survives the drop. |
 | 11 | `/pmx-career-links` | PMX-Career-Links | page | none | MERGE ✅ | `guides/career-advice.qmd` | Done 2026-09-02, as that page's last section. Google redirect wrappers unwrapped to the real URLs. |
 | 12 | `opensource.nibr.com/xgx/Resources/Uncertainty_Assessment_Pedigree_Table.pdf` | Uncertainty Pedigree Table | link | --- | LINK | --- | On `/home`. Canonical on the xgx site; Section 6 keeps xgx linked, not absorbed. |
@@ -327,7 +327,7 @@ listings hard to scan. Four groups over two pages:
 |---|---|---|
 | Projects | R packages | synpmx, xgx, xgxr |
 | Projects | R projects | TCE-IPDE, TCE-CRS-tolerance |
-| Guides | --- | Reading Papers, Effective Learning, Career Advice, Recommended Resources, Reading List |
+| Guides | --- | Reading Papers, Effective Learning, Career Advice, Recommended Resources |
 | PMX Tools | --- | its own top-level page, not a listing |
 
 Projects carries one Quarto listing per group, filtered on the `categories`
