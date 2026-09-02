@@ -25,22 +25,6 @@
   categories: [R package]
   path: https://cran.r-project.org/package=xgxr
 
-- title: "nlmixr2"
-  subtitle: "R package, by others"
-  description: >
-    Nonlinear mixed effects modelling in R. Not my package; listed here
-    because it is the one I point people at for fitting population models.
-  categories: [R package]
-  path: https://nlmixr2.org/
-
-- title: "ggPMX"
-  subtitle: "R package, by others"
-  description: >
-    Diagnostic plots for nonlinear mixed effects models. Not my package;
-    listed here as the companion to xgxr and nlmixr2.
-  categories: [R package]
-  path: https://cran.r-project.org/package=ggPMX
-
 - title: "TCE-IPDE"
   subtitle: "Working document"
   description: >

@@ -1,18 +1,9 @@
-- title: "Pharmacometrics Tools"
-  subtitle: "Checklists and cheat sheets"
-  description: >
-    Checklists and cheat sheets for scoping a modelling activity, making
-    graphics, presenting and giving feedback, and writing R that someone else
-    can validate.
-  categories: [PMX guide]
-  path: pmx-tools.qmd
-
 - title: "Reading Papers"
   subtitle: "How-to"
   description: >
     A three-pass method for reading a paper, what each pass costs in time,
     and how to stop early when you are reading with a question in hand.
-  categories: [PMX guide]
+  categories: [Learning guide]
   path: reading-papers.qmd
 
 - title: "Effective Learning"
@@ -31,6 +22,15 @@
     help, and where pharmacometrics jobs are posted.
   categories: [Learning guide]
   path: career-advice.qmd
+
+- title: "Recommended Resources"
+  subtitle: "Books, blogs, podcasts, talks"
+  description: >
+    Books, blogs, podcasts, TED talks and technical references, each with a
+    note on what it is for. Finished recommendations, as opposed to the
+    reading list, which is a queue.
+  categories: [Learning guide]
+  path: recommended-reading.qmd
 
 - title: "Reading List"
   subtitle: "Running list"

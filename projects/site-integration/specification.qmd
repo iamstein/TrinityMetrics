@@ -262,12 +262,12 @@ because no file is hosted on the old site.
 | 1 | `/home` | Andrew M Stein | page | none hosted; 2 external | MERGE | `about.qmd` | Bio opens About per Section 6. Affiliation confirmed current (Q3), so it ports verbatim. Contact, Scholar and Medium links go to the bottom of About per Section 4. The ukulele site stays an outbound link. |
 | 2 | `/now` | Now | page | none | PORT ✅ | `now.qmd` | Done 2026-09-01. A Derek Sivers "now page" (Q2), last updated 2026-03-27. Sits under the About menu, which now has four items. |
 | 3 | `/effective-learning` | Effective-Learning | page | none hosted; 1 Google Doc | PORT ✅ | `guides/effective-learning.qmd` | Done 2026-09-02. Headings and bullets restored by hand, the page's own table of contents replaced by Quarto's, and Google anchor artifacts removed. |
-| 4 | `/pmx-tools` | PMX-Tools | page | none hosted; 5 external | SPLIT ✅ | `guides/pmx-tools.qmd` and `projects/projects.yml` | Done 2026-09-02. Andy: distribute between PMX guides and R packages. The checklists and cheat sheets became a PMX guide; xgxr, nlmixr2 and ggPMX became R-package rows. |
+| 4 | `/pmx-tools` | PMX-Tools | page | none hosted; 5 external | PORT ✅ | `pmx-tools.qmd` | Done 2026-09-02. Andy: it is not a guide, it is its own top-level page, and it keeps the R-package links rather than handing them to Projects. |
 | 5 | `/career-advice` | Career-Advice | page | none hosted; 1 external | PORT ✅ | `guides/career-advice.qmd` | Done 2026-09-02, with row 11 merged in as its last section. Andy will revise the prose. |
 | 6 | `/software` | Software | page | none | PORT ✅ | `software.qmd` | Done 2026-09-02. Andy: keep the page, but not prominent. xGx dropped from it, being an R-package row. AIRE, FIRE and BEAMS are MATLAB from the thesis and postdoc, so the page sits under the About menu rather than in Projects. |
 | 7 | `/cv` | CV | page | none hosted; Google Doc | LINK | navbar `CV`, out to Google Docs | Section 4 and Section 10: an external navbar link, no page of its own. Needs `CV_DOC_ID` for the build-time export in Section 8. |
-| 8 | `/talks` | Talks | page | none hosted; 12 external | PORT | `talks.qmd` + `talks.yml` | Twelve decks clears the five-entry bar in Section 4, so it earns its own page. |
-| 9 | `/recommended-reading` | Recommended Resources | page | none | MERGE | `guides/reading-list.qmd` | Books with a note on what each is for. Overlaps the reading list already on this site: a fourth overlap, not among the three in Section 6. |
+| 8 | `/talks` | Talks | page | none hosted; 12 external | PORT ✅ | `talks.qmd` | Done 2026-09-02. Written as a plain page rather than the `talks.yml` listing Section 4 proposed: the talks are nested three deep and each carries two or three links, which a listing card cannot show. |
+| 9 | `/recommended-reading` | Recommended Resources | page | none | PORT ✅ | `guides/recommended-reading.qmd` | Done 2026-09-02. Andy asked for it under Guides. Not merged into `reading-list.qmd`: that page is an inbox whose stated rule is that an entry carries a question and is supposed to leave, and these are finished recommendations that stay. Its "Oh Shit Git" link pointed at a Kotaku article on the old site and was repaired to `ohshitgit.com`. |
 | 10 | `/equations` | Equations | page | none hosted; Google Doc | DROP | --- | Orphan, not in the navbar, and its body is one Google Doc link. Andy: not wanted as a page; the material belongs in the pharmacometrics guides. Doc `1t9omSVTz4lf2RT6GF3dTYTALM-Yy0tCk5UVIyxQlWZQ`, recorded so the link survives the drop. |
 | 11 | `/pmx-career-links` | PMX-Career-Links | page | none | MERGE ✅ | `guides/career-advice.qmd` | Done 2026-09-02, as that page's last section. Google redirect wrappers unwrapped to the real URLs. |
 | 12 | `opensource.nibr.com/xgx/Resources/Uncertainty_Assessment_Pedigree_Table.pdf` | Uncertainty Pedigree Table | link | --- | LINK | --- | On `/home`. Canonical on the xgx site; Section 6 keeps xgx linked, not absorbed. |
@@ -277,18 +277,18 @@ because no file is hosted on the old site.
 | 16 | `opensource.nibr.com/xgx/Resources/PKPD_Exploratory_Graphics_(xGx)_Cheat_Sheet.pdf` | xGx Cheat Sheet | link | --- | LINK | --- | On `/pmx-tools`. |
 | 17 | `github.com/Novartis/xgx/.../Presentation_Checklist_v2.03.pdf` | Presentation Checklist | link | --- | LINK | --- | On `/pmx-tools`. |
 | 18 | `opensource.nibr.com/xgx/Resources/Presentation_Checklist_v2.03.pdf` | Presentation Checklist | link | --- | LINK | --- | On `/career-advice`. The same document as row 17 at a second host; link one of them and pick which. |
-| 19 | `.../Presentations/2019-08-01_Training_FundamentalPK_2019.pptx` | Intro to Fundamental PK Concepts | file | --- | PORT | `files/2019-08-01-fundamental-pk.pdf` | In `iamstein/Publications`. Convert to PDF per Section 8; do not commit the `.pptx` beside it. |
-| 20 | `.../Presentations/2019-08-01_FundamentalPD_AndyStein_Hackathon_2019.pptx` | Intro to Fundamental PD Concepts | file | --- | PORT | `files/2019-08-01-fundamental-pd.pdf` | As row 19. |
-| 21 | `.../Presentations/2021-10-12_Stein_Causal_Diagram_Hackathon.pptx` | Causal Diagrams for Exposure-Response | file | --- | PORT | `files/2021-10-12-causal-diagrams.pdf` | As row 19. |
-| 22 | `.../Presentations/2020-03-24_Stein_QSP_Uncertainty_Meetup.pdf` | Uncertainty and Predictive Accuracy, CML | file | --- | PORT | `files/2020-03-24-qsp-uncertainty.pdf` | Already a PDF. Has a YouTube recording linked beside it on `/talks`. |
-| 23 | `.../Presentations/2017-10-18_RaueStein_Identifiability_LLW_LLP_ACoP8_v2.pptx.pdf` | Model Convergence and Identifiability | file | --- | PORT | `files/2017-10-18-identifiability.pdf` | Already a PDF. ACoP 2018 on the old page, 2017 in the filename; check the year. |
-| 24 | `.../Presentations/2021-11-10_Stein_ACoP2021_CART_Review_Presentation.pptx` | CAR-T Cellular Kinetic-PD Review | file | --- | PORT | `files/2021-11-10-cart-review.pdf` | As row 19. |
-| 25 | `.../Presentations/2019-10-22_Stein_CART_Modeling_ACoP.pdf` | Cellular Kinetics of Kymriah | file | --- | PORT | `files/2019-10-22-kymriah.pdf` | Already a PDF. |
-| 26 | `.../Presentations/2013-05-13_ACoP_TumorModeling_AndyStein_v8.pptx` | Longitudinal Solid Tumor Data | file | --- | PORT | `files/2013-05-13-solid-tumor.pdf` | As row 19. |
-| 27 | `.../Presentations/2013-06-20-PhUSE_AndyStein.pptx` | PhUSE 2013 | file | --- | PORT | `files/2013-06-20-phuse.pdf` | As row 19. Title on the old page to confirm. |
-| 28 | `.../Presentations/2009-12-01-ASH09_StemCells.ppt` | ASH 2009, stem cells | file | --- | PORT | `files/2009-12-01-ash-stem-cells.pdf` | Oldest deck, and a `.ppt` rather than `.pptx`. |
-| 29 | `.../Presentations/2016-07-13_Stein_SIAM_LS_Presentation.pptx` | SIAM Life Sciences 2016 | file | --- | PORT | `files/2016-07-13-siam-ls.pdf` | As row 19. |
-| 30 | `.../Presentations/2017-10-17_Stein_ACoP_Math_LumpedParameters_v2.pptx` | Lumped Parameters, ACoP 2017 | file | --- | PORT | `files/2017-10-17-lumped-parameters.pdf` | As row 19. |
+| 19 | `.../Presentations/2019-08-01_Training_FundamentalPK_2019.pptx` | Intro to Fundamental PK Concepts | file | --- | PORT ✅ | `files/2019-08-01-fundamental-pk.pdf` | In `iamstein/Publications`. Convert to PDF per Section 8; do not commit the `.pptx` beside it. |
+| 20 | `.../Presentations/2019-08-01_FundamentalPD_AndyStein_Hackathon_2019.pptx` | Intro to Fundamental PD Concepts | file | --- | PORT ✅ | `files/2019-08-01-fundamental-pd.pdf` | As row 19. |
+| 21 | `.../Presentations/2021-10-12_Stein_Causal_Diagram_Hackathon.pptx` | Causal Diagrams for Exposure-Response | file | --- | PORT ✅ | `files/2021-10-12-causal-diagrams.pdf` | As row 19. |
+| 22 | `.../Presentations/2020-03-24_Stein_QSP_Uncertainty_Meetup.pdf` | Uncertainty and Predictive Accuracy, CML | file | --- | PORT ✅ | `files/2020-03-24-qsp-uncertainty.pdf` | Already a PDF. Has a YouTube recording linked beside it on `/talks`. |
+| 23 | `.../Presentations/2017-10-18_RaueStein_Identifiability_LLW_LLP_ACoP8_v2.pptx.pdf` | Model Convergence and Identifiability | file | --- | PORT ✅ | `files/2017-10-18-identifiability.pdf` | Already a PDF. ACoP 2018 on the old page, 2017 in the filename; check the year. |
+| 24 | `.../Presentations/2021-11-10_Stein_ACoP2021_CART_Review_Presentation.pptx` | CAR-T Cellular Kinetic-PD Review | file | --- | PORT ✅ | `files/2021-11-10-cart-review.pdf` | As row 19. |
+| 25 | `.../Presentations/2019-10-22_Stein_CART_Modeling_ACoP.pdf` | Cellular Kinetics of Kymriah | file | --- | PORT ✅ | `files/2019-10-22-kymriah.pdf` | Already a PDF. |
+| 26 | `.../Presentations/2013-05-13_ACoP_TumorModeling_AndyStein_v8.pptx` | Longitudinal Solid Tumor Data | file | --- | PORT ✅ | `files/2013-05-13-solid-tumor.pdf` | As row 19. |
+| 27 | `.../Presentations/2013-06-20-PhUSE_AndyStein.pptx` | PhUSE 2013 | file | --- | PORT ✅ | `files/2013-06-20-phuse.pdf` | As row 19. Title on the old page to confirm. |
+| 28 | `.../Presentations/2009-12-01-ASH09_StemCells.ppt` | ASH 2009, stem cells | file | --- | PORT ✅ | `files/2009-12-01-ash-stem-cells.pdf` | Oldest deck, and a `.ppt` rather than `.pptx`. |
+| 29 | `.../Presentations/2016-07-13_Stein_SIAM_LS_Presentation.pptx` | SIAM Life Sciences 2016 | file | --- | PORT ✅ | `files/2016-07-13-siam-ls.pdf` | As row 19. |
+| 30 | `.../Presentations/2017-10-17_Stein_ACoP_Math_LumpedParameters_v2.pptx` | Lumped Parameters, ACoP 2017 | file | --- | PORT ✅ | `files/2017-10-17-lumped-parameters.pdf` | As row 19. |
 
 **Row count: 30.** Eleven pages and nineteen linked files, which is the number
 Section 12 checks against.
@@ -325,19 +325,24 @@ listings hard to scan. Four groups over two pages:
 
 | Page | Group | Holds |
 |---|---|---|
-| Projects | R packages | synpmx, xgx, xgxr, and the third-party packages the guides point at |
+| Projects | R packages | synpmx, xgx, xgxr |
 | Projects | R projects | TCE-IPDE, TCE-CRS-tolerance |
-| Guides | PMX guides | Pharmacometrics Tools, Reading Papers |
-| Guides | Learning guides | Effective Learning, Career Advice, Reading List |
+| Guides | --- | Reading Papers, Effective Learning, Career Advice, Recommended Resources, Reading List |
+| PMX Tools | --- | its own top-level page, not a listing |
 
-Each page carries one Quarto listing per group, filtered on the `categories`
+Projects carries one Quarto listing per group, filtered on the `categories`
 field of a single source YAML, so a row changes group by changing one word.
-`Site integration` is in neither group and sits under its own heading.
+`Site integration` is in neither group and sits under its own heading. Guides
+holds only learning material and needs no split.
 
-Two things to settle: whether `R project` is the right name for a
-pharmacometrics modelling project, which Andy raised when proposing it, and
-whether third-party packages belong in a listing that until now held only his
-own work.
+Settled on 2026-09-02: pharmacometrics checklists are not guides, so
+`pmx-tools.qmd` is top-level rather than a `guides/` page, and it keeps the
+R-package links. `nlmixr2` and `ggPMX` were briefly Projects rows and were
+removed, because that listing holds Andy's own work.
+
+Left to settle: whether `R project` is the right name for a pharmacometrics
+modelling project, which Andy raised when proposing it. The navbar is now at
+eight left-hand items, which Section 10 warned about.
 
 ## 6. Where the two sites already overlap
 
@@ -703,7 +708,8 @@ the custom domain in the repository's Pages settings; wait for the certificate;
 then correct `site-url`. The DNS step needs Andy's registrar login. Deferred by
 Andy on 2026-09-01, to be done as its own piece of work.
 
-**Phase 2 --- publications and talks. ❌** Add `publications.yml`,
+**Phase 2 --- publications and talks. ⚠️** Talks are done; publications are
+not. Add `publications.yml`,
 `publications.qmd`, the `.bib`, and the same for talks if the volume in Section
 5 justifies a page. Copy slides and posters into `files/`.
 

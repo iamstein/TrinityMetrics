@@ -1,0 +1,104 @@
+---
+title: "Recommended Resources"
+subtitle: "Books, blogs, podcasts and talks worth the time"
+description: >
+  Books, blogs, podcasts, TED talks and technical references, each with a note
+  on what it is for. Finished recommendations, as opposed to the reading list,
+  which is a queue.
+categories: [Learning guide]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+## Books
+
+**[Team of Rivals](https://www.amazon.com/Team-Rivals-Political-Abraham-Lincoln/dp/0743270754)** by Doris Kerns Goodwin.
+An Abraham Lincoln biography that also follows rivals/allies William Seward,
+Salmon Chase and Edward Bates. A master class in how to set one's ego aside and
+work with a diverse set of talented colleagues.
+
+**[This is Water (Audiobook)](https://www.amazon.com/This-Water-Delivered-Significant-Compassionate/dp/0316068225)** by David Foster Wallace.
+Graduation speech in 2005 to Kenyon College graduates. Main lesson: we get to
+choose how we think and while it's a lot of work, we don't have to be slaves to
+our habitual thought patters.
+
+**[Difficult Conversations](https://www.amazon.com/Difficult-Conversations-Discuss-What-Matters/dp/0143118447)** by Douglas Stone, Bruce Patton, Sheila Heen.
+Provides a useful framework for handling challenging conversations.
+
+**[Thinking Fast and Slow](https://www.amazon.com/dp/B00555X8OA)** by Daniel Kahneman.
+Main lesson: there are three dichotomies in how we think.
+
+- Fast (habitual) vs Slow (thoughtful). 99% of what our brain does is automatic
+  and easy and this leads to all kinds of biases.
+- Human vs Econ. We're not really all that rational when it comes to money. In
+  particular, we're extremely loss-adverse.
+- Present vs Remembering Self. When considering what makes us happy, the
+  present moment feelings and what we see when we reflect on our past can view
+  things extremely differently; it's not clear which "self" should guide us.
+
+**[Designing your Life](http://designingyour.life/the-book/)** by Bill Burnett & Dave Evans.
+How to apply "design principles" to figure out what you want to get out of life
+and how to achieve it. Main lesson: you don't need an end goal in mind. Just
+start with lots of ideas and do little experiments by changing little things to
+see if it feels like you're going in the right direction.
+
+**[Sapiens](https://www.amazon.com/Sapiens-Humankind-Yuval-Noah-Harari/dp/0062316117)** by Yuval Harari.
+A key insight is that what makes human's special is our ability to tell
+collective stories and hold collective illusions that can be shared by millions
+or billions of people. The most powerful story/illusion is the concept of
+"money" which at this point is just bits in a computer or pieces of paper. But
+money makes so many large, collective actions possible, both good and evil.
+
+**[The Signal and the Noise](https://www.amazon.com/Signal-Noise-Many-Predictions-Fail-but/dp/0143125087)** by Nate Silver.
+Guide to why so many prediction models fail.
+
+**[The Checklist Manifesto](https://www.amazon.com/Checklist-Manifesto-How-Things-Right-ebook/dp/B0030V0PEW)** by Atul Gawande.
+How simple questions can help improve efficiency and reduce mistakes in a world
+of increasing complexity.
+
+**[How to be an Adult](https://www.amazon.com/How-Adult-Psychological-Spiritual-Integration/dp/0809132230)** by David Richo.
+A handbook on psychological and spiritual integration.
+
+**[The Elephant in the Brain](https://www.amazon.com/Elephant-Brain-Hidden-Motives-Everyday-ebook/dp/B077GZT9Q1)** by Robin Hanson and Kevin Simler.
+Explains the hidden motives from so much of human behavior.
+
+**[Seven Principles for Making Marriage Work](https://www.gottman.com/product/the-seven-principles-for-making-marriage-work/)** by John Gottman.
+Lot's of great insight for working through challenges in marriage, which comes
+more from a deeply intuitive counselor with over 40 years experience. I feel
+it's important to add the caveat that I believe the author greatly overstates
+his ability to predict divorce — he reports the results of fitting models to
+data rather than using his models to make prospective and preregistered
+predictions.
+
+**[The Wondering Jew](https://www.amazon.com/Wondering-Jew-Israel-Search-Identity/dp/0300252242)** by Micah Goodman.
+Explores the tension between religion and secularism and suggest a path forward
+toward integration.
+
+## Blogs
+
+- **[Marginal Revolution](http://marginalrevolution.com/)** by Tyler Cowen and
+  Alex Tabarrok — economics blog that covers a broad range of topics.
+- **[Parent Data](https://emilyoster.substack.com/)** by Emily Oster — data
+  driven guide to parenting.
+
+## Podcasts
+
+- **[Radiolab](http://www.radiolab.org/)** — stories rooted in science and
+  philosophy.
+- **[Dear Sugar](http://www.wbur.org/dearsugar)** — empathetic advice.
+- **[Conversations with Tyler](https://www.mercatus.org/commentary/conversations-tyler)** —
+  conversations with today's deepest thinkers.
+- **[The Memory Palace](http://thememorypalace.us/)** — stories from history.
+
+## TED Talks
+
+- **[The Power of Vulnerability](https://www.ted.com/talks/brene_brown_the_power_of_vulnerability)** by Brene Brown
+- **[My Stroke of Insight](https://www.ted.com/talks/jill_bolte_taylor_my_stroke_of_insight)** by Jill Bolte Taylor
+
+## Technical
+
+- **[Oh Shit, Git!?!](https://ohshitgit.com/)** for dealing with git issues.
+- Frank Harrell's
+  **[Regression Modeling Strategies](https://hbiostat.org/doc/rms/4day.html)**
+  course.

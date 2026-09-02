@@ -1,0 +1,93 @@
+---
+title: "Selected Talks"
+description: >
+  Tutorials and conference presentations on pharmacokinetics and
+  pharmacodynamics, model uncertainty and identifiability, CAR-T and solid
+  tumour modelling, and target mediated drug disposition.
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+Each talk is linked twice: a **PDF** hosted here, which opens anywhere, and the
+**Google** original, which is the editable copy. Some networks block Google
+Drive, so the PDF is the one to use at work.
+
+## Tutorials
+
+### Fundamental Concepts of PKPD
+
+**Introduction to Fundamental PK Concepts**\
+[PDF](files/2019-08-01-fundamental-pk.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/1_0wrRgCmRGN3TEFx87I0en6TiSckjbOp/edit)\
+From the 2018–2019 Novartis Academia-Industry Quantitative Hackathon.
+
+**Introduction to Fundamental PD Concepts**\
+[PDF](files/2019-08-01-fundamental-pd.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/1IjaNyPhachTDWn2TO9YuVegsCTOSpiCp/edit)\
+From the 2018–2019 Novartis Academia-Industry Quantitative Hackathon.
+
+**Causal Diagrams for Exposure-Response Analysis**\
+[PDF](files/2021-10-12-causal-diagrams.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/151_BnRKPMU6jLHQqnoFrSh05rlRwQ-Ds/edit)\
+For when correlation doesn't imply causation. From the 2021 Novartis
+Academia-Industry Quantitative Hackathon.
+
+### Model Uncertainty and Identifiability
+
+**Assessing the Uncertainty and Predictive Accuracy of Mechanistic Models; with Applications in CML**\
+[PDF](files/2020-03-24-qsp-uncertainty.pdf) ·
+[Google Drive](https://drive.google.com/file/d/1YlNvRkbrviEuW_CQcFYwuUaGiTjP32ht/view) ·
+[YouTube video](https://youtu.be/Kfegz0BQ_ok)\
+FDA Systems Pharmacology Group Meeting 2020, and Laboratory for Systems
+Medicine at University of Florida Group Meeting 2022.
+
+**Importance of Assessing Model Convergence and Practical Identifiability During Model Development**\
+[PDF](files/2017-10-18-identifiability.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/0B5zelX434ytYdjIxTHY3WEVEN3c/edit)\
+ACoP 2018.
+
+## Oncology
+
+### CAR-T cells
+
+**Chimeric Antigen Receptor T cell Therapies: A Review of Cellular Kinetic-Pharmacodynamic Modeling Approaches**\
+[PDF](files/2021-11-10-cart-review.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/1YubmL1ZCrkLAqpPoEEN6eF4WKLPDwO1z/edit)\
+ACoP 2021.
+
+**The Cellular Kinetics and Anti-Tumor Dynamics of Kymriah**\
+[PDF](files/2019-10-22-kymriah.pdf) ·
+[Google Drive](https://drive.google.com/file/d/1Uz69ZXIVLp_9RPaBBhex7fLxRPk7og8e/view)\
+ACoP 2019.
+
+### Solid Tumor Modeling
+
+**Using Longitudinal Solid Tumor Data to Improve Drug Development Decisions**\
+[PDF](files/2013-05-13-solid-tumor.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/1SJESzmfCJpmiyDp1dLIuaRnzVMroDmRb/edit)\
+ACoP 2013.
+
+**Dose Selection in Solid Tumor Trials: Making use of All Available Data**\
+[PDF](files/2013-06-20-dose-selection.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/18yZXffhs6na3mUoloSXk1Sekqul8VeWI/edit)\
+PhUSE 2013.
+
+### Chronic Myeloid Leukemia (CML)
+
+**Bcr-Abl Kinetics Suggests that Self Renewing Leukemic Cells are Reduced During Imatinib Treatment**\
+[PDF](files/2009-12-01-bcr-abl-kinetics.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/13h0lmIHt4rVUyqALf35uSAA3fIj78O3-/edit)\
+ASH 2009.
+
+## Biologics
+
+**Assessing the Identifiability of Models for Target Mediated Drug Disposition using a New Metric of Potency**\
+[PDF](files/2016-07-13-tmdd-identifiability.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/1632J0NBoLf_87G5h2mnqYiSsCsZhsQfs/edit)\
+SIAM Life Sciences 2016.
+
+**Two New Parameters for Characterizing Ligand Binding Systems**\
+[PDF](files/2017-10-17-ligand-binding.pdf) ·
+[Google Slides](https://docs.google.com/presentation/d/1He9YfYi5PcVEVVvYAIHUaHCJcZJg_HVk/edit)\
+ACoP 2017.

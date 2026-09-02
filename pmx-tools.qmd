@@ -59,7 +59,7 @@ tools.
 
 - [R Coding Checklist](https://docs.google.com/document/d/17ec8YaARWZ6wppv3AfZCdaHfPwvOFUABXyXmENgHnpE/edit?usp=sharing)
 - [Validation Checklist](https://docs.google.com/document/d/1rXf7mfFpjg1EWafuMaT_Dw29pa-onqr--n2LRULrS1Q/edit)
+- [xgxr Package for Exploratory Graphics](https://cran.r-project.org/package=xgxr)
+- [nlmixr2 Package for Nonlinear Mixed Effect Modeling](https://nlmixr2.org/)
+- [ggPMX Package for Diagnostic Plots](https://cran.r-project.org/package=ggPMX)
 - [xgxr + nlmixr + ggPMX tutorials (YouTube)](https://www.youtube.com/channel/UCoVBtOuUwmI_OyHX1JbyZcA)
-
-The R packages themselves are listed on the [Projects](../projects/index.qmd)
-page.
