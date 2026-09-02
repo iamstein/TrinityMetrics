@@ -76,6 +76,10 @@ toward integration.
 
 ## Blogs
 
+- **[Astral Codex Ten](https://www.astralcodexten.com/)** by Scott Alexander —
+  long, careful posts on psychiatry, medicine, statistics and forecasting.
+- **[Don't Worry About the Vase](https://thezvi.substack.com/)** by Zvi
+  Mowshowitz — weekly roundups of what happened in AI and what to make of it.
 - **[Marginal Revolution](http://marginalrevolution.com/)** by Tyler Cowen and
   Alex Tabarrok — economics blog that covers a broad range of topics.
 - **[Parent Data](https://emilyoster.substack.com/)** by Emily Oster — data
@@ -97,7 +101,6 @@ toward integration.
 
 ## Technical
 
-- **[Oh Shit, Git!?!](https://ohshitgit.com/)** for dealing with git issues.
 - Frank Harrell's
   **[Regression Modeling Strategies](https://hbiostat.org/doc/rms/4day.html)**
   course.

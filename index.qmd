@@ -9,10 +9,12 @@ TrinityMetrics combines a lifetime love of teaching and learning, 17 years of ph
 
 |   |   |   |
 |---|---|---|
-| **Pharmacometrics** | Tools, guides, checklists and talks I've developed and contributed to, that support model-informed drug development. | [Projects](projects/index.qmd), [PMX Tools](pmx-tools.qmd) |
-| **Education** | Guides and frameworks for learning and career development. | [Guides](guides/index.qmd), [Talks](talks.qmd) |
+| **Pharmacometrics** | Tools, guides, checklists and talks I've developed and contributed to, that support model-informed drug development. | [Projects](projects/index.qmd), [PMX Tools](pmx-tools.qmd), [Talks](talks.qmd) |
+| **Education** | Guides and frameworks for learning and career development. | [Guides](guides/index.qmd) |
 | **GenAI** | Project development using GenAI, skill files to support development, and a nascent blog. | [Blog](blog/index.qmd) |
 
 :::
 
-![](trinitymetrics-logo-light.png){fig-align="center" width="600px" fig-alt="A triquetra of three interlocking loops: a pharmacokinetic time course, an open book, and a brain drawn as a circuit. Wordmark: trinity metrics."}
+:::: {.home-logo}
+![](trinitymetrics-logo-light.png){fig-align="center" fig-alt="A triquetra of three interlocking loops: a pharmacokinetic time course, an open book, and a brain drawn as a circuit. Wordmark: trinity metrics."}
+::::

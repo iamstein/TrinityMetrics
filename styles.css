@@ -63,3 +63,14 @@
 .legs-table thead {
   display: none;
 }
+
+/* The home-page logo. A fixed pixel width put the "trinity metrics" wordmark
+   below the fold on a laptop, so the height is capped against the viewport as
+   well: 400px where there is room, less where there is not, and the whole mark
+   is visible either way. */
+.home-logo img {
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+  max-height: 50vh;
+}
