@@ -21,6 +21,16 @@ listing:
     fields: [title, description]
     categories: false
     feed: false
+  - id: genai-projects
+    contents: projects.yml
+    include:
+      categories: "GenAI"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, description]
+    categories: false
+    feed: false
   - id: site-projects
     contents: projects.yml
     include:
@@ -61,6 +71,11 @@ Working documents, kept in the open. They record how a problem is currently
 being thought about, not a finished result.
 
 ::: {#r-projects}
+:::
+
+## GenAI
+
+::: {#genai-projects}
 :::
 
 ## This site

@@ -1,0 +1,50 @@
+---
+title: "Claude Code at Work"
+subtitle: "A talk to the group on using Claude Code for open-source work"
+description: "Index of the documents in the claude-code-at-work project: a slide deck on four pieces of open-source work done with Claude Code, how it is set up, and what has to be checked."
+categories: [GenAI, talk, working document]
+date: last-modified
+toc: false
+---
+
+A talk to the group, in a couple of weeks, on how Claude Code is being used for
+open-source pharmacometrics work. Everything shown is public and none of it
+touches clinical data.
+
+## Documents
+
+- [Presentation](presentation.qmd). The slide deck, in revealjs. Four worked
+  examples, why Claude Code rather than Positron, how it is set up, and the
+  parts that need care.
+
+## Where the four examples come from
+
+| Slide | Repository | What to point at |
+|---|---|---|
+| xgxr to CRAN | `Novartis/xgxr` | issue #72, the expired-TLS-cert fix, `cran-comments.md`, version 1.1.6 |
+| xgx onto CI | `Novartis/xgx` | `build-site.yml`, the data-checking page |
+| synpmx | `iamstein/synpmx` | the package and its pkgdown site |
+| Intra-patient escalation | this repository | `projects/tce-ipde/` specification and references |
+
+## What still needs Andy
+
+Five places in the deck are marked `TODO`, because they are yours rather than
+mine:
+
+- The name of the internal training that unblocks `claude.ai`
+- Where you stand on the data boundary, which is the question the room will ask
+- Where it falls short, from your own experience
+- What it costs, and who pays
+- The demo itself
+
+## Suggested, and easy to cut
+
+Four slides were not in the original outline and were added because a talk to
+this audience is weaker without them: **What I check, every time**, **The data
+boundary**, **Where it falls short**, and **If you want to try it**. Cut any
+that do not earn their place.
+
+One thing deliberately kept off the slides: the remark about Novartis board
+membership implying where the tooling is going. Said out loud it is a
+speculation among colleagues; on a slide it reads as a claim about company
+direction.

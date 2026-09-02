@@ -1,0 +1,177 @@
+---
+title: "Claude Code at Work"
+subtitle: "How I use it for open-source pharmacometrics"
+author: "Andrew Stein"
+date: last-modified
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    incremental: false
+    smaller: true
+    scrollable: true
+---
+
+## What this is
+
+Four pieces of open-source work I did with Claude Code, why I reach for it
+rather than Positron, and how it is set up.
+
+Everything shown here is public. None of it touches clinical data.
+
+::: {.notes}
+Set the boundary in the first minute. It is the question the room is holding.
+:::
+
+# What it built
+
+## 1. A bug fix in xgxr, through to CRAN
+
+- Fixed the scale-transform break (issue #72)
+- Found and removed a hyperlink whose TLS certificate had expired, which is
+  the kind of thing CRAN rejects a submission for
+- Updated `cran-comments.md`, ran win-builder, recorded the result
+- Now at version 1.1.6
+
+The tedious half of a CRAN release is checks, comments and re-checks. That
+half is what got absorbed.
+
+## 2. xgx onto modern CI
+
+- The rendered HTML used to live in the repository
+- Now `build-site.yml` builds it, so the site is a build product rather than a
+  committed artifact
+- Added the data-checking page
+
+::: {.notes}
+The point: it did the CI plumbing, which is the part nobody in the group wants
+to spend a weekend on.
+:::
+
+## 3. A new package: synpmx
+
+**Structurally Faithful Synthetic Pharmacometric Data**
+
+Generating realistic synthetic PK/PD datasets, so workflows, teaching material
+and tooling can be developed and shared without exposing real clinical data.
+
+Written from nothing to a working package with a pkgdown site.
+
+## 4. A strategic question, not a coding task
+
+**Does intra-patient dose escalation reach a confirmable active dose sooner in
+a first-in-human T-cell engager trial?**
+
+What came back was not code. It was a specification, a reading queue, and a
+references page marking, for every source, whether the claim drawn from it had
+actually been checked against the source.
+
+::: {.notes}
+This is the one that surprised me. Worth dwelling on.
+:::
+
+# How it is set up
+
+## The pattern: it builds a website, and I read the website
+
+::: {.incremental}
+- It works, commits, and pushes
+- CI publishes the site
+- I look at the rendered output — on my phone, at home, or at work
+- No local environment, no screen sharing, no "can you paste the output"
+:::
+
+**And it sets all of that up itself.** The Actions workflow, the publishing,
+the theme.
+
+::: {.notes}
+This is the transferable idea. Everything else is detail.
+:::
+
+## Why Claude Code rather than Positron
+
+::: {.incremental}
+1. **It runs longer with less input.** Fewer round trips per unit of work.
+2. **It runs on my own machine at home, against ordinary GitHub.** No
+   confusion with the Copilot setup.
+3. **I can drive it from my phone, my home machine, or my work machine**
+   with remote control.
+4. **I can choose the model.** Though I was moved from Fable to Opus once the
+   work touched biology.
+:::
+
+## What I actually do
+
+One command from my home machine:
+
+```
+/remote-control
+```
+
+And often not even that. A fresh session checks the repository out and picks
+up where the last one stopped, because the state lives in the repository
+rather than in the session.
+
+::: {.notes}
+Show the web interface here. Keep it short — the demo carries this.
+:::
+
+## Demo
+
+*[live]*
+
+## Getting access
+
+Running Claude directly at `claude.ai` requires the internal training first.
+Without it, you are blocked.
+
+*[TODO: name the training and where to find it]*
+
+# The parts that need care
+
+## What I check, every time
+
+The model produces plausible output. Plausible is not the same as correct, and
+the reviewer is still the author.
+
+- Does the code run, and do the tests pass?
+- Is every number traceable to something I can open?
+- For a claim from a paper, has it been checked against the paper?
+
+The TCE-IPDE references page carries a status marker on every source for
+exactly this reason.
+
+::: {.notes}
+Ties to the "AI can assist, humans must own decisions" position. Do not skip
+this slide — it is what makes the rest credible to this room.
+:::
+
+## The data boundary
+
+Everything here is **public, open-source work**.
+
+The interesting question for us is what changes when the data cannot leave the
+building — and that is a different problem, not a smaller one.
+
+*[TODO: say where you actually stand on this, since it is the question you
+will be asked]*
+
+## Where it falls short
+
+*[TODO: fill from your own experience — a talk with no failures in it gets
+discounted. Candidates:]*
+
+- Confidently wrong about APIs it half-remembers
+- Long sessions drift without a written specification to anchor them
+- It will produce volume when what you wanted was a decision
+- Cost, and who pays
+
+## If you want to try it
+
+1. Do the training, so `claude.ai` is not blocked
+2. Pick a repository with **no** sensitive data
+3. Give it a small, checkable task — a failing test, a CI workflow
+4. Have it publish a site, so you can read the output rather than run it
+5. Write a `CLAUDE.md` for the repository once the conventions matter
+
+## Questions

@@ -43,6 +43,15 @@
   categories: [R project]
   path: tce-crs-tolerance/index.qmd
 
+- title: "Claude Code at Work"
+  subtitle: "Talk"
+  description: >
+    A talk to the group on using Claude Code for open-source pharmacometrics:
+    four worked examples, how it is set up, and what has to be checked before
+    the output is trusted.
+  categories: [GenAI]
+  path: claude-code-at-work/index.qmd
+
 - title: "Site integration"
   subtitle: "Working document"
   description: >
