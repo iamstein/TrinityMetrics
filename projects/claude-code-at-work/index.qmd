@@ -18,8 +18,9 @@ deck carries worked examples and no closing section of caveats.
 ## Documents
 
 - [Demo page](demo.qmd). The theophylline dataset plotted, a one-compartment
-  model fitted per subject, and the simulation compared against the observed
-  data. Built as the live-demo target.
+  model fitted with `nlmixr2` using FOCEi, and the fit compared against the
+  observed data. Built as the live-demo target: it renders in about 8 seconds
+  and publishes in about a minute.
 - [Presentation](presentation.qmd). The slide deck, in revealjs. Four worked
   examples, why Claude Code rather than Positron, how it is set up, and the
   parts that need care.
@@ -32,6 +33,19 @@ deck carries worked examples and no closing section of caveats.
 | xgx onto CI | `Novartis/xgx` | `build-site.yml`, the data-checking page |
 | synpmx | `iamstein/synpmx` | the package and its pkgdown site |
 | Intra-patient escalation | this repository | `projects/tce-ipde/` specification and references |
+
+## Before the talk
+
+`rxode2` could not compile a model on this machine until 2026-09-02. R's
+`FLIBS` pointed at a Fortran runtime in `/opt/gfortran`, which was not
+installed, so every model build failed at the link step. `rxode2` reported it
+as a missing C compiler, which it was not. `~/.R/Makevars` now points `FLIBS`
+at the `libgfortran` and `libquadmath` that R ships inside its own framework.
+Installing the GNU Fortran compiler from
+[mac.r-project.org/tools](https://mac.r-project.org/tools/) is the proper fix,
+after which that file can be deleted.
+
+Worth checking the demo still renders on the machine you present from.
 
 ## What still needs Andy
 

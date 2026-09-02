@@ -1,9 +1,9 @@
 ---
 title: "Theophylline: data, model, and simulation"
-subtitle: "Demo page — observed data against a fitted one-compartment model"
+subtitle: "Demo page — fitted with nlmixr2 and rxode2"
 description: >
   The theophylline single-dose dataset plotted, a one-compartment model with
-  first-order absorption fitted per subject, and the simulation from that fit
+  first-order absorption fitted with nlmixr2, and the simulation from that fit
   compared against the observed data.
 categories: [GenAI, demo]
 date: last-modified
@@ -14,14 +14,9 @@ execute:
 toc: true
 ---
 
-::: {.callout-note appearance="simple"}
-The model here is fitted with base R's `nls()`, not with `nlmixr2`. On the
-machine this was built on, `rxode2` cannot compile a model — see the note at
-the foot of the page. The intended `nlmixr2` version is a few lines and is
-given there.
-:::
-
 ```{r setup}
+library(nlmixr2)
+library(rxode2)
 library(ggplot2)
 library(dplyr)
 theme_set(theme_bw(base_size = 12))
@@ -35,7 +30,6 @@ concentrations followed for 24 hours.
 ```{r data}
 theo <- nlmixr2data::theo_sd
 obs  <- theo |> filter(EVID == 0)
-dose <- theo |> filter(EVID != 0) |> select(ID, AMT) |> distinct()
 
 obs |>
   ggplot(aes(TIME, DV, group = ID)) +
@@ -47,73 +41,17 @@ obs |>
 
 ## The model
 
-One compartment, first-order absorption, fitted to each subject:
+One compartment, first-order absorption, fitted with `nlmixr2` using FOCEi.
 
-$$C(t) = \frac{D\,k_a}{V\,(k_a - k_e)}\left(e^{-k_e t} - e^{-k_a t}\right)$$
-
-```{r fit}
-one_cmt <- function(t, D, ka, ke, V) {
-  D * ka / (V * (ka - ke)) * (exp(-ke * t) - exp(-ka * t))
-}
-
-fits <- lapply(split(obs, obs$ID), function(d) {
-  D <- dose$AMT[dose$ID == d$ID[1]]
-  f <- nls(DV ~ one_cmt(TIME, D, ka, ke, V), data = d,
-           start = list(ka = 1.5, ke = 0.08, V = 0.5),
-           control = nls.control(maxiter = 200, warnOnly = TRUE))
-  cf <- as.list(coef(f))
-  data.frame(ID = d$ID[1], ka = cf$ka, ke = cf$ke, V = cf$V, D = D)
-})
-pars <- do.call(rbind, fits)
-knitr::kable(pars, digits = 3, caption = "Fitted parameters by subject")
-```
-
-## Simulation against the observed data
-
-```{r simulate}
-grid <- do.call(rbind, lapply(seq_len(nrow(pars)), function(i) {
-  p <- pars[i, ]
-  t <- seq(0, max(obs$TIME), length.out = 200)
-  data.frame(ID = p$ID, TIME = t,
-             SIM = one_cmt(t, p$D, p$ka, p$ke, p$V))
-}))
-
-ggplot() +
-  geom_line(data = grid, aes(TIME, SIM, colour = "Simulated")) +
-  geom_point(data = obs, aes(TIME, DV, colour = "Observed"), size = 1) +
-  facet_wrap(~ ID) +
-  scale_colour_manual(values = c(Observed = "black", Simulated = "#2c7fb8")) +
-  labs(x = "Time (h)", y = "Concentration (mg/L)", colour = NULL,
-       title = "Observed data and the fitted model, by subject") +
-  theme(legend.position = "bottom")
-```
-
-```{r dv-pred}
-obs_pred <- obs |>
-  left_join(pars, by = "ID") |>
-  mutate(PRED = one_cmt(TIME, D, ka, ke, V))
-
-ggplot(obs_pred, aes(PRED, DV)) +
-  geom_abline(slope = 1, intercept = 0, colour = "grey60") +
-  geom_point(alpha = 0.7, size = 1) +
-  labs(x = "Predicted (mg/L)", y = "Observed (mg/L)",
-       title = "Observed against predicted")
-```
-
-## What blocked the nlmixr2 version
-
-`rxode2` 5.0.2 and `nlmixr2` 5.0.0 are installed and the model below is
-accepted, but building it fails at the compile step with *"error building
-model — please make sure you have a working C compiler set up"*. `clang`,
-`make` and the Command Line Tools are present, and `R CMD SHLIB` compiles a
-plain C file, so R's toolchain works; the failure is inside `rxode2`, which
-does not reach the point of writing its generated `.c` file.
-
-```r
+```{r model}
 one.cmt <- function() {
   ini({
-    tka <- 0.45; tcl <- 1; tv <- 3.45
-    eta.ka ~ 0.6; eta.cl ~ 0.3; eta.v ~ 0.1
+    tka <- 0.45   # log ka
+    tcl <- 1      # log CL
+    tv  <- 3.45   # log V
+    eta.ka ~ 0.6
+    eta.cl ~ 0.3
+    eta.v  ~ 0.1
     add.sd <- 0.7
   })
   model({
@@ -123,5 +61,52 @@ one.cmt <- function() {
     linCmt() ~ add(add.sd)
   })
 }
-fit <- nlmixr2(one.cmt, theo_sd, est = "focei")
+```
+
+```{r fit}
+#| output: false
+# The estimation writes progress bars to the console; keep them out of the page.
+rxode2::rxSetProgressBar(0)
+fit <- suppressMessages(
+  nlmixr2(one.cmt, theo, est = "focei", control = foceiControl(print = 0))
+)
+```
+
+```{r fit-table}
+knitr::kable(fit$parFixedDf, digits = 3, caption = "Fixed-effect estimates")
+```
+
+## Simulation against the observed data
+
+```{r compare}
+fit |>
+  ggplot(aes(TIME, DV)) +
+  geom_point(aes(colour = "Observed"), size = 1) +
+  geom_line(aes(y = IPRED, colour = "Individual prediction")) +
+  geom_line(aes(y = PRED, colour = "Population prediction"), linetype = 2) +
+  facet_wrap(~ ID) +
+  scale_colour_manual(values = c("Observed" = "black",
+                                 "Individual prediction" = "#2c7fb8",
+                                 "Population prediction" = "#7fcdbb")) +
+  labs(x = "Time (h)", y = "Concentration (mg/L)", colour = NULL,
+       title = "Observed data and the fitted model, by subject") +
+  theme(legend.position = "bottom")
+```
+
+```{r dv-pred}
+fit |>
+  ggplot(aes(IPRED, DV)) +
+  geom_abline(slope = 1, intercept = 0, colour = "grey60") +
+  geom_point(alpha = 0.7, size = 1) +
+  labs(x = "Individual prediction (mg/L)", y = "Observed (mg/L)",
+       title = "Observed against individual prediction")
+```
+
+```{r cwres}
+fit |>
+  ggplot(aes(TIME, CWRES)) +
+  geom_hline(yintercept = 0, colour = "grey60") +
+  geom_point(alpha = 0.7, size = 1) +
+  labs(x = "Time (h)", y = "CWRES",
+       title = "Conditional weighted residuals against time")
 ```
