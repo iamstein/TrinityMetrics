@@ -159,8 +159,7 @@ This is the transferable idea. Everything else is detail.
 
 1. **It runs longer with less input.** Fewer round trips per unit of work.
 2. **It runs on my own machine at home, against ordinary GitHub.** No
-   confusion with the GitHub Copilot setup and the `user5-2-1_NVTS` GitHub
-   account.
+   confusion with the GitHub Copilot setup and the corporate GitHub account.
 3. **I can drive it from my phone, my home machine, or my work machine**
    with remote control.
 4. **I can choose to use the latest model (Fable).** Though it kicked me back

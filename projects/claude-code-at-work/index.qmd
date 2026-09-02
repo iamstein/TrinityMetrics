@@ -7,9 +7,13 @@ date: last-modified
 toc: false
 ---
 
-A talk to the group, in a couple of weeks, on how Claude Code is being used for
-open-source pharmacometrics work. Everything shown is public and none of it
-touches clinical data.
+An informal 15-minute talk at the AI symposium, which meets a couple of times
+a week for people to show how they use these tools. On how Claude Code is being
+used for open-source pharmacometrics work. Everything shown is public and none
+of it touches clinical data.
+
+The format sets the shape: it is a show-and-tell, not a position paper, so the
+deck carries worked examples and no closing section of caveats.
 
 ## Documents
 
