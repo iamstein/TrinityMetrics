@@ -5,6 +5,10 @@ toc: false
 
 ## Andrew M. Stein
 
+::: {.about-photo}
+![](files/andy-stein.jpg){fig-alt="Andy Stein."}
+:::
+
 I'm a Senior Director of Pharmacometrics at [Novartis](http://www.nibr.com/) in
 Cambridge, MA. I did postdoctoral research at the
 [Institute for Math and its Applications](http://www.ima.umn.edu/), a PhD in
@@ -38,7 +42,7 @@ predictions. To support model-informed decision-making in the face of
 uncertainty, I have co-developed an
 [Uncertainty Pedigree Table](references/Uncertainty_Assessment_Pedigree_Table.pdf)
 (discussed in
-[this presentation](https://drive.google.com/open?id=1YlNvRkbrviEuW_CQcFYwuUaGiTjP32ht))
+[this presentation](files/2020-03-24-qsp-uncertainty.pdf))
 and adapted the FDA's
 [Context of Use Table](references/ContextOfUse_Table_1page.pdf).
 

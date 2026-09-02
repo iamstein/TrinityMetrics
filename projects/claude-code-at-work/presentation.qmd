@@ -20,7 +20,12 @@ format:
 * When and why I use Claude Code rather than Positron
 * How I set up Claude Code.
 
-# What it built
+# What was built with Claude Code
+
+- **xgxr** — fixed a user-reported bug and got the package to CRAN.
+- **xgx** — rebuilt the website to publish by continuous integration.
+- **synpmx** — a package for generating synthetic pharmacometrics datasets.
+- **TCE-IPDE** — a specification for simulating intrapatient dose escalation.
 
 ## 1. xgxr: User reported a bug
 
