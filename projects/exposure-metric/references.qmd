@@ -1,0 +1,76 @@
+---
+title: "References for the exposure metric guide"
+subtitle: "What the page cites, and what has actually been checked"
+description: "The two sources cited by the Selecting an Exposure Metric page, with a status marker on each recording whether the page's use of it has been verified against the source."
+categories: [pharmacometrics, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Neither source has been checked.** Both citations came across from
+`PK_Choosing_Metric_public.Rmd` as links, and the page's characterization of
+each is Andy's from the source file rather than a reading done here. The
+bibliographic details below were fetched from Crossref and PubMed on
+2026-09-02 and are correct; what is unverified is whether each paper says what
+the page uses it to say.
+:::
+
+The page is
+[Selecting an Exposure Metric](../../selecting-an-exposure-metric.qmd), the
+working document is [the specification](specification.qmd), and the folder's
+documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim on the page has been verified against this
+  source.
+- ⚠️ **Transcribed, unverified.** A number, table or figure on the page came
+  from this source but has not been checked against it.
+- ✅ **Checked.** The claim the page draws from it has been verified against
+  the source.
+
+Change a marker when the check is done, not when the paper is opened.
+
+## Reading queue
+
+Two entries, in the order to read them.
+
+1.  ❌ **Ruiz-Garcia et al., 2023.** Read first. It is cited as the general
+    companion to the whole page rather than for one claim, so reading it either
+    confirms the page sits inside current practice or shows where it has drifted.
+    Question to read against: does the review's account of exposure metric
+    selection in oncology agree with the four questions, and does it name a
+    consideration the page omits?
+
+2.  ❌ **Dumortier et al., 2015.** Read second, and quickly. Only one claim
+    depends on it and the claim is about a figure. Question to read against:
+    does the paper show daily tacrolimus concentration with rejection events
+    overlaid, and do most events fall below the median?
+
+## Sources
+
+**❌ Ruiz-Garcia A, Baverel P, Bottino D, Dolton M, Feng Y, González-García I,
+et al. A comprehensive regulatory and industry review of modeling and
+simulation practices in oncology clinical drug development.** *Journal of
+Pharmacokinetics and Pharmacodynamics* 50:147--172, 2023.
+[doi:10.1007/s10928-023-09850-2](https://doi.org/10.1007/s10928-023-09850-2)
+
+Cited in the page's opening as a useful companion. Nothing on the page depends
+on a specific number or figure from it, so the marker turns ✅ once the review
+has been read against the question in the queue above.
+
+**❌ Dumortier T, Looby M, Luttringer O, Heimann G, Klupp J, et al. Estimating
+the contribution of everolimus to immunosuppressive efficacy when combined with
+tacrolimus in liver transplantation: a model-based approach.** *Clinical
+Pharmacology and Therapeutics* 97:411--418, 2015.
+[PubMed 25669933](https://pubmed.ncbi.nlm.nih.gov/25669933/)
+
+Cited in Section 3 as the pattern for a time-dependent exposure metric. The
+page describes a figure from it: daily tacrolimus concentration with organ
+rejection events drawn in black, most of them below the median. That
+description came across from the source R Markdown file and the figure itself
+was not in the upload, so it is unverified in both senses. See Section 4 of
+[the specification](specification.qmd).

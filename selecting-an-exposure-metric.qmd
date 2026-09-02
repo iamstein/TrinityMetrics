@@ -1,0 +1,164 @@
+---
+title: "Selecting an Exposure Metric"
+subtitle: "Four questions to settle before an exposure-response analysis"
+description: >
+  Which exposure metric to carry into an exposure-response analysis: dose or
+  PK, empirical or model-predicted, calculated at what time, and how many
+  metrics to try.
+categories: [PMX guide]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+An exposure-response (E-R) analysis needs an exposure metric, and there are
+many to choose from:
+
+- Assigned dose.
+- PK concentrations as a continuous function over time, measured or model
+  predicted.
+- A PK metric such as Cmax, Cmin, Cavgss or AUC, calculated by
+  non-compartmental analysis (NCA) or model predicted.
+- An integrated, derived metric such as average daily dose (dose intensity),
+  or average concentration up to the time of the event.
+
+The four questions below decide among them. Work through them in order: the
+answer to each one narrows what the next one is choosing between.
+
+**Out of scope.** This page chooses the metric. It does not cover how to run
+the E-R analysis afterwards, or how to build the PK model that some of these
+metrics require.
+
+A useful companion is
+[a comprehensive regulatory and industry review of modeling and simulation practices in oncology clinical drug development](https://doi.org/10.1007/s10928-023-09850-2)
+(Ruiz-Garcia et al., *Journal of Pharmacokinetics and Pharmacodynamics* 50:147--172, 2023).
+
+## 1. Dose or a PK-Based Metric?
+
+1.  **Is PK data available?** If PK is unavailable for most relevant patients,
+    then dose should be used, or a model simulation would be needed. See
+    Section 2.
+
+2.  **Do PK concentrations add relevant information over and above dose, or
+    vice versa?**
+
+    -   If there is little overlap in exposure between different cohorts, dose
+        may be sufficient, as PK does not add much information.
+    -   If doses give PK concentrations that saturate the target, the dose
+        intensity, or the time of drug concentration above a threshold, may be
+        more informative than metrics derived from PK.
+    -   If there is just one dose, a dose-related exposure metric cannot be
+        used.
+    -   If one wants to integrate data across dose regimens, or predict the
+        response to a new dose regimen, an E-R analysis based on a PK metric
+        may be helpful.
+
+3.  **Are there confounders that would make an E-R analysis hard to
+    interpret?** If one is not confident that the concentration-response
+    relationship is causal, or if one cannot adjust appropriately for
+    confounding factors, then the assigned dose, or a related metric such as
+    assigned average dose for intermittent regimens, should be considered.
+    Particular examples of confounding where randomized dose may be better:
+
+    -   Long-term dose adjustments due to safety or biomarker data. In
+        long-term survival studies in oncology, patients followed for a long
+        time often also have dose reductions due to adverse events. A dose
+        reduction driven by an adverse response can then show up as a
+        correlation between lower exposure and better survival, which is not
+        causal. A longitudinal PKPD model-based E-R analysis may help here, for
+        example a time-dependent Cox regression.
+    -   Sicker patients may have different clearance than healthier patients,
+        as with PD-1 inhibitors. A dose metric would be more appropriate.
+    -   Different pharmacology across studies or indications may warrant
+        separate E-R analyses for each study.
+
+## 2. An Empirical or a Model-Predicted PK Metric?
+
+1.  **Is the PK data available for a sufficient number of patients at the
+    necessary time points?**
+
+    -   If PK is only available for a subset of patients, a Phase 1 study but
+        not a Phase 3, a model may be needed to predict the PK metric for all
+        patients.
+    -   If PK is not sampled at the appropriate time for all patients, a PK
+        model may be needed to predict the PK at the time point of interest.
+    -   If there have been dose changes and PK is not available at the relevant
+        time during those changes, a model may be needed.
+
+2.  **How accurate is the PK model, and how reliable is the PK sampling?**
+
+    -   Developing a PK model that predicts Cmax well may be challenging for
+        orally administered drugs. Deriving the metric directly from the PK
+        measurement requires no model assumptions.
+    -   The measured Cmax may also not reflect the true Cmax, if there are too
+        few samples, if the sampling times were not well selected, or if the PK
+        is highly variable. Where the model is deemed reliable, a
+        model-derived metric may be preferable to an empirical one.
+
+3.  **Can the event of interest happen over a long duration of time?** Adverse
+    events, progression-free survival (PFS) and overall survival (OS) all can.
+    If yes, model-based PK prediction may be valuable for the time-dependent
+    E-R analysis in Section 3.
+
+## 3. At What Time, and at How Many Times?
+
+1.  **Can the event of interest happen over a long duration of time, or are
+    there intercurrent events such as dose changes that affect the PK during
+    the time a response event occurs?**
+
+    If yes to either, a time-dependent exposure metric is recommended.
+    [Dumortier et al., 2015](https://pubmed.ncbi.nlm.nih.gov/25669933/) is the
+    pattern to copy: the tacrolimus concentration is calculated every day, and
+    the organ rejection events are drawn on top of it in black. Most of the
+    black points fall below the median concentration, and that is what says
+    lower exposure makes an event more likely.
+
+    Examples:
+
+    -   In that study, tacrolimus dose decreases over time, but only in the
+        patients that do not initially have organ rejection.
+    -   In oncology, long-term adverse events may be more likely in patients
+        who have efficacy and are followed for a long duration. Patients who do
+        well may then show lower steady-state exposures, or lower exposures at
+        the time of event, than patients who progress in the first cycle,
+        because they were followed long enough to have a dose reduction. Lower
+        exposure is not causing the better response.
+
+2.  **By what mechanism do we expect response to relate to exposure?**
+
+    -   For chronic, long-term effects, average exposure may be most
+        appropriate. Safety: liver toxicity that develops from prolonged
+        exposure. Efficacy: tumour reduction under a chemotherapy.
+    -   For acute effects, Cmax or the concentration at the time of event may
+        be most relevant. Safety: adverse events such as GI toxicity, or
+        cytokine release syndrome (CRS) in response to a T cell engager, where
+        an acute metric suits events occurring in the next few days. Efficacy:
+        where response is rapid, as with anti-CRS therapy.
+
+3.  **Can response affect exposure?**
+
+    If response can affect exposure, for instance where sicker patients are
+    both less likely to respond and have faster clearance, then clearance may
+    be more predictive of response than exposure is. Clearance can then be
+    time-dependent, and a cycle 1 exposure metric may be preferable, because
+    cumulative or steady-state metrics will be confounded.
+
+    Examples:
+
+    -   PD-1 inhibitors, where patients who respond then also reduce their
+        clearance. Dose or a cycle 1 exposure metric is the more appropriate
+        choice.
+    -   Drugs with target mediated drug disposition (TMDD), where high target
+        levels can lead to very fast clearance of the drug.
+
+## 4. How Many Metrics?
+
+Pre-specify as much as possible. Linking several exposure metrics to the
+endpoint and then selecting the one that shows the most pronounced E-R
+relationship is data-driven metric selection, and it is **not** recommended:
+the chance of a spurious result is high.
+
+-   What is recommended is a sensitivity analysis using other metrics, to see
+    whether the conclusion changes.
+-   Alternatively, pre-specify a couple of analyses, Cmax and Cavg say, and
+    perform both.

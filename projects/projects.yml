@@ -52,6 +52,14 @@
   categories: [GenAI]
   path: claude-code-at-work/index.qmd
 
+- title: "Exposure metric guide"
+  subtitle: "Working document"
+  description: >
+    Turning the Choosing a PK Metric R Markdown file into a PMX Tools page:
+    what the source holds, what changed in the conversion, and what is left.
+  categories: [Pharmacometrics]
+  path: exposure-metric/index.qmd
+
 - title: "Site integration"
   subtitle: "Working document"
   description: >

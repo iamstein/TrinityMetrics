@@ -1,0 +1,22 @@
+---
+title: "Exposure metric guide"
+subtitle: "Turning an R Markdown draft into a PMX Tools page"
+description: "Index of the documents in the exposure-metric project: the working specification for converting the Choosing a PK Metric R Markdown file into a page on this site, and its references."
+categories: [pharmacometrics, site, working document]
+date: last-modified
+toc: false
+---
+
+`PK_Choosing_Metric_public.Rmd` is a private R Markdown file holding four
+questions to work through when choosing an exposure metric for an
+exposure-response analysis. It becomes
+[Selecting an Exposure Metric](../../selecting-an-exposure-metric.qmd) on the
+PMX Tools page. The conversion is done; one figure is missing.
+
+## Documents
+
+- [Working specification](specification.qmd). What the source file holds, what
+  changed in the conversion, and what is left.
+- [References](references.qmd). The two papers the page cites, and a marker on
+  each recording whether the page's use of it has been checked against the
+  source.

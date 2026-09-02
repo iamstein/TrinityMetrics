@@ -35,9 +35,8 @@ and the one to use when you want to comment or suggest an edit.
   [PDF](files/causality-checklist.pdf) ·
   [Google Doc](https://docs.google.com/document/d/1Hc3RoTJXS-PQCUm-rG_RCuEa3ykRj5FiAtqRwgSiX6M/edit)
 - [Dose Finding Framework](https://ascpt.onlinelibrary.wiley.com/doi/epdf/10.1002/psp4.12701)
-- How to Read a Paper:
-  [PDF](files/how-to-read-a-paper.pdf) ·
-  [Google Doc](https://docs.google.com/document/d/1jtZHKJ88PEjVr2mxWzNjG51t97CyO8rv4zoenTH_RWE/edit)
+- [Selecting an Exposure Metric](selecting-an-exposure-metric.qmd)
+  --- four questions to settle before an exposure-response analysis
 
 ## Graphics
 

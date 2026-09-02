@@ -1,0 +1,74 @@
+---
+title: "Converting Choosing a PK Metric into a PMX Tools page"
+subtitle: "Working specification"
+description: "What the PK_Choosing_Metric_public.Rmd source holds, what changed when it became selecting-an-exposure-metric.qmd, and what is left to do."
+categories: [pharmacometrics, site, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-note appearance="simple"}
+**Converted on 2026-09-02. One figure is missing.** The page is live at
+[Selecting an Exposure Metric](../../selecting-an-exposure-metric.qmd) and
+linked from the Scoping section of PMX Tools. Section 4 holds what remains.
+:::
+
+## 1. Goal
+
+`PK_Choosing_Metric_public.Rmd` becomes a page on this site, so that the four
+questions it holds are readable in a browser, linkable from PMX Tools, and
+open on a network that blocks the original host.
+
+The prose is Andy's and stays his. The conversion changes the container and
+repairs the debris; it does not rewrite the argument.
+
+## 2. What the source holds
+
+An R Markdown file, 111 lines, with a `Background` section and four
+question-headed sections. It carries no computation: the only code chunk loads
+`ggplot2`, `dplyr`, `stringr` and `xgxr`, sets a seed and a theme, and nothing
+downstream uses any of it. The one figure is a PNG at
+`Figures/Dumortier15_Tacrolimus_Concentration.png`.
+
+Two sources are cited inline, both by link rather than through the declared
+`Bibliography.bib`, which was not in the upload. They are listed in
+[references.qmd](references.qmd).
+
+## 3. What changed in the conversion
+
+| Change | Why |
+|---|---|
+| The setup chunk is dropped | Nothing in the document computes anything, so the page renders without R and the site build stays free of a dependency |
+| `bibliography: Bibliography.bib` is dropped | The file was not supplied, and both citations are inline links |
+| Headings numbered and put in title case | The document is organized around four numbered questions, and the source headings were full sentences |
+| E-R, NCA, PFS, OS, CRS and TMDD expanded at first use | The page is public and reaches readers outside pharmacometrics |
+| An out-of-scope statement added at the top | The page chooses a metric; it does not run the analysis or build the PK model |
+| The Dumortier figure replaced by prose | The image was not in the upload. Section 4. |
+
+Four repairs, all of them debris from editing rather than changes of meaning:
+
+-   `A useful reference is from a [a comprehensive...]` carried a doubled
+    article.
+-   The Dumortier sentence opened a parenthesis it never closed.
+-   Under **chronic effects**, the efficacy example read "Tumor reduction of a
+    chemotherapy or liver toxicity that develops from prolonged exposure". The
+    second half is the safety example from the line above, pasted in. Cut.
+-   Under **response affecting exposure**, the PD-1 example had a stray closing
+    parenthesis and then said the same thing twice in consecutive sentences.
+    Merged into one.
+
+## 4. What remains
+
+**The Dumortier figure.** The source references
+`Figures/Dumortier15_Tacrolimus_Concentration.png`, which was not in the
+upload. The page currently describes in prose what the figure shows: daily
+tacrolimus concentration with organ rejection events drawn on it in black, most
+of them below the median. The description carries the argument, so the page is
+not broken without it, but the figure is the better version. Drop the PNG into
+`files/` and it can go back in.
+
+**The two citations are unchecked.** Neither paper has been read against what
+the page says about it. Both are marked ❌ in
+[references.qmd](references.qmd).
