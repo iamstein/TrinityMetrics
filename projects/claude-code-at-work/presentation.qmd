@@ -95,19 +95,19 @@ source, whether the claim drawn from it had been checked against the source.
 
 [Working specification](../tce-ipde/specification.qmd)
 
-## Workflow
+## Workflow for building website for task
 
 - For an R package, `pkgdown`. For anything else, Quarto and `quarto_render()`.
 - Sites are published by Continuous Integration (CI) through GitHub Actions.
 - I read the rendered output — on my phone, at home, or at work.
-- It sets all of that up itself: the Actions workflow, the publishing, the theme.
+- Claude sets all of that up with minimal work from me.
 
-For things that aren't their own R package and github repo, I've been a repository I set up.
-[TrinityMetrics](https://iamstein.github.io/TrinityMetrics/).
+For things that aren't their own R package and github repo, I've set up the 
+[TrinityMetrics](https://iamstein.github.io/TrinityMetrics/) repository.
 
 ![](../../files/trinitymetrics-site.png){width="58%" fig-align="center" fig-alt="The TrinityMetrics site: navigation bar, the three-category table, and the triquetra logo with the trinity metrics wordmark."}
 
-## Why Claude Code rather than Positron
+## Advantages of Claude Code over Positron Assistant
 
 1. **Claude Code runs longer and requires less input from user**
 2. **Claude Code runs on my personal machine at home, using ordinary GitHub.** No
