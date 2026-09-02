@@ -22,13 +22,13 @@ format:
 
 # What it built
 
-## 1. xgxr: what came in
+## xgxr: What bug came in
 
 ![](../../files/xgxr-issue-72-report.png){width="76%" fig-align="center" fig-alt="GitHub issue 72 reporting that xgx_stat_ci breaks produces incorrect binning with scale_x_log10 in ggplot2 4.0 and later."}
 
 A clear report, with a reprex and a diagnosis.
 
-## 1. xgxr: what it actually was
+## xgxr: Actual problem: used hand-copied "fork" of ggplot2
 
 The report blamed ggplot2 4.0. The bug is about five years older than that.
 
@@ -41,7 +41,7 @@ The report blamed ggplot2 4.0. The bug is about five years older than that.
   `stat-summary-bin.R`, pinned in its roxygen block to ggplot2 commit
   `351eb41`. It never picked up a transform step ggplot2 added later.
 
-## 1. xgxr: the one line at the heart of it
+## xgxr: The key line causing the error
 
 Our copy read:
 
@@ -203,10 +203,6 @@ session checks the repository out and picks up where the last one stopped,
 because the state lives in the repository rather than in the session.
 :::
 
-## Demo
-
-*[live]*
-
 ## Getting access
 
 Running Claude directly at `claude.ai` is blocked until you have done the
@@ -218,10 +214,14 @@ and do the training.
 ## If you want to try it
 
 1. Do the training, so `claude.ai` is not blocked
-2. Pick a repository, or just create your own on GitHub
-3. Give it a small, checkable task — a failing test, or use GitHub Actions to
-   set up publishing
-4. Have it publish a site, so you can read the output rather than run it
+2. Pick a GitHub repository to work in, or create your own
+3. Give it a small task, and ask it to use GitHub Actions to set up a website
+   and publish the results
+4. Have it publish the site, and read the output
+
+## Demo
+
+*[live]*
 
 ## Appendix: the full diagnosis {visibility="uncounted"}
 

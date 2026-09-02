@@ -17,6 +17,9 @@ deck carries worked examples and no closing section of caveats.
 
 ## Documents
 
+- [Demo page](demo.qmd). The theophylline dataset plotted, a one-compartment
+  model fitted per subject, and the simulation compared against the observed
+  data. Built as the live-demo target.
 - [Presentation](presentation.qmd). The slide deck, in revealjs. Four worked
   examples, why Claude Code rather than Positron, how it is set up, and the
   parts that need care.
