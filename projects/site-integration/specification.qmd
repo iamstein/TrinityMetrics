@@ -235,6 +235,13 @@ Two rules govern the mapping.
 that a publication entry and a project entry are edited the same way. Section 9
 covers the alternative for publications.
 
+**As built, `guides/guides.yml` is gone and Guides is a plain bulleted list.**
+Removed 2026-09-02. Andy: four documents do not need cards, and there is not
+enough there to require organizing. The descriptions in that file were copied
+from each page's own frontmatter, so it was a second place for them to drift.
+`projects/projects.yml` remains the pattern for a listing long enough to earn
+one.
+
 **A page that would hold fewer than about five entries is a section, not a
 page.** Three talks do not need a Talks page in a seven-item navbar. Where the
 export shows a thin section, fold it into `about.qmd` and record that in
@@ -264,7 +271,7 @@ because no file is hosted on the old site.
 | 3 | `/effective-learning` | Effective-Learning | page | none hosted; 1 Google Doc | PORT ✅ | `guides/effective-learning.qmd` | Done 2026-09-02. Headings and bullets restored by hand, the page's own table of contents replaced by Quarto's, and Google anchor artifacts removed. |
 | 4 | `/pmx-tools` | PMX-Tools | page | none hosted; 5 external | PORT ✅ | `pmx-tools.qmd` | Done 2026-09-02. Andy: it is not a guide, it is its own top-level page, and it keeps the R-package links rather than handing them to Projects. |
 | 5 | `/career-advice` | Career-Advice | page | none hosted; 1 external | PORT ✅ | `guides/career-advice.qmd` | Done 2026-09-02, with row 11 merged in as its last section. Andy will revise the prose. |
-| 6 | `/software` | Software | page | none | PORT ✅ | `software.qmd` | Done 2026-09-02. Andy: keep the page, but not prominent. xGx dropped from it, being an R-package row. AIRE, FIRE and BEAMS are MATLAB from the thesis and postdoc, so the page sits under the About menu rather than in Projects. |
+| 6 | `/software` | Software | page | none | PORT ✅ | `software.qmd` | Done 2026-09-02. Andy: keep the page, but not prominent. xGx dropped from it, being an R-package row. AIRE, FIRE and BEAMS are MATLAB from the thesis and postdoc, so the page sits under the About menu rather than in Projects. Their Drive links need a Google sign-in, so Section 8's export cannot mirror them; Andy 2026-09-02: pointing at Drive is fine for the old software. |
 | 7 | `/cv` | CV | page | none hosted; Google Doc | LINK | navbar `CV`, out to Google Docs | Section 4 and Section 10: an external navbar link, no page of its own. Needs `CV_DOC_ID` for the build-time export in Section 8. |
 | 8 | `/talks` | Talks | page | none hosted; 12 external | PORT ✅ | `talks.qmd` | Done 2026-09-02. Written as a plain page rather than the `talks.yml` listing Section 4 proposed: the talks are nested three deep and each carries two or three links, which a listing card cannot show. |
 | 9 | `/recommended-reading` | Recommended Resources | page | none | PORT ✅ | `guides/recommended-reading.qmd` | Done 2026-09-02, as its own Guides page. Its "Oh Shit Git" link pointed at a Kotaku article on the old site and was repaired to `ohshitgit.com`. The page originally proposed as the merge target, `guides/reading-list.qmd`, was deleted the same day: it held one stub entry with its title, authors and question unfilled. |
@@ -549,6 +556,14 @@ build. The published document is
 `1gl52JUJqrf8wL0irCn-mFp_pw0Z5w0ZalvLnKw9GSyc`. Verified on 2026-09-01: the
 export URL returns an 8-page, 316 KB PDF with no authentication.
 
+**As built, the step exports nine Docs rather than one, through
+`_scripts/export-google-docs.sh`.** Generalized 2026-09-02. Andy: he cannot
+reach Google Docs from his work network, so every Doc the site links to is
+published here as a PDF and linked beside the Google original. The script holds
+the file ids and output names; the workflow step is one line that calls it.
+The two decks under PMX principles are not in that list, their PDFs being
+already committed to `files/` for the Talks page.
+
 Four properties this has:
 
 -   **The published PDF is never stale.** It is refetched on every push to
@@ -556,10 +571,15 @@ Four properties this has:
 -   **Nothing is committed.** The PDF is written into `docs/` during the build
     and travels in the Pages artifact, so it never enters git history and
     Section 8's size arithmetic is unaffected.
--   **A broken share setting fails the build.** `--fail` makes `curl` exit
-    non-zero on an error response. Without it, Google's HTML error page would
-    be written to `stein-cv.pdf` and published as a corrupt file, which is the
-    failure nobody notices.
+-   **A broken share setting fails the build, but not through `--fail`.**
+    `--fail` makes `curl` exit non-zero on an error response, and a Doc that is
+    not link-shared does not return one. Google answers 200 and serves its
+    sign-in page. Measured 2026-09-02 on the three Drive files behind
+    `software.qmd`: each returned about 907 KB of `text/html` titled "Google
+    Drive: Sign-in". The script checks that the first four bytes of what it
+    downloaded are `%PDF`, and deletes the file and fails the build when they
+    are not. An HTML sign-in page published as a `.pdf` is the failure nobody
+    notices.
 -   **The reader never meets Google.** The site links its own
     `files/stein-cv.pdf`, so there is no account prompt, no Drive viewer, and
     no dependency on Google being up when someone opens the CV. Offer the Doc
@@ -573,8 +593,8 @@ a PDF by hand until it is fixed.
 
 Two options.
 
-**A. A YAML file plus a Quarto listing**, matching `projects.yml` and
-`guides.yml`. Each entry carries title, authors, journal, year, DOI, and a link.
+**A. A YAML file plus a Quarto listing**, matching `projects.yml`. Each entry
+carries title, authors, journal, year, DOI, and a link.
 Consistent with everything else on this site, editable without a toolchain, and
 the listing gives sorting and categories.
 
