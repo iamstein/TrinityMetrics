@@ -1,36 +1,10 @@
-- title: "Site integration"
-  subtitle: "Working document"
-  description: >
-    Merging the personal Google Sites page into TrinityMetrics: what moves,
-    where it lands, what happens to the old URLs, and in what order to do it.
-  categories: [site, migration, working document]
-  path: site-integration/index.qmd
-
-- title: "TCE-IPDE"
-  subtitle: "Working document"
-  description: >
-    Does escalating dose within a patient reach a confirmable active dose
-    sooner in a first-in-human T-cell engager trial, and does the time it
-    saves outweigh the extra visits and hospital time it costs?
-  categories: [trial design, simulation, working document]
-  path: tce-ipde/index.qmd
-
-- title: "TCE-CRS-tolerance"
-  subtitle: "Working document"
-  description: >
-    Cytokine release syndrome risk often falls as step-up doses rise. Can the
-    published epcoritamab tolerance model explain that, and can it be fit to
-    publicly available data from approved T-cell engagers?
-  categories: [pharmacometrics, safety, working document]
-  path: tce-crs-tolerance/index.qmd
-
 - title: "synpmx"
   subtitle: "R package"
   description: >
     Generating realistic synthetic PK/PD datasets, so that analysis workflows,
     teaching material, and tooling can be developed and shared without
     exposing real clinical data.
-  categories: [R, synthetic data]
+  categories: [R package]
   path: https://iamstein.github.io/synpmx/
 
 - title: "xgx"
@@ -39,7 +13,7 @@
     eXploratory Graphics for Xenobiotics: a guide to the graphics that make
     pharmacokinetic and pharmacodynamic data interpretable, with worked
     examples for each figure type.
-  categories: [graphics, pharmacometrics]
+  categories: [R package]
   path: https://opensource.nibr.com/xgx/
 
 - title: "xgxr"
@@ -48,5 +22,47 @@
     The R package behind xgx: helper functions for the axes, scales, and
     summaries that exploratory pharmacokinetic and pharmacodynamic graphics
     keep needing.
-  categories: [R, graphics]
+  categories: [R package]
   path: https://cran.r-project.org/package=xgxr
+
+- title: "nlmixr2"
+  subtitle: "R package, by others"
+  description: >
+    Nonlinear mixed effects modelling in R. Not my package; listed here
+    because it is the one I point people at for fitting population models.
+  categories: [R package]
+  path: https://nlmixr2.org/
+
+- title: "ggPMX"
+  subtitle: "R package, by others"
+  description: >
+    Diagnostic plots for nonlinear mixed effects models. Not my package;
+    listed here as the companion to xgxr and nlmixr2.
+  categories: [R package]
+  path: https://cran.r-project.org/package=ggPMX
+
+- title: "TCE-IPDE"
+  subtitle: "Working document"
+  description: >
+    Does escalating dose within a patient reach a confirmable active dose
+    sooner in a first-in-human T-cell engager trial, and does the time it
+    saves outweigh the extra visits and hospital time it costs?
+  categories: [R project]
+  path: tce-ipde/index.qmd
+
+- title: "TCE-CRS-tolerance"
+  subtitle: "Working document"
+  description: >
+    Cytokine release syndrome risk often falls as step-up doses rise. Can the
+    published epcoritamab tolerance model explain that, and can it be fit to
+    publicly available data from approved T-cell engagers?
+  categories: [R project]
+  path: tce-crs-tolerance/index.qmd
+
+- title: "Site integration"
+  subtitle: "Working document"
+  description: >
+    Merging the personal Google Sites page into TrinityMetrics: what moves,
+    where it lands, what happens to the old URLs, and in what order to do it.
+  categories: [Site]
+  path: site-integration/index.qmd

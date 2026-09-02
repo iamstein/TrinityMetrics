@@ -1,23 +1,59 @@
 ---
 title: "Projects"
 listing:
-  id: project-listing
-  contents: projects.yml
-  type: grid
-  grid-columns: 2
-  sort: false
-  fields: [title, description, categories]
-  categories: false
-  feed: false
+  - id: r-packages
+    contents: projects.yml
+    include:
+      categories: "R package"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, description]
+    categories: false
+    feed: false
+  - id: r-projects
+    contents: projects.yml
+    include:
+      categories: "R project"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, description]
+    categories: false
+    feed: false
+  - id: site-projects
+    contents: projects.yml
+    include:
+      categories: "Site"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, description]
+    categories: false
+    feed: false
 toc: false
 ---
 
 Longer-running work: open-source tools, and working documents for problems
 that do not fit in a blog post.
 
-Some of these live in this repository and some are hosted elsewhere. Working
-documents here are drafts kept in the open — they record how a problem is
-currently being thought about, not a finished result.
+## R packages
 
-::: {#project-listing}
+Software to install and use. Some of these live in this repository and some
+are hosted elsewhere.
+
+::: {#r-packages}
+:::
+
+## R projects
+
+Working documents, kept in the open. They record how a problem is currently
+being thought about, not a finished result.
+
+::: {#r-projects}
+:::
+
+## This site
+
+::: {#site-projects}
 :::

@@ -1,0 +1,38 @@
+---
+title: "Earlier Software"
+subtitle: "MATLAB tools from the PhD thesis and postdoc, before 2011"
+description: >
+  Three MATLAB tools written during the PhD and postdoc: AIRE for tumour
+  spheroid invasive radii, FIRE for extracting network geometry from confocal
+  images, and BEAMS for simulating beam network deformation.
+date: last-modified
+toc: false
+---
+
+These are MATLAB tools written during my PhD thesis and postdoctoral research,
+before 2011. They are kept here for the record and for anyone who finds them
+through the papers below.
+
+- **[AIRE](https://drive.google.com/file/d/0B5zelX434ytYUW85STFuampjbmM/view?usp=sharing)** —
+  Automated Invasive Radii Estimation: tool for estimating the invasive radii
+  of tumor spheroids grown in vitro.
+- **[FIRE](https://drive.google.com/file/d/0B5zelX434ytYTnM4RG1QWmZwNGM/view?usp=sharing)** —
+  FIbeR Extraction: tool for extracting network architecture from 3d, confocal
+  images of biopolymer networks.
+- **[BEAMS](https://drive.google.com/file/d/0B5zelX434ytYTHNCRnAzUlJSbnM/view?usp=sharing)** —
+  Beam Energy And Minimization Simulation: code for simulating 3d beam network
+  deformation.
+
+## Papers
+
+Stein AM et al.
+[Estimating the cell density and invasive radius of 3d glioblastoma tumor spheroids grown in vitro](http://www.ncbi.nlm.nih.gov/pubmed/17676121).
+Applied Optics, 46(22):5110–5118, 2007.
+
+Stein AM et al.
+[An algorithm for extracting the network geometry of three-dimensional collagen gels](http://www.ncbi.nlm.nih.gov/pubmed/18631316).
+J. Microscopy, 232(3) 463–475, 2008.
+
+Stein AM et al.
+[The micromechanics of collagen-I gels](http://onlinelibrary.wiley.com/doi/10.1002/cplx.20332/abstract).
+Complexity, 16, 22–28, 2011.

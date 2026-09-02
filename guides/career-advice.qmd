@@ -1,0 +1,155 @@
+---
+title: "Career Advice"
+subtitle: "Transitioning from Academia to Industry"
+description: >
+  A career transition checklist for leaving academia: reflecting, prototyping,
+  networking, communicating and getting support, the mindsets that help, and
+  where pharmacometrics jobs are posted.
+categories: [Learning guide]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+## Career Transition Checklist
+
+Below are some recommendations for thinking about a career in industry; many
+came from the book
+[Designing your Life](https://www.amazon.com/Designing-Your-Life-Well-Lived-Joyful/dp/1101875321).
+This page led to an article in the Society for Industrial and Applied
+Mathematics (SIAM) News Letter on
+[Taking the Plunge from Academia to Biotech](https://sinews.siam.org/Details-Page/taking-the-plunge-from-academia-to-biotech).
+
+**Reflect on what makes life meaningful.** Look back on your life and think
+about your talents, interests, and passions. While it's rare to be the best at
+something, you possess a unique combination of talents, interests, and passions
+that will make some jobs particularly rewarding. Strive to find work you feel
+that "you are seeded for" or that "you are meant to do" [see
+[Mastery](https://www.amazon.com/Mastery-Robert-Greene-ebook/dp/B007V65PBK), by
+Robert Greene]. Over time, your talents and interests evolve, and that may lead
+to a change in your career path. Therefore, having a yearly habit of reflection
+is helpful. Some questions to consider during your reflection are:
+
+- What makes work meaningful?
+- What were the most rewarding experiences in your life? And what common theme
+  is there in what made those experiences rewarding?
+- What do you like doing and what do you dislike doing?
+- Do you prefer deep technical work, or more practical work? Solving problems
+  directly, or developing tools to solve problems? Working alone, or in teams?
+- How important is salary? How important is doing work that helps the world?
+
+**Prototype.** Find small ways to start exploring the areas you're interested
+in.
+
+- Try a Google Search for bootcamps or hackathons.
+- Look for summer internships.
+- Start an independent project and publish it on GitHub. This can be a great
+  resource to share with prospective employers.
+
+**Network.** Reach out to people — start with your contacts and LinkedIn.
+
+- Even if you're an introvert or don't know what to say, most people love being
+  helpful. Just think, if someone on the street is lost and asks you for
+  directions, won't you usually try to help them? And doesn't it feel good when
+  you do? Most people are happy to try and be helpful and if they don't have
+  time, they'll tell you.
+- 1-1 conversations are much more important and valuable than applying to jobs
+  through career websites. Often the job description on career websites were
+  molded considerably by HR and don't reflect the true requirements for the
+  position. Also, it may be that your ideal job isn't on the career website,
+  but the person you talk to may be help you understand better how you might
+  find (or even create) that ideal job.
+- Ask detailed questions of people who work in the career you are exploring. It
+  may be that what you imagine this job to entail does not reflect reality.
+  Questions you might ask are: what a typical day is like? And, what are the
+  most and least fun parts of your job?
+
+**Communicate well.** When you describe your research, focus first on the
+question you answered, why you wanted to answer that question, and how finding
+this answer could be helpful to others. Only after the audience really
+understands the question and answer at a high level should you then ask if
+they'd like more detail about the methods you used. Even though the methods
+were likely the bulk of your dissertation, it's the question and solution that
+will usually be the best way to connect with those who you are meeting for the
+first time. We've created a
+[Presentation Checklist](https://opensource.nibr.com/xgx/Resources/Presentation_Checklist_v2.03.pdf)
+to help you follow this approach.
+
+**Get support.** When making a big life change, it can be very helpful to get
+support from a coach or mentor on all the above. It's hard to think of
+everything yourself! Personally, I have benefited from coaching from
+[Carole Kammen](https://www.pathwaysinstitute.com/coaching-consulting) and
+[Andrijana Radivojevic](https://www.linkedin.com/in/andrijanaradivojevic/).
+Other coaching resources include your university career center and individual
+therapy, which your health insurance might cover.
+
+## Mindsets that lead to success
+
+**Curiosity.** Remember the curiosity, openness, and joy of learning that you
+felt as a child and that motivated you to begin your PhD. I've created an
+[Effective Learning guide](effective-learning.qmd) to help structure the
+learning process outside the academic environment. Look for ways to stay
+curious in your life, not only scientifically, but also with regards to your
+own personal development and in your understanding of the perspectives that
+other people have. Be willing to make mistakes and use them as opportunities to
+learn for the future. Seek
+[feedback](https://docs.google.com/document/d/1Y4-67r5LTs7tPChldFc_ZX-GO4dpzybt/edit?usp=sharing&ouid=104181681028732168572&rtpof=true&sd=true)
+whenever you can. And remember that we often perceive only the thinnest slice
+of the reality in which we live [see
+[Powers of 10](https://youtu.be/0fKBhvDjuy0?t=45) or
+[The Blind Men and the Elephant](https://en.wikipedia.org/wiki/Blind_men_and_an_elephant)].
+
+**Collaboration.** Everyone (including you) has a unique combination of
+strengths and weaknesses that makes them extremely talented at solving a some
+problems, and extremely deficient at solving others. A great way to excel is to
+work with others to combine talents, find new solutions, and fill blindspots
+[see
+[The Difference](https://www.amazon.com/Difference-Diversity-Creates-Schools-Societies/dp/0691138540),
+by Scott Page]. Working with a coach or mentor is also a great way to look at
+problems from different perspectives.
+
+**Bias to action.** Jump in, try out new ideas, and see what happens. Use an
+[Agile Development](https://en.wikipedia.org/wiki/Agile_software_development)
+approach where you quickly test whether your idea can work, and get feedback
+from both yourself and others to see how you're doing. Identifying areas of
+unmet need that you are passionate about can help you do your most impactful
+work.
+
+**Mindfulness and Equanimity.** School provides students with a relatively
+clear path to follow, with interim milestones and the specific and concrete
+goal of earning a degree, which will then help you to qualify for what comes
+next. Success means getting some good grades, writing publications and earning
+a degree. Once you leave school, it's suddenly left to you to decide on your
+next definition of success. In academia, most choose the goal of becoming a
+tenured professor, but in industry, there are infinite paths and choosing your
+path can be challenging. The world is more unpredictable outside of school.
+While you have may have helpful managers, they will usually not be as invested
+in you as your PhD advisors, and there is no guarantee they will stay your
+manager for any duration of time. Developing a habit of
+[mindfulness](https://en.wikipedia.org/wiki/Mindfulness) and equanimity can
+help you in persevering through the challenging times when they arise. It can
+help you to step back, appreciate the situation you're in from a calmer
+footing, and then choose the right action.
+
+**Perseverance.** Developing the above mindsets is a life-long process and it's
+important to practice regularly. Finding a community that shares your values
+can help.
+
+## Resources for Jobs in Pharmacometrics and Modeling & Simulation
+
+**Mailing lists with job postings**
+
+- [NM-Users](https://www.mail-archive.com/nmusers@globomaxnm.com/)
+- [PharmPK](https://www.pharmpk.com/faq.html)
+
+**Job postings**
+
+- [International Society of Pharmacometrics Career Page](https://go-isop.careerwebsite.com/home/index.cfm)
+
+**US universities with pharmacometrics programs that may be hiring postdocs**
+
+- [University of Buffalo](https://pharmacy.buffalo.edu/research/research-centers/pharmaceutical-sciences-research-centers/cepkpd.html)
+- [University of Florida](https://cpsp.pharmacy.ufl.edu/)
+- [University of Maryland](https://www.pharmacy.umaryland.edu/academics/pharmacometrics/)
+- [University of Minnesota](https://www.pharmacy.umn.edu/departments/experimental-and-clinical-pharmacology)
+- [University of North Carolina](https://pharmacy.unc.edu/pharmacometrics-core/)

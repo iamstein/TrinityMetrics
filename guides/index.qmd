@@ -1,19 +1,42 @@
 ---
 title: "Guides"
 listing:
-  id: guide-listing
-  contents: guides.yml
-  type: grid
-  grid-columns: 2
-  sort: false
-  fields: [title, description, categories]
-  categories: false
-  feed: false
+  - id: pmx-guides
+    contents: guides.yml
+    include:
+      categories: "PMX guide"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, description]
+    categories: false
+    feed: false
+  - id: learning-guides
+    contents: guides.yml
+    include:
+      categories: "Learning guide"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, description]
+    categories: false
+    feed: false
 toc: false
 ---
 
 Working practices that come up often enough to be written down once, as
 opposed to methods or code, and the running list of what is queued to read.
 
-::: {#guide-listing}
+## Pharmacometrics guides
+
+Checklists and methods for the work itself.
+
+::: {#pmx-guides}
+:::
+
+## Learning guides
+
+How to learn a subject, and how to move between careers.
+
+::: {#learning-guides}
 :::

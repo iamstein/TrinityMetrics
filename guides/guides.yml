@@ -1,15 +1,41 @@
+- title: "Pharmacometrics Tools"
+  subtitle: "Checklists and cheat sheets"
+  description: >
+    Checklists and cheat sheets for scoping a modelling activity, making
+    graphics, presenting and giving feedback, and writing R that someone else
+    can validate.
+  categories: [PMX guide]
+  path: pmx-tools.qmd
+
 - title: "Reading Papers"
   subtitle: "How-to"
   description: >
     A three-pass method for reading a paper, what each pass costs in time,
     and how to stop early when you are reading with a question in hand.
-  categories: [reading, practice]
+  categories: [PMX guide]
   path: reading-papers.qmd
+
+- title: "Effective Learning"
+  subtitle: "Easy as A-B-C-D-E-F-G"
+  description: >
+    A checklist for learning a new skill or discipline: aspiration, broad
+    overview, consulting experts, deconstruction, routine, feedback and
+    growth, with the learning approaches that fill each one in.
+  categories: [Learning guide]
+  path: effective-learning.qmd
+
+- title: "Career Advice"
+  subtitle: "Academia to industry"
+  description: >
+    A career transition checklist for leaving academia, the mindsets that
+    help, and where pharmacometrics jobs are posted.
+  categories: [Learning guide]
+  path: career-advice.qmd
 
 - title: "Reading List"
   subtitle: "Running list"
   description: >
     What is queued to read and the question each one is queued against, with
     entries leaving the list by graduating to a project or by being dropped.
-  categories: [reading, practice]
+  categories: [Learning guide]
   path: reading-list.qmd

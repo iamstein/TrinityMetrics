@@ -1,0 +1,238 @@
+---
+title: "Effective Learning"
+subtitle: "Easy as A-B-C-D-E-F-G"
+description: >
+  A checklist for learning a new skill or discipline: aspiration, broad
+  overview, consulting experts, deconstruction, routine, feedback and growth,
+  with the learning approaches that fill each one in.
+categories: [Learning guide]
+date: last-modified
+toc: true
+toc-depth: 3
+---
+
+[Checklist Template](https://docs.google.com/document/d/1eXmTy0NHVlU1x5V-xzxwAPEHgYFjMzk8KvhF7gB0R98/edit)
+
+## 1. Motivation
+
+What is the best way to learn a new skill or discipline? My old strategy was to
+jump into a textbook, journal article or online course, and see where it takes
+me. Sometimes it worked, but often I found myself a year later having moved on
+to others things, and having forgotten almost everything I "learned."
+Therefore, I've reviewed a number of books, articles, podcasts, and online
+courses to see what lessons I can find. The checklist below represents my
+current understanding. If you're an audio-learner and prefer podcasts,
+[Tim Ferriss has an episode](https://tim.blog/2018/06/05/the-tim-ferriss-show-transcripts-the-art-and-science-of-learning-anything-faster/)
+and
+[Daniel Willingham has an interview](https://www.artofmanliness.com/career-wealth/career/podcast-927-beyond-lazy-learning-the-keys-to-gaining-and-retaining-knowledge/)
+where many of these ideas are discussed.
+
+## 2. How to Use this Guide
+
+The checklist below provides a structured list of ideas for effective learning.
+However,
+[every person is unique](https://www.thestar.com/news/insight/2016/01/16/when-us-air-force-discovered-the-flaw-of-averages.html)
+and techniques that work for 95% of the population may not work for you. I
+invite you to try out anything that appeals to you; if you get the sense it's
+not working, then let it go. I created a
+[Google Doc template](https://docs.google.com/document/d/1eXmTy0NHVlU1x5V-xzxwAPEHgYFjMzk8KvhF7gB0R98/edit?usp=sharing)
+to help in applying the checklist to an area of interest for you.
+
+## 3. Learning Checklist (A-B-C-D-E-F-G)
+
+### Aspiration: what is your goal and why?
+
+Clarity on the goal will help you decide where to focus and when the task is
+complete.
+
+- Are you passionate about the subject?
+- Do you want to advance your career?
+- Do you have a sense of wonder about the world and are following your
+  curiosity?
+
+Clarity on your intention, i.e. why this goal is important, will help you to
+evaluate your progress and decide at pivotal moments whether to continue or
+change course.
+
+### Broad Overview
+
+Getting a broad overview helps you to see how the material you might learn and
+all the places you might start.
+
+- Google searches, wikipedia pages, and YouTube videos are a great place to
+  start.
+
+### Consult Experts
+
+Since you are trying to learn something new, your initial judgement is almost
+certainly flawed. Thus it's important to get advice from others.
+
+- Ask the experts how they learn and how they teach.
+- Example questions for ultra-running and basketball are in Tim Ferriss's
+  [podcast](https://tim.blog/2018/06/05/the-tim-ferriss-show-transcripts-the-art-and-science-of-learning-anything-faster/)
+  and
+  [book](https://www.amazon.com/Tools-Titans-Billionaires-World-Class-Performers/dp/1328683788)
+  (p57).
+- [Tyler Cowen has a guide](https://marginalrevolution.com/marginalrevolution/2021/06/how-do-you-ask-good-questions.html)
+  on asking good questions; he recommends Gregory Stock's
+  [The Book of Questions](https://www.amazon.com/dp/B00CUMSBK2).
+
+### Deconstruct the skill into sub-skills; then prioritize the sub-skills
+
+Deconstruction lets you break the larger goal into smaller steps where it's
+easier to make progress.
+
+- Remember the [80/20 rule](https://en.wikipedia.org/wiki/Pareto_principle) —
+  that 80% of the benefits will come from learning 20% of the material.
+- Identify which sub-skills to learn first. Start with either the most
+  important skills, the skills that interest you most, or the easiest skills to
+  learn.
+- Identify which sub-skills you will not need (at least initially).
+- Decide how deep into the discipline's theory you need to go. For some skills,
+  a deep understanding of some underlying theory is essential (e.g.
+  understanding physics) but for other skills, theory is largely unnecessary
+  (e.g. driving a car).
+
+### Establish a learning routine
+
+A routine will help ensure you achieve your goal on time and help you learn
+more efficiently.
+
+- Consider meeting regularly with a tutor, mentor, or coach.
+- Select a [Learning Approach](#sec-approaches) (see next section).
+- Set a schedule:
+  - Set the frequency and duration of learning sessions.
+  - Ensure your dedicated learning time is focused and uninterrupted.
+  - Plan breaks during your dedicated learning time to relax and allow your
+    brain to make new, unplanned, connections.
+- An online course may already exist that can provide a good routine for you.
+
+### Feedback plan
+
+Regular feedback will help you to see if you're continuing to progress toward
+your goal. If progress slows, that is a good time to revisit your routine or
+speak with a mentor.
+
+- **Internal:** think about how you will regularly measure improvement and
+  success.
+- **External:** identify a tutor, coach or mentor to meet with regularly.
+
+### Growth plan
+
+Developing a long term plan for how you'll use this skill will help you to
+remember the material and grow beyond the goal you had initially set for
+yourself, in a way that's in line with your broader intention.
+
+- Deepen your understanding and give back to the world by teaching the skills
+  you've learned to others via a lecture, blog post, or youtube video. Creating
+  a [checklist](https://www.amazon.com/dp/B086XF436Z) can help yourself and
+  others effectively apply skills more effectively.
+
+## 4. Learning Approaches {#sec-approaches}
+
+Many approaches exist for learning a new skill. Chose the approach that works
+best for you and that is appropriate for the skill. If you're overwhelmed by
+the options, just pick something, try it for 10 minutes, and if you like it,
+then keep going, otherwise try something else.
+
+### Reading
+
+- Flash research: you can learn a lot in 10 minutes, just using Google and
+  Wikipedia.
+- Before reading in depth, read quickly and summarize the main ideas first.
+  Then, determine if you'll need to read more deeply.
+- [SQ3R](https://en.wikipedia.org/wiki/SQ3R),
+  [SQ5R](https://studylib.net/doc/8451996/sq5r-study-technique), or
+  [PSQ5R](https://www.indiastudychannel.com/resources/126257-PSQSR-Model-for-Reading.aspx)
+  method: (Purpose), Survey, Question, Read, (Record), Recite, Review,
+  (Reflect).
+- [How to read a journal article](https://docs.google.com/document/d/1jtZHKJ88PEjVr2mxWzNjG51t97CyO8rv4zoenTH_RWE/edit)
+
+### Organizing
+
+- [Outline](https://en.wikipedia.org/wiki/Outline_%28list%29) — structured list
+- [Mind map](https://en.wikipedia.org/wiki/Mind_map) — structured visual
+  representation
+- [Checklist](https://www.amazon.com/dp/B086XF436Z) — short list of most
+  important components
+- [Evergreen note-taking](https://notes.andymatuschak.org/Evergreen_notes) and
+  [Progressive Summarization](https://fortelabs.co/blog/progressive-summarization-a-practical-technique-for-designing-discoverable-notes/):
+  create organized documents that you add to and update over time, to capture
+  your developing understanding of the material.
+
+### Teaching
+
+- Teach the skill to a colleague.
+- Write on paper how you would teach this skill to a 12 year old. Identify any
+  gaps and continue learning until you can write out the idea from start to
+  finish in simple language
+  ([Feynman Method](https://golden.com/wiki/Feynman_Technique)).
+- Give a presentation to your group.
+
+### Doing
+
+- Cultivate nonjudgemental awareness to see without self-criticism. Be patient
+  and mindful. Then act to improve.
+- Solving homework problems.
+- Apply the skill to a real-life problem.
+- [Katas](https://en.wikipedia.org/wiki/Kata) — repeat task to gain grace and
+  efficiency.
+
+### Recalling
+
+- Flashcards
+- [Mnemonics](https://en.wikipedia.org/wiki/Mnemonic)
+- Drawing (e.g. for geography or anatomy)
+- Writing (for vocabulary words)
+- Take practice tests
+- Keep glossary of new terms, and review regularly
+
+## Useful Concepts
+
+**Chunking.** Your mind handles masses of data by grouping it into clusters. An
+example from economics is: giving → trading → selling → market → economy. Each
+concept is increasingly complex and as your brain learns each one, it can then
+more readily handle more complex ideas.
+
+**Neural Pathways.** As you practice a new skill, the neural processes needed
+to carry out the skill get more and more efficient, such that you're eventually
+able to perform the skill without conscious thought. You can then focus your
+conscious thought on learning more complex tasks.
+
+**Making Connections.** Finding connections between what you know and what
+you're learning can accelerate progress, improve recall, provide unique
+insight, and make learning more fun. Josh Waitzkin does this with Chess and Tai
+Chi Push-hands. I've seen this myself with Mathematical Modeling, Social
+Dynamics, Individuation, and Storytelling (discussed a bit in
+[Seven Basic Plots](https://www.amazon.com/Seven-Basic-Plots-Tell-Stories-ebook/dp/B00OG4EAU2))
+and also with
+[Music Theory and the Physics of Waves](https://en.wikipedia.org/wiki/Harmonic_series_%28music%29).
+
+**[Learning Style](https://en.wikipedia.org/wiki/Learning_styles).** Know
+whether your learning style is auditory, visual, reading/writing, kinesthetic,
+or some combination. Use the techniques that work best for you.
+
+## Disagreements
+
+On my first pass through this material, I noticed some disagreement between
+Josh Waitzkin and Tim Ferriss/Scott Young. I suspect it's likely that when you
+get down to specifics, they'd largely agree. But for now, I just wanted to
+highlight some of the disagreements, to come back to later.
+
+**Depth vs Breadth.** Is it better to get some knowledge of a lot of concepts
+in your domain, or go deep into a few?
+
+- This probably doesn't have a simple answer, it probably depends on your
+  goals.
+- If you want to be the best in the world, depth in some areas will be
+  essential. If you just want to be proficient, you may not need depth at all.
+
+**Focus on the Goal vs Process.** Is it better to be driven by a goal you love,
+or is it better to focus on loving the process itself?
+
+- This also probably doesn't have a simple answer and probably depends on your
+  goals.
+- If you can learn what you need in 20 hours, focusing on the goal is probably
+  fine.
+- If it's going to take years to get to the skill level you want, it's probably
+  important to find a way to love the process itself, too.
