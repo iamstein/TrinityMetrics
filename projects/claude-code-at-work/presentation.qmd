@@ -16,139 +16,66 @@ format:
 
 ## Overview
 
-* Four pieces of open-source work I did with Claude Code 
+* Four pieces of open-source work I did using Claude Code 
 * When and why I use Claude Code rather than Positron
 * How I set up Claude Code.
 
 # What it built
 
-## xgxr: What bug came in
+## xgxr: User reported a bug
 
 ![](../../files/xgxr-issue-72-report.png){width="76%" fig-align="center" fig-alt="GitHub issue 72 reporting that xgx_stat_ci breaks produces incorrect binning with scale_x_log10 in ggplot2 4.0 and later."}
 
-A clear report, with a reprex and a diagnosis.
+## xgxr: Source of bug: we used a hand-copied "fork" of ggplot2 (now outdated)
 
-## xgxr: Actual problem: used hand-copied "fork" of ggplot2
 
-The report blamed ggplot2 4.0. The bug is about five years older than that.
-
-- ggplot2 3.5.1 was installed alongside 4.0.2 and the reprex run against both.
-  It failed **identically** on 3.5.1.
-- So not a 4.0 regression, and pinning an older ggplot2 was no workaround.
-  Anyone combining `breaks` with `xgx_scale_x_log10()` had been getting
-  silently wrong plots since about 2020.
 - `xgxr::StatSummaryBinQuant` is a hand-copied fork of ggplot2's
   `stat-summary-bin.R`, pinned in its roxygen block to ggplot2 commit
   `351eb41`. It never picked up a transform step ggplot2 added later.
+-  In this old version it had: `breaks <- breaks'
+-  ggplot2 since changed with `breaks <- scales[[x]]$transform(breaks)`
 
-## xgxr: The key line causing the error
+## 1. xgxr: Fixed bug and got package ready for CRAN
 
-Our copy read:
-
-```r
-breaks <- breaks
-```
-
-where ggplot2 had long since been doing:
-
-```r
-breaks <- scales[[x]]$transform(breaks)
-```
-
-Data reaching the stat is already log10-transformed and the breaks were not,
-so `cut()` compared transformed data against untransformed break points and
-dropped nearly everything.
-
-::: {.notes}
-No error and no warning. The plots came out looking fine and were wrong.
-:::
-
-## 1. xgxr: and then the release
-
-- Fix on a branch, then 1.1.6 to CRAN
+- Fixed bug and then updated xgxr to 1.1.6 to CRAN (first update in 3 years)
+- All CRAN checks, warnings, and notes were handled by Claude.
 - Along the way it noticed a hyperlink whose TLS certificate had expired, which
   is the kind of thing CRAN rejects a submission for, and removed it unasked
-- `cran-comments.md` updated, win-builder run, the result recorded
 
-Issue opened 13 June, fixed 28 July, merged 3 August, all through Claude Code.
-
-::: {.notes}
-The tedious half of a CRAN release is checks, comments and re-checks, and that
-half is what got absorbed.
-:::
-
-## 2. xgx onto Continuous Integration
+## 2. xgx using Continuous Integration
 
 **Continuous Integration (CI) via GitHub Actions publishes the site.**
 
-A server rebuilds the site from source on every push, so what is published is
-a build product rather than something a person renders and commits by hand.
-
-Before, the rendered HTML lived in the repository, and someone had to remember
-to rebuild it and commit the result. Now `build-site.yml` renders on every
-push and deploys from `master`, and the Pages source was switched from a
-branch to GitHub Actions.
+- xgx was our open source website and we built it using dozens of .html files committed to github.
+- A better way to work is with continuous integration (CI) that builds the site after every push so the code is in the github repository but the html is not.
+- Github Actions does this and Claude Code set this up for me.
+- I am not a Github expert.  In the past I relied on experts for help, but now I can quit bugging Matt and do a lot myself.
 
 [opensource.nibr.com/xgx](https://opensource.nibr.com/xgx/)
 
 ![](../../files/xgx-site.png){width="62%" fig-align="center" fig-alt="The xGx website: navigation bar, the Exploratory Graphics overview, and the row of topic icons."}
 
-## 2. xgx: the HTML left the repository
+## 3. synpmx: Package for Generating Synthetic Pharmacometrics Datasets
 
-| | Before | After |
-|---|---|---|
-| Tracked `.html` files | 38 | 3 |
-
-The three that remain are site templates — `header.html`, `body.html`,
-`icon_nav.html` — which are source, not output.
-
-::: {.notes}
-Be precise here: build output is gone, templates stay. Someone will check.
-:::
-
-## 2. xgx: and it cleaned the folder up while it was there
-
-One commit, *Retire the vendored xgxr 1.0.2 material and other dead code*:
-
-- **72 files deleted**, 77 touched
-- **8,403 lines removed**, 70 added
-- Including a vendored 1.8 MB `xgxr_1.0.2.tar.gz`
-
-I am not a GitHub expert, and I set none of this up by hand.
-
-::: {.notes}
-Linger here. CI plumbing and a dead-code sweep are exactly the jobs that never
-get done because nobody wants to spend a weekend on them.
-:::
-
-## 3. synpmx: what it is
-
-**Structurally Faithful Synthetic Pharmacometric Data**
-
-Synthetic PK/PD datasets, so that workflows, teaching material and tooling can
+Allows for workflows, teaching material and tooling can
 be developed and shared without exposing real clinical data.
 
-Three generators so far — **AVATAR**, **PCA**, and a **PMX model** route — each
-carrying the same four documents: algorithm, demo, fingerprint, and public-data
-examples. It is still moving.
+This is still a work in progress, with three different synthetic data generators explored so far, each with their own strengths.
+- PMX models
+- Principle Component Analysis *PCA*
+- AVATAR - Patient blending
 
-## 3. synpmx: build the scaffold first
+## 3. synpmx: Most useful aspects; building a scorecard and a set of datasets to test
 
-That is the part I would repeat. Before any generator was any good:
 
-- **The same public datasets throughout** — warfarin, mad, pheno_sd — so every
-  algorithm runs on the same ground
-- **A scorecard** that asks two questions of any output:
-  - **A.** Is the dataset valid? Legal PMX dataset, endpoints survived, strata
-    sizes survived, observation and dose counts survived, discrete stayed
-    discrete
-  - **B.** Is any individual patient identifiable from it?
+- **8 public datasets used to test the generator** — warfarin, theophylline, mavoglulant, etc., from nlmixr2data and xgxr package.
+- **A scorecard** and a set of graphical checks for evaluating the synthetic data
 
-So I can tell whether a generator is producing meaningful output before anyone
-can say whether it is right.
+The above lets me tell if the syntehtic data looks reasonable.  
 
-Validation comes later. First get the workflow right. This already gives me
-something concrete to use, and generating it was not the hard part.
+Once I have an algorithm that works well and can is acceptable by our data privacy office, I'll then validate the code, but to this point, it's all been "vibe-coded" with Claude Code.  
+
+It's been helpful having a working prototype for building my own understanding and in discussions with others.
 
 ## 4. Exploring Strategic Questions
 
@@ -160,48 +87,33 @@ a first-in-human T-cell engager trial?**
 MCLA-117: a published within-patient ladder, 25 µg to 400 mg, transcribed from
 the EHA 2020 poster.
 
-## 4. What came back was not a script
+## 4. Output (so far) a specification. 
 
 A specification, a reading queue, and a references page marking, for every
 source, whether the claim drawn from it had been checked against the source.
 
-::: {.notes}
-This is the one that surprised me. Slow down here.
-:::
+## Claude and I build websites in GitHub for development
 
-# How it is set up
-
-## Claude and I build a website in GitHub
-
-- For an R package, `pkgdown`. For anything else, Quarto and `quarto render`.
-- The site is published by Continuous Integration (CI) through GitHub Actions.
+- For an R package, `pkgdown`. For anything else, Quarto and `quarto_render()`.
+- Sites are published by Continuous Integration (CI) through GitHub Actions.
 - I read the rendered output — on my phone, at home, or at work.
 - It sets all of that up itself: the Actions workflow, the publishing, the theme.
 
-So I keep things in
+For things that aren't their own R package and github repo, I've been using
 [TrinityMetrics](https://iamstein.github.io/TrinityMetrics/).
 
 ![](../../files/trinitymetrics-site.png){width="58%" fig-align="center" fig-alt="The TrinityMetrics site: navigation bar, the three-category table, and the triquetra logo."}
 
-::: {.notes}
-This is the transferable idea. Everything else is detail.
-:::
-
 ## Why Claude Code rather than Positron
 
-1. **It runs longer with less input.**
-2. **It runs on my own machine at home, against ordinary GitHub.** No
-   confusion with the GitHub Copilot setup.
-3. **I can drive it from my phone, my home machine, or my work machine**
+1. **Claude Code runs longer and requires less input from user**
+2. **Claude Code runs on my personal machine at home, using ordinary GitHub.** No
+   confusion with the GitHub Copilot setup and corporate Github account.
+3. **I can control Claude Code from my phone, my home machine, or my work machine**
    with `/remote-control`.
-4. **I can choose to use the latest model (Fable).** Though it kicked me back
+4. **I can use the latest Claude models (Fable).** Though it kicked me back
    to Opus because I was working on "bio".
 
-::: {.notes}
-Show the web interface here. Keep it short — the demo carries this. A fresh
-session checks the repository out and picks up where the last one stopped,
-because the state lives in the repository rather than in the session.
-:::
 
 ## Getting access
 
@@ -209,15 +121,13 @@ Running Claude directly at `claude.ai` is blocked until you have done the
 short internal training. When you hit the block, click the link it gives you
 and do the training.
 
-*[Maybe Alex can send me the link?]*
-
 ## If you want to try it
 
-1. Do the training, so `claude.ai` is not blocked
+1. Navigate to `claude.ai` and do the minimal training required so the site isn't blocked. 
 2. Pick a GitHub repository to work in, or create your own
-3. Give it a small task, and ask it to use GitHub Actions to set up a website
-   and publish the results
-4. Have it publish the site, and read the output
+3. Give Claude a small task, and ask it to use GitHub Actions to set up a website
+   and for publishing the results.
+4. Then, check the output.
 
 ## Demo
 
