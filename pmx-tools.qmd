@@ -18,12 +18,17 @@ you'll find below many short checklists and cheatsheets. Many great books and
 software exist on the topics below, and the focus here is on freely available
 tools.
 
+The checklists and cheat sheets below come from the
+[Novartis xgx project](https://github.com/Novartis/xgx) and are mirrored on
+this site so that they open on networks that block the original hosts. Google
+Docs are linked at Google, since those are the editable copies.
+
 ## Scoping
 
-- [Context of Use Table](https://github.com/Novartis/xgx/blob/master/Resources/ContextOfUse_Table_1page.pdf)
+- [Context of Use Table](references/ContextOfUse_Table_1page.pdf)
   for scoping modeling activity
 - [Uncertainty Checklist](https://zenodo.org/record/4409236)
-- [Presentation on Managing Uncertainty](https://github.com/Novartis/xgx/blob/master/Resources/Uncertainty_Assessment_Presentation.pdf)
+- [Presentation on Managing Uncertainty](references/Uncertainty_Assessment_Presentation.pdf)
 - [Causality Checklist and Guidance for PMX](https://docs.google.com/document/d/1Hc3RoTJXS-PQCUm-rG_RCuEa3ykRj5FiAtqRwgSiX6M/edit)
 - [Dose Finding Framework](https://ascpt.onlinelibrary.wiley.com/doi/epdf/10.1002/psp4.12701)
 - [How to Read a Paper](https://docs.google.com/document/d/1jtZHKJ88PEjVr2mxWzNjG51t97CyO8rv4zoenTH_RWE/edit)
@@ -32,18 +37,18 @@ tools.
 
 - [Effective Visual Communication tutorial](https://ascpt.onlinelibrary.wiley.com/doi/full/10.1002/psp4.12455)
 - [Effective Visual Communication Webpage](https://graphicsprinciples.github.io/)
-- [Graphics Principles Cheat Sheet](https://opensource.nibr.com/xgx/Resources/Graphics_Principles_Cheat_Sheet_v1.1.pdf)
+- [Graphics Principles Cheat Sheet](references/Graphics_Principles_Cheat_Sheet_v1.1.pdf)
 - [Exploratory Graphics (xGx) Website](http://opensource.nibr.com/xgx)
-- [Exploratory Graphics (xGx) Cheat Sheet](https://opensource.nibr.com/xgx/Resources/PKPD_Exploratory_Graphics_%28xGx%29_Cheat_Sheet.pdf)
+- [Exploratory Graphics (xGx) Cheat Sheet](references/PKPD_Exploratory_Graphics_xGx_Cheat_Sheet.pdf)
 - [See-Value](https://www.see-value.com) — line up plots for visual inference
 - [CompareRates](https://iamstein.shinyapps.io/CompareRates/) — for comparing
   response rates between two arms
 
 ## Presentations and soft skills
 
-- [Presentation Checklist](https://github.com/Novartis/xgx/blob/master/Resources/Presentation_Checklist_v2.03.pdf)
+- [Presentation Checklist](references/Presentation_Checklist_v2.03.pdf)
 - [Presentation Evaluation Feedback Form](https://docs.google.com/document/d/1K_lcsG6sClLQcd5sm_ezcvtD9ccmm0uM/edit?usp=sharing&ouid=104181681028732168572&rtpof=true&sd=true)
-- [Guide to Giving and Receiving Feedback](https://github.com/Novartis/xgx/blob/master/Resources/Giving_and_Receiving_Feedback.docx)
+- [Guide to Giving and Receiving Feedback](references/Giving_and_Receiving_Feedback.docx)
 - [Communication Methods](https://docs.google.com/document/d/1678jBK-ffeoPMD2Q6nR-Dn8N8HnyJE1NEoF9enf8GUA/edit)
   (email vs video call vs in person)
 - [Holding people accountable](https://docs.google.com/document/d/1cuONopvVPAjFoieWZ13et9CjJ8DAcvmhuOFwGG31-z4/edit)

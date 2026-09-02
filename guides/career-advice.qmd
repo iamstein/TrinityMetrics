@@ -72,7 +72,7 @@ they'd like more detail about the methods you used. Even though the methods
 were likely the bulk of your dissertation, it's the question and solution that
 will usually be the best way to connect with those who you are meeting for the
 first time. We've created a
-[Presentation Checklist](https://opensource.nibr.com/xgx/Resources/Presentation_Checklist_v2.03.pdf)
+[Presentation Checklist](../references/Presentation_Checklist_v2.03.pdf)
 to help you follow this approach.
 
 **Get support.** When making a big life change, it can be very helpful to get

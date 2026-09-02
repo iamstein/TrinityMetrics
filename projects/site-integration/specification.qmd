@@ -443,6 +443,18 @@ is worth having whether or not the allowlist changes.
 
 ## 8. Files and assets
 
+**Documents from other sites are mirrored here. ✅** Done 2026-09-02, at Andy's
+request, so the links open on a network that blocks the original host. Eight
+checklists and cheat sheets from the Novartis xgx project now sit in
+`references/` and are linked from `about.qmd`, `pmx-tools.qmd` and
+`guides/career-advice.qmd`, with the source project credited on the PMX Tools
+page. Google Docs keep pointing at Google, since those are the editable copies.
+
+Four external documents were deliberately **not** mirrored, because they are
+other people's publications and a citation should point at its source of
+record: the EMA first-in-human guideline, the Genor and Merus conference
+posters cited by `tce-crs-tolerance`, and Keshav's *How to Read a Paper*.
+
 Where they go: a new top-level `files/` directory, listed under `resources:` in
 `_quarto.yml` so Quarto copies it into `docs/` unrendered. Existing PDFs stay
 in `references/`, which is already listed there; `references/` is for the
