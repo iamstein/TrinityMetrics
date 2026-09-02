@@ -1,7 +1,7 @@
 ---
 title: "Site integration"
 subtitle: "Merging the Google Sites personal site into TrinityMetrics"
-description: "Index of the documents in the site-integration project: the working specification for porting sites.google.com/site/andrewsteinphd into this site."
+description: "Index of the documents in the site-integration project: the record of what moved from sites.google.com/site/andrewsteinphd, what is left, and the code that read the old site."
 categories: [site, migration, working document]
 date: last-modified
 toc: false
@@ -10,19 +10,20 @@ toc: false
 The personal site at
 [sites.google.com/site/andrewsteinphd](https://sites.google.com/site/andrewsteinphd/home)
 and this site should be one site, with nothing dropped without a recorded
-decision to drop it. The migration has been specified and not started.
+decision to drop it. The content has moved. The old site still serves its
+original pages, and turning those into pointers is the largest piece left.
 
 ## Documents
 
-- [Working specification](specification.qmd). What moves, where it lands, what
-  happens to the old URLs, and in what order to do it. Its **In brief** section
-  is one screen and says what the rest argues. The content inventory in Section
-  5 is empty and filling it is the first phase of the work.
+- [Working specification](specification.qmd). Where every old page and file
+  landed, what is still unbuilt, the acceptance result, and how the build
+  exports the Google Docs. Cut to a quarter of its length on 2026-09-02, once
+  the decisions it argued had been made and built.
 
 ## Code
 
-- `import_google_site.py` reads an unzipped Google Takeout export and does two
-  things: `inventory` prints the Section 5 table rows, and `convert` writes one
-  `.qmd` draft per page with the site chrome stripped. Standard library only,
-  so the site build never runs it and nothing needs installing. Section 7 of
-  the specification is the procedure it belongs to.
+- `import_google_site.py` reads an unzipped Google Takeout export: `inventory`
+  prints the inventory table rows, and `convert` writes one `.qmd` draft per
+  page with the site chrome stripped. Superseded and unused. The inventory came
+  from crawling the live site instead, and Google Takeout no longer offers
+  Sites as a product, so the export it reads cannot be produced.

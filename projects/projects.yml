@@ -55,8 +55,9 @@
 - title: "Site integration"
   subtitle: "Working document"
   description: >
-    Merging the personal Google Sites page into TrinityMetrics: what moves,
-    where it lands, what happens to the old URLs, and in what order to do it.
+    Merging the personal Google Sites page into TrinityMetrics: where every
+    old page and file landed, what is still unbuilt, and what the old URLs
+    need.
   categories: [Site]
   path: site-integration/index.qmd
 

@@ -1,256 +1,50 @@
 ---
 title: "Porting andrewsteinphd into TrinityMetrics"
-subtitle: "Working specification for merging the Google Sites personal site into this site"
-description: "The personal site at sites.google.com/site/andrewsteinphd and TrinityMetrics should be one site. This specifies what moves, where it lands, what happens to the old URLs, and in what order to do it."
+subtitle: "What moved, what is left, and what the old URLs need"
+description: "The record of merging the Google Sites personal site into this site: where every old page and file landed, what is still unbuilt, and how the build exports the Google Docs."
 categories: [site, migration, working document]
 date: last-modified
 toc: true
-toc-depth: 3
+toc-depth: 2
 toc-location: left
-toc-expand: true
 number-sections: false
 ---
 
 ::: {.callout-note appearance="simple"}
-**Section 5 is filled and Phase 0 is done.** The site was crawled from a local
-machine on 2026-09-01: eleven pages, nineteen linked files, none of them hosted
-on the old site. Section 7 still describes the Google Takeout route, which the
-crawl makes unnecessary, and Sections 8 and 11 were written expecting hosted
-files to rescue. Those three sections need revising against Section 5. What
-Sections 3, 4, 9 and 10 decide is unaffected.
+**The content has moved. The old site has not yet been turned into pointers.**
+Every row of the inventory in Section 2 is resolved and all seven acceptance
+checks passed on 2026-09-02. Section 3 holds what is left.
+
+Cut from 803 lines to this on 2026-09-02, at Andy's instruction. The naming and
+placement arguments, the Google Takeout export route, the navigation design and
+the phase plan came out: each had either been executed or been overtaken by how
+the work was actually done. What survives is the inventory, the acceptance
+result, the old-URL problem, and the file and export mechanics that the build
+still depends on.
 :::
 
-## In brief
+## 1. Goal and outcome
 
-**The goal.** One site, at one URL, holding both what is now on
-`sites.google.com/site/andrewsteinphd` and what is now on TrinityMetrics, with
-no content dropped without a recorded decision to drop it.
+One site, at one URL, holding both what was on
+`sites.google.com/site/andrewsteinphd` and what was on TrinityMetrics, with no
+content dropped without a recorded decision to drop it.
 
-**The two sites are about different things.** The Google site is about a
-person: bio, publications, talks, software, contact. TrinityMetrics is about a
-subject. Merging them means the merged site has to answer two questions on
-arrival, "who is this" and "what is this for", and the navigation has to make
-both findable without either burying the other.
+The merged site keeps the name TrinityMetrics and the personal material became
+a section rather than the site's title. The subject is ordered into three legs:
+pharmacometrics, teaching and education, GenAI. Both decisions are now visible
+on the site itself, so the argument for them has been removed from here.
 
-**Decision on naming.** The site stays TrinityMetrics, at the
-`trinitymetrics.com` address Andy already holds, and the personal material
-becomes a section rather than the site's title. Section 3 argues this against
-the two alternatives.
+Eleven pages and nineteen linked files came across between 2026-09-01 and
+2026-09-02. No file was hosted on the old site: every one of the nineteen
+already lived in `iamstein/Publications` or on the xgx site, so only the eleven
+page URLs need pointers.
 
-**Decision on the subject.** Three legs: pharmacometrics, teaching and
-education, GenAI, in that order. Teaching is how someone learns to make a
-defensible quantitative claim, pharmacometrics is making them, and GenAI is
-what happens to both when producing a plausible claim becomes cheap. Section 3
-records what this rejects and why.
+## 2. Content inventory
 
-**Recommendation on placement.** Person-level pages become top-level
-(`publications.qmd`, `talks.qmd`), grouped in the navbar under one menu with
-the CV as a link out to Google Docs; the existing `about.qmd` becomes the
-person's landing page and stops being a project description. Section 4 maps
-every kind of content.
-
-**Files and old URLs.** A Google Site's PDFs, slides and images live at URLs
-that stop existing when the site does, and those URLs are cited from CVs,
-papers and conference bios that cannot be edited. Section 8 and Section 11
-cover this, and it is the reason the old site should be kept alive as a set of
-pointers rather than deleted.
-
-**Where to start.** Phase 0: export the site and fill in Section 5. Every other
-decision here gets easier once the actual page and file list exists, and two of
-the open questions in Section 14 may answer themselves.
-
-------------------------------------------------------------------------
-
-## 1. Scope
-
-In scope: every page, file and link currently reachable from
-`sites.google.com/site/andrewsteinphd`, and the changes to this repository
-needed to hold them.
-
-Out of scope, stated once:
-
--   **A visual redesign.** The merged site uses the existing `cosmo` theme and
-    `styles.css`. If the merge makes a design problem obvious, record it and
-    handle it separately.
--   **A custom domain.** Registering a personal domain and pointing it at
-    GitHub Pages is a short job that can be done at any time, before or after
-    the merge, and it does not change what content goes where. Section 3 notes
-    where it would change the naming decision.
--   **Rewriting the ported prose.** Ported pages come across as they are, with
-    dead links repaired and formatting converted. Improving the writing is a
-    separate pass on a separate day, and mixing it into the migration makes it
-    impossible to tell what moved from what changed.
--   **The other sites.** `synpmx`, `xgx` and `xgxr` stay where they are. They
-    are already listed in `projects/projects.yml` and are linked, not absorbed.
-
-## 2. What each site is for
-
-|  | andrewsteinphd | TrinityMetrics |
-|---|---|---|
-| Subject | A person | A topic |
-| Reader arrives from | A paper, a talk, a search for the name | A link to a post, GitHub |
-| Reader wants | Who is this, what have they published, how do I contact them | Is this idea any good, can I use this code |
-| Update rate | Yearly | Weekly to monthly |
-| Built with | Google Sites | Quarto, rendered by GitHub Actions on push to `main` |
-
-The update rates matter for placement. A publications list changes a few times
-a year and a blog changes constantly, so putting them in the same listing
-machinery makes the slow content look stale next to the fast content. They
-should be separate listings.
-
-The reader columns matter for the home page. Both readers land on `index.qmd`
-today if the sites are merged naively, and they want different things. Section
-10 handles this in the navbar rather than by writing a home page that tries to
-be both.
-
-## 3. Decision 1 --- what the site is called and what it is about
-
-### The name
-
-Three options, and the recommendation is A.  Andrew Stein agrees with option A.
-
-**A. TrinityMetrics absorbs the personal site.** Title stays "TrinityMetrics",
-URL stays `iamstein.github.io/TrinityMetrics/`, the person becomes a section.
-Costs nothing, breaks no existing link. The objection is that a personal
-site titled after a project reads oddly to someone arriving from a paper
-looking for a CV, and that objection is answered by the About page opening
-with the person rather than the project.
-
-**B. Rebrand as a personal site with TrinityMetrics inside it.** Title becomes
-"Andrew Stein"; TrinityMetrics becomes the name of the blog and projects
-section. Truer to what the merged site is. Costs a repository rename, which
-breaks `iamstein.github.io/TrinityMetrics/` and every link to it, including the
-one now in `about.qmd` and any already shared. GitHub redirects a renamed
-repository's git remotes; it does not redirect the Pages URL of a project site.
-
-**C. Two Quarto projects in one repository.** Rejected. Two navbars, two
-searches, two sets of styles, and a reader who crosses between them leaves one
-site and enters another. This is the situation being fixed.
-
-**Decision: A, and the domain settles it.** Andy holds `trinitymetrics.com`
-and it already points at this site. The argument for B was that a custom
-domain would carry a personal identity and make the repository name invisible
-to readers; the domain he holds carries the project identity instead,
-so it argues for A rather than against it. The site is called TrinityMetrics
-because its address is TrinityMetrics.
-
-**`site-url` is wrong and should be corrected in Phase 1.** `_quarto.yml`
-declares `https://iamstein.github.io/TrinityMetrics/`. Quarto uses `site-url`
-to build absolute links in the sitemap, the blog's RSS feed and the social
-preview cards, so every feed entry currently advertises the `github.io`
-address rather than the domain. There is also no `CNAME` file in the
-repository, so how the domain is wired needs checking against the repository's
-Pages settings before the value is changed.
-
-### The three legs
-
-**Decision: pharmacometrics, teaching and education, GenAI, in that order.**
-
-| Leg | Holds | Already on the site as |
-|---|---|---|
-| Pharmacometrics | Tools and research | Projects, Code, Resources |
-| Teaching and education | Pharmacometrics teaching, and guides to learning such as how to read a paper | Guides |
-| GenAI | Using it in real work today | Blog |
-
-**The joining sentence comes before the list.** Three interests listed without
-a relationship read as a menu, and the relationship here is not temporal:
-
--   Teaching and education is how someone learns to make a defensible
-    quantitative claim.
--   Pharmacometrics is making them.
--   GenAI is what happens to both when producing a *plausible* claim becomes
-    cheap.
-
-That is what earns GenAI a leg beside two lifelong practices. It acts on both
-of them.
-
-**Three durations, not three tenses.** A past / present / future reading is
-available and does not hold: the guides are being written now, GenAI is in
-daily use, and pharmacometrics is 17 years of past as much as it is today. The
-honest version is that the legs run for different lengths of time. A lifetime
-of teaching and learning, 17 years of pharmacometrics, two years of GenAI.
-State the asymmetry, because it says the newest and fastest-moving of the
-three is being judged by someone holding the two longest-running commitments.
-
-**Order: pharmacometrics first.** A reader arriving from a paper wants the
-professional work first, and it is the largest body of material. Teaching and
-GenAI follow.
-
-### What this rejects, and why
-
-Recorded so the same three candidates are not re-argued later.
-
--   **The original modelling triad** --- mathematical analysis, biological
-    modelling and storytelling, statistically supported models. It states a
-    belief, which the chosen triad does not, but it has no home for the
-    teaching, career and GenAI material, which is most of what is arriving.
--   **The AI triad** --- human expertise, generative AI, regulated clinical
-    data. This is what `index.qmd` and `README.md` open with today. It is the
-    narrowest of the candidates in the widest position, it names one leg of
-    the chosen triad as though it were all three, and it is the only candidate
-    tied to a technology moment rather than to a practice.
--   **The shape alone** --- that the name means three legs, none sufficient by
-    itself, the failure being to mistake one for all three. True of every
-    candidate and therefore not a choice between them. It survives as the
-    reason the name has outlasted a change of triad, not as the home page's
-    content.
-
-Of the four, only the chosen one contains "metrics" by right, in
-pharmaco**metrics**.
-
-### What this changes
-
--   `index.qmd` and `README.md` both open with the AI framing and must be
-    rewritten to the three legs. Phase 1.
--   The navbar in Section 10 already carries all three legs across its flat
-    items, so the decision changes the home page's organizing sentence rather
-    than the navigation. Whether the flat items regroup under the three legs
-    is a later question, and not one to answer before the ported pages exist.
--   Teaching material in Section 4 lands by right rather than by exception.
-
-## 4. Decision 2 --- where each kind of content lands
-
-Presumed contents of the old site in the left column. Confirm against Section 5
-once the export exists; a row with no matching page is deleted, and a page with
-no matching row gets one.
-
-| Old content | Lands at | Form |
-|---|---|---|
-| Home page bio | `about.qmd`, rewritten to open with the person | Prose, one screen |
-| Long bio, career history | `about.qmd`, below the short bio | Prose |
-| CV | Link out to the Google Doc, and publish a PDF copy fetched at build time | Link plus built file |
-| Publications | `publications.qmd` driven by `publications.yml` | Listing |
-| Talks, posters, slides | `talks.qmd` driven by `talks.yml`, slides as files | Listing plus files |
-| Teaching, courses | `guides/`, beside the existing guides; it is a leg in its own right per Section 3 | Pages or listing entries |
-| Software: xgx, xgxr, synpmx | Nothing new. Already in `projects/projects.yml` | Link out |
-| Other software or code not yet listed | New rows in `projects/projects.yml` | Link out |
-| Contact details | Bottom of `about.qmd` | Prose |
-| News, updates | Dropped, or folded into the blog | See Section 14, Q2 |
-| Photos, personal material | Case by case; record the decision in Section 5 | --- |
-
-Two rules govern the mapping.
-
-**A listing gets its own YAML file.** `projects/projects.yml` and
-`guides/guides.yml` are the existing pattern and the new listings follow it, so
-that a publication entry and a project entry are edited the same way. Section 9
-covers the alternative for publications.
-
-**As built, `guides/guides.yml` is gone and Guides is a plain bulleted list.**
-Removed 2026-09-02. Andy: four documents do not need cards, and there is not
-enough there to require organizing. The descriptions in that file were copied
-from each page's own frontmatter, so it was a second place for them to drift.
-`projects/projects.yml` remains the pattern for a listing long enough to earn
-one.
-
-**A page that would hold fewer than about five entries is a section, not a
-page.** Three talks do not need a Talks page in a seven-item navbar. Where the
-export shows a thin section, fold it into `about.qmd` and record that in
-Section 5 as a merge rather than a port.
-
-## 5. Content inventory
-
-One row per page and per file on the old site. This is the artifact Phase 0
-produces, and every later phase reads from it.
+One row per page and per file on the old site, produced by crawling the live
+site from a local machine on 2026-09-01. Google Takeout no longer offers Sites
+as a product, and the crawl replaced the export route this document originally
+specified.
 
 Disposition codes:
 
@@ -259,10 +53,6 @@ Disposition codes:
 -   **LINK** --- not ported; the merged site links to the canonical copy
     elsewhere.
 -   **DROP** --- deliberately not carried over. Requires a reason in the row.
-
-Crawled from the live site on 2026-09-01. Page URLs are relative to
-`https://sites.google.com/site/andrewsteinphd`; file rows give the full target,
-because no file is hosted on the old site.
 
 | # | Old URL | Title | Kind | Files on it | Disposition | Lands at | Reason / note |
 |---|---|---|---|---|---|---|---|
@@ -297,210 +87,109 @@ because no file is hosted on the old site.
 | 29 | `.../Presentations/2016-07-13_Stein_SIAM_LS_Presentation.pptx` | SIAM Life Sciences 2016 | file | --- | PORT ✅ | `files/2016-07-13-siam-ls.pdf` | As row 19. |
 | 30 | `.../Presentations/2017-10-17_Stein_ACoP_Math_LumpedParameters_v2.pptx` | Lumped Parameters, ACoP 2017 | file | --- | PORT ✅ | `files/2017-10-17-lumped-parameters.pdf` | As row 19. |
 
-**Row count: 30.** Eleven pages and nineteen linked files, which is the number
-Section 12 checks against.
+**Row count: 30.** Nineteen PORT, two MERGE, eight LINK, one DROP, checked by
+Section 4.
 
-**No file is hosted on the old site.** Every one of the nineteen already lives
-in `iamstein/Publications` or on the xgx site, so the export that Section 7 was
-written to obtain has nothing in it that cannot be reached another way, and
-Section 11's dead-file-URL problem does not arise. Only the eleven page URLs
-need pointers. Rows 19 to 30 are marked PORT because Section 8 rules that a
-deck ports as a PDF, which a reader can open on a phone; the sources stay in
-`iamstein/Publications` either way.
+Rows 19 to 30 are marked PORT because a deck ports as a PDF, which a reader can
+open on a phone. The sources stay in `iamstein/Publications`.
 
-**Rows still open.** Rows 2, 4, 6 and 18 carry a proposed disposition with the
-alternative named in the note, and rows 19 to 30 assume Section 8's
-convert-to-PDF rule applies to decks hosted in a repository as well as to decks
-hosted on the old site. Row 10 closed on 2026-09-01.
+## 3. What remains
 
-Fill rules:
+Three pieces. None of them blocks the others.
 
--   Every page reachable from the old site's navigation gets a row, including
-    pages that are empty or say only "under construction". An empty page is a
-    DROP with "empty" as the reason, and recording it is what makes the
-    inventory a proof of completeness, and not a list of what someone happened
-    to notice.
--   Every attached file gets its own row, because files and pages have separate
-    old URLs and separate inbound links.
--   The count of rows is the acceptance criterion in Section 12. Write it down
-    once the table is filled.
+**Publications has no page.** There is no `publications.qmd` and no
+`publications.yml`. The design settled on: a YAML file plus a Quarto listing
+matching `projects.yml`, each entry carrying title, authors, journal, year, DOI
+and a link, with the `.bib` exported from Google Scholar and committed beside
+it as a download. The YAML drives what a reader sees so the page looks like the
+rest of the site; the `.bib` serves whoever wants to cite the work. The
+duplication is bounded by publications arriving a few times a year, one at a
+time.
 
-## 5b. How the listings are grouped
+**The domain is not wired to GitHub Pages, and `site-url` must not change until
+it is.** Checked 2026-09-01: `trinitymetrics.com` answers with a 301 to
+`https://iamstein.github.io/TrinityMetrics/`, its A records are `3.33.251.168`
+and `15.197.225.128`, `www.trinitymetrics.com` does not resolve, and the
+repository has no `CNAME` file. That is a registrar-level forward rather than a
+custom domain, so a reader who types the domain ends with `iamstein.github.io`
+in the address bar. Setting `site-url` to the domain now would point every
+canonical URL, sitemap entry and RSS link at a forwarder. The order is: point
+DNS at the GitHub Pages addresses `185.199.108.153` through `185.199.111.153`,
+or `www` at `iamstein.github.io`; add a `CNAME` file holding the domain; set
+the custom domain in the repository's Pages settings; wait for the certificate;
+then correct `site-url`. The DNS step needs Andy's registrar login, and was
+deferred by him on 2026-09-01 to be done as its own piece of work.
 
-Decided by Andy on 2026-09-02, after the ported pages made the old flat
-listings hard to scan. Four groups over two pages:
+**The old site still serves its original content.** All eleven pages returned
+200 with their full bodies on 2026-09-02. Section 5 says what to replace them
+with and why the site should stay published afterwards.
 
-| Page | Group | Holds |
+## 4. Acceptance checks, and the result
+
+Run on 2026-09-02. All seven pass.
+
+| # | Check | Result |
 |---|---|---|
-| Projects | R packages | synpmx, xgx, xgxr |
-| Projects | R projects | TCE-IPDE, TCE-CRS-tolerance |
-| Guides | --- | Reading Papers, Effective Learning, Career Advice, Recommended Resources |
-| PMX Tools | --- | its own top-level page, not a listing |
+| 1 | Every inventory row has a disposition, and every DROP row a reason | ✅ 30 rows, none missing either |
+| 2 | Dispositions sum to the recorded row count | ✅ 19 + 2 + 8 + 1 = 30 |
+| 3 | A link check over the rendered `docs/` finds no broken internal link | ✅ 808 internal links, 0 broken |
+| 4 | No page links to `sites.google.com/site/andrewsteinphd` as a live destination | ✅ hits only inside `projects/site-integration/`, where the address is the subject |
+| 5 | Every file referenced from a ported page exists and is covered by `resources:` in `_quarto.yml` | ✅ none missing |
+| 6 | No page on the old site is left half-migrated | ✅ all eleven serve their original content |
+| 7 | The site renders and publishes from `publish.yml` with no manual step | ✅ three consecutive green runs |
 
-Projects carries one Quarto listing per group, filtered on the `categories`
-field of a single source YAML, so a row changes group by changing one word.
-`Site integration` is in neither group and sits under its own heading. Guides
-holds only learning material and needs no split.
+**Check 6 passes before and after the work it is supposed to measure.** A page
+showing its original content satisfies it, and so does a page replaced by a
+pointer. Re-run this list once the pointers go up, and replace check 6 with one
+that requires every old page to carry the new address. Nothing here tests
+Section 3 either, so these seven checks can pass while the project is
+unfinished.
 
-Settled on 2026-09-02: pharmacometrics checklists are not guides, so
-`pmx-tools.qmd` is top-level rather than a `guides/` page, and it keeps the
-R-package links. `nlmixr2` and `ggPMX` were briefly Projects rows and were
-removed, because that listing holds Andy's own work.
+The link check was a script over `docs/`; `lychee` and `linkchecker` are not
+installed on this machine.
 
-Left to settle: whether `R project` is the right name for a pharmacometrics
-modelling project, which Andy raised when proposing it. The navbar is now at
-eight left-hand items, which Section 10 warned about.
+## 5. Old URLs and inbound links
 
-## 6. Where the two sites already overlap
+Every old URL breaks unless something is done, and the ones that matter are
+printed in places that cannot be edited: papers, conference bios, slide
+footers, the Google Scholar profile, other people's link lists.
 
-Three known overlaps, and each needs one canonical location with the other
-pointing at it.
+**Google Sites cannot redirect to an external site.** There is no redirect
+feature and no server to configure. The workable substitute is to keep the old
+site published and replace each page's body with a short pointer to the new
+address, page by page, matching the Section 2 inventory. A reader following a
+ten-year-old citation lands on a live page that tells them where to go.
 
-**xgx and xgxr.** Already in `projects/projects.yml`, pointing at
-`opensource.nibr.com/xgx/` and the CRAN page. If the old site describes them at
-length, that description does not get a second home here. Canonical: the
-existing `projects.yml` rows, extended if the old descriptions say something
-the current ones do not.
+**Do not delete the old site.** Not at the end of the migration, not a year
+later. It costs nothing to leave a Google Site published and it is the only
+thing standing between an old citation and a 404.
 
-**The link from `about.qmd` to the old site.** `about.qmd` currently lists
-Andy Stein as an author and links to
-`sites.google.com/site/andrewsteinphd/home`. That link becomes self-referential
-the moment the merge lands and must be removed in the same commit that
-rewrites `about.qmd`.
+**Update what can be updated.** The Google Scholar profile's homepage field,
+the GitHub profile, LinkedIn, ORCID, and any conference bio still within reach.
+This is a short list and it catches most live traffic.
 
-**The bio.** Use the bio from the Google site.
+## 6. Files, decks and the Google Docs export
 
-## 7. Getting the content out of Google Sites
+Files from the old site live in `files/`, listed under `resources:` in
+`_quarto.yml` so Quarto copies them into `docs/` unrendered. The reference
+documents the Resources page links stay in `references/`, which is listed
+there too.
 
-The URL shape `sites.google.com/site/...` is a Classic Sites address. Classic
-Sites was retired in 2021 and surviving addresses of that shape have been
-converted to new Google Sites, so treat the live site as a new Site with a
-legacy URL until the export shows otherwise. The two have different export
-paths.
-
-**The route is Google Takeout, and `import_google_site.py` does the rest.**
-Takeout is the only export that carries the attachments, and the attachments
-are the part that cannot be reconstructed by hand.
-
-1.  Export from [takeout.google.com](https://takeout.google.com), Sites only.
-    Google emails a download link when the archive is ready.
-2.  Unzip it and commit the folder to a scratch branch, `import/google-site-raw`.
-    It never merges to `main`; it exists so a session can read it.
-3.  Run `import_google_site.py inventory` on the unzipped folder. It prints the
-    Markdown rows for Section 5, one per page and one per file, with the
-    disposition columns blank and the row count at the bottom. Paste them in
-    and decide the dispositions.
-4.  Run `import_google_site.py convert` on the same folder. It writes one `.qmd`
-    draft per page, with the site chrome removed and the front matter stubbed.
-5.  Check each draft against the live page, then move it to where Section 4
-    says it lands.
-
-Steps 3 and 4 replace the transcription. What is left is the judgement: what
-each page is worth, where it belongs, and what is out of date.
-
-### A bug that made the converter silently produce nothing
-
-`SKIP_CONTENT` listed `meta` and `link`, which are void elements with no end
-tag. Each one incremented the parser's skip depth and nothing ever decremented
-it, so on any real page the depth climbed early and the whole body was skipped.
-Every page converted to zero blocks. Fixed on 2026-09-01 by never opening a
-skip depth for a void element. Before the fix, 11 pages gave 0 blocks; after
-it, 9 to 126 blocks each and 20 repeated blocks correctly dropped as chrome.
-
-### How the converter avoids Google's markup
-
-New Google Sites renders through JavaScript into deeply nested `div`s with
-generated class names, so a converter that keys on those names breaks the next
-time Google changes them. The script keys on nothing. It converts every page to
-blocks, counts how often each block appears across all pages, and drops any
-block appearing on 60% or more of them. Navigation and footers repeat by
-definition; content does not. A single-page export skips the step, since there
-is nothing to compare against.
-
-The script is standard library only, with no `pandoc` and no `beautifulsoup4`,
-so `python3 import_google_site.py` runs with nothing installed.
-
-### The faster variant, if the allowlist changes
-
-Adding `sites.google.com` to this environment's
-[network allowlist](https://code.claude.com/docs/en/claude-code-on-the-web)
-lets a session crawl the live site with the Chromium and Playwright already
-installed here, run the same two steps, and open a pull request with the drafts
-in it. That removes the export and the branch, and it lets the drafts be
-checked against the live pages in the same session that writes them. It does
-not replace the Takeout export: Takeout is the snapshot of the attachments and
-is worth having whether or not the allowlist changes.
-
-### What the drafts still need by hand
-
--   **Links between pages.** They point at old Google URLs and must be repointed
-    at the new `.qmd` paths.
--   **File paths.** An image or PDF reference points into the export tree, not
-    at `files/`.
--   **Front matter.** `title` is carried across; `description` and `categories`
-    are stubs.
--   **Anything the converter flattened.** Multi-column layouts, embedded Google
-    Drive viewers and buttons have no Markdown equivalent and come out as plain
-    text or vanish. Compare against the live page.
--   **Bullet lists.** Confirmed on 2026-09-01: the bullets a reader sees on
-    `/career-advice`, `/effective-learning` and `/recommended-reading` are
-    styled text blocks, not `ul`/`li`. The only list markup in those pages is
-    the navigation. No converter can recover the list structure, so restoring
-    it is hand-work on every ported page.
-
-## 8. Files and assets
-
-**Documents from other sites are mirrored here. ✅** Done 2026-09-02, at Andy's
-request, so the links open on a network that blocks the original host. Eight
-checklists and cheat sheets from the Novartis xgx project now sit in
-`references/` and are linked from `about.qmd`, `pmx-tools.qmd` and
-`guides/career-advice.qmd`, with the source project credited on the PMX Tools
-page. Google Docs keep pointing at Google, since those are the editable copies.
-
-Four external documents were deliberately **not** mirrored, because they are
-other people's publications and a citation should point at its source of
-record: the EMA first-in-human guideline, the Genor and Merus conference
-posters cited by `tce-crs-tolerance`, and Keshav's *How to Read a Paper*.
-
-Where they go: a new top-level `files/` directory, listed under `resources:` in
-`_quarto.yml` so Quarto copies it into `docs/` unrendered. Existing PDFs stay
-in `references/`, which is already listed there; `references/` is for the
-reference documents the Resources page links, and `files/` is for the CV,
-slides and posters that come across from the old site. Two directories with a
-stated split beats one directory with two unrelated kinds of thing in it.
-
-Naming: lower case, hyphens, no spaces, and a date prefix on anything with a
-date attached to it, matching `blog/posts/`. `2019-acop-poster.pdf`, not
-`ACoP Poster (final) v2.pdf`. A Google Sites filename usually has spaces in it,
-and spaces in a URL survive but read badly and break in some link checkers.
+Naming is lower case, hyphens, no spaces, and a date prefix on anything with a
+date attached: `2019-acop-poster.pdf`, not `ACoP Poster (final) v2.pdf`.
 
 **PDFs are the ported form for slides.** A PowerPoint file on a static site is
-a download rather than a page, and a reader on a phone cannot open it. Convert
-decks to PDF and keep the source file only where there is a reason to. Do not
+a download rather than a page, and a reader on a phone cannot open it. Do not
 commit the `.pptx` beside the `.pdf`: it doubles the storage, and git keeps
-every version of it for the life of the repository.
+every version for the life of the repository.
 
-### Size limits
+### Size limits and compression
 
-Every presentation can live in this repository. The numbers, from GitHub's own
-documentation:
-
-| Limit | Value | Hard? |
-|---|---|---|
-| One file | 100 MB, with a warning at 50 MiB | Yes, the push is rejected |
-| One push | 2 GB | Yes |
-| Published Pages site | 1 GB | Yes |
-| Pages bandwidth | 100 GB/month | Soft |
-| Repository total | under 1 GB ideal, under 5 GB strongly recommended | Guidance |
-
-The binding one is the 1 GB published site, not the 100 MB per-file limit. A
-slide deck exported to PDF is nowhere near 100 MB, so no single file is at
-risk; what could reach 1 GB is the sum.
-
-### Compress every deck before committing it
-
-Uncompressed exports are what makes the sum a problem, and Ghostscript
-removes it:
+The binding limit is the 1 GB published Pages site rather than the 100 MB
+per-file limit. A deck exported to PDF is nowhere near 100 MB; what could reach
+1 GB is the sum. Compress before the first commit, because a file committed
+uncompressed and recompressed later leaves both copies in the history
+permanently.
 
 ```bash
 gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dCompatibilityLevel=1.4 \
@@ -509,295 +198,32 @@ gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dCompatibilityLevel=1.4 \
 
 Measured on `references/Uncertainty_Assessment_Presentation.pdf`, the 105-page
 deck already in this repository: 14.8 MB at source, 2.5 MB at `/ebook`, 1.5 MB
-at `/screen`, page count unchanged in both. On the most image-heavy page in the
-deck, `/ebook` is indistinguishable from the source and `/screen` visibly
-softens the small annotation labels. **Use `/ebook`.** Re-run the comparison on
-a deck of your own before trusting it on a hundred of them.
+at `/screen`, page count unchanged in both. On the most image-heavy page,
+`/ebook` is indistinguishable from the source and `/screen` visibly softens the
+small annotation labels. **Use `/ebook`.** At that ratio the 1 GB ceiling
+arrives at roughly 400 decks.
 
-That ratio is what decides whether everything fits. At source size the 1 GB
-Pages ceiling arrives at roughly 65 decks; at `/ebook` size, at roughly 400.
-Compress before the first commit, because a file committed uncompressed and
-recompressed later leaves both copies in the history permanently.
+### The build exports the Google Docs
 
-Git LFS is not needed. It exists for the 100 MB per-file limit, and a deck
-compressed as above is 40 times smaller than that. Were it ever needed, this
-repository's Actions-based Pages build could serve LFS content by setting
-`lfs: true` on `actions/checkout`, which the older branch-based Pages build
-could not.
+`_scripts/export-google-docs.sh` fetches nine Docs as PDFs into `docs/files/`
+after `quarto render`, and `publish.yml` calls it in one line. Readers on a
+corporate network cannot open Google Docs, so every Doc the site links to is
+published here as a PDF and linked beside the Google original. Nothing is
+committed: the PDFs are written during the build and travel in the Pages
+artifact, so they are never stale and never enter git history.
 
-### The CV is a Google Doc, and the build exports it
+A Doc exports over plain HTTP while it is shared as **anyone with the link,
+Viewer**, at `https://docs.google.com/document/d/DOC_ID/export?format=pdf`.
+Slides use `/presentation/d/DOC_ID/export/pdf`.
 
-The CV stays in Google Docs so that editing it is the only step; nobody has to
-remember to export a PDF afterwards. The build does the exporting.
-
-A Google Doc shared as **anyone with the link, Viewer** exports over plain HTTP
-with no authentication:
-
-```
-https://docs.google.com/document/d/DOC_ID/export?format=pdf
-```
-
-So `.github/workflows/publish.yml` gains one step between **Render site** and
-**Upload Pages artifact**:
-
-```yaml
-      - name: Export the CV from Google Docs
-        run: |
-          mkdir -p docs/files
-          curl --fail --silent --show-error --location \
-            "https://docs.google.com/document/d/${{ vars.CV_DOC_ID }}/export?format=pdf" \
-            -o docs/files/stein-cv.pdf
-```
-
-**As built, the ID is written into the workflow rather than held in
-`vars.CV_DOC_ID`.** The document is link-shared and its ID is public in the
-share URL, so a variable protects nothing, and an unset variable fails the
-build. The published document is
-`1gl52JUJqrf8wL0irCn-mFp_pw0Z5w0ZalvLnKw9GSyc`. Verified on 2026-09-01: the
-export URL returns an 8-page, 316 KB PDF with no authentication.
-
-**As built, the step exports nine Docs rather than one, through
-`_scripts/export-google-docs.sh`.** Generalized 2026-09-02. Andy: he cannot
-reach Google Docs from his work network, so every Doc the site links to is
-published here as a PDF and linked beside the Google original. The script holds
-the file ids and output names; the workflow step is one line that calls it.
-The two decks under PMX principles are not in that list, their PDFs being
-already committed to `files/` for the Talks page.
-
-Four properties this has:
-
--   **The published PDF is never stale.** It is refetched on every push to
-    `main`, so it matches the Doc as of the last build.
--   **Nothing is committed.** The PDF is written into `docs/` during the build
-    and travels in the Pages artifact, so it never enters git history and
-    Section 8's size arithmetic is unaffected.
--   **A broken share setting fails the build, but not through `--fail`.**
-    `--fail` makes `curl` exit non-zero on an error response, and a Doc that is
-    not link-shared does not return one. Google answers 200 and serves its
-    sign-in page. Measured 2026-09-02 on the three Drive files behind
-    `software.qmd`: each returned about 907 KB of `text/html` titled "Google
-    Drive: Sign-in". The script checks that the first four bytes of what it
-    downloaded are `%PDF`, and deletes the file and fails the build when they
-    are not. An HTML sign-in page published as a `.pdf` is the failure nobody
-    notices.
--   **The reader never meets Google.** The site links its own
-    `files/stein-cv.pdf`, so there is no account prompt, no Drive viewer, and
-    no dependency on Google being up when someone opens the CV. Offer the Doc
-    link beside it only if there is a reason to.
+**`curl --fail` does not catch a broken share setting.** A Doc that is not
+link-shared returns 200 and serves Google's sign-in page. Measured 2026-09-02
+on the three Drive files behind `software.qmd`: each returned about 907 KB of
+`text/html` titled "Google Drive: Sign-in". The script checks that the first
+four bytes of what it downloaded are `%PDF`, and deletes the file and fails the
+build when they are not. Those three links stay pointing at Drive. Andy
+2026-09-02: that is fine for the old software.
 
 The export endpoint is not part of a documented API and Google could change it.
 The build failing loudly is the detection mechanism; the fallback is to commit
 a PDF by hand until it is fixed.
-
-## 9. Publications: how the list is built
-
-Two options.
-
-**A. A YAML file plus a Quarto listing**, matching `projects.yml`. Each entry
-carries title, authors, journal, year, DOI, and a link.
-Consistent with everything else on this site, editable without a toolchain, and
-the listing gives sorting and categories.
-
-**B. A BibTeX file rendered through Quarto's citation support.** Correct
-formatting for free, exports cleanly for anyone who wants to cite the work, and
-`.bib` can be exported from Google Scholar in one step rather than typed.
-
-**Recommendation: A, with the `.bib` file committed alongside it as a
-download.** The YAML drives what a reader sees, so the page looks like the rest
-of the site and can carry a note on a paper where a note is useful. The `.bib`
-serves the reader who wants to cite something and costs one export to produce.
-The duplication is real and is the price; it is bounded by publications being
-added a few times a year, one entry at a time.
-
-Do not hand-type the publication list. Export from the Google Scholar profile,
-then check it, because Scholar merges and mis-attributes entries and a
-publication list with someone else's paper in it is worse than a short one.
-
-## 10. Navigation after the merge
-
-The navbar has seven left-hand items now and the merge adds at least three.
-Ten flat items do not fit on a laptop width and do not survive on a phone.
-
-Proposed structure:
-
-```
-Home | Projects | Guides | PMX Tools | Talks | About ▾
-                                                 ├─ About
-                                                 ├─ Now
-                                                 └─ CV  (→ Google Docs)
-```
-
-**As built, 2026-09-02.** ✅ The proposal above put every person-level page
-under About and kept the seven original items. Andy cut it the other way, and
-the result is shorter than either: five left-hand items rather than the eight
-the ported pages had grown to.
-
--   **Blog and Code left the navbar** but keep their pages. The home page still
-    links Blog from the GenAI row; Code is reachable only by URL until it holds
-    something.
--   **Resources was deleted.** Its three links were already on PMX Tools, apart
-    from the Validation Checklist PDF, which was added there beside its Google
-    Doc.
--   **Talks is top-level**, not under About, and is linked from the Education
-    row of the home page.
--   **Earlier Software moved to Projects**, under an *Earlier work* heading at
-    the bottom, rather than sitting under About.
--   **Publications** is still unbuilt, and will need a place here.
-
-The CV entry is an external link, per Section 4. Quarto takes a full URL in a
-navbar `href`, so it needs no page of its own.
-
-The person's material sits under one menu, the topic material stays flat, and
-the site's shape barely changes for a reader who is already using it. A reader
-arriving from a paper looks for a name, finds About, and everything about the
-person is one click below it.
-
-The alternative, a second navbar row or a `right:` group, splits the navigation
-into two zones and asks the reader to work out what the split means.
-
-**The home page stays as it is.** `index.qmd` frames the project and links to
-the five sections. It gains one line pointing at About for the reader who came
-for the person. It does not become a personal landing page; Section 3 chose
-the project as the site's identity and the home page is where that choice is
-visible.
-
-## 11. Old URLs and inbound links
-
-Every old URL breaks unless something is done, and the ones that matter are the
-ones printed in places that cannot be edited: papers, conference bios, slide
-footers, the Google Scholar profile, other people's link lists.
-
-**Google Sites cannot redirect to an external site.** There is no redirect
-feature and no server to configure. The workable substitute is to keep the old
-site published and replace each page's body with a short pointer to the new
-address, page by page, matching the Section 5 inventory. A reader following a
-ten-year-old citation lands on a live page that tells them where to go.
-
-**Do not delete the old site.** Not at the end of the migration, not a year
-later. It costs nothing to leave a Google Site published and it is the only
-thing standing between an old citation and a 404.
-
-**Files need pointers too.** A PDF cannot carry a pointer. Where a file's old
-URL is likely to be cited, replace the attachment with a one-page PDF giving
-the new address, or leave the original in place and accept that the two copies
-diverge. Decide per row in Section 5.
-
-**Update what can be updated.** The Google Scholar profile's homepage field,
-the GitHub profile, LinkedIn, ORCID, and any conference bio still within reach.
-This is a short list and it catches most live traffic.
-
-## 12. Acceptance checks
-
-The migration is done when all of these hold.
-
-1.  Every row of the Section 5 inventory has a disposition, and every DROP row
-    has a reason.
-2.  The number of pages and files ported plus merged plus linked plus dropped
-    equals the row count recorded in Section 5.
-3.  A link checker over the rendered `docs/` reports no broken internal links.
-    `quarto render` then a link checker over the output; `lychee` or
-    `linkchecker` will do.
-4.  No page on the merged site links to `sites.google.com/site/andrewsteinphd`
-    as a live destination. `grep -r andrewsteinphd` returns hits only inside
-    `projects/site-integration/`, where the old address is the subject rather
-    than a reference.
-5.  Every file referenced from a ported page exists under `files/` or
-    `references/` and is listed under `resources:` in `_quarto.yml`.
-6.  Every page on the old site shows either its original content or a pointer
-    to the new address. No page is left half-migrated.
-7.  The site renders and publishes from `.github/workflows/publish.yml` without
-    manual steps.
-
-## 13. Sequence
-
-Phases are ordered so that each one leaves the site in a publishable state.
-None of them requires the next one to start.
-
-### Status markers
-
-- ✅ **Done.** Built, rendered and on a branch or on `main`.
-- ⚠️ **Part done.** Some items complete; the phase names which remain.
-- ❌ **Not started**, or blocked on something named in the phase.
-
-Change a marker when the work is done, not when it is planned. A phase is ✅
-only when every item under it is.
-
-**Phase 0 --- inventory. ✅** Done on 2026-09-01, by crawling the live site
-from a local machine rather than by Takeout: Section 7's export route was
-written when `sites.google.com` was unreachable, and Takeout no longer offers
-Sites as a product in any case. Section 5 holds 30 rows and Q2, Q3 and Q4 are
-closed. No `import/google-site-raw` branch was needed, because no file is
-hosted on the old site.
-
-**Phase 1 --- the person, at minimum. ⚠️** After this phase the merged site
-already answers "who is this" and the old site is optional rather than load
-bearing.
-
-| Item | Status |
-|---|---|
-| `about.qmd` opens with the bio; self-referential link removed | ✅ |
-| CV export step in `publish.yml` | ✅ |
-| About menu from Section 10 in the navbar | ✅ |
-| `README.md` structure, layout and publishing sections | ✅ |
-| `index.qmd` and `README.md` framing rewritten to the three legs | ⚠️ Andy is writing the prose; `index.qmd` carries the three legs as a table |
-| `site-url` corrected to the domain | ❌ Blocked; see the domain item below |
-
-**The domain is not wired to GitHub Pages, and `site-url` must not change until
-it is. ❌** Checked on 2026-09-01: `trinitymetrics.com` answers with a 301 to
-`https://iamstein.github.io/TrinityMetrics/`, its A records are `3.33.251.168`
-and `15.197.225.128`, `www.trinitymetrics.com` does not resolve, and the
-repository has no `CNAME` file. That is a registrar-level forward, not a custom
-domain, so a reader who types the domain ends with `iamstein.github.io` in the
-address bar. Setting `site-url` to `trinitymetrics.com` now would point every
-canonical URL, sitemap entry and RSS link at a forwarder. The order is: point
-DNS at the GitHub Pages addresses `185.199.108.153` through `185.199.111.153`,
-or `www` at `iamstein.github.io`; add a `CNAME` file holding the domain; set
-the custom domain in the repository's Pages settings; wait for the certificate;
-then correct `site-url`. The DNS step needs Andy's registrar login. Deferred by
-Andy on 2026-09-01, to be done as its own piece of work.
-
-**Phase 2 --- publications and talks. ⚠️** Talks are done; publications are
-not. Add `publications.yml`,
-`publications.qmd`, the `.bib`, and the same for talks if the volume in Section
-5 justifies a page. Copy slides and posters into `files/`.
-
-**Phase 3 --- everything else. ⚠️** Rows 2, 3, 4, 5, 6 and 11 are done. Row 9
-is the only content row left, and rows 19 to 30 are the decks in Phase 2.
-Extend
-`projects/projects.yml` with any software the old site lists that this one does
-not.
-
-**Phase 4 --- the old site becomes pointers. ❌** Only after Phases 1 to 3 are
-published and checked. Replace each old page's body with its pointer, and
-update the external profiles listed in Section 11.
-
-**Phase 5 --- acceptance. ❌** Run Section 12 end to end and record the result at
-the bottom of Section 5.
-
-## 14. Open questions
-
-All five are closed. Q2, Q3 and Q4 closed on 2026-09-01, Q2 and Q3 by Andy
-and Q4 by the crawl in Section 5.
-
-1.  ~~Is a custom domain wanted?~~ **Closed.** `trinitymetrics.com` is held
-    and already points here. It carries the project identity rather than a
-    personal one, so it confirms option A in Section 3. The wiring was checked
-    on 2026-09-01 and is a registrar forward rather than a GitHub Pages custom
-    domain, so what remains is not mechanical. Section 13, Phase 1 holds the
-    finding and the steps.
-2.  ~~Is there a news or updates section, and does it survive?~~ **Closed.**
-    The `/now` page survives. It is a [now page](https://nownownow.com/about)
-    in Derek Sivers's sense: one standing statement of current work, updated in
-    place. Last updated 2026-03-27. Row 2 of Section 5.
-3.  ~~Is any of the old site's content out of date rather than merely old?~~
-    **Closed.** Andy confirms the affiliation on `/home` is unchanged, so the
-    bio ports verbatim into `about.qmd`. Two smaller checks remain and are
-    recorded in Section 5 rather than here: the ACoP year on row 23, and the
-    talk title on row 27.
-4.  ~~How much material is there in total?~~ **Closed.** Eleven pages and
-    nineteen linked files, at the small end of the range this question
-    anticipated. Section 8's file-size ceiling is not in play: no file is
-    hosted on the old site, and twelve decks at the 2.5 MB Section 8 measured
-    for `/ebook` is about 30 MB against a 1 GB limit.
-5.  ~~Which trinity does the home page name?~~ **Closed.** Pharmacometrics,
-    teaching and education, GenAI. Recorded in Section 3.
