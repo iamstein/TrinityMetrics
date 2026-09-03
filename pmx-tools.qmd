@@ -18,13 +18,6 @@ you'll find below many short checklists and cheatsheets. Many great books and
 software exist on the topics below, and the focus here is on freely available
 tools.
 
-The checklists and cheat sheets below come from the
-[Novartis xgx project](https://github.com/Novartis/xgx) and are mirrored on
-this site so that they open on networks that block the original hosts. Each
-Google Doc is linked twice: a **PDF** exported here when the site is built,
-which opens anywhere, and the **Google** original, which is the editable copy
-and the one to use when you want to comment or suggest an edit.
-
 ## Scoping
 
 - [Context of Use Table](references/ContextOfUse_Table_1page.pdf)
