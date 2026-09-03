@@ -1,0 +1,33 @@
+---
+title: "Logistic regression for dose finding"
+subtitle: "Picking a method, and picking the right diagnostics"
+description: "Index of the documents in the logistic-regression project: comparing glm against Bayesian fitting methods, and a minimal diagnostic checklist for a fitted model, both working documents."
+categories: [PMX project]
+date: last-modified
+toc: false
+---
+
+A logistic regression of dose against adverse event rate or overall response
+rate is a common early analysis in dose finding. Two questions come up every
+time it is run: which function to fit it with, and whether the fit is any
+good. Neither is fully worked out; both are drafts, to be extended as time
+allows.
+
+## Documents
+
+- [Picking a Method](picking-a-method.qmd). Comparing `stats::glm` against two
+  Bayesian alternatives, `rstanarm` and `brms`. The `glm` fit runs live on
+  every build; the two Bayesian fits are kept as code and as Andy's earlier
+  conclusions, not re-verified, because neither package is installed in the
+  environment that builds this site.
+- [Diagnostics](diagnostics.qmd). Calibration, residuals and a linearity
+  check for a fitted model, all computed live, plus the checklist of what is
+  still missing: a Hosmer-Lemeshow test, an $R^2$ measure, a Brier score.
+
+## Data {#data}
+
+- `dose_tumor_resp.rds`, in
+  [`data/synthetic/dose-response`](https://github.com/iamstein/TrinityMetrics/tree/main/data/synthetic/dose-response).
+  96 patients: assigned dose, baseline covariates (ECOG performance status,
+  baseline tumor burden), and RECIST-derived best overall response. Used in
+  both documents' worked examples.

@@ -1,0 +1,34 @@
+---
+title: "Sizing studies"
+subtitle: "How many patients a cohort needs to characterize dose-response"
+description: "Index of the documents in the sizing-studies project: how many patients a Phase 1/2 expansion cohort needs to characterize a dose-response or biomarker-response relationship, and the references it draws the sample size criteria from."
+categories: [PMX project]
+date: last-modified
+toc: false
+---
+
+Sizing a cohort to reject a null hypothesis that two doses are the same is
+usually the wrong question in early oncology. [Sizing
+Studies](sizing-studies.qmd) works out the more useful one: how many patients
+are needed to characterize a dose-response or biomarker-response relationship
+to a stated precision, using Frank Harrell's rule of thumb and Richard Riley's
+four-question framework, worked against both a binary and a continuous
+endpoint.
+
+## Documents
+
+- [Sizing Studies for Dose-Response Characterization](sizing-studies.qmd). The
+  four sizing approaches, worked binary and continuous examples with real
+  code, and why a continuous endpoint is usually the practical choice in
+  oncology.
+- [References](references.qmd). The Riley and Harrell papers the sizing
+  criteria come from, and a marker on each recording whether the page's use of
+  it has been checked against the source.
+
+## Data {#data}
+
+- `emax_tumor_size.rds`, in
+  [`data/synthetic/dose-response`](https://github.com/iamstein/TrinityMetrics/tree/main/data/synthetic/dose-response).
+  61 patients: average daily dose before the first tumor assessment, and
+  percent change in tumor size at that assessment. Used in Section 4's Emax
+  fit.

@@ -1,0 +1,131 @@
+---
+title: "References for the sizing-studies project"
+subtitle: "What the sample size criteria come from, and what has actually been checked"
+description: "The Riley, Harrell and FDA sources behind the sizing-studies page, with a status marker on every entry recording whether the page's use of it has been checked against the source."
+categories: [PMX project, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**None of the six sources has been checked.** Andy read the three Riley papers
+when this page was first drafted, some time ago, but has not re-read them
+since; every claim below is transcribed from that earlier reading or from the
+page itself. The bibliographic details were fetched from Crossref and the FDA
+site on 2026-09-03 and are correct; what each source actually says has not
+been re-verified against it.
+:::
+
+The working document is [Sizing
+Studies](sizing-studies.qmd), and the folder's other documents are on [the
+project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim on the page has been verified against this
+  source.
+- ⚠️ **Transcribed, unverified.** A number, formula or quotation on the page
+  came from this source but has not been checked against it.
+- ✅ **Checked.** The claim the page draws from it has been verified against
+  the source.
+
+Change a marker when the check is done, not when the paper is opened.
+
+## Reading queue
+
+In the order to read them.
+
+1.  ⚠️ **Riley et al. 2020 (BMJ).** Read first. It is the practical-guide
+    overview and Section 2's four questions are transcribed from it. Read
+    against: do the four questions in the page match the paper's own
+    statement of them, in the same order and with the same emphasis?
+
+2.  ⚠️ **Riley et al. 2019a (continuous outcomes).** Read second. Section 4's
+    four-step calculation — shrinkage, apparent-vs-adjusted $R^2$, variance,
+    mean — implements this paper's equations directly, Equation 6 among them.
+    Read against: are the four formulas in the page's code correct, and does
+    the $70 + p$ / $234 + p$ rule for variance appear in this paper or was it
+    conflated with a different one?
+
+3.  ⚠️ **Riley et al. 2019b (binary and time-to-event outcomes).** Read third.
+    Section 3's confidence-interval formula for a binary event rate comes from
+    here. Read against: does the paper support treating $\delta$ as a free
+    design choice the way Section 3 does?
+
+4.  ❌ **Harrell, *Regression Modeling Strategies*.** Read fourth, and only the
+    two sections cited: 4.4 (the $p < m/15$ rule) and 10.2.3 (the trial
+    simulation approach). Read against: is $p < m/15$ stated as a general
+    rule of thumb or hedged more than the page suggests?
+
+5.  ❌ **FDA 2022, Expansion Cohorts guidance.** Read fifth. Section 1
+    transcribes three claims from it: the 40/20-patient cap, the
+    randomization recommendation, and the Simon two-stage design quotation.
+    Read against: are all three still current in the finalized March 2022
+    version, which the page has not been checked against?
+
+6.  ❌ **FDA 2023, dose optimization draft guidance.** Read last. Only one
+    quotation depends on it, in Section 1. Read against: is the quotation
+    exact, and is the document still in draft or has it since been finalized?
+
+## Sources
+
+**⚠️ Riley RD, Ensor J, Snell KIE, Harrell FE, Martin GP, Reitsma JB, Moons
+KGM, Collins G, van Smeden M. Calculating the sample size required for
+developing a clinical prediction model.** *BMJ* 2020;368:m441.
+[doi:10.1136/bmj.m441](https://doi.org/10.1136/bmj.m441)
+
+The practical-guide overview. Section 2 of the working document draws its four
+sizing questions from this paper rather than from the two companion papers
+below.
+
+**⚠️ Riley RD, Snell KIE, Ensor J, Burke DL, Harrell FE, Moons KGM, Collins GS.
+Minimum sample size for developing a multivariable prediction model: Part I —
+continuous outcomes.** *Statistics in Medicine* 2019;38:1262–1275.
+[doi:10.1002/sim.7993](https://doi.org/10.1002/sim.7993)
+
+The four-step calculation in Section 4 of the working document — shrinkage,
+closeness of apparent to adjusted $R^2$, variance, and mean — implements this
+paper's equations, including Equation 6 for the Copas shrinkage factor.
+
+**⚠️ Riley RD, Snell KIE, Ensor J, Burke DL, Harrell FE, Moons KGM, Collins GS.
+Minimum sample size for developing a multivariable prediction model: Part II —
+binary and time-to-event outcomes.** *Statistics in Medicine*
+2019;38:1276–1296. [doi:10.1002/sim.7992](https://doi.org/10.1002/sim.7992)
+
+Section 3 of the working document draws the confidence-interval approach for
+a binary event rate from this paper.
+
+**❌ Harrell FE. *Regression Modeling Strategies*, 2nd ed.** Springer, 2015.
+Free online at [hbiostat.org/rmsc](https://hbiostat.org/rmsc/).
+
+Two sections are cited by number and not otherwise reproduced: Section 4.4 for
+the $p < m/15$ rule, and Section 10.2.3 for the trial simulation approach in
+Section 2 of the working document.
+
+**❌ U.S. Food and Drug Administration. Expansion Cohorts: Use in
+First-in-Human Clinical Trials to Expedite Development of Oncology Drugs and
+Biologics.** Guidance for industry, finalized March 2022.
+[fda.gov/media/115172/download](https://www.fda.gov/media/115172/download)
+
+Section 1 of the working document quotes this guidance on the 20/40-patient
+cap, randomization, and the recommendation for a Simon two-stage or Bayesian
+design in a nonrandomized cohort.
+
+**❌ U.S. Food and Drug Administration. Optimizing the Dosage of Human
+Prescription Drugs and Biological Products for the Treatment of Oncologic
+Diseases.** Draft guidance for industry, January 2023.
+[fda.gov/media/164555/download](https://www.fda.gov/media/164555/download)
+
+Section 1 of the working document quotes this guidance on how a dose
+optimization trial should be sized.
+
+## Not yet read
+
+- Riley's `pmsampsize` R package, named in Section 6 of the working document
+  as a candidate not yet installed or run against the example data.
+- Frank Harrell's blog post on $R^2$ measures
+  ([hbiostat.org/bib/r2.html](https://hbiostat.org/bib/r2.html)), referenced
+  from the companion logistic-regression project rather than from this one,
+  but relevant to Section 4's $R^2$ calculation.

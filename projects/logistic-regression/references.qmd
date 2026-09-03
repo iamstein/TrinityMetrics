@@ -1,0 +1,49 @@
+---
+title: "References for the logistic-regression project"
+subtitle: "What the diagnostics draw on, and what has actually been checked"
+description: "The sources behind the logistic-regression project's method comparison and diagnostics, with a status marker on each recording whether the claim drawn from it has been checked against the source."
+categories: [PMX project, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**None of the three sources has been checked.** All three claims are
+transcribed from Andy's earlier notes rather than a fresh reading.
+:::
+
+The working documents are [Picking a
+Method](picking-a-method.qmd) and [Diagnostics](diagnostics.qmd); the
+folder's other documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the working documents has been verified
+  against this source.
+- ⚠️ **Transcribed, unverified.** A number or claim came from this source but
+  has not been checked against it.
+- ✅ **Checked.** Verified against the source.
+
+## Sources
+
+**❌ Harrell FE. *Regression Modeling Strategies*, 2nd ed.** Springer, 2015.
+Free online at [hbiostat.org/rmsc](https://hbiostat.org/rmsc/).
+
+Section 10.2.2 is cited in Picking a Method for the claim that estimating a
+baseline rate to within ±10% needs at least 96 patients. The same book is
+cited more extensively in [the sizing-studies
+project](../sizing-studies/references.qmd), which carries the fuller record.
+
+**❌ Harrell FE. $R^2$ measures for models with binary and ordinal
+outcomes.** Blog post. [hbiostat.org/bib/r2.html](https://hbiostat.org/bib/r2.html)
+
+Cited in Diagnostics, Section 6, as the discussion of which $R^2$ candidate to
+use, and as the source for the `rms::R2Measures` function. Not read against
+the specific claim.
+
+**❌ Harrell FE. Lecture notes, Binary Logistic Regression, Section 8-40.**
+Not linked in the source material and not located here. Cited in Diagnostics,
+Section 6, as the source of "other metrics" not yet implemented. Finding a
+public copy of these notes is the first step in checking this one.

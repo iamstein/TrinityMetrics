@@ -14,7 +14,7 @@ listing:
   - id: r-projects
     contents: projects.yml
     include:
-      categories: "R project"
+      categories: "PMX project"
     type: grid
     grid-columns: 2
     sort: false
@@ -65,7 +65,7 @@ are hosted elsewhere.
 ::: {#r-packages}
 :::
 
-## R projects
+## PMX projects
 
 Working documents, kept in the open. They record how a problem is currently
 being thought about, not a finished result.
