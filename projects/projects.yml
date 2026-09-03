@@ -66,7 +66,7 @@
   description: >
     Turning the Choosing a PK Metric R Markdown file into a PMX Tools page:
     what the source holds, what changed in the conversion, and what is left.
-  categories: [Site]
+  categories: [PMX project]
   path: exposure-metric/index.qmd
 
 - title: "Sizing studies"
@@ -93,7 +93,7 @@
     Merging the personal Google Sites page into TrinityMetrics: where every
     old page and file landed, what is still unbuilt, and what the old URLs
     need.
-  categories: [Site]
+  categories: [Site Maintenance]
   path: site-integration/index.qmd
 
 - title: "Earlier Software"

@@ -34,7 +34,7 @@ listing:
   - id: site-projects
     contents: projects.yml
     include:
-      categories: "Site"
+      categories: "Site Maintenance"
     type: grid
     grid-columns: 2
     sort: false
@@ -78,7 +78,7 @@ being thought about, not a finished result.
 ::: {#genai-projects}
 :::
 
-## This site
+## Site Maintenance
 
 ::: {#site-projects}
 :::
