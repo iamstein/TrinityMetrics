@@ -18,5 +18,3 @@ Checklists and cheat sheets for the modelling work itself are on the
   deconstruction, routine, feedback and growth.
 - [Career Advice](career-advice.qmd). A career transition checklist for leaving
   academia, the mindsets that help, and where pharmacometrics jobs are posted.
-- [Recommended Resources](recommended-reading.qmd). Books, blogs, podcasts, TED
-  talks and technical references, each with a note on what it is for.
