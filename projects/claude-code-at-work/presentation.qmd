@@ -100,15 +100,18 @@ source, whether the claim drawn from it had been checked against the source.
 
 [Working specification](../tce-ipde/specification.qmd)
 
+I'm reading/thinking more about the difference between "vibe-coding" vs "agentic-engineering", the latter meaning to think more about the analysis plan before building a tool.
+[Guide for creating working specifications](https://iamstein.github.io/TrinityMetrics/projects/agentic-engineering-analysis/specification.html)
+
 ## Workflow for building website for task
 
-- For an R package, `pkgdown`. For anything else, Quarto and `quarto_render()`.
+- For an R package, use `pkgdown`. For anything else, use a site made by `quarto_render()`.
 - Sites are published by Continuous Integration (CI) through GitHub Actions.
 - I read the rendered output — on my phone, at home, or at work.
 - Claude sets all of that up with minimal work from me.
 
-For things that aren't their own R package and github repo, I've set up the 
-[TrinityMetrics](https://iamstein.github.io/TrinityMetrics/) repository.
+I've set up the 
+[TrinityMetrics](https://iamstein.github.io/TrinityMetrics/projects) repository for this.
 
 ![](../../files/trinitymetrics-site.png){width="58%" fig-align="center" fig-alt="The TrinityMetrics site: navigation bar, the three-category table, and the triquetra logo with the trinity metrics wordmark."}
 
@@ -119,9 +122,10 @@ For things that aren't their own R package and github repo, I've set up the
    confusion with the GitHub Copilot setup and corporate Github account.
 3. **I can control Claude Code from my phone, my home machine, or my work machine**
    with `/remote-control`.
-4. **I can use the latest Claude models (Fable).** Though it kicked me back
-   to Opus because I was working on "bio".
+4. **I can use the latest Claude models (Fable).** 
 
+ - First use of Fable, it kicked me down to Opus because I was working on "bio."
+ - While Fable isn't needed for standard coding, I believe more sophisticated models may be useful for more complex tasks where standard models aren't available and careful literature review and novel methods are warranted.
 
 ## Getting access
 
@@ -134,7 +138,8 @@ short internal training that is linked to whenever you hit the block.
 2. Pick a GitHub repository to work in, or create your own
 3. Give Claude a small task, and ask it to use GitHub Actions to set up a website
    and for publishing the results.
-4. Then, check the output.
+4. Type `/remote-control` in the chat window to run from other machines, including your phone.
+5. Check the output.
 
 ## Demo
 
