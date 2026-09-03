@@ -56,7 +56,7 @@ tools.
   [PDF](files/holding-people-accountable.pdf) ·
   [Google Doc](https://docs.google.com/document/d/1cuONopvVPAjFoieWZ13et9CjJ8DAcvmhuOFwGG31-z4/edit)
 
-## PMX principles
+## Tutorials
 
 - Intro. to Fundamental PK Concepts:
   [PDF](files/2019-08-01-fundamental-pk.pdf) ·
