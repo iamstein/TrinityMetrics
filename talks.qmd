@@ -10,8 +10,7 @@ toc-depth: 2
 ---
 
 Each talk is linked twice: a **PDF** hosted here, which opens anywhere, and the
-**Google** original, which is the editable copy. Some networks block Google
-Drive, so the PDF is the one to use at work.
+**Google** original, which is the editable copy.
 
 ## Tutorials
 
