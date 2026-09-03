@@ -33,6 +33,7 @@ exports=(
   "document|17ec8YaARWZ6wppv3AfZCdaHfPwvOFUABXyXmENgHnpE|r-coding-checklist.pdf"
   "document|1eXmTy0NHVlU1x5V-xzxwAPEHgYFjMzk8KvhF7gB0R98|learning-checklist-template.pdf"
   "document|1Y4-67r5LTs7tPChldFc_ZX-GO4dpzybt|career-feedback-form.pdf"
+  "document|1t9omSVTz4lf2RT6GF3dTYTALM-Yy0tCk5UVIyxQlWZQ|grams-to-molar-equations.pdf"
 )
 
 mkdir -p "$out_dir"

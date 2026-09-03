@@ -64,8 +64,6 @@ tools.
 - Intro. to Fundamental PD Concepts:
   [PDF](files/2019-08-01-fundamental-pd.pdf) ·
   [Google Slides](https://docs.google.com/presentation/d/1IjaNyPhachTDWn2TO9YuVegsCTOSpiCp/edit)
-- [Practical PK Calculator](https://drughunter.com/resource/practical-pk-calculators/)
-- [FDA search for drug reviews](https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm)
 
 ## Open source code (R)
 
@@ -77,3 +75,11 @@ tools.
 - [nlmixr2 Package for Nonlinear Mixed Effect Modeling](https://nlmixr2.org/)
 - [ggPMX Package for Diagnostic Plots](https://cran.r-project.org/package=ggPMX)
 - [xgxr + nlmixr + ggPMX tutorials (YouTube)](https://www.youtube.com/channel/UCoVBtOuUwmI_OyHX1JbyZcA)
+
+## Other tools
+
+- Grams to Molar Equations:
+  [PDF](files/grams-to-molar-equations.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1t9omSVTz4lf2RT6GF3dTYTALM-Yy0tCk5UVIyxQlWZQ/edit)
+- [Practical PK Calculator](https://drughunter.com/resource/practical-pk-calculators/)
+- [FDA search for drug reviews](https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm)
