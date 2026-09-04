@@ -64,8 +64,7 @@ that do not fit in a blog post.
 
 ## PMX projects
 
-Working documents, kept in the open. They record how a problem is currently
-being thought about, not a finished result.
+Working documents that record current thinking on a problem.
 
 ::: {#r-projects}
 :::
