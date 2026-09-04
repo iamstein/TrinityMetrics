@@ -31,7 +31,7 @@ website:
       - href: projects/index.qmd
         text: Projects
       - href: guides/index.qmd
-        text: Guides
+        text: Learning Guides
       - href: pmx-tools.qmd
         text: PMX Tools
       - href: talks.qmd

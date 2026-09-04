@@ -18,8 +18,8 @@ listing:
     type: grid
     grid-columns: 2
     sort: false
-    fields: [title, description]
-    categories: false
+    fields: [title, categories, description]
+    categories: true
     feed: false
   - id: genai-projects
     contents: projects.yml
@@ -28,8 +28,8 @@ listing:
     type: grid
     grid-columns: 2
     sort: false
-    fields: [title, description]
-    categories: false
+    fields: [title, categories, description]
+    categories: true
     feed: false
   - id: site-projects
     contents: projects.yml
@@ -38,8 +38,8 @@ listing:
     type: grid
     grid-columns: 2
     sort: false
-    fields: [title, description]
-    categories: false
+    fields: [title, categories, description]
+    categories: true
     feed: false
   - id: earlier-work
     contents: projects.yml

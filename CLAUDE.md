@@ -46,6 +46,16 @@ recording whether the claim the project draws from it has been checked against
 the source. `projects/tce-ipde/references.qmd` is the shape to copy, markers
 and section order included.
 
+A project's card on the Projects page carries `Draft` in its `categories:`
+list in `projects/projects.yml` for as long as it is one, alongside the
+category that puts it in the right section (`PMX project`, `GenAI`, `Site
+Maintenance`). Remove `Draft` in the same commit that the project stops being
+one — there is no `Public` category, since every published page is public by
+default and a second label for that would say nothing. A listing that mixes
+draft and finished cards needs `categories: true` and `categories` added to
+its `fields:` list in `projects/index.qmd`, or the pill never renders; a
+listing with nothing to distinguish (`R packages`, `Matlab tools`) skips both.
+
 ## Other conventions in this repository
 
 - `.github/copilot-instructions.md` — Markdown mechanics: blank lines around

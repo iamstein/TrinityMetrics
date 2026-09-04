@@ -31,7 +31,7 @@
     Does escalating dose within a patient reach a confirmable active dose
     sooner in a first-in-human T-cell engager trial, and does the time it
     saves outweigh the extra visits and hospital time it costs?
-  categories: [PMX project]
+  categories: [PMX project, Draft]
   path: tce-ipde/index.qmd
 
 - title: "TCE-CRS-tolerance"
@@ -40,7 +40,7 @@
     Cytokine release syndrome risk often falls as step-up doses rise. Can the
     published epcoritamab tolerance model explain that, and can it be fit to
     publicly available data from approved T-cell engagers?
-  categories: [PMX project]
+  categories: [PMX project, Draft]
   path: tce-crs-tolerance/index.qmd
 
 - title: "Claude Code at Work"
@@ -58,7 +58,7 @@
     Writing the requirements and the checks before commissioning an agent to
     build inside them: what is already in place here, how the initial spec
     gets written, and how the work divides between Andy and the agent.
-  categories: [GenAI]
+  categories: [GenAI, Draft]
   path: agentic-engineering-analysis/index.qmd
 
 - title: "Exposure metric guide"
@@ -66,7 +66,7 @@
   description: >
     Turning the Choosing a PK Metric R Markdown file into a PMX Tools page:
     what the source holds, what changed in the conversion, and what is left.
-  categories: [PMX project]
+  categories: [PMX project, Draft]
   path: exposure-metric/index.qmd
 
 - title: "Sizing studies"
@@ -75,7 +75,7 @@
     How many patients a Phase 1/2 expansion cohort needs to characterize a
     dose-response or biomarker-response relationship: Frank Harrell's rule of
     thumb, Richard Riley's four-question framework, and worked examples.
-  categories: [PMX project]
+  categories: [PMX project, Draft]
   path: sizing-studies/index.qmd
 
 - title: "Logistic regression for dose finding"
@@ -84,7 +84,7 @@
     Picking a method, glm against Bayesian alternatives, and picking the
     right diagnostics for a fitted model. Both drafts, to be extended as time
     allows.
-  categories: [PMX project]
+  categories: [PMX project, Draft]
   path: logistic-regression/index.qmd
 
 - title: "Site integration"
@@ -93,7 +93,7 @@
     Merging the personal Google Sites page into TrinityMetrics: where every
     old page and file landed, what is still unbuilt, and what the old URLs
     need.
-  categories: [Site Maintenance]
+  categories: [Site Maintenance, Draft]
   path: site-integration/index.qmd
 
 - title: "Matlab Tools for Tumor Spheroid and Collagen Network Analysis"
