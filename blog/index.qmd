@@ -9,12 +9,3 @@ listing:
   feed: true
 toc: false
 ---
-
-Short essays, practical notes, and project updates.
-
-The initial public launch is planned around two complementary posts:
-
-- a foundation post on AI assistance and human responsibility
-- a practical post on synthetic data workflows
-
-That pairing should make the purpose of the repository clear from the start.
