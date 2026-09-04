@@ -59,9 +59,6 @@ that do not fit in a blog post.
 
 ## R packages
 
-Software to install and use. Some of these live in this repository and some
-are hosted elsewhere.
-
 ::: {#r-packages}
 :::
 
