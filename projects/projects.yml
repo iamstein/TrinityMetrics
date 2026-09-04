@@ -102,5 +102,5 @@
     AIRE, FIRE and BEAMS: MATLAB tools written during the PhD thesis and
     postdoc, for tumour spheroid invasive radii, network geometry from
     confocal images, and beam network deformation.
-  categories: [Earlier work]
+  categories: [Matlab tools]
   path: ../software.qmd

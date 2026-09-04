@@ -44,7 +44,7 @@ listing:
   - id: earlier-work
     contents: projects.yml
     include:
-      categories: "Earlier work"
+      categories: "Matlab tools"
     type: grid
     grid-columns: 2
     sort: false
@@ -80,7 +80,7 @@ being thought about, not a finished result.
 ::: {#site-projects}
 :::
 
-## Earlier work
+## Matlab tools
 
 ::: {#earlier-work}
 :::
