@@ -87,15 +87,6 @@
   categories: [PMX project, Draft]
   path: logistic-regression/index.qmd
 
-- title: "Site integration"
-  subtitle: "Working document"
-  description: >
-    Merging the personal Google Sites page into TrinityMetrics: where every
-    old page and file landed, what is still unbuilt, and what the old URLs
-    need.
-  categories: [Site Maintenance, Draft]
-  path: site-integration/index.qmd
-
 - title: "Matlab Tools for Tumor Spheroid and Collagen Network Analysis"
   subtitle: "MATLAB, before 2011"
   description: >

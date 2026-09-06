@@ -31,16 +31,6 @@ listing:
     fields: [title, categories, description]
     categories: true
     feed: false
-  - id: site-projects
-    contents: projects.yml
-    include:
-      categories: "Site Maintenance"
-    type: grid
-    grid-columns: 2
-    sort: false
-    fields: [title, categories, description]
-    categories: true
-    feed: false
   - id: earlier-work
     contents: projects.yml
     include:
@@ -72,11 +62,6 @@ Working documents that record current thinking on a problem.
 ## GenAI
 
 ::: {#genai-projects}
-:::
-
-## Site Maintenance
-
-::: {#site-projects}
 :::
 
 ## Matlab tools

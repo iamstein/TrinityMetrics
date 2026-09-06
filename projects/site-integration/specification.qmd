@@ -11,10 +11,10 @@ number-sections: false
 ---
 
 ::: {.callout-note appearance="simple"}
-**The content has moved and `trinitymetrics.com` now serves the site. Eight of
-the eleven old pages carry a pointer to the new address; three do not.** Every
-row of the inventory in Section 2 is resolved and all seven acceptance checks
-passed on 2026-09-02. Section 3 holds what is left.
+**Done 2026-09-06.** The content has moved, `trinitymetrics.com` serves the
+site, and the old pages point at it. Every row of the inventory in Section 2 is
+resolved and all seven acceptance checks passed on 2026-09-02. Section 3 holds
+the one piece of work recorded here that was never part of the migration.
 
 Cut from 803 lines to this on 2026-09-02, at Andy's instruction. The naming and
 placement arguments, the Google Takeout export route, the navigation design and
@@ -96,8 +96,8 @@ open on a phone. The sources stay in `iamstein/Publications`.
 
 ## 3. What remains
 
-Two pieces remain and the third is done. Neither remaining piece blocks the
-other.
+The migration is done. One piece of work recorded here was never part of it and
+is still open.
 
 **Publications has no page.** There is no `publications.qmd` and no
 `publications.yml`. The design settled on: a YAML file plus a Quarto listing
@@ -123,12 +123,11 @@ publishing. GoDaddy's editor accepted the A records some minutes before its
 nameservers served them, so the records read as unpublished for a while after
 they were correct.
 
-**Three of the eleven old pages still serve their original content.** Checked
-2026-09-06: `/home`, `/now`, `/talks`, `/software`, `/pmx-tools`,
-`/career-advice`, `/effective-learning` and `/recommended-reading` each carry a
-line pointing at the new address. `/equations`, `/cv` and `/pmx-career-links` do
-not. Section 5 says what to replace them with and why the site should stay
-published afterwards.
+**The old pages point at the new address. Done 2026-09-06.** Ten of the eleven
+carry a line pointing at `trinitymetrics.com`. `/cv` keeps its original body by
+decision: it links to the same Google Doc that the new site links to, so a
+reader who lands there is already where they were being sent. Section 5 says why
+the old site should stay published.
 
 ## 4. Acceptance checks, and the result
 

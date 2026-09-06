@@ -1,7 +1,7 @@
 ---
 title: "Site integration"
 subtitle: "Merging the Google Sites personal site into TrinityMetrics"
-description: "Index of the documents in the site-integration project: the record of what moved from sites.google.com/site/andrewsteinphd, what is left, and the code that read the old site."
+description: "Index of the documents in the site-integration project: the record of what moved from sites.google.com/site/andrewsteinphd and the code that read the old site."
 categories: [site, migration, working document]
 date: last-modified
 toc: false
@@ -10,9 +10,9 @@ toc: false
 The personal site at
 [sites.google.com/site/andrewsteinphd](https://sites.google.com/site/andrewsteinphd/home)
 and this site should be one site, with nothing dropped without a recorded
-decision to drop it. The content has moved and the site now answers at
-`trinitymetrics.com`. Eight of the eleven old pages point at the new address;
-the remaining three and the publications page are what is left.
+decision to drop it. The migration is done: the content has moved, the site
+answers at `trinitymetrics.com`, and the old pages point at it. The publications
+page recorded in the specification is separate work and is still open.
 
 ## Documents
 
