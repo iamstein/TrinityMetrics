@@ -13,8 +13,8 @@ number-sections: false
 ::: {.callout-note appearance="simple"}
 **Done 2026-09-06.** The content has moved, `trinitymetrics.com` serves the
 site, and the old pages point at it. Every row of the inventory in Section 2 is
-resolved and all seven acceptance checks passed on 2026-09-02. Section 3 holds
-the one piece of work recorded here that was never part of the migration.
+resolved and all seven acceptance checks passed on 2026-09-02. Section 3 records
+how the domain and the old URLs closed, and the one page dropped along the way.
 
 Cut from 803 lines to this on 2026-09-02, at Andy's instruction. The naming and
 placement arguments, the Google Takeout export route, the navigation design and
@@ -94,19 +94,9 @@ Section 4.
 Rows 19 to 30 are marked PORT because a deck ports as a PDF, which a reader can
 open on a phone. The sources stay in `iamstein/Publications`.
 
-## 3. What remains
+## 3. The domain and the old URLs
 
-The migration is done. One piece of work recorded here was never part of it and
-is still open.
-
-**Publications has no page.** There is no `publications.qmd` and no
-`publications.yml`. The design settled on: a YAML file plus a Quarto listing
-matching `projects.yml`, each entry carrying title, authors, journal, year, DOI
-and a link, with the `.bib` exported from Google Scholar and committed beside
-it as a download. The YAML drives what a reader sees so the page looks like the
-rest of the site; the `.bib` serves whoever wants to cite the work. The
-duplication is bounded by publications arriving a few times a year, one at a
-time.
+Both are done, and the publications page specified here was dropped.
 
 **The domain is wired to GitHub Pages. Done 2026-09-06.** `trinitymetrics.com`
 resolves to `185.199.108.153` through `185.199.111.153` and `www` is a CNAME to
@@ -128,6 +118,13 @@ carry a line pointing at `trinitymetrics.com`. `/cv` keeps its original body by
 decision: it links to the same Google Doc that the new site links to, so a
 reader who lands there is already where they were being sent. Section 5 says why
 the old site should stay published.
+
+**No publications page. Dropped 2026-09-06, at Andy's instruction.** The design
+was a `publications.yml` plus a Quarto listing matching `projects.yml`, each
+entry carrying title, authors, journal, year, DOI and a link, with a `.bib`
+exported from Google Scholar committed beside it as a download. The CV, the
+Projects page and About cover the same ground, so the page is not being built.
+The paper and presentation files stay in `iamstein/Publications`.
 
 ## 4. Acceptance checks, and the result
 

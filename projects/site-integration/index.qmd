@@ -11,8 +11,7 @@ The personal site at
 [sites.google.com/site/andrewsteinphd](https://sites.google.com/site/andrewsteinphd/home)
 and this site should be one site, with nothing dropped without a recorded
 decision to drop it. The migration is done: the content has moved, the site
-answers at `trinitymetrics.com`, and the old pages point at it. The publications
-page recorded in the specification is separate work and is still open.
+answers at `trinitymetrics.com`, and the old pages point at it.
 
 ## Documents
 
