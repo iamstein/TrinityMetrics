@@ -10,8 +10,9 @@ toc: false
 The personal site at
 [sites.google.com/site/andrewsteinphd](https://sites.google.com/site/andrewsteinphd/home)
 and this site should be one site, with nothing dropped without a recorded
-decision to drop it. The content has moved. The old site still serves its
-original pages, and turning those into pointers is the largest piece left.
+decision to drop it. The content has moved and the site now answers at
+`trinitymetrics.com`. Eight of the eleven old pages point at the new address;
+the remaining three and the publications page are what is left.
 
 ## Documents
 

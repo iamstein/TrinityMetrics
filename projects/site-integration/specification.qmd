@@ -11,9 +11,10 @@ number-sections: false
 ---
 
 ::: {.callout-note appearance="simple"}
-**The content has moved. The old site has not yet been turned into pointers.**
-Every row of the inventory in Section 2 is resolved and all seven acceptance
-checks passed on 2026-09-02. Section 3 holds what is left.
+**The content has moved and `trinitymetrics.com` now serves the site. Eight of
+the eleven old pages carry a pointer to the new address; three do not.** Every
+row of the inventory in Section 2 is resolved and all seven acceptance checks
+passed on 2026-09-02. Section 3 holds what is left.
 
 Cut from 803 lines to this on 2026-09-02, at Andy's instruction. The naming and
 placement arguments, the Google Takeout export route, the navigation design and
@@ -95,7 +96,8 @@ open on a phone. The sources stay in `iamstein/Publications`.
 
 ## 3. What remains
 
-Three pieces. None of them blocks the others.
+Two pieces remain and the third is done. Neither remaining piece blocks the
+other.
 
 **Publications has no page.** There is no `publications.qmd` and no
 `publications.yml`. The design settled on: a YAML file plus a Quarto listing
@@ -106,23 +108,27 @@ rest of the site; the `.bib` serves whoever wants to cite the work. The
 duplication is bounded by publications arriving a few times a year, one at a
 time.
 
-**The domain is not wired to GitHub Pages, and `site-url` must not change until
-it is.** Checked 2026-09-01: `trinitymetrics.com` answers with a 301 to
-`https://iamstein.github.io/TrinityMetrics/`, its A records are `3.33.251.168`
-and `15.197.225.128`, `www.trinitymetrics.com` does not resolve, and the
-repository has no `CNAME` file. That is a registrar-level forward rather than a
-custom domain, so a reader who types the domain ends with `iamstein.github.io`
-in the address bar. Setting `site-url` to the domain now would point every
-canonical URL, sitemap entry and RSS link at a forwarder. The order is: point
-DNS at the GitHub Pages addresses `185.199.108.153` through `185.199.111.153`,
-or `www` at `iamstein.github.io`; add a `CNAME` file holding the domain; set
-the custom domain in the repository's Pages settings; wait for the certificate;
-then correct `site-url`. The DNS step needs Andy's registrar login, and was
-deferred by him on 2026-09-01 to be done as its own piece of work.
+**The domain is wired to GitHub Pages. Done 2026-09-06.** `trinitymetrics.com`
+resolves to `185.199.108.153` through `185.199.111.153` and `www` is a CNAME to
+`iamstein.github.io`. The registrar-level forward that used to answer with a 301
+is deleted, along with the parked A records it left behind in the GoDaddy zone.
+GitHub holds the custom domain in the repository's Pages settings with Enforce
+HTTPS on, and its certificate covers both names to 2026-12-05. `site-url` became
+`https://trinitymetrics.com` the same day, so the sitemap carries the domain.
 
-**The old site still serves its original content.** All eleven pages returned
-200 with their full bodies on 2026-09-02. Section 5 says what to replace them
-with and why the site should stay published afterwards.
+No `CNAME` file was added, and none is needed. This site publishes through a
+custom Actions workflow, which takes the domain from the Pages setting; the
+`CNAME` file this document originally specified applies to branch-based
+publishing. GoDaddy's editor accepted the A records some minutes before its
+nameservers served them, so the records read as unpublished for a while after
+they were correct.
+
+**Three of the eleven old pages still serve their original content.** Checked
+2026-09-06: `/home`, `/now`, `/talks`, `/software`, `/pmx-tools`,
+`/career-advice`, `/effective-learning` and `/recommended-reading` each carry a
+line pointing at the new address. `/equations`, `/cv` and `/pmx-career-links` do
+not. Section 5 says what to replace them with and why the site should stay
+published afterwards.
 
 ## 4. Acceptance checks, and the result
 
