@@ -19,7 +19,7 @@ project:
 
 website:
   title: "TrinityMetrics"
-  site-url: "https://iamstein.github.io/TrinityMetrics/"
+  site-url: "https://trinitymetrics.com"
   repo-url: "https://github.com/iamstein/TrinityMetrics"
   repo-actions: [source, issue]
   page-navigation: true
