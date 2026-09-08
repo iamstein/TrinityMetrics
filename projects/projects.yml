@@ -87,6 +87,16 @@
   categories: [PMX project, Draft]
   path: logistic-regression/index.qmd
 
+- title: "Collected Wisdom"
+  subtitle: "Working document"
+  description: >
+    Scoping a second site, in its own repository, that indexes the personal
+    Google Docs on meaning, parenting and music for their author: what it
+    holds, what stays unshared, and the inventory that decides whether to
+    build it.
+  categories: [Site Maintenance, Draft]
+  path: collected-wisdom/index.qmd
+
 - title: "Matlab Tools for Tumor Spheroid and Collagen Network Analysis"
   subtitle: "MATLAB, before 2011"
   description: >

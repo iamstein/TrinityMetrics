@@ -1,0 +1,21 @@
+---
+title: "Collected Wisdom"
+subtitle: "Scoping a second site for the personal Google Docs"
+description: "Index of the documents in the collected-wisdom project: the scope of a new site holding the Google Docs on meaning, parenting and music, and what has to be decided before the repository is created."
+categories: [site, scoping, working document]
+date: last-modified
+toc: false
+---
+
+A second site, in its own repository, indexing the writing that has accumulated
+in Google Docs and does not belong on TrinityMetrics: the doc on meaning, the
+pathways tools, the parenting material, the ukulele and Hamilton song maps. The
+Documents stay unshared and the site organizes them for their author, publishing
+only the few that are meant to be read by anyone. Nothing is built yet. This
+folder holds the scope.
+
+## Documents
+
+- [Working specification](specification.qmd). What the site holds, the two
+  switches that decide what is exposed, the inventory of sources to fill in, and
+  the checks the first build has to pass.

@@ -1,0 +1,206 @@
+---
+title: "Collected Wisdom"
+subtitle: "A site that indexes private Google Docs for their author, and publishes the subset that can be public"
+description: "The scope of a second personal site built from Google Docs: the source inventory, the two switches that decide what is exposed, how the build mirrors a shared Doc as a PDF, and the acceptance checks for the first release."
+categories: [site, scoping, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+number-sections: false
+---
+
+::: {.callout-note appearance="simple"}
+**Scoping, 2026-09-06.** No repository exists yet. Five decisions are settled
+(Section 3); the inventory in Section 4 is the work that unblocks everything
+else, and it needs Andy rather than an agent.
+
+Revised the same day, after Andy: the Google Docs stay unshared by default and
+the site earns its place by organizing them for him. Publication is now the
+exception rather than the goal, which changed Sections 1, 5 and 7.
+:::
+
+## 1. Goal
+
+One site holding the personal writing that has accumulated across Google Docs,
+organized well enough to find a piece a year from now.
+
+**The first reader is Andy.** The site is a way of seeing thirty scattered
+Documents as one collection, with a sentence on each saying what it is. A
+Document does not have to be publishable to earn a place in that view, and most
+of them will not be. Where a piece is publishable, the same index entry serves
+a stranger without any extra work.
+
+## 2. Out of Scope
+
+Stated once, here.
+
+- **Not a blog.** No dates and no feed. An entry is revised in place rather than
+  superseded by a newer post.
+- **Not a migration of TrinityMetrics.** Both sites stay. The personal material
+  already on TrinityMetrics — the Recommended Resources list, the Now page, the
+  Uke Skywalker link — stays where it is, and the two sites link across.
+- **Not a rewrite of the Docs.** Google Docs stays the place the writing
+  happens. The site indexes; it does not become the editor.
+- **Not a second copy of anything private.** No Document body, and no Document
+  that names an identifiable person, is copied into this repository at any
+  tier.
+
+## 3. Settled Decisions
+
+| # | Decision | Value |
+|---|---|---|
+| 1 | Name | Collected Wisdom. Repository `collected-wisdom`. |
+| 2 | Repository | Public, on GitHub, published to Pages by a copy of `publish.yml`. |
+| 3 | Document sharing | Unshared by default. A Document is link-shared only when its contents are deliberately being published. |
+| 4 | Content model | The Google Doc stays canonical. The site carries an index entry per source; only a shared Doc is mirrored as a PDF. |
+| 5 | Boundary with TrinityMetrics | Nothing moves. The two sites link to each other. |
+
+**The name claims a lot for a page under your own name.** "Collected Wisdom" as
+a site title reads as a verdict on the contents. A subtitle that says whose and
+why — collected over twenty years, mostly for my own use — costs one line and
+removes the problem. Decide it when the index page is written; it does not
+change anything structural.
+
+## 4. Source Inventory
+
+One row per source. This table is the deliverable that unblocks the build.
+
+Tiers are defined in Section 5. `TBD` is a legitimate value and should stay
+until the row is decided rather than being guessed.
+
+| # | Source | Where it is now | Subject | Tier | Doc ID or URL | Note |
+|---|---|---|---|---|---|---|
+| 1 | Doc on meaning | Google Docs | Meaning | INDEXED | needed | Stays unshared. Promote to OPEN if a version of it is ever finished enough to publish. |
+| 2 | Pathways tools | Google Docs | Meaning | INDEXED | needed | Confirm whether this is career pathways or decision tools; it changes which subject it sits under. |
+| 3 | Blog post on parenting | Published, host to confirm | Family | OPEN | needed | Already public, so the tier is settled. If it is on Medium, the site links out rather than copying. |
+| 4 | Notes on raising kids | Google Docs | Family | LOCAL | do not record | Presumed to name your children, so neither the contents nor the title go into a public repository. |
+| 5 | Uke Skywalker | `ukeskywalker.com` | Music | OPEN | `https://www.ukeskywalker.com` | Its own site. Stays where it is; the entry is one line and an outbound link. |
+| 6 | Hamilton song maps | Local files | Music | OPEN | files to upload | Confirm the format. PDF renders in a browser on a phone; a spreadsheet or an image set does not. |
+| 7+ | Others | Google Drive | — | TBD | — | "There might be others." A sweep of Drive fills these rows. |
+
+**Row 7 is the one to work on first.** Six named sources do not need a website.
+What decides whether to build one is how many rows the Drive sweep adds. Twenty
+rows justifies a site. Eight does not, and the answer then is a single page on
+TrinityMetrics.
+
+## 5. The Two Switches
+
+What is exposed is set by two independent switches, and confusing them is how
+this kind of site leaks.
+
+1. **The Google share setting** decides who can read the **contents**. Unshared
+   means you, and Google's sign-in wall for everyone else.
+2. **Where the entry lives in the repository** decides who can read the
+   **title and description**.
+
+**A render-excluded folder is not a privacy mechanism.** This site excludes
+`blog/drafts/**` from the render, and that is sound because a draft is
+unfinished rather than secret. In a public repository the excluded files are
+still readable by anyone who opens the repository, and git keeps every version
+of them. So the second switch has two usable settings, not three: in the public
+repository, or on your machine only.
+
+| Tier | Doc sharing | Entry lives in | Public sees | Use for |
+|---|---|---|---|---|
+| **OPEN** | Link-shared | Rendered page | Title, description, and the contents as a mirrored PDF | Anything deliberately published |
+| **INDEXED** | Unshared | Rendered page | Title and description; the link hits a sign-in wall | The default. Organizes the Document for you at the cost of a public title |
+| **LOCAL** | Unshared | Gitignored `local/` | Nothing | Anything whose title alone should not be public |
+
+**INDEXED is the default and covers most rows.** You get the collection view,
+the tags, and one click through to the Document. A stranger gets a title and a
+sentence, which is the same thing a bookshelf shows a visitor.
+
+**LOCAL renders on your machine and stops there.** `local/**` goes in
+`.gitignore` and in the Quarto `render:` exclusion list, so CI never sees it and
+neither does the repository. `quarto preview` on your laptop renders the whole
+site including those entries, and the output directory is gitignored, so nothing
+about a LOCAL row reaches GitHub. The cost is that LOCAL entries are not backed
+up and do not follow you to another machine. The contents already live in Google
+Docs, which is the backup; what is unbacked is the one-line description.
+
+**Never widen sharing on a Document whose ID the site has published.** An
+INDEXED entry puts the Doc ID on a public page. That is harmless while the
+Document is unshared, because the ID is not a credential until link-sharing
+makes it one. Turning on "anyone with the link" later hands the contents to
+everyone who has ever read that page. To publish an INDEXED Document, move it
+to OPEN deliberately, having reread it, rather than by flipping a share setting.
+
+## 6. Repository, Build and URL
+
+The stack is a copy of what TrinityMetrics already runs, which is why the build
+is an afternoon rather than a project.
+
+- A public repository `iamstein/collected-wisdom`, Quarto website, `output-dir`
+  of `docs`, published to GitHub Pages by a copy of
+  `.github/workflows/publish.yml`.
+- `docs/` and `local/` both in `.gitignore`; `local/**` also in the Quarto
+  `render:` exclusion list so a CI build cannot fail on a directory it does not
+  have.
+- An `entries.yml` plus a Quarto listing with `categories: true`, copying the
+  shape of `projects/projects.yml` and `projects/index.qmd`. Subject is a
+  category rather than a folder, so a fourth subject is a new tag rather than a
+  restructuring. Tier is a second category, so the listing can be filtered down
+  to what is publishable.
+- The index page ends with a ranked entry path: three entries, in the order a
+  first-time reader should take them, one clause each on why.
+
+**Start at `iamstein.github.io/collected-wisdom` and buy a domain later.** The
+domain work on this site is recorded in
+[the site-integration specification](../site-integration/specification.qmd),
+Section 3: A records at the registrar, the custom domain in the Pages setting,
+and no `CNAME` file when publishing runs through a custom Actions workflow. It
+took a day, most of it waiting for nameservers, and it can be done at any point
+without changing the content.
+
+## 7. Mirroring the Shared Documents
+
+Copy `_scripts/export-google-docs.sh` from this repository. It fetches each Doc
+as a PDF into the rendered site after `quarto render`, and the workflow calls it
+in one line. Nothing is committed, so the PDFs are never stale and never enter
+git history.
+
+**Its export list carries OPEN rows only.** An unshared Document returns
+Google's sign-in page with a status of 200, and the script catches that by
+checking the first four bytes are `%PDF` and failing the build when they are
+not. Listing an INDEXED row there would break every build, which is the
+behaviour you want if a row is ever mistiered, and a reason not to generate the
+list from the inventory without filtering on tier.
+
+Where a Document is OPEN, the mirrored PDF is published beside a link to the
+Google original, so a reader on a network that blocks Google Docs still gets it.
+
+## 8. Acceptance Checks
+
+None run; nothing is built. Run these against the first release.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Every inventory row carries a tier, and no row is left `TBD` | not run |
+| 2 | No file in the repository, in any commit, names a child | not run |
+| 3 | `local/` is in `.gitignore`, and `git ls-files local/` returns nothing | not run |
+| 4 | Every Doc ID in the export list belongs to an OPEN row, and downloads as a real PDF | not run |
+| 5 | No INDEXED or LOCAL Document is link-shared, checked in Drive rather than assumed | not run |
+| 6 | Every `entries.yml` entry resolves to a rendered page, a mirrored PDF, or a live outbound link | not run |
+| 7 | The site renders and publishes from the workflow with no manual step | not run |
+| 8 | TrinityMetrics and Collected Wisdom each link to the other | not run |
+
+Checks 2 and 3 are the ones that cannot be repaired after the fact. A file
+committed and then deleted stays in the history of a public repository, so both
+belong before the first push rather than after it.
+
+## 9. What Happens Next
+
+In order. The first item blocks the rest.
+
+1. **Sweep Google Drive and fill the Section 4 inventory.** Doc ID and a
+   one-line description per source. This decides whether to build the site, per
+   Section 4.
+2. **Set a tier on every row.** INDEXED unless the title alone is sensitive, in
+   which case LOCAL, or the piece is already published, in which case OPEN.
+3. **Confirm in Drive that every INDEXED and LOCAL Document is unshared.** The
+   default has changed over the years and an old Document may be shared from a
+   decision you no longer remember making.
+
+The repository, the workflow, the listing and the export script follow from
+those three and need no further decisions.
