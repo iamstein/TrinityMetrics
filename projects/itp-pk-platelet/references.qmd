@@ -10,11 +10,12 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**One source has been read; the rest were assembled on 2026-09-09 from web
-search results and abstracts.** Entry 1, the IWG 2009 consensus paper, was
-read and is ✅, and Section 2 of the specification is transcribed from its
-tables. Every other marker is ❌, including the numbers Section 4 and Section
-12 of the specification quote: the ianalumab 3
+**Six sources have been read; the rest were assembled on 2026-09-09 from web
+search results and abstracts.** Entry 1, the IWG 2009 consensus paper, and
+entries 22 to 25, the FDA, EMA and PMDA reviews of rilzabrutinib, fostamatinib
+and efgartigimod in ITP, were read in full and are ✅, as is the PAGE 2009
+poster behind entry 26. Every other marker is ❌, including the numbers
+Section 4 and Section 12 of the specification quote: the ianalumab 3
 against 9 mg/kg comparison, the rituximab low-dose response rates, the
 efgartigimod immunoglobulin G reduction, and the four-compartment platelet
 model structure all come from search summaries rather than from the papers. A
@@ -54,9 +55,34 @@ rozanolixizumab on the neonatal Fc receptor). Each was paired with population
 pharmacokinetic and pharmacodynamic (PK/PD) terms. What came back was clinical
 trial reports, models whose pharmacodynamic endpoint stops at a mechanistic
 biomarker, and one exposure-response analysis against platelet count that was
-reported as inconclusive. That absence is the project's premise and it is the
-first thing to falsify by hand, because a negative from a web search is weak
-evidence.
+reported as inconclusive.
+
+**The regulatory reviews, read in full, change the answer from "not found" to
+"attempted three times, and here is what happened."** Entries 22 to 25.
+
+- **Rilzabrutinib, FDA 2025.** An indirect exposure-response model on 10,652
+  weekly platelet counts from 305 patients "adequately characterized platelet
+  counts." It exists, it fit, and it was built after the dose was chosen, on
+  data almost entirely at that one dose, to confirm it. Its continuous endpoint
+  rose with exposure; its dichotomous primary endpoint did not.
+- **Fostamatinib, FDA 2018 and EMA 2019.** "None of the applicant's attempted
+  models including semi-mechanistic, direct response, and indirect response
+  model were successful for the platelet count analysis as a continuous
+  variable." Logistic regression at one visit on 79 patients found a slope;
+  the same slope was absent at the primary endpoint window. The FDA called the
+  early slope "notable" and the CHMP said a relationship "has not been
+  demonstrated."
+- **Efgartigimod, PMDA 2024.** argenx built an IgG-to-platelet model on the
+  Phase 2 data and could not explain the between-patient variation with it, so
+  the Phase 3 dose was chosen on IgG reduction alone, and PMDA accepted that.
+
+So the gap is real and it has a shape. At Phase 2 sample size the model did
+not identify (efgartigimod); at Phase 3 sample size with two doses it did not
+fit as a continuous model (fostamatinib); at pooled Phase 2 and 3 sample size
+with one dose it fit and showed a flat dose-response on the endpoint that
+counts (rilzabrutinib). None was used to pick a dose. That is the specification's
+question, asked three times by sponsors with more data than a Phase 1 study
+has, and the answer was no each time.
 
 **Why the gap exists is argued in Section 15 of the specification**, in seven
 ranked reasons, each drawn from an entry below. The short form: the drugs with
@@ -119,10 +145,18 @@ selection rule.
 
 ## Where to start
 
-Nine entries, and they answer different questions. Read in this order.
+Read in this order. Entries 1 and 22 to 26 are already read, and the review
+sections above carry what they said.
 
-- **Entry 1 first, and it is already read.** Section 2 of the specification is
-  what it produced. Re-read only to check a definition.
+- **Entries 22 to 25 first, and they are already read.** The regulatory
+  reviews answer the project's premise directly. Re-read only for a quotation.
+- **Entry 1, already read.** Section 2 of the specification is what it
+  produced. Re-read only to check a definition.
+- **Entry 26, the eltrombopag ITP model, before building anything.** It has
+  the mixture, the fixed maturation chain, and the response-guided titration
+  simulation that Sections 5.3, 5.4 and 11 of the specification propose. The
+  poster has been read; the paper has not, and the paper is where the
+  degradation rate in ITP is.
 - **Entry 2 next, and it may settle the project's shape.** It is the closest
   published analogue: model-based Phase 2b dose selection for the same
   molecule, in a different autoimmune disease. Budget one hour. If it turns
@@ -596,6 +630,291 @@ effect should not be a requirement.
 threshold around 8.45%, and roughly a 200% difference between hyperdestructive
 and hypoproductive thrombocytopenia.
 
+## Regulatory reviews, read in full
+
+The four review documents below were downloaded and read on 2026-09-09. The
+quotations are from the documents, with page numbers, and the four entries
+are ✅. Between them they answer the question the journal search could not:
+every regulatory programme for an ITP drug that blocks platelet destruction
+attempted a PK-platelet model, and the reviews say what happened to each.
+
+### 22. FDA integrated review, Wayrilz (rilzabrutinib), NDA 219685, 2025 ✅
+
+[219685Orig1s000IntegratedR.pdf](https://www.accessdata.fda.gov/drugsatfda_docs/nda/2025/219685Orig1s000IntegratedR.pdf),
+Sections 6.1.1.1 (pp. 26-28) and 14.5.2 (pp. 164-167). The FDA site blocks
+scripted downloads; a browser user-agent string gets through.
+
+**A longitudinal PK-platelet model for a drug that blocks platelet
+destruction exists, and this is where it is.** The Applicant's
+exposure-response analysis used "the longitudinal platelet counts ... as the
+primary efficacy endpoint which was based on key aspects of the ITP disease
+etiology and the presumed mechanisms of action of rilzabrutinib." The dataset
+was 86 participants from LUNA 2 and 219 from LUNA 3, "which included 10,652
+weekly platelet counts with no missing data or data that were below limit of
+quantification. An indirect exposure-response model adequately characterized
+platelet counts, including the magnitude of persistent and sometimes large
+fluctuations in platelet counts" (p. 164). Covariates: prior response to
+corticosteroids and concomitant corticosteroids raised the response rate;
+baseline platelet count below the median lowered it.
+
+**What it found, and the two halves disagree in the direction Section 9 of the
+specification predicts.** On the continuous endpoint, "a trend for greater
+increase in platelet counts from baseline with higher rilzabrutinib exposure
+(AUC,ss)." On the dichotomy, "response rate as defined by the primary endpoint
+of LUNA 3, i.e., durable platelet response, did not appear to depend on
+exposure over the range at 400 mg BID" (p. 26, Table 10 by AUC quartile).
+Exposure did not predict time to first rescue or time to dropout. The
+drug-interaction section uses the model quantitatively: "30% rilzabrutinib
+exposure decrease would lead to a reduction in platelet count response by
+approximately 15%" (p. 63).
+
+**How the Phase 2 dose was chosen, and it was not by this model.** Part A of
+LUNA 2 was "intrapatient dose escalation using a 3+3 design" over 200 mg QD,
+400 mg QD, 300 mg BID and 400 mg BID, escalating every 28 days on
+non-response (p. 60). The 400 mg BID choice rests on three things: mouse BTK
+occupancy of 91% at the top dose "matching the expected peak occupancies with
+the maximum 400 mg QD and 400 mg BID doses"; human BTK occupancy reaching a
+plateau of about 90% at 600 mg/day and above; and the raw Part A observation
+that 400 mg BID "was also associated with a faster and more pronounced
+increase in platelet count compared to lower doses" (pp. 60-61). The
+longitudinal model was built afterwards, on data that were almost all at that
+one dose, and its stated objective was "to confirm the adequacy of the 400 mg
+BID regimen" (p. 164).
+
+**What this does to the specification.** Section 3.3's question, whether the
+depletion-to-platelet link is identifiable, has an existence proof at
+$n = 305$ pooled across two trials at one dose. It does not have one at
+$n \approx 40$ across several doses, and the model here was not asked to
+choose between doses. The model structure is not in the public review
+("indirect exposure-response model" is all it says); the Applicant's report
+SAN3001 is cited and not published.
+
+### 23. FDA multidisciplinary review, Tavalisse (fostamatinib), NDA 209299, 2018 ✅
+
+[209299Orig1s000MultidisciplineR.pdf](https://www.accessdata.fda.gov/drugsatfda_docs/nda/2018/209299Orig1s000MultidisciplineR.pdf),
+clinical pharmacology questions (pp. 69-70, 212-213) and pharmacometrics
+appendix (pp. 216-217).
+
+**The one continuous PK-platelet attempt on a destruction-blocking drug that
+is documented as having failed, in the reviewer's words.** "Due to the small
+number of subjects and high variability in the platelet count, the
+relationship between exposure and probability of achieving the target increase
+at Weeks 14-24 or Week 24 could not be achieved. None of the applicant's
+attempted models including semi-mechanistic, direct response, and indirect
+response model were successful for the platelet count analysis as a continuous
+variable" (p. 217).
+
+**What did work.** Logistic regression of response at Week 12 on daily AUC at
+steady state, 79 subjects (27 placebo, 52 active at 200 or 300 mg/day), from
+the two Phase 3 studies. Probability of platelet count $\ge 50 \times 10^9$/L
+at Week 12 rose with R406 exposure; no covariate was significant. The reviewer
+read both 100 mg BID and 150 mg BID as sitting "in the rising part of the E-R
+curve" and raised a higher starting dose for patients with low baseline
+counts, noting baseline platelets of about 22,000/µL in those who stayed at
+100 mg BID against about 15,000/µL in those escalated to 150 mg BID (p. 70).
+Weeks 14-24 had $N = 33$ and Week 24 had $N = 27$, and neither showed a
+relationship.
+
+**Two numbers the specification can use.** Mean daily AUC at steady state
+11,192 ± 5,226 ng·h/mL at a mean daily dose of 218 mg, "close to the estimated
+EC50 for inhibition of Syk signaling in healthy volunteers" (p. 69). And the
+exposure-safety model for blood pressure: $E_{\max}$ 10.2 mmHg systolic, EC50
+16,300 ng·h/mL, "similar with" the daily AUC at 150 mg BID (p. 217). Efficacy
+and the one dose-limiting side effect have their half-maximal exposures within
+a factor of 1.5 of each other, which is the narrow window that a titrate-to-
+response label expresses.
+
+### 24. EMA assessment report, Tavlesse (fostamatinib), EMA/CHMP/654949/2019 ✅
+
+[tavlesse-epar-public-assessment-report_en.pdf](https://www.ema.europa.eu/en/documents/assessment-report/tavlesse-epar-public-assessment-report_en.pdf),
+pp. 52-54 and 76-77.
+
+**The same data, read the other way.** The FDA reviewer above called the Week
+12 relationship "notable" and let it support effectiveness. The CHMP: "The
+population PK/PD analysis did not demonstrate an exposure-efficacy
+relationship. Higher exposure on average was evident in responders compared to
+non-responders only for Week 12, not between Weeks 14 - 24 or Week 24. The
+variability in response to fostamatinib in the ITP patients is not attributed
+to PK variability" (p. 76). And in the discussion: "Dose exposure response was
+addressed by a population PK/PD approach, which is however not considered to
+add high value to the separate study assessments ... Overall, a positive
+relationship between exposure and efficacy has not been demonstrated" (p. 76).
+
+**The sentence the specification's premise rests on.** "It was not possible
+to fit a continuous PK/PD model for the platelet count-time profiles" (p. 53).
+The efficacy analysis was linear regression at Week 12 with no
+inter-individual variability estimable; 102 ITP patients on active drug with
+three PK samples each, at Weeks 2, 6 and 24; probability of response at Week
+12 about 33% at 150 mg BID (p. 53).
+
+**Why the two agencies disagree on the same 79 patients.** The FDA analysis
+was cross-sectional at one visit and found a slope; the EMA asked whether the
+slope survived to the primary endpoint window and it did not. Both readings
+are of the same fact: exposure separates responders from non-responders early
+and not late, which is what a mixture with a fast responder subgroup produces.
+Neither agency had a model that could say so.
+
+### 25. PMDA review report, Vyvgart for intravenous infusion, primary ITP, 2024 ✅
+
+[Report on the Deliberation Results, 6 March 2024](https://www.pmda.go.jp/files/000273743.pdf),
+Sections 6.2.4 (pp. 8-9), 6.R.1 (pp. 9-10), and 7.R.5.1 (p. 50). The only
+regulatory approval of an FcRn blocker in ITP, so the only review of one.
+
+**argenx built the IgG-to-platelet model first, at Phase 2, and it did not
+carry the dose decision.** The applicant's rationale as recorded by PMDA: "A
+model was created using data from Study 1603 to describe the relationship
+between the serum total IgG concentration following administration of
+efgartigimod alfa and change in platelet count. However, there was marked
+variation in the interindividual platelet count; in addition, it was difficult
+to fully explain the interindividual variation based on the data from Study
+1603. Therefore, there were limitations to select the dosage regimen of
+efgartigimod alfa for Study 1801 on the basis of the simulation of platelet
+count change" (p. 9). Study 1603 is the Phase 2 with 5 and 10 mg/kg arms. The
+Phase 3 dose was chosen on maximum percent reduction in total IgG, and PMDA
+accepted that as "rational" given the mechanism (p. 10).
+
+**The model that was submitted stops at IgG.** Population PK/PD in ITP,
+$N = 131$ with 2,487 timepoints from Study 1801: three-compartment PK, an
+effect compartment, and an indirect response model on total IgG with an
+$E_{\max}$ function of effect-site concentration on $k_{\rm out}$. The base
+model came from healthy subjects and myasthenia gravis. Every covariate in the
+base model was dropped in the ITP update (p. 8).
+
+**One number for Section 15 reason 4.** Sustained platelet response over Weeks
+16 to 23 by dosing frequency in the efgartigimod arm: 22.8% (13 of 57) on
+weekly dosing, 90.0% (9 of 10) on every-other-week dosing (p. 50). The
+every-other-week group is the patients whose platelets allowed the switch,
+which is titration to response producing an inverted dose-response in the raw
+data.
+
+**Where this leaves Section 4 of the specification.** This is the closest
+documented attempt at the specification's exact task, one link further down
+the chain than the specification proposes, with a measured intermediate
+(total IgG) rather than an unmeasured one, and it failed at Phase 2 sample
+size for the reason Section 9 names: the platelet response is a mixture, and a
+model of the mean does not explain the individuals.
+
+## PK-platelet models for drugs that raise platelet production
+
+These are the models that exist, and the specification borrows its platelet
+layer from them. They are for thrombopoietin receptor agonists (TPO-RAs), which
+act on production; the table says what transfers and what does not.
+
+| Drug, source | Data | Platelet structure | Drug effect | What transfers to Section 5.3 |
+|:---|:---|:---|:---|:---|
+| Eltrombopag in ITP, entry 26 ✅ | 88 ITP on drug, 67 on placebo, 6-week Phase 3 | Precursor, 2 transit, blood; $k_{\rm in}$, $k_T$ fixed to healthy-volunteer values | Linear on $k_{\rm in}$: 58% per µg/mL | The mixture (19% non-responders with slope 0), the faster $k_{\rm deg}$ in ITP, the finding that ITP data alone cannot identify the maturation chain |
+| Romiplostim in ITP, entry 27 ❌ | 268 ITP within 12 months of diagnosis, 7 studies, 7,854 counts, 1-15 µg/kg, up to 3 years | Progenitor, 4 transit, circulating | Linear with exposure, plus a term in cumulative dose | The titration simulation; the cumulative-dose term is a warning that a TPO-RA effect is not stationary |
+| Romiplostim in healthy subjects, entry 6 ❌ | 32 subjects, single doses 0.1-10 µg/kg | 10 age compartments each for precursors and platelets; receptor-mediated clearance with receptors proportional to platelet count | Hill on $k_{\rm in}$: $S_{\max}$ 11.2, SC50 0.052 ng/mL | Precursor lifespan 5.9 d and platelet lifespan 10.5 d; the clearance-depends-on-platelets structure is the TPO-RA version of Section 8's confounding |
+| Eltrombopag in chemotherapy thrombocytopenia and liver disease, entry 5 ❌ | Non-ITP | Precursor, 2 transit, blood | Linear on production | A second parameter set for the same structure |
+| Lusutrombopag, avatrombopag, Related section ❌ | Healthy, liver disease, ITP protocols | Same lifespan family | Proportional to concentration | Nothing new |
+
+: TPO-RA PK-platelet models and what the specification takes from each {tbl-colwidths="[18,20,22,16,24]"}
+
+### 26. Hayes et al. 2011 — eltrombopag population PK/PD in ITP, with response-guided dosing ✅
+
+*J Clin Pharmacol* 2011;51(10):1403-1417.
+[doi:10.1177/0091270010383019](https://doi.org/10.1177/0091270010383019) ·
+[PAGE 2009 poster](https://www.page-meeting.org/wp-content/uploads/pdf_assets/9049-PAGE2009%20Eltrombopag%20PKPD%20Poster.pdf) ·
+[PAGE 2012 talk](https://www.page-meeting.org/wp-content/uploads/pdf_assets/5197-PAGE_2012_Talk_final.pdf)
+
+The poster was read in full on 2026-09-09; the numbers below are from its
+Table 1. The paper itself has not been opened.
+
+**This is the model the specification's Section 5.4 mixture reinvents, and it
+was published fifteen years ago.** 88 ITP patients on eltrombopag and 67 on
+placebo from a 6-week Phase 3; a lifespan model with one precursor
+compartment, two transit compartments and blood; eltrombopag concentration
+stimulates precursor production linearly. "Mixture model was introduced to
+account for non-responders": 81.1% of patients respond (P1 = 0.811, 6.1% RSE),
+with a 58% increase in $k_{\rm in}$ per µg/mL (SLOP 0.579 mL/µg, 21.1% RSE);
+"non-responders (19%) had SLOP = 0."
+
+**And it is the evidence for Section 5.3's decision to fix the platelet
+parameters.** "Sparse and/or variable nature of the PLTC data for ITP patients
+was not sufficient to estimate KIN and KT uniquely. KIN and KT population
+estimates were fixed to the estimates from a PK/PD model developed in healthy
+volunteers, 1.43 Gi/L·hr and 0.0253 hr⁻¹." The platelet degradation rate was
+estimated and was higher in ITP than in healthy volunteers. Residual
+proportional error 44.6%.
+
+**Covariates on the slope.** Females (×2.42) and older patients
+($(\text{age}/50)^{1.27}$) were more sensitive; East Asian patients had an 8
+Gi/L higher baseline. Median baseline 16 Gi/L (range 1-40).
+
+**What the model was used for.** "90% of steady-state platelet response was
+achieved by week 2, supporting biweekly individual dose adjustment," and
+simulated titration rules that bound the fraction of patients above 200 Gi/L
+or below 50. Simulated 12.5, 25, 50 and 75 mg daily gave 73%, 120%, 220% and
+320% increases from a 15 Gi/L baseline. A dose selection made from a
+PK-platelet model, in ITP, with a mixture, on 155 patients, for a drug with a
+two-week response lag.
+
+### 27. Romiplostim population PK/PD in ITP within 12 months of diagnosis ❌
+
+*Blood* 2021;138(Supplement 1):4221.
+[ASH](https://ashpublications.org/blood/article/138/Supplement%201/4221/481471/Assessing-Romiplostim-Dose-and-Platelet-Response) ·
+[ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0006497121061334)
+
+Both hosts return 403 to a script; the characterization is from a search
+summary.
+
+**The question.** How the cumulative-dose term is written and why it was
+needed. A drug effect that depends on how much drug has been given, and not
+only on current concentration, is a departure from the lifespan model that
+the specification should know about before reusing the structure.
+
+**What a search summary says**, unverified: 268 adults with ITP within 12
+months of diagnosis pooled from 7 studies; 7,854 platelet counts over up to 3
+years at 1 to 15 µg/kg weekly; a drug-sensitive progenitor compartment, 4
+maturation compartments and a circulating compartment; romiplostim raising
+precursor production "both linearly with drug exposure and as a function of
+cumulative administered dose"; used to confirm the label's dose and
+response-guided titration for this population.
+
+## Animal PK-platelet models for drugs that block destruction
+
+One group, Balthasar's at Buffalo, built the mechanism this project needs in
+rodents twenty years ago, for intravenous immunoglobulin (IVIG), whose
+anti-platelet effect runs through the neonatal Fc receptor. These are the
+mechanistic ancestors of the efgartigimod model in entry 4, and the only
+published models found in which a drug that blocks platelet destruction is
+linked to platelet count by an explicit autoantibody state.
+
+### 28. Hansen and Balthasar 2003 — IVIG and antiplatelet antibody disposition in a rat model of ITP ❌
+
+*J Pharm Sci* 2003;92(6):1206-1215.
+[PubMed 12761810](https://pubmed.ncbi.nlm.nih.gov/12761810/)
+
+**The question.** The form of the indirect response model linking 7E3
+concentration to platelet count, and its parameters. This is $A(t)$ driving
+$k_{\rm dest}$ in Section 5.3, with $A$ measured.
+
+**What the abstract says.** A mechanism-based PK model "based on competition
+between IgG molecules for occupancy of the protective FcRn receptor" for the
+effect of IVIG on anti-platelet antibody 7E3 clearance, checked in rat and in
+wild-type and FcRn-knockout mice; an indirect response model from 7E3
+concentration to platelet count; about 50% of IVIG's protective effect in
+this acute model attributed to faster antibody disposition.
+
+### 29. Deng and Balthasar 2007 — IVIG in a murine model of sustained ITP ❌
+
+*J Pharm Sci* 2007;96(6):1625-1637.
+[doi:10.1002/jps.20828](https://doi.org/10.1002/jps.20828)
+
+**The question.** The same as entry 28, in the sustained model, which is the
+one that resembles chronic ITP. The companion is
+[Jin, Tayab and Balthasar 2006, *AAPS J*, PMC2750959](https://pmc.ncbi.nlm.nih.gov/articles/PMC2750959/),
+high-dose monoclonal antibody in the rat model, which reports clearance and
+platelet nadir without a formal PD model.
+
+**What the abstract says.** MWReg30 induces sustained thrombocytopenia in
+mice; FcRn-competition PK for the effect of IVIG on MWReg30 clearance; "an
+indirect response model" for MWReg30 concentration to platelet count; 43 ± 5%
+of the IVIG effect on thrombocytopenia accounted for by increased MWReg30
+clearance, the rest by something else. That remainder is the reason the
+specification does not treat autoantibody concentration as the whole of the
+destruction signal.
+
 ## Sources the specification's numbers come from
 
 Every number the specification quotes from outside itself. The four ✅ rows
@@ -608,6 +927,11 @@ came from the paper; every other row came from a search summary of the source.
 | ✅ | IWG trial-adapted primary and secondary endpoints | Section 2.3 | Entry 1 |
 | ✅ | Rituximab time to initial response 7 to 56 d, to peak 14 to 180 d | Sections 2.5, 5.4 | Entry 1 |
 | ❌ | Endpoint definitions used by LUNA3, ADVANCE IV, VAYHIT2, orelabrutinib and rilzabrutinib Part A | Section 2.4 | Entries 15, 3, 14, 17, 16 |
+| ✅ | Rilzabrutinib: 305 patients, 10,652 platelet counts, indirect E-R model fit; continuous endpoint rose with exposure, durable response flat | Sections 3, 9, 15 | Entry 22 |
+| ✅ | Fostamatinib: no continuous platelet model fit; Week 12 logistic slope on 79 patients; both doses on the rising part | Section 15 | Entries 23, 24 |
+| ✅ | Efgartigimod: Phase 2 IgG-to-platelet model could not explain between-patient variation; dose chosen on IgG | Section 15 | Entry 25 |
+| ✅ | Eltrombopag in ITP: 19% non-responders with slope 0; $k_{\rm in}$ and $k_T$ not identifiable from ITP data, fixed to healthy-volunteer values | Sections 5.3, 5.4 | Entry 26 |
+| ❌ | Romiplostim precursor lifespan 5.9 d, platelet lifespan 10.5 d | Section 5.3 | Entry 6 |
 | ❌ | Ianalumab 12-month freedom from treatment failure 51% at 3 mg/kg, 54% at 9 mg/kg, 30% placebo | Sections 4, 12 | Entry 14 |
 | ❌ | Rituximab pooled response 63% at 100 mg weekly against 69% at 375 mg/m² weekly | Sections 4, 12 | Entry 18 |
 | ❌ | Ianalumab half-life 9 to 10 days; two-compartment linear PK | Section 5.1 | Entry 2 |
@@ -629,11 +953,13 @@ model.
 | Looked for | Result |
 |:---|:---|
 | PK-platelet model for any B-cell depleting agent in ITP | Nothing found. This is the project's gap |
-| PK-platelet model for any FcRn, SYK or BTK inhibitor in ITP | Nothing found. The efgartigimod model stops at IgG (entry 4) |
+| PK-platelet model for any FcRn, SYK or BTK inhibitor in ITP, in journals | Nothing found. The efgartigimod model stops at IgG (entry 4) |
+| The same, in regulatory reviews | Found: rilzabrutinib FDA 2025 fit one (entry 22); fostamatinib FDA 2018 and EMA 2019 record the attempt failing (entries 23, 24); efgartigimod PMDA 2024 records the Phase 2 attempt failing (entry 25) |
+| PK-platelet model for a destruction-blocking drug, any species | Found, in rodents: Balthasar group, IVIG via FcRn, 2003-2007 (entries 28, 29) |
 | Population PK/PD analysis of ianalumab in ITP | Nothing found. The Sjögren's work is entry 2 |
 | Obexelimab, povetacicept or telitacicept in ITP | Nothing found. Obinutuzumab in ITP returned only drug-induced thrombocytopenia case reports |
 | Published exposure-response for rilzabrutinib or orelabrutinib in ITP | Nothing found beyond the trial reports in entries 15 to 17 |
-| Any exposure-response against platelet count in ITP | One found, fostamatinib, reported inconclusive (entry 10) |
+| Any exposure-response against platelet count in ITP | Three: fostamatinib (entries 10, 23, 24), rilzabrutinib (entry 22), efgartigimod at Phase 2 (entry 25) |
 | Quantitative systems pharmacology model of ITP | Nothing ITP-specific. B-cell QSP models exist for mouse and for rheumatic disease |
 
 : Searches run on 2026-09-09 and what came back {tbl-colwidths="[45,55]"}
@@ -660,7 +986,9 @@ model.
   [bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.06.29.450355.full.pdf).
   The biology behind Section 4's tissue argument and Section 13's first
   failure mode.
-- **FDA and EMA review documents** for any approved ITP product. Per-dose
-  platelet response tables and clinical pharmacology reviews that did not
-  reach publication, and the cheapest remaining place to find a dose-response
-  in ITP with more than two levels.
+- **FDA reviews for the TPO-RAs**: Promacta, Nplate, Doptelet, Mulpleta.
+  Entries 22 to 25 covered the destruction-blocking drugs; the production
+  drugs' reviews would add parameter tables to the models in entries 5, 6, 26
+  and 27, and nothing to the project's premise.
+- **The rilzabrutinib exposure-response report SAN3001**, cited in entry 22
+  and not public. The model structure is there and not in the review.

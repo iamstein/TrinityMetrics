@@ -13,10 +13,12 @@ html-math-method: mathjax
 ---
 
 ::: {.callout-important appearance="simple"}
-**Nothing here has been fit, and one source has been read.** The literature
-review in [references.qmd](references.qmd) was assembled from search results
-and abstracts on 2026-09-09, and every source carries a ❌ marker except the
-IWG 2009 consensus paper behind Section 2, which was read and is ✅. The model in Section 5 is a candidate
+**Nothing here has been fit, and six sources have been read.** The
+literature review in [references.qmd](references.qmd) was assembled from
+search results and abstracts on 2026-09-09. The IWG 2009 consensus paper
+behind Section 2, the FDA, EMA and PMDA reviews of rilzabrutinib, fostamatinib
+and efgartigimod behind Section 15, and the eltrombopag ITP model poster behind
+Sections 5.3 and 5.4 were read in full and are ✅; every other source is ❌. The model in Section 5 is a candidate
 structure written to be replaced by whatever the rituximab and thrombopoietin
 receptor agonist papers actually report. The numbers quoted from trials are
 transcribed from search summaries and are not safe to reuse. The
@@ -272,7 +274,11 @@ same range, and is where the dose information lives.
 **3.3 Is B-cell depletion to platelet response identifiable?** This is the
 question. The link is indirect, delayed by weeks, and mediated by two
 unmeasured states. Section 7 sets out what has to be assumed for it to be
-identifiable at all.
+identifiable at all. The FDA review of rilzabrutinib (references, entry 22) is
+an existence proof one step short: a longitudinal platelet model for a drug
+that blocks destruction fit adequately at 305 patients pooled across two
+trials at one dose. Whether it does at 40 patients across four doses is what
+Section 11 tests.
 
 **3.4 Does a wrong answer cost anything?** The selection rule in Section 10 is
 scored against a loss function, not against a point estimate. Selecting a dose
@@ -390,7 +396,10 @@ $$
 
 **Fixed from the literature, not estimated.** $k_{\rm tr}$ and $k_{\rm
 dest,0}$ come from the TPO-RA models and from the 7 to 10 day physiological
-platelet lifespan. $k_{\rm deg}$ is the IgG elimination rate, roughly a
+platelet lifespan. The eltrombopag ITP model (references, entry 26) made the
+same decision for the same reason: its authors could not estimate the
+production rate and the transit rate from 155 ITP patients and fixed both to
+healthy-volunteer values, 1.43 Gi/L·h and 0.0253 h⁻¹. $k_{\rm deg}$ is the IgG elimination rate, roughly a
 three-week half-life. Nothing in an ITP dataset without a TPO-RA arm perturbs
 platelet production enough to identify the maturation chain independently.
 
@@ -429,6 +438,13 @@ $\theta_i$, the patient's untreated disease severity, identified from the
 pre-treatment platelet count; and $\eta_i \in [0, 1]$, the fraction of that
 severity the drug can remove in patient $i$. $\eta_i$ is the mixture: near 1
 in a responder, near 0 in a non-responder.
+
+This mixture has a published name and a precedent. The eltrombopag ITP model
+(references, entry 26) put a mixture on the drug-effect slope, estimated 81%
+responders with 19% at slope zero, and then used the fitted model to simulate
+response-guided titration. Section 5.4 is that model with the drug effect
+moved from production to destruction and the lag lengthened from two weeks to
+two months.
 
 **This reduction is the specification's main structural assumption, and
 Section 11 tests it against data generated from the unreduced model.** If the reduced
@@ -530,6 +546,12 @@ gets reported and what a label carries. Fitting that dichotomy directly at
 Phase 1 sample sizes wastes most of the information in the dataset, and the
 statistical literature on dichotomizing continuous outcomes quantifies the
 loss.
+
+The rilzabrutinib FDA review (references, entry 22) shows the two endpoints
+disagreeing on the same 305 patients: the continuous change in platelet count
+rose with exposure, and the durable-response dichotomy was flat across
+exposure quartiles. The fostamatinib reviews show the same thing at 79
+patients, where a slope at Week 12 had vanished by the Week 14 to 24 window.
 
 **Fit the continuous longitudinal platelet count; derive the dichotomy from
 the fitted model by simulation.** The mixture in Section 5.4 does the work
@@ -731,28 +753,38 @@ Phase 1/2 dose-finding study used intrapatient escalation across four dose
 levels, so dose is confounded with time on drug within every patient. The
 orelabrutinib Phase 2 randomized two doses and is the exception.
 
-**6. Sponsors model the clean biomarker instead and treat platelets as the
-confirmation.** Efgartigimod's subcutaneous dose for Phase 3 in ITP was chosen
-by simulating total immunoglobulin G reduction, from a population target-binding
-model in which receptor occupancy drives IgG suppression. Ianalumab's Phase 2b
-doses in Sjögren's were chosen from B cells and tissue receptor occupancy. In
-both cases the fast, continuous, saturable biomarker did the dose selection and
-the clinical endpoint was left to the trial. This specification proposes going
-one link further, and Sections 4 and 13 are why that is hard.
+**6. Sponsors tried platelets first, fell back to the clean biomarker, and
+the regulators accepted the fallback.** The PMDA review of efgartigimod
+records that argenx built a model from total IgG to platelet count on the
+Phase 2 data, that "there was marked variation in the interindividual platelet
+count" the model could not explain, and that the Phase 3 dose was therefore
+chosen on IgG reduction (references, entry 25). Ianalumab's Phase 2b doses in
+Sjögren's were chosen from B cells and tissue receptor occupancy (entry 2).
+Rilzabrutinib's 400 mg BID came from BTK occupancy plateaus in mouse and human
+plus the raw Part A response by dose, and the platelet model was built
+afterwards to confirm it (entry 22). In every case the fast, continuous,
+saturable biomarker made the decision. This specification proposes going one
+link further, and Sections 4 and 13 are why that is hard.
 
-**7. Where the analysis was done, it came out inconclusive.** The one published
-exposure-response analysis found for an ITP drug that blocks platelet
-destruction is fostamatinib. Responders had higher active-moiety concentrations
-than non-responders, and the review reports the correlation between exposure
-and achievement of the platelet endpoint as uncertain, while exposure against
-hypertension was significant. A negative result is rarely written up as a
-model.
+**7. Where the continuous model was attempted, the reviews record it
+failing, except once.** For fostamatinib, "none of the applicant's attempted
+models including semi-mechanistic, direct response, and indirect response
+model were successful for the platelet count analysis as a continuous
+variable" (FDA, entry 23), and "it was not possible to fit a continuous PK/PD
+model for the platelet count-time profiles" (EMA, entry 24). What survived was
+logistic regression at Week 12 on 79 patients, which the FDA read as a
+relationship and the CHMP read as none. The exception is rilzabrutinib, where
+an indirect exposure-response model on 10,652 platelet counts from 305 patients
+fit adequately (entry 22). It had ten times the patients of a Phase 1 study,
+one dose, and a mechanism with a 36-day median time to response instead of
+rituximab's 14 to 180 days to peak.
 
-**One reason that is not evidence of difficulty.** Regulatory clinical
-pharmacology reviews carry exposure-response analyses that never reach a
-journal. Absence from the published literature is weaker evidence than it
-looks, and the FDA and EMA review documents are the cheapest place left to
-check (references, final entry).
+**The regulatory reviews have now been read, and they close the gap in one
+direction.** The absence of a published model is not because nobody tried.
+Three sponsors tried, with Phase 2 or Phase 3 data, and the reviews say what
+happened. What remains open is whether a model built to find a plateau rather
+than a slope, with the mixture and the fixed platelet layer of Section 5,
+does better at the sample size those three had, which is Section 11.
 
 **What this changes in the specification.** Reasons 2, 3 and 5 are design
 problems this project can specify around, and Sections 9, 10 and 11 do. Reason

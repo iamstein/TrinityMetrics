@@ -28,4 +28,7 @@ here yet.
 - [References](references.qmd). The literature review that opens with what
   exists and what does not, then the reading queue in order, then a marker on
   every source recording whether the specification's use of it has been
-  checked. One source has been read; the rest are ❌.
+  checked, plus the FDA, EMA and PMDA reviews of the three ITP drugs that
+  block platelet destruction, read in full, and a table of the TPO-RA
+  PK-platelet models the specification borrows from. Six sources have been
+  read; the rest are ❌.
