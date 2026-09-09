@@ -1,0 +1,331 @@
+---
+title: "References for the immune biomarkers and infection risk project"
+subtitle: "What to read, in what order, and what has actually been checked"
+description: "The reading queue for a project on longitudinal immune biomarkers and infection risk: the papers that quantify what a neutrophil, lymphocyte or IgG level does to infection risk, the model-based predictions already published, and a status marker on every entry."
+categories: [PMX project, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing here has been read.** The queue was assembled on 2026-09-09 from
+literature searches, so every entry is a characterization of a paper rather
+than a reading of one, and every entry carries ❌. Bibliographic details
+(authors, journal, year, volume, pages, DOI) were fetched from Europe PMC on
+the same day and are correct. What each paper says was taken from its
+abstract or from a search summary, and the numbers quoted below are quoted
+for the purpose of deciding what to read, not for use in any analysis.
+:::
+
+The working document is [the specification](specification.qmd), and the
+folder's other documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the project has been verified against this
+  source. Where the project characterizes it, the characterization comes from
+  an abstract or a search result.
+- ⚠️ **Transcribed, unverified.** A number, table or model structure in the
+  project came from this source but has not been checked against it.
+- ✅ **Checked.** Verified against the source.
+
+On a **reading-queue** entry, ✅ means the question posed against the entry
+has been answered, by reading the paper or by deciding it is out of scope,
+and the note under the entry says which. On a **source** entry below the
+queues, ✅ keeps the stricter meaning: the claim the project draws from it
+has been checked against the source. None is ✅ yet.
+
+## How to read these
+
+Read against the question under each entry rather than through the paper
+front to back. The general method is on the [Reading
+Papers](../../guides/reading-papers.qmd) page: three passes, stopping at the
+pass that answers the question.
+
+## Where to start
+
+Five papers decide whether to start the project, in this order.
+
+1. **Entry 2, Li 2016.** The one paper found that pools several studies and
+   reports infection risk per day of severe neutropenia. It is the shape of
+   the answer this project wants, on one biomarker.
+2. **Entry 11, Netterberg 2018.** A turnover model for a biomarker time
+   course feeding a parametric time-to-event model for febrile neutropenia.
+   The method the project would use, already published on adjacent
+   biomarkers.
+3. **Entry 4, Derfuss 2024.** Six thousand patients pooled across thirteen
+   ocrelizumab trials, with IgG below the lower limit of normal related to
+   serious infection rate. The closest published thing to the proposed
+   analysis, and it is a categorized level rather than a trajectory.
+4. **Entry 12, Rejeski 2021.** A baseline score, not a trajectory, that
+   predicts severe infection after CAR-T. Any longitudinal model has to beat
+   a score this simple.
+5. **Entry 16, Rizopoulos 2017.** Joint modelling against landmarking. The
+   fork the project has to pick before it fits anything.
+
+## Reading queue: what a biomarker level does to infection risk
+
+These establish the association the project would model, and each reports it
+in a different form: a threshold, a duration, a categorized level, or a
+randomized intervention on the biomarker itself.
+
+### 1. Bodey et al. 1966 — circulating leukocytes and infection in acute leukemia ❌
+
+*Annals of Internal Medicine* 64(2):328–340.
+[doi:10.7326/0003-4819-64-2-328](https://doi.org/10.7326/0003-4819-64-2-328) ·
+[PMID 5216294](https://europepmc.org/article/MED/5216294)
+
+The origin of the neutrophil thresholds still in use. Reported as
+establishing that infection incidence rises as the count falls below 1000,
+500 and 100 cells/mm^3^, and as reporting a rate of decline and a duration
+effect alongside the level. Read it for the shape of the original data:
+whether the level, the slope and the duration were separable in 1966, and on
+how many patients.
+
+### 2. Li et al. 2016 — severity and duration of chemotherapy-induced neutropenia and infection ❌
+
+*Supportive Care in Cancer* 24(10):4377–4383.
+[doi:10.1007/s00520-016-3277-0](https://doi.org/10.1007/s00520-016-3277-0) ·
+[PMID 27278272](https://europepmc.org/article/MED/27278272)
+
+Pools 271 patients from six clinical trials with serial neutrophil
+measurements, and reports a hazard of infection-related hospitalization
+rising by roughly 28 to 30% per additional day of severe neutropenia.
+Pooling across studies to relate a biomarker time course to an infection
+event is what this project proposes, and this is it, done on one biomarker
+in one disease setting. Read it first, and read it for the mechanics: how
+the six trials were harmonized, how duration was derived from scheduled
+counts, and what the model of the hazard was.
+
+### 3. Warny et al. 2018 — lymphopenia and infection in 98,344 individuals ❌
+
+*PLoS Medicine* 15(11):e1002685.
+[doi:10.1371/journal.pmed.1002685](https://doi.org/10.1371/journal.pmed.1002685) ·
+[PMID 30383787](https://europepmc.org/article/MED/30383787)
+
+A Danish population cohort relating blood lymphocyte count to hospitalization
+for infection and to infection-related death, reported as showing a graded
+relationship down to counts below 0.5 x 10^9^/L. Untreated general
+population, so it separates the biomarker from the drug that would otherwise
+have depleted it. Read it for the confounding structure, which is the
+question the pooled analysis will face in a different form.
+
+### 4. Derfuss et al. 2024 — infections and risk factors across 13 ocrelizumab trials ❌
+
+*Therapeutic Advances in Neurological Disorders* 17:17562864241277736.
+[doi:10.1177/17562864241277736](https://doi.org/10.1177/17562864241277736) ·
+[PMID 39399100](https://europepmc.org/article/MED/39399100)
+
+A pooled analysis of 6,155 patients, reported as relating IgG below the lower
+limit of normal to serious infection rates, alongside disability score,
+comorbidity and body weight. Read it for what a sponsor can do with pooled
+individual patient data from its own programme, and for what it stopped
+short of: the analysis appears to categorize IgG rather than model its
+trajectory, which is the gap this project would work in.
+
+### 5. Saidha et al. 2023 — immunoglobulin trends under anti-CD20 antibodies in multiple sclerosis ❌
+
+*Neurological Sciences* 44(5):1515–1532.
+[doi:10.1007/s10072-022-06582-y](https://doi.org/10.1007/s10072-022-06582-y) ·
+[PMID 36648561](https://europepmc.org/article/MED/36648561)
+
+A systematic review of how IgG, IgA and IgM move over time under rituximab,
+ocrelizumab and ofatumumab. The trajectory half of the problem without the
+event half. Read it for the inventory of studies reporting serial
+immunoglobulin measurements, which is a candidate source list for the pooled
+dataset.
+
+### 6. Huang et al. 2026 — infection risk with teclistamab, systematic review and meta-analysis ❌
+
+*Frontiers in Immunology* 17:1804838.
+[doi:10.3389/fimmu.2026.1804838](https://doi.org/10.3389/fimmu.2026.1804838) ·
+[PMID 42148087](https://europepmc.org/article/MED/42148087)
+
+Five studies and 714 patients on a BCMA-directed T-cell engager, reported as
+finding any-grade infection in 76.4% of trial patients against 45.4% in
+real-world cohorts, with heterogeneity attributed to follow-up duration and
+to how much immunoglobulin replacement was given. Read it for the definition
+problem: whether the infection endpoints across those five sources are the
+same endpoint. If they are not, the same obstacle applies to any pooled
+analysis.
+
+### 7. Gale et al. 1988 — intravenous immunoglobulin for prevention of infection in CLL ❌
+
+*New England Journal of Medicine* 319(14):902–907.
+[doi:10.1056/NEJM198810063191403](https://doi.org/10.1056/NEJM198810063191403) ·
+[PMID 2901668](https://europepmc.org/article/MED/2901668)
+
+The randomized trial that raised IgG on purpose and counted infections. Every
+observational entry above is confounded by the fact that a sicker patient has
+both a lower IgG and a higher infection risk; this one is not. Read it to
+learn what size of effect an intervention on the biomarker produced, since
+that is the ceiling on what a predictive model could deliver.
+
+### 8. Carrillo de Albornoz et al. 2025 — immunoglobulin use, survival and infection in CLL ❌
+
+*Blood Advances* 9(20):5367–5377.
+[doi:10.1182/bloodadvances.2025015867](https://doi.org/10.1182/bloodadvances.2025015867) ·
+[PMID 40742276](https://europepmc.org/article/MED/40742276)
+
+A linked-hospital-data cohort of 6,217 patients, reported as finding a
+*higher* infection incidence during immunoglobulin replacement periods than
+outside them, and as concluding that the causal relationship needs further
+work. Confounding by indication, stated plainly in a recent paper. Read it
+against entry 7 and note what the two designs do to the same question.
+
+## Reading queue: model-based prediction
+
+### 9. Friberg et al. 2002 — myelosuppression model with parameter consistency across drugs ❌
+
+*Journal of Clinical Oncology* 20(24):4713–4721.
+[doi:10.1200/JCO.2002.02.140](https://doi.org/10.1200/JCO.2002.02.140) ·
+[PMID 12488418](https://europepmc.org/article/MED/12488418)
+
+Proliferating compartment, three transit compartments, circulating
+compartment, feedback. The trajectory submodel for neutrophils is a solved
+problem and this is the solution, with system parameters that held across
+several drugs. Read it for whether the same structure has any claim on B
+cells or immunoglobulins, whose turnover is slower and whose recovery after
+depletion is not obviously a feedback loop of the same kind.
+
+### 10. Netterberg et al. 2017 — model-based prediction of myelosuppression from frequent monitoring ❌
+
+*Cancer Chemotherapy and Pharmacology* 80(2):343–353.
+[doi:10.1007/s00280-017-3366-x](https://doi.org/10.1007/s00280-017-3366-x) ·
+[PMID 28656382](https://europepmc.org/article/MED/28656382)
+
+Forecasts an individual patient's neutrophil time course from their own
+measurements so far, reported as reaching sensitivity of 90% or better for
+grade 4 neutropenia before it occurs, with accuracy worst around the nadir.
+This is the individual-prediction half of the project, on the biomarker where
+the model already exists. Read it for how far ahead a forecast stays useful,
+which sets how often the biomarkers would have to be drawn.
+
+### 11. Netterberg et al. 2018 — IL-6 and CRP time courses predicting febrile neutropenia ❌
+
+*British Journal of Clinical Pharmacology* 84(3):490–500.
+[doi:10.1111/bcp.13477](https://doi.org/10.1111/bcp.13477) ·
+[PMID 29178353](https://europepmc.org/article/MED/29178353)
+
+Turnover models for two biomarker time courses, linked to parametric
+time-to-event models for febrile neutropenia, with the IL-6 time course the
+better predictor and baseline age much weaker. The exact architecture this
+project proposes, published, on inflammation markers rather than on immune
+cell counts. Read it second, and read it for the link function: which feature
+of the time course entered the hazard, and what was tried and rejected.
+
+### 12. Rejeski et al. 2021 — CAR-HEMATOTOX ❌
+
+*Blood* 138(24):2499–2513.
+[doi:10.1182/blood.2020010543](https://doi.org/10.1182/blood.2020010543) ·
+[PMID 34166502](https://europepmc.org/article/MED/34166502)
+
+A score built from pre-treatment haematopoietic reserve and inflammation,
+predicting prolonged neutropenia and severe infection after CD19 CAR-T.
+Baseline values only, no trajectory, and it is in clinical use. This is the
+comparator: a longitudinal model earns its complexity only by beating a
+scoring sheet computed once, before treatment.
+
+### 13. de Boer et al. 2025 — population-based validation of CAR-HEMATOTOX ❌
+
+*Blood Advances* 9(21):5641–5650.
+[doi:10.1182/bloodadvances.2025016689](https://doi.org/10.1182/bloodadvances.2025016689) ·
+[PMID 40668622](https://europepmc.org/article/MED/40668622)
+
+External validation of entry 12 for hematotoxicity, infections and survival
+in a national cohort. Read it for the discrimination the score actually
+achieves outside its development set, which is the number a new model would
+be measured against.
+
+### 14. Sheehy et al. 2025 — clinical prediction models for febrile neutropenia, systematic review ❌
+
+*Supportive Care in Cancer* 33(7):537.
+[doi:10.1007/s00520-025-09562-y](https://doi.org/10.1007/s00520-025-09562-y) ·
+[PMID 40467900](https://europepmc.org/article/MED/40467900)
+
+An inventory of the prediction models already published for one infection
+outcome. Read it to find out how many of them use serial measurements rather
+than baseline covariates, and how they were validated. If the answer is that
+almost none use trajectories, that is the argument for the project. If
+several do and none beat a baseline model, that is the argument against.
+
+## Methods for linking a trajectory to an event
+
+### 15. Rizopoulos 2011 — dynamic predictions and prospective accuracy in joint models ❌
+
+*Biometrics* 67(3):819–829.
+[doi:10.1111/j.1541-0420.2010.01546.x](https://doi.org/10.1111/j.1541-0420.2010.01546.x) ·
+[PMID 21306352](https://europepmc.org/article/MED/21306352)
+
+Updating a patient's predicted risk as each new measurement arrives, and
+measuring whether those updates are accurate. The `JMbayes2` R package
+implements this family. Read it for the accuracy measures, since a
+time-updated prediction cannot be scored with a single AUC.
+
+### 16. Rizopoulos, Molenberghs and Lesaffre 2017 — joint modelling against landmarking ❌
+
+*Biometrical Journal* 59(6):1261–1276.
+[doi:10.1002/bimj.201600238](https://doi.org/10.1002/bimj.201600238) ·
+[PMID 28792080](https://europepmc.org/article/MED/28792080)
+
+The two ways to put a time-varying covariate into a survival model, compared
+directly. Landmarking is simpler and pools across studies more easily; joint
+modelling handles measurement error and informative visit timing. Read it
+before committing, because the choice decides what the pooled dataset has to
+look like.
+
+## Data sources
+
+Marked ❌ throughout: none has been queried, and what each holds for
+longitudinal immune laboratory values is unknown.
+
+- **Vivli** (<https://vivli.org>). Individual participant data from completed
+  trials, analyzed inside a secure environment rather than downloaded.
+  Reported as holding over 7,500 trials. The question to put to it: how many
+  studies expose serial haematology and immunoglobulin panels together with
+  coded infection adverse events.
+- **Project Data Sphere** (<https://projectdatasphere.org>). Patient-level
+  data from oncology trials, historically phase 3 comparator arms.
+- **The YODA Project** (<https://yoda.yale.edu>). A third route to
+  participant-level data, with a different sponsor list.
+- **Published figures.** Where individual data cannot be obtained, mean
+  trajectories digitized from publications support a model-based
+  meta-analysis of the biomarker time course, but not a within-patient link
+  to an event.
+
+## Sources for the numbers in the project
+
+- ❌ **The thresholds.** The index and Section 4 of the specification name an
+  absolute neutrophil count below
+  0.5 x 10^9^/L and an IgG in the 400 to 500 mg/dL range as levels at which
+  practice already acts. The neutrophil figure traces to entry 1 by way of
+  common usage. The immunoglobulin figure came from search summaries citing
+  NCCN guidance for CLL and general secondary-immunodeficiency practice, and
+  no guideline text has been read. Both need a source before either is used
+  as a comparator.
+
+## What was searched and did not turn up
+
+Searched on 2026-09-09: meta-analyses of immunoglobulin level against
+infection, neutropenia severity and duration against infection, pharmacometric
+and time-to-event models of febrile neutropenia, joint models of a
+longitudinal biomarker with a time-to-infection outcome, infection prediction
+after CAR-T and after bispecific antibodies, and individual patient data
+sharing platforms.
+
+Nothing found pools several studies, across drug classes, into one model
+where a *trajectory* of an immune biomarker enters the hazard for infection.
+The pieces exist separately: entry 2 pools studies for one biomarker, entry
+11 links a trajectory to an event in one trial, entry 4 pools a programme but
+categorizes the biomarker. Whether the absence is real or an artifact of
+searching in English on abstracts is the first thing to establish, and a
+search of the pharmacometrics meeting abstracts (PAGE, ACoP) has not been
+run.
+
+Also not searched yet: paediatric immunology and primary immunodeficiency,
+where immunoglobulin trajectories are measured for decades; transplant
+immune reconstitution, where CD4 recovery curves against infection are an
+established literature; and HIV, where the CD4 count against opportunistic
+infection is the oldest worked example of this exact problem.

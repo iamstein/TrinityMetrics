@@ -1,0 +1,450 @@
+---
+title: "Longitudinal immune biomarkers and infection risk"
+subtitle: "Working specification for a pooled analysis in autoimmune disease"
+description: "Can a model of neutrophil, B cell and immunoglobulin time courses, pooled across studies, predict serious infection better than the threshold rules already in use? The specification for the analysis that would answer it."
+categories: [pharmacometrics, immunology, references]
+date: last-modified
+toc: true
+toc-depth: 3
+toc-location: left
+number-sections: false
+html-math-method: mathjax
+---
+
+::: {.callout-note appearance="simple"}
+This is a working document, not an analysis. Nothing has been fitted and no
+dataset has been obtained. Every literature claim below is cited to an entry
+in [References](references.qmd), and every entry there carries ❌, meaning it
+was characterized from an abstract rather than read. The [project
+index](index.qmd) lists the other documents in this folder.
+:::
+
+## In brief
+
+**The question.** A patient with an autoimmune disease on B-cell depleting
+therapy has their neutrophils, lymphocytes and immunoglobulins drawn every
+few months. Those values are read one at a time against fixed thresholds. Can
+a model of their *time courses*, pooled across many studies, predict serious
+infection better than the thresholds do, and early enough to act on?
+
+**Why pooling.** Serious infections are rare enough that a single trial
+produces tens of events, which cannot support a model carrying several
+biomarkers and their trajectories. The events accumulate across trials,
+indications and drug classes. Whether those studies can be pooled into one
+model, or only into a meta-analysis of separate fits, is the first question
+the work has to answer, and it is answered by looking at data rather than by
+argument.
+
+**The design.** A longitudinal submodel for each biomarker, a hazard submodel
+for time to serious infection, and a link between them that is estimated
+rather than assumed: current value, slope, or cumulative time under a
+threshold. Section 7 sets out the three candidate links and Section 9 the
+comparator each has to beat, which is a rule using the latest value alone.
+
+**What the model cannot fix.** Prophylaxis is given *because* a biomarker
+fell, and dose is held *because* an infection happened. The measurements and
+the interventions are entangled, and no amount of pooling separates them
+without either a randomized comparison or an assumption that cannot be
+checked from the data. Section 10 states which assumption the analysis makes
+and what breaks if it is wrong.
+
+**How the answer would be used.** Three concrete decisions: how often to draw
+the panel, when to start immunoglobulin replacement or antimicrobial
+prophylaxis, and whether the next dose is given. A model that improves
+prediction but changes none of those has not earned its place, and Section 13
+says so as a stop rule.
+
+------------------------------------------------------------------------
+
+## 1. High-level objective
+
+Estimate the relationship between the time course of routinely measured
+immune biomarkers and the hazard of serious infection, using individual
+patient data pooled across studies, and report whether the trajectory carries
+information the current value does not.
+
+### What comes out of this
+
+1. A fitted longitudinal model for each biomarker under each drug class, on
+   pooled data, with between-study variability estimated rather than assumed
+   away.
+2. An estimate of which feature of the trajectory enters the infection
+   hazard, with an interval on it.
+3. A comparison against the threshold rules in use today, on the same
+   patients, using time-dependent discrimination and calibration.
+4. A statement of what the data could not answer, with the reason.
+
+### Scope
+
+**Out of scope**, stated once. This is not a mechanistic or
+quantitative-systems model of immune reconstitution. It is not a vaccine
+response analysis. It is not a dosing recommendation for any individual
+drug, and it is not a causal estimate of what prophylaxis does. It predicts,
+under stated assumptions, and prediction is what it will be judged on.
+
+## 2. The population
+
+**Autoimmune disease, not oncology.** The primary population is patients
+receiving immunosuppressive therapy for an autoimmune indication:
+rheumatoid arthritis, systemic lupus, ANCA-associated vasculitis, multiple
+sclerosis, inflammatory bowel disease.
+
+The fork is real, and the reason for the answer belongs here. Oncology has
+the better data. It has the pooled analyses that already relate a neutrophil
+time course to an infection event (entries 2 and 11), the myelosuppression
+model with system parameters that held across drugs (entry 9), and the data
+sharing platforms. What it does not have is a clean read on the biomarker,
+because the malignancy itself suppresses the same compartments the drug does,
+the follow-up is short, and death competes with infection throughout.
+
+Autoimmune disease reverses both. Follow-up runs years, the underlying
+disease is not itself a haematological malignancy, and infection is the
+outcome the field already worries about. The oncology literature supplies the
+methods and the prior estimates; the autoimmune studies supply the patients.
+
+Where an oncology dataset is reachable and an autoimmune one is not, the
+oncology data is used to develop the machinery and is reported separately,
+never pooled into the primary fit.
+
+## 3. What links to infection
+
+The diagram is informal and its purpose is to fix ideas: to show how many
+distinct things reach the infection node, and how few of the arrows the model
+can actually estimate.
+
+```{mermaid}
+%%| column: page
+%%| fig-cap: "What reaches the infection node in an autoimmune population. Disease activity sits upstream of everything, and half the arrows into infection never pass through a measured biomarker."
+flowchart LR
+  ACT["Disease activity<br/>and organ damage"]
+
+  subgraph GIVEN["What is given"]
+    DRUG["Biologic<br/>dose and schedule"]
+    STER["Glucocorticoids<br/>current and cumulative"]
+    OTHER["Other immunosuppressants<br/>MTX, MMF, AZA, CYC, JAKi"]
+  end
+
+  subgraph MEASURED["What is measured"]
+    ANC["Neutrophils"]
+    BCELL["B cells, CD19+"]
+    IG["IgG, IgA, IgM"]
+    LYMPH["Lymphocytes, CD4+"]
+  end
+
+  subgraph HOST["What the patient brings"]
+    AGE["Age and comorbidity"]
+    PRIOR["Prior serious infection"]
+    VAC["Vaccination status"]
+  end
+
+  INF(["Serious infection"])
+
+  ACT --> DRUG
+  ACT --> STER
+  ACT --> INF
+
+  DRUG --> ANC
+  DRUG --> BCELL
+  DRUG --> IG
+  STER --> LYMPH
+  STER --> INF
+  OTHER --> ANC
+  OTHER --> LYMPH
+  OTHER --> IG
+
+  ANC --> INF
+  BCELL --> INF
+  IG --> INF
+  LYMPH --> INF
+
+  AGE --> INF
+  PRIOR --> INF
+  VAC --> INF
+
+  classDef box fill:#eef2f7,stroke:#5b6b7c,color:#111827
+  classDef outcome fill:#f6e7e7,stroke:#8c4a4a,color:#111827
+  class ACT,DRUG,STER,OTHER,ANC,BCELL,IG,LYMPH,AGE,PRIOR,VAC box
+  class INF outcome
+  style GIVEN fill:#ffffff,stroke:#9aa7b4,color:#111827
+  style MEASURED fill:#ffffff,stroke:#9aa7b4,color:#111827
+  style HOST fill:#ffffff,stroke:#9aa7b4,color:#111827
+```
+
+### Reading the diagram
+
+Four things follow from it, and they drive the rest of the specification.
+
+**The biomarkers are not interchangeable.** Each measures a different arm of
+the immune system and each fails against different organisms. A neutrophil
+count says something about bacterial and fungal risk; an immunoglobulin level
+says something about encapsulated organisms; a CD4 count says something about
+opportunistic infection. One combined score across all of them answers a
+question nobody asks. Section 5 splits the endpoint accordingly.
+
+**Comedication reaches infection without passing through a measured
+biomarker.** Glucocorticoids are the clearest case, and almost everyone in
+this population receives them at some point. A model that carries the
+biomarkers and omits steroid dose will attribute the steroid effect to
+whichever biomarker happens to move with it. Cumulative and current steroid
+dose is a required covariate, not an optional one.
+
+**Disease activity sits upstream of both the drug and the outcome.** The
+patient whose disease is active gets more steroid, more of everything else,
+and is more likely to be infected for reasons unrelated to their laboratory
+values. This is confounding by indication in its usual place, and Section 10
+says what is done about it.
+
+**A measurement that falls provokes a response, and the response is missing
+from the first diagram.** Immunoglobulin replacement is given because IgG
+fell. G-CSF is given because neutrophils fell. The dose is held because an
+infection happened. Each makes the biomarker a response to itself, and the
+consequence is a specific bias rather than a general caveat.
+
+```{mermaid}
+%%| fig-cap: "The response-to-measurement loop. The patients whose biomarker was corrected are the patients who were at highest risk, so the recorded value understates the risk it is being asked to predict."
+flowchart LR
+  LOW["Biomarker falls"] --> ACTION["Replacement, G-CSF,<br/>prophylaxis, or dose held"]
+  ACTION --> CORR["Biomarker corrected"]
+  ACTION --> RISK["Infection risk lowered"]
+  CORR --> REC["What the dataset records:<br/>an unremarkable value in a<br/>patient who was at high risk"]
+  RISK --> REC
+
+  classDef box fill:#eef2f7,stroke:#5b6b7c,color:#111827
+  class LOW,ACTION,CORR,RISK,REC box
+```
+
+Ignoring the loop biases the estimated link toward zero. Section 10 states
+the assumption under which the analysis proceeds anyway.
+
+## 4. The biomarkers to carry
+
+| Biomarker | Arm of the system | Behaviour under therapy | What practice does with it now |
+|:---|:---|:---|:---|
+| Absolute neutrophil count | Innate, bacterial and fungal | Falls fast, recovers fast, oscillates with cycles | Threshold rules and G-CSF, both long established (entry 1) |
+| CD19+ B cells | Humoral, upstream of antibody | Falls to below the limit of quantification and stays there for months | Watched, seldom acted on |
+| IgG, IgA, IgM | Humoral, effector | Falls slowly over cycles, recovers over years or not at all | Replacement considered in a threshold range (entry 5) |
+| Lymphocytes, CD4+ | Cellular, opportunistic | Falls with steroids and with several DMARDs | Prophylaxis thresholds by convention |
+| CRP, albumin | Inflammation and reserve | Confounded by disease activity | Read as disease activity, not as infection risk |
+
+: Candidate biomarkers, ordered by how well the trajectory is already understood {tbl-colwidths="[20,18,30,32]"}
+
+The first three are the primary set. Lymphocyte subsets are carried where
+reported, which will be a minority of studies. CRP and albumin are carried as
+covariates rather than as predictors, because in this population they move
+with the disease as much as with the infection.
+
+**The censoring problem is specific to B cells.** A depleted count sits at or
+below the limit of quantification for months, so the trajectory is a long run
+of values that are not measurements. Handled as left-censored observations in
+the longitudinal submodel, and it has to be handled explicitly, since
+substituting half the limit produces a flat line that the link function will
+happily fit.
+
+## 5. The infection endpoint
+
+**Primary.** Time to first serious infection, defined as one requiring
+intravenous antimicrobials or hospitalization. This definition survives
+translation across trial and registry sources better than a severity grade
+does.
+
+**Secondary.** Time to first infection of any grade; and recurrent events,
+since a patient who has one serious infection has a raised risk of the next.
+
+**Reported separately by organism class** where the source allows it:
+bacterial, viral, opportunistic. This is what Section 3 requires, and it is
+where the pooled dataset will be thinnest.
+
+**Competing risks.** Death from other causes, and treatment discontinuation.
+Discontinuation is not independent of the outcome, since a patient is
+withdrawn for the thing being predicted.
+
+The endpoint is where the pooling is most likely to fail. Different sources
+adjudicate differently, count differently, and follow patients for different
+lengths of time. Section 12 puts a check on this before any model is fitted.
+
+## 6. The data
+
+### What a usable record contains
+
+For each patient: dose and date of every administration of the biologic and
+of every comedication including glucocorticoids, with dose; every laboratory
+measurement with its date, its units and its limit of quantification; every
+infection event with a date, a severity and, where recorded, an organism;
+the prophylaxis given, with dates; and the baseline covariates in Section 3.
+
+A source that gives biomarker trajectories without dated infection events is
+useful for the longitudinal submodel and useless for the link.
+
+### Candidate sources
+
+Vivli, Project Data Sphere and the YODA Project, described in
+[References](references.qmd). Registry data is a second family: the national
+biologics registers in rheumatology carry infection events and comedication
+on a scale no trial has, and carry laboratory values inconsistently.
+
+### Harmonization
+
+Units and assays first, then the endpoint. Immunoglobulins are reported in
+mg/dL and in g/L; cell counts in cells/µL and in 10^9^/L. Flow cytometry
+gating for B cells differs by laboratory and its lower limit differs by
+more.
+
+## 7. The model
+
+### 7a. Longitudinal submodel
+
+One submodel per biomarker, on the log scale, with drug exposure driving a
+depletion and a recovery. For neutrophils the structure is settled: the
+transit-compartment model with system parameters that held across drugs
+(entry 9) is the starting point. For B cells and immunoglobulins it is not
+settled, and the first fits should compare an indirect-response form against
+a flexible spline in time, since a slow recovery over years may not be a
+feedback process at all.
+
+Between-study variability is a random effect at the study level on the
+parameters that assay and population differences would move, which is a
+choice made in the fitting rather than declared here.
+
+### 7b. The link
+
+Three candidates, fitted and compared rather than assumed.
+
+1. **Current value.** The hazard at time $t$ depends on the model-predicted
+   biomarker at $t$. This is what a threshold rule approximates.
+2. **Slope.** The hazard depends on the rate of change. A patient falling
+   fast toward a threshold and one sitting stably just above it are
+   distinguished only by this term.
+3. **Cumulative exposure.** The hazard depends on the area under the
+   trajectory below a threshold, so that a longer time spent depleted carries
+   more risk. This is the form that the strongest existing evidence takes
+   (entry 2, where risk rose per day of severe neutropenia).
+
+The three are nested in a shared framework and can be fitted together, with
+the comparison reported as an interval on each coefficient rather than as a
+selection.
+
+### 7c. Hazard submodel
+
+Parametric baseline hazard, stratified by study or by drug class. Covariates
+from Section 3, with steroid dose time-varying. Recurrent events as a
+secondary analysis.
+
+## 8. Alternatives to the joint model
+
+Stated here so the choice is made deliberately, and settled by entry 16.
+
+**Landmarking.** At a fixed time, take everything measured so far, fit an
+ordinary survival model, and predict forward. Simpler, pools across
+heterogeneous studies more easily, and gives up the measurement-error
+handling.
+
+**Two-stage.** Fit the longitudinal model, take the individual predictions,
+put them into the hazard model as covariates. Standard errors are wrong
+unless corrected, and the correction is the reason joint estimation exists.
+
+**Model-based meta-analysis on aggregate data.** The fallback when individual
+data cannot be obtained. Mean trajectories digitized from publications, event
+rates from the same publications, and a model relating the two at the study
+level. It answers a different question, since a between-study relationship is
+not a within-patient one, and the specification should say that in whatever
+it reports rather than in a footnote.
+
+**The decision.** Start with landmarking to establish whether any signal
+exists, then fit the joint model. Landmarking answers the question that
+decides whether to continue, in a fraction of the time.
+
+## 9. The comparator, and what counts as better
+
+The comparator is the rule in use today: the latest value of one biomarker
+against a fixed threshold. A second comparator is a baseline-only model,
+since a score computed once before treatment is what has actually reached
+clinical use in an adjacent field (entry 12).
+
+Reported for each: time-dependent discrimination, calibration over a
+prediction horizon, and the Brier score. Validation is leave-one-study-out,
+because the question is whether the model transfers to a study it has not
+seen, which is the only version of the question that decides whether it can
+be used.
+
+**A model that beats the threshold rule on discrimination but not on
+calibration has not delivered anything usable**, since the decisions in
+Section 1 are made against an absolute risk.
+
+## 10. Confounding and the response-to-measurement loop
+
+The dashed arrows in Section 3 are the estimation problem.
+
+**What the analysis assumes.** That prophylaxis, replacement and dose holds
+are given in response to observed history, and that this history is recorded.
+Under that assumption the intervention is a time-varying covariate and the
+estimated link is interpretable as a prediction, though not as a causal
+effect.
+
+**What breaks it.** A clinician acting on something not in the data, which is
+most of what a clinician acts on. The effect is to bias the biomarker link
+toward zero, since the highest risk patients get corrected.
+
+**What is done about it.** Three things. Report the analysis with and without
+the intervention covariates, since the gap between them measures the problem.
+Use entry 7, a randomized trial that raised immunoglobulin on purpose, as an
+external check on the sign and rough size of the effect. And state in the
+report that the estimate is a prediction under an observed-treatment policy,
+not an effect of a level.
+
+## 11. Simulate before requesting data
+
+Requesting individual patient data takes months. Before any of it is
+requested, simulate the pooled dataset and fit the model to it.
+
+What the simulation has to establish: how many patients and how many events
+are needed to distinguish the three links in Section 7b from each other; what
+a realistic measurement schedule, quarterly rather than daily, does to that;
+what left-censored B cell values do to the estimate; and how much
+between-study variability the design tolerates before the pooled estimate is
+uninformative.
+
+If the simulation says the three links are not separable at any plausible
+number of events, the project stops here, and that is a result to write
+down.
+
+## 12. Implementation sequence
+
+1. Simulation study of Section 11. No real data.
+2. Read the queue in [References](references.qmd), in the order given there,
+   and record what each changes in this document.
+3. One dataset, one drug class, one biomarker. Fit the longitudinal submodel
+   and the landmark analysis. This is the point at which the endpoint
+   harmonization problem becomes concrete.
+4. Add the second and third biomarkers. Fit the joint model.
+5. Add the second study. This is the first test of pooling, and the first
+   opportunity to find out that it does not work.
+6. Leave-one-study-out validation against the comparators in Section 9.
+7. Report, including the failures.
+
+## 13. Stop rules
+
+The project stops, and says why, if any of the following holds.
+
+- The simulation in Section 11 shows the links are not separable at plausible
+  event counts.
+- No two reachable sources share an infection endpoint that can be made
+  common.
+- The trajectory adds nothing over the latest value on leave-one-study-out
+  validation.
+- The model beats the comparator but changes none of the three decisions in
+  the In brief section.
+
+## 14. Open questions
+
+1. **Which indication first.** Rheumatoid arthritis has the registries and
+   the comedication complexity. Multiple sclerosis has the cleanest anti-CD20
+   trajectories and the pooled sponsor analysis (entry 4). Undecided.
+2. **Whether the biologic is modelled as an exposure or as a group.** Carrying
+   pharmacokinetics for each drug is more faithful and multiplies the data
+   requirement.
+3. **Whether COVID-19 era events are in or out.** They dominate infection
+   counts in any dataset spanning 2020 to 2022, and they change the organism
+   mix entirely.
+4. **Paediatric and primary immunodeficiency data.** Immunoglobulin
+   trajectories there run for decades against a recorded infection history,
+   and no search of that literature has been run.

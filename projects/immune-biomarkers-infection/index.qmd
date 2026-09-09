@@ -1,0 +1,77 @@
+---
+title: "Immune biomarkers and infection risk"
+subtitle: "Longitudinal models of neutrophils, B cells and immunoglobulins"
+description: "Placeholder for a project on pooling immune biomarker time courses across studies to model infection risk. Nothing is written yet; this page states the question and what has to be settled before the work starts."
+categories: [PMX project]
+date: last-modified
+toc: false
+---
+
+::: {.callout-note appearance="simple"}
+**Nothing has been fitted.** The question and the analysis that would answer
+it are specified; no dataset has been obtained and no model has been run.
+:::
+
+**The question.** Therapies that deplete neutrophils, B cells or
+immunoglobulins raise the risk of infection, and the laboratory values that
+track the depletion are drawn at nearly every visit. Absolute neutrophil
+count (ANC), CD19+ B cells, and immunoglobulin G, A and M (IgG, IgA, IgM)
+are the usual ones. Can a longitudinal model of those time courses predict
+which patient is heading for a serious infection, precisely enough to change
+when a patient is monitored, when prophylaxis starts, or whether the next
+dose is given?
+
+**What would be modelled.** A trajectory model for each biomarker as a
+function of dose, schedule and time, linked to a time-to-event model for
+infection. The question the link answers is which feature of the trajectory
+carries the risk: the current value, the rate of change, or the cumulative
+time spent under a threshold. Thresholds such as an absolute neutrophil
+count below 0.5 x 10^9^/L, or an IgG in the 400 to 500 mg/dL range at which
+immunoglobulin replacement is considered, are already used in practice as if
+the answer were the current value, and they are the comparator any model has
+to beat.
+
+**Why pooling across studies.** Grade 3 or higher infections are uncommon
+enough that a single early-phase cohort produces a handful of events, which
+will not support a model with several biomarkers in it. The events exist
+across trials, drug classes and sponsors: anti-CD20 antibodies, T-cell
+engagers, CAR-T, and cytotoxic chemotherapy all deplete some part of the
+same system. Whether those studies can be pooled into one model, or only
+into one meta-analysis of separate fits, is the first thing the project has
+to answer.
+
+**Out of scope.** This is not a mechanistic model of immune reconstitution,
+not a vaccine-response analysis, and not a dosing recommendation for any
+individual drug.
+
+## What has to be settled before starting
+
+1. **The data.** Which pooled sources are reachable, and whether they carry
+   individual patient records or only published summary curves. Vivli, Project
+   Data Sphere, the YODA Project and figures digitized from publications are
+   the candidates, and they differ in what a longitudinal model can be fit
+   to.
+2. **The infection endpoint.** Whether infection is recorded consistently
+   enough across sources to be one endpoint. Grading, adjudication, and the
+   distinction between a documented pathogen and a febrile episode all vary.
+3. **Assay comparability.** Whether a B cell count from flow cytometry at one
+   site is the same measurement as at another, and what the lower limit of
+   quantification does to trajectories that go to zero and stay there.
+4. **Whether it has been done.** The searched literature has each piece
+   separately: one pooled analysis relating days of severe neutropenia to
+   infection risk, one trial-level model linking a biomarker time course to
+   febrile neutropenia, and one sponsor programme pooling immunoglobulin
+   levels across thirteen studies. None combines them.
+   [References](references.qmd) says what each leaves open.
+
+## Documents
+
+- [Working specification](specification.qmd). The population, the map of what
+  links to infection, the biomarkers, the infection endpoint, the model and
+  its comparator, the confounding, and the sequence to build it in. Its **In
+  brief** section is one screen and says what the rest argues.
+- [References](references.qmd). Sixteen papers in three queues: what a
+  neutrophil, lymphocyte or immunoglobulin level does to infection risk, the
+  model-based predictions already published, and the two ways to link a
+  trajectory to an event. Nothing has been read, so every entry carries ❌,
+  and the top of the page says where to start.
