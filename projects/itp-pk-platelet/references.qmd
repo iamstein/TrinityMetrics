@@ -800,15 +800,15 @@ These are the models that exist, and the specification borrows its platelet
 layer from them. They are for thrombopoietin receptor agonists (TPO-RAs), which
 act on production; the table says what transfers and what does not.
 
-| Drug, source | Data | Platelet structure | Drug effect | What transfers to Section 8.3 |
-|:---|:---|:---|:---|:---|
-| Eltrombopag in ITP, entry 26 ✅ | 88 ITP on drug, 67 on placebo, 6-week Phase 3 | Precursor, 2 transit, blood; $k_{\rm in}$, $k_T$ fixed to healthy-volunteer values | Linear on $k_{\rm in}$: 58% per µg/mL | The mixture (19% non-responders with slope 0), the faster $k_{\rm deg}$ in ITP, the finding that ITP data alone cannot identify the maturation chain |
-| Romiplostim in ITP, entry 27 ❌ | 268 ITP within 12 months of diagnosis, 7 studies, 7,854 counts, 1-15 µg/kg, up to 3 years | Progenitor, 4 transit, circulating | Linear with exposure, plus a term in cumulative dose | The titration simulation; the cumulative-dose term is a warning that a TPO-RA effect is not stationary |
-| Romiplostim in healthy subjects, entry 6 ❌ | 32 subjects, single doses 0.1-10 µg/kg | 10 age compartments each for precursors and platelets; receptor-mediated clearance with receptors proportional to platelet count | Hill on $k_{\rm in}$: $S_{\max}$ 11.2, SC50 0.052 ng/mL | Precursor lifespan 5.9 d and platelet lifespan 10.5 d; the clearance-depends-on-platelets structure is the TPO-RA version of Section 11's confounding |
-| Eltrombopag in chemotherapy thrombocytopenia and liver disease, entry 5 ❌ | Non-ITP | Precursor, 2 transit, blood | Linear on production | A second parameter set for the same structure |
-| Lusutrombopag, avatrombopag, Related section ❌ | Healthy, liver disease, ITP protocols | Same lifespan family | Proportional to concentration | Nothing new |
+| Drug, source | Data | Platelet structure | Drug effect | What transfers to Section 8.3 | Reference |
+|:---|:---|:---|:---|:---|:---|
+| Eltrombopag in ITP, entry 26 ✅ | 88 ITP on drug, 67 on placebo, 6-week Phase 3 | Precursor, 2 transit, blood; $k_{\rm in}$, $k_T$ fixed to healthy-volunteer values | Linear on $k_{\rm in}$: 58% per µg/mL | The mixture (19% non-responders with slope 0), the faster $k_{\rm deg}$ in ITP, the finding that ITP data alone cannot identify the maturation chain | Hayes et al., *J Clin Pharmacol* 2011;51:1403, [doi](https://doi.org/10.1177/0091270010383019) |
+| Romiplostim in ITP, entry 27 ❌ | 268 ITP within 12 months of diagnosis, 7 studies, 7,854 counts, 1-15 µg/kg, up to 3 years | Progenitor, 4 transit, circulating | Linear with exposure, plus a term in cumulative dose | The titration simulation; the cumulative-dose term is a warning that a TPO-RA effect is not stationary | *Blood* 2021;138(Suppl 1):4221, [ASH](https://ashpublications.org/blood/article/138/Supplement%201/4221/481471/) |
+| Romiplostim in healthy subjects, entry 6 ❌ | 32 subjects, single doses 0.1-10 µg/kg | 10 age compartments each for precursors and platelets; receptor-mediated clearance with receptors proportional to platelet count | Hill on $k_{\rm in}$: $S_{\max}$ 11.2, SC50 0.052 ng/mL | Precursor lifespan 5.9 d and platelet lifespan 10.5 d; the clearance-depends-on-platelets structure is the TPO-RA version of Section 11's confounding | Wang et al., *AAPS J* 2010, [PMC2976980](https://pmc.ncbi.nlm.nih.gov/articles/PMC2976980/) |
+| Eltrombopag in chemotherapy thrombocytopenia and liver disease, entry 5 ❌ | Non-ITP | Precursor, 2 transit, blood | Linear on production | A second parameter set for the same structure | *Cancer Chemother Pharmacol* 2013, [doi](https://doi.org/10.1007/s00280-013-2150-9); *Br J Clin Pharmacol*, [PMC4371540](https://pmc.ncbi.nlm.nih.gov/articles/PMC4371540/) |
+| Lusutrombopag, avatrombopag, Related section ❌ | Healthy, liver disease, ITP protocols | Same lifespan family | Proportional to concentration | Nothing new | *Clin Pharmacokinet* 2016, [doi](https://doi.org/10.1007/s40262-016-0411-6) |
 
-: TPO-RA PK-platelet models and what the specification takes from each {tbl-colwidths="[18,20,22,16,24]"}
+: TPO-RA PK-platelet models and what the specification takes from each {tbl-colwidths="[15,17,19,13,18,18]"}
 
 ### 26. Hayes et al. 2011 — eltrombopag population PK/PD in ITP, with response-guided dosing ✅
 
@@ -922,14 +922,14 @@ indirect-response model of B-cell depletion. Numbers were extracted from the
 full papers by a fetch tool rather than read by eye, so each carries ⚠️: the
 paper is the source, and the transcription has not been checked.
 
-| Drug, entry | Patients, doses | Drug effect form | $EC_{50}$ outcome |
-|:---|:---|:---|:---|
-| Ofatumumab, 32 | 1,486; 3 to 700 mg, five studies, two arms with partial depletion | Sigmoid $E_{\max}$ on lysis within TMDD | Estimated, 0.0057 mg/L, 8.5% RSE; $E_{\max}$ 159 |
-| Rituximab paediatric, 31 | 63; full dose; 281 CD19 counts, 52% below LOQ | $E_{\max}$ on degradation | Estimated, 0.69 mg, 61% RSE, CI 0.18 to 2.26; $E_{\max}$ 155 |
-| Inebilizumab, 33 | 213; 0.1 to 10 mg/kg and 30 to 600 mg | Log-linear slope on removal | Abandoned: below PK LLOQ |
-| Rituximab nephropathy, 34 | 41; 375 mg/m² × 4, 1000 mg × 2, 100 mg monthly | TMDD, elimination of the drug-CD20 complex | Binding constant 60% RSE |
+| Drug, entry | Patients, doses | Drug effect form | $EC_{50}$ outcome | Reference |
+|:---|:---|:---|:---|:---|
+| Ofatumumab, 32 | 1,486; 3 to 700 mg, five studies, two arms with partial depletion | Sigmoid $E_{\max}$ on lysis within TMDD | Estimated, 0.0057 mg/L, 8.5% RSE; $E_{\max}$ 159 | Yu et al., *CNS Drugs* 2022, [doi:10.1007/s40263-021-00895-w](https://doi.org/10.1007/s40263-021-00895-w) |
+| Rituximab paediatric, 31 | 63; full dose; 281 CD19 counts, 52% below LOQ | $E_{\max}$ on degradation | Estimated, 0.69 mg, 61% RSE, CI 0.18 to 2.26; $E_{\max}$ 155 | *Pharmaceutics* 2023;15:2534, [doi:10.3390/pharmaceutics15112534](https://doi.org/10.3390/pharmaceutics15112534) |
+| Inebilizumab, 33 | 213; 0.1 to 10 mg/kg and 30 to 600 mg | Log-linear slope on removal | Abandoned: below PK LLOQ | Yan et al., *Br J Clin Pharmacol* 2022, [doi:10.1111/bcp.15332](https://doi.org/10.1111/bcp.15332) |
+| Rituximab nephropathy, 34 | 41; 375 mg/m² × 4, 1000 mg × 2, 100 mg monthly | TMDD, elimination of the drug-CD20 complex | Binding constant 60% RSE | [PMC11002205](https://pmc.ncbi.nlm.nih.gov/articles/PMC11002205/) |
 
-: What each model could and could not estimate {tbl-colwidths="[22,30,24,24]"}
+: What each model could and could not estimate {tbl-colwidths="[18,24,18,18,22]"}
 
 ### 31. Rituximab CD19+ suppression, population PD in paediatric patients ⚠️
 

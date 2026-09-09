@@ -372,21 +372,21 @@ response figure were checked against a source; most were not.
 
 | Drug | Target and mechanism | Status in ITP, and line | Response as reported | |
 |:---|:---|:---|:---|:--|
-| **Deplete B cells** | | | | |
+| **Deplete B cells** | | | | | |
 | Rituximab | Chimeric anti-CD20 IgG1; complement- and antibody-dependent lysis of CD20+ B cells | Off-label second line, 375 mg/m² or 100 mg weekly × 4 | About 60% initial, 20 to 30% at five years | ❌ |
 | Ianalumab | Afucosylated anti-BAFF-R IgG1; ADCC-enhanced depletion plus BAFF-R signalling blockade | Phase 3 complete (VAYHIT2, with eltrombopag after first line; VAYHIT1 later line); not approved at time of writing; 4 monthly doses | 12-month freedom from treatment failure 54% at 9 mg/kg, 51% at 3 mg/kg, 30% placebo | ❌ |
 | Obinutuzumab, obexelimab, telitacicept, povetacicept | Anti-CD20; anti-CD19/FcγRIIb; TACI-Fc; APRIL/BAFF inhibitor | Searched, nothing in ITP found | None | ❌ |
-| **Deplete plasma cells** | | | | |
+| **Deplete plasma cells** | | | | | |
 | Mezagitamab | Anti-CD38 IgG1, subcutaneous; depletes plasmablasts and plasma cells | Phase 2b positive, Phase 3 ongoing, chronic ITP | 10 of 11 responders at 600 mg weekly × 8, 3 of 13 on placebo | ❌ |
-| **Remove the autoantibody** | | | | |
+| **Remove the autoantibody** | | | | | |
 | Efgartigimod | FcRn-blocking IgG1 Fc fragment; accelerates IgG catabolism | Approved in Japan 2024, IV, primary ITP; ADVANCE NEXT running for FDA | Sustained response 25.6% against 6.7% placebo, ADVANCE IV | ✅ |
 | Rozanolixizumab | Anti-FcRn IgG4, subcutaneous | Phase 2 in ITP; ITP programme not continued | Platelets $\ge 50$ at least once in 36 to 67% by arm | ❌ |
 | IVIg | Pooled IgG; FcRn competition and FcγR blockade | First line and rescue | The rodent-model drug of entries 28 and 29 | ❌ |
-| **Block the destruction step** | | | | |
+| **Block the destruction step** | | | | | |
 | Fostamatinib | SYK inhibitor prodrug (active moiety R406); blocks FcγR-mediated phagocytosis | FDA 2018, EMA 2020; chronic ITP after insufficient response to a prior therapy; 100 mg BID titrated to 150 | Stable response 18% across two Phase 3 studies | ✅ |
 | Rilzabrutinib | Reversible covalent BTK inhibitor; less autoantibody production and less FcγR phagocytosis | FDA August 2025; persistent or chronic ITP after insufficient response; 400 mg BID | Durable response 23% against 0% placebo, LUNA 3 | ✅ |
 | Orelabrutinib | BTK inhibitor, once daily | Phase 2 in China, Phase 3 ongoing | 40% at 50 mg, 22% at 30 mg, 33 patients | ❌ |
-| **Raise platelet production** | | | | |
+| **Raise platelet production** | | | | | |
 | Romiplostim | TPO receptor agonist peptibody, subcutaneous weekly | FDA 2008; ITP after insufficient response to corticosteroids, immunoglobulins or splenectomy; titrated 1 to 10 µg/kg | Response in most patients while dosed; loses response on stopping | ❌ |
 | Eltrombopag | Oral small-molecule TPO receptor agonist | FDA 2008; same line; 25 to 75 mg daily titrated | Same pattern; the 155-patient model is entry 26 | ❌ |
 | Avatrombopag | Oral TPO receptor agonist | FDA 2019 for chronic ITP | Same pattern | ❌ |
@@ -531,7 +531,7 @@ fit.
 
 | Symbol | What it is | Units | Full or reduced | How it is set |
 |:---|:---|:---|:---|:---|
-| **States** | | | | |
+| **States** | | | | | |
 | $B(t)$ | Circulating B-cell count | cells/µL | Both | Observed |
 | $B_{\rm tissue}(t)$ | B cells in spleen and marrow | relative to baseline | Full | Unobserved; proxies in Section 4 |
 | $A(t)$ | Anti-platelet IgG | relative to $A_{50}$ | Full | Latent, or observed where MAIPA is serial |
@@ -539,7 +539,7 @@ fit.
 | $P(t)$ | Circulating platelet count | $10^9$/L | Both | Observed; the endpoint |
 | $u(t) = 1 - B/B_0$ | Depletion signal | none, 0 to 1 | Reduced | Derived from $B$ |
 | $Z(t)$ | Transduced depletion signal, $u$ after a lag | none, 0 to 1 | Reduced | Derived |
-| **B-cell layer** | | | | |
+| **B-cell layer** | | | | | |
 | $B_0$ | Baseline B-cell count, $= k_{\rm in}/k_{\rm out}$ | cells/µL | Both | Estimated per patient |
 | $k_{\rm in}$ | B-cell production rate | cells/µL/day | Both | Estimated |
 | $k_{\rm out}$ | B-cell loss rate; sets repopulation speed | 1/day | Both | Estimated; published 0.0124/day (ofatumumab), half-life 173 d (rituximab) |
@@ -547,17 +547,17 @@ fit.
 | $C_{\rm ref}$ | Concentration scale for $S$ | mg/L | Both | Fixed at PK LLOQ |
 | $E_{\max}, EC_{50}$ | Alternative saturable drug effect | none, mg/L | Both | Fit only if a cohort has a quantifiable nadir (Section 6.2) |
 | $\alpha$ | Repopulation threshold defining $T_{\rm rep}$ | none | Both | Fixed, 0.2 |
-| **Autoantibody layer** | | | | |
+| **Autoantibody layer** | | | | | |
 | $k_{\rm syn}$ | Autoantibody production rate at baseline | 1/day | Full | Fixed; scale absorbed into $A_{50}$ |
 | $k_{\rm deg}$ | IgG elimination rate | 1/day | Full | Fixed, half-life about 21 d |
 | $\phi_i$ | Fraction of autoantibody production from long-lived plasma cells the drug does not deplete | none, 0 to 1 | Full | Random effect; the non-responder fraction |
 | $A_{50}$ | Autoantibody level doubling the destruction rate | same as $A$ | Full | Fixed; scale |
-| **Platelet layer** | | | | |
+| **Platelet layer** | | | | | |
 | $k_{\rm prod}$ | Precursor production rate | cells/day | Both | Fixed from TPO-RA models |
 | $k_{\rm tr}$ | Maturation transit rate | 1/day | Both | Fixed from TPO-RA models |
 | $k_{\rm dest,0}$ | Physiological platelet loss rate | 1/day | Both | Fixed from 7 to 10 d lifespan |
 | $k_{\rm dest}(t)$ | Actual platelet loss rate under disease and drug | 1/day | Both | Derived: from $A(t)$ in 8.3, from $Z(t)$ in 8.4 |
-| **Reduced-model link** | | | | |
+| **Reduced-model link** | | | | | |
 | $k_{e0}$ | Transduction rate from $u$ to $Z$ | 1/day | Reduced | Informative prior from rituximab time to response |
 | $\theta_i$ | Untreated excess destruction, as a multiple of $k_{\rm dest,0}$ | none | Reduced | Estimated per patient from pre-treatment counts |
 | $\eta_i$ | Fraction of $\theta_i$ the drug can remove; $\approx 1 - \phi_i$ | none, 0 to 1 | Reduced | Random effect with a mixture; the responder indicator |
@@ -1269,19 +1269,19 @@ reason 1 seen in data. The two failures, fostamatinib and efgartigimod, had
 Phase 3 and Phase 2 sample sizes respectively, both larger than the study in
 Section 1.
 
-| Drug, source | Data | What was attempted | Outcome | Entry |
-|:---|:---|:---|:---|:--|
-| **Blocking destruction, the project's class** | | | | |
-| Fostamatinib, FDA 2018 and EMA 2019 | 79 ITP patients, two Phase 3 studies, 200 or 300 mg/day titrated | Semi-mechanistic, direct-response and indirect-response models on continuous platelet count | All failed. Logistic regression at Week 12 found a slope that was gone by the Week 14 to 24 window; FDA read it as a relationship, CHMP as none | 23, 24 |
-| Efgartigimod, PMDA 2024 | Phase 2 Study 1603, 5 and 10 mg/kg | Total IgG to platelet count model, for Phase 3 dose selection | Could not explain between-patient variation in platelet count; Phase 3 dose chosen on IgG reduction instead | 25 |
-| Rilzabrutinib, FDA 2025 | 305 patients, 10,652 weekly counts, LUNA 2 and 3, essentially one dose | Indirect exposure-response model on longitudinal platelet count | Fit adequately. Continuous count rose with exposure; durable-response dichotomy flat across exposure quartiles; built after the dose was chosen, to confirm it | 22 |
-| **Raising production, for contrast** | | | | |
-| Eltrombopag, Hayes 2011 | 155 ITP patients, one 6-week Phase 3 | Lifespan model with a 19% non-responder mixture | Fit; used to simulate response-guided titration | 26 |
-| Romiplostim, ASH 2021 | 268 ITP patients, 7 studies, 1 to 15 µg/kg | Progenitor, four transit, circulating; effect linear in exposure plus cumulative dose | Fit; used to confirm titration | 27 |
-| **Blocking destruction, in animals** | | | | |
-| IVIg, Balthasar group 2003 and 2007 | Rat and mouse antibody-induced ITP | FcRn-competition PK with indirect response from antibody concentration to platelet count | Fit; about half of the IVIg effect attributed to faster antibody clearance | 28, 29 |
+| Drug, source | Data | What was attempted | Outcome | Entry | Reference |
+|:---|:---|:---|:---|:--|:---|
+| **Blocking destruction, the project's class** | | | | | |
+| Fostamatinib, FDA 2018 and EMA 2019 | 79 ITP patients, two Phase 3 studies, 200 or 300 mg/day titrated | Semi-mechanistic, direct-response and indirect-response models on continuous platelet count | All failed. Logistic regression at Week 12 found a slope that was gone by the Week 14 to 24 window; FDA read it as a relationship, CHMP as none | 23, 24 | [FDA NDA 209299 multidisciplinary review, 2018](https://www.accessdata.fda.gov/drugsatfda_docs/nda/2018/209299Orig1s000MultidisciplineR.pdf), pp. 216-217; [EMA/CHMP/654949/2019](https://www.ema.europa.eu/en/documents/assessment-report/tavlesse-epar-public-assessment-report_en.pdf), pp. 53, 76 |
+| Efgartigimod, PMDA 2024 | Phase 2 Study 1603, 5 and 10 mg/kg | Total IgG to platelet count model, for Phase 3 dose selection | Could not explain between-patient variation in platelet count; Phase 3 dose chosen on IgG reduction instead | 25 | [PMDA review report, Vyvgart for ITP, 6 March 2024](https://www.pmda.go.jp/files/000273743.pdf), §6.R.1 |
+| Rilzabrutinib, FDA 2025 | 305 patients, 10,652 weekly counts, LUNA 2 and 3, essentially one dose | Indirect exposure-response model on longitudinal platelet count | Fit adequately. Continuous count rose with exposure; durable-response dichotomy flat across exposure quartiles; built after the dose was chosen, to confirm it | 22 | [FDA NDA 219685 integrated review, 2025](https://www.accessdata.fda.gov/drugsatfda_docs/nda/2025/219685Orig1s000IntegratedR.pdf), §14.5.2 |
+| **Raising production, for contrast** | | | | | |
+| Eltrombopag, Hayes 2011 | 155 ITP patients, one 6-week Phase 3 | Lifespan model with a 19% non-responder mixture | Fit; used to simulate response-guided titration | 26 | Hayes et al., *J Clin Pharmacol* 2011;51:1403, [doi:10.1177/0091270010383019](https://doi.org/10.1177/0091270010383019) |
+| Romiplostim, ASH 2021 | 268 ITP patients, 7 studies, 1 to 15 µg/kg | Progenitor, four transit, circulating; effect linear in exposure plus cumulative dose | Fit; used to confirm titration | 27 | *Blood* 2021;138(Suppl 1):4221, [ASH](https://ashpublications.org/blood/article/138/Supplement%201/4221/481471/) |
+| **Blocking destruction, in animals** | | | | | |
+| IVIg, Balthasar group 2003 and 2007 | Rat and mouse antibody-induced ITP | FcRn-competition PK with indirect response from antibody concentration to platelet count | Fit; about half of the IVIg effect attributed to faster antibody clearance | 28, 29 | Hansen and Balthasar, *J Pharm Sci* 2003;92:1206, [PubMed 12761810](https://pubmed.ncbi.nlm.nih.gov/12761810/); Deng and Balthasar, *J Pharm Sci* 2007;96:1625, [doi:10.1002/jps.20828](https://doi.org/10.1002/jps.20828) |
 
-: Where a PK-platelet model has been tried in ITP, and what happened {tbl-colwidths="[18,22,26,28,6]"}
+: Where a PK-platelet model has been tried in ITP, and what happened {tbl-colwidths="[14,18,20,22,4,22]"}
 
 **What the three regulatory attempts say together.** At Phase 2 size the
 model did not identify; at Phase 3 size with two titrated doses no continuous
