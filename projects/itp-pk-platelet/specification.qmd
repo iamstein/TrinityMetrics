@@ -116,7 +116,9 @@ scheme, not a dose recommendation for any real compound.
 
 ------------------------------------------------------------------------
 
-## 1. Objective
+## 1. Objective and preliminary conclusion
+
+### 1.1 Objective
 
 Determine whether a joint model of drug concentration, circulating B-cell
 count and platelet count, fit to a Phase 1 dose escalation plus expansion
@@ -138,6 +140,65 @@ The setting assumed throughout:
 - primary clinical endpoint a durable platelet response, defined as platelet
   count $\ge 50 \times 10^9$/L sustained over a specified fraction of the
   observation window without rescue therapy.
+
+### 1.2 Preliminary conclusion
+
+The working view, before any of Section 15 has been run, is the statement
+below, and then an assessment of it.
+
+> PK-platelet modelling has not been helpful for agents that prevent platelet
+> destruction, as opposed to agents that enhance production, because of the
+> nature of the endpoint: the endpoint is a dichotomy, and what platelets do
+> in the presence of a B-cell depleter is return to normal. A responder's
+> count does not become more normal at a higher dose.
+
+**⚠️ Correct as a description of the record, correct about the main reason,
+and it understates what a model can still do.** Taking the three parts in
+turn.
+
+**"Has not been helpful": true of every case found.** Three regulatory
+programmes for destruction-blocking drugs attempted a platelet model
+(Section 19.1, table). Fostamatinib's continuous models all failed;
+efgartigimod's Phase 2 IgG-to-platelet model could not explain the
+between-patient variation and the Phase 3 dose was chosen on IgG;
+rilzabrutinib's model fit but was built after the dose was chosen and found
+the durable-response endpoint flat across exposure. None selected a dose. The
+production drugs, by contrast, have published models that were used for
+titration (Section 19.2, reason 4).
+
+**"Because the endpoint is a dichotomy and platelets return to normal": the
+main reason, with two qualifications.** The first is that "return to
+normal" is a simplification. Under the IWG criteria (Section 3.1) a
+rituximab responder reaches complete response, above 100, in roughly 40% of
+treated patients and only response, 30 to 100 with a doubling, in another 20
+or so; there is a graded layer inside the responders, and the rilzabrutinib
+review saw it, as a continuous count that rose with exposure while the
+dichotomy did not. The graded layer is small next to the responder split,
+and dose acts mostly on the split, but it is not zero. The second is that
+the dichotomy is not the only reason. Titration to the platelet count and
+intrapatient escalation each broke exposure-response for at least one of the
+three programmes (Section 19.2, reasons 5 and 6), and a fixed-dose
+parallel-arm study removes both without touching the endpoint.
+
+**What it understates.** If dose acts on the probability of response and not
+on its size, the model to build is a model of that probability, with the
+longitudinal count used to classify each patient's response earlier and more
+reliably than a threshold on noisy counts does, and the escalation cohorts
+pooled through a dose-response shape (Sections 8.4, 12 and 14). That model
+has a bounded gain: it cannot beat one coin flip per patient, and Section 14
+puts the bound at a factor of 2 to 5 in patients when the shape is right and
+nothing when it is wrong. It also answers questions the dichotomy cannot,
+time to response, durability, and the consequence of a dose interruption or a
+drug interaction, which is what the rilzabrutinib review used its model for.
+
+**So the preliminary conclusion is narrower than the statement.** A
+PK-platelet model of the classical, graded kind will not help here, and the
+record says so. A dose-to-responder-probability model with a longitudinal
+component may help when the two candidate doses are within 10 points of
+each other in response rate, and cannot help when they are further apart,
+because the raw rates already decide. Whether it helps in the close case
+depends on a shape assumption that Section 15 exists to test. Run the
+simulation study; do not yet fit a model to real data.
 
 ## 2. Uncertainties, ranked
 
@@ -444,7 +505,10 @@ with a quantifiable nadir and quantifiable PK. Ofatumumab had both, from its
 So the proportional model is the identifiable one, and not by convention. The
 specification parameterizes Section 8.2 as a log-linear slope on the loss
 rate and keeps $E_{\max}$ as an alternative to test only if the lowest
-escalation cohort shows a quantifiable nadir. The slope is what the time to
+escalation cohort shows a quantifiable nadir. The full argument, with the
+simulations and the design that would change the answer, is the
+[B-cell indirect-response estimation](../bcell-indresp-est/ec50-identifiability.qmd)
+project. The slope is what the time to
 repopulation depends on, so nothing downstream loses anything.
 
 **What the duration signal carries.** With linear PK in the tail,

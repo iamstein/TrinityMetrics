@@ -1,0 +1,32 @@
+---
+title: "B-cell indirect-response estimation"
+subtitle: "Why EC50 is hard to estimate for a B-cell depleting agent"
+description: "Index of the documents in the bcell-indresp-est project: the identifiability analysis with its simulations, and its references."
+categories: [pharmacometrics, identifiability, immunology, working document]
+date: last-modified
+toc: false
+---
+
+Published indirect-response models of B-cell depletion report an $E_{\max}$
+near 150 and an $EC_{50}$ that is either wide, fixed from in vitro data, or
+abandoned for a slope. This project works out why: the information that
+separates the two parameters sits in the first three days after dosing and in
+a concentration band two orders of magnitude below $EC_{50}$, and a study that
+samples B cells weekly at therapeutic doses has neither. The simulations run
+on every render.
+
+## Documents
+
+- [EC50 identifiability](ec50-identifiability.qmd). The model, the arithmetic
+  of a large $E_{\max}$, where the information lives, expected precision by
+  design from the Fisher information, the likelihood ridge, the published
+  record, the slope parameterization, and what a study needs if it wants
+  $EC_{50}$. Its **In brief** section is one screen and says what the rest
+  argues.
+- [References](references.qmd). The two classic papers on $E_{\max}$
+  estimation from truncated data, the indirect-response model sources, and the
+  five published B-cell depletion models, each with a marker recording whether
+  the claim drawn from it has been checked.
+
+The [ITP-PK-Platelet](../itp-pk-platelet/index.qmd) project is where the
+question came from; its Section 6.2 is the short version.

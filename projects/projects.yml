@@ -52,6 +52,15 @@
   categories: [PMX project, Draft]
   path: itp-pk-platelet/index.qmd
 
+- title: "B-cell indirect-response estimation"
+  subtitle: "Working document"
+  description: >
+    Why the EC50 of a B-cell depleting antibody is so hard to estimate: where
+    the information separating Emax from EC50 lives, what the published
+    models found, and what a study needs to see it. With simulations.
+  categories: [PMX project, Draft]
+  path: bcell-indresp-est/index.qmd
+
 - title: "Claude Code at Work"
   subtitle: "Talk"
   description: >

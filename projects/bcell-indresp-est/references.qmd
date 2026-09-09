@@ -1,0 +1,189 @@
+---
+title: "References for the B-cell indirect-response estimation document"
+subtitle: "The theory of Emax identifiability, and the published B-cell depletion models"
+description: "Sources for the EC50 identifiability document: the two classic papers on estimating Emax-model parameters from truncated data, the indirect-response model literature, and the five published B-cell depletion models, each with a marker recording whether the claim drawn from it has been checked."
+categories: [pharmacometrics, identifiability, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing here has been read in full.** Entries 5 to 8 were extracted from
+the full papers by a fetch tool on 2026-09-09 and carry ⚠️: the numbers came
+from the paper, and the transcription has not been checked by eye. Every
+other entry is from an abstract or a search summary and carries ❌. The
+simulations in the working document do not depend on any of them; the
+parameter values were chosen to resemble entries 5 to 7 and the document says
+so where it uses them.
+:::
+
+The working document is [the EC50 identifiability page](ec50-identifiability.qmd),
+and the folder's other documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** Characterization from an abstract or a search result.
+- ⚠️ **Transcribed, unverified.** A number or model structure in the working
+  document came from the full source through a fetch tool, and has not been
+  checked against it by eye.
+- ✅ **Checked.** Verified against the source. None yet.
+
+## Where to start
+
+- **Entry 1 first.** It is the working document's Section 8 in its original
+  form, twenty-eight years earlier: when the data do not reach $E_{\max}$,
+  report $E_{\max}/EC_{50}$. Half an hour.
+- **Entry 2 next**, for the simulation evidence that a fit can be good while
+  $E_{\max}$ and $EC_{50}$ are both wrong, which is Section 6.
+- **Entries 5 and 7 together**, as the two ends of the published record: the
+  design that identified $EC_{50}$ and the design that gave it up. An hour
+  for both, on the parameter tables and the design descriptions.
+- **Entry 4 for the indirect-response model itself**, if the four Jusko
+  types are not already familiar.
+
+## Theory
+
+### 1. Schoemaker, van Gerven and Cohen 1998 — estimating potency without attaining maximal effects ❌
+
+*J Pharmacokinet Biopharm* 1998;26:581-593.
+[doi:10.1023/A:1023277201179](https://doi.org/10.1023/A:1023277201179) ·
+[PubMed 10205772](https://pubmed.ncbi.nlm.nih.gov/10205772/)
+
+**What it says**, from the abstract: $E_{\max}$-model parameters can be
+estimated with reasonable precision only if the curve shows signs of reaching
+a maximum; otherwise both $EC_{50}$ and $E_{\max}$ may be extremely imprecise.
+Proposes the parameter $S_0 = E_{\max}/EC_{50}$, which characterizes potency
+adequately without a maximum.
+
+**The question.** Whether the paper treats the case where the maximum *is*
+reached but is censored, which is the B-cell case, or only the case where it
+is never approached. The conclusion is the same; the argument may differ.
+
+### 2. Dutta, Matsumoto and Ebling 1996 — sigmoid Emax parameters from truncated clinical data ❌
+
+*J Pharm Sci* 1996;85:232-239.
+[doi:10.1021/js950067y](https://doi.org/10.1021/js950067y) ·
+[PubMed 8683454](https://pubmed.ncbi.nlm.nih.gov/8683454/)
+
+**What it says**, from the abstract: when the highest measured effect was
+below 95% of $E_{\max}$, $E_{\max}$ and $EC_{50}$ were poorly estimated, with
+high coefficients of variation and pronounced bias, while the fit to the data
+was good and descriptors within the data range were estimated precisely.
+
+**The question.** The size of the simulation and the bias direction, to
+compare with Section 6's ridge.
+
+### 3. Dayneka, Garg and Jusko 1993 — four basic indirect response models ❌
+
+*J Pharmacokinet Biopharm* 1993;21:457-478.
+
+The origin of the model in Section 1. Stimulation of $k_{\rm out}$ is the
+fourth of the four. Not yet retrieved.
+
+### 4. Sharma and Jusko 1998 — characteristics of indirect pharmacodynamic models ❌
+
+*Br J Clin Pharmacol* 1998;45:229-239.
+
+The properties of the four models: time of maximal response, dependence on
+dose, and the relationship between the response nadir and $E_{\max}$. The
+steady-state relation in Section 3 is in here. Not yet retrieved.
+
+## Published B-cell depletion models
+
+The table in Section 7 of the working document summarizes these; the entries
+below carry the numbers and the questions.
+
+### 5. Yu et al. 2022 — ofatumumab population PK-B cell model in relapsing MS ⚠️
+
+*CNS Drugs* 2022.
+[doi:10.1007/s40263-021-00895-w](https://doi.org/10.1007/s40263-021-00895-w) ·
+[PMC8927028](https://pmc.ncbi.nlm.nih.gov/articles/PMC8927028/)
+
+**Transcribed.** Quasi-steady-state TMDD for PK; indirect response on B cells
+with sigmoid $E_{\max}$ stimulation of lysis by total ligand concentration.
+Five studies, 1,486 patients: 100 to 700 mg intravenous; the MIRROR Phase 2 at
+3, 30 and 60 mg every 12 weeks and 60 mg every 4 weeks subcutaneous; the 20 mg
+monthly Phase 3 regimen. $EC_{50}$ 0.0057 mg/L (RSE 8.5%), $E_{\max}$ 159
+(RSE 3.2%), $k_{\rm out}$ 0.0124 per day (RSE 5.2%), baseline 194 cells/µL.
+$K_D$ and $k_{\rm off}$ fixed to preclinical values. "The 10-mg dose did not
+appear to achieve a similar level of depletion as the 20-mg dose until after
+6 months."
+
+**The question.** The B-cell sampling schedule in MIRROR during the first
+week, and the depletion profiles of the 3 mg arm: whether they sit in the band
+of Section 3, and whether the fall was sampled.
+
+### 6. Rituximab CD19+ suppression, population PD in paediatric patients ⚠️
+
+*Pharmaceutics* 2023;15(11):2534.
+[doi:10.3390/pharmaceutics15112534](https://doi.org/10.3390/pharmaceutics15112534) ·
+[PMC10674351](https://pmc.ncbi.nlm.nih.gov/articles/PMC10674351/)
+
+**Transcribed.** Turnover model on CD19+ with rituximab amount raising the
+degradation rate through $E_{\max} A / (ED_{50} + A)$; a linear form fit
+significantly worse, a sigmoid no better. 63 patients, 281 measurements, 52%
+below the limit. $E_{\max}$ 155 (RSE 23%, CI 153 to 713), $ED_{50}$ 0.692 mg
+(RSE 61%, CI 0.177 to 2.259), $k_{\rm deg}$ 0.004 per day, CD19 half-life 173
+days, rituximab half-life 11.6 days. "The studied dose-range and the highly
+efficacious doses may have contributed to hampering a precise estimation."
+
+**The question.** Why the linear form fit worse if the ridge argument holds.
+The likely answer is the early samples: a linear effect at high amount gives
+an implausibly fast fall. That would be Section 4's first region doing its
+work, and their sampling times would show it.
+
+### 7. Yan et al. 2022 — inebilizumab PD modelling in NMOSD ⚠️
+
+*Br J Clin Pharmacol* 2022.
+[doi:10.1111/bcp.15332](https://doi.org/10.1111/bcp.15332) ·
+[PMC9545531](https://pmc.ncbi.nlm.nih.gov/articles/PMC9545531/)
+
+**Transcribed.** Haematopoietic transit model with inebilizumab accelerating
+removal from every compartment. 213 subjects across 0.1 to 10 mg/kg and 30 to
+600 mg. "The estimated EC50 ... was less than the assay lower limit of
+quantitation due to the high potency of inebilizumab," so the effect became
+$k = \text{slope} \cdot \log C$: slope 0.0140 (SE 0.0006), lifespan 391 days
+(SE 50), baseline 135 cells/µL; between-patient CV 52% on slope and 126% on
+lifespan; proportional residual error 61%.
+
+**The question.** Whether the Phase 1 dose-ranging arms at 0.1 and 0.3 mg/kg
+produced partial depletion, and if so why they did not carry $EC_{50}$. The
+working document's answer is that they sat below the band; the paper's
+profiles would confirm or refute it.
+
+### 8. Rituximab population PK/PD in primary membranous nephropathy ⚠️
+
+[PMC11002205](https://pmc.ncbi.nlm.nih.gov/articles/PMC11002205/)
+
+**Transcribed.** Quasi-steady-state TMDD with elimination of the drug-CD20
+complex standing in for lysis; no separate $E_{\max}$. 41 patients, 220
+CD20+ counts, sampled before each infusion. $k_{ss}$ 6.21 per µmol at 60%
+RSE.
+
+### 9. Baltcheva et al. 2018 — model-based dose selection for ianalumab in Sjögren's ❌
+
+PAGE 2018.
+[abstract](https://www.page-meeting.org/Abstracts/model-based-dose-selection-for-the-phase-2b-study-of-ianalumab-in-primary-sjogrens-syndrome/)
+
+Two-compartment linear PK; indirect-effect B-cell turnover; a separate tissue
+receptor-occupancy model. No parameter estimates in the abstract.
+
+### 10. Bar-Or et al. 2018 — the MIRROR study of subcutaneous ofatumumab ❌
+
+*Neurology* 2018. [PMC5957306](https://pmc.ncbi.nlm.nih.gov/articles/PMC5957306/)
+
+232 patients randomized to 3, 30 or 60 mg every 12 weeks, 60 mg every 4
+weeks, or placebo; dose-dependent CD19 depletion. The data behind entry 5's
+low-dose arms, and where the sampling schedule for the question under entry 5
+would be found.
+
+## Related, not yet placed
+
+- **Raue et al. 2009**, structural and practical identifiability by the
+  profile likelihood, *Bioinformatics* 25:1923. The general method for the
+  ridge in Section 6, applied to ODE models.
+- **Kirby et al. 2011**, fitting $E_{\max}$ models to clinical trial
+  dose-response data, *Pharm Stat* 10:143. The dose-response rather than
+  concentration-response version of entries 1 and 2.
