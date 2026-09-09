@@ -1235,84 +1235,100 @@ are expected to change there.
 
 Platelet count is the primary endpoint of every ITP trial, so the absence of a
 PK-platelet model for any immunomodulatory agent in ITP needs an explanation
-before the project assumes it can build one.
-
-**The published PK-platelet models in ITP are all for drugs that stimulate
-platelet production, and none is for a drug that blocks platelet
-destruction.** Seven reasons, ranked by how much each one would still bite
-this project. The evidence for each is in
+before the project assumes it can build one. The reasons split into two
+groups: those that would bite this project, and those that explain other
+programmes and do not apply here. The evidence for each is in
 [references.qmd](references.qmd).
 
-**1. The mechanism that got modelled is the one with a graded dose-response.**
-A thrombopoietin receptor agonist raises $k_{\rm prod}$ in Section 8.3
-directly, continuously, and with a lag of days. Every patient's platelet count
-moves, the size of the move scales with dose, and the loop from dose to
-response closes inside two weeks. That is a textbook indirect-response
-problem, and the eltrombopag, romiplostim, avatrombopag and lusutrombopag
-models exist because of it. An immunomodulator acts on $k_{\rm dest}$ through
-an unmeasured autoantibody with a peak-response lag of 14 to 180 days
-(Section 3.5).
+### 19.1 Reasons that apply to this project
+
+**1. The response is binary, and dose moves the fraction of patients who
+respond rather than how far a responder goes.** When the drug works in a
+patient, the platelet count returns to normal. It does not become more normal
+at a higher dose. What a higher dose can do is convert more patients from
+non-responder to responder, so the dose-response lives in the mixture
+proportion and not in the size of any patient's rise. Continuous $E_{\max}$
+machinery on the platelet count fits the wrong shape, and the information per
+patient about dose is that of one binary outcome, which at Phase 1 sample
+sizes is little to fit. This is the reason the specification writes the drug
+effect as the mixture $\eta_i$ in Section 8.4 and scores dose selection on the
+predicted responder fraction in Section 13.
 
 **2. The endpoint is a dichotomy of a dichotomy.** CR and R are thresholds on
 platelet count, and recent trials add a durability requirement over 8 to 12
-weeks on top. What is reported is a proportion at one dose. A proportion at
-one dose is not something a model is needed for.
+weeks on top. What is reported is a proportion at one dose, and a proportion
+at one dose is not something a model is needed for. Section 12 is the
+response: fit the continuous count and derive the dichotomy from it.
 
-**3. The response is a mixture, not a graded effect.** Dose moves the
-probability that a patient responds, not the size of the rise in a patient who
-does. Continuous $E_{\max}$ machinery fits the wrong shape, and the
-information per patient in a binary outcome is low enough that Phase 1 sample
-sizes give little to fit.
+**3. Where a continuous platelet model was attempted for a drug that blocks
+destruction, it failed, except once at ten times this study's size.** The
+record is in the table below. The one success, rilzabrutinib, had 305 patients
+pooled across two trials at essentially one dose, and its dichotomous endpoint
+was flat across exposure even as the continuous count rose with it, which is
+reason 1 seen in data. The two failures, fostamatinib and efgartigimod, had
+Phase 3 and Phase 2 sample sizes respectively, both larger than the study in
+Section 1.
 
-**4. Doses are titrated to the endpoint.** Thrombopoietin receptor agonists
-and fostamatinib are dose-adjusted to hold platelets in a window. Dose then
-depends on response, which inverts the direction a standard exposure-response
-analysis assumes and makes the observed relationship uninterpretable without a
-model of the adjustment rule itself.
+| Drug, source | Data | What was attempted | Outcome | Entry |
+|:---|:---|:---|:---|:--|
+| **Blocking destruction, the project's class** | | | | |
+| Fostamatinib, FDA 2018 and EMA 2019 | 79 ITP patients, two Phase 3 studies, 200 or 300 mg/day titrated | Semi-mechanistic, direct-response and indirect-response models on continuous platelet count | All failed. Logistic regression at Week 12 found a slope that was gone by the Week 14 to 24 window; FDA read it as a relationship, CHMP as none | 23, 24 |
+| Efgartigimod, PMDA 2024 | Phase 2 Study 1603, 5 and 10 mg/kg | Total IgG to platelet count model, for Phase 3 dose selection | Could not explain between-patient variation in platelet count; Phase 3 dose chosen on IgG reduction instead | 25 |
+| Rilzabrutinib, FDA 2025 | 305 patients, 10,652 weekly counts, LUNA 2 and 3, essentially one dose | Indirect exposure-response model on longitudinal platelet count | Fit adequately. Continuous count rose with exposure; durable-response dichotomy flat across exposure quartiles; built after the dose was chosen, to confirm it | 22 |
+| **Raising production, for contrast** | | | | |
+| Eltrombopag, Hayes 2011 | 155 ITP patients, one 6-week Phase 3 | Lifespan model with a 19% non-responder mixture | Fit; used to simulate response-guided titration | 26 |
+| Romiplostim, ASH 2021 | 268 ITP patients, 7 studies, 1 to 15 µg/kg | Progenitor, four transit, circulating; effect linear in exposure plus cumulative dose | Fit; used to confirm titration | 27 |
+| **Blocking destruction, in animals** | | | | |
+| IVIg, Balthasar group 2003 and 2007 | Rat and mouse antibody-induced ITP | FcRn-competition PK with indirect response from antibody concentration to platelet count | Fit; about half of the IVIg effect attributed to faster antibody clearance | 28, 29 |
 
-**5. Dose-ranging designs in ITP destroy the dose contrast.** The rilzabrutinib
-Phase 1/2 dose-finding study used intrapatient escalation across four dose
-levels, so dose is confounded with time on drug within every patient. The
-orelabrutinib Phase 2 randomized two doses and is the exception.
+: Where a PK-platelet model has been tried in ITP, and what happened {tbl-colwidths="[18,22,26,28,6]"}
 
-**6. Sponsors tried platelets first, fell back to the clean biomarker, and
-the regulators accepted the fallback.** The PMDA review of efgartigimod
-records that argenx built a model from total IgG to platelet count on the
-Phase 2 data, that "there was marked variation in the interindividual platelet
-count" the model could not explain, and that the Phase 3 dose was therefore
-chosen on IgG reduction (references, entry 25). Ianalumab's Phase 2b doses in
-Sjögren's were chosen from B cells and tissue receptor occupancy (entry 2).
-Rilzabrutinib's 400 mg BID came from BTK occupancy plateaus in mouse and human
-plus the raw Part A response by dose, and the platelet model was built
-afterwards to confirm it (entry 22). In every case the fast, continuous,
-saturable biomarker made the decision. This specification proposes going one
-link further, and Sections 7 and 17 are why that is hard.
+**What the three regulatory attempts say together.** At Phase 2 size the
+model did not identify; at Phase 3 size with two titrated doses no continuous
+model fit; at pooled Phase 2 and 3 size with one dose a model fit and showed a
+flat dose-response on the endpoint that counts. None was used to pick a dose.
+What remains open is whether a model built for the mixture, with the platelet
+layer fixed and the escalation cohorts pooled through a dose-response shape
+(Sections 8 and 14), does better at the sample sizes those three had. Section
+15 is that test.
 
-**7. Where the continuous model was attempted, the reviews record it
-failing, except once.** For fostamatinib, "none of the applicant's attempted
-models including semi-mechanistic, direct response, and indirect response
-model were successful for the platelet count analysis as a continuous
-variable" (FDA, entry 23), and "it was not possible to fit a continuous PK/PD
-model for the platelet count-time profiles" (EMA, entry 24). What survived was
-logistic regression at Week 12 on 79 patients, which the FDA read as a
-relationship and the CHMP read as none. The exception is rilzabrutinib, where
-an indirect exposure-response model on 10,652 platelet counts from 305 patients
-fit adequately (entry 22). It had ten times the patients of a Phase 1 study,
-one dose, and a mechanism with a 36-day median time to response instead of
-rituximab's 14 to 180 days to peak.
+### 19.2 Reasons that explain other programmes and do not apply here
 
-**The regulatory reviews have now been read, and they close the gap in one
-direction.** The absence of a published model is not because nobody tried.
-Three sponsors tried, with Phase 2 or Phase 3 data, and the reviews say what
-happened. What remains open is whether a model built to find a plateau rather
-than a slope, with the mixture and the fixed platelet layer of Section 8,
-does better at the sample size those three had, which is Section 15.
+Recorded because they account for most of the literature's shape, and so that
+they are not mistaken for obstacles to this project.
 
-**What this changes in the specification.** Reasons 2, 3 and 5 are design
-problems this project can specify around, and Sections 12, 13 and 15 do. Reason
-1 is the one that cannot be specified around: it is the same delay-and-latency
-problem as Section 17's first failure mode, seen from the endpoint's side
-rather than the biomarker's.
+**4. The mechanism that got modelled has a graded dose-response.** A
+thrombopoietin receptor agonist raises $k_{\rm prod}$ directly, every
+patient's count moves, the size of the move scales with dose, and the loop
+closes in two weeks. That is a textbook indirect-response problem, and the
+eltrombopag, romiplostim, avatrombopag and lusutrombopag models exist because
+of it. This project's drug class acts on $k_{\rm dest}$ through an unmeasured
+autoantibody, with a peak-response lag of 14 to 180 days (Section 3.5). The
+contrast explains which drugs have models; it is not itself an obstacle,
+since the project does not expect a graded response.
+
+**5. Doses are titrated to the endpoint.** Thrombopoietin receptor agonists
+and fostamatinib are dose-adjusted to hold platelets in a window, so dose
+depends on response and a standard exposure-response analysis reads
+backwards. The study in Section 1 gives fixed doses in fixed arms, so this
+does not arise, and the fostamatinib failure in the table above is partly
+this reason rather than reason 1.
+
+**6. Dose-ranging designs in ITP have destroyed the dose contrast.**
+Rilzabrutinib's dose-finding used intrapatient escalation over four levels,
+confounding dose with time on drug in every patient. The design in Section 1
+is parallel arms, so this does not arise either. The orelabrutinib Phase 2
+randomized two doses and is the one published ITP design of the shape assumed
+here.
+
+**7. Sponsors fell back to the clean biomarker, and regulators accepted it.**
+Efgartigimod's Phase 3 dose was chosen on IgG reduction after the platelet
+model failed; ianalumab's Phase 2b doses in Sjögren's on B cells and tissue
+receptor occupancy; rilzabrutinib's 400 mg BID on BTK occupancy plateaus plus
+raw Part A response by dose. In every case the fast, continuous, saturable
+biomarker made the decision. This is the path the project declines to take,
+for the reason in the In brief: complete depletion of circulating B cells is
+not the same thing as maximal platelet response.
 
 ## 20. The intended use
 

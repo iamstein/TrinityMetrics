@@ -23,7 +23,8 @@ here yet.
   definitions from the IWG 2009 consensus paper. Then the model, the data it
   requires, the identifiability problems, the dose selection rule, and the
   simulation study that scores the rule against picking the highest safe dose.
-  Section 15 gives seven ranked reasons no such model has been published. Its
+  Section 19 gives the reasons no such model has been published, split into
+  those that apply here and those that do not, with a table of every attempt. Its
   **In brief** section is one screen and says what the rest argues.
 - [References](references.qmd). The literature review that opens with what
   exists and what does not, then the reading queue in order, then a marker on
