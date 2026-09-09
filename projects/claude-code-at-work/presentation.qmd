@@ -24,12 +24,11 @@ format:
 
 ## Advantages of Claude Code over Positron + GitHub Copilot
 
-1. **Claude Code runs longer and requires less input from user**  But, better positron settings (Auto) might help (?).
-2. **Claude Code runs on my personal machine at home, using ordinary GitHub.** No
-   confusion with the GitHub Copilot setup and corporate Github account.
-3. **I can control Claude Code from my phone, my home machine, or my work machine**
+1. **I can use the latest Claude models (Fable).** 
+2. **I can control Claude Code from my phone, my home machine, or my work machine**
    with `/remote-control`.
-4. **I can use the latest Claude models (Fable).** 
+3. **Claude Code runs on my personal machine at home, using ordinary GitHub.** No confusion with the GitHub Copilot setup and corporate Github account.
+4. **Claude Code runs longer and requires less input from user**  But, better positron settings (Auto) might help (?).
 
  - First use of Fable, it kicked me down to Opus because I was working on "bio."
  - While Fable isn't needed for standard coding, I believe more sophisticated models may be useful for more complex tasks where standard models aren't available and careful literature review and novel methods are warranted.
