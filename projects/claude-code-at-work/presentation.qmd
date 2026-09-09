@@ -24,7 +24,7 @@ format:
 
 ## Advantages of Claude Code over Positron + GitHub Copilot
 
-1. **Claude Code runs longer and requires less input from user**
+1. **Claude Code runs longer and requires less input from user**  But, better positron settings (Auto) might help (?).
 2. **Claude Code runs on my personal machine at home, using ordinary GitHub.** No
    confusion with the GitHub Copilot setup and corporate Github account.
 3. **I can control Claude Code from my phone, my home machine, or my work machine**
