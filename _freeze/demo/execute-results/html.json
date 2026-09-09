@@ -1,0 +1,17 @@
+{
+  "hash": "cd6c0175f7ccefa94040a0867a5e94db",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Demo\"\nsubtitle: \"A plot of the cars dataset\"\ndescription: >\n  The built-in R dataset `cars` plotted: stopping distance against speed for\n  50 cars, with a least-squares fit.\ndate: last-modified\nexecute:\n  freeze: true\n  warning: false\n  message: false\ntoc: false\n---\n\n`cars` is one of R's built-in datasets. It holds two measurements on each of 50\ncars recorded in the 1920s: `speed`, in miles per hour, and `dist`, the distance\nin feet the car took to stop from that speed.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\n\nggplot(cars, aes(speed, dist)) +\n  geom_point(size = 2) +\n  geom_smooth(method = \"lm\", formula = y ~ x) +\n  labs(x = \"Speed (mph)\", y = \"Stopping distance (ft)\",\n       title = \"Stopping distance against speed, 50 cars\") +\n  theme_bw(base_size = 12)\n```\n\n::: {.cell-output-display}\n![](demo_files/figure-html/cars-plot-1.png){width=672}\n:::\n:::\n\n\nThe line is an ordinary least-squares fit of distance on speed, and the band\naround it is the 95% confidence interval on that fit.\n",
+    "supporting": [
+      "demo_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
