@@ -1,0 +1,666 @@
+---
+title: "References for the PK-platelet ITP working document"
+subtitle: "What the literature has, what it does not, and what to read in what order"
+description: "A review of published dose and PK-platelet modelling in immune thrombocytopenia, the reading queue for the PK-platelet dose selection specification, and a status marker on every source recording whether the claim drawn from it has been checked."
+categories: [pharmacometrics, immunology, dose selection, references]
+date: last-modified
+toc: true
+toc-depth: 3
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**One source has been read; the rest were assembled on 2026-09-09 from web
+search results and abstracts.** Entry 1, the IWG 2009 consensus paper, was
+read and is ✅, and Section 2 of the specification is transcribed from its
+tables. Every other marker is ❌, including the numbers Section 4 and Section
+12 of the specification quote: the ianalumab 3
+against 9 mg/kg comparison, the rituximab low-dose response rates, the
+efgartigimod immunoglobulin G reduction, and the four-compartment platelet
+model structure all come from search summaries rather than from the papers. A
+search summary is weaker evidence than an abstract, which is itself weaker
+than the paper. Treat each entry as a prediction about what its source says,
+and correct the entry when the source is read.
+:::
+
+The working document is [the specification](specification.qmd), and the
+folder's other documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the working document has been verified
+  against this source. Where the working document characterizes it, the
+  characterization comes from an abstract or a search result.
+- ⚠️ **Transcribed, unverified.** A number, table or model structure in the
+  working document came from this source but has not been checked against it.
+- ✅ **Checked.** Verified against the source.
+
+On a **reading-queue** entry, ✅ means the question posed against that entry
+has been answered, by reading the paper or by deciding it is out of scope, and
+the note on the entry says which. On a **source** entry below the queue, ✅
+keeps the stricter meaning: the claim the specification draws from it has been
+checked against the source. None is ✅ yet.
+
+## What the search found
+
+**No published model links drug concentration to platelet count for any drug
+in immune thrombocytopenia (ITP) that works by stopping antibody-mediated
+platelet destruction.** The search covered three mechanisms that do that:
+B-cell depletion (ianalumab, rituximab, obinutuzumab, obexelimab,
+telitacicept, povetacicept), plasma-cell depletion (mezagitamab), and blocking
+the destruction step itself (fostamatinib on spleen tyrosine kinase,
+rilzabrutinib and orelabrutinib on Bruton tyrosine kinase, efgartigimod and
+rozanolixizumab on the neonatal Fc receptor). Each was paired with population
+pharmacokinetic and pharmacodynamic (PK/PD) terms. What came back was clinical
+trial reports, models whose pharmacodynamic endpoint stops at a mechanistic
+biomarker, and one exposure-response analysis against platelet count that was
+reported as inconclusive. That absence is the project's premise and it is the
+first thing to falsify by hand, because a negative from a web search is weak
+evidence.
+
+**Why the gap exists is argued in Section 15 of the specification**, in seven
+ranked reasons, each drawn from an entry below. The short form: the drugs with
+published PK-platelet models in ITP all raise platelet *production*, which
+gives a graded dose-response with a lag of days, and the drugs in this
+project's class lower platelet *destruction* through an unmeasured
+autoantibody with a peak-response lag of 14 to 180 days.
+
+What does exist splits into five groups, and the specification borrows from
+four of them.
+
+| Group | State of the literature | What the specification takes |
+|:---|:---|:---|
+| PK-platelet models in ITP, for thrombopoietin receptor agonists | Mature. Lifespan and transit-compartment models fit to serial platelet counts, several drugs, regulatory use | The platelet-side structure and its fixed parameters (Section 5.3) |
+| Model-based dose selection in ITP | Exists, for a neonatal Fc receptor blocker, anchored on immunoglobulin G rather than on platelets | The precedent that this is done and accepted (Section 10) |
+| PK-B-cell models for B-cell depleting agents | Mature, in other diseases. Turnover models on circulating B cells, plus tissue receptor occupancy where circulating counts saturate | The depletion structure and the saturation argument (Sections 4, 5.2) |
+| PK-IgG models for FcRn blockers | Mature. Receptor occupancy drives immunoglobulin G suppression, fit across dose groups, used to select a Phase 3 ITP dose | The precedent, and the shape of a model that stops one link short (entries 3, 4) |
+| The join: drug → B cells → autoantibody → platelets, in ITP | Not found | Nothing. This is the gap the project sits in |
+
+: What the literature supplies and what it does not {tbl-colwidths="[26,42,32]"}
+
+Three findings from the search bear directly on whether the project's answer
+will be yes, each unverified and each with an entry below.
+
+**Dose-response looks flat over the ranges that have been studied.** Ianalumab
+at 3 and 9 mg/kg in ITP gave 12-month freedom-from-treatment-failure
+probabilities of 51% and 54% against 30% for placebo, a three-fold dose range
+separated by three percentage points (entry 14). Rituximab at 100 mg weekly
+and at 375 mg/m² weekly give pooled overall response rates around 60% and 69%,
+a four-fold dose range (entry 18). If both hold up on reading, the plateau in
+ITP starts low and the model's job is to find its bottom edge rather than to
+climb a slope.
+
+**The one worked example of model-based dose selection for this exact
+molecule class used a second biomarker precisely because circulating B cells
+saturate.** The ianalumab Phase 2b dose selection in primary Sjögren's
+syndrome (entry 2) paired a circulating B-cell turnover model with a
+hypothesis-driven tissue receptor occupancy model, and reportedly used the
+pair to space three doses. That is the specification's Section 4 argument,
+already made by someone else, for a different indication, and accepted by a
+regulator.
+
+**The one exposure-response analysis found against platelet count in ITP for a
+drug that blocks destruction came back inconclusive.** Fostamatinib inhibits
+spleen tyrosine kinase and therefore blocks the phagocytosis step directly.
+Responders had higher active-moiety concentrations than non-responders, but
+the review reports the correlation between exposure and achievement of the
+platelet endpoint as uncertain, while exposure against hypertension was
+significant (entry 10). Read that entry before deciding how much weight the
+result carries: an inconclusive analysis of a drug titrated to effect says
+less than an inconclusive analysis at fixed dose.
+
+**Exposure-response confounding is a documented failure mode for exactly this
+study shape.** The review literature on time-dependent clearance in
+therapeutic antibodies reports that single-dose-level designs carry a high
+probability of a false-positive exposure-response finding (entry 19). An
+escalation with a single-dose expansion cohort is that design. This is why
+Section 8 makes dose rather than exposure the independent variable in the
+selection rule.
+
+## Where to start
+
+Nine entries, and they answer different questions. Read in this order.
+
+- **Entry 1 first, and it is already read.** Section 2 of the specification is
+  what it produced. Re-read only to check a definition.
+- **Entry 2 next, and it may settle the project's shape.** It is the closest
+  published analogue: model-based Phase 2b dose selection for the same
+  molecule, in a different autoimmune disease. Budget one hour. If it turns
+  out that tissue receptor occupancy did the work and circulating B cells did
+  not, Section 13's first failure mode is confirmed before any code is
+  written.
+- **Entries 3 and 4 together**, for the precedent that a PK/PD model has
+  selected a dose in ITP and what it was anchored on. Entry 4 is the published
+  model and entry 3 is its application, so read 4 for the equations and 3 for
+  the decision. An hour.
+- **Entry 10 before deciding to build the project.** It is the one
+  published attempt at the thing this project proposes, and it did not work.
+  Half an hour on why.
+- **Entries 5 and 6 together**, as Milestone 1. They are the platelet-side
+  structure. The deliverable is a parameter table, so read for the equations
+  and the estimates, not for the conclusions.
+- **Entry 7 for the ITP-specific platelet control problem.** It applies a
+  romiplostim PK/PD model to choosing a dose profile in an ITP patient, which
+  is the closest thing found to the specification's question with the drug
+  class swapped.
+- **Entry 8 for the B-cell side**, as Milestone 2, and entry 9 for the
+  transduction delay prior in Milestone 3.
+- **Entries 16 and 17 for what ITP dose-ranging designs actually look like.**
+  Entry 17 is the only randomized two-dose comparison found in this drug
+  class, and entry 16 is the intrapatient escalation that a dose-response
+  model cannot be fit to. Twenty minutes each.
+- **Entry 19 before writing the analysis plan**, not before the model. It
+  changes what the analysis is allowed to claim rather than what it estimates.
+
+The general method for reading any of these is on the
+[Reading Papers](../../guides/reading-papers.qmd) page: three passes, stopping
+at the pass that answers the question. An hour is the budget for a paper read
+that way, and entry 2 is the one that may need two.
+
+## Reading queue
+
+### 1. Rodeghiero et al. 2009 — IWG standardization of terminology and outcome criteria ✅
+
+*Blood* 2009;113(11):2386-2393.
+[doi:10.1182/blood-2008-07-162503](https://doi.org/10.1182/blood-2008-07-162503) ·
+[ASH](https://ashpublications.org/blood/article/113/11/2386/109971/Standardization-of-terminology-definitions-and) ·
+[full text PDF](https://www.ouhsc.edu/platelets/ITP/documents/2386.full.pdf)
+
+**Read on 2026-09-09, and the only ✅ in this file.** Section 2 of the
+specification is transcribed from its Tables 1 to 5. It defines complete
+response, response and no response; the disease phases; refractory ITP; the
+trial-adapted primary and secondary endpoints; and, in Table 3, the time to
+initial and peak response for each ITP agent over its reported dose range.
+
+**What it settles.** Three things the specification depended on and no longer
+guesses at. There is no partial response in ITP: the panel considered
+"partial" and "minimal" and dropped both, because the criteria used for them
+in the literature are too heterogeneous. Response requires absence of bleeding
+as well as a platelet threshold, so a platelet-only model predicts an upper
+bound on the response rate. And rituximab's time to peak response is 7 to 56
+days to initial and 14 to 180 days to peak, which is the prior on $k_{e0}$ in
+Section 5.4 with a thirteen-fold spread.
+
+**What it does not settle.** The thresholds it defines, 30 and 100, are not
+the thresholds recent trials use. Entry 17 and the table in Section 2.4 carry
+the divergence.
+
+### 2. Baltcheva et al. 2018 — model-based dose selection for ianalumab in primary Sjögren's syndrome ❌
+
+PAGE 2018 abstract. Baltcheva I, Fink M, Petricoul O, Renard D, Novartis.
+<https://www.page-meeting.org/Abstracts/model-based-dose-selection-for-the-phase-2b-study-of-ianalumab-in-primary-sjogrens-syndrome/>
+
+Two PK/PD models used together to space three Phase 2b doses for a B-cell
+activating factor receptor (BAFF-R) antibody.
+
+**The question.** Whether circulating B cells alone could have selected the
+doses, or whether the tissue receptor occupancy model was load-bearing. That
+answer decides whether the specification's Section 4 is a caution or a
+blocker. Second question: what the population PK model was, since a
+two-compartment model with linear clearance and a 9 to 10 day half-life is the
+starting point for Section 5.1.
+
+**What a search summary says**, unverified: a two-compartment PK model with
+linear clearance; B-cell dynamics as an indirect-effect turnover model with a
+peripheral compartment; a separate hypothesis-driven model of drug-receptor
+binding in disease-related tissue under quasi-steady-state with competition
+from soluble BAFF; three dose tiers selected as low (systemic depletion only),
+medium (both mechanisms) and high (matching proof-of-concept exposure); doses
+in the Sjögren's study of 5, 50 and 300 mg; and half-life around 9 to 10 days.
+
+### 3. Efgartigimod PK/PD simulations for subcutaneous dose selection in ITP ❌
+
+*Blood* 2021, ASH abstract.
+<https://www.sciencedirect.com/science/article/pii/S0006497121050989>
+
+PK/PD simulation used to pick a subcutaneous dose for a Phase 3 ITP trial from
+the intravenous benchmark.
+
+**The question.** What the PD anchor was. If it was total immunoglobulin G
+(IgG) reduction with platelet count treated separately, this is a precedent
+for model-based dose selection in ITP that stops one link short of the chain
+in the specification, and the reason it stopped there is the interesting part.
+
+**What a search summary says**, unverified: 10 mg/kg intravenously weekly for
+four doses achieves close to maximal IgG reduction, mean reduction up to
+63.7%; simulations predicted weekly subcutaneous 1000 mg gives comparable
+maximum total IgG reduction after the fourth dose and comparable area under
+the total IgG concentration curve. The Phase 2 report is
+[Newland et al., *Am J Hematol* 2020, PMID 31821591](https://pubmed.ncbi.nlm.nih.gov/31821591/),
+and the Phase 3 is
+[ADVANCE IV, *Lancet* 2023](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(23)01460-5/abstract).
+
+### 4. Translational population target binding model for efgartigimod ❌
+
+*J Pharmacokinet Pharmacodyn* 2025;52:2.
+<https://d-nb.info/1364699516/34>
+
+The published model behind entry 3, and the most complete PK/PD model found
+for any ITP drug that acts on autoantibody rather than on platelet production.
+
+**The question.** Whether platelet count appears in it at all. If the model
+stops at total immunoglobulin G, it is the documented instance of reason 6 in
+Section 15 of the specification: the sponsor modelled the clean biomarker and
+left the clinical endpoint to the trial.
+
+**What a search summary says**, unverified: a population PK/PD model including
+FcRn binding, built on two healthy-volunteer studies after single and repeated
+administration, describing serum efgartigimod and total IgG profiles
+simultaneously across dose groups, with drug-induced FcRn receptor occupancy
+as the driver of total IgG suppression.
+
+### 5. Eltrombopag population PK/PD, four-compartment lifespan model ❌
+
+*Cancer Chemother Pharmacol* 2013.
+[doi:10.1007/s00280-013-2150-9](https://doi.org/10.1007/s00280-013-2150-9) ·
+[PubMed 23564375](https://pubmed.ncbi.nlm.nih.gov/23564375/).
+Companion in chronic liver disease:
+[*Br J Clin Pharmacol*, PMC4371540](https://pmc.ncbi.nlm.nih.gov/articles/PMC4371540/).
+
+The platelet-side structure the specification adopts in Section 5.3.
+
+**The question.** The parameter values, with units, for the maturation transit
+rate and the circulating platelet loss rate, and whether the model was fit to
+ITP patients or only to other thrombocytopenias. Milestone 1's table is built
+from this.
+
+**What a search summary says**, unverified: a linear two-compartment PK model
+with first-order absorption; a four-compartment lifespan model for platelets,
+being one precursor production compartment, two transit and maturation
+compartments, and one blood platelet compartment; drug effect as stimulation
+of platelet precursor production proportional to plasma concentration.
+
+### 6. Wang et al. 2010 — romiplostim precursor pool lifespan model ❌
+
+*AAPS J*. [PMC2976980](https://pmc.ncbi.nlm.nih.gov/articles/PMC2976980/).
+Pharmacodynamics-mediated drug disposition and precursor pool lifespan model
+for single-dose romiplostim in healthy subjects.
+
+The age-structured version of entry 5, and the one that also models the drug
+being consumed by its own pharmacodynamic effect.
+
+**The question.** Whether the age-compartment structure buys anything the
+three-transit-compartment version does not, at the resolution of weekly
+platelet counts. If it does not, Section 5.3 stays as written and this entry
+is closed as background.
+
+**What a search summary says**, unverified: megakaryocyte precursor
+age-compartments generating young platelets, which mature through a series of
+age-compartments, with circulating platelets the sum over all ages; platelet
+lifespan in healthy individuals 7 to 10 days.
+
+### 7. Optimum romiplostim dose profile for platelet control in an ITP patient ❌
+
+IFAC proceedings.
+<https://www.sciencedirect.com/science/article/pii/S1474667016434932>
+
+A PK/PD model of romiplostim in ITP used to choose a dose profile, which is
+the specification's question with a thrombopoietin receptor agonist in place
+of a B-cell depleting agent.
+
+**The question.** What ITP-specific parameters were used, and where they came
+from. A published ITP platelet turnover parameterization saves Milestone 1
+from being assembled out of non-ITP sources.
+
+**What a search summary says**, unverified: a standard PK/PD model developed
+and validated on clinical platelet count data after subcutaneous romiplostim,
+characterizing patient-specific physiological characteristics.
+
+### 8. Rituximab B-cell depletion PK/PD, target-mediated disposition and CD19 turnover ❌
+
+[Population pharmacodynamic modelling of CD19+ suppression, PMC10674351](https://pmc.ncbi.nlm.nih.gov/articles/PMC10674351/) ·
+[Dosing optimization for primary membranous nephropathy, PMC11002205](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11002205/) ·
+[B-cell differentiation model in rheumatic diseases, PMC12823323](https://pmc.ncbi.nlm.nih.gov/articles/PMC12823323/)
+
+Three papers, one structure: a target-mediated disposition PK model with a
+turnover model on circulating CD19+ cells in which the drug increases the loss
+rate.
+
+**The question.** The repopulation rate constant, which is the parameter that
+sets the specification's $T_{\rm rep}$, and whether any of the three reports a
+dose-dependence of duration once depth has saturated. That dose-dependence is
+the specification's central claim and this is the cheapest place to check it.
+
+**What a search summary says**, unverified: systemic clearance 0.54 L/h and
+half-life 14.7 days in one adult population, half-life 11.6 days in a
+paediatric one; CD19+ time course described by a turnover model with the drug
+increasing the degradation rate; the differentiation model includes
+localization of B-cell subsets in bone marrow and secondary lymphoid organs
+and the internalization of the CD20-rituximab complex.
+
+### 9. Rituximab response kinetics in ITP, for the transduction delay prior ❌
+
+[Rituximab resistance in ITP and beyond, *Front Immunol* 2023](https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2023.1215216/full) ·
+[Long-term follow-up in refractory ITP, PMC5451692](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5451692/)
+
+Not modelling papers. They are where the median time from dose to platelet
+response comes from, which is the prior on $k_{e0}$ in Section 5.4, and where
+the response-rate ceiling comes from, which is the prior on the long-lived
+plasma cell floor $\phi$.
+
+**The question.** Two numbers with intervals: time to platelet response, and
+the fraction of patients who never respond. Milestone 3 is one hour and
+produces those two numbers.
+
+**What a search summary says**, unverified: up to 60% short-term complete
+response, 40% durable at 6 to 12 months, 20 to 30% at 5 years; and a mechanism
+for primary failure in which B-cell depletion reprograms splenic short-lived
+plasma cells into long-lived ones. That mechanism is the $\phi$ term in
+Section 5.3 and if it is dose-dependent the model needs a term it does not
+currently have.
+
+## Trial reports the external checks and the realism constraints come from
+
+These are not modelling papers. They supply the numbers Sections 4, 6 and 12
+quote, and each is checked when the claim that rests on it is checked.
+
+### 10. Fostamatinib and R406 clinical pharmacokinetics and pharmacodynamics ❌
+
+*Clin Pharmacokinet* 2022.
+[doi:10.1007/s40262-022-01135-0](https://doi.org/10.1007/s40262-022-01135-0) ·
+[PubMed 35781630](https://pubmed.ncbi.nlm.nih.gov/35781630/)
+
+**The closest thing found to an exposure-response analysis against platelet
+count for a drug that blocks platelet destruction in ITP, and it came back
+inconclusive.** Fostamatinib inhibits spleen tyrosine kinase, blocking
+Fc-gamma-receptor-mediated phagocytosis of antibody-coated platelets by
+macrophages, which is the killing step itself rather than the antibody that
+triggers it.
+
+**The question.** What the exposure-response analysis actually did, and
+whether its inconclusive result came from a flat relationship, from
+dose titration to effect, or from sample size. That distinction is reason 7
+against reason 4 in Section 15 of the specification, and it changes how much
+the fostamatinib result should discourage this project.
+
+**What a search summary says**, unverified: responders had higher R406
+concentrations than non-responders, but the correlation between R406 exposure
+and achievement of the platelet endpoint was uncertain in the PK/PD analysis,
+while R406 exposure correlated significantly with the incidence of
+hypertension; R406 exposure is approximately dose proportional to 200 mg twice
+daily; concentration is roughly halved in heavy patients; dosing in ITP starts
+at 100 mg twice daily and most patients escalate to 150 mg twice daily.
+
+### 11. Ianalumab Phase 2 in ITP, VAYHIT3 interim ❌
+
+*Blood* 2024;144(Supplement 1):710.
+[ASH](https://ashpublications.org/blood/article/144/Supplement%201/710/530815/A-Phase-2-Study-of-Ianalumab-in-Patients-with) ·
+[NCT05885555](https://clinicaltrials.gov/study/NCT05885555)
+
+**Why it is here.** It is the sample size the specification is written around.
+A search summary reports ten patients in the interim, four doses of 9 mg/kg
+intravenously every four weeks, median best post-baseline platelet count 129
+G/L with a range of 3 to 709 G/L, one confirmed response lasting six weeks,
+and rapid profound B-cell depletion. A range of 3 to 709 in ten patients is
+the responder mixture of Section 9 in raw form.
+
+**The question.** Whether B-cell counts and platelet counts are reported per
+patient over time, and whether more than one dose level was studied anywhere
+in the ianalumab ITP programme before 3 and 9 mg/kg were carried into Phase 3.
+
+### 12. Mezagitamab Phase 2b in ITP ❌
+
+TAK-079-1004, [NCT04278924](https://clinicaltrials.gov/study/NCT04278924).
+[Takeda release](https://www.takeda.com/newsroom/newsreleases/2024/late-breaking-data-from-phase-2b-study-of-mezagitamab/) ·
+[Phase 3 trial-in-progress, *Blood* 2025](https://doi.org/10.1182/blood-2025-3049)
+
+**Why it is here.** It is the one recent ITP programme found that ran three
+dose levels against placebo in Phase 2, which is the design the specification
+is trying to make unnecessary. An anti-CD38 antibody depletes plasmablasts and
+plasma cells rather than B cells, so it attacks the same chain one step
+further down.
+
+**The question.** The dose levels and the response rate at each. A search
+summary reports three subcutaneous doses weekly for eight weeks, a
+dose-dependent platelet increase with the greatest response at the highest
+dose, and 10 of 11 patients responding at 600 mg against 3 of 13 on placebo.
+If the dose-response was still rising at the top dose, this is the Section 13
+case where the plateau lies outside the studied range, observed in a real
+programme.
+
+### 13. Rozanolixizumab Phase 2 in ITP ❌
+
+*Blood Adv* 2020;4(17):4136-4146.
+[PMC7479959](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7479959/) ·
+[ASH](https://ashpublications.org/bloodadvances/article/4/17/4136/463615/Phase-2-multiple-dose-study-of-an-FcRn-inhibitor)
+
+**Why it is here.** A dose-ranging ITP study with both single and multiple
+dose arms, and paired IgG and platelet time courses. The closest published
+dataset in shape to what Section 6 asks for, with an FcRn blocker instead of a
+B-cell depleting agent.
+
+**The question.** Whether the IgG and platelet time courses are published per
+arm at a resolution a model could be fit to, and what the lag between minimum
+IgG and maximum platelet count was. That lag is the transduction delay of
+Section 5.4 measured directly, for a drug whose action on autoantibody is
+faster and better characterized.
+
+**What a search summary says**, unverified: 66 patients, one to five weekly
+subcutaneous infusions, cumulative doses 15 to 21 mg/kg; platelet count
+$\ge 50 \times 10^9$/L reached at least once in 35.7%, 35.7% and 45.5% of the
+5×4, 3×7 and 2×10 mg/kg arms and 66.7% and 54.5% of the single 15 and 20 mg/kg
+arms; minimum mean IgG and maximum mean platelet count both by day 8 in the
+single-dose arms, with maximum platelet count from day 11 onward in the
+multiple-dose arms.
+
+### 14. Ianalumab plus eltrombopag in ITP, VAYHIT2 Phase 3 ❌
+
+*N Engl J Med* 2025.
+[doi:10.1056/NEJMoa2515168](https://doi.org/10.1056/NEJMoa2515168) ·
+[PubMed 41363800](https://pubmed.ncbi.nlm.nih.gov/41363800/)
+
+**Why it is here.** It is external check 1 in Section 12, and the single most
+important entry for whether the project's premise holds. Two doses of a B-cell
+depleting agent, randomized, in ITP, with a clinical endpoint.
+
+**The question.** The gap between 3 mg/kg and 9 mg/kg, with its interval. A
+search summary reports 12-month probability of freedom from treatment failure
+of 51% at 3 mg/kg, 54% at 9 mg/kg and 30% for placebo, and 6-month platelet
+response of 73.5% at 9 mg/kg against 48% for placebo. If those confidence
+intervals overlap heavily, the plateau claim is supported and a model that
+predicted it from escalation data would have saved a Phase 3 arm.
+
+### 15. Rilzabrutinib LUNA3 Phase 3 in ITP ❌
+
+*Blood* 2025;145(24):2914.
+[PubMed 40090011](https://pubmed.ncbi.nlm.nih.gov/40090011/) ·
+[PMC12824683](https://pmc.ncbi.nlm.nih.gov/articles/PMC12824683/)
+
+**Why it is here.** The realism constraint on Section 11's simulated response
+rates, and the current definition of the durable response endpoint.
+
+**The question.** The exact endpoint definition, which Section 11 has to
+simulate. A search summary gives it as platelet count
+$\ge 50 \times 10^9$/L for at least two-thirds of at least 8 of the last 12 of
+24 weeks without rescue therapy, achieved by 31 of 133 (23%) against 0 of 69
+on placebo. A 23% durable response rate against a 0% placebo rate is a
+different realism target from the ianalumab numbers and both should be
+reachable by the generative model.
+
+### 16. Rilzabrutinib LUNA2 Phase 1/2 Part A, dose finding in ITP ❌
+
+[NCT03395210](https://clinicaltrials.gov/study/NCT03395210) ·
+*N Engl J Med* 2022 ·
+[Part B, *Am J Hematol* 2025, PMC11803537](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11803537/)
+
+A dose-finding study in ITP for a Bruton tyrosine kinase (BTK) inhibitor,
+which hits both arms of the mechanism: reduced autoantibody production through
+the B-cell receptor, and blocked Fc-gamma-receptor-mediated phagocytosis.
+
+**The question.** Whether the dose escalation was intrapatient. If it was,
+every patient saw more than one dose level and dose is confounded with time on
+drug, which is reason 5 in Section 15 of the specification and would explain
+the absence of a dose-response model from a study that otherwise had the data
+for one.
+
+**What a search summary says**, unverified: an adaptive open-label
+dose-finding design with intrapatient escalation over 24 weeks across 200 mg
+once daily, 400 mg once daily, 300 mg twice daily and 400 mg twice daily; 60
+patients enrolled, 24 met the primary endpoint, and 18 of the 45 who started
+at 400 mg twice daily did; median time to first platelet count
+$\ge 50 \times 10^9$/L of 11.5 days.
+
+### 17. Orelabrutinib Phase 2 in ITP, two randomized dose levels ❌
+
+*Am J Hematol* 2024.
+[doi:10.1002/ajh.27303](https://onlinelibrary.wiley.com/doi/10.1002/ajh.27303) ·
+[PubMed 38546375](https://pubmed.ncbi.nlm.nih.gov/38546375/) ·
+[NCT05232149](https://clinicaltrials.gov/study/NCT05232149).
+Mechanism companion:
+[*Br J Haematol*, doi:10.1111/bjh.20045](https://onlinelibrary.wiley.com/doi/10.1111/bjh.20045)
+
+**The one randomized dose comparison found in ITP for a drug of this class**,
+and therefore the closest available test of whether a dose-response on the
+platelet endpoint is visible at Phase 2 sample sizes.
+
+**The question.** Whether the difference between the two arms survives its
+confidence interval. A search summary reports 33 patients randomized to 50 mg
+(n = 15) or 30 mg (n = 18), with the primary endpoint of two consecutive
+platelet counts $\ge 50 \times 10^9$/L within 4 weeks and no rescue reached by
+40% at 50 mg and 22.2% at 30 mg. Six responders against four is a difference
+that 33 patients cannot resolve, which is the point: this is what a
+dose-response looks like when read off raw counts, and it is the comparator
+rule D of Section 10 in its natural habitat.
+
+**Second question.** Whether PK was collected. A randomized two-dose design
+with concentration data and serial platelet counts is the smallest dataset
+that could carry the model in Section 5, and if it exists it outranks the
+rest of this queue.
+
+### 18. Rituximab dose comparison meta-analyses in ITP ❌
+
+[*Platelets* 2019;30(6), doi:10.1080/09537104.2019.1624706](https://doi.org/10.1080/09537104.2019.1624706) ·
+[Different dosages of rituximab in adult ITP, PMC8514896](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8514896/)
+
+**Why it is here.** External check 2 in Section 12, and the evidence behind
+Section 4's claim that depth of depletion carries no dose information.
+
+**The question.** Whether the low-dose and standard-dose comparisons are
+within-study randomized or pooled across single-arm studies. Pooled across
+studies, the comparison is confounded by patient selection and the plateau
+claim is weaker than it looks.
+
+**What a search summary says**, unverified: nine studies and 329 patients on
+100 mg or 100 mg/m² weekly for four weeks giving pooled overall response 63%
+(95% CI 0.54 to 0.71) and complete response 44% (95% CI 0.33 to 0.55);
+standard 375 mg/m² weekly for four weeks giving 69% overall initial response
+and 35% sustained.
+
+## Method sources for the analysis plan
+
+### 19. Time-dependent clearance and exposure-response confounding ❌
+
+[Proctor et al., *Clin Transl Sci* 2024, PMC10766027](https://pmc.ncbi.nlm.nih.gov/articles/PMC10766027/) ·
+[Clinical study design strategies, *CPT Pharmacometrics Syst Pharmacol* 2025, doi:10.1002/psp4.13280](https://doi.org/10.1002/psp4.13280) ·
+[IQ Consortium survey, *CPT PSP* 2026, doi:10.1002/psp4.70318](https://doi.org/10.1002/psp4.70318)
+
+**Why it is here.** Section 8 is built on it. Read before the analysis plan is
+written.
+
+**The question.** Which of the mitigations they recommend apply when the
+target itself is the clearance sink, as B cells are here. A search summary
+reports the finding that single-dose-level designs have a high probability of
+a false-positive exposure-response result, and that 88.0% of surveyed industry
+respondents acknowledge the relevance of the confounding while remaining
+uncertain about its prevalence outside oncology.
+
+### 20. Power loss from dichotomizing a continuous endpoint ❌
+
+[McMenamin et al., PubMed 32450909](https://pubmed.ncbi.nlm.nih.gov/32450909/),
+analysis of responder-based endpoints through their continuous components.
+
+**Why it is here.** Section 9 asserts that fitting the continuous platelet
+count and deriving the responder endpoint beats fitting the dichotomy. This is
+the citation for the size of the gain.
+
+**The question.** Whether the augmented binary method they describe is a
+better fit for Section 9 than the simulate-the-endpoint-from-the-model
+approach, since it retains the original endpoint and would be easier to
+defend to a clinical team.
+
+### 21. Immature platelet fraction as a pharmacodynamic marker ❌
+
+[IPF as predictor in ITP, PMC4928401](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4928401/) ·
+[IPF in etiological determination of thrombocytopenia](https://www.sciencedirect.com/science/article/pii/S0301472X19309993)
+
+**Why it is here.** Requirement 10 in Section 6, and the argument that one
+extra number on a blood count separates a production effect from a destruction
+effect.
+
+**The question.** The typical IPF value in untreated ITP and its
+within-patient variability, since a marker whose noise exceeds its treatment
+effect should not be a requirement.
+
+**What a search summary says**, unverified: IPF consistently elevated above
+10% in ITP against normal values in marrow suppression, with a discriminating
+threshold around 8.45%, and roughly a 200% difference between hyperdestructive
+and hypoproductive thrombocytopenia.
+
+## Sources the specification's numbers come from
+
+Every number the specification quotes from outside itself. The four ✅ rows
+came from the paper; every other row came from a search summary of the source.
+
+| Status | Number | Used in | Source |
+|:---|:---|:---|:---|
+| ✅ | IWG response criteria: CR $\ge 100$, R $\ge 30$ with 2-fold increase, both with absence of bleeding | Section 2.1 | Entry 1 |
+| ✅ | Disease phases: newly diagnosed $<3$ months, persistent 3 to 12, chronic $>12$ | Section 2.2 | Entry 1 |
+| ✅ | IWG trial-adapted primary and secondary endpoints | Section 2.3 | Entry 1 |
+| ✅ | Rituximab time to initial response 7 to 56 d, to peak 14 to 180 d | Sections 2.5, 5.4 | Entry 1 |
+| ❌ | Endpoint definitions used by LUNA3, ADVANCE IV, VAYHIT2, orelabrutinib and rilzabrutinib Part A | Section 2.4 | Entries 15, 3, 14, 17, 16 |
+| ❌ | Ianalumab 12-month freedom from treatment failure 51% at 3 mg/kg, 54% at 9 mg/kg, 30% placebo | Sections 4, 12 | Entry 14 |
+| ❌ | Rituximab pooled response 63% at 100 mg weekly against 69% at 375 mg/m² weekly | Sections 4, 12 | Entry 18 |
+| ❌ | Ianalumab half-life 9 to 10 days; two-compartment linear PK | Section 5.1 | Entry 2 |
+| ❌ | Four-compartment platelet lifespan structure: one precursor, two transit, one blood | Section 5.3 | Entry 5 |
+| ❌ | Platelet lifespan 7 to 10 days | Section 5.3 | Entry 6 |
+| ❌ | Rituximab response 60% short-term, 20 to 30% at five years | Section 5.4, $\phi$ prior | Entry 9 |
+| ❌ | Single-dose-level designs carry a high probability of false-positive exposure-response | Section 8 | Entry 19 |
+| ❌ | IPF elevated above 10% in ITP | Section 6, requirement 10 | Entry 21 |
+| ❌ | Ten patients in the VAYHIT3 interim, best platelet count range 3 to 709 G/L | Section 1 sample sizes | Entry 11 |
+
+: What the specification borrowed {tbl-colwidths="[8,42,20,30]"}
+
+## Searched for and not found
+
+Recorded so that the search is not repeated, and so that a later find can be
+dated. Each line is a search that returned clinical results rather than a
+model.
+
+| Looked for | Result |
+|:---|:---|
+| PK-platelet model for any B-cell depleting agent in ITP | Nothing found. This is the project's gap |
+| PK-platelet model for any FcRn, SYK or BTK inhibitor in ITP | Nothing found. The efgartigimod model stops at IgG (entry 4) |
+| Population PK/PD analysis of ianalumab in ITP | Nothing found. The Sjögren's work is entry 2 |
+| Obexelimab, povetacicept or telitacicept in ITP | Nothing found. Obinutuzumab in ITP returned only drug-induced thrombocytopenia case reports |
+| Published exposure-response for rilzabrutinib or orelabrutinib in ITP | Nothing found beyond the trial reports in entries 15 to 17 |
+| Any exposure-response against platelet count in ITP | One found, fostamatinib, reported inconclusive (entry 10) |
+| Quantitative systems pharmacology model of ITP | Nothing ITP-specific. B-cell QSP models exist for mouse and for rheumatic disease |
+
+: Searches run on 2026-09-09 and what came back {tbl-colwidths="[45,55]"}
+
+## Related, not yet placed
+
+- **B-cell quantitative systems pharmacology models.**
+  [QSP of B-cell immune response in mouse, *Front Immunol* 2026](https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2026.1745710/full)
+  and
+  [translating B-cell and plasma-cell targeting from oncology to autoimmunity, PMC13338978](https://pmc.ncbi.nlm.nih.gov/articles/PMC13338978/).
+  Out of scope by the specification's own statement, and the place to go if
+  Section 13's tissue-depletion failure mode is confirmed.
+- **T-DM1 thrombocytopenia model**,
+  [*Cancer Chemother Pharmacol* 2012, PubMed 22886072](https://pubmed.ncbi.nlm.nih.gov/22886072/).
+  A semimechanistic transit-compartment platelet model for drug-induced
+  thrombocytopenia. The same structure driven in the opposite direction, and
+  a source of a second parameter set for Section 5.3.
+- **Avatrombopag and lusutrombopag population PK/PD.** Two more instances of
+  the entry 5 structure, one of them
+  [in healthy subjects, *Clin Pharmacokinet* 2016](https://doi.org/10.1007/s40262-016-0411-6).
+  Read only if entry 5's parameters turn out not to transfer to ITP.
+- **Single-cell evidence for multiorgan dissemination of autoreactive plasma
+  cells in ITP**,
+  [bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.06.29.450355.full.pdf).
+  The biology behind Section 4's tissue argument and Section 13's first
+  failure mode.
+- **FDA and EMA review documents** for any approved ITP product. Per-dose
+  platelet response tables and clinical pharmacology reviews that did not
+  reach publication, and the cheapest remaining place to find a dose-response
+  in ITP with more than two levels.

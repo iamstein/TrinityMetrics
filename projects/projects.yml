@@ -43,6 +43,15 @@
   categories: [PMX project, Draft]
   path: tce-crs-tolerance/index.qmd
 
+- title: "ITP-PK-Platelet"
+  subtitle: "Working document"
+  description: >
+    Can a model of pharmacokinetic and platelet-count data for a B-cell
+    depleting agent, fit to a small dose escalation and expansion study in
+    immune thrombocytopenia, select the Phase 2 dose?
+  categories: [PMX project, Draft]
+  path: itp-pk-platelet/index.qmd
+
 - title: "Claude Code at Work"
   subtitle: "Talk"
   description: >
@@ -86,6 +95,16 @@
     allows.
   categories: [PMX project, Draft]
   path: logistic-regression/index.qmd
+
+- title: "Immune biomarkers and infection risk"
+  subtitle: "Coming soon"
+  description: >
+    Neutrophils, B cells and immunoglobulins are measured at nearly every
+    visit on therapies that deplete them. Can their time courses, pooled
+    across many studies, predict which patient is heading for a serious
+    infection?
+  categories: [PMX project, Draft]
+  path: immune-biomarkers-infection/index.qmd
 
 - title: "Collected Wisdom"
   subtitle: "Working document"

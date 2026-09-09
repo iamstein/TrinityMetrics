@@ -1,0 +1,31 @@
+---
+title: "ITP-PK-Platelet"
+subtitle: "Selecting a Phase 2 dose for a B-cell depleting agent in immune thrombocytopenia"
+description: "Index of the documents in the ITP-PK-Platelet project: the working specification and its literature review."
+categories: [pharmacometrics, immunology, dose selection, working document]
+date: last-modified
+toc: false
+---
+
+A B-cell depleting agent has been given to a few dozen patients with immune
+thrombocytopenia in a dose escalation and a single expansion cohort, with
+serial drug concentrations, B-cell counts and platelet counts. Can a model of
+those three time courses select the Phase 2 dose? The literature has the
+platelet half of that model and the B-cell half, in separate places and for
+separate drugs, and nothing that joins them in this disease. The references
+document widens the search to every ITP drug that blocks antibody-mediated
+platelet destruction, and asks why the join is missing. Nothing has been fit
+here yet.
+
+## Documents
+
+- [Working specification](specification.qmd). Section 2 gives the ITP endpoint
+  definitions from the IWG 2009 consensus paper. Then the model, the data it
+  requires, the identifiability problems, the dose selection rule, and the
+  simulation study that scores the rule against picking the highest safe dose.
+  Section 15 gives seven ranked reasons no such model has been published. Its
+  **In brief** section is one screen and says what the rest argues.
+- [References](references.qmd). The literature review that opens with what
+  exists and what does not, then the reading queue in order, then a marker on
+  every source recording whether the specification's use of it has been
+  checked. One source has been read; the rest are ❌.

@@ -1,0 +1,773 @@
+---
+title: "PK-platelet modelling to select a Phase 2 dose in ITP"
+subtitle: "Working specification for a B-cell depleting agent with escalation and expansion data"
+description: "Can a model of pharmacokinetic and platelet-count data for a B-cell depleting agent, fit to a small dose escalation and expansion study, select a Phase 2 dose in immune thrombocytopenia? This specifies the model, the data it needs, and the simulation study that decides whether the answer is yes."
+categories: [pharmacometrics, immunology, dose selection, working document]
+date: last-modified
+toc: true
+toc-depth: 3
+toc-location: left
+toc-expand: true
+number-sections: false
+html-math-method: mathjax
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing here has been fit, and one source has been read.** The literature
+review in [references.qmd](references.qmd) was assembled from search results
+and abstracts on 2026-09-09, and every source carries a ❌ marker except the
+IWG 2009 consensus paper behind Section 2, which was read and is ✅. The model in Section 5 is a candidate
+structure written to be replaced by whatever the rituximab and thrombopoietin
+receptor agonist papers actually report. The numbers quoted from trials are
+transcribed from search summaries and are not safe to reuse. The
+[project index](index.qmd) lists the other documents in this folder.
+:::
+
+## In brief
+
+**The question.** A B-cell depleting agent has been given to a small number of
+patients with immune thrombocytopenia (ITP) in a dose escalation followed by
+an expansion cohort. Serum drug concentration, circulating B-cell count and
+platelet count were measured serially in every patient. Can a model of those
+three time courses pick the Phase 2 dose?
+
+**The answer this specification argues for, before it is tested.** ⚠️ **Yes
+for ranking doses and for locating the bottom of the plateau; no for
+estimating a platelet-response $EC_{50}$.** The escalation data will place the
+lowest dose that gives durable B-cell depletion, and that dose is a defensible
+Phase 2 choice. It will not support a potency parameter on the platelet
+endpoint, because the number of patients is small, the platelet response is a
+mixture of responders and non-responders, and the expansion cohort supplies
+one dose level rather than a range.
+
+**What the biomarker in the middle can and cannot say.** Circulating
+B cells are depleted essentially completely at every dose that gets past the
+first escalation cohort. Depth of depletion is therefore uninformative about
+dose, and the quantity that still varies with dose is the **duration** of
+depletion, measured as time to repopulation. Section 4 is that argument and it
+is the reason the model in Section 5 is written around a duration.
+
+**The chain the model has to cross.**
+
+```{mermaid}
+flowchart LR
+    D["Dose"] --> C["Concentration"]
+    C --> B["Circulating B cells<br/>saturates on depth"]
+    C --> T["Tissue B cells<br/>spleen, marrow"]
+    B --> PB["Plasmablasts"]
+    T --> PB
+    PB --> A["Anti-platelet IgG<br/>not measured"]
+    LLPC["Long-lived plasma cells<br/>not depleted"] --> A
+    A --> K["Platelet destruction rate"]
+    K --> P["Platelet count"]
+```
+
+Two states in that chain are unobserved in any realistic dataset: tissue B
+cells and anti-platelet immunoglobulin G (IgG). Both sit between the drug and
+the endpoint. The model collapses them into one transduction delay whose prior
+comes from published time-to-response in rituximab-treated ITP, and estimates
+only the dose-dependent part.
+
+**How the question gets answered.** By simulation, in Section 11. Generate
+escalation and expansion datasets from an assumed true model at a realistic
+sample size, fit the candidate model, apply the dose selection rule in Section
+10, and count how often the selected dose is the true best dose. The
+deliverable is that operating characteristic, per sample size and per dosing
+scheme, not a dose recommendation for any real compound.
+
+**Out of scope, stated once.**
+
+- ❌ **A recommendation for any named drug.** The compound in this
+  specification is generic. Ianalumab, rituximab and mezagitamab appear as
+  sources of realistic parameter values and as external checks, and nothing
+  here is a dosing statement about any of them.
+- ❌ **A safety model.** Dose-limiting toxicity, infection risk and
+  hypogammaglobulinaemia do not enter. The selection rule in Section 10 assumes
+  a safe dose range has already been established and chooses inside it.
+- ❌ **A mechanistic B-cell systems model.** No germinal centres, no B-cell
+  receptor signalling, no compartment-by-compartment trafficking. Published
+  quantitative systems pharmacology models of B-cell differentiation exist and
+  are listed in the references; they are a source of structure, not something
+  to be rebuilt at this sample size.
+- ❌ **Bleeding.** Every IWG response definition carries a bleeding clause
+  (Section 2.1) and this project models platelet count only, so its predicted
+  response rates are upper bounds.
+- ❌ **Patient-level reanalysis of any published trial.** No such data is
+  available here. Public aggregate results are used only as external checks.
+
+------------------------------------------------------------------------
+
+## 1. Objective
+
+Determine whether a joint model of drug concentration, circulating B-cell
+count and platelet count, fit to a Phase 1 dose escalation plus expansion
+study in primary ITP, supports a Phase 2 dose selection that a later
+randomized dose comparison would confirm.
+
+The setting assumed throughout:
+
+- a monoclonal antibody or antibody-like agent whose mechanism is B-cell
+  depletion, given intravenously or subcutaneously as a short course of two to
+  four administrations;
+- an escalation of three to five dose levels, three to six patients per level;
+- one expansion cohort at a single dose, twenty to forty patients;
+- serial pharmacokinetic (PK) sampling, circulating B-cell counts by flow
+  cytometry, and platelet counts at every visit for six to twelve months;
+- primary clinical endpoint a durable platelet response, defined as platelet
+  count $\ge 50 \times 10^9$/L sustained over a specified fraction of the
+  observation window without rescue therapy.
+
+## 2. Endpoints in ITP
+
+The standard definitions come from the International Working Group (IWG)
+consensus, Rodeghiero et al., *Blood* 2009;113:2386-2393. That paper has been
+read, and the definitions in this section are quoted from it rather than from
+a summary of it, so they are the only ✅ entries in
+[references.qmd](references.qmd).
+
+**There is no partial response in ITP.** The IWG panel considered "partial"
+and "minimal" response, which appear widely in the older literature, and
+deliberately dropped both, "because of the wide heterogeneity in the criteria
+used in these definitions." What replaced them is a two-level scale: complete
+response and response. A trial reporting a PR in ITP is using a
+non-standard definition and has to say what it is.
+
+### 2.1 The IWG response criteria
+
+| Term | Definition |
+|:---|:---|
+| **CR**, complete response | Platelet count $\ge 100 \times 10^9$/L **and** absence of bleeding |
+| **R**, response | Platelet count $\ge 30 \times 10^9$/L **and** at least a 2-fold increase over the baseline count **and** absence of bleeding |
+| **NR**, no response | Platelet count $< 30 \times 10^9$/L **or** less than a 2-fold increase over baseline **or** bleeding |
+| **Loss of CR** | Platelet count below $100 \times 10^9$/L **or** bleeding |
+| **Loss of R** | Platelet count below $30 \times 10^9$/L **or** less than a 2-fold increase over baseline **or** bleeding |
+| **Time to response** | Time from starting treatment to achievement of CR or R |
+| **Duration of response** | From achievement of CR or R to loss of CR or R; also reported as the proportion of cumulative time spent in CR or R over the period examined |
+| **Corticosteroid dependence** | Ongoing or repeated corticosteroids for at least 2 months to hold platelets at or above $30 \times 10^9$/L or to avoid bleeding. Corticosteroid-dependent patients count as non-responders |
+
+: IWG 2009 response criteria, Table 2 of Rodeghiero et al. ✅ {tbl-colwidths="[24,76]"}
+
+Three qualifications from the same table, each of which changes what a model
+has to simulate.
+
+**A response is a confirmed response.** Platelet counts must be confirmed on
+at least two separate occasions, at least 7 days apart when used to define CR
+or R, and 1 day apart when used to define NR or loss of response. A single
+count above threshold is not an event, which is why Section 11 simulates the
+visit schedule rather than the underlying trajectory.
+
+**Bleeding is part of every definition.** CR, R and NR each carry a bleeding
+clause. A model of platelet count alone predicts a necessary condition for
+response, not response. The specification treats bleeding as out of scope and
+this is where that costs something: predicted response rates from Section 10
+are upper bounds.
+
+**Baseline is the count at the start of the investigated treatment.** The
+2-fold increase in the definition of R is relative to that count, so baseline
+severity enters the endpoint itself and not only the model. This is the second
+argument for requirement 6 in Section 6.
+
+### 2.2 Disease phases and severity
+
+| Term | Definition |
+|:---|:---|
+| **Primary ITP** | Isolated thrombocytopenia, platelet count $< 100 \times 10^9$/L, with no other cause |
+| **Newly diagnosed** | Within 3 months of diagnosis |
+| **Persistent** | Between 3 and 12 months from diagnosis |
+| **Chronic** | Lasting more than 12 months |
+| **Severe** | Bleeding at presentation sufficient to mandate treatment, or new bleeding requiring a different platelet-enhancing agent or an increased dose |
+| **Refractory** | Failure to achieve at least R, or loss of R, after splenectomy, plus a need for treatment to minimize bleeding risk |
+
+: IWG 2009 disease phases, Tables 1 and 4 ✅ {tbl-colwidths="[24,76]"}
+
+The phase decides the trial population and therefore the response rate the
+model has to reproduce. Persistent and chronic ITP is where every agent in
+Section 12's external checks was studied, and spontaneous remission is common
+enough in newly diagnosed ITP that a placebo arm there behaves differently.
+
+### 2.3 Primary and secondary endpoints as the IWG specifies them for trials
+
+Table 5 of the same paper gives trial-adapted criteria.
+
+- **Primary endpoint: CR or R based on platelet count, as in Section 2.1.**
+- **Secondary endpoints:** adverse events; need for rescue interventions;
+  corticosteroid and concomitant treatment reduction; rate of splenectomy;
+  bleeding measured on a validated scale; health-related quality of life on a
+  validated instrument; and pharmacoeconomic analysis where possible. The
+  paper notes that any of these may become the primary endpoint depending on
+  the trial design.
+- **Eligibility:** entry platelet count below $30 \times 10^9$/L, or below
+  $50 \times 10^9$/L in specific settings, on steroids, or with bleeding.
+- **A predefined exceedingly high platelet count induced by treatment may be
+  recorded as an adverse event.** A model whose drug effect is unbounded
+  above has to simulate that too.
+
+### 2.4 What recent trials actually use
+
+Trials have drifted away from the IWG thresholds, toward $50 \times 10^9$/L
+with a durability requirement. Every definition below is transcribed from a
+search summary and carries ❌ in the references.
+
+| Trial, drug | Primary endpoint as reported |
+|:---|:---|
+| LUNA3, rilzabrutinib | Platelet $\ge 50 \times 10^9$/L for $\ge$ two-thirds of $\ge 8$ of the last 12 of 24 weeks, no rescue |
+| ADVANCE IV, efgartigimod | Platelet $\ge 50 \times 10^9$/L for at least 4 of the last 6 weeks |
+| VAYHIT2, ianalumab | Time to treatment failure |
+| Orelabrutinib phase 2 | Two consecutive platelet counts $\ge 50 \times 10^9$/L within 4 weeks, no rescue |
+| Rilzabrutinib phase 1/2 part A | Two consecutive counts $\ge 50 \times 10^9$/L and an increase $\ge 20 \times 10^9$/L over baseline, no rescue |
+
+: Endpoint definitions in recent ITP trials ❌ {tbl-colwidths="[32,68]"}
+
+Two consequences for this project. The threshold the model has to simulate is
+50, not the IWG's 30 or 100, and the durability window differs by trial, so
+Section 11's simulated endpoint is a parameter of the simulation rather than a
+constant. And VAYHIT2's time-to-treatment-failure endpoint is a different
+mathematical object from a durable response proportion, which is why Section
+12's first external check compares a predicted plateau rather than a predicted
+rate.
+
+### 2.5 Time to response by agent, and where the transduction prior comes from
+
+Table 3 of the IWG paper reports, per agent, the time to initial response and
+the time to peak response over the reported dose range. It is the published
+prior on the transduction delay $k_{e0}$ in Section 5.4, and unlike everything
+else feeding that prior it has been read.
+
+| Agent | Reported dose range | Time to initial response | Time to peak response |
+|:---|:---|:---|:---|
+| IVIg | 0.4-1 g/kg per dose, 1-5 doses | 1-3 d | 2-7 d |
+| Anti-D | 75 µg/kg iv | 1-3 d | 3-7 d |
+| Prednisone | 1-4 mg/kg po daily, 1-4 wk | 4-14 d | 7-28 d |
+| Romiplostim (AMG531) | 3-10 µg/kg weekly sc | 5-14 d | 14-60 d |
+| Eltrombopag | 25-75 mg po daily | 7-28 d | 14-90 d |
+| **Rituximab** | **375 mg/m² per dose, 4 weekly doses** | **7-56 d** | **14-180 d** |
+
+: IWG 2009 Table 3, selected rows ✅ {tbl-colwidths="[22,32,23,23]"}
+
+The rituximab row is the one this project needs, and its width is the point.
+Time to peak response spans 14 to 180 days, which is a factor of thirteen. A
+transduction delay with that much spread across patients is why Section 7
+gives up on estimating $k_{e0}$ and $\eta_i$ jointly, and why requirement 4 in
+Section 6 asks for follow-up past the point where a slow response would have
+completed. The contrast with the two rows above it is also the argument of
+Section 15: a thrombopoietin receptor agonist reaches peak effect in weeks
+through a mechanism that acts directly on platelet production, and that is the
+class whose PK-platelet models are published.
+
+## 3. The question in four parts
+
+"Can the model select the dose" is not answerable as written. It becomes
+answerable when split into four, each of which the simulation in Section 11
+reports separately.
+
+**3.1 Is dose to exposure identifiable?** Yes, and it is not the problem. A
+two-compartment model with linear clearance and a target-mediated component
+fits from the escalation PK alone.
+
+**3.2 Is exposure to B-cell depletion identifiable?** Partly. The depth of
+depletion saturates, so the $EC_{50}$ on depth is estimated from the lowest
+cohort or not at all. The duration of depletion does not saturate over the
+same range, and is where the dose information lives.
+
+**3.3 Is B-cell depletion to platelet response identifiable?** This is the
+question. The link is indirect, delayed by weeks, and mediated by two
+unmeasured states. Section 7 sets out what has to be assumed for it to be
+identifiable at all.
+
+**3.4 Does a wrong answer cost anything?** The selection rule in Section 10 is
+scored against a loss function, not against a point estimate. Selecting a dose
+one level above the true plateau bottom costs exposure and drug supply;
+selecting one level below costs the Phase 2 result. Those are not
+symmetric and the rule reflects that.
+
+## 4. Why depth of B-cell depletion carries no dose information
+
+Peripheral B-cell counts fall below the limit of quantification within days at
+every dose that any B-cell depleting agent is developed at. The evidence in
+the references, all unverified:
+
+- rituximab at 100 mg weekly for four weeks produces a pooled overall platelet
+  response rate close to the rate at 375 mg/m² weekly for four weeks, a
+  roughly four-fold difference in dose, and complete peripheral depletion at
+  both;
+- ianalumab produces "rapid and profound" peripheral depletion across the
+  doses studied in primary Sjögren's syndrome, which is why its Phase 2b dose
+  selection used tissue receptor occupancy rather than circulating B cells as
+  the second biomarker;
+- in ITP specifically, ianalumab at 3 mg/kg and 9 mg/kg gave 12-month
+  freedom-from-treatment-failure probabilities within a few percentage points
+  of each other in the Phase 3 VAYHIT2 trial, over a three-fold dose range.
+
+Three consequences follow for the model.
+
+**Duration replaces depth.** The dose-dependent quantity is the time from the
+last administration until circulating B cells return to a defined fraction of
+baseline. Call it $T_{\rm rep}$. It is a derived quantity of the model in
+Section 5.2, it is directly observable in the escalation data, and it is
+monotone in dose across a range where depth is flat.
+
+**The plateau boundary is the target of estimation.** The selection question
+is where the dose-response curve stops rising. A model built to
+estimate a slope will be asked for a number the data cannot give; a model
+built to locate a plateau boundary is being asked something the escalation
+cohorts can answer.
+
+**Tissue depletion carries the dose-response the platelet endpoint depends
+on, and it is not measured.** Autoreactive plasmablasts in ITP disseminate to spleen and
+bone marrow. Peripheral clearance says nothing about tissue clearance, and no
+Phase 1 study biopsies spleen. This is the largest source of structural
+uncertainty in the specification, and Section 13 treats it as the main
+route to a negative answer.
+
+## 5. The model
+
+Four layers, written top to bottom in the order the drug traverses them. Each
+carries a note on whether its parameters are estimated here, fixed from the
+literature, or collapsed away.
+
+### 4.1 Pharmacokinetics
+
+Two compartments with linear clearance $CL$ and a target-mediated term driven
+by B-cell burden. Writing $C$ for concentration in the central compartment and
+$B$ for circulating B cells,
+
+$$
+V_c \frac{dC}{dt} = -CL \cdot C - Q(C - C_p) - \frac{V_{\max}\, C\, B/B_0}{K_m + C} + \text{input}
+$$
+
+The target-mediated term is carried because it is the mechanism by which a
+patient with a high B-cell burden clears the drug faster than a patient with a
+low one, which confounds the exposure-response analysis (Section 8). Where the escalation PK does not support it, it drops
+and the model reverts to two compartments with linear clearance. **Estimated
+here**, with informative priors on $CL$ and $V_c$ from typical
+immunoglobulin G1 values.
+
+### 4.2 Circulating B cells
+
+An indirect response model on the loss rate:
+
+$$
+\frac{dB}{dt} = k_{\rm in} - k_{\rm out}\left(1 + \frac{E_{\max} C}{EC_{50} + C}\right) B
+$$
+
+with $B(0) = B_0 = k_{\rm in}/k_{\rm out}$. The quantity carried forward is
+
+$$
+T_{\rm rep} = \inf\{\,t > t_{\rm last} : B(t) \ge \alpha B_0\,\}, \qquad \alpha = 0.2
+$$
+
+the time from the last dose until circulating B cells recover to 20% of
+baseline. $\alpha$ is a property of the definition, not of a dataset, and it
+is fixed at 0.2 so that $T_{\rm rep}$ is measurable above the flow cytometry
+quantification limit in most patients.
+
+**Estimated here** with the caveat of Section 4: $E_{\max}$ is estimated,
+$EC_{50}$ is weakly identified and takes a prior, and $k_{\rm out}$ — which
+sets the repopulation rate and therefore $T_{\rm rep}$ — is the parameter the
+escalation data informs best.
+
+### 4.3 Autoantibody and platelet dynamics
+
+The published platelet-side structure comes from the thrombopoietin receptor
+agonist (TPO-RA) literature, where a four-compartment lifespan model is
+standard: one precursor production compartment, two transit compartments for
+maturation, and one circulating platelet compartment. Written with $P_1, P_2,
+P_3$ for the maturation chain and $P$ for circulating platelets,
+
+$$
+\frac{dP_1}{dt} = k_{\rm prod} - k_{\rm tr} P_1, \qquad
+\frac{dP_i}{dt} = k_{\rm tr}(P_{i-1} - P_i), \qquad
+\frac{dP}{dt} = k_{\rm tr} P_3 - k_{\rm dest}(t)\, P
+$$
+
+ITP enters through the destruction rate, which anti-platelet IgG $A(t)$
+elevates above its physiological value:
+
+$$
+k_{\rm dest}(t) = k_{\rm dest,0}\left(1 + \frac{A(t)}{A_{50}}\right), \qquad
+\frac{dA}{dt} = k_{\rm syn}\, g(B_{\rm tissue}) - k_{\rm deg} A
+$$
+
+**Fixed from the literature, not estimated.** $k_{\rm tr}$ and $k_{\rm
+dest,0}$ come from the TPO-RA models and from the 7 to 10 day physiological
+platelet lifespan. $k_{\rm deg}$ is the IgG elimination rate, roughly a
+three-week half-life. Nothing in an ITP dataset without a TPO-RA arm perturbs
+platelet production enough to identify the maturation chain independently.
+
+The reason ITP responses to B-cell depletion take four to eight weeks, and the
+reason a substantial minority never respond at all, both live in the $A$
+equation. Long-lived plasma cells carry neither CD20 nor the B-cell activating
+factor receptor, are not depleted by these agents, and continue to secrete
+$A$. Represent that as a floor:
+
+$$
+k_{\rm syn} g(B_{\rm tissue}) = k_{\rm syn}\left[(1 - \phi)\, \frac{B_{\rm tissue}}{B_{\rm tissue,0}} + \phi \right]
+$$
+
+with $\phi_i$ the fraction of autoantibody production in patient $i$ that
+survives complete B-cell depletion. $\phi_i$ is what separates a responder
+from a non-responder, it is a between-patient random effect, and it is not
+identified from an eight-week observation window. Its image in the reduced
+model of Section 5.4 is $\eta_i \approx 1 - \phi_i$, and Section 9 makes that
+the mixture parameter.
+
+### 4.4 The reduced model a small dataset can support
+
+Sections 5.2 and 5.3 chained together carry more parameters than thirty
+patients will support. The model that gets fit collapses the tissue and
+autoantibody layers into a single effect compartment with one transduction
+rate $k_{e0}$:
+
+$$
+\frac{dE}{dt} = k_{e0}\left(1 - \frac{B(t)}{B_0} - E\right), \qquad
+k_{\rm dest}(t) = k_{\rm dest,0}\left(1 + \theta_i \left[1 - \eta_i E(t)\right]\right)
+$$
+
+Three parameters remain on the drug side: $k_{e0}$, taking an informative
+prior from published median time to platelet response after rituximab in ITP;
+$\theta_i$, the patient's untreated disease severity, identified from the
+pre-treatment platelet count; and $\eta_i \in [0, 1]$, the fraction of that
+severity the drug can remove in patient $i$. $\eta_i$ is the mixture: near 1
+in a responder, near 0 in a non-responder.
+
+**This reduction is the specification's main structural assumption, and
+Section 11 tests it against data generated from the unreduced model.** If the reduced
+model recovers the right dose from data generated by the full one, the
+reduction is safe at this sample size. If it does not, the answer to the
+project's question is no for the reason given in Section 13.
+
+## 6. What the dataset has to contain
+
+The model above is a set of requirements on the study, and a study that does
+not meet them cannot be rescued by analysis. Stated as requirements so that
+they can be checked against a real protocol before any fitting.
+
+| # | Requirement | Why the model needs it | If absent |
+|:--|:---|:---|:---|
+| 1 | At least three dose levels with $\ge 3$ patients each | Any dose-response at all | Fatal |
+| 2 | A top dose at least 4-fold above the bottom dose | $T_{\rm rep}$ separation between levels | Fatal |
+| 3 | B-cell counts weekly for 8 weeks, then monthly to repopulation | $k_{\rm out}$, and therefore $T_{\rm rep}$ | Fatal |
+| 4 | Follow-up past B-cell repopulation in most patients | $T_{\rm rep}$ is right-censored otherwise | Severe |
+| 5 | Platelet counts at every visit, 6 months minimum | Separating responders from non-responders | Fatal |
+| 6 | Pre-treatment platelet counts, $\ge 2$ per patient | $\theta_i$, the baseline severity | Severe |
+| 7 | Rescue therapy dates and doses | Platelet rises not attributable to drug | Severe |
+| 8 | Concomitant TPO-RA and corticosteroid exposure recorded | The largest competing platelet driver | Severe |
+| 9 | Serum IgG or anti-platelet antibody, if measured at all | Makes $A(t)$ observed rather than latent | Valuable |
+| 10 | Immature platelet fraction | Separates production from destruction | Valuable |
+
+: Data requirements, in decreasing order of consequence {tbl-colwidths="[5,35,38,12]"}
+
+Requirement 10 deserves the argument it gets in Section 9. Immature platelet
+fraction (IPF) is the proportion of circulating platelets with residual RNA,
+measurable on a standard haematology analyser, and it stands to thrombopoiesis
+as the reticulocyte count stands to erythropoiesis. In ITP it is characteristically
+elevated, because destruction is high and the marrow is compensating. A drug
+that lowers destruction should lower IPF while raising platelet count, and a
+drug that raised production would raise both. That is a structural
+identifiability question answered by one extra number on a blood count that
+was drawn anyway.
+
+## 7. Identifiability
+
+Three parameters in Section 5.4 compete to explain the same feature of the
+data, which is that some patients' platelet counts rise weeks after dosing and
+others' do not.
+
+**$k_{e0}$ against $\eta_i$.** A slow transduction rate and a partial drug
+effect both flatten the platelet trajectory. They separate only if follow-up
+extends past the point where a slow response would have completed, which is
+requirement 4 in Section 6 restated on the platelet side. Fix $k_{e0}$ from
+the literature prior and estimate $\eta_i$; the reverse is not supportable.
+
+**$\eta_i$ against $\theta_i$.** Baseline severity and drug effect are
+separated by the pre-treatment platelet counts and by nothing else, which is
+requirement 6.
+
+**$EC_{50}$ against $E_{\max}$ in the B-cell layer.** Not separable at doses
+that all saturate. The escalation's lowest cohort is the only data that
+informs $EC_{50}$, and a design that starts the escalation above the saturating
+dose gives up the parameter entirely. This is an argument for a low starting
+dose that a pure safety argument would not make.
+
+Report all three as identifiability diagnostics on every simulated fit, not as
+prose: condition number of the Fisher information matrix, the profile
+likelihood for $EC_{50}$, and the correlation between the $\eta_i$ and
+$\theta_i$ empirical Bayes estimates.
+
+## 8. Exposure-response confounding
+
+An exposure-response analysis of an escalation-plus-expansion study is a known
+generator of false positives, and the review literature on time-dependent
+clearance in therapeutic antibodies names the two mechanisms that apply here.
+
+**Target burden drives clearance.** B cells are the target sink. A patient with
+a high B-cell burden clears the drug faster and therefore has both lower
+exposure and, plausibly, more disease to remove. Exposure and outcome then
+correlate for a reason that has nothing to do with dose. The target-mediated
+term in Section 5.1 is carried specifically so that this mechanism is in the
+model rather than in the residual.
+
+**A single-dose expansion cohort is the worst case.** The published review
+finding is that designs with one tested dose level have a high probability of a
+false-positive exposure-response result, because all the exposure variation is
+between-patient and between-patient exposure variation is confounded with
+everything else about the patient. The expansion cohort in this design is
+exactly that shape.
+
+The consequence for the analysis plan is a rule, not a caution. **Dose, not
+exposure, is the independent variable in the dose selection rule of Section
+10.** Individual exposure enters the model as the thing dose produces, and the
+selection is made by simulating dose levels forward from the fitted model
+rather than by regressing outcome on observed area under the concentration
+curve. An exposure-response plot may be produced as a diagnostic; it does not
+select a dose.
+
+## 9. Choice of endpoint for fitting
+
+The Phase 2 and Phase 3 endpoints in ITP are dichotomies. Durable response as
+platelet count $\ge 50 \times 10^9$/L over a specified share of weeks is what
+gets reported and what a label carries. Fitting that dichotomy directly at
+Phase 1 sample sizes wastes most of the information in the dataset, and the
+statistical literature on dichotomizing continuous outcomes quantifies the
+loss.
+
+**Fit the continuous longitudinal platelet count; derive the dichotomy from
+the fitted model by simulation.** The mixture in Section 5.4 does the work
+that a responder analysis does by hand: $\eta_i$ near 0 is a non-responder,
+and the population distribution of $\eta$ is what a response rate is a
+one-number summary of. Simulating the Phase 2 endpoint from the fitted model
+then gives a predicted response rate per dose with an interval, which is what
+a Phase 2 decision actually needs.
+
+Two model features this requires and a plain responder analysis does not:
+
+- **A distribution for $\eta$ with mass near zero.** A normal random effect on
+  a logit scale will not reproduce a bimodal response. Candidates are a
+  two-component mixture and a beta distribution with both shape parameters
+  below one. Fit both; report both.
+- **Rescue therapy as informative censoring.** A patient rescued for a low
+  platelet count is not missing at random. Model the rescue as an event with a
+  hazard driven by the current platelet count, or exclude post-rescue
+  observations and accept the bias, and say which.
+
+## 10. The dose selection rule
+
+Stated in advance, so that the simulation in Section 11 scores something
+fixed.
+
+**Select the lowest dose whose posterior predictive Phase 2 response rate is
+within 5 percentage points of the maximum over the dose range studied, with at
+least 80% posterior probability.**
+
+Three properties of that rule, each deliberate.
+
+It targets the bottom of the plateau rather than the maximum, which is the
+quantity Section 4 argues the data can locate. It uses the predicted clinical
+endpoint rather than $T_{\rm rep}$, so that the biomarker's role stays limited
+to carrying dose information into the model. And it is asymmetric, because 5
+percentage points below the maximum is a tolerance on the downside only.
+
+**The comparator rules the simulation scores this against:**
+
+| Rule | Basis |
+|:---|:---|
+| A. Highest safe dose | The default when no model is built |
+| B. Lowest dose with $T_{\rm rep}$ within 10% of maximum | Biomarker-only, no platelet model |
+| C. The rule above | The model this specification proposes |
+| D. Empirical best observed response rate | What the raw data says, no model |
+
+: Dose selection rules compared in Section 11 {tbl-colwidths="[45,55]"}
+
+Rule A is the baseline. If C does not beat A by enough to change a decision,
+the project's answer is that the model should not be built, and that is a
+publishable finding.
+
+## 11. The simulation study
+
+This is the work. Everything above is the structure it needs.
+
+**11.1 Generate.** Simulate escalation-plus-expansion datasets from the full
+model of Sections 5.1 to 5.3, not the reduced model of 4.4. Vary, in a
+factorial:
+
+- number of dose levels (3, 4, 5) and patients per level (3, 6);
+- expansion size (20, 40) and which dose it sits at;
+- true shape of the dose-response on $\eta$: plateau at the second dose level,
+  plateau at the fourth, monotone with no plateau in range;
+- the long-lived plasma cell floor $\phi$, which sets the ceiling on response
+  rate;
+- follow-up duration (6, 12 months).
+
+**11.2 Fit.** The reduced model of Section 5.4, with the priors named there,
+to every simulated dataset. Record convergence, the identifiability
+diagnostics of Section 7, and the posterior predictive response rate per dose.
+
+**11.3 Score.** For each of the four rules in Section 10:
+
+- probability the selected dose equals the true plateau bottom;
+- probability the selected dose is below it, which is the costly error;
+- expected number of dose levels above it, which is the cheap error;
+- the same three under the wrong-structure case, where data came from a model
+  with tissue depletion lagging peripheral depletion and the fitted model
+  assumes they coincide.
+
+**11.4 Report.** The factorial has too many cells for a figure each. The
+output is a single figure with true plateau position on the horizontal axis and
+probability of correct selection on the vertical, one line per rule, one panel
+per sample size. The tables are the supporting detail.
+
+## 12. External checks
+
+Two published results the model should be able to reproduce, and neither is
+used in fitting.
+
+**VAYHIT2, ianalumab at 3 and 9 mg/kg in ITP.** The 12-month
+freedom-from-treatment-failure probabilities reported for the two doses differ
+by a few percentage points, against a larger gap to placebo. A model fit to
+escalation data covering that range should predict a plateau below 3 mg/kg. If
+the model instead predicts a meaningful gain from 9 mg/kg over 3 mg/kg, it is
+wrong in the direction that costs patients drug exposure for nothing, and the
+reason it is wrong is diagnostic.
+
+**Low-dose against standard-dose rituximab in ITP.** Pooled response rates for
+100 mg weekly and 375 mg/m² weekly are close, across a roughly four-fold dose
+range, in a meta-analysis of a few hundred patients. Same test, different
+compound and a much longer literature.
+
+Both checks are on the plateau's existence, not its exact position, which is
+the strongest claim aggregate published data can support.
+
+## 13. What would make the answer no
+
+Written before the work, so that a negative result is recognizable rather than
+explained away.
+
+**Tissue depletion does not track peripheral depletion.** If the dose-response
+the platelet endpoint depends on is in the spleen, and the spleen is
+invisible, peripheral B-cell kinetics is a biomarker of the wrong compartment, and no amount of platelet
+modelling recovers the missing dose axis. This is the most likely route to a
+negative answer and Section 11.3's wrong-structure case is what detects it.
+
+**The response mixture is not identifiable at $n \approx 40$.** If the
+posterior for the $\eta$ distribution is dominated by its prior across every
+simulated dataset, the predicted response rates per dose carry no information
+that the raw response counts did not, and rule C reduces to rule D.
+
+**The plateau is outside the studied range.** If the true dose-response is
+still rising at the top escalation dose, every rule selects the top dose and
+the model adds nothing. The simulation includes this case so that the
+frequency with which it can be *detected* is reported, which is a different
+and more useful quantity than the frequency with which it is handled.
+
+**Concomitant therapy dominates.** Most ITP patients entering an escalation
+study are on a TPO-RA or corticosteroids or both. If the platelet trajectory
+is mostly explained by those, the drug effect is a small perturbation on a
+large signal and the sample size required moves out of reach.
+
+## 14. Milestones
+
+1. **Read the platelet-side literature and fix the platelet parameters.**
+   Entries 1 to 3 of the reading queue. Ends with a table of $k_{\rm tr}$,
+   $k_{\rm dest,0}$ and platelet lifespan with a source per number.
+2. **Read the B-cell-side literature and fix the depletion parameters.**
+   Entries 4 to 6. Ends with $k_{\rm out}$, a prior on $EC_{50}$, and a
+   plausible $T_{\rm rep}$ against dose curve.
+3. **Set the prior on $k_{e0}$.** Entry 7, the rituximab ITP time-to-response
+   literature. One number and an interval.
+4. **Build the full generative model and show it reproduces ITP.** Untreated
+   platelet counts in the observed range, a response in four to eight weeks, a
+   response rate in the published range at a saturating dose.
+5. **Build the reduced model and fit it to one simulated dataset.** The
+   identifiability diagnostics of Section 7 on a single case before any
+   factorial.
+6. **Run the factorial and produce the Section 11.4 figure.**
+7. **Run the external checks of Section 12.**
+
+Milestones 1 to 3 are reading and produce a parameter table. Milestone 4 is
+where the specification first meets contact with reality, and Sections 5 and 6
+are expected to change there.
+
+## 15. Why no such model has been published
+
+Platelet count is the primary endpoint of every ITP trial, so the absence of a
+PK-platelet model for any immunomodulatory agent in ITP needs an explanation
+before the project assumes it can build one.
+
+**The published PK-platelet models in ITP are all for drugs that stimulate
+platelet production, and none is for a drug that blocks platelet
+destruction.** Seven reasons, ranked by how much each one would still bite
+this project. The evidence for each is in
+[references.qmd](references.qmd).
+
+**1. The mechanism that got modelled is the one with a graded dose-response.**
+A thrombopoietin receptor agonist raises $k_{\rm prod}$ in Section 5.3
+directly, continuously, and with a lag of days. Every patient's platelet count
+moves, the size of the move scales with dose, and the loop from dose to
+response closes inside two weeks. That is a textbook indirect-response
+problem, and the eltrombopag, romiplostim, avatrombopag and lusutrombopag
+models exist because of it. An immunomodulator acts on $k_{\rm dest}$ through
+an unmeasured autoantibody with a peak-response lag of 14 to 180 days
+(Section 2.5).
+
+**2. The endpoint is a dichotomy of a dichotomy.** CR and R are thresholds on
+platelet count, and recent trials add a durability requirement over 8 to 12
+weeks on top. What is reported is a proportion at one dose. A proportion at
+one dose is not something a model is needed for.
+
+**3. The response is a mixture, not a graded effect.** Dose moves the
+probability that a patient responds, not the size of the rise in a patient who
+does. Continuous $E_{\max}$ machinery fits the wrong shape, and the
+information per patient in a binary outcome is low enough that Phase 1 sample
+sizes give little to fit.
+
+**4. Doses are titrated to the endpoint.** Thrombopoietin receptor agonists
+and fostamatinib are dose-adjusted to hold platelets in a window. Dose then
+depends on response, which inverts the direction a standard exposure-response
+analysis assumes and makes the observed relationship uninterpretable without a
+model of the adjustment rule itself.
+
+**5. Dose-ranging designs in ITP destroy the dose contrast.** The rilzabrutinib
+Phase 1/2 dose-finding study used intrapatient escalation across four dose
+levels, so dose is confounded with time on drug within every patient. The
+orelabrutinib Phase 2 randomized two doses and is the exception.
+
+**6. Sponsors model the clean biomarker instead and treat platelets as the
+confirmation.** Efgartigimod's subcutaneous dose for Phase 3 in ITP was chosen
+by simulating total immunoglobulin G reduction, from a population target-binding
+model in which receptor occupancy drives IgG suppression. Ianalumab's Phase 2b
+doses in Sjögren's were chosen from B cells and tissue receptor occupancy. In
+both cases the fast, continuous, saturable biomarker did the dose selection and
+the clinical endpoint was left to the trial. This specification proposes going
+one link further, and Sections 4 and 13 are why that is hard.
+
+**7. Where the analysis was done, it came out inconclusive.** The one published
+exposure-response analysis found for an ITP drug that blocks platelet
+destruction is fostamatinib. Responders had higher active-moiety concentrations
+than non-responders, and the review reports the correlation between exposure
+and achievement of the platelet endpoint as uncertain, while exposure against
+hypertension was significant. A negative result is rarely written up as a
+model.
+
+**One reason that is not evidence of difficulty.** Regulatory clinical
+pharmacology reviews carry exposure-response analyses that never reach a
+journal. Absence from the published literature is weaker evidence than it
+looks, and the FDA and EMA review documents are the cheapest place left to
+check (references, final entry).
+
+**What this changes in the specification.** Reasons 2, 3 and 5 are design
+problems this project can specify around, and Sections 9, 10 and 11 do. Reason
+1 is the one that cannot be specified around: it is the same delay-and-latency
+problem as Section 13's first failure mode, seen from the endpoint's side
+rather than the biomarker's.
+
+## 16. The intended use
+
+A pharmacometrician holding escalation and expansion data on a B-cell
+depleting agent in ITP, being asked for a Phase 2 dose. This document says
+what such a model can and cannot deliver, what the study has to have measured
+for it to be buildable, and how often it beats picking the highest safe dose.
+
+The expected finding, which Section 11 tests rather than assumes, is that the
+model locates a plateau boundary the raw response counts cannot resolve at
+$n \approx 40$, and that it does so only where B-cell repopulation has been
+followed to completion.
