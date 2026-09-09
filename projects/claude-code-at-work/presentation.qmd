@@ -112,6 +112,8 @@ This is still a work in progress, with three different synthetic data generators
 - Principle Component Analysis *PCA*
 - AVATAR - Patient blending
 
+[iamstein.github.io/synpmx](https://iamstein.github.io/synpmx/)
+
 ## 3. synpmx: Most useful aspects; building a scorecard and a set of datasets to test
 
 
