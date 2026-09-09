@@ -36,8 +36,6 @@ website:
         text: PMX Tools
       - href: talks.qmd
         text: Talks
-      - href: demo.qmd
-        text: Demo
       - text: About
         menu:
           - href: about.qmd
