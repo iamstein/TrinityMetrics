@@ -155,11 +155,11 @@ tt <- seq(0, 336, by = 2)
 doses <- c(0.03, 0.3, 3, 30, 300)
 prof <- bind_rows(lapply(doses, function(d)
   data.frame(dose = d, cmax = d / V, day = tt, B = sim_B(d, Emax, EC50, kout, B0, times = tt))))
-prof$label <- factor(sprintf("Cmax = %g × EC50", prof$cmax), levels = sprintf("Cmax = %g × EC50", doses / V))
+prof$label <- factor(sprintf("%g", prof$cmax), levels = sprintf("%g", doses / V))
 ggplot(prof, aes(day, B, colour = label)) +
   geom_hline(yintercept = 10, linetype = 2, colour = "grey50") +
   geom_line(linewidth = 0.8) +
-  scale_colour_manual(values = ramp5, name = NULL) +
+  scale_colour_manual(values = ramp5, name = "Cmax, multiples of EC50") +
   scale_y_log10(breaks = c(1, 10, 100), limits = c(0.5, 300)) +
   annotate("text", x = 330, y = 10, label = "LOQ", hjust = 1, vjust = -0.4, size = 3, colour = "grey40") +
   labs(x = "Day", y = "B cells per µL, log scale") +
@@ -318,8 +318,8 @@ with cohorts and does not depend much on the early samples. Then read
 $E_{\max}$ and $EC_{50}$ against the sampling column. With days 1 and 3
 sampled they are estimable, at 40 to 55% RSE from six patients at one dose
 and around 10% from five cohorts. With the first sample at day 7 they are not
-estimable in any design: the correlation is 1.00 and the RSEs are in the
-hundreds. Design D, which puts two cohorts at concentrations where the nadir
+estimable in any design: the correlation is 1.00 and the RSEs run from about
+90% to over 800%. Design D, which puts two cohorts at concentrations where the nadir
 is quantifiable, does not rescue them, because those cohorts sit in the
 linear range below the band of Section 3 and inform the slope, not its
 factors.
