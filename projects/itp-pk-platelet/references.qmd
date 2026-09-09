@@ -15,7 +15,7 @@ search results and abstracts.** Entry 1, the IWG 2009 consensus paper, and
 entries 22 to 25, the FDA, EMA and PMDA reviews of rilzabrutinib, fostamatinib
 and efgartigimod in ITP, were read in full and are ✅, as is the PAGE 2009
 poster behind entry 26. Every other marker is ❌, including the numbers
-Section 4 and Section 12 of the specification quote: the ianalumab 3
+Section 4 and Section 13 of the specification quote: the ianalumab 3
 against 9 mg/kg comparison, the rituximab low-dose response rates, the
 efgartigimod immunoglobulin G reduction, and the four-compartment platelet
 model structure all come from search summaries rather than from the papers. A
@@ -84,7 +84,7 @@ counts (rilzabrutinib). None was used to pick a dose. That is the specification'
 question, asked three times by sponsors with more data than a Phase 1 study
 has, and the answer was no each time.
 
-**Why the gap exists is argued in Section 15 of the specification**, in seven
+**Why the gap exists is argued in Section 16 of the specification**, in seven
 ranked reasons, each drawn from an entry below. The short form: the drugs with
 published PK-platelet models in ITP all raise platelet *production*, which
 gives a graded dose-response with a lag of days, and the drugs in this
@@ -154,14 +154,14 @@ sections above carry what they said.
   produced. Re-read only to check a definition.
 - **Entry 26, the eltrombopag ITP model, before building anything.** It has
   the mixture, the fixed maturation chain, and the response-guided titration
-  simulation that Sections 5.3, 5.4 and 11 of the specification propose. The
+  simulation that Sections 5.3, 5.4 and 12 of the specification propose. The
   poster has been read; the paper has not, and the paper is where the
   degradation rate in ITP is.
 - **Entry 2 next, and it may settle the project's shape.** It is the closest
   published analogue: model-based Phase 2b dose selection for the same
   molecule, in a different autoimmune disease. Budget one hour. If it turns
   out that tissue receptor occupancy did the work and circulating B cells did
-  not, Section 13's first failure mode is confirmed before any code is
+  not, Section 14's first failure mode is confirmed before any code is
   written.
 - **Entries 3 and 4 together**, for the precedent that a PK/PD model has
   selected a dose in ITP and what it was anchored on. Entry 4 is the published
@@ -274,7 +274,7 @@ for any ITP drug that acts on autoantibody rather than on platelet production.
 
 **The question.** Whether platelet count appears in it at all. If the model
 stops at total immunoglobulin G, it is the documented instance of reason 6 in
-Section 15 of the specification: the sponsor modelled the clean biomarker and
+Section 16 of the specification: the sponsor modelled the clean biomarker and
 left the clinical endpoint to the trial.
 
 **What a search summary says**, unverified: a population PK/PD model including
@@ -385,7 +385,7 @@ currently have.
 
 ## Trial reports the external checks and the realism constraints come from
 
-These are not modelling papers. They supply the numbers Sections 4, 6 and 12
+These are not modelling papers. They supply the numbers Sections 4, 6 and 13
 quote, and each is checked when the claim that rests on it is checked.
 
 ### 10. Fostamatinib and R406 clinical pharmacokinetics and pharmacodynamics ❌
@@ -404,7 +404,7 @@ triggers it.
 **The question.** What the exposure-response analysis actually did, and
 whether its inconclusive result came from a flat relationship, from
 dose titration to effect, or from sample size. That distinction is reason 7
-against reason 4 in Section 15 of the specification, and it changes how much
+against reason 4 in Section 16 of the specification, and it changes how much
 the fostamatinib result should discourage this project.
 
 **What a search summary says**, unverified: responders had higher R406
@@ -448,7 +448,7 @@ further down.
 summary reports three subcutaneous doses weekly for eight weeks, a
 dose-dependent platelet increase with the greatest response at the highest
 dose, and 10 of 11 patients responding at 600 mg against 3 of 13 on placebo.
-If the dose-response was still rising at the top dose, this is the Section 13
+If the dose-response was still rising at the top dose, this is the Section 14
 case where the plateau lies outside the studied range, observed in a real
 programme.
 
@@ -483,7 +483,7 @@ multiple-dose arms.
 [doi:10.1056/NEJMoa2515168](https://doi.org/10.1056/NEJMoa2515168) ·
 [PubMed 41363800](https://pubmed.ncbi.nlm.nih.gov/41363800/)
 
-**Why it is here.** It is external check 1 in Section 12, and the single most
+**Why it is here.** It is external check 1 in Section 13, and the single most
 important entry for whether the project's premise holds. Two doses of a B-cell
 depleting agent, randomized, in ITP, with a clinical endpoint.
 
@@ -500,10 +500,10 @@ predicted it from escalation data would have saved a Phase 3 arm.
 [PubMed 40090011](https://pubmed.ncbi.nlm.nih.gov/40090011/) ·
 [PMC12824683](https://pmc.ncbi.nlm.nih.gov/articles/PMC12824683/)
 
-**Why it is here.** The realism constraint on Section 11's simulated response
+**Why it is here.** The realism constraint on Section 12's simulated response
 rates, and the current definition of the durable response endpoint.
 
-**The question.** The exact endpoint definition, which Section 11 has to
+**The question.** The exact endpoint definition, which Section 12 has to
 simulate. A search summary gives it as platelet count
 $\ge 50 \times 10^9$/L for at least two-thirds of at least 8 of the last 12 of
 24 weeks without rescue therapy, achieved by 31 of 133 (23%) against 0 of 69
@@ -523,7 +523,7 @@ the B-cell receptor, and blocked Fc-gamma-receptor-mediated phagocytosis.
 
 **The question.** Whether the dose escalation was intrapatient. If it was,
 every patient saw more than one dose level and dose is confounded with time on
-drug, which is reason 5 in Section 15 of the specification and would explain
+drug, which is reason 5 in Section 16 of the specification and would explain
 the absence of a dose-response model from a study that otherwise had the data
 for one.
 
@@ -566,7 +566,7 @@ rest of this queue.
 [*Platelets* 2019;30(6), doi:10.1080/09537104.2019.1624706](https://doi.org/10.1080/09537104.2019.1624706) ·
 [Different dosages of rituximab in adult ITP, PMC8514896](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8514896/)
 
-**Why it is here.** External check 2 in Section 12, and the evidence behind
+**Why it is here.** External check 2 in Section 13, and the evidence behind
 Section 4's claim that depth of depletion carries no dose information.
 
 **The question.** Whether the low-dose and standard-dose comparisons are
@@ -780,7 +780,7 @@ $E_{\max}$ function of effect-site concentration on $k_{\rm out}$. The base
 model came from healthy subjects and myasthenia gravis. Every covariate in the
 base model was dropped in the ITP update (p. 8).
 
-**One number for Section 15 reason 4.** Sustained platelet response over Weeks
+**One number for Section 16 reason 4.** Sustained platelet response over Weeks
 16 to 23 by dosing frequency in the efgartigimod arm: 22.8% (13 of 57) on
 weekly dosing, 90.0% (9 of 10) on every-other-week dosing (p. 50). The
 every-other-week group is the patients whose platelets allowed the switch,
@@ -915,6 +915,22 @@ clearance, the rest by something else. That remainder is the reason the
 specification does not treat autoantibody concentration as the whole of the
 destruction signal.
 
+## Assay sources for Section 5.5
+
+### 30. Anti-platelet antibody assays in ITP: MAIPA and platelet-associated IgG ❌
+
+No source retrieved. The characterization in Section 5.5 of the
+specification, that MAIPA against GPIIb/IIIa and GPIb/IX is specific for ITP
+and positive in roughly half to 60% of patients, that it is semi-quantitative,
+and that platelet-associated IgG is non-specific, is from general knowledge
+and carries no citation. The entry exists so that it gets one.
+
+**The question.** Three numbers with sources: MAIPA sensitivity and
+specificity in a cohort with a clinical diagnosis of ITP; whether any trial
+of a B-cell depleting agent in ITP measured it serially; and whether a
+quantitative version exists. The 2019 American Society of Hematology
+guideline and the IWG bleeding and diagnosis papers are the places to start.
+
 ## Sources the specification's numbers come from
 
 Every number the specification quotes from outside itself. The four ✅ rows
@@ -927,13 +943,13 @@ came from the paper; every other row came from a search summary of the source.
 | ✅ | IWG trial-adapted primary and secondary endpoints | Section 2.3 | Entry 1 |
 | ✅ | Rituximab time to initial response 7 to 56 d, to peak 14 to 180 d | Sections 2.5, 5.4 | Entry 1 |
 | ❌ | Endpoint definitions used by LUNA3, ADVANCE IV, VAYHIT2, orelabrutinib and rilzabrutinib Part A | Section 2.4 | Entries 15, 3, 14, 17, 16 |
-| ✅ | Rilzabrutinib: 305 patients, 10,652 platelet counts, indirect E-R model fit; continuous endpoint rose with exposure, durable response flat | Sections 3, 9, 15 | Entry 22 |
-| ✅ | Fostamatinib: no continuous platelet model fit; Week 12 logistic slope on 79 patients; both doses on the rising part | Section 15 | Entries 23, 24 |
-| ✅ | Efgartigimod: Phase 2 IgG-to-platelet model could not explain between-patient variation; dose chosen on IgG | Section 15 | Entry 25 |
+| ✅ | Rilzabrutinib: 305 patients, 10,652 platelet counts, indirect E-R model fit; continuous endpoint rose with exposure, durable response flat | Sections 3, 9, 16 | Entry 22 |
+| ✅ | Fostamatinib: no continuous platelet model fit; Week 12 logistic slope on 79 patients; both doses on the rising part | Section 16 | Entries 23, 24 |
+| ✅ | Efgartigimod: Phase 2 IgG-to-platelet model could not explain between-patient variation; dose chosen on IgG | Section 16 | Entry 25 |
 | ✅ | Eltrombopag in ITP: 19% non-responders with slope 0; $k_{\rm in}$ and $k_T$ not identifiable from ITP data, fixed to healthy-volunteer values | Sections 5.3, 5.4 | Entry 26 |
 | ❌ | Romiplostim precursor lifespan 5.9 d, platelet lifespan 10.5 d | Section 5.3 | Entry 6 |
-| ❌ | Ianalumab 12-month freedom from treatment failure 51% at 3 mg/kg, 54% at 9 mg/kg, 30% placebo | Sections 4, 12 | Entry 14 |
-| ❌ | Rituximab pooled response 63% at 100 mg weekly against 69% at 375 mg/m² weekly | Sections 4, 12 | Entry 18 |
+| ❌ | Ianalumab 12-month freedom from treatment failure 51% at 3 mg/kg, 54% at 9 mg/kg, 30% placebo | Sections 4, 13 | Entry 14 |
+| ❌ | Rituximab pooled response 63% at 100 mg weekly against 69% at 375 mg/m² weekly | Sections 4, 13 | Entry 18 |
 | ❌ | Ianalumab half-life 9 to 10 days; two-compartment linear PK | Section 5.1 | Entry 2 |
 | ❌ | Four-compartment platelet lifespan structure: one precursor, two transit, one blood | Section 5.3 | Entry 5 |
 | ❌ | Platelet lifespan 7 to 10 days | Section 5.3 | Entry 6 |
@@ -971,7 +987,7 @@ model.
   and
   [translating B-cell and plasma-cell targeting from oncology to autoimmunity, PMC13338978](https://pmc.ncbi.nlm.nih.gov/articles/PMC13338978/).
   Out of scope by the specification's own statement, and the place to go if
-  Section 13's tissue-depletion failure mode is confirmed.
+  Section 14's tissue-depletion failure mode is confirmed.
 - **T-DM1 thrombocytopenia model**,
   [*Cancer Chemother Pharmacol* 2012, PubMed 22886072](https://pubmed.ncbi.nlm.nih.gov/22886072/).
   A semimechanistic transit-compartment platelet model for drug-induced
@@ -984,7 +1000,7 @@ model.
 - **Single-cell evidence for multiorgan dissemination of autoreactive plasma
   cells in ITP**,
   [bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.06.29.450355.full.pdf).
-  The biology behind Section 4's tissue argument and Section 13's first
+  The biology behind Section 4's tissue argument and Section 14's first
   failure mode.
 - **FDA reviews for the TPO-RAs**: Promacta, Nplate, Doptelet, Mulpleta.
   Entries 22 to 25 covered the destruction-blocking drugs; the production

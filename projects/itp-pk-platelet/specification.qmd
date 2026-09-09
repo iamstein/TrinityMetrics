@@ -10,6 +10,10 @@ toc-location: left
 toc-expand: true
 number-sections: false
 html-math-method: mathjax
+execute:
+  freeze: auto
+  warning: false
+  message: false
 ---
 
 ::: {.callout-important appearance="simple"}
@@ -17,7 +21,7 @@ html-math-method: mathjax
 literature review in [references.qmd](references.qmd) was assembled from
 search results and abstracts on 2026-09-09. The IWG 2009 consensus paper
 behind Section 2, the FDA, EMA and PMDA reviews of rilzabrutinib, fostamatinib
-and efgartigimod behind Section 15, and the eltrombopag ITP model poster behind
+and efgartigimod behind Section 16, and the eltrombopag ITP model poster behind
 Sections 5.3 and 5.4 were read in full and are ✅; every other source is ❌. The model in Section 5 is a candidate
 structure written to be replaced by whatever the rituximab and thrombopoietin
 receptor agonist papers actually report. The numbers quoted from trials are
@@ -29,25 +33,38 @@ transcribed from search summaries and are not safe to reuse. The
 
 **The question.** A B-cell depleting agent has been given to a small number of
 patients with immune thrombocytopenia (ITP) in a dose escalation followed by
-an expansion cohort. Serum drug concentration, circulating B-cell count and
-platelet count were measured serially in every patient. Can a model of those
-three time courses pick the Phase 2 dose?
+two expansion arms of 20 to 40 patients each. Serum drug concentration,
+circulating B-cell count, serum IgG and platelet count were measured serially
+in every patient. Can a model of those time courses pick the Phase 2 dose, and
+how many patients does it save over picking from the response rate in each
+arm?
 
-**The answer this specification argues for, before it is tested.** ⚠️ **Yes
-for ranking doses and for locating the bottom of the plateau; no for
-estimating a platelet-response $EC_{50}$.** The escalation data will place the
-lowest dose that gives durable B-cell depletion, and that dose is a defensible
-Phase 2 choice. It will not support a potency parameter on the platelet
-endpoint, because the number of patients is small, the platelet response is a
-mixture of responders and non-responders, and the expansion cohort supplies
-one dose level rather than a range.
+**The answer this specification argues for, before it is tested.** ⚠️ **Two
+arms of 20 to 40 can pick the better dose without a model when the doses are
+15 or more points apart in durable response rate; at 10 points apart the model
+is what makes 20 per arm enough; the bottom of a plateau is beyond both.**
+Picking the better of two arms 15 points apart takes 20 per arm and 10 points
+apart takes 40 per arm on the raw response rates alone. A model that fits the
+escalation cohorts and both expansion arms through one dose-response shape
+estimates the same contrast with 2 to 5 times the information, if the shape
+is right, which brings the 10-point case inside 20 per arm. Where adjacent
+doses differ by 5 points, as at the bottom of a plateau, no comparison of arms
+at this size can tell them apart, and the model can name the plateau only as a
+parameter of a shape it has assumed. Section 11 computes those numbers and
+Section 12 is the simulation that checks whether the shape assumption survives
+being wrong. The dose selection is made on predicted platelet response, never
+on the B-cell biomarker.
 
 **What the biomarker in the middle can and cannot say.** Circulating
 B cells are depleted essentially completely at every dose that gets past the
 first escalation cohort. Depth of depletion is therefore uninformative about
 dose, and the quantity that still varies with dose is the **duration** of
 depletion, measured as time to repopulation. Section 4 is that argument and it
-is the reason the model in Section 5 is written around a duration.
+is the reason the model in Section 5 is written around a duration. Duration of
+depletion carries dose into the model; it does not choose the dose, because
+complete and durable depletion of circulating B cells is not the same thing as
+maximal platelet response, and the selection rule in Section 10 is written on
+the platelet endpoint for that reason.
 
 **The chain the model has to cross.**
 
@@ -70,7 +87,7 @@ the endpoint. The model collapses them into one transduction delay whose prior
 comes from published time-to-response in rituximab-treated ITP, and estimates
 only the dose-dependent part.
 
-**How the question gets answered.** By simulation, in Section 11. Generate
+**How the question gets answered.** By simulation, in Section 12. Generate
 escalation and expansion datasets from an assumed true model at a realistic
 sample size, fit the candidate model, apply the dose selection rule in Section
 10, and count how often the selected dose is the true best dose. The
@@ -111,10 +128,13 @@ The setting assumed throughout:
 - a monoclonal antibody or antibody-like agent whose mechanism is B-cell
   depletion, given intravenously or subcutaneously as a short course of two to
   four administrations;
-- an escalation of three to five dose levels, three to six patients per level;
-- one expansion cohort at a single dose, twenty to forty patients;
+- an escalation of three to five dose levels, three to six patients per level,
+  whose data are kept and fit alongside the expansion;
+- expansion in two arms at doses chosen from the escalation, twenty to forty
+  patients per arm, so that the whole study is fifty to one hundred patients;
 - serial pharmacokinetic (PK) sampling, circulating B-cell counts by flow
-  cytometry, and platelet counts at every visit for six to twelve months;
+  cytometry, serum total immunoglobulin G (IgG), and platelet counts at every
+  visit for six to twelve months; anti-platelet IgG where an assay is run;
 - primary clinical endpoint a durable platelet response, defined as platelet
   count $\ge 50 \times 10^9$/L sustained over a specified fraction of the
   observation window without rescue therapy.
@@ -155,7 +175,7 @@ has to simulate.
 **A response is a confirmed response.** Platelet counts must be confirmed on
 at least two separate occasions, at least 7 days apart when used to define CR
 or R, and 1 day apart when used to define NR or loss of response. A single
-count above threshold is not an event, which is why Section 11 simulates the
+count above threshold is not an event, which is why Section 12 simulates the
 visit schedule rather than the underlying trajectory.
 
 **Bleeding is part of every definition.** CR, R and NR each carry a bleeding
@@ -184,7 +204,7 @@ argument for requirement 6 in Section 6.
 
 The phase decides the trial population and therefore the response rate the
 model has to reproduce. Persistent and chronic ITP is where every agent in
-Section 12's external checks was studied, and spontaneous remission is common
+Section 13's external checks was studied, and spontaneous remission is common
 enough in newly diagnosed ITP that a placebo arm there behaves differently.
 
 ### 2.3 Primary and secondary endpoints as the IWG specifies them for trials
@@ -222,10 +242,10 @@ search summary and carries ❌ in the references.
 
 Two consequences for this project. The threshold the model has to simulate is
 50, not the IWG's 30 or 100, and the durability window differs by trial, so
-Section 11's simulated endpoint is a parameter of the simulation rather than a
+Section 12's simulated endpoint is a parameter of the simulation rather than a
 constant. And VAYHIT2's time-to-treatment-failure endpoint is a different
 mathematical object from a durable response proportion, which is why Section
-12's first external check compares a predicted plateau rather than a predicted
+13's first external check compares a predicted plateau rather than a predicted
 rate.
 
 ### 2.5 Time to response by agent, and where the transduction prior comes from
@@ -252,14 +272,14 @@ transduction delay with that much spread across patients is why Section 7
 gives up on estimating $k_{e0}$ and $\eta_i$ jointly, and why requirement 4 in
 Section 6 asks for follow-up past the point where a slow response would have
 completed. The contrast with the two rows above it is also the argument of
-Section 15: a thrombopoietin receptor agonist reaches peak effect in weeks
+Section 16: a thrombopoietin receptor agonist reaches peak effect in weeks
 through a mechanism that acts directly on platelet production, and that is the
 class whose PK-platelet models are published.
 
 ## 3. The question in four parts
 
 "Can the model select the dose" is not answerable as written. It becomes
-answerable when split into four, each of which the simulation in Section 11
+answerable when split into four, each of which the simulation in Section 12
 reports separately.
 
 **3.1 Is dose to exposure identifiable?** Yes, and it is not the problem. A
@@ -269,7 +289,8 @@ fits from the escalation PK alone.
 **3.2 Is exposure to B-cell depletion identifiable?** Partly. The depth of
 depletion saturates, so the $EC_{50}$ on depth is estimated from the lowest
 cohort or not at all. The duration of depletion does not saturate over the
-same range, and is where the dose information lives.
+same range, and is where the dose information lives. It is an input to the
+model and not a selection criterion; see the last paragraph of the In brief.
 
 **3.3 Is B-cell depletion to platelet response identifiable?** This is the
 question. The link is indirect, delayed by weeks, and mediated by two
@@ -278,7 +299,7 @@ identifiable at all. The FDA review of rilzabrutinib (references, entry 22) is
 an existence proof one step short: a longitudinal platelet model for a drug
 that blocks destruction fit adequately at 305 patients pooled across two
 trials at one dose. Whether it does at 40 patients across four doses is what
-Section 11 tests.
+Section 12 tests.
 
 **3.4 Does a wrong answer cost anything?** The selection rule in Section 10 is
 scored against a loss function, not against a point estimate. Selecting a dose
@@ -322,7 +343,7 @@ cohorts can answer.
 on, and it is not measured.** Autoreactive plasmablasts in ITP disseminate to spleen and
 bone marrow. Peripheral clearance says nothing about tissue clearance, and no
 Phase 1 study biopsies spleen. This is the largest source of structural
-uncertainty in the specification, and Section 13 treats it as the main
+uncertainty in the specification, and Section 14 treats it as the main
 route to a negative answer.
 
 ## 5. The model
@@ -331,7 +352,7 @@ Four layers, written top to bottom in the order the drug traverses them. Each
 carries a note on whether its parameters are estimated here, fixed from the
 literature, or collapsed away.
 
-### 4.1 Pharmacokinetics
+### 5.1 Pharmacokinetics
 
 Two compartments with linear clearance $CL$ and a target-mediated term driven
 by B-cell burden. Writing $C$ for concentration in the central compartment and
@@ -348,7 +369,7 @@ and the model reverts to two compartments with linear clearance. **Estimated
 here**, with informative priors on $CL$ and $V_c$ from typical
 immunoglobulin G1 values.
 
-### 4.2 Circulating B cells
+### 5.2 Circulating B cells
 
 An indirect response model on the loss rate:
 
@@ -372,7 +393,7 @@ $EC_{50}$ is weakly identified and takes a prior, and $k_{\rm out}$ — which
 sets the repopulation rate and therefore $T_{\rm rep}$ — is the parameter the
 escalation data informs best.
 
-### 4.3 Autoantibody and platelet dynamics
+### 5.3 Autoantibody and platelet dynamics
 
 The published platelet-side structure comes from the thrombopoietin receptor
 agonist (TPO-RA) literature, where a four-compartment lifespan model is
@@ -387,7 +408,9 @@ $$
 $$
 
 ITP enters through the destruction rate, which anti-platelet IgG $A(t)$
-elevates above its physiological value:
+elevates above its physiological value. $A(t)$ is latent unless an
+anti-platelet antibody assay was run, and Section 5.5 says what changes when
+it was:
 
 $$
 k_{\rm dest}(t) = k_{\rm dest,0}\left(1 + \frac{A(t)}{A_{50}}\right), \qquad
@@ -420,7 +443,7 @@ identified from an eight-week observation window. Its image in the reduced
 model of Section 5.4 is $\eta_i \approx 1 - \phi_i$, and Section 9 makes that
 the mixture parameter.
 
-### 4.4 The reduced model a small dataset can support
+### 5.4 The reduced model a small dataset can support
 
 Sections 5.2 and 5.3 chained together carry more parameters than thirty
 patients will support. The model that gets fit collapses the tissue and
@@ -447,10 +470,72 @@ moved from production to destruction and the lag lengthened from two weeks to
 two months.
 
 **This reduction is the specification's main structural assumption, and
-Section 11 tests it against data generated from the unreduced model.** If the reduced
+Section 12 tests it against data generated from the unreduced model.** If the reduced
 model recovers the right dose from data generated by the full one, the
 reduction is safe at this sample size. If it does not, the answer to the
-project's question is no for the reason given in Section 13.
+project's question is no for the reason given in Section 14.
+
+### 5.5 Which intermediate layers to observe, and whether the chain beats a direct link
+
+Serum IgG is measured in this study, circulating B cells are measured, and an
+anti-platelet antibody assay may be. The question is whether fitting the chain
+drug → B cells → IgG → platelets does better than fitting drug → platelets
+with everything between collapsed into the effect compartment of Section 5.4.
+
+**The rule.** An intermediate layer helps when it is measured, sits on the
+causal path, and is less noisy than the endpoint it feeds. It costs a
+parameter or two and a set of residuals. Each of the three layers scores
+differently against that.
+
+**Circulating B cells: include.** Measured at every visit, on the causal
+path, and near-noiseless below the limit of quantification. The time to
+repopulation $T_{\rm rep}$ is the cleanest dose-dependent quantity in the
+study (Section 4), and a model without the B-cell layer has to recover the
+same information from platelet counts, which it cannot. This layer is easy to
+fit, and that matches experience with B-cell depleting agents generally.
+
+**Serum total IgG: include as a covariate, not as a link.** It is measured
+and it is cheap, and for a B-cell depleting agent it is the wrong variable. Total
+IgG is maintained by long-lived plasma cells that carry neither CD20 nor the
+B-cell activating factor receptor, so it falls slowly and modestly after
+depletion, months behind the B cells, and the anti-platelet fraction of it is a
+small part of the total. For an FcRn blocker total IgG is the whole mechanism
+and the efgartigimod model stops there for good reason (references, entry 25);
+for a depleting agent it is a lagging summary of the plasma-cell compartment.
+Its use here is as the observable that identifies the long-lived plasma cell
+floor $\phi_i$ in Section 5.3: a patient whose total IgG does not move after
+complete depletion has a large $\phi_i$, and that is information the platelet
+count alone gives only after months. This is why Ig is harder to model than B
+cells for this class: the drug barely moves it.
+
+**Anti-platelet IgG: include as the observed $A(t)$ where the assay is
+positive, and expect it to be positive in about half the patients.** The
+assays are outside pharmacometrics, so from zero. The platelet-associated IgG
+test (PAIgG) measures all IgG bound to the patient's platelets and is
+non-specific, elevated in most thrombocytopenias of any cause, and not useful
+here. The monoclonal antibody immobilization of platelet antigens assay
+(MAIPA) captures antibody bound to a named platelet glycoprotein, usually
+GPIIb/IIIa or GPIb/IX, and is specific for ITP. Its limitation is
+sensitivity: it is positive in roughly half to 60% of patients with a clinical
+diagnosis of ITP, it is semi-quantitative, and it is run at baseline rather
+than serially in most trials. None of those figures has been checked against a
+source (references, entry 30). Where it is positive and serial, it is $A(t)$
+measured, the latent state of Section 5.3 becomes an observed one, and the
+model can see a patient's autoantibody fall before the platelet count rises.
+That is the one measurement in the study that would let the model separate a
+slow responder from a non-responder early, which is the identifiability
+problem in Section 7.
+
+**Does the chain beat the direct link?** With B cells alone: yes, and by a
+margin that has nothing to do with platelets, because the B-cell layer is
+where the dose enters. With total IgG added: marginally, as a covariate on
+$\phi_i$. With anti-platelet IgG added, serially, in the patients who have it:
+this is the case where the chain would clearly win, and it is also the case
+that has never been run in a trial of a B-cell depleting agent in ITP. The
+simulation in Section 12 should carry a version of the dataset with $A(t)$
+observed in half the patients and report how much the sample size in Section
+11 falls, since that number is the argument for putting the assay in the
+protocol.
 
 ## 6. What the dataset has to contain
 
@@ -468,7 +553,8 @@ they can be checked against a real protocol before any fitting.
 | 6 | Pre-treatment platelet counts, $\ge 2$ per patient | $\theta_i$, the baseline severity | Severe |
 | 7 | Rescue therapy dates and doses | Platelet rises not attributable to drug | Severe |
 | 8 | Concomitant TPO-RA and corticosteroid exposure recorded | The largest competing platelet driver | Severe |
-| 9 | Serum IgG or anti-platelet antibody, if measured at all | Makes $A(t)$ observed rather than latent | Valuable |
+| 9 | Serum total IgG at every visit | Identifies the plasma-cell floor $\phi_i$ (Section 5.5) | Valuable |
+| 9a | Anti-platelet IgG by MAIPA, serially, where positive at baseline | Makes $A(t)$ observed rather than latent (Section 5.5) | Valuable |
 | 10 | Immature platelet fraction | Separates production from destruction | Valuable |
 
 : Data requirements, in decreasing order of consequence {tbl-colwidths="[5,35,38,12]"}
@@ -523,12 +609,12 @@ correlate for a reason that has nothing to do with dose. The target-mediated
 term in Section 5.1 is carried specifically so that this mechanism is in the
 model rather than in the residual.
 
-**A single-dose expansion cohort is the worst case.** The published review
-finding is that designs with one tested dose level have a high probability of a
-false-positive exposure-response result, because all the exposure variation is
-between-patient and between-patient exposure variation is confounded with
-everything else about the patient. The expansion cohort in this design is
-exactly that shape.
+**An expansion with few arms is close to the worst case.** The published
+review finding is that designs with one tested dose level have a high
+probability of a false-positive exposure-response result, because all the
+exposure variation is between-patient and between-patient exposure variation
+is confounded with everything else about the patient. Two to four arms are
+better than one and still leave most of the exposure spread inside arms.
 
 The consequence for the analysis plan is a rule, not a caution. **Dose, not
 exposure, is the independent variable in the dose selection rule of Section
@@ -574,7 +660,7 @@ Two model features this requires and a plain responder analysis does not:
 
 ## 10. The dose selection rule
 
-Stated in advance, so that the simulation in Section 11 scores something
+Stated in advance, so that the simulation in Section 12 scores something
 fixed.
 
 **Select the lowest dose whose posterior predictive Phase 2 response rate is
@@ -598,17 +684,188 @@ percentage points below the maximum is a tolerance on the downside only.
 | C. The rule above | The model this specification proposes |
 | D. Empirical best observed response rate | What the raw data says, no model |
 
-: Dose selection rules compared in Section 11 {tbl-colwidths="[45,55]"}
+: Dose selection rules compared in Section 12 {tbl-colwidths="[45,55]"}
 
 Rule A is the baseline. If C does not beat A by enough to change a decision,
 the project's answer is that the model should not be built, and that is a
 publishable finding.
 
-## 11. The simulation study
+## 11. How many patients, with and without the model
+
+The question in Section 3 has a cost attached. If the model cannot be built,
+the dose is chosen from response rates per arm, and this section says what
+that takes. If the model can be built, it earns its place by needing fewer
+patients than that, and this section bounds how many fewer. The numbers are
+computed here rather than quoted, and the
+[Sizing Studies](../sizing-studies/sizing-studies.qmd) page carries the
+general method they follow.
+
+### 11.1 Without a model: picking the best arm from response rates
+
+Two framings, and they give answers an order of magnitude apart.
+
+**Detecting a difference between two arms** is the hypothesis-test framing,
+and it is the wrong question for dose selection, but it is the number people
+reach for first. Two-sided $\alpha = 0.05$, 80% power:
+
+```{r detect}
+pairs <- data.frame(p_low = c(.30, .40, .50, .50), p_high = c(.50, .60, .60, .55))
+pairs$n_per_arm <- sapply(seq_len(nrow(pairs)), function(i)
+  ceiling(power.prop.test(p1 = pairs$p_low[i], p2 = pairs$p_high[i], power = .8)$n))
+knitr::kable(pairs, col.names = c("Lower arm", "Higher arm", "Patients per arm"),
+             caption = "Patients per arm to detect a difference in durable response rate")
+```
+
+**Selecting the best of $K$ arms** is the right framing. The design does not
+need to prove the top arm is better; it needs to pick it with acceptable
+probability. Probability of correct selection is the chance that the arm with
+the highest true rate also has the highest observed count, ties split at
+random, when it beats every other arm by $\delta$:
+
+```{r select}
+set.seed(20260909)
+pcs <- function(K, n, p_best, delta, nsim = 20000) {
+  p <- c(p_best, rep(p_best - delta, K - 1))
+  x <- matrix(rbinom(K * nsim, n, p), nrow = nsim, byrow = TRUE)
+  mx <- apply(x, 1, max)
+  mean((x[, 1] == mx) / rowSums(x == mx))
+}
+grid <- expand.grid(K = c(2, 3, 4), delta = c(.10, .15, .20), n = c(10, 20, 30, 40, 60, 80))
+grid$pcs <- mapply(pcs, grid$K, grid$n, MoreArgs = list(p_best = .55), delta = grid$delta)
+need <- aggregate(n ~ K + delta, data = grid[grid$pcs >= .80, ], FUN = min)
+wide <- reshape(need, idvar = "delta", timevar = "K", direction = "wide")
+names(wide) <- c("Margin of best arm", "2 arms", "3 arms", "4 arms")
+wide[[1]] <- sprintf("%.0f points", 100 * wide[[1]])
+knitr::kable(wide, caption = "Patients per arm for 80% probability of picking the best arm (best arm 55%)")
+```
+
+A blank cell means no value up to 80 per arm reached 80%.
+
+Read against the study in Section 1, which has two expansion arms of 20 to
+40. The two-arm column is the one that applies: 15 points apart is picked
+correctly four times in five at 20 per arm, and 10 points apart needs 40 per
+arm for the same. Ten points is what the ianalumab 3 against 9 mg/kg
+comparison and the rituximab low against standard dose comparison both look
+like (Section 4), so the study as designed sits at the edge of what its raw
+response rates can decide. The three- and four-arm columns say what adding
+arms would cost, and it is a lot.
+
+**Locating a plateau by comparing arms is not possible at any Phase 1/2
+size.** The plateau's defining property is that adjacent arms differ by
+little. Two arms 5 points apart need
+
+```{r plateau}
+ceiling(power.prop.test(p1 = .50, p2 = .55, power = .8)$n)
+```
+
+patients per arm to separate. The empirical strategy therefore cannot find
+the bottom of the plateau; it can only pick the highest tolerated dose and
+call that the answer, which is comparator rule A in Section 10.
+
+### 11.2 With a model: where the patients are saved, and where they are not
+
+A model changes the arithmetic in two places and leaves it alone in a third.
+
+**Pooling the escalation cohorts and both expansion arms through one
+dose-response shape.** Comparing the two expansion arms uses those two arms'
+patients. Fitting a monotone dose-response through the escalation cohorts as
+well uses every patient in the study to estimate the contrast between the two
+expansion doses. For five dose levels at two-fold spacing, 4 patients per
+level from the escalation, and the expansion sitting on the top two levels,
+the variance of the estimated difference between the two expansion doses under
+a logistic dose-response linear in log dose, by Fisher information and the
+delta method, compared to the same difference from the two expansion arms
+alone:
+
+```{r pooling}
+rel_eff <- function(p_top, delta, x, n) {
+  K <- length(x); logit <- function(p) log(p / (1 - p))
+  b <- (logit(p_top) - logit(p_top - delta)) / (x[K] - x[K - 1])
+  a <- logit(p_top) - b * x[K]
+  p <- plogis(a + b * x); w <- n * p * (1 - p)
+  info <- rbind(c(sum(w), sum(w * x)), c(sum(w * x), sum(w * x^2)))
+  g <- c(p[K] * (1 - p[K]) - p[K - 1] * (1 - p[K - 1]),
+         x[K] * p[K] * (1 - p[K]) - x[K - 1] * p[K - 1] * (1 - p[K - 1]))
+  v_model <- drop(t(g) %*% solve(info) %*% g)
+  v_pair  <- p[K] * (1 - p[K]) / n[K] + p[K - 1] * (1 - p[K - 1]) / n[K - 1]
+  v_pair / v_model
+}
+x <- 0:4                                    # five levels, two-fold spacing
+grid <- expand.grid(n_exp = c(20, 30, 40), delta = c(.05, .10, .15, .20))
+grid$factor <- mapply(function(ne, d) rel_eff(.55, d, x, c(4, 4, 4, 4 + ne, 4 + ne)),
+                      grid$n_exp, grid$delta)
+wide <- reshape(grid, idvar = "delta", timevar = "n_exp", direction = "wide")
+names(wide) <- c("Margin between expansion doses", "20 per arm", "30 per arm", "40 per arm")
+wide[[1]] <- sprintf("%.0f points", 100 * wide[[1]])
+knitr::kable(wide, digits = 1,
+             caption = "Information gained on the expansion contrast by fitting all cohorts through one logistic shape, as a factor")
+```
+
+That factor is the pooling gain, and three things about it. It is large
+because a two-parameter shape over a sixteen-fold dose range is a strong
+assumption, and the escalation cohorts pin the shape at the bottom where the
+expansion has no patients. It falls as the expansion grows, because the
+expansion arms then carry most of the information anyway. And it holds only
+if the dose-response has the assumed shape: a plateau shape with a third
+parameter pools less, and a model with the wrong shape borrows strength from
+cohorts that are not informative about the contrast and returns a confident
+wrong answer. Section 12's wrong-structure case is the check on that, and it
+is where the factor above gets replaced by a measured one.
+
+**Using every platelet count instead of one responder call.** The responder
+dichotomy discards the trajectory. The rilzabrutinib FDA review shows the
+continuous change in platelet count carrying an exposure signal that the
+dichotomy did not (references, entry 22), and the augmented-binary literature
+puts the gain from the continuous component at a third or so of the sample
+size (entry 20). In this model the gain is bounded, and the bound is the third
+place.
+
+**The Bernoulli ceiling.** If a patient is a responder or is not, and the
+model's $\eta_i$ is near 0 or near 1, then once the responder status is known
+the trajectory adds nothing to the dose-response estimate. The information per
+patient is that of one coin flip with probability $P(\eta_i \approx 1 \mid
+\text{dose})$, and no model changes that. What the continuous data does is
+classify the coin flip with fewer errors than a threshold on noisy counts
+does, and shorten the follow-up needed to classify it. Where the mixture is
+sharp, the model's whole gain is the pooling factor above; where the mixture
+is soft, with graded partial responders, the trajectory carries dose
+information of its own and the gain is larger. Which of those describes
+B-cell depletion in ITP is not known, and the rituximab response
+distributions in entry 9 are where to look.
+
+### 11.3 The scoping table
+
+Putting the pieces together for the study in Section 1, two expansion arms
+with the better one at 55% and the margin between them at $\delta$:
+
+| Question | Without the model | With the model, shape correct | With the model, shape wrong |
+|:---|:---|:---|:---|
+| Pick the better arm, $\delta$ = 20 | 10 per arm | 10 per arm; nothing to gain | Same |
+| Pick the better arm, $\delta$ = 15 | 20 per arm | Under 20 per arm | Worse than without |
+| Pick the better arm, $\delta$ = 10 | 40 per arm | About 20 per arm, from pooling with the escalation | Worse than without |
+| Locate the plateau bottom, $\delta$ = 5 | Not possible | Only as a shape parameter, and Section 12 says whether it is identified | Confidently wrong |
+
+: What the model buys, by question, in patients per arm {tbl-colwidths="[30,20,28,22]"}
+
+The middle column applies the pooling factor to the selection table with a
+discount for the plateau shape pooling less than the logistic, and the
+simulation in Section 12 replaces it with a measured number. The right-hand
+column is the case Section 14 is written for.
+
+**The scoping verdict.** ⚠️ Two expansion arms of 20 to 40 can pick between
+doses 15 or more points apart without any model. Between doses 10 points
+apart, 40 per arm does it on the raw rates and 20 per arm does it only with a
+model whose dose-response shape is right, so the model is what makes the
+smaller study sufficient. Locating a plateau bottom is beyond both, except as
+a parameter of an assumed shape. Build the model when the two candidate
+doses are expected to be close, and build it only after the simulation in
+Section 12 has shown that its shape assumption survives being wrong.
+
+## 12. The simulation study
 
 This is the work. Everything above is the structure it needs.
 
-**11.1 Generate.** Simulate escalation-plus-expansion datasets from the full
+**12.1 Generate.** Simulate escalation-plus-expansion datasets from the full
 model of Sections 5.1 to 5.3, not the reduced model of 4.4. Vary, in a
 factorial:
 
@@ -620,11 +877,11 @@ factorial:
   rate;
 - follow-up duration (6, 12 months).
 
-**11.2 Fit.** The reduced model of Section 5.4, with the priors named there,
+**12.2 Fit.** The reduced model of Section 5.4, with the priors named there,
 to every simulated dataset. Record convergence, the identifiability
 diagnostics of Section 7, and the posterior predictive response rate per dose.
 
-**11.3 Score.** For each of the four rules in Section 10:
+**12.3 Score.** For each of the four rules in Section 10:
 
 - probability the selected dose equals the true plateau bottom;
 - probability the selected dose is below it, which is the costly error;
@@ -633,12 +890,12 @@ diagnostics of Section 7, and the posterior predictive response rate per dose.
   with tissue depletion lagging peripheral depletion and the fitted model
   assumes they coincide.
 
-**11.4 Report.** The factorial has too many cells for a figure each. The
+**12.4 Report.** The factorial has too many cells for a figure each. The
 output is a single figure with true plateau position on the horizontal axis and
 probability of correct selection on the vertical, one line per rule, one panel
 per sample size. The tables are the supporting detail.
 
-## 12. External checks
+## 13. External checks
 
 Two published results the model should be able to reproduce, and neither is
 used in fitting.
@@ -659,7 +916,7 @@ compound and a much longer literature.
 Both checks are on the plateau's existence, not its exact position, which is
 the strongest claim aggregate published data can support.
 
-## 13. What would make the answer no
+## 14. What would make the answer no
 
 Written before the work, so that a negative result is recognizable rather than
 explained away.
@@ -668,7 +925,7 @@ explained away.
 the platelet endpoint depends on is in the spleen, and the spleen is
 invisible, peripheral B-cell kinetics is a biomarker of the wrong compartment, and no amount of platelet
 modelling recovers the missing dose axis. This is the most likely route to a
-negative answer and Section 11.3's wrong-structure case is what detects it.
+negative answer and Section 12.3's wrong-structure case is what detects it.
 
 **The response mixture is not identifiable at $n \approx 40$.** If the
 posterior for the $\eta$ distribution is dominated by its prior across every
@@ -686,7 +943,7 @@ study are on a TPO-RA or corticosteroids or both. If the platelet trajectory
 is mostly explained by those, the drug effect is a small perturbation on a
 large signal and the sample size required moves out of reach.
 
-## 14. Milestones
+## 15. Milestones
 
 1. **Read the platelet-side literature and fix the platelet parameters.**
    Entries 1 to 3 of the reading queue. Ends with a table of $k_{\rm tr}$,
@@ -702,14 +959,14 @@ large signal and the sample size required moves out of reach.
 5. **Build the reduced model and fit it to one simulated dataset.** The
    identifiability diagnostics of Section 7 on a single case before any
    factorial.
-6. **Run the factorial and produce the Section 11.4 figure.**
-7. **Run the external checks of Section 12.**
+6. **Run the factorial and produce the Section 12.4 figure.**
+7. **Run the external checks of Section 13.**
 
 Milestones 1 to 3 are reading and produce a parameter table. Milestone 4 is
 where the specification first meets contact with reality, and Sections 5 and 6
 are expected to change there.
 
-## 15. Why no such model has been published
+## 16. Why no such model has been published
 
 Platelet count is the primary endpoint of every ITP trial, so the absence of a
 PK-platelet model for any immunomodulatory agent in ITP needs an explanation
@@ -764,7 +1021,7 @@ Rilzabrutinib's 400 mg BID came from BTK occupancy plateaus in mouse and human
 plus the raw Part A response by dose, and the platelet model was built
 afterwards to confirm it (entry 22). In every case the fast, continuous,
 saturable biomarker made the decision. This specification proposes going one
-link further, and Sections 4 and 13 are why that is hard.
+link further, and Sections 4 and 14 are why that is hard.
 
 **7. Where the continuous model was attempted, the reviews record it
 failing, except once.** For fostamatinib, "none of the applicant's attempted
@@ -784,22 +1041,22 @@ direction.** The absence of a published model is not because nobody tried.
 Three sponsors tried, with Phase 2 or Phase 3 data, and the reviews say what
 happened. What remains open is whether a model built to find a plateau rather
 than a slope, with the mixture and the fixed platelet layer of Section 5,
-does better at the sample size those three had, which is Section 11.
+does better at the sample size those three had, which is Section 12.
 
 **What this changes in the specification.** Reasons 2, 3 and 5 are design
-problems this project can specify around, and Sections 9, 10 and 11 do. Reason
+problems this project can specify around, and Sections 9, 10 and 12 do. Reason
 1 is the one that cannot be specified around: it is the same delay-and-latency
-problem as Section 13's first failure mode, seen from the endpoint's side
+problem as Section 14's first failure mode, seen from the endpoint's side
 rather than the biomarker's.
 
-## 16. The intended use
+## 17. The intended use
 
 A pharmacometrician holding escalation and expansion data on a B-cell
 depleting agent in ITP, being asked for a Phase 2 dose. This document says
 what such a model can and cannot deliver, what the study has to have measured
 for it to be buildable, and how often it beats picking the highest safe dose.
 
-The expected finding, which Section 11 tests rather than assumes, is that the
+The expected finding, which Section 12 tests rather than assumes, is that the
 model locates a plateau boundary the raw response counts cannot resolve at
 $n \approx 40$, and that it does so only where B-cell repopulation has been
 followed to completion.
