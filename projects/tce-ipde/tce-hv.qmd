@@ -1,7 +1,7 @@
 ---
 title: "T-cell engagers in healthy volunteers"
-subtitle: "Finding the active dose before the first patient, and what that does to the case for intrapatient escalation"
-description: "Could one or two doses of a T-cell engager in healthy volunteers locate the active dose faster than any escalation in patients? What has been done, what a healthy volunteer study could measure, how much time it would save, and where it leaves the intrapatient escalation design."
+subtitle: "Finding the active dose before the first patient"
+description: "Could one or two doses of a T-cell engager in healthy volunteers locate the active dose faster than any escalation in patients? What has been done, what a healthy volunteer study could measure, where it translates to patients, and how much time it would save."
 categories: [trial design, pharmacometrics, working document]
 date: last-modified
 toc: true
@@ -12,10 +12,10 @@ html-math-method: mathjax
 ---
 
 ::: {.callout-note appearance="simple"}
-A working note in the [TCE-IPDE](index.qmd) project, recording an idea
-that came up alongside the [specification](specification.qmd) and the
-search that followed it. The registry and abstract search was run on
-2026-09-10. Every source is characterized from a registry record, an
+A working note in the project on [speeding up first-in-human T-cell
+engager studies](index.qmd): one of the approaches collected there,
+and the search that followed it. The registry and abstract search was
+run on 2026-09-10. Every source is characterized from a registry record, an
 abstract or a press release, none has been read, and every entry in the
 [references](references.qmd#reading-queue-t-cell-engagers-in-healthy-volunteers)
 carries ❌.
@@ -28,10 +28,7 @@ healthy volunteers (HVs), climbing a dose ladder until the first sign of
 activity: a grade 1 cytokine release (fever), or peripheral B cells
 falling by half. That dose, found in weeks in a phase 1 unit, becomes
 the starting neighbourhood for patients, and the patient study begins
-where a conventional escalation would have finished. If HV recruitment
-is fast enough, the ladder is climbed across volunteers rather than
-within a patient, and the intrapatient escalation (IPDE) design this
-project simulates may not be needed at all.
+where a conventional escalation would have finished.
 
 **It has been done.** ✅ Three healthy volunteer studies of T-cell
 engagers are registered, all started between December 2025 and July
@@ -53,15 +50,9 @@ fever in a volunteer says little about the dose that produces it in a
 patient with a tumour, and no oncology TCE has been given to volunteers.
 Section 4 works through the translation.
 
-**What it does to this project.** The value of IPDE comes from
-uncertainty about the gap between the starting dose and the active dose
-(specification, Section 2). A volunteer study measures that gap in
-humans before the patient study opens, and collapses the prediction
-error that is the simulation's primary axis. For a B-cell-depleting TCE
-in an autoimmune indication, the volunteer study is the stronger
-alternative and IPDE is the fallback where volunteers cannot be dosed.
-For a solid-tumour TCE, the volunteer route is closed and the IPDE
-question stands as specified. Section 5 states the fork.
+**How much faster.** Of the order of six months to a year against a
+conventional escalation in patients, under the assumptions in
+Section 5, which are there to be replaced with a programme's own.
 
 **The Ouro question.** ❌ Unresolved. A colleague recalled a Chinese
 healthy volunteer study of a TCE later acquired by Ouro Medicines.
@@ -92,9 +83,8 @@ cohort's readout, and reads a single-dose cytokine and B-cell response
 inside a week. A conventional oncology escalation waits on accrual of
 patients with the right disease at the right stage, a 28-day
 dose-limiting-toxicity window, and a cohort review. If the volunteer
-ladder climbs three times faster, the gap that IPDE exists to cross is
-crossed before the first patient is enrolled, and crossed across people
-rather than within one.
+ladder climbs three times faster, the gap between the starting dose and
+the active dose is crossed before the first patient is enrolled.
 
 ## 2. What has been done
 
@@ -204,19 +194,20 @@ depletion, since depletion is the goal and the fever is the cost, and
 the fever dose then becomes an upper bound the patient study need not
 approach.
 
-**One volunteer per dose, or several.** The scout design in the
-specification (Section 6) climbs one patient through the ladder because
-patients are scarce. Volunteers are not, and the reason to climb within
-one person disappears. A cohort of four to six per dose level, with a
-sentinel pair dosed a day ahead of the rest, is the ordinary phase 1
-shape and gives a between-subject estimate of the response at each dose,
-which one scout cannot.
+**One volunteer per dose, or several.** Volunteers are not scarce, so
+there is no reason to climb the ladder within one person. A cohort of
+four to six per dose level, with a sentinel pair dosed a day ahead of
+the rest, is the ordinary phase 1 shape and gives a between-subject
+estimate of the response at each dose, which one person climbing
+cannot.
 
-**A second dose in the same volunteer is intrapatient escalation.**
-Give a priming dose, wait a week, give a higher dose, and compare the
-cytokine response with a cohort that received the higher dose naive.
-That is a direct measurement of the tolerance effect the specification
-models in Section 14, in a system with no tumour and no disease. The
+**A second dose in the same volunteer.** Give a priming dose, wait a
+week, give a higher dose, and compare the cytokine response with a
+cohort that received the higher dose naive. That is a direct
+measurement of the tolerance effect, a primed T-cell pool releasing
+less cytokine at the next dose, in a system with no tumour and no
+disease, and it is the measurement a step-up regimen for patients
+would be designed from. The
 confound is that by the second dose the volunteer's blood B cells are
 gone, so a lower cytokine response could mean primed T cells or an
 absent target. Tissue B cells persist longer than blood B cells and
@@ -264,37 +255,22 @@ registered studies were run, and it is the set under which the idea in
 Section 1 works. Outside it, the volunteer dose is a MABEL with human
 data behind it, which is still an improvement on a MABEL without.
 
-## 5. What this does to the intrapatient escalation question
+## 5. Where it applies, and how much time it saves
 
-The specification's central hypothesis (Section 2) is that IPDE earns
-its keep only when the translational prediction of the active dose is
-wrong by a large factor, and prediction error is the simulation's
-primary axis (Section 12). A volunteer study is a direct attack on that
-error: it replaces a prediction from primate data with a measurement in
-humans, and the residual uncertainty is the volunteer-to-patient
-translation of Section 4, a factor of a few rather than of tens.
-
-**The fork.**
+A volunteer study replaces a prediction of the active dose from primate
+data with a measurement in humans. The residual uncertainty is the
+volunteer-to-patient translation of Section 4, a factor of a few rather
+than of tens.
 
 - ✅ **B-cell-depleting TCE, autoimmune indication.** Run the volunteer
   study. The patient study starts one or two steps below the volunteer
-  depletion dose with a step-up regimen designed from the volunteer
-  cytokine data, and the ladder IPDE would have climbed has been
-  climbed already. IPDE is the fallback for a programme that cannot dose
-  volunteers, and the specification's map (Section 26b) says how much
-  it would have saved.
+  depletion dose, with a step-up regimen designed from the volunteer
+  cytokine data.
 - ❌ **Solid-tumour or haematological TCE.** No volunteer has been
   dosed with an oncology TCE, the target burden argument in Section 4
   says a volunteer readout would not translate, and the ethics of
   depleting a healthy person's B cells for a lymphoma programme are
-  worse than for an autoimmune one. The IPDE question stands as
-  specified.
-- ⚠️ **The specification's main use case sits on the boundary.** It is
-  a B-cell-depleting TCE at first-in-human, and it does not say which
-  indication. If the programme is an immune-reset programme, the
-  volunteer route is open and should be simulated as a comparator
-  design, not only as prior information. If it is oncology, it is not.
-  Section 1 of the specification now carries this fork.
+  worse than for an autoimmune one.
 
 **How much time.** Assumptions, not measurements, and the reader should
 change them.
@@ -309,13 +285,11 @@ change them.
 
 : The speed claim, under stated assumptions. Both columns cross the same gap; the difference is the cadence. {tbl-colwidths="[34,33,33]"}
 
-The saving is of the order of six months to a year, against the eight
-weeks the specification treats as the noise floor of trial execution
-(Section 1). That is larger than any saving the IPDE simulation is
-expected to find, which is the point: where the volunteer route is
-open, it is the better answer, and the simulation's job in that setting
-is to say what IPDE would have saved so that the comparison is on the
-record.
+The saving is of the order of six months to a year. A saving under
+about eight weeks, one conventional cohort cycle plus its accrual,
+would sit inside the noise of ordinary trial execution; this one does
+not, if the cadence assumptions hold, and the cadence is the row to
+check first against a real unit's calendar.
 
 ## 6. What to do with this
 
@@ -328,7 +302,6 @@ record.
 3. Read entry 20, the EMA first-in-human guideline, for what it says
    about healthy volunteers and immunomodulators, since that is the
    document an ethics committee reads.
-4. Decide whether the specification's main use case is autoimmune or
-   oncology. Until it is decided, the volunteer route is a comparator
-   design in the former and out of scope in the latter, and the
-   simulation cannot carry both without saying which.
+4. Put the speed table against a real phase 1 unit's cohort calendar
+   and a real programme's escalation history, so that the assumptions
+   become two measured columns.

@@ -25,12 +25,14 @@
   categories: [R package]
   path: https://cran.r-project.org/package=xgxr
 
-- title: "TCE-IPDE"
+- title: "Faster first-in-human TCE studies"
   subtitle: "Working document"
   description: >
-    Does escalating dose within a patient reach a confirmable active dose
-    sooner in a first-in-human T-cell engager trial, and does the time it
-    saves outweigh the extra visits and hospital time it costs?
+    Three ways to reach a biologically active dose sooner in a
+    first-in-human T-cell engager study: escalating within a patient,
+    finding the dose in healthy volunteers first, and starting higher on a
+    better MABEL. The first is specified as a simulation, the second
+    searched, the third a pointer.
   categories: [Immunology and T-cell engagers, Draft]
   path: tce-ipde/index.qmd
 

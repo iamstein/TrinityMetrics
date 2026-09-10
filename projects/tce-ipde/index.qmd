@@ -1,36 +1,51 @@
 ---
-title: "TCE-IPDE"
-subtitle: "Intrapatient dose escalation for first-in-human T-cell engagers"
-description: "Index of the documents in the TCE-IPDE project: the working specification, its references, reading notes, and the code that draws its figure."
+title: "Faster first-in-human T-cell engager studies"
+subtitle: "Three ways to reach a biologically active dose sooner"
+description: "Index of the project on speeding up Phase 1 and 1b T-cell engager studies: intrapatient dose escalation, a healthy volunteer substudy, and a MABEL starting dose, with the documents working each one out."
 categories: [trial design, simulation, working document]
 date: last-modified
 toc: false
 ---
 
-Does escalating dose within a patient reach a confirmable active dose sooner
-in a first-in-human T-cell engager trial, and does the time it saves outweigh
-the extra visits and hospital time it costs? The simulation that would answer
-this has been specified and not built.
+A first-in-human T-cell engager (TCE) study starts orders of magnitude
+below the biologically active dose and climbs toward it one cohort at a
+time. This project collects the ways of climbing faster, and works each
+one out far enough to say where it applies and what it saves.
+
+## Approaches
+
+| Approach | What it changes | Where it applies | Status here |
+|:---|:---|:---|:---|
+| 1. Intrapatient dose escalation, with single-patient cohorts | Climbs the ladder within one patient rather than one cohort per rung | Any indication; the value rises with uncertainty about the active dose | Specified as a simulation, not built |
+| 2. Healthy volunteer escalation | Finds the active dose in volunteers before the first patient is enrolled | Autoimmune indications with a B-cell or plasma-cell target; closed in oncology | Registry search done, three studies found, none reported |
+| 3. MABEL starting dose | Starts higher, on a better prediction of the active dose | Any indication | Out of scope, since it is widely practised; entry 2 of the references is the pointer |
+
+: The three approaches, and how far each has been taken here {tbl-colwidths="[26,28,28,18]"}
+
+The three are not exclusive. A better starting dose shrinks the gap the
+other two cross, and a volunteer study, where it is open, is a
+starting-dose method with human data behind it.
 
 ## Documents
 
-- [Working specification](specification.qmd). The design, the PK and
-  pharmacodynamic models, the endpoints, and the implementation sequence.
-  Its **In brief** section is one screen and says what the rest argues.
-- [References](references.qmd). What to read and in what order, and a marker
-  on every source recording whether the specification's use of it has been
-  checked.
+- [Working specification](specification.qmd). Approach 1. The design,
+  the PK and pharmacodynamic models, the endpoints, and the
+  implementation sequence for the intrapatient escalation simulation.
+  Its **In brief** section is one screen and says what the rest argues;
+  its Section 1 carries the fork between approaches 1 and 2.
+- [T-cell engagers in healthy volunteers](tce-hv.qmd). Approach 2. The
+  three registered volunteer studies, all autoimmune and all since
+  December 2025, what a volunteer study can measure, the translation to
+  patients, and a speed estimate under stated assumptions.
+- [References](references.qmd). What to read and in what order, for
+  approaches 1 and 2, and a marker on every source recording whether its
+  use here has been checked. Approach 3's pointer is entry 2.
 - [MCLA-117 notes](mcla117-notes.qmd). The published Cycle 1 escalation
   scheme the specification cites as precedent, its dose tables, and the
   four features of it that bear on the design.
 - [Simon 1997 reading notes](simon97-notes.qmd). What the accelerated
   titration designs paper reports when intrapatient escalation is switched on
   and off, with every number sourced to a page.
-- [T-cell engagers in healthy volunteers](tce-hv.qmd). A related idea: find
-  the active dose in volunteers before the first patient. The three
-  registered volunteer studies, all autoimmune and all since December 2025,
-  what a volunteer study can measure, and where it leaves the intrapatient
-  escalation question.
 
 ## Code
 
