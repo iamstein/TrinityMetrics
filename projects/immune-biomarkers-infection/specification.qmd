@@ -114,19 +114,21 @@ can actually estimate.
 
 ```{mermaid}
 %%| column: page
-%%| fig-cap: "What reaches the infection node in an autoimmune population. Disease activity sits upstream of everything, and half the arrows into infection never pass through a measured biomarker."
+%%| fig-cap: "What reaches the infection node in an autoimmune population. Disease activity sits upstream of everything, half the arrows into infection never pass through a measured biomarker, and the dashed compartment on the path from B cells to immunoglobulin is not measured at all."
 flowchart LR
   ACT["Disease activity<br/>and organ damage"]
 
   subgraph GIVEN["What is given"]
-    DRUG["Biologic<br/>dose and schedule"]
+    DRUG["Anti-CD20 biologic<br/>dose and schedule"]
+    PCDRUG["Plasma-cell-directed agent<br/>anti-CD38, anti-BCMA"]
     STER["Glucocorticoids<br/>current and cumulative"]
     OTHER["Other immunosuppressants<br/>MTX, MMF, AZA, CYC, JAKi"]
   end
 
-  subgraph MEASURED["What is measured"]
+  subgraph COMPART["The immune compartments"]
     ANC["Neutrophils"]
     BCELL["B cells, CD19+"]
+    PLASMA["Plasma cells<br/>CD20 negative, long lived<br/>not measured"]
     IG["IgG, IgA, IgM"]
     LYMPH["Lymphocytes, CD4+"]
   end
@@ -143,14 +145,19 @@ flowchart LR
   ACT --> STER
   ACT --> INF
 
+  ACT --> PCDRUG
+
   DRUG --> ANC
   DRUG --> BCELL
-  DRUG --> IG
+  PCDRUG --> PLASMA
   STER --> LYMPH
   STER --> INF
   OTHER --> ANC
   OTHER --> LYMPH
-  OTHER --> IG
+  OTHER --> PLASMA
+
+  BCELL --> PLASMA
+  PLASMA --> IG
 
   ANC --> INF
   BCELL --> INF
@@ -162,17 +169,33 @@ flowchart LR
   VAC --> INF
 
   classDef box fill:#eef2f7,stroke:#5b6b7c,color:#111827
+  classDef latent fill:#ffffff,stroke:#5b6b7c,stroke-dasharray:5 4,color:#111827
   classDef outcome fill:#f6e7e7,stroke:#8c4a4a,color:#111827
-  class ACT,DRUG,STER,OTHER,ANC,BCELL,IG,LYMPH,AGE,PRIOR,VAC box
+  class ACT,DRUG,PCDRUG,STER,OTHER,ANC,BCELL,IG,LYMPH,AGE,PRIOR,VAC box
+  class PLASMA latent
   class INF outcome
   style GIVEN fill:#ffffff,stroke:#9aa7b4,color:#111827
-  style MEASURED fill:#ffffff,stroke:#9aa7b4,color:#111827
+  style COMPART fill:#ffffff,stroke:#9aa7b4,color:#111827
   style HOST fill:#ffffff,stroke:#9aa7b4,color:#111827
 ```
 
 ### Reading the diagram
 
-Four things follow from it, and they drive the rest of the specification.
+Five things follow from it, and they drive the rest of the specification.
+
+**B cells do not make antibody; plasma cells do.** The path from the drug to
+the immunoglobulin runs through a compartment that is not measured. An
+anti-CD20 antibody depletes CD19+ B cells within days, and the long-lived
+plasma cells that secrete most circulating IgG carry no CD20, so they survive
+it. Immunoglobulin therefore falls late, slowly, and only as far as the
+turnover of the surviving plasma cells allows, while the B cell count is
+already at zero. An agent directed at the plasma cell instead, anti-CD38 or
+anti-BCMA, skips the first step and collapses immunoglobulin quickly (entry
+6). Two consequences: a B cell count and an immunoglobulin level are not two
+measurements of the same thing and cannot substitute for each other, and the
+lag between them is a property of the unmeasured compartment rather than a
+delay to be fitted as a constant. Section 7a puts the compartment in the
+model.
 
 **The biomarkers are not interchangeable.** Each measures a different arm of
 the immune system and each fails against different organisms. A neutrophil
@@ -221,17 +244,22 @@ the assumption under which the analysis proceeds anyway.
 | Biomarker | Arm of the system | Behaviour under therapy | What practice does with it now |
 |:---|:---|:---|:---|
 | Absolute neutrophil count | Innate, bacterial and fungal | Falls fast, recovers fast, oscillates with cycles | Threshold rules and G-CSF, both long established (entry 1) |
-| CD19+ B cells | Humoral, upstream of antibody | Falls to below the limit of quantification and stays there for months | Watched, seldom acted on |
-| IgG, IgA, IgM | Humoral, effector | Falls slowly over cycles, recovers over years or not at all | Replacement considered in a threshold range (entry 5) |
+| CD19+ B cells | Humoral, two compartments upstream of antibody | Falls to below the limit of quantification and stays there for months | Watched, seldom acted on |
+| Plasma cells | Humoral, the cell that secretes the antibody | Spared by anti-CD20, depleted by anti-CD38 and anti-BCMA | Not measured in blood outside myeloma |
+| IgG, IgA, IgM | Humoral, effector | Falls late and slowly behind the B cells, recovers over years or not at all | Replacement considered in a threshold range (entry 5) |
 | Lymphocytes, CD4+ | Cellular, opportunistic | Falls with steroids and with several DMARDs | Prophylaxis thresholds by convention |
 | CRP, albumin | Inflammation and reserve | Confounded by disease activity | Read as disease activity, not as infection risk |
 
 : Candidate biomarkers, ordered by how well the trajectory is already understood {tbl-colwidths="[20,18,30,32]"}
 
-The first three are the primary set. Lymphocyte subsets are carried where
-reported, which will be a minority of studies. CRP and albumin are carried as
-covariates rather than as predictors, because in this population they move
-with the disease as much as with the infection.
+Neutrophils, B cells and immunoglobulins are the primary set. The plasma cell
+row is in the table because the model carries the compartment, not because
+the data does: it is a latent state, identified only through the lag between
+the B cell and immunoglobulin trajectories, and it comes out of the model if
+that lag turns out to be estimable as a single rate constant. Lymphocyte
+subsets are carried where reported, which will be a minority of studies. CRP
+and albumin are carried as covariates rather than as predictors, because in
+this population they move with the disease as much as with the infection.
 
 **The censoring problem is specific to B cells.** A depleted count sits at or
 below the limit of quantification for months, so the trajectory is a long run
@@ -296,10 +324,24 @@ more.
 One submodel per biomarker, on the log scale, with drug exposure driving a
 depletion and a recovery. For neutrophils the structure is settled: the
 transit-compartment model with system parameters that held across drugs
-(entry 9) is the starting point. For B cells and immunoglobulins it is not
-settled, and the first fits should compare an indirect-response form against
-a flexible spline in time, since a slow recovery over years may not be a
-feedback process at all.
+(entry 9) is the starting point.
+
+**B cells and immunoglobulin are one submodel, not two.** Section 3 gives the
+reason. The drug depletes the B cell pool; the B cell pool supplies plasma
+cells; the plasma cells secrete immunoglobulin, which is then cleared. That is
+a two-step cascade with one measured state at each end and an unmeasured
+state in the middle, and writing it that way puts the observed lag where it
+belongs, in the turnover of the middle compartment, rather than in an
+arbitrary delay term. An anti-CD20 agent enters at the first step and a
+plasma-cell-directed agent at the second, which is what lets data from the
+two drug classes inform one structure.
+
+Whether the middle compartment is identifiable from quarterly sampling is an
+open question and one the simulation in Section 11 has to answer before any
+data is requested. If it is not, the fallback is a single indirect-response
+model from drug to immunoglobulin with the B cell count as a covariate, and
+the fallback should be fitted alongside the cascade in any case, since a
+slow recovery over years may not be a feedback process at all.
 
 Between-study variability is a random effect at the study level on the
 parameters that assay and population differences would move, which is a
@@ -372,7 +414,7 @@ Section 1 are made against an absolute risk.
 
 ## 10. Confounding and the response-to-measurement loop
 
-The dashed arrows in Section 3 are the estimation problem.
+The loop drawn in the second diagram of Section 3 is the estimation problem.
 
 **What the analysis assumes.** That prophylaxis, replacement and dose holds
 are given in response to observed history, and that this history is recorded.
@@ -399,9 +441,11 @@ requested, simulate the pooled dataset and fit the model to it.
 What the simulation has to establish: how many patients and how many events
 are needed to distinguish the three links in Section 7b from each other; what
 a realistic measurement schedule, quarterly rather than daily, does to that;
-what left-censored B cell values do to the estimate; and how much
-between-study variability the design tolerates before the pooled estimate is
-uninformative.
+whether the unmeasured plasma cell compartment of Section 7a is identifiable
+from the two measured states at that schedule, and whether data from a
+plasma-cell-directed agent rescues it if it is not; what left-censored B cell
+values do to the estimate; and how much between-study variability the design
+tolerates before the pooled estimate is uninformative.
 
 If the simulation says the three links are not separable at any plausible
 number of events, the project stops here, and that is a result to write
