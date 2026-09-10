@@ -2,7 +2,7 @@
 title: "Logistic regression for dose finding"
 subtitle: "Picking a method, and picking the right diagnostics"
 description: "Index of the documents in the logistic-regression project: comparing glm against Bayesian fitting methods, and a minimal diagnostic checklist for a fitted model, both working documents."
-categories: [PMX project]
+categories: [Dose-response methods]
 date: last-modified
 toc: false
 ---

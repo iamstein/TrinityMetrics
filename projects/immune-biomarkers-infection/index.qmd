@@ -2,7 +2,7 @@
 title: "Immune biomarkers and infection risk"
 subtitle: "Longitudinal models of neutrophils, B cells and immunoglobulins"
 description: "Placeholder for a project on pooling immune biomarker time courses across studies to model infection risk. Nothing is written yet; this page states the question and what has to be settled before the work starts."
-categories: [PMX project]
+categories: [Immunology and T-cell engagers]
 date: last-modified
 toc: false
 ---

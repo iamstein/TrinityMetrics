@@ -2,7 +2,7 @@
 title: "References for the immune biomarkers and infection risk project"
 subtitle: "What to read, in what order, and what has actually been checked"
 description: "The reading queue for a project on longitudinal immune biomarkers and infection risk: the papers that quantify what a neutrophil, lymphocyte or IgG level does to infection risk, the model-based predictions already published, and a status marker on every entry."
-categories: [PMX project, references]
+categories: [Immunology and T-cell engagers, references]
 date: last-modified
 toc: true
 toc-depth: 2
