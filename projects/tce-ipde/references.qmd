@@ -16,7 +16,9 @@ queue have been dispositioned and the notes under each say what came of
 it; GB261 is unread. The second queue, on intrapatient escalation in
 immunology, was assembled on 2026-08-31 from search results because no
 journal, registry or regulator host was reachable, so every entry there
-is a prediction about a paper rather than a reading of one.
+is a prediction about a paper rather than a reading of one. A third
+queue, on T-cell engagers in healthy volunteers, was added on
+2026-09-10 from a registry search and is in the same state.
 Every source below the queues still carries the marker it started
 with, and those are the ones that matter for final work: the teclistamab
 PK parameters in Section 8, the Friberg system values in Section 17, and
@@ -623,6 +625,120 @@ in the first queue, AIDE (Zhou et al. 2023, *Pharmaceutical Statistics*,
 <https://doi.org/10.1002/pst.2272>), the patient-retreat PRIDE scheme
 for rare diseases, and TWICEBEE for multi-cycle immunotherapy. They
 belong with Section 27b and none is a v1 dependency.
+
+## Reading queue: T-cell engagers in healthy volunteers
+
+Searched 2026-09-10 for [T-cell engagers in healthy
+volunteers](tce-hv.qmd). **Three registered volunteer studies, all
+autoimmune, all since December 2025, none with a result posted.** Every
+entry is a registry record, a meeting abstract or a press release, and
+every entry carries ❌. Europe PMC returned no published report of a
+CD3-engaging bispecific dosed in healthy subjects. The Chinese
+registries, the EU register and ANZCTR were not searched.
+
+### 21. NCT07236411 — cizutamig absolute bioavailability in healthy adults ❌
+
+Candid Therapeutics. <https://clinicaltrials.gov/study/NCT07236411>
+
+A randomized, double-blind, single-dose study, intravenous or
+subcutaneous against placebo, in 24 healthy adults at Nucleus Network,
+Melbourne. Started 2025-12-04, completed 2026-07-14. Primary outcome
+absolute bioavailability through eight weeks; secondary outcomes
+safety, PK and anti-drug antibodies. Cizutamig is EMB-06, a 2+2 BCMA x
+CD3 engager on EpimAb's FIT-Ig platform, licensed outside Greater China
+to Vignette Bio and then Candid.
+
+**The question.** What single dose the volunteers received, relative
+to the 0.2 to 300 mg weekly range already given to myeloma patients
+(entry 24), and what their B cells and cytokines did. Neither is a
+registered outcome, so the answer is in a presentation not yet found.
+
+### 22. NCT07284797 — XmAb657 first-in-human in healthy participants and autoimmune patients ❌
+
+Xencor. <https://clinicaltrials.gov/study/NCT07284797>
+
+An open-label subcutaneous dose escalation, 60 participants estimated,
+Melbourne, started 2026-02-24, primary completion October 2028. Healthy
+adults are the first cohort, followed by idiopathic inflammatory
+myopathy, systemic sclerosis and Sjögren's disease. Primary outcome
+adverse events through week 52; secondary serum concentration. The
+sponsor has said it will report progress in the second half of 2026.
+
+**The question.** Whether the volunteer cohort escalates to a
+B-cell-depleting dose or stops at a dose chosen to be subactive. This
+is the study whose design matches the idea in Section 1 of the
+volunteer note, and the one whose readout decides whether the idea
+works.
+
+### 23. NCT07712939 — CND319 first-in-human, SAD in volunteers and MAD in patients ❌
+
+Candid Therapeutics. <https://clinicaltrials.gov/study/NCT07712939>
+
+Open-label, 105 participants estimated, Melbourne, started 2026-07-20,
+primary completion March 2028. Part 1 single ascending dose in healthy
+adults aged 18 to 65; multiple ascending dose and Part 2 expansion in
+rheumatoid arthritis and Sjögren's. CND319 is a CD19/CD20 x CD3
+engager. Primary outcomes safety through week 12 (SAD) or 24;
+secondary PK and anti-drug antibodies.
+
+**The question.** The same as entry 22, and in addition whether the
+patient MAD starting dose was chosen from the volunteer SAD, which
+would be the idea applied.
+
+### 24. Grieshaber-Bouyer et al., ACR Convergence 2025, abstract 2641 — cizutamig, preclinical to clinical translation ❌
+
+<https://acrabstracts.org/abstract/cizutamig-a-bcma-t-cell-engager-preclinical-to-clinical-translation-of-design-optimization-for-the-treatment-of-autoimmune-diseases/>
+
+Forty relapsed or refractory myeloma patients at 0.2 to 300 mg weekly,
+cytokine release grade 1 in 18% and grade 2 in 8%, median onset one
+day, no ICANS; one refractory rheumatoid arthritis patient with
+near-complete plasma cell depletion in marrow and lymph node at three
+weeks and no cytokine release. The patient dose range that the
+volunteer study in entry 21 was run against.
+
+**The question.** At what dose the first fever appeared in patients,
+for comparison with whatever the volunteers show.
+
+### 25. Bernett et al., ACR Convergence 2025, abstract 0010 — XmAb657 in cynomolgus monkeys ❌
+
+<https://acrabstracts.org/abstract/xmab657-a-cd19-x-cd3-t-cell-engaging-bispecific-antibody-for-autoimmune-disease/>
+
+A single intravenous or subcutaneous dose suppressed B cells below
+5 cells/µL for at least 42 days, with marked depletion in lymph node
+and marrow, no clinical signs of cytokine release, and a half-life near
+15 days. The primate prediction that the volunteer cohort of entry 22
+tests.
+
+**The question.** The dose that did it, in mg/kg, since that is the
+number the volunteer starting dose was derived from.
+
+### 26. Suntharalingam et al. 2006 — cytokine storm in the TGN1412 phase 1 trial ❌
+
+*New England Journal of Medicine* 355(10):1018–1028.
+<https://doi.org/10.1056/NEJMoa063842> ·
+[PMID 16908486](https://europepmc.org/article/MED/16908486)
+
+Six healthy volunteers, a CD28 superagonist, a dose 500 times below the
+primate no-effect level, and multi-organ failure within hours. The
+reason a T-cell agonist in a healthy volunteer is the case an ethics
+committee scrutinizes hardest, and the case behind entry 20's
+guideline.
+
+**The question.** What the paper and the subsequent guidance say
+distinguishes a CD28 superagonist from a target-dependent CD3 engager
+with a tuned arm, since that distinction is what the three sponsors in
+entries 21 to 23 argued.
+
+### Not found, and where it was not looked for
+
+No healthy volunteer study of CM336 or OM336 (Keymed; Ouro Medicines,
+acquired by Gilead in 2026) is registered on ClinicalTrials.gov. The
+record NCT06745687, which carries the healthy-volunteer flag, is a
+study in high-risk smouldering myeloma and the flag is an error. The
+Chinese Center for Drug Evaluation registry and the Chinese Clinical
+Trial Registry were not searched, and a colleague's recollection of a
+Chinese volunteer study of the Ouro molecule is unresolved until they
+are, or until the colleague supplies an identifier.
 
 ## Sources the specification's numbers come from
 

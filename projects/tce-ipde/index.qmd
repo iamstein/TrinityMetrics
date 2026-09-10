@@ -26,6 +26,11 @@ this has been specified and not built.
 - [Simon 1997 reading notes](simon97-notes.qmd). What the accelerated
   titration designs paper reports when intrapatient escalation is switched on
   and off, with every number sourced to a page.
+- [T-cell engagers in healthy volunteers](tce-hv.qmd). A related idea: find
+  the active dose in volunteers before the first patient. The three
+  registered volunteer studies, all autoimmune and all since December 2025,
+  what a volunteer study can measure, and where it leaves the intrapatient
+  escalation question.
 
 ## Code
 

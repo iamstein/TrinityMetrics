@@ -178,6 +178,35 @@ useful "negative-control" archetype is another BCMA TCE, where prior
 class knowledge should substantially improve prediction of the active
 dose and therefore reduce the expected value of IPDE.
 
+### Healthy volunteer studies
+
+**Recorded 2026-09-10, so that it is not lost.** A related idea: give
+one or two doses of the TCE to healthy volunteers, climbing between
+cohorts until the first grade 1 cytokine release or a 50% fall in
+peripheral B cells, and open the patient study at that dose. A phase 1
+unit climbs a ladder in weeks where a patient escalation takes months,
+and the ladder is climbed across volunteers rather than within one
+patient, so the design this document simulates may not be needed where
+volunteers can be dosed.
+
+It has been done. Three T-cell engagers have registered healthy
+volunteer cohorts since December 2025, all for autoimmune indications
+and all with an affinity-tuned CD3 arm; no oncology TCE has been given
+to a volunteer. [T-cell engagers in healthy volunteers](tce-hv.qmd)
+carries the studies found, what a volunteer study can measure, the
+translation to patients, and a speed estimate under stated assumptions.
+
+**What it does here.** The volunteer route is the raising-the-starting-
+dose strategy that the Scope above sets aside, taken to its limit with
+human data. Where it is open, in a B-cell-depleting TCE for an
+autoimmune indication, it attacks the prediction error of Section 12
+directly and is the stronger alternative to IPDE; the simulation's job
+there is to report what IPDE would have saved, as a comparator. Where it
+is closed, in oncology, the question stands as specified. The main use
+case above does not yet say which indication it is in, and that
+decision settles whether the volunteer design enters the scenario grid
+of Section 21 as a comparator or stays out of scope.
+
 ------------------------------------------------------------------------
 
 ## 2. Central hypothesis
