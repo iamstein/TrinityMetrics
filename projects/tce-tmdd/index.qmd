@@ -21,6 +21,7 @@ and compiles the pharmacokinetic parameters needed to work it out.
 |:---|:---|
 | The priming dose never puts the concentration above the Michaelis constant, so the elbow is compressed into the first hours | ✅ **Holds, simulated.** Odronextamab's $k_m$ is 1.95 mg/L and its 0.7 mg priming dose peaks at 0.14 mg/L. The apparent half-life is 0.39 d over the first day against 2.9 d from week three |
 | The target is destroyed within a day or two, so by the therapeutic dose there is no sink left to bend the curve | ✅ **Holds, simulated.** 80% of the antigen pool is gone one day after a saturating dose |
+| The target is mostly peripheral, so the elbow is spread across the distribution phase instead of happening in the first hours | ✅ **Holds, simulated, and it decides the answer.** Moving the antigen pool from central to peripheral takes the curvature ratio at a priming dose from 7.5 to 0.8, and changes nothing at a saturating dose |
 | The CD3 arm is what makes T-cell engagers different | ❌ **Falsified.** A B-cell depleting antibody with no CD3 arm, same target and same dose, gives a curvature ratio of 7.0 against the engager's 7.5 |
 | The published models report a small time-dependent clearance because the clinical schedule hides a large one | ❌ **Falsified.** A round-trip through the clinical schedule recovers 25-fold against a 40-fold truth |
 | Slow subcutaneous absorption rate-limits the terminal slope | ⚠️ **Narrow.** True for teclistamab early in treatment, false for elranatamab, inapplicable to the intravenous drugs |

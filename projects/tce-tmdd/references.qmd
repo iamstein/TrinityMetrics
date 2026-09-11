@@ -235,6 +235,14 @@ Everything the working documents draw on, whether or not it is in the queue.
   pharmacokinetics. Cited through Pearce et al. rather than read. The
   primary reference has not been located, and the specification's Section 3
   attributes the classification to them on Pearce's authority alone.
+  **Use it for vocabulary only.** The 2012 work derives its phases for a
+  one-compartment model with no distribution phase and no peripheral
+  compartment. Every model in this project is two-compartment, where a bend
+  in a log-concentration profile can be distribution rather than target
+  saturation, and Section 9.5 of the specification shows the two-compartment
+  version reversing the conclusion. Locating and reading the primary source,
+  and checking whether a two-compartment treatment exists, is now ahead of
+  several entries in the queue above.
 - ⚠️ **CD20×CD3 bispecific antibodies in B-NHL, 2025.** *Clin Transl Sci*,
   [PMC12139688](https://pmc.ncbi.nlm.nih.gov/articles/PMC12139688/). Read
   2026-09-11 for the preclinical TMDD observations and the obinutuzumab

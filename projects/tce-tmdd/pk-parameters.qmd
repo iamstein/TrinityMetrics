@@ -448,4 +448,4 @@ Ready to send, and it asks two things.
 > clearance", which currently returns the structural TMDD templates and
 > misses every drug that actually exhibits it.
 
-Andy sends this; it has not been sent.
+Not sent.
