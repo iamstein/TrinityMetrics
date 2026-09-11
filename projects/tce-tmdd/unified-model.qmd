@@ -1,0 +1,301 @@
+---
+title: "One structural model for the class"
+subtitle: "A PK-only target-mediated model, calibrated across T-cell engagers, and what it cannot yet decide"
+description: "A single structure with no CD3 arm, target in central and tissue, quasi-steady-state binding and drug-driven target killing. Calibrated to the published clearance changes for three T-cell engagers, with the identifiability problem that follows and the digitization plan that would resolve it."
+categories: [pharmacometrics, pharmacokinetics, simulation, working document]
+date: last-modified
+execute:
+  freeze: auto
+  warning: false
+  message: false
+toc: true
+toc-depth: 3
+toc-location: left
+html-math-method: mathjax
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing in this document has been fit to an observed concentration.** Every
+result is a forward simulation from parameters transcribed out of published
+tables, and the calibration in Section 3 targets a published *summary
+statistic* rather than a profile. Section 5 states how much confidence that
+supports, which is not much. The
+[working specification](specification.qmd) carries the argument this model was
+built to test, and [References](references.qmd) the status of every source.
+:::
+
+**Scope.** Molecules with an intact Fc domain and therefore neonatal Fc
+receptor recycling. Blinatumomab, tebentafusp and the albumin-binding formats
+clear on molecular size and are out.
+
+## 1. The Structure
+
+One model for the class, with no CD3 arm, no trimer, no cytokines and no
+tumor growth.
+
+$$
+\begin{aligned}
+\frac{dA_{\rm depot}}{dt} &= -k_a A_{\rm depot}\\
+\frac{dA_c}{dt} &= k_a A_{\rm depot}-\frac{CL}{V_c}A_c
+-\frac{Q_t}{V_c}A_c+\frac{Q_t}{V_t}A_t
+-\frac{Q_p}{V_c}A_c+\frac{Q_p}{V_p}A_p
+- k_{int}R_c V_c\frac{C_c}{K_{ss}+C_c}\\
+\frac{dA_t}{dt} &= \frac{Q_t}{V_c}A_c-\frac{Q_t}{V_t}A_t
+- k_{int}R_t V_t\frac{C_t}{K_{ss}+C_t}\\
+\frac{dA_p}{dt} &= \frac{Q_p}{V_c}A_c-\frac{Q_p}{V_p}A_p\\
+\frac{dR_j}{dt} &= k_{deg}\left(R_j^0-R_j\right)
+-\left(k_{int}+k_{\rm kill}\right)R_j\frac{C_j}{K_{ss}+C_j},
+\qquad j\in\{c,t\}
+\end{aligned}
+$$
+
+Four drug compartments and two target pools. Target sits in the central
+compartment and in a tissue compartment the drug must distribute into;
+a second peripheral compartment carries no target and exists only to give
+the disposition the shape antibodies actually have.
+
+**Why CD3 is absent.** Section 9.1 of the specification ran the same model
+with and without a CD3 arm at matched dose and target. The curvature ratios
+were 7.5 and 7.0 at a priming dose and 11.3 and 11.3 at a saturating one.
+The CD3 arm changes the profile by less than the width of the parameter
+uncertainty, so carrying it costs four parameters and buys nothing.
+
+**Why the target is killed and not only internalized.** $k_{int}$ removes
+receptor with the drug bound to it; $k_{\rm kill}$ removes the cell carrying
+it. Only the second can empty a pool faster than its own turnover, and
+emptying the pool is what these drugs do.
+
+```{r model}
+suppressMessages({library(rxode2); library(dplyr); library(tidyr)
+                  library(ggplot2); library(xgxr)})
+xgx_theme_set()
+knitr::opts_chunk$set(fig.width = 7, fig.height = 4.5)
+
+uni <- rxode2({
+  cc <- central/vc
+  ct <- tissue/vt
+  oc <- cc/(kss + cc)
+  ot <- ct/(kss + ct)
+  cltot <- cl + kint*rc*vc/(kss + cc) + kint*rt*vt/(kss + ct)
+  rfrac <- (rc*vc + rt*vt)/(rc0*vc + rt0*vt)
+  d/dt(depot)   <- -ka*depot
+  d/dt(central) <-  ka*depot - cl/vc*central -
+                    qt/vc*central + qt/vt*tissue -
+                    qp/vc*central + qp/vp*periph - kint*rc*vc*oc
+  d/dt(tissue)  <-  qt/vc*central - qt/vt*tissue - kint*rt*vt*ot
+  d/dt(periph)  <-  qp/vc*central - qp/vp*periph
+  d/dt(rc)      <-  kdeg*(rc0 - rc) - (kint + kkill)*rc*oc
+  d/dt(rt)      <-  kdeg*(rt0 - rt) - (kint + kkill)*rt*ot
+  rc(0) <- rc0
+  rt(0) <- rt0
+  f(depot) <- fbio
+})
+
+base <- c(cl = 0.20, vc = 5.0, vt = 4.0, vp = 3.0, qt = 1.2, qp = 0.6,
+          kss = 1.95, kint = 1.0, kkill = 1.09, kdeg = log(2)/3,
+          rc0 = 0, rt0 = 0, ka = 100, fbio = 1)
+
+set_target <- function(p, total_mg, frac_tissue = 0.9) {
+  p["rc0"] <- total_mg*(1 - frac_tissue)/p[["vc"]]
+  p["rt0"] <- total_mg*frac_tissue/p[["vt"]]
+  p
+}
+```
+
+Every parameter above is shared across drugs except three: the route terms
+$k_a$ and $F$, and the accessible target pool $R^0_cV_c+R^0_tV_t$. Section 3
+asks whether moving that one pool is enough.
+
+## 2. The Next Step: Why Teclistamab Reports 2.2-Fold and Odronextamab 26
+
+Three candidates were open. Run them against each other in this structure,
+under each drug's own approved regimen, and read the clearance at treatment
+start against the clearance at day 120.
+
+```{r regimens}
+reg <- list(
+  odronextamab = et(amt=0.7, cmt="central", time=0) |>
+    et(amt=4, cmt="central", time=7) |> et(amt=20, cmt="central", time=14) |>
+    et(amt=160, cmt="central", time=seq(21,119,by=7)),
+  mosunetuzumab = et(amt=1, cmt="central", time=0) |>
+    et(amt=2, cmt="central", time=7) |> et(amt=60, cmt="central", time=14) |>
+    et(amt=60, cmt="central", time=21) |>
+    et(amt=30, cmt="central", time=seq(42,119,by=21)),
+  teclistamab = et(amt=4.8, cmt="depot", time=0) |>
+    et(amt=24, cmt="depot", time=3) |> et(amt=120, cmt="depot", time=seq(7,119,by=7)))
+
+cl_fold <- function(p, ev) {
+  d <- as_tibble(rxSolve(uni, p, ev |> et(seq(0, 120, by = 0.02))))
+  c(CL0 = d$cltot[d$time == 0.02], CLinf = d$cltot[d$time == 120])
+}
+sc_par <- function(p) { p["ka"] <- 0.133; p["fbio"] <- 0.718; p }
+```
+
+```{r three-candidates}
+grid <- expand_grid(target_mg = c(1, 3, 14.6),
+                    frac_tissue = c(0, 0.9),
+                    route = c("IV", "SC"))
+grid |>
+  rowwise() |>
+  mutate(r = list({ p <- set_target(base, target_mg, frac_tissue)
+                    if (route == "SC") p <- sc_par(p)
+                    cl_fold(p, reg$teclistamab) })) |>
+  mutate(`CL0` = round(r[["CL0"]], 2), `CLinf` = round(r[["CLinf"]], 3),
+         Fold = round(r[["CL0"]]/r[["CLinf"]], 1)) |>
+  select(`Target (mg)` = target_mg, `Fraction in tissue` = frac_tissue,
+         Route = route, CL0, CLinf, Fold) |>
+  knitr::kable()
+```
+
+**Target burden is the lever and the other two are not.** Across a 15-fold
+change in the accessible pool the reported fold change moves from 3.5 to 33.
+Moving 90% of that pool into tissue changes it by less than 20%, and
+switching the route from intravenous to subcutaneous changes it by about
+30%, in the direction that makes the fold *larger* rather than smaller.
+
+Note what this does not contradict. Section 9.5 of the specification found
+target location decisive, and it was measuring a different thing: the
+curvature of a single-dose profile, which is a shape. This is measuring the
+ratio of two clearances under a full regimen, which is a number. Location
+moves the shape and not the number.
+
+## 3. Calibrating One Structure to Three Drugs
+
+Hold everything fixed except the accessible target pool, and ask what pool
+each drug's published fold change implies.
+
+```{r calibration}
+#| fig-height: 4
+scan <- expand_grid(drug = names(reg), target_mg = 10^seq(log10(0.05), log10(30), length.out = 22)) |>
+  rowwise() |>
+  mutate(p = list({ p <- set_target(base, target_mg, 0.9)
+                    if (drug == "teclistamab") p <- sc_par(p); p }),
+         r = list(cl_fold(p, reg[[drug]])),
+         fold = r[["CL0"]]/r[["CLinf"]]) |>
+  ungroup()
+
+published <- tibble(drug = names(reg), fold = c(25.7, 1.8, 2.2))
+
+ggplot(scan, aes(target_mg, fold, colour = drug)) +
+  geom_line(linewidth = 0.7) +
+  geom_hline(data = published, aes(yintercept = fold, colour = drug),
+             linetype = 2, linewidth = 0.5) +
+  scale_x_log10() + scale_y_log10() + annotation_logticks() +
+  labs(x = "Accessible target pool (mg of binding sites)",
+       y = "Fold change in clearance, start to day 120", colour = NULL,
+       caption = "Dashed lines are the published fold changes.")
+```
+
+| Drug | Published fold | Target pool that reproduces it |
+|:---|---:|:---|
+| Odronextamab | 25.7 | ~10 mg |
+| Teclistamab | 2.2 | ~0.5 mg |
+| Mosunetuzumab | 1.8 | ~0.3 mg **or** ~20 mg |
+
+: One structure, one free parameter per drug {tbl-colwidths="[30,20,50]"}
+
+A 20-fold difference in accessible target between lymphoma CD20 and myeloma
+BCMA reproduces the published numbers. At 5×10⁴ sites per cell that is
+8×10¹¹ cells against 4×10¹⁰, and at BCMA's lower density of 1.3×10⁴ sites
+per cell the myeloma figure becomes 1.6×10¹¹ cells. Those are not absurd
+numbers for nodal lymphoma against marrow-confined plasma cells in a heavily
+pretreated population, which is the point at which a plausibility argument
+stops being evidence.
+
+## 4. The Identifiability Problem This Exposes
+
+Mosunetuzumab has two answers, 60-fold apart. Its curve is not monotonic: the
+fold change rises with target burden to about 9 and then collapses, because
+the 30 mg every-three-weeks maintenance is a low enough dose intensity that a
+large target pool is never fully destroyed, so the day-120 clearance stays
+high and the ratio closes back up.
+
+**A fold change in clearance does not identify a target pool.** It is one
+number summarising two, and for a low-intensity regimen the map is
+two-to-one. Every calibration in Section 3 inherits this, and the
+odronextamab and teclistamab answers are single-valued only because their
+weekly regimens happen to sit on the monotonic branch.
+
+What separates the two mosunetuzumab solutions is the *shape* of the profile
+during cycle 1, which the summary statistic throws away. That is the argument
+for the next phase.
+
+## 5. How Much Confidence Any of This Supports
+
+Stated plainly, because the preceding four sections read more confidently
+than the evidence warrants.
+
+| Claim | Confidence | Why |
+|:---|:---|:---|
+| A saturable elimination is arithmetically first-order when $C\ll K_{ss}$ | **High** | Algebra, and it holds in any number of compartments |
+| The published priming doses sit at $C/K_{ss}\le 0.07$ | **High** | Two transcribed numbers, one division; the transcription is unchecked |
+| This structure is *capable* of spanning 1.8 to 26-fold on one parameter | **High** | Demonstrated in Section 3 |
+| Target burden is what actually differs between these drugs | **Low** | A structure flexible enough to span the range by construction is not evidence that it spans it for the right reason |
+| Target location decides the single-dose curvature | **Moderate** | It survives every perturbation tried, but $Q_t$ and the central/tissue split are assumed, not estimated |
+| Any of this explains the observed data | **Low** | Nothing here has met an observed concentration |
+
+: Confidence by claim {tbl-colwidths="[42,16,42]"}
+
+Two results from this project so far bear on how much weight to put on
+simulation alone, and they point the same way. The round-trip in Section 9.4
+of the specification falsified the hypothesis it was built to confirm. The
+standing-CD3-sink explanation in Section 4a was rejected by the first
+simulation that tested it. Both were plausible before they were run, and
+both were wrong. The reasonable prior on the remaining untested claims is the
+same.
+
+**The honest summary.** There is one arithmetic result that is certain and
+one structure that can reproduce the published summary statistics. There is
+no evidence yet that it reproduces them for the right reason, because it has
+never been shown a concentration-time profile.
+
+## 6. What Would Settle It
+
+Fit, or overlay, against digitized profiles.
+
+### 6.1 The Digitization Target
+
+One table, one row per published figure, with the dose level and the
+sampling window recorded so that the cycle-1 profiles can be told apart from
+the steady-state ones.
+
+| Source | Figure | What it would constrain |
+|:---|:---|:---|
+| Kovalenko 2026, odronextamab | Concentration-time by B-NHL subtype, cycles 1–3 and long-term follow-up | The one published profile set that spans a 10,000-fold dose range; separates the two mosunetuzumab-style branches directly |
+| Bender 2024, mosunetuzumab | Observed versus predicted by dose group | Resolves the 0.3 mg against 20 mg ambiguity in Section 3 |
+| Miao 2023, teclistamab | Concentration-time by route and dose, Figs 2 and 3 | The subcutaneous absorption and the myeloma target pool together |
+| Pearce 2025 | Table 1 half-lives, 29 molecules | Already transcribed; the out-of-sample check on any fitted structure |
+| CD20×CD3 review | Cynomolgus TMDD dose thresholds | The preclinical arm, where the elbow is reported visible |
+
+: Digitization queue, ordered by what each resolves
+{tbl-colwidths="[26,34,40]"}
+
+### 6.2 The Sequence
+
+1. **Digitize odronextamab first.** It is open access, its dose range is the
+   widest published, and its model is the only one with a fitted $k_m$ to
+   check the digitization against.
+2. **Overlay before fitting.** Run this structure at the calibrated target
+   pool and plot it over the digitized points. An overlay that is visibly
+   wrong tells you more than a fit that converges.
+3. **Fit only what the data can carry.** With digitized medians rather than
+   individual data, the estimable set is small: the target pool, $K_{ss}$,
+   and $k_{\rm kill}$, with disposition fixed to the published values.
+4. **Then mosunetuzumab**, as the test of whether the ambiguity in Section 4
+   closes.
+5. **Then teclistamab**, which adds the subcutaneous absorption and is where
+   the structure is most likely to break.
+
+### 6.3 What Would Falsify the Structure
+
+Written down now, before any data is fitted.
+
+- A profile whose cycle-1 decline is *slower* than the structure predicts at
+  the calibrated target pool, which would mean the accessible target is
+  smaller still and something else carries the clearance.
+- A drug needing a target pool outside the range its receptor density and
+  disease burden allow.
+- Any drug requiring a different $K_{ss}$ than its published binding affinity
+  supports by more than about tenfold.
+- Two drugs against the same antigen needing target pools that differ by more
+  than their populations' tumor burdens differ.

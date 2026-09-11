@@ -29,6 +29,14 @@ and compiles the pharmacokinetic parameters needed to work it out.
 : Where each explanation stands after Section 9's simulations
 {tbl-colwidths="[42,58]"}
 
+**How much of this is established.** The arithmetic is certain and the
+mechanism is untested. One structure reproduces the published clearance
+changes across three drugs by moving a single parameter, and nothing in this
+project has yet met an observed concentration-time profile. Two hypotheses
+that looked sound before they were simulated have already been falsified.
+Section 5 of the model document states the confidence claim by claim; Section
+6 is the digitization plan that would replace it with evidence.
+
 The finding underneath: **nothing about this is specific to T-cell
 engagers.** The same antibody, same target, same affinity, dosed at 0.7 mg
 rather than 1000 mg, behaves the same way. What a T-cell engager has is a
@@ -47,6 +55,12 @@ here only as a contrast.
   the order of work. Its **In brief** section is one screen and says what the
   rest argues. Sections 3 and 4 carry the argument; Section 7 is the
   back-of-envelope on how much drug the CD3 pool can consume.
+- [One structural model for the class](unified-model.qmd). A PK-only model
+  with no CD3 arm, target in central and tissue, quasi-steady-state binding
+  and drug-driven target killing. Calibrated to the published clearance
+  changes for three drugs by moving one parameter, with the identifiability
+  problem that follows, an explicit statement of how much confidence any of
+  it supports, and the digitization sequence that would settle it.
 - [PK parameters](pk-parameters.qmd). The reference table: structure, fixed
   effects, interindividual variability, residual error and covariates for
   eight T-cell engagers, each in the same six slots. Section 4 is the
