@@ -1,0 +1,302 @@
+---
+title: "The model against digitized data"
+subtitle: "Odronextamab cycle 1 to 3, fitted, with one subtype reproduced and one falsified"
+description: "The first time this project's structural model meets an observed concentration. Figure 4A of the odronextamab population PK paper is digitized, the model is fitted to both B-NHL subtypes, and the result is a good fit for DLBCL that does not identify the target pool and an outright failure for follicular lymphoma."
+categories: [pharmacometrics, pharmacokinetics, simulation, working document]
+date: last-modified
+execute:
+  freeze: auto
+  warning: false
+  message: false
+toc: true
+toc-depth: 3
+toc-location: left
+html-math-method: mathjax
+---
+
+::: {.callout-important appearance="simple"}
+**The concentrations here are read off a published figure, not measured.**
+They are medians of observed individual concentrations digitized from Figure
+4A of Kovalenko et al. 2026, which is open access. The axis calibration is
+checked against the assay limit the figure draws and is good to about one
+pixel, or 5% in concentration; the medians themselves carry whatever error
+the original plotting and the marker centroid introduce. Individual data is
+not available, so nothing here is a population fit. Sources and their status
+are in [References](references.qmd); the model is specified in
+[One structural model for the class](unified-model.qmd).
+:::
+
+## In brief
+
+**What this is.** The first point in the project where the model meets an
+observation. Everything before it was a forward simulation.
+
+**The result for DLBCL: the structure fits.** Two estimated parameters
+against 18 digitized medians spanning a 250-fold concentration range give a
+residual standard deviation of 0.22 on the log scale, about a 25%
+coefficient of variation. The cycle 1 step-up profile, the accumulation
+through cycle 3, and the trough depths all come out.
+
+**The result for follicular lymphoma: the structure fails.** Residual
+standard deviation 0.83, and the fit is driven to a target pool of
+1.6 × 10¹² to 1.7 × 10¹³ cells and a killing rate of 47 to 59 per day.
+That is more B cells than a person has and a kill rate with no physical
+reading. This is falsifier 2 of the four written down in advance.
+
+**The result with the widest consequences: the target pool is not
+identifiable.** For DLBCL, placing the target entirely in plasma gives 3.0 mg
+of binding sites and placing 90% of it in tissue gives 27.8 mg, a
+nine-fold range, with residual standard deviations of 0.230 and 0.222. The
+data cannot tell them apart. Section 4 of
+[the model document](unified-model.qmd) predicted this from the structure;
+here it is on real observations.
+
+**Out of scope.** No population fit, no between-subject variability, no
+covariates, no second drug yet.
+
+## 1. The Digitization
+
+Figure 4A of Kovalenko et al. plots observed individual concentrations,
+their medians at each nominal time, and the model's median with a 90%
+prediction interval, for the first three weeks, separately for DLBCL and
+follicular lymphoma. The pink median markers are what is extracted.
+
+The axis calibration is measured from the image rather than assumed. Tick
+rows come out at 24.0, 68.5, 113.0, 157.5 and 202.4 pixels for 10¹ down to
+10⁻³ mg/L, which is uniform to a fifth of a pixel across four decades. The
+figure also draws the assay lower limit of quantification, 0.00313 mg/L, as
+a dashed line: it is found at row 179.5 and the calibration predicts 180.3.
+**A one-pixel agreement on a quantity the calibration was not fitted to is
+the check that the mapping is right.**
+
+`digitize_odronextamab.py` in this folder does the extraction and writes
+`data/odronextamab_fig4A_medians.csv`.
+
+```{r load}
+suppressMessages({library(rxode2); library(dplyr); library(tidyr)
+                  library(ggplot2); library(xgxr)})
+xgx_theme_set()
+knitr::opts_chunk$set(fig.width = 8, fig.height = 3.8)
+LLOQ <- 0.00313
+
+obs <- read.csv("data/odronextamab_fig4A_medians.csv")
+obs |> count(subtype, name = "medians") |>
+  mutate(`at the assay limit` = c(
+    sum(obs$conc_mg_L[obs$subtype == "DLBCL"] <= LLOQ*1.12),
+    sum(obs$conc_mg_L[obs$subtype == "FL"]    <= LLOQ*1.12)),
+    `concentration range` = c(
+    sprintf("%.4g to %.3g mg/L", min(obs$conc_mg_L[obs$subtype=="DLBCL"]),
+            max(obs$conc_mg_L[obs$subtype=="DLBCL"])),
+    sprintf("%.4g to %.3g mg/L", min(obs$conc_mg_L[obs$subtype=="FL"]),
+            max(obs$conc_mg_L[obs$subtype=="FL"])))) |>
+  knitr::kable()
+```
+
+### 1.1 The Regimen, Read Out of the Data
+
+The paper describes the regimen as 0.7/4/20/160 mg weekly. The digitized
+points show **two** peaks in each of the first three weeks, the second
+higher than the first, which a single weekly dose cannot produce. The
+step-up doses are split across consecutive days, and the split is visible in
+the medians before it is stated anywhere in the text.
+
+```{r regimen}
+dose <- tibble(day = c(0, 1, 7, 8, 14, 15, 21),
+               amt = c(0.2, 0.5, 2, 2, 10, 10, 160))
+dose |> mutate(week = c(1,1,2,2,3,3,4), .before = day) |> knitr::kable()
+```
+
+Infusions run one to four hours and the nominal-day sample is predose, so
+each dose starts 0.1 day after its nominal day and runs over two hours.
+Getting this wrong is not cosmetic: comparing a predose trough against a
+post-dose simulated concentration inflated the residual standard deviation
+from 0.22 to 1.39 before it was fixed.
+
+## 2. Fitting
+
+The structure is the one in [the model document](unified-model.qmd).
+Disposition is fixed to the published estimates and $K_{ss}$ is fixed to the
+published Michaelis constant of 1.95 mg/L. Two parameters are estimated: the
+accessible target pool and the killing rate.
+
+```{r setup-model}
+uni <- rxode2({
+  cc <- central/vc
+  ct <- tissue/vt
+  oc <- cc/(kss + cc)
+  ot <- ct/(kss + ct)
+  cltot <- cl + kint*rc*vc/(kss + cc) + kint*rt*vt/(kss + ct)
+  d/dt(depot)   <- -ka*depot
+  d/dt(central) <-  ka*depot - cl/vc*central - qt/vc*central + qt/vt*tissue -
+                    qp/vc*central + qp/vp*periph - kint*rc*vc*oc
+  d/dt(tissue)  <-  qt/vc*central - qt/vt*tissue - kint*rt*vt*ot
+  d/dt(periph)  <-  qp/vc*central - qp/vp*periph
+  d/dt(rc)      <-  kdeg*(rc0 - rc) - (kint + kkill)*rc*oc
+  d/dt(rt)      <-  kdeg*(rt0 - rt) - (kint + kkill)*rt*ot
+  rc(0) <- rc0
+  rt(0) <- rt0
+  f(depot) <- fbio
+})
+
+p0 <- c(cl = 0.189, vc = 4.99, vp = 4.42, qp = 1.21,   # published disposition
+        vt = 2.0, qt = 0.3,                            # tissue, assumed
+        kss = 1.95, kint = 1.0, kkill = 1.0, kdeg = log(2)/3,
+        rc0 = 0, rt0 = 0, ka = 100, fbio = 1)
+
+ev <- Reduce(function(e, i) e |> et(amt = dose$amt[i], cmt = "central",
+                                    time = dose$day[i] + 0.10, dur = 2/24),
+             seq_len(nrow(dose)), et()) |> et(seq(0, 22, by = 0.005))
+
+set_target <- function(p, total_mg, frac_tissue) {
+  p["rc0"] <- total_mg*(1 - frac_tissue)/p[["vc"]]
+  p["rt0"] <- total_mg*frac_tissue/p[["vt"]]
+  p
+}
+fit_one <- function(subtype, frac_tissue) {
+  o <- obs[obs$subtype == subtype & obs$conc_mg_L > LLOQ*1.12, ]  # censored medians dropped
+  f <- function(lp) {
+    q <- set_target(p0, exp(lp[1]), frac_tissue); q["kkill"] <- exp(lp[2])
+    s <- try(as_tibble(rxSolve(uni, q, ev)), silent = TRUE)
+    if (inherits(s, "try-error")) return(1e9)
+    pr <- approx(s$time, s$cc, xout = o$day)$y
+    if (any(!is.finite(pr)) || any(pr <= 0)) return(1e9)
+    sum((log(pr) - log(o$conc_mg_L))^2)
+  }
+  best <- NULL
+  for (s0 in list(c(10,1), c(3,.5), c(30,2), c(1,.2), c(100,5))) {
+    r <- optim(log(s0), f, control = list(maxit = 8000, reltol = 1e-12))
+    r <- optim(r$par, f, control = list(maxit = 8000, reltol = 1e-13))
+    if (is.null(best) || r$value < best$value) best <- r
+  }
+  e <- exp(best$par)
+  q <- set_target(p0, e[1], frac_tissue); q["kkill"] <- e[2]
+  list(target_mg = unname(e[1]), kkill = unname(e[2]),
+       sd_log = sqrt(best$value/nrow(o)), n = nrow(o), par = q)
+}
+```
+
+Medians reported at the assay limit are dropped rather than fitted. A median
+plotted on the limit line is censored, and treating it as an equality pulls
+the fit toward an impossible clearance.
+
+### 2.1 The Overlay
+
+```{r overlay}
+#| fig-cap: "The structural model fitted to digitized observed medians for the first three weeks of odronextamab. Points are digitized medians, the line is the model, the dashed line is the assay limit of quantification. Target 90% in tissue."
+fits <- lapply(c(DLBCL = "DLBCL", FL = "FL"), fit_one, frac_tissue = 0.9)
+sim <- bind_rows(lapply(names(fits), function(s)
+  as_tibble(rxSolve(uni, fits[[s]]$par, ev)) |> mutate(subtype = s)))
+
+ggplot(sim, aes(time, cc)) +
+  geom_hline(yintercept = LLOQ, linetype = 2, colour = "grey50") +
+  geom_line(linewidth = 0.55, colour = "#2C6FB5") +
+  geom_point(data = obs, aes(day, conc_mg_L), colour = "#C0392B", size = 1.9) +
+  facet_wrap(~subtype) + scale_y_log10() + annotation_logticks(sides = "l") +
+  labs(x = "Days after first dose", y = "Odronextamab (mg/L)")
+```
+
+DLBCL is reproduced across the whole cycle 1 step-up, including the
+within-week split doses and the depth of each trough. Follicular lymphoma is
+not: the model cannot fall as fast as the observed week-1 medians and hold
+the week-2 and week-3 concentrations at the same time.
+
+## 3. Where the Target Sits, Against Real Data
+
+Section 4 of the model document argued that a summary statistic cannot
+identify the target pool. Here the same question is asked of the profile.
+
+```{r placement}
+grid <- expand_grid(subtype = c("DLBCL", "FL"), frac_tissue = c(0, 0.5, 0.9))
+grid |>
+  rowwise() |>
+  mutate(f = list(fit_one(subtype, frac_tissue))) |>
+  mutate(`Target pool (mg)` = round(f$target_mg, 2),
+         `Implied cells`    = sprintf("%.1e", f$target_mg/1e3/1.5e5*6.022e23/5e4),
+         `kkill (/day)`     = round(f$kkill, 2),
+         `Residual SD (log)`= round(f$sd_log, 3),
+         n = f$n) |>
+  select(Subtype = subtype, `Fraction in tissue` = frac_tissue,
+         `Target pool (mg)`, `Implied cells`, `kkill (/day)`,
+         `Residual SD (log)`, n) |>
+  knitr::kable()
+```
+
+**The placement is unidentifiable and the pool rides on it.** For DLBCL the
+three placements fit equally well, 0.230 against 0.222 against 0.222, and
+the target pool they imply runs from 3.0 to 27.8 mg, a factor of nine, or
+2.4 × 10¹¹ to 2.2 × 10¹² cells. Nothing in a concentration-time profile
+distinguishes a small pool the drug reaches immediately from a large pool it
+reaches slowly, because the product of the two is what the drug sees.
+
+This is the identifiability result from the model document, confirmed on
+observations rather than on a simulated summary. It also says what the next
+measurement has to be: **a B-cell or tumor-burden time course, not more
+concentrations.** The target pool is identified by watching the target, and
+this project has been trying to infer it from the drug.
+
+## 4. The Follicular Lymphoma Failure
+
+Written against falsifier 2 from Section 6.3 of the model document: *a drug
+needing a target pool outside the range its receptor density and disease
+burden allow.*
+
+The follicular lymphoma medians fall from 0.028 mg/L at day 0.21 to 0.0084
+at day 0.98, a factor of 3.3 in 0.77 days, an apparent half-life of 0.45
+days after a 0.2 mg dose. The structure reaches that only by pushing the
+target pool to 1.6 × 10¹² cells and the killing rate to 47 per day, and even
+then the residual standard deviation is 0.83 and the later concentrations
+are wrong.
+
+| Check | Fitted value | Plausible range | Verdict |
+|:---|:---|:---|:---|
+| Target pool, cells | 1.6 × 10¹² to 1.7 × 10¹³ | ~2 × 10¹¹ total body B cells, plus tumor | ❌ Exceeds by 1 to 2 orders of magnitude |
+| $k_{\rm kill}$ | 47 to 59 /day | Target-cell killing over hours to days, so order 1 /day | ❌ No physical reading |
+| Residual SD, log scale | 0.83 | 0.22 for DLBCL on the same structure | ❌ Fails on its own terms |
+
+: Falsifier 2 applied to the follicular lymphoma fit {tbl-colwidths="[26,26,30,18]"}
+
+Three readings, and the data here does not separate them.
+
+1. **The digitization is wrong for FL.** Two of the early FL markers are
+   small blobs near the assay limit where the plotted median is least
+   reliable. Checking them against Figure 2's visual predictive check for the
+   FL subpopulation is cheap and comes first.
+2. **The structure is wrong.** Something removes drug fast at very low
+   concentration and has no effect by week 2. A second, higher-affinity and
+   lower-capacity binding site would do it, which is the CD3 arm that Section
+   9.1 of the specification dropped on the evidence of a simulation that had
+   no data in it.
+3. **The published model has the same problem.** Kovalenko et al. fit FL with
+   a $K_v$ covariate of −0.891, making the target decay nearly ten times
+   slower than DLBCL, which is the opposite of what these early medians
+   suggest. Whether their own fit reproduces the FL week-1 medians is
+   answerable from Figure 4A itself and has not been checked.
+
+**Reading 2 is the one that would reopen CD3.** Dropping it was justified by
+a simulation, and this is the first observation that argues against the
+simulation.
+
+## 5. What Changes in the Project
+
+- The **confidence table** in Section 5 of the model document gains a row.
+  The structure now has one subtype it reproduces and one it fails, which is
+  more than it had and less than it needs.
+- The claim that **target burden is the lever** survives for DLBCL and is
+  untested elsewhere, because the pool it implies is unidentifiable within a
+  factor of nine.
+- **CD3 is no longer settled.** It was dropped on simulation evidence, and
+  reading 2 above is the first data-driven argument for putting it back.
+- The **next measurement is not a concentration.** A B-cell or tumor-burden
+  time course identifies the target pool; more concentration-time data does
+  not.
+
+## 6. Next
+
+1. Check the FL early medians against Figure 2's visual predictive check for
+   that subpopulation, which is reading 1 above and the cheapest.
+2. Digitize Figure 4C, the long-term profiles, and refit. Cycle 1 alone
+   cannot see the target destruction that the published $K_v$ describes.
+3. Refit FL with a second binding site restored, and compare on residual
+   standard deviation against the one-site fit.
+4. Then mosunetuzumab, which is where the two-branch ambiguity of Section 4
+   of the model document closes or does not.

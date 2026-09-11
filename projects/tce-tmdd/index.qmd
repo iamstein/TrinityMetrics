@@ -29,6 +29,15 @@ and compiles the pharmacokinetic parameters needed to work it out.
 : Where each explanation stands after Section 9's simulations
 {tbl-colwidths="[42,58]"}
 
+**First contact with data.** The structure has now been fitted to digitized
+observed medians for one drug. It reproduces DLBCL with a residual standard
+deviation of 0.22 on the log scale and fails follicular lymphoma at 0.83,
+needing more B cells than a person has. The target pool it implies for DLBCL
+runs from 3.0 to 27.8 mg depending on where the target is placed, with no
+change in fit, so the quantity the project has been trying to infer is not
+identifiable from concentrations at all. Identifying it needs a B-cell or
+tumor-burden time course.
+
 **How much of this is established.** The arithmetic is certain and the
 mechanism is untested. One structure reproduces the published clearance
 changes across three drugs by moving a single parameter, and nothing in this
@@ -61,6 +70,10 @@ here only as a contrast.
   changes for three drugs by moving one parameter, with the identifiability
   problem that follows, an explicit statement of how much confidence any of
   it supports, and the digitization sequence that would settle it.
+- [The model against digitized data](digitized-fits.qmd). Figure 4A of the
+  odronextamab paper digitized and fitted. DLBCL is reproduced, follicular
+  lymphoma falsifies the structure, and the target pool turns out to be
+  unidentifiable within a factor of nine.
 - [PK parameters](pk-parameters.qmd). The reference table: structure, fixed
   effects, interindividual variability, residual error and covariates for
   eight T-cell engagers, each in the same six slots. Section 4 is the
