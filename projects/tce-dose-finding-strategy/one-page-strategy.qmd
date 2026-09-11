@@ -1,0 +1,138 @@
+---
+title: "Dose-finding strategy page: BX-401"
+subtitle: "A specimen of the artifact, filled in for an invented program"
+description: "The one-page TCE dose-finding strategy filled in for an invented CD20xCD3 program at the end of dose escalation, followed by the blank template."
+categories: [trial design, dose finding, immunology, working document]
+date: last-modified
+page-layout: full
+toc: false
+---
+
+::: {.callout-warning appearance="simple"}
+**BX-401 does not exist.** The program, the doses, the dates and the findings
+below are invented to show what a filled page looks like. No number here is a
+measurement, and nothing here should be read as a statement about any real
+T-cell engager. Owners are given as roles rather than names for the same
+reason. The specification for the page is [here](specification.qmd).
+:::
+
+---
+
+**Program** BX-401, CD20xCD3 T-cell engager · **Indication** relapsed
+follicular lymphoma · **Stage** end of escalation, entering expansion
+
+**Page owner** Clinical pharmacology lead · **Revised** 2026-09-11 · **Next
+revision** before the Gate 2 meeting, November 2026
+
+**Objective.** Phase 1/1b characterizes safety, PK, PD and preliminary
+activity across the 15 to 120 mg full-dose range. The objective is to carry a
+sufficiently characterized *set* of doses into Phase 2b optimization, not to
+select one dose.
+
+## Decisions
+
+| Decision | Current position | State | Team | Decide by | Evidence | Owner |
+|:---|:---|:---|:---|:---|:---|:---|
+| Step-up levels | 0.5 / 3 / 15 mg | ● Locked (amendment, ~3 mo) | ⚠️ Split: Translational wants 2 steps | Ph2 protocol, Q1 27 | ⏰ CRS by step, cohorts 1–6; reads out Feb 27 | ClinPharm lead |
+| Premedication | Dexamethasone before each step-up | ◐ Working | ⚠️ Split: Safety wants it before full doses too | Ph2 protocol, Q1 27 | ⏰ Pooled CRS by premed use; not randomized, so confounded | Safety lead |
+| Monitoring | Overnight after each step-up | ◐ Working | – Not asked | Ph2 protocol, Q1 27 | CRS onset times from expansion | Early Dev lead |
+| Re-priming after a gap | Restart full step-up after >6 weeks missed | ○ Open | – Not asked | Ph2 protocol, Q1 27 | ⏰ Class precedent only; no program data planned | ClinPharm lead |
+| Stop escalation | Stop at 120 mg or at a depletion plateau | ◐ Working | ⚠️ Split: disease team wants 240 mg explored | At the 120 mg cohort | Exposure-response on B-cell depletion and response rate | Early Dev lead |
+| Doses to expand | 30 and 120 mg | ◐ Working | ✅ Agreed | Gate 2, Nov 26 | Escalation PK and depletion; expansion slots are the constraint | Early Dev lead |
+| Number carried forward | 2 | ◐ Working | ✅ Agreed | Gate 3, Q2 27 | Project Optimus expects a randomized comparison | Program team |
+| Which doses carried forward | TBD among 30, 60, 120 mg | ○ Open | – Not asked | Gate 3, Q2 27 | ⏰ Expansion exposure-response at the Q3 27 interim | ClinPharm lead |
+| Full-dose interval | Q2W after cycle 3 | ○ Open | – Not asked | Ph2 protocol, Q1 27 | ⏰ PK simulation only; no program data on Q2W | ClinPharm lead |
+| Maintenance | None assumed | ○ Open | ⚠️ Split: Late Dev assumes maintenance in the Ph3 plan | Gate 4, 2028 | ⏰ Nothing planned that would answer it | Late Dev lead |
+
+: Live decisions. ○ Open, ◐ Working, ● Locked. ✅ Agreed, ⚠️ Split, – Not asked. ⏰ evidence lands after the decision is due. {tbl-colwidths="[12,20,12,16,11,20,9]"}
+
+**Settled.** Starting dose 0.5 mg, MABEL-derived, locked at protocol v1,
+2025-03. · Route and scaling: subcutaneous, fixed dose, locked at Gate 0,
+2025-03. · Number of step-up doses: 3, locked at protocol v1, 2025-03. ·
+Interval between step-ups and to the first full dose: 7 days, locked at
+protocol v1, 2025-03.
+
+## Carry forward
+
+**How many:** 2. **Which:** TBD among Low (30 mg), Mid (60 mg), High (120 mg).
+
+| Candidate | Dose and exposure | Role |
+|:---|:---|:---|
+| Low | 30 mg, ~0.4× the exposure at 120 mg | Lower end of the effective range; the only candidate that does not require an overnight stay at full dose |
+| Mid | 60 mg, ~0.7× | Intermediate benefit-risk; not yet given to any patient |
+| High | 120 mg, reference | Incremental benefit and the upper range; the dose the expansion will characterize |
+
+: Carry-forward candidates {tbl-colwidths="[14,26,60]"}
+
+**Why this number and spread.** Two doses with roughly a three-fold exposure
+separation are enough to characterize exposure-response in Phase 2b. Project
+Optimus expects more than one dose in a randomized comparison, so one dose is
+not an option the program has. Which two stays TBD until the expansion
+exposure-response interim, and the pair will be Low with High unless the
+interim shows Low short of adequate activity.
+
+## Escalate, expand, stop
+
+**Escalate when** acute safety at the current level is acceptable over 21
+days, CRS is manageable with the current premedication, exposure is below the
+target range, and B-cell depletion is incomplete.
+
+**Expand when** the dose sits in a plausible therapeutic range and what limits
+the next decision is patient numbers rather than dose levels.
+
+**Stop escalating when** depletion is complete and sustained, exposure-response
+on the response rate has plateaued, or toxicity exceeds the protocol
+definition. Reaching a maximum tolerated dose is not required.
+
+## Gates
+
+```{mermaid}
+flowchart LR
+    P["Gate 0<br/>Protocol<br/>2025-03 ✓"] --> E["Gate 1<br/>Escalate<br/>per cohort"]
+    E --> X["Gate 2<br/>Expand / stop<br/>Nov 2026"]
+    X --> C["Gate 3<br/>Carry forward<br/>Q2 2027"]
+    C --> O["Gate 4<br/>Optimize<br/>2028"]
+    O --> R["Registrational<br/>dose and regimen"]
+```
+
+**Three rows are on the critical path.** *Which doses carry forward* needs the
+Q3 2027 interim and is due at Gate 3 in Q2 2027. *Full-dose interval* and
+*re-priming after a gap* are both due at the Phase 2 protocol with nothing
+planned that would answer either, so both will be decided on prior information
+and the page should say so once that is agreed.
+
+## The blank template
+
+Copy this, delete the specimen content, keep the markers.
+
+``` markdown
+**Program** · **Indication** · **Stage**
+
+**Page owner** · **Revised** · **Next revision**
+
+**Objective.** One or two sentences.
+
+| Decision | Current position | State | Team | Decide by | Evidence | Owner |
+|:---|:---|:---|:---|:---|:---|:---|
+|  |  | ○ Open / ◐ Working / ● Locked | ✅ Agreed / ⚠️ Split: <function> / – Not asked |  | ⏰ if it lands late |  |
+
+**Settled.** <decision>, <position>, locked <forum>, <date>. · ...
+
+## Carry forward
+**How many:** 1 / 2 / 3 / TBD. **Which:** Low / Mid / High.
+| Candidate | Dose and exposure | Role |
+| Low | | |
+| Mid | | |
+| High | | |
+Why this number and spread: one sentence.
+Project Optimus constraint: one sentence.
+
+## Escalate, expand, stop
+Escalate when ... Expand when ... Stop escalating when ...
+
+## Gates
+Gate 0 protocol, Gate 1 escalate, Gate 2 expand or stop, Gate 3 carry
+forward, Gate 4 optimize, with a date on each.
+
+Critical path: the ⏰ rows, and what the program will do about each.
+```

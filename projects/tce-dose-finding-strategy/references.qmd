@@ -1,0 +1,205 @@
+---
+title: "References for the TCE dose-finding strategy working document"
+subtitle: "What to read, in what order, and what has actually been checked"
+description: "The reading queue and source list for the one-page TCE dose-finding strategy, with a status marker on every entry recording whether the claim drawn from it has been verified against the source."
+categories: [trial design, dose finding, immunology, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing here has been read, and every marker is ❌.** Entry 1 is the paper
+the whole project is derived from, and what the specification says about it
+comes from its abstract and from a machine-generated summary of the
+open-access text, fetched on 2026-09-11. A fetched summary is weaker evidence
+than an abstract, which is weaker than the paper. Every other entry below is a
+characterization written from a title or a search result. Treat each as a
+prediction about what its source says, and correct the entry when the source
+is read.
+:::
+
+The working document is [the specification](specification.qmd), the artifact
+itself is [the specimen page](one-page-strategy.qmd), and the folder's other
+documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the working document has been verified
+  against this source. Where the working document characterizes it, the
+  characterization comes from an abstract or a search result.
+- ⚠️ **Transcribed, unverified.** A number, table or structure in the working
+  document came from this source but has not been checked against it.
+- ✅ **Checked.** Verified against the source.
+
+On a **reading-queue** entry, ✅ means the question posed against that entry
+has been answered, by reading the paper or by deciding it is out of scope, and
+the note on the entry says which. On a **source** entry below the queue, ✅
+keeps the stricter meaning: the claim the specification draws from it has been
+checked against the source. None is ✅ yet.
+
+## Where to start
+
+Two entries settle the project and the rest are context.
+
+- **Entry 1 first**, with its supplement, and budget two hours rather than the
+  one-hour default on the [Reading Papers](../../guides/reading-papers.qmd)
+  page. The deliverable is the framework's two figures and the supplementary
+  file, not the paper's conclusion. Section 1 and Section 7 of the
+  specification are written against a summary of this paper and are the work
+  of replacing it.
+- **Entry 2 next**, and it may take an hour. It is the completeness test for
+  Block A of the decision inventory: a summary of what the approved T-cell
+  engagers actually committed to, read to find the decision the inventory is
+  missing.
+- **Entry 3 after that**, for the same test applied to the first-in-human end
+  of Block A, entries A1 to A5.
+- **Entry 4 when the carry-forward block is being filled for a real program.**
+  It is the constraint cited in Section 3 of the specification, and it should
+  be read before that sentence is quoted to anyone.
+- **Entry 5 is optional**, and only if the starting-dose row turns out to be
+  contested on a real program.
+
+Journal domains are frequently blocked from the container these notes are
+written in, so every link below may need a browser.
+
+## Reading queue
+
+### 1. Sander et al. 2021 --- the dose and regimen framework this narrows ❌
+
+*CPT: Pharmacometrics & Systems Pharmacology* 10(11):1276–1280.
+[doi:10.1002/psp4.12701](https://doi.org/10.1002/psp4.12701) ·
+[PMC8592517](https://pmc.ncbi.nlm.nih.gov/articles/PMC8592517/)
+
+Sander O, Magnusson B, Ludwig I, et al. A framework to guide dose & regimen
+strategy for clinical drug development.
+
+**The question.** Four, and the answers go into the specification rather than
+into this entry.
+
+1. What is on Figure 1, page 1 of the framework? The specification drops the
+   whole knowledge-collection half on the argument that it is a different
+   exercise done once. Reading the page is how that argument is tested.
+2. What is on Figure 2, page 2? The specification's seven columns are a
+   rewrite of it done without seeing it.
+3. What does the supplementary file contain, and is it usable as a template
+   directly?
+4. How do teams rate relevance and criticality, on what scale, and does that
+   rating do work the two status axes in Section 1 should be doing instead?
+
+**What the specification currently asserts about it**, all of which is at risk:
+that it is two pages; that page 1 collects project and drug characteristics
+and page 2 condenses critical items, evaluates design options and summarizes
+the strategy; that teams rate relevance and criticality; and that it does not
+specify an owner or a revision cadence. The last of those is an absence
+claimed from a summary, which is the weakest kind of claim on this page.
+
+### 2. Wang et al. 2026 --- clinical pharmacology of TCEs across FDA approvals ❌
+
+*Clinical Pharmacology & Therapeutics*.
+[doi:10.1002/cpt.70020](https://doi.org/10.1002/cpt.70020)
+
+Wang et al. Clinical Pharmacology Characterization of Bispecific T-Cell
+Engagers: A Summary Based on FDA Approvals.
+
+**The question.** Is Block A of the inventory complete? Every approved T-cell
+engager committed to a starting dose, a step-up schedule, a premedication
+regimen, a monitoring requirement, and a rule for restarting after an
+interruption. A summary across approvals is the cheapest available test of
+whether the nine rows in Block A are the right nine. A row this paper
+describes that the inventory does not have is a defect in the inventory.
+
+Second question, for Block C: how many of the approvals changed the dosing
+interval or added a reduced-intensity phase after the initial approval? That
+count is the argument for why C1 to C4 belong on the page from the start.
+
+### 3. Graaf et al. 2025 --- first-in-human dose selection for TCEs ❌
+
+*Clinical Pharmacology & Therapeutics*.
+[doi:10.1002/cpt.3487](https://doi.org/10.1002/cpt.3487)
+
+Graaf et al. First-in-Human Dose Selection for T-Cell Engaging Bispecific
+Antibodies.
+
+**The question.** Rows A1 to A5 are committed at Gate 0 with no human data,
+which the specification calls the gate with the worst ratio of decisions to
+evidence. What does this paper say the decision is actually made on, and does
+it name a dependency between the starting dose and the number of step-up doses
+that the inventory treats as separate rows?
+
+### 4. FDA 2024 --- Project Optimus dosage guidance ❌
+
+Final guidance, August 2024, finalizing the January 2023 draft.
+[FDA guidance page](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/optimizing-dosage-human-prescription-drugs-and-biological-products-treatment-oncologic-diseases)
+
+Optimizing the Dosage of Human Prescription Drugs and Biological Products for
+the Treatment of Oncologic Diseases.
+
+**The question.** Section 3 of the specification states that the guidance
+expects more than one dosage in a randomized comparison, and puts that on the
+page as a constraint rather than a decision. Does the guidance say that, and
+in what terms? What it actually requires, what it recommends, and where it
+leaves room are three different things, and the specification currently
+asserts the strongest reading.
+
+### 5. Zhou et al. 2025 --- MABEL-based starting dose for a solid tumour TCE ❌
+
+*Clinical Pharmacology & Therapeutics*.
+[doi:10.1002/cpt.3431](https://doi.org/10.1002/cpt.3431) ·
+[PubMed 39285508](https://pubmed.ncbi.nlm.nih.gov/39285508/)
+
+Zhou et al. An Innovative Approach to Optimize First-In-Human Minimal
+Anticipated Biological Effect Level Based Starting Dose in Oncology Trials for
+Bispecific T-Cell Engagers: Experience from A Solid Tumor Bispecific T-Cell
+Engager.
+
+**The question.** One row, A1. Read only if the starting-dose row is contested
+on a real program, and then for what the alternative to a conventional MABEL
+is and what it costs.
+
+### 6. Elmeliegy et al. 2024 --- dosing strategies and quantitative clinical pharmacology for TCEs ❌
+
+*Clinical Pharmacology & Therapeutics*.
+[doi:10.1002/cpt.3361](https://doi.org/10.1002/cpt.3361)
+
+Elmeliegy et al. Dosing Strategies and Quantitative Clinical Pharmacology for
+Bispecific T-Cell Engagers Development in Oncology.
+
+**The question.** Context rather than a decision. Which of the twenty-one
+inventory rows does quantitative modelling already answer well, and which are
+decided on judgement because nothing can be modelled? The page is more useful
+on the second group, and this paper is the cheapest way to tell them apart.
+
+## Sources the specification's claims come from
+
+- **Entry 1** is the source of every claim in Sections 1 and 7 about what
+  Sander et al. proposed, and none of it has been checked. ❌
+- **Entry 4** is the source of the Project Optimus constraint in Section 3. ❌
+- Nothing else in the specification is drawn from a source. Blocks A, B and C
+  of the inventory were written from the initial notes and from general
+  knowledge of approved T-cell engager labels, which is exactly the kind of
+  recollection entry 2 exists to check.
+
+## Related, not duplicated here
+
+The cytokine release syndrome literature belongs to the sibling project and is
+not repeated. See
+[TCE-CRS-tolerance references](../tce-crs-tolerance/references.qmd) for the
+epcoritamab repeated time-to-event model and the escalation-cohort sources
+behind rows A3 to A6, and
+[the TCE-IPDE references](../tce-ipde/references.qmd) for the starting-dose
+and intrapatient-escalation sources behind rows A1 and B2.
+
+## Not yet located
+
+Two sources the specification implies exist and that have not been searched
+for.
+
+- **A published example of a dose strategy document in use.** Section 7 argues
+  that a living document with no owner goes stale, and cites nothing. If
+  anyone has published what happened when a team ran the Sander framework on a
+  real program, that is the entry that would settle it.
+- **A regulatory statement on re-priming after an interruption.** Row A9 says
+  every approved label carries such a rule and no program studies it. That is
+  a claim about labels, and it is unchecked.
