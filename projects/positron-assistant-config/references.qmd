@@ -1,0 +1,179 @@
+---
+title: "References for the Positron Assistant configuration document"
+subtitle: "What to read, in what order, and what has actually been checked"
+description: "The reading queue and source list for the Posit Assistant settings project, with a status marker on every entry recording whether the claim the specification draws from it has been verified against the source."
+categories: [GenAI, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing here is ✅, and the reason is the same for every entry.** Every page
+below was read on 2026-09-11 through an automated web fetch, which returns a
+summary written by a small model rather than the page itself. A summary is a
+transcription, so every source carries ⚠️ and none carries ✅. The settings
+names, the four approval mode definitions, and the context list in Section 5
+of the specification all came through that route. Opening these pages in a
+browser and confirming the exact key names is the cheapest useful work left on
+this project, and it is item 1 of the reading queue.
+:::
+
+The working document is [the specification](specification.qmd), and the
+folder's other documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the working document has been verified
+  against this source. Where the working document characterizes it, the
+  characterization comes from a search result.
+- ⚠️ **Transcribed, unverified.** A setting name, table or definition in the
+  working document came from this source but has not been read against the
+  page itself.
+- ✅ **Checked.** Verified against the source.
+
+On a **reading-queue** entry, ✅ means the question posed against that entry has
+been answered, by reading the page or by deciding it is out of scope. On a
+**source** entry below the queue, ✅ keeps the stricter meaning: the claim the
+specification draws from it has been checked against the source. None is ✅
+yet.
+
+## How to read these
+
+These are product documentation pages rather than papers, so the three-pass
+method on the [Reading Papers](../../guides/reading-papers.qmd) page does not
+apply. Read each page against the question under its entry, confirm the exact
+spelling of any setting name the specification quotes, and change the marker
+when the spelling is confirmed. Budget is ten minutes a page.
+
+The whole queue is under an hour. It is short because the specification is
+scoping rather than reporting, and because a settings name is either right or
+wrong with nothing in between.
+
+## Reading queue
+
+**1. ⚠️ Posit Assistant, Config File reference.**
+<https://assistant.posit.co/docs/reference/config-file/>
+
+The single most load-bearing page in the project. Four questions against it.
+Is `approvalMode` accepted in a project-level `.posit/assistant/settings.json`,
+or only in the global file and the administrator environment variables? What
+is the complete list of `permission` keys? What is the pattern syntax for
+`bash` rules, and does `"git push*"` match what it looks like it matches? Is
+there a `write` key separate from `edit`? These are open questions 1 and 5 of
+the specification.
+
+**2. ⚠️ Posit Assistant, Permissions and approval modes.**
+<https://assistant.posit.co/docs/features/permissions/>
+
+Source of the four mode definitions in Section 8 and of the ten-level
+permission resolution order. Confirm the definition of `auto`, in particular
+the claim that the classifier allows committing to the current branch and
+blocks force-push, and the claim that three consecutive blocks demote the
+session to `normal`. The number three is the one to check.
+
+**3. ⚠️ Positron, Chat context.**
+<https://positron.posit.co/assistant-chat-context.html>
+
+Source of the automatic context list in Section 5, which is the finding the
+whole project turns on. Confirm that the Variables pane is sent, and then
+establish what `aiExcludes` does and does not cover. The specification claims,
+from reading the two descriptions side by side, that excluding a CSV file does
+not exclude the data frame read from it. That claim is untested and it is open
+question 2.
+
+**4. ⚠️ Positron, Settings reference.**
+<https://assistant.posit.co/docs/reference/positron-settings/>
+
+Source of the version history in Section 2 and of the `assistant.aiExcludes`
+spelling. Confirm which of `positron.assistant.aiExcludes` and
+`assistant.aiExcludes` is current, which is open question 3.
+
+**5. ❌ VS Code, Manage approvals and permissions.**
+<https://code.visualstudio.com/docs/agents/run/approvals>
+
+Read for two things. The general recommendations on allow and deny lists,
+which are the closest thing to an industry standard for this problem. And
+whether `chat.tools.terminal.autoApprove` and its neighbors are live in
+Positron at the same time as the Posit settings, which is open question 4.
+
+## Sources
+
+### Posit and Positron documentation
+
+⚠️ **Posit Assistant, Config File reference.** File locations, the last-wins
+resolution order, the `permission` block, `sandbox.enabled`, `useHooks`,
+`skills.paths`, `workspace.allowedRoots`, and the two administrator
+environment variables. Sections 6, 7 and 9 of the specification rest on this
+page.
+<https://assistant.posit.co/docs/reference/config-file/>
+
+⚠️ **Posit Assistant, Permissions and approval modes.** The `restricted`,
+`normal`, `auto` and `yolo` definitions in Section 8, and the statement that an
+enforced mode is a ceiling rather than a fixed value.
+<https://assistant.posit.co/docs/features/permissions/>
+
+⚠️ **Positron, Chat context.** The automatic context list in Section 5:
+active editor, console history, Variables pane objects and data frames, current
+plot, project structure and version control history.
+<https://positron.posit.co/assistant-chat-context.html>
+
+⚠️ **Positron, Settings reference.** `ai.enabled`, `assistant.enabled`, the
+legacy `positron.assistant.enable`, `assistant.aiExcludes`, and the model
+preference keys. Section 2 of the specification.
+<https://assistant.posit.co/docs/reference/positron-settings/>
+
+❌ **Positron, Posit Assistant overview.** Background on the merge of Positron
+Assistant and Databot, and the version at which it became the default.
+<https://positron.posit.co/assistant.html>
+
+❌ **Posit Assistant, Providers.** Where provider connections and credentials
+live, which is `~/.posit/ai/providers.json` and is deliberately out of scope
+for a committed file.
+<https://assistant.posit.co/docs/getting-started/providers/>
+
+### General recommendations on agent permissions
+
+These are the cross-tool sources. None is Posit-specific and none has been
+read against the specification, so all are ❌. They are here because the group
+asked for the general guidance rather than only the Positron answer.
+
+❌ **VS Code, Manage approvals and permissions.** Allow and deny list design,
+terminal command patterns, the precedence of deny over allow in a compound
+command, and the statement that auto-approval is a convenience rather than a
+security boundary. The closest thing to a general standard, and it describes
+the chat interface Positron is built on. Adopt its recommendations where they
+do not collide with Posit's own vocabulary.
+<https://code.visualstudio.com/docs/agents/run/approvals>
+
+❌ **Claude Code, Configure permissions.** The allow, ask and deny vocabulary
+that Posit's `permission` block mirrors, and the permission mode names. Useful
+for anyone in the group already running Claude Code who wants the two
+configurations to agree.
+<https://code.claude.com/docs/en/agent-sdk/permissions>
+
+❌ **OpenAI Codex, Agent approvals and security.** The same problem solved by a
+third vendor, and the clearest published treatment of sandboxing and approval
+as two separate controls rather than one. Relevant to Section 9.
+<https://developers.openai.com/codex/agent-approvals-security>
+
+### Discussion threads
+
+Positions taken by users rather than documentation. Read for the shape of the
+complaint, not for settings names.
+
+❌ **Enable Positron Assistant to continue working without accepting edits
+first.** The request this project answers, in the words of the people who
+filed it.
+<https://github.com/posit-dev/positron/discussions/13190>
+
+❌ **Default enabling of AI assistant features, security and privacy
+concerns.** The objection from the other direction, and the thread most likely
+to contain the answer to open question 2.
+<https://github.com/posit-dev/positron/issues/14987>
+
+❌ **Assistant: can still edit file when in ask mode.** A report that the
+permission layer did not hold. Establish whether it is fixed before relying on
+`ask` for anything in Section 7.
+<https://github.com/posit-dev/positron/issues/10212>

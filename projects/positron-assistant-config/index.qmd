@@ -1,0 +1,33 @@
+---
+title: "Positron Assistant configuration"
+subtitle: "A committed settings file saying what the assistant may do in a project"
+description: "Index of the documents in the positron-assistant-config project: a working specification scoping the behaviors wanted from Posit Assistant in Positron, and the sources it draws on."
+categories: [GenAI, working document]
+date: last-modified
+toc: false
+---
+
+Posit Assistant asks for confirmation on every file it edits. Turning that off
+wholesale gives an assistant that will also push to a shared branch and send a
+data frame to a model provider. The setting that sits between the two is
+`approvalMode`, and the file it belongs in is `.posit/assistant/settings.json`
+in the project root, committed so that everyone working in the repository gets
+the same posture.
+
+This project scopes that file before writing it. The specification lists
+twenty-two behaviors with a verdict on each, maps Posit's four approval modes
+onto the Claude Code modes some of the group already use, and records what the
+assistant sends to a provider without being asked. The last of those is the
+finding to read first if the project holds patient data.
+
+Nothing here has been run. The specification is a scoping document with six
+open questions, and every source is marked as transcribed rather than checked.
+
+## Documents
+
+- [Working specification](specification.qmd). The checklist of behaviors, the
+  recommended settings file, the approval modes, the sandbox, the limits of
+  what a settings file enforces, and the open questions.
+- [References](references.qmd). The Posit documentation, the general
+  cross-vendor guidance on agent permissions, and a marker on each recording
+  whether the claim drawn from it has been checked against the source.
