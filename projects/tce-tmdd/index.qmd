@@ -70,6 +70,12 @@ here only as a contrast.
   changes for three drugs by moving one parameter, with the identifiability
   problem that follows, an explicit statement of how much confidence any of
   it supports, and the digitization sequence that would settle it.
+- [One model across the class](class-model.qmd). The current state of the
+  work. A five-state model with no CD3 arm, shared parameters fixed at
+  biologically argued values, fitted to three drug-and-disease settings by the
+  accessible target burden alone. Residual standard deviations of 0.26, 0.45
+  and 0.32 on the log scale, and target burdens ordered the way the diseases
+  are.
 - [The model against digitized data](digitized-fits.qmd). Figure 4A of the
   odronextamab paper digitized and fitted. DLBCL is reproduced, follicular
   lymphoma falsifies the structure, and the target pool turns out to be
