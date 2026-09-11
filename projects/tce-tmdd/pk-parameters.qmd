@@ -1,0 +1,451 @@
+---
+title: "Pharmacokinetic parameters of T-cell engagers"
+subtitle: "Fixed effects, random effects and covariates from the published population models"
+description: "A parameter table for the approved and late-stage T-cell engagers: structure, fixed effects, interindividual variability, residual error and covariates, with the source of every number and what is still missing from the nlmixr2 model library."
+categories: [pharmacometrics, pharmacokinetics, reference]
+date: last-modified
+execute:
+  freeze: auto
+  warning: false
+  message: false
+toc: true
+toc-depth: 3
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Three drugs are complete, three are partial, and nothing has been checked
+against a printed table.** Teclistamab, mosunetuzumab and elranatamab were
+transcribed from `nlmixr2lib` model files, which carry their own provenance
+notes and table citations. Odronextamab was transcribed from the open-access
+full text. Epcoritamab, talquetamab, glofitamab and blinatumomab are
+summary-level only. Every entry is ⚠️ in [References](references.qmd).
+:::
+
+**This is a reference page.** It answers "what did the published model
+estimate" and nothing else. The argument the numbers were collected for is in
+[the working specification](specification.qmd).
+
+## 1. What This Covers, and in What Order
+
+Every approved T-cell engager (TCE) with a published population
+pharmacokinetic model, plus blinatumomab as the format that behaves
+differently. Ordered so that the first entries teach the ones after them:
+odronextamab because its model states target-mediated drug disposition (TMDD)
+explicitly, then the two whose time-dependent clearance is the same mechanism
+under another name, then the partial entries.
+
+Each drug gets the same six slots, and a slot with nothing in it says so
+rather than being dropped.
+
+1. Study and data
+2. Structure
+3. Fixed effects
+4. Interindividual variability
+5. Residual error
+6. Covariates
+
+Units are litres and days throughout, converted where a source reported
+hours. Volumes are absolute, not per kilogram.
+
+## 2. Summary Across Drugs
+
+| Drug | Target | Route | Structure | CL at start | CL asymptote | $V_{ss}$ |
+|:---|:---|:---|:---|---:|---:|---:|
+| Odronextamab | CD20 | IV | 2-cmt, linear + Michaelis-Menten, $V_{\max}$ decaying | ~5.6 L/d | 0.22 L/d | 9.41 L |
+| Mosunetuzumab | CD20 | IV | 2-cmt, $CL_{\rm base}\to CL_{ss}$ | 1.08 L/d | 0.584 L/d | 11.7 L |
+| Teclistamab | BCMA | SC | 2-cmt, first-order absorption, $CL_1+CL_2e^{-K_{DES}t}$ | 0.996 L/d | 0.449 L/d | 5.47 L |
+| Elranatamab | BCMA | SC | 2-cmt, first-order absorption, linear | 0.335 L/d | same | 12.05 L |
+| Epcoritamab | CD20 | SC | 2-cmt quasi-steady-state TMDD, first-order absorption | CL/F 0.53 L/d | not transcribed | V/F 25.6 L |
+| Talquetamab | GPRC5D | SC | 2-cmt, zero- then first-order absorption, linear + time-dependent linear | not transcribed | not transcribed | not transcribed |
+| Glofitamab | CD20 | IV | 2-cmt, linear | not transcribed | same | not transcribed |
+| Blinatumomab | CD19 | continuous IV | 1-cmt, linear | 70.1 L/d | same | 4.52 L ($V_z$) |
+
+: Structure and clearance across the class. ⚠️ Transcribed, unverified.
+{tbl-colwidths="[15,9,8,32,12,12,12]"}
+
+Reading down the clearance columns, the four drugs with a start-to-asymptote
+gap are the four whose models carry a time-varying or concentration-varying
+term. Elranatamab's model is linear because it is a preliminary
+population analysis embedded in a systems model, not because elranatamab
+lacks the mechanism.
+
+## 3. The Drugs
+
+### 3.1 Odronextamab
+
+**Study and data.** ELM-1 (NCT02290951, phase I, n = 167) and ELM-2
+(NCT03888105, phase II, n = 340), 507 patients with relapsed or refractory
+B-cell non-Hodgkin lymphoma, 14,618 concentration records, median 29 per
+patient. Doses 0.03 mg to 320 mg intravenous. Kovalenko et al.,
+*CPT Pharmacometrics Syst Pharmacol* 2026.
+
+**Structure.** Two compartments, parallel first-order and Michaelis-Menten
+elimination, with the maximum velocity declining exponentially toward an
+asymptote:
+
+$$
+\frac{dV_{\max}}{dt}=-K_v\!\left(V_{\max}-V_{\max,\rm asym}\right),
+\qquad
+CL_{MM}=\frac{V_{\max}}{k_m+C}V_c,
+\qquad
+CL_{\rm tot}=CL+CL_{MM}
+$$
+
+**Fixed effects.** Reference patient: 72.6 kg male, DLBCL, CAR-T naive,
+Ann Arbor stage 4, tumor 2930 mm², albumin 38.7 g/L.
+
+| Parameter | Estimate | 95% CI |
+|:---|---:|:---|
+| Linear clearance $CL$ (L/day) | 0.189 | 0.185, 0.194 |
+| Intercompartmental clearance $Q$ (L/day) | 1.21 | 1.13, 1.29 |
+| Central volume $V_c$ (L) | 4.99 | 4.80, 5.20 |
+| Peripheral volume $V_p$ (L) | 4.42 | 4.01, 4.87 |
+| Baseline maximum velocity $V_{\max,0}$ (mg/L/day) | 2.93 | 2.56, 3.36 |
+| Michaelis constant $k_m$ (mg/L) | 1.95 | 1.81, 2.10 |
+| Decline rate of $V_{\max}$, $K_v$ (1/day) | 1.09 | 0.926, 1.27 |
+| Asymptote ratio $R_v=V_{\max,\rm asym}/V_{\max,0}$ | 0.262 | 0.237, 0.289 |
+
+: Odronextamab fit-for-purpose model, fixed effects {tbl-colwidths="[52,20,28]"}
+
+**Interindividual variability.** Variances, with shrinkage. $V_c$ 0.0983
+(8.3%), $V_{\max,0}$ 0.403 (8.6%), $V_p$ 0.709 (20.1%). **No random effect on
+$CL$**: attempting to estimate one biased the population predictions, so
+albumin was carried as a time-varying covariate on $CL$ instead.
+
+**Residual error.** Variance 0.136 on $\ln$(mg/L), so a coefficient of
+variation near 37%.
+
+**Covariates.** On $CL$: albumin −0.933, body weight 0.854, immunoglobulin G
+0.118, interferon gamma 0.0288, interleukin-10 −0.0712. On $V_c$ and $V_p$:
+albumin −0.561, body weight 0.372, female sex −0.189, lymphocyte count
+0.0895. On $V_{\max,0}$: Ann Arbor stage < 4 −0.284, lymphocyte count 0.313,
+follicular lymphoma −0.252, prior CAR-T −0.201, tumor size 0.0601. On $K_v$:
+follicular lymphoma −0.891, other B-NHL −0.844. On $R_v$: follicular lymphoma
+−0.133, other B-NHL −0.292.
+
+The covariates on $V_{\max,0}$ read as a target-burden model. Lymphocyte
+count, tumor size, stage and prior CAR-T all move the size of the target
+sink, and all four land on the nonlinear clearance rather than the linear
+one.
+
+### 3.2 Mosunetuzumab
+
+**Study and data.** GO29781 phase I/II, 439 patients with relapsed or
+refractory B-cell non-Hodgkin lymphoma, 7250 observations. Doses 0.05 to
+2.8 mg fixed and 1/2/60/30 mg step-up, intravenous every 3 weeks. Bender et
+al., *Clin Transl Sci* 2024;17(5):e13825. Via `nlmixr2lib`
+`Bender_2024_mosunetuzumab`.
+
+**Structure.** Two compartments, clearance moving from a baseline value to a
+steady-state value with a transition half-life:
+
+$$
+CL(t)=CL_{\rm base}+\left(CL_{ss}-CL_{\rm base}\right)
+\left[1-e^{-\ln 2\,t/HL_{\rm trans}}\right]
+$$
+
+The model also carries residual rituximab and obinutuzumab from prior
+therapy as states decaying at fixed literature half-lives of 24 and 28 days,
+and computes a competitive CD20 receptor occupancy from all three.
+
+**Fixed effects.**
+
+| Parameter | Estimate | %RSE |
+|:---|---:|---:|
+| Baseline clearance $CL_{\rm base}$ (L/day) | 1.08 | 5.6 |
+| Steady-state clearance $CL_{ss}$ (L/day) | 0.584 | 2.0 |
+| Transition half-life $HL_{\rm trans}$ (day) | 16.3 | 7.1 |
+| Central volume $V_1$ (L) | 5.49 | 2.5 |
+| Peripheral volume $V_2$ (L) | 6.17 | 3.6 |
+| Intercompartmental clearance $Q$ (L/day) | 1.46 | 3.7 |
+| Mosunetuzumab CD20 $K_D$ (µg/mL) | 10.2 | fixed |
+| Rituximab CD20 $K_D$ (µg/mL) | 0.675 | fixed |
+| Obinutuzumab CD20 $K_D$ (µg/mL) | 0.600 | fixed |
+
+: Mosunetuzumab final model, fixed effects {tbl-colwidths="[56,22,22]"}
+
+**Interindividual variability.** Two 2×2 blocks and one diagonal term.
+$(CL_{\rm base}, V_1)$: variances 0.426 and 0.0981, covariance 0.180,
+correlation 0.88, shrinkage 4.8% and 4.6%. $(CL_{ss}, HL_{\rm trans})$:
+variances 0.0343 and 0.739, covariance −0.0892, correlation −0.56, shrinkage
+33.8% and 40.9%. $V_2$: 0.0621, shrinkage 49.9%. No random effect on $Q$.
+
+**Residual error.** Log-normal, SD 0.259.
+
+**Covariates.** Body weight (reference 78 kg) on $CL_{ss}$ 0.549, $V_1$
+0.433, $V_2$ 0.737. Albumin (reference 39 g/L) on $CL_{\rm base}$ −1.51,
+$V_1$ −0.481. Composite baseline anti-CD20 concentration on $CL_{\rm base}$
+−0.573, entering as a ratio of logarithms rather than a concentration ratio.
+Square root of tumor sum of products (reference 54.5 mm) on $CL_{ss}$
+0.0935. Female sex as a linear multiplier, $CL_{ss}$ −0.128, $V_1$ −0.126.
+
+Albumin and residual anti-CD20 antibody land on the baseline clearance;
+body weight and tumor burden land on the steady-state clearance. The split
+assigns the decaying component to the covariates that describe the target
+and the inflammatory state.
+
+### 3.3 Teclistamab
+
+**Study and data.** MajesTEC-1 phase I/II (NCT03145181, NCT04557098), 338
+patients with relapsed or refractory multiple myeloma, 4840 serum
+concentrations, 83 patients intravenous and 255 subcutaneous. Miao et al.,
+*Target Oncol* 2023;18(5):667-684. Via `nlmixr2lib` `Miao_2023_teclistamab`.
+
+**Structure.** Two compartments, first-order subcutaneous absorption, and
+total clearance $CL(t)=CL_1+CL_2e^{-K_{DES}t}$. The authors tested a
+quasi-steady-state TMDD parameterization and a time-varying soluble BCMA
+driver, and rejected both; they describe the exponential decay as an
+approximation of TMDD combined with feedback from improving disease status.
+
+**Fixed effects.**
+
+| Parameter | Estimate | %RSE |
+|:---|---:|---:|
+| Time-independent clearance $CL_1$ (L/day) | 0.449 | 8.87 |
+| Time-dependent clearance $CL_2$ at $t=0$ (L/day) | 0.547 | 15.6 |
+| Decay rate $K_{DES}$ (1/day) | 0.0292 | 13.0 |
+| Central volume $V_1$ (L) | 4.13 | 4.40 |
+| Peripheral volume $V_2$ (L) | 1.34 | 26.1 |
+| Intercompartmental clearance $Q$ (L/day) | 0.0390 | 55.5 |
+| Absorption rate constant $K_a$ (1/day) | 0.133 | 7.73 |
+| Subcutaneous bioavailability $F$ | 0.718 | 7.38 |
+
+: Teclistamab final model, fixed effects {tbl-colwidths="[56,22,22]"}
+
+**Interindividual variability.** Reported as percent coefficient of
+variation. $CL_1$ 53.6% (shrinkage 14.4%), $CL_2$ 107% (33.8%), $V_1$ 48.8%
+(29.5%), $K_a$ 45.2% (44.3%). Random effects on $Q$, $K_{DES}$ and $F$ were
+attempted and dropped. No off-diagonal covariances reported.
+
+The 107% coefficient of variation on the decaying component is the largest
+random effect anywhere in this document, and it is on the term that
+represents the target sink. Patients differ in target burden by more than
+they differ in anything else.
+
+**Residual error.** Additive on the log scale, 41.7% coefficient of
+variation.
+
+**Covariates.** Body weight (reference 74 kg) on $CL_1$ 0.704, $V_1$ 0.358,
+$V_2$ 1.40. International Staging System stage II 1.31 and stage III 1.67 on
+$CL_1$. Non-IgG myeloma 0.689 on $CL_1$ and 0.295 on $CL_2$, the only
+covariate retained on both components. Screened and rejected: age, sex,
+creatinine clearance, albumin, soluble BCMA (both baseline and
+time-varying), anti-drug antibodies, ECOG performance status.
+
+### 3.4 Elranatamab
+
+**Study and data.** MagnetisMM-1 (NCT03269136) and MagnetisMM-3
+(NCT04649359). The pharmacokinetic parameters below are a *preliminary
+population analysis*, fixed rather than estimated inside the quantitative
+systems pharmacology model of Poels et al., *npj Syst Biol Appl*
+2025;11:102. Via `nlmixr2lib` `Poels_2025_elranatamab_qsp`. Patient counts
+and observation counts for the preliminary analysis are not reported.
+
+**Structure.** Two compartments with first-order subcutaneous absorption and
+linear elimination, embedded in a three-compartment systems model that adds
+bone marrow, mass-action binding to membrane BCMA, soluble BCMA and CD3,
+trimer-driven myeloma killing and cytokine release.
+
+**Fixed effects.** Converted from the source's per-hour units.
+
+| Parameter | Estimate | Source units |
+|:---|---:|:---|
+| Clearance $CL$ (L/day) | 0.335 | 13.96 mL/h |
+| Intercompartmental clearance $Q$ (L/day) | 0.202 | 0.008416 L/h |
+| Central volume $V_c$ (L) | 4.25 | 4.25 L |
+| Peripheral volume $V_p$ (L) | 7.8 | 7.8 L |
+| Absorption rate constant $K_a$ (1/day) | 0.148 | 6.167e-3 /h |
+| Subcutaneous bioavailability $F$ | 0.511 | 0.511 |
+
+: Elranatamab preliminary population pharmacokinetics, fixed effects
+{tbl-colwidths="[50,22,28]"}
+
+**Interindividual variability.** None. The parameters are fixed point values
+inside a systems model.
+
+**Residual error.** Not reported.
+
+**Covariates.** None carried.
+
+**Binding constants, which the other entries do not have.**
+CD3: $k_{on}$ 0.00198 /pM/h, $k_{off}$ 82.17 /h, so $K_D$ = 41.5 nM.
+BCMA: $k_{on}$ 0.0054 /pM/h, $k_{off}$ 0.162 /h, so $K_D$ = 30 pM.
+Receptor densities: CD3 60,000 per T cell, membrane BCMA 12,590 per myeloma
+cell. Soluble BCMA degrades at 0.01925 /h and is carried as a drug sink.
+
+A CD3 affinity of 41.5 nM puts elranatamab near the weak end of the range
+Pearce et al. simulate, where CD3-mediated clearance contributes little and
+the intrinsic IgG half-life survives. That is consistent with elranatamab
+having the longest reported half-life in the class, 22 days.
+
+### 3.5 Epcoritamab
+
+**Study and data.** EPCORE NHL-1 and related studies, relapsed or refractory
+B-cell non-Hodgkin lymphoma, subcutaneous only. Doses 1.5 to 60 mg full
+dose. *Clin Pharmacokinet* 2025, doi:10.1007/s40262-024-01464-2.
+
+**Structure.** Quasi-steady-state approximation of a two-compartment TMDD
+model with first-order absorption. This is the only published TCE model that
+carries TMDD in its declared structure rather than as a time-dependent
+clearance.
+
+**Fixed effects.** Not transcribed. Derived quantities reported at the 48 mg
+full dose: apparent total clearance 0.53 L/day (40% CV) after end of cycle
+3, apparent volume of distribution 25.6 L (82%), terminal half-life 22 days
+(58%), median time to maximum concentration 4 days after the first full dose
+and 2.3 days at end of cycle 3. Exposure increased more than proportionally
+from 1.5 to 48 mg.
+
+**Interindividual variability.** Not transcribed.
+
+**Residual error.** Not transcribed.
+
+**Covariates.** Age and body weight reported as significant; coefficients
+not transcribed.
+
+The more-than-proportional exposure increase is the nonlinearity that the
+odronextamab and mosunetuzumab models express as time dependence. Epcoritamab
+is the entry that would let the two parameterizations be compared on the same
+mechanism, which is why its structural parameters are the highest-value gap
+in this document.
+
+### 3.6 Talquetamab
+
+**Study and data.** MonumenTAL-1 phase I/II, relapsed or refractory multiple
+myeloma, intravenous and subcutaneous. *Clin Pharmacol Ther* 2025,
+PMC12439005.
+
+**Structure.** Two compartments, sequential zero- then first-order
+subcutaneous absorption, parallel time-independent linear clearance and
+time-dependent linear clearance.
+
+**Fixed effects.** Not transcribed; the parameter table is in the
+supplement. Reported: median terminal half-life 7.56 days at initial
+treatment and 12.2 days at steady state, with steady state reached at week
+16 for both recommended phase II doses.
+
+**Interindividual variability.** Not transcribed.
+
+**Residual error.** Not transcribed.
+
+**Covariates.** Body weight on clearance at time zero and on central volume,
+carried a priori. Myeloma subtype (IgG versus non-IgG) and International
+Staging System stage on clearance at time zero. All other covariates tested
+were rejected, including baseline total T cells and anti-drug antibodies.
+
+Baseline total T-cell count was tested as a covariate and rejected. If
+CD3-mediated clearance were the dominant route, T-cell count should carry
+signal, and it does not.
+
+### 3.7 Glofitamab
+
+**Study and data.** NP30179 and related, relapsed or refractory B-cell
+non-Hodgkin lymphoma, intravenous, with mandatory 1000 mg obinutuzumab
+pretreatment seven days before the first glofitamab dose. Djebli et al.,
+*Blood* 2020;136(Suppl 1):1, conference abstract.
+
+**Structure.** Two compartments with linear clearance. **No time-varying and
+no concentration-varying term.** The obinutuzumab pretreatment removes the
+CD20-bearing target before glofitamab arrives.
+
+**Fixed effects, interindividual variability, residual error.** Not
+transcribed. The source is an abstract.
+
+**Covariates.** Body weight on volumes and clearances.
+
+### 3.8 Blinatumomab
+
+**Study and data.** Pooled analyses supporting the label. Continuous
+intravenous infusion.
+
+**Structure.** One compartment, linear.
+
+**Fixed effects.** Clearance 2.92 L/h, so 70.1 L/day, with a standard
+deviation of 2.83 L/h. Terminal half-life 2.11 h (SD 1.42). Volume based on
+the terminal phase $V_z$ 4.52 L (SD 2.89).
+
+**Interindividual variability, residual error, covariates.** Not
+transcribed.
+
+At 54 kDa blinatumomab is below the glomerular filtration threshold and
+carries no Fc domain, so neither neonatal Fc receptor recycling nor a
+molecular size that resists filtration applies. Its clearance is 370 times
+odronextamab's. It is in this table as the format against which the others
+are read, not as a comparable entry.
+
+## 4. What Is Missing from the nlmixr2 Model Library
+
+`nlmixr2lib` ([nlmixr2.github.io/nlmixr2lib](https://nlmixr2.github.io/nlmixr2lib/))
+holds 2769 model files at version 0.3.2.9000, and was the default source for
+this page. It is maintained by Bill Denney, with Richard Hooijmaijers,
+Matthew Fidler and Kiranmayi Vedantham.
+
+### 4.1 What Is Already There
+
+| Model | Drug | What it carries |
+|:---|:---|:---|
+| `Miao_2023_teclistamab` | Teclistamab | Population PK, complete, with covariates and the rejected-covariate list |
+| `Bender_2024_mosunetuzumab` | Mosunetuzumab | Population PK, complete, plus competitive CD20 receptor occupancy |
+| `Poels_2025_elranatamab_qsp` | Elranatamab | QSP, with preliminary PK fixed inside it |
+| `ChandralayamAyyappaMenon_2026_teclistamab_qsp` | Teclistamab | QSP |
+| `ChandralayamAyyappaMenon_2026_isb2001_qsp` | ISB 2001 | QSP |
+| `Willemin_2024_interleukin6_cyp_talquetamab` | Talquetamab | IL-6 and CYP interaction, not a PK model |
+| `Fiandaca_2025_mRNABiTE_scm`, `_lcm` | mRNA-encoded BiTE | PK of an mRNA-delivered engager |
+
+: T-cell engager models present in `nlmixr2lib`, checked by search over a
+clone of the repository on 2026-09-11 {tbl-colwidths="[38,17,45]"}
+
+Generic TMDD structures are present and usable:
+`PK_1cmt_tmdd_full`, `PK_1cmt_tmdd_qss`, `PK_1cmt_tmdd_mm`,
+`PK_2cmt_tmdd_qss`, `PK_2cmt_tmdd_mm`, `Duffull_2025_mab_tmdd_qss` and
+`Duffull_2025_mab_tmdd_simplified`.
+
+### 4.2 What Is Not There
+
+Searched by drug name across `inst/`, `R/` and `man/`. No match for:
+
+| Drug | Published model that would fill it | What it adds |
+|:---|:---|:---|
+| **Odronextamab** | Kovalenko et al., *CPT Pharmacometrics Syst Pharmacol* 2026, PMC12823311, open access | The only published TCE model with an explicit Michaelis-Menten elimination and a fitted $k_m$. Full parameter table, bootstrap, and covariate effects on $V_{\max}$ are all in the open-access text. |
+| **Epcoritamab** | *Clin Pharmacokinet* 2025, doi:10.1007/s40262-024-01464-2 | The only quasi-steady-state TMDD structure fitted to a TCE. Pairs with the generic `PK_2cmt_tmdd_qss` already in the library. |
+| **Talquetamab** | *Clin Pharmacol Ther* 2025, PMC12439005 | Sequential zero- then first-order absorption with parallel time-independent and time-dependent clearance. No other model in the library combines those. |
+| **Glofitamab** | Djebli et al., *Blood* 2020;136(Suppl 1):1 | Linear, and the one TCE given after target debulking. The negative control for every time-dependent clearance model in the library. Abstract-only, which may make it out of scope. |
+| **Blinatumomab** | Zhu et al., *Clin Pharmacokinet* | The non-Fc BiTE format, 2-hour half-life, continuous infusion. |
+| **Tarlatamab** | *Clin Pharmacokinet* 2025, PMID 40261494 | The half-life-extended solid-tumor format, and a DLL3 target with no published TMDD data. |
+| **Linvoseltamab** | Not located | Reported half-life changes from 1.75 to 21 days between first dose and steady state, the largest such change in the class. |
+
+: Absent from `nlmixr2lib`, ordered by how much each would add
+{tbl-colwidths="[16,38,46]"}
+
+### 4.3 The Note to Bill
+
+Ready to send, and it asks two things.
+
+> **First, four population pharmacokinetic models to add**, in priority
+> order: odronextamab (Kovalenko 2026, PMC12823311, open access, full
+> parameter table with bootstrap), epcoritamab (Clin Pharmacokinet 2025,
+> doi:10.1007/s40262-024-01464-2), talquetamab (Clin Pharmacol Ther 2025,
+> PMC12439005, parameters in the supplement) and tarlatamab (Clin
+> Pharmacokinet 2025, PMID 40261494). With `Miao_2023_teclistamab`,
+> `Bender_2024_mosunetuzumab` and the elranatamab parameters inside
+> `Poels_2025_elranatamab_qsp` already present, those four would make the
+> library complete for the approved T-cell engagers. The library would then
+> hold, for a single mechanism, four different parameterizations of it:
+> explicit Michaelis-Menten with a decaying $V_{\max}$, quasi-steady-state
+> TMDD, an exponentially decaying clearance component, and a parallel
+> time-dependent linear clearance. That set is hard to assemble from
+> anywhere else and is directly useful for teaching which
+> parameterization to reach for.
+>
+> **Second, a question about metadata.** Teclistamab's, mosunetuzumab's and
+> talquetamab's models all describe a decaying clearance as an approximation
+> of target-mediated drug disposition, and none of them can be found by
+> searching for TMDD. Is there a place in the model metadata for the
+> mechanism a model approximates, as distinct from the structure it uses?
+> Something like a `mechanism` field alongside `description` would make
+> `modellib()` able to answer "show me every model of target-mediated
+> clearance", which currently returns the structural TMDD templates and
+> misses every drug that actually exhibits it.
+
+Andy sends this; it has not been sent.

@@ -1,0 +1,262 @@
+---
+title: "References for the TCE-TMDD working document"
+subtitle: "What to read, in what order, and what has actually been checked"
+description: "The reading queue and source list for the T-cell engager TMDD project, with a status marker on every entry recording whether the claim drawn from it has been verified against its source."
+categories: [pharmacometrics, pharmacokinetics, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Two sources have been read in full and every transcribed number is
+unverified against a printed table.** Pearce et al. and Kovalenko et al. were
+read as open-access full text on 2026-09-11. The teclistamab, mosunetuzumab
+and elranatamab parameters came from `nlmixr2lib` model files, which are a
+second-hand but heavily annotated source: each one cites the table it was
+taken from, and none of those citations has been followed here. The
+epcoritamab, talquetamab, glofitamab and blinatumomab entries are
+characterizations from abstracts and label text. The odronextamab simulation
+in Section 3 of the specification reproduces a baseline total clearance of
+7.1 L/day where the paper reports a population median of 5.4 L/day, and that
+discrepancy is unresolved.
+:::
+
+The working document is [the specification](specification.qmd), the parameter
+survey is [PK parameters](pk-parameters.qmd), and the folder's documents are
+listed on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the working documents has been verified
+  against this source. Where a working document characterizes it, the
+  characterization comes from an abstract or a search result.
+- ⚠️ **Transcribed, unverified.** A number, table or model structure in a
+  working document came from this source but has not been checked against
+  the source's own printed table.
+- ✅ **Checked.** Verified against the source.
+
+On a **reading-queue** entry, ✅ means the question posed against that entry
+has been answered, by reading the paper or by deciding it is out of scope.
+On a **source** entry below the queue, ✅ keeps the stricter meaning: the
+claim drawn from it has been checked against the printed table. Two source
+entries are ✅ for having been read; none is ✅ for having its numbers
+checked, which is why every one of them carries ⚠️ instead.
+
+## How to read these
+
+The general method is on the
+[Reading Papers](../../guides/reading-papers.qmd) page. Read against the
+question under each entry rather than through the paper front to back.
+
+Two of the entries need the full hour, and for opposite reasons. Kovalenko
+et al. needs it because its parameter table is the input to every simulation
+in the specification and a transcription error there propagates everywhere.
+Miao et al. needs it because of one sentence: the authors tested a
+quasi-steady-state TMDD parameterization and a time-varying soluble BCMA
+covariate and rejected both. Why those failed is the strongest available
+evidence about whether the empirical decaying-clearance form is a
+convenience or a necessity, and it decides whether Section 4 of the
+specification is describing a modelling habit or a data limitation.
+
+Watch for the answer that runs the other way. If Miao et al. rejected the
+quasi-steady-state form on numerical grounds rather than on fit, then the
+class-wide preference for time-dependent clearance is an estimation artifact,
+Section 4's verdict softens from "the sink is destroyed" to "the sink is
+destroyed and nobody could identify the concentration dependence anyway", and
+epcoritamab becomes the only entry in this project that saw the mechanism
+directly.
+
+Notes go one line per question, carrying an answer and the table or page
+number it came from, plus anything that contradicts the working document.
+
+## Reading queue
+
+Ordered so that each entry makes the next easier to read.
+
+### 1. Pearce et al. 2025 — predicting TCE pharmacokinetics as a function of TMDD ✅
+
+*CPT: Pharmacometrics & Systems Pharmacology*.
+[PMC12597969](https://pmc.ncbi.nlm.nih.gov/articles/PMC12597969/). AstraZeneca
+authors. Open access.
+
+**Read 2026-09-11.** A model in which TCE half-life is the sum of an intrinsic
+clearance, a CD3-mediated clearance and a tumor-associated-antigen-mediated
+clearance, applied to 29 TCEs. Predicts human half-life within two-fold for
+16 of 18, against 10 of 17 for allometric scaling alone.
+
+**The sentence the whole project turns on**, in Section 3.2: at doses below
+0.1 mg/kg the pharmacokinetics are essentially linear, which they identify as
+the fourth phase of TMDD in the Peletier and Gabrielsson classification. This
+is explanation 1 of the specification, stated generically rather than for one
+drug.
+
+**Still open.** Their Figure 2 simulation, half-life against CD3 affinity from
+1000 nM to 1 nM at 0.01 mg/kg, is reproducible from the equations in their
+methods and has not been reproduced. Their generic parameters assume blood
+T-cell counts throughout, which is the assumption Section 7 of the
+specification questions.
+
+### 2. Kovalenko et al. 2026 — odronextamab population pharmacokinetics ✅
+
+*CPT: Pharmacometrics & Systems Pharmacology*.
+[PMC12823311](https://pmc.ncbi.nlm.nih.gov/articles/PMC12823311/). Open access.
+
+**Read 2026-09-11.** 507 patients, 14,618 observations, doses 0.03 to 320 mg.
+Two-compartment with parallel first-order and Michaelis-Menten elimination,
+where the maximum velocity declines exponentially toward an asymptote. Table 2
+carries the full parameter set with bootstrap confidence intervals.
+
+**Why it leads the source list.** It is the only published TCE model that
+reports a fitted Michaelis constant, so it is the only one that can answer
+"is the priming dose above or below the kink" with a number.
+
+**Open, and it is the first item in the order of work.** The specification's
+simulation gives a baseline total clearance of 7.1 L/day for the reference
+patient; the paper reports a population median of 5.43 L/day for DLBCL and
+4.67 L/day for follicular lymphoma. Covariate effects and between-subject
+variability on $V_{\max,0}$ (variance 0.403) plausibly account for the gap,
+and that has not been demonstrated.
+
+### 3. Epcoritamab population pharmacokinetics, 2025 ❌
+
+*Clinical Pharmacokinetics*.
+[doi:10.1007/s40262-024-01464-2](https://doi.org/10.1007/s40262-024-01464-2)
+· [PubMed 39708278](https://pubmed.ncbi.nlm.nih.gov/39708278/). Paywalled;
+the publisher redirected an unauthenticated fetch.
+
+**The highest-value unread entry.** The only TCE model published with a
+quasi-steady-state TMDD structure in its own declared terms. Three questions
+against it.
+
+1. What are $K_{ss}$, $R_{\rm tot}$ (or $R_{\max}$) and $k_{\rm int}$, in
+   what units, and how do they compare with the CD3 pool computed in Section
+   7 of the specification?
+2. Is $R_{\rm tot}$ constant or does it carry its own turnover? If it is
+   constant, epcoritamab's model disagrees with every other model in this
+   project about whether the sink is destroyed.
+3. What is $K_a$, and what is the elimination half-life it should be compared
+   against, so that the flip-flop table in Section 5 gains a third row?
+
+### 4. Miao et al. 2023 — teclistamab population pharmacokinetics ⚠️
+
+*Target Oncol* 2023;18(5):667-684.
+[doi:10.1007/s11523-023-00989-z](https://doi.org/10.1007/s11523-023-00989-z)
+· [PMC10518021](https://pmc.ncbi.nlm.nih.gov/articles/PMC10518021/).
+
+Parameters transcribed from `nlmixr2lib`'s `Miao_2023_teclistamab`, which
+cites Table 2 and its footnotes a to d. Not checked against the paper.
+
+**The question.** The authors tested a quasi-steady-state TMDD
+parameterization and a time-varying soluble BCMA covariate and rejected both,
+in favour of $CL(t)=CL_1+CL_2e^{-K_{DES}t}$. On what grounds? See the warning
+above about the answer running the other way.
+
+**A second question while there.** $Q$ = 0.0390 L/day with a 55.5% relative
+standard error makes the peripheral compartment nearly invisible, and the
+two-compartment terminal slope computed from the printed parameters is about
+26 days, against a reported half-life of 3.8 days. Which quantity does the
+paper call the half-life?
+
+### 5. Talquetamab recommended phase II doses, 2025 ❌
+
+*Clinical Pharmacology & Therapeutics*.
+[PMC12439005](https://pmc.ncbi.nlm.nih.gov/articles/PMC12439005/). Open
+access; the parameter table is in the supplement, which has not been
+retrieved.
+
+**The question.** The supplementary population pharmacokinetic table, for the
+absorption and time-dependent clearance columns of
+[PK parameters](pk-parameters.qmd). A second one: baseline total T-cell count
+was tested as a covariate and rejected, which is evidence against CD3-mediated
+clearance being dominant at the recommended doses. On what was it tested, and
+with what power?
+
+### 6. Bender et al. 2024 — mosunetuzumab population pharmacokinetics ⚠️
+
+*Clin Transl Sci* 2024;17(5):e13825.
+[doi:10.1111/cts.13825](https://doi.org/10.1111/cts.13825).
+
+Parameters transcribed from `nlmixr2lib`'s `Bender_2024_mosunetuzumab`, which
+cites Table 2 and reproduces the NONMEM control stream from Table S3. Not
+checked against the paper.
+
+**The question.** The competitive CD20 receptor-occupancy submodel carries
+dissociation constants for mosunetuzumab, rituximab and obinutuzumab. Those
+are binding constants for the same target that the time-dependent clearance is
+supposed to represent, so the model already contains the ingredients of a
+mechanistic TMDD term and does not use them that way. Did the authors say why?
+
+### 7. Zhu et al. — blinatumomab clinical pharmacology ❌
+
+*Clinical Pharmacokinetics*. Cited from the CD20×CD3 review; full reference
+not retrieved.
+
+Read only to confirm the format contrast: 54 kDa, no Fc domain, continuous
+infusion, 2.11-hour half-life. Low priority, because blinatumomab is in the
+parameter table as a contrast rather than as a comparable entry.
+
+## Sources
+
+Everything the working documents draw on, whether or not it is in the queue.
+
+### Population pharmacokinetic models
+
+- ⚠️ **Kovalenko et al. 2026, odronextamab.** Queue entry 2. Source of every
+  parameter in the specification's Sections 3 and 4 figures.
+- ⚠️ **Miao et al. 2023, teclistamab.** Queue entry 4. Via `nlmixr2lib`.
+- ⚠️ **Bender et al. 2024, mosunetuzumab.** Queue entry 6. Via `nlmixr2lib`.
+- ⚠️ **Poels et al. 2025, elranatamab.** *npj Syst Biol Appl* 2025;11:102,
+  [doi:10.1038/s41540-025-00585-z](https://doi.org/10.1038/s41540-025-00585-z).
+  Via `nlmixr2lib`'s `Poels_2025_elranatamab_qsp`, whose pharmacokinetic
+  parameters are a preliminary population analysis fixed inside a systems
+  model, cited to its Supplementary Table 3. The CD3 and BCMA binding
+  constants in the specification's Section 5 and the parameter page's Section
+  3.4 come from here. **A preliminary analysis fixed inside somebody else's
+  model is the weakest parameter source in this project.**
+- ❌ **Epcoritamab, 2025.** Queue entry 3.
+- ❌ **Talquetamab, 2025.** Queue entry 5.
+- ❌ **Djebli et al. 2020, glofitamab.** *Blood* 2020;136(Suppl 1):1.
+  Conference abstract. Characterized in the specification's Section 4 as a
+  linear model with no time-varying term, from the abstract text. That
+  characterization carries the weight of the "remove the target and the
+  time dependence goes away" argument and rests on one sentence in an
+  abstract.
+- ❌ **Blinatumomab label.** BLINCYTO US prescribing information. Clearance,
+  half-life and $V_z$ in the parameter page's Section 3.8.
+
+### Mechanism and review
+
+- ⚠️ **Pearce et al. 2025.** Queue entry 1. Source of the half-life table in
+  the specification's Section 1, the CD3 expression and internalization
+  values in Section 7, and the fourth-phase argument in Section 3.
+- ❌ **Peletier and Gabrielsson**, the four-phase classification of TMDD
+  pharmacokinetics. Cited through Pearce et al. rather than read. The
+  primary reference has not been located, and the specification's Section 3
+  attributes the classification to them on Pearce's authority alone.
+- ⚠️ **CD20×CD3 bispecific antibodies in B-NHL, 2025.** *Clin Transl Sci*,
+  [PMC12139688](https://pmc.ncbi.nlm.nih.gov/articles/PMC12139688/). Read
+  2026-09-11 for the preclinical TMDD observations and the obinutuzumab
+  pretreatment rationale for glofitamab. Its Table 1 records TMDD in
+  cynomolgus monkey at doses at or below 0.1 mg/kg for three of the four
+  CD20×CD3 drugs, which is the preclinical counterpart of the specification's
+  explanation 1.
+
+### Software and libraries
+
+- ✅ **`nlmixr2lib`**, [nlmixr2.github.io/nlmixr2lib](https://nlmixr2.github.io/nlmixr2lib/),
+  version 0.3.2.9000. Cloned and searched on 2026-09-11; the model counts and
+  the present/absent lists in the parameter page's Section 4 were produced by
+  that search and are checked. Maintainer Bill Denney.
+- ✅ **`rxode2`**, used for the odronextamab simulations.
+
+## Where to start
+
+If one hour is available, read Kovalenko et al. Table 2 against the
+specification's Section 3, and resolve the 7.1 versus 5.4 L/day discrepancy.
+Everything downstream depends on those eight numbers being right.
+
+If a second hour is available, read Miao et al. on why the
+quasi-steady-state parameterization was rejected. That answer decides whether
+this project is describing pharmacology or estimation practice.

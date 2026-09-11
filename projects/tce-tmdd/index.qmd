@@ -1,0 +1,54 @@
+---
+title: "T-cell engagers and target-mediated drug disposition"
+subtitle: "Why the sharp drop is not there, and what the published models actually estimated"
+description: "Index of the TCE-TMDD project: the working specification on why target-mediated drug disposition is rarely visible in T-cell engager pharmacokinetics, a parameter survey across the published population models, and the references."
+categories: [pharmacometrics, pharmacokinetics, working document]
+date: last-modified
+toc: false
+---
+
+A T-cell engager (TCE) binds CD3 with nanomolar affinity, CD3 internalizes
+within the hour, and the priming doses are smaller than the circulating
+receptor pool. Textbook target-mediated drug disposition (TMDD) should
+follow, and the published concentration-time profiles do not show it:
+half-lives across the approved hematology TCEs run from 6 to 22 days, which
+is what an ordinary IgG does. This project works out where the TMDD went,
+and compiles the pharmacokinetic parameters needed to work it out.
+
+## The answer, in one table
+
+| Explanation | Verdict |
+|:---|:---|
+| The priming dose sits below the Michaelis constant, where a saturable elimination is arithmetically first-order | ✅ **Holds.** Odronextamab's $k_m$ is 1.95 mg/L and the 0.7 mg priming dose peaks at 0.14 mg/L |
+| The target sink is destroyed during cycle 1, so the nonlinearity has no time to appear | ✅ **Holds.** Four of the five published models carry a decaying clearance term; odronextamab's total clearance falls 25-fold |
+| Slow subcutaneous absorption rate-limits the terminal slope | ⚠️ **Narrow.** True for teclistamab early in treatment, false for elranatamab, inapplicable to the intravenous drugs |
+| Sampling and assay quantitation limits hide the drop | ❔ **Untestable from published summaries.** Stated as a data request |
+
+: The four explanations and where each stands {tbl-colwidths="[55,45]"}
+
+The finding underneath all four: **TMDD in this class is reported as
+time-dependent clearance, not as a concentration nonlinearity.** A reader
+scanning parameter tables for a TMDD structure finds one, epcoritamab's,
+and concludes the mechanism is absent. It is in the other models under a
+different name.
+
+## Documents
+
+- [Working specification](specification.qmd). The question, four
+  explanations and a falsifier for each, the simulations that test them, and
+  the order of work. Its **In brief** section is one screen and says what the
+  rest argues. Sections 3 and 4 carry the argument; Section 7 is the
+  back-of-envelope on how much drug the CD3 pool can consume.
+- [PK parameters](pk-parameters.qmd). The reference table: structure, fixed
+  effects, interindividual variability, residual error and covariates for
+  eight T-cell engagers, each in the same six slots. Section 4 is the
+  `nlmixr2lib` gap analysis and the note to Bill Denney.
+- [References](references.qmd). What to read and in what order, and a status
+  marker on every source recording whether the claim drawn from it has been
+  checked.
+
+## Code
+
+Both documents compute their figures and tables in R chunks with
+`freeze: auto`, so a rendered page carries the output of the last run rather
+than a number typed into prose. The odronextamab simulations use `rxode2`.

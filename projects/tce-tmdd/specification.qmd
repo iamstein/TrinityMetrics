@@ -1,0 +1,473 @@
+---
+title: "Why target-mediated drug disposition is rarely visible in T-cell engager pharmacokinetics"
+subtitle: "Working specification"
+description: "T-cell engagers are dosed far below the amount needed to saturate CD3, so a sharp concentration drop should be the usual sight and is not. This works through four explanations, tests each against published population pharmacokinetic models, and says which one carries the weight."
+categories: [pharmacometrics, pharmacokinetics, oncology, working document]
+date: last-modified
+execute:
+  freeze: auto
+  warning: false
+  message: false
+toc: true
+toc-depth: 3
+toc-location: left
+toc-expand: true
+html-math-method: mathjax
+---
+
+::: {.callout-important appearance="simple"}
+**Two sources have been read in full, and none of the transcribed parameter
+values has been checked against a printed table.** The odronextamab,
+mosunetuzumab, teclistamab and elranatamab parameters driving every figure and
+calculation below were taken from an open-access full text and from
+`nlmixr2lib` model files, not from the published tables. Sections 3 and 7 compute their conclusions
+from those numbers, so both conclusions inherit whatever is wrong in them.
+Section 5 rests on two drugs, which is where its own limits section says
+it rests.
+[References](references.qmd) carries a status marker on every source and
+[the project index](index.qmd) lists the other documents in this folder.
+:::
+
+## In brief
+
+**The observation.** A T-cell engager (TCE) binds CD3 on T cells with
+nanomolar affinity, and CD3 internalizes with a half-life near an hour.
+A first dose of 0.16 mg of epcoritamab or 0.7 mg of odronextamab is the
+same order of magnitude as the CD3 receptors circulating in blood, and a
+small fraction of what those receptors internalize in a week.
+Every ingredient of textbook target-mediated drug disposition (TMDD) is
+present, so the concentration-time profile after a priming dose should
+fall off a cliff. Published profiles do not. The approved hematology
+TCEs report terminal half-lives of 6 to 22 days, which is antibody-like.
+
+**The answer this document argues for, in one line.** TMDD is there and is
+large, it is reported as *time-dependent clearance* rather than as a
+concentration nonlinearity, and the priming doses that could show the
+nonlinearity sit below the Michaelis constant, where a Michaelis-Menten
+elimination is arithmetically indistinguishable from a first-order one.
+
+**The decisive number.** For odronextamab the fitted Michaelis constant is
+$k_m$ = 1.95 mg/L and the 0.7 mg priming dose reaches a peak concentration
+of 0.14 mg/L. The entire priming-dose profile lives at $C/k_m \le 0.07$.
+Section 3 simulates that profile with target depletion switched off and
+finds total clearance varying from 7.2 to 7.7 L/day across a 900-fold
+concentration range. The mechanism is saturable and behaves linearly,
+because the dose is too small to saturate it.
+
+**What happens to the target sink.** It is destroyed. Four of the five
+published population pharmacokinetic models for approved TCEs carry a
+clearance term that decays with time since first dose, and the decay is
+attributed to depletion of the target-bearing cells. Odronextamab's total
+clearance falls from about 5.6 L/day to 0.22 L/day, a factor of 25.
+Section 4 tabulates all six published models.
+
+**Andy's flip-flop hypothesis, tested.** True for teclistamab early in
+treatment, false for elranatamab, and inapplicable to the intravenous
+drugs. Teclistamab's absorption half-life is 5.2 days against an effective
+elimination half-life of 3.8 days at treatment start, so absorption is
+rate-limiting then, and 8.4 days at steady state, so it is not
+rate-limiting later. Elranatamab absorbs with a 4.7-day half-life and
+eliminates with a 25-day one, so absorption is never rate-limiting for it.
+Section 5 works both.
+
+**Out of scope, stated once.**
+
+- ❌ **A new TMDD model.** Nothing here is fit. Every parameter is
+  transcribed from a published model and simulated forward.
+- ❌ **Quantitative systems pharmacology.** No trimer formation, no
+  cytokine cascade, no tumor dynamics. The CD3-plus-antigen binding model
+  of Pearce et al. is the deepest mechanism used.
+- ❌ **Dose selection.** No regimen, step-up schedule or starting dose
+  should be taken from this document.
+- ✅ **The parameter survey.** Compiling fixed and random effects across
+  the published TCE models is a deliverable in its own right, and it lives
+  in [PK parameters](pk-parameters.qmd) rather than here.
+
+## 1. The Observation, as Numbers
+
+Pearce et al. tabulate published half-lives for 29 TCEs in cynomolgus
+monkey and in patients. The approved hematology molecules cluster near a
+week, and the solid-tumor and non-Fc molecules do not.
+
+| T-cell engager | Target | Format and route | Human half-life (days) |
+|:---|:---|:---|---:|
+| Elranatamab | BCMA | IgG, subcutaneous | 22 |
+| Talquetamab | GPRC5D | IgG, subcutaneous | 8–12 |
+| Mosunetuzumab | CD20 | IgG, intravenous | 6–11 |
+| Glofitamab | CD20 | IgG 2:1, intravenous | 6–11 |
+| Tarlatamab | DLL3 | half-life extended, intravenous | 5.7 |
+| Teclistamab | BCMA | IgG, subcutaneous | 3.8 |
+| HPN217 | BCMA | albumin-binding, intravenous | 2.8 |
+| CB307 | PSMA | albumin-binding, intravenous | 3 |
+| PF-06671008 | CDH3 | bispecific, intravenous | 1.2 |
+| Tebentafusp | gp100 | ImmTAC, intravenous | 0.3 |
+| Blinatumomab | CD19 | BiTE, continuous infusion | 0.09 |
+
+: Published human half-lives. Every row except blinatumomab is from Table 1
+of Pearce et al.; blinatumomab is the 2.11 hours in its label. ⚠️ Transcribed,
+unverified. {tbl-colwidths="[24,12,34,30]"}
+
+Two things separate the top of the table from the bottom, and neither is
+target engagement. The long half-lives belong to molecules with an intact
+Fc domain and therefore neonatal Fc receptor recycling, and the short ones
+belong to formats without it. Blinatumomab at 54 kDa is below the renal
+filtration threshold and is cleared in hours regardless of what it binds.
+So the question is narrower than it first appears: **why does an
+Fc-containing TCE, dosed at a fraction of its target pool, show the
+half-life of an ordinary IgG?**
+
+## 2. Four Explanations, and How Each Would Be Falsified
+
+| # | Explanation | Would be falsified by |
+|:--|:---|:---|
+| 1 | The dose sits below the Michaelis constant, where saturable elimination is linear | A published $k_m$ comparable to, or below, the priming-dose peak concentration |
+| 2 | The target sink is destroyed within the first cycle, so the nonlinearity has no time to show | A published model with a time-invariant nonlinear clearance and no decay term |
+| 3 | Slow subcutaneous absorption rate-limits the terminal slope | An absorption rate constant fast relative to elimination, or the same flat profile intravenously |
+| 4 | Sampling and assay quantitation limits hide the drop | Dense early sampling at a priming dose showing a log-linear decline |
+
+: The four explanations and their falsifiers {tbl-colwidths="[5,55,40]"}
+
+Explanations 1 and 2 both survive Sections 3 and 4. Explanation 3 survives
+in one narrow case and is examined in Section 5. Explanation 4 is
+untestable with what is public and is set out in Section 6 as a data
+request rather than a finding.
+
+## 3. Explanation 1: The Priming Dose Sits Below the Michaelis Constant
+
+Odronextamab is the test case, because Kovalenko et al. published a model
+with an explicit Michaelis-Menten elimination and reported $k_m$.
+
+The structural model is a two-compartment disposition with parallel
+first-order and Michaelis-Menten elimination, and the maximum velocity
+declines with time since first dose:
+
+$$
+\frac{dV_{\max}}{dt} = -K_v\left(V_{\max} - V_{\max,\rm asym}\right),
+\qquad
+CL_{MM} = \frac{V_{\max}}{k_m + C}\,V_c
+$$
+
+with $V_{\max,0}$ = 2.93 mg/L/day, $k_m$ = 1.95 mg/L, $K_v$ = 1.09 /day,
+$V_{\max,\rm asym}/V_{\max,0}$ = 0.262, linear $CL$ = 0.189 L/day,
+$V_c$ = 4.99 L, $V_p$ = 4.42 L and $Q$ = 1.21 L/day.
+
+```{r setup}
+suppressMessages({
+  library(rxode2); library(dplyr); library(tidyr)
+  library(ggplot2); library(patchwork); library(xgxr)
+})
+xgx_theme_set()
+knitr::opts_chunk$set(fig.width = 7, fig.height = 5)
+
+odro <- rxode2({
+  vmax  <- vmax_asym + (vmax0 - vmax_asym) * exp(-kv * time)
+  cc    <- central / vc
+  kmm   <- vmax / (km + cc)
+  cltot <- cl + kmm * vc
+  d/dt(central)    <- -kmm*central - cl/vc*central - q/vc*central + q/vp*peripheral
+  d/dt(peripheral) <-  q/vc*central - q/vp*peripheral
+})
+
+par_odro <- c(cl = 0.189, q = 1.21, vc = 4.99, vp = 4.42,
+              vmax0 = 2.93, km = 1.95, kv = 1.09)
+par_odro <- c(par_odro, vmax_asym = unname(0.262 * par_odro[["vmax0"]]))
+```
+
+The approved regimen steps up 0.7 mg, 4 mg, 20 mg weekly and then holds at
+160 mg. Peak concentrations after each of those doses, and the clearance
+the model assigns to them, put every step-up dose on the flat part of the
+Michaelis-Menten curve.
+
+```{r regime}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-cap: "Total odronextamab clearance against concentration at the start of treatment, with the peak concentration of each step-up dose marked. The curve is flat below $k_m$, so the first three doses are eliminated by a saturable mechanism at a rate indistinguishable from first-order."
+conc  <- 10^seq(-3.5, 2.5, length.out = 400)
+curve <- tibble(conc, cltot = 0.189 + 2.93/(1.95 + conc)*4.99)
+marks <- tibble(dose = c(0.7, 4, 20, 160, 320)) |>
+  mutate(conc  = dose/4.99,
+         cltot = 0.189 + 2.93/(1.95 + conc)*4.99,
+         lab   = paste0(dose, " mg"))
+
+ggplot(curve, aes(conc, cltot)) +
+  geom_line(linewidth = 0.7) +
+  geom_vline(xintercept = 1.95, linetype = 2, colour = "grey45") +
+  geom_point(data = marks, size = 2.6, colour = "#C0392B") +
+  ggrepel::geom_text_repel(data = marks, aes(label = lab), size = 3.2,
+                           colour = "#C0392B", seed = 1) +
+  annotate("text", x = 1.95, y = 0.25, label = "  km = 1.95 mg/L",
+           hjust = 0, size = 3.2, colour = "grey35") +
+  scale_x_log10() + scale_y_log10() + annotation_logticks() +
+  labs(x = "Odronextamab concentration (mg/L)", y = "Total clearance (L/day)")
+```
+
+The 0.7 mg dose peaks at 0.14 mg/L, which is $k_m/14$. Simulating that
+dose on its own, with target depletion switched off so that the only
+nonlinearity left is the concentration dependence:
+
+```{r linear-regime}
+ev_single <- et(amt = 0.7, time = 0) |> et(seq(0, 14, by = 0.02))
+no_deplete <- replace(par_odro, "kv", 0)
+as_tibble(rxSolve(odro, no_deplete, ev_single)) |>
+  filter(time %in% c(0.02, 0.5, 1, 2, 3, 7, 14)) |>
+  transmute(`Day` = time,
+            `Concentration (mg/L)` = signif(cc, 3),
+            `Total CL (L/day)` = signif(cltot, 3)) |>
+  knitr::kable()
+```
+
+Total clearance moves by 7% while concentration falls 900-fold. A
+Michaelis-Menten elimination, simulated with its own published
+parameters, produces a log-linear profile. This is the fourth phase of
+TMDD in the Peletier and Gabrielsson classification, and Pearce et al.
+name it as the reason TCEs retain linear pharmacokinetics at low doses
+despite high-affinity binding.
+
+**The verdict on explanation 1: it holds.** The priming dose is too small
+to bend the curve. The sharp drop Andy expected requires a dose that
+traverses the saturation boundary *during the observed profile*, and the
+step-up schedule is built so that no single dose does that.
+
+## 4. Explanation 2: The Target Sink Is Destroyed During Cycle 1
+
+The nonlinearity does appear at the full dose, where concentration passes
+$k_m$. By then the target is gone.
+
+Simulating the full approved regimen, against two counterfactuals, shows
+where the clearance goes.
+
+```{r cl-time}
+#| fig-height: 6
+#| fig-cap: "Odronextamab under the 0.7/4/20/160 mg weekly regimen, as published and against two counterfactuals. Upper panel, concentration. Lower panel, total clearance. The published model loses 96% of its clearance over the first three weeks, from 7.2 to 0.30 L/day. With the target sink held fixed it loses only the part that saturation accounts for, and still clears 2.9 times faster than the published model at day 84."
+ev <- et(amt = 0.7, time = 0) |> et(amt = 4, time = 7) |> et(amt = 20, time = 14) |>
+      et(amt = 160, time = seq(21, 77, by = 7)) |> et(seq(0, 84, by = 0.02))
+
+run <- function(pp, lab) as_tibble(rxSolve(odro, pp, ev)) |> mutate(case = lab)
+sims <- bind_rows(
+  run(par_odro, "as published"),
+  run(replace(par_odro, "kv", 0), "target sink never depleted"),
+  run(replace(par_odro, c("vmax0","vmax_asym"), c(0, 0)),
+      "no target-mediated elimination"))
+
+top <- ggplot(sims, aes(time, cc, colour = case)) +
+  geom_line(linewidth = 0.6) + scale_y_log10() + annotation_logticks(sides = "l") +
+  labs(x = NULL, y = "Concentration (mg/L)", colour = NULL)
+bot <- ggplot(sims, aes(time, cltot, colour = case)) +
+  geom_line(linewidth = 0.6) + scale_y_log10() + annotation_logticks(sides = "l") +
+  labs(x = "Days since first dose", y = "Total clearance (L/day)", colour = NULL)
+
+(top / bot) + plot_layout(guides = "collect") & theme(legend.position = "bottom")
+```
+
+The upper panel is what a reviewer of this study would have in front of
+them. Three curves, each a near-straight line on a log axis within every
+dosing interval, differing only in slope, with nothing that announces a
+saturable mechanism. The lower panel holds the 25-fold change in clearance,
+and clearance is not an observation.
+
+Every published TCE population model of an approved drug encodes the same
+decay, and each names target depletion or disease response as the cause.
+
+| Drug | Clearance structure | At treatment start | Asymptote | Decay |
+|:---|:---|---:|---:|:---|
+| Odronextamab | Linear + Michaelis-Menten with time-declining $V_{\max}$ | ~5.6 L/day | 0.22 L/day | $K_v$ = 1.09 /day |
+| Mosunetuzumab | $CL_{\rm base} \to CL_{ss}$, exponential | 1.08 L/day | 0.584 L/day | half-life 16.3 days |
+| Teclistamab | $CL_1 + CL_2 e^{-K_{DES}t}$ | 0.996 L/day | 0.449 L/day | $K_{DES}$ = 0.0292 /day |
+| Talquetamab | Time-independent + time-dependent linear | half-life 7.56 days | half-life 12.2 days | not transcribed |
+| Epcoritamab | Quasi-steady-state TMDD, two-compartment | apparent CL/F 0.53 L/day at end of cycle 3 | not transcribed | concentration-driven |
+| Glofitamab | Linear, two-compartment | 0.6–1 L/day | same | none |
+
+: How each published model handles the target sink. ⚠️ Transcribed, unverified.
+{tbl-colwidths="[16,32,18,15,19]"}
+
+Glofitamab is the row to read against the other five. It is the one TCE
+given after a mandatory 1000 mg obinutuzumab pretreatment, which depletes
+CD20-bearing B cells a week *before* the first glofitamab dose, and its
+published model is linear with no time-varying term. Remove the target
+before the drug arrives and the target-mediated clearance is not there to
+model.
+
+Teclistamab's authors tested a quasi-steady-state TMDD parameterization
+and a time-varying soluble BCMA covariate, and rejected both in favor of
+the empirical exponential decay. Reading why those two failed is what
+tells you whether the empirical form is a convenience or a necessity, and
+it is entry 4 of the reading queue.
+
+**The verdict on explanation 2: it holds, and it is why TMDD is
+mis-filed.** A modeler who fits time-varying clearance has fit TMDD. The
+word does not appear in the parameter table, so a reader scanning
+parameter tables across this literature concludes that TCEs do not show
+TMDD.
+
+## 5. Explanation 3: Flip-Flop Kinetics After Subcutaneous Dosing
+
+Andy's hypothesis is that slow subcutaneous absorption rate-limits the
+terminal slope, so the apparent half-life reports absorption rather than
+elimination. Two subcutaneous drugs have transcribed absorption rate
+constants, and they answer differently.
+
+```{r flipflop}
+eff_thalf <- function(cl, vc, vp) log(2) * (vc + vp) / cl
+
+tibble(
+  Drug = c("Teclistamab", "Teclistamab", "Elranatamab"),
+  When = c("treatment start", "steady state", "all times (linear model)"),
+  `Absorption t1/2 (d)` = signif(log(2) / c(0.133, 0.133, 0.148), 3),
+  `Elimination t1/2 (d)` = signif(c(eff_thalf(0.449 + 0.547, 4.13, 1.34),
+                                    eff_thalf(0.449,         4.13, 1.34),
+                                    eff_thalf(0.335,         4.25, 7.80)), 3)) |>
+  mutate(`Rate-limiting step` =
+           ifelse(`Absorption t1/2 (d)` > `Elimination t1/2 (d)`,
+                  "absorption (flip-flop)", "elimination")) |>
+  knitr::kable()
+```
+
+Teclistamab crosses the boundary during treatment. At treatment start
+absorption is slower than elimination, so the terminal slope after an early
+subcutaneous dose reports $K_a$; once the time-dependent clearance component
+of Section 4 has decayed, elimination is the slower of the two and the
+ordering has reversed. That crossing is a second reason teclistamab's
+half-life lengthens with repeated dosing, working in the same direction as
+the falling clearance.
+
+Elranatamab does not cross it. Its absorption half-life of 4.7 days sits
+against an elimination half-life near 25 days, so absorption is never
+rate-limiting, and its published half-life of 22 days is elimination being
+reported as elimination.
+
+Three limits on how far the hypothesis carries.
+
+1. **It cannot explain the intravenous drugs.** Mosunetuzumab, glofitamab
+   and odronextamab have no absorption phase and show the same absence of
+   visible nonlinearity. Explanation 3 is an additional flattening
+   mechanism for some subcutaneous molecules, not the reason the class
+   looks the way it does.
+2. **It is contingent on where in treatment the sample was drawn.** The
+   same drug is flip-flop in week 1 and not in week 8, because the quantity
+   it is being compared against is itself changing. Any statement that a TCE
+   does or does not show flip-flop kinetics has to name the time.
+3. **Two cases is not a survey.** Epcoritamab reports a median time to
+   maximum concentration of 4 days after the first full dose, consistent
+   with slow absorption, but its absorption rate constant has not been
+   transcribed here. Talquetamab uses a sequential zero- then first-order
+   absorption, which does not reduce to a single $K_a$. Filling the
+   absorption column of [PK parameters](pk-parameters.qmd) is what turns
+   this section from two worked examples into a finding.
+
+**The verdict on explanation 3: it holds for teclistamab early in
+treatment, fails for elranatamab, and cannot apply to the intravenous
+drugs.** It is a contributing mechanism with a narrow domain, not the
+explanation.
+
+## 6. Explanation 4: Sampling and the Quantitation Limit
+
+Untestable from published summaries, and stated here so that it is not
+mistaken for a settled negative.
+
+Three features of how TCE pharmacokinetic data is collected would hide a
+concentration drop that was there.
+
+- **CD3 internalizes with a half-life near an hour.** The fastest
+  target-mediated phase is over within a day. Cycle 1 sampling in these
+  studies is typically predose, end of infusion, and then a small number
+  of points across the following week.
+- **Priming-dose concentrations sit near the assay limit.** The
+  odronextamab simulation above puts the 0.7 mg profile between 0.14 and
+  0.005 mg/L. Kovalenko et al. excluded 3.4% of post-dose records as below
+  the limit of quantitation, and those records are disproportionately the
+  early low-dose ones, which is exactly where the curvature would be.
+- **The step-up schedule redoses before the profile resolves.** Each
+  weekly dose interrupts the decline of the previous one.
+
+What would settle it is a densely sampled single priming dose with a
+low-limit assay, and the studies that could produce it are the ones
+already run. A first-in-human dose escalation collects that data at the
+lowest cohorts and reports a summary.
+
+## 7. The Arithmetic of the CD3 Sink
+
+Section 3 argues the priming dose is small relative to $k_m$. This section
+asks the blunter version: how much drug does the CD3 pool actually consume?
+
+```{r cd3}
+avogadro  <- 6.022e23
+cd3_per_T <- 5e4     # receptors per T cell
+tcell_uL  <- 1500    # T cells per uL of blood
+blood_L   <- 5
+mw        <- 1.5e5   # g/mol
+kint      <- 0.014   # per minute
+
+tcells <- tcell_uL * 1e6 * blood_L
+r_mol  <- tcells * cd3_per_T / avogadro
+r_mg   <- r_mol * mw * 1000
+vmax_mg_day <- r_mol * kint * 60 * 24 * mw * 1000
+
+tibble(
+  Quantity = c("T cells in blood",
+               "CD3 receptors in blood (nmol)",
+               "Drug for 1:1 occupancy of that pool (mg)",
+               "CD3 internalization half-life (min)",
+               "Maximum CD3-mediated elimination (mg/day)"),
+  Value = c(format(tcells, digits = 3, scientific = TRUE),
+            signif(r_mol * 1e9, 3),
+            signif(r_mg, 3),
+            signif(log(2)/kint, 3),
+            signif(vmax_mg_day, 3))) |>
+  knitr::kable()
+```
+
+Note the discrepancy in the internalization half-life. Pearce et al. give
+the rate as 1.4% per minute and describe the corresponding half-life as
+"about 36 min"; $\ln 2 / 0.014$ is 49.5 minutes. The 1.4% figure is used
+above because it is the one their model consumes. Which of the two is the
+measured quantity in the underlying source is an open check.
+
+Against the epcoritamab regimen, which primes at 0.16 mg and reaches a full
+dose of 48 mg weekly:
+
+```{r cd3-doses}
+tibble(Dose = c("0.16 mg priming", "0.8 mg intermediate", "48 mg full")) |>
+  mutate(mg = c(0.16, 0.8, 48),
+         `Multiples of the standing CD3 pool` = signif(mg / r_mg, 2),
+         `Percent of one week's internalization capacity` =
+           signif(100 * mg / (7 * vmax_mg_day), 2)) |>
+  select(-mg) |>
+  knitr::kable()
+```
+
+The priming dose is a few multiples of the standing receptor pool and a
+rounding error against the pool's weekly turnover. The sink swallows it. The
+full dose is several times the weekly capacity of the blood CD3 pool, which
+is where the nonlinearity finally shows.
+
+The calculation counts only circulating T cells. Whole-body T cells are
+roughly fifty times the blood pool, and if a TCE reached all of them the
+capacity would be near 100 mg/day and no clinical dose would ever saturate
+CD3. Observed half-lives of a week say it does not. **How much of the tissue
+T-cell pool is accessible to a TCE is the open question this calculation
+exposes**, and it is the one to put to the Pearce model, which assumes blood
+counts throughout.
+
+## 8. Order of Work
+
+1. **Check the transcribed parameters against the printed tables.** Every
+   number in Sections 3, 4 and 5 is ⚠️ in [References](references.qmd).
+   The odronextamab simulation reproduces a baseline total clearance of
+   7.1 L/day where the paper reports a population median of 5.4 L/day, and
+   whether that gap is the covariate model, between-subject variability,
+   or a transcription error is unresolved.
+2. **Fill the parameter table.** [PK parameters](pk-parameters.qmd) has
+   eight drugs and four complete entries. Epcoritamab's quasi-steady-state
+   parameters and talquetamab's time-dependent clearance are the two
+   highest-value gaps, because they are the two published models with a
+   structure nothing else here duplicates.
+3. **Reproduce Figure 2 of Pearce et al.** Their simulation of half-life
+   against CD3 affinity, from 1000 nM to 1 nM at a fixed 0.01 mg/kg dose,
+   is the generic version of Section 3 and is reproducible from the
+   equations in their methods.
+4. **Test explanation 4 against one dense profile.** Any first-in-human
+   report with individual concentration-time data at the lowest cohort
+   would do.
+5. **Write the note to Bill Denney.** Section 4 of
+   [PK parameters](pk-parameters.qmd) lists what `nlmixr2lib` is missing
+   and is already in a form that can be sent.

@@ -36,6 +36,17 @@
   categories: [Immunology and T-cell engagers, Draft]
   path: tce-ipde/index.qmd
 
+- title: "T-cell engagers and target-mediated drug disposition"
+  subtitle: "Working document"
+  description: >
+    T-cell engagers are dosed far below the amount needed to saturate CD3,
+    so the sharp concentration drop of target-mediated drug disposition
+    should be the usual sight and is not. Four explanations, tested against
+    the published population models, plus a parameter survey across the
+    class.
+  categories: [Immunology and T-cell engagers, Draft]
+  path: tce-tmdd/index.qmd
+
 - title: "TCE-CRS-tolerance"
   subtitle: "Working document"
   description: >
