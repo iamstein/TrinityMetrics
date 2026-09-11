@@ -54,12 +54,18 @@ finds total clearance varying from 7.2 to 7.7 L/day across a 900-fold
 concentration range. The mechanism is saturable and behaves linearly,
 because the dose is too small to saturate it.
 
-**What happens to the target sink.** It is destroyed. Four of the five
-published population pharmacokinetic models for approved TCEs carry a
-clearance term that decays with time since first dose, and the decay is
-attributed to depletion of the target-bearing cells. Odronextamab's total
-clearance falls from about 5.6 L/day to 0.22 L/day, a factor of 25.
-Section 4 tabulates all six published models.
+**What happens to the target sink, corrected.** The decaying clearance term
+in the published models is 26-fold for odronextamab and only 1.6 to 2.2-fold
+for teclistamab, mosunetuzumab and talquetamab, so on its own it cannot
+account for the class. Two things are being conflated. Odronextamab's decay
+has a half-life of 0.64 days, which is target-cell killing. The others decay
+over 16 to 24 days, which is too slow to be a receptor pool emptying and is
+what their own authors attribute to falling tumor burden. Section 4 separates
+them, and Section 4a measures the target-mediated clearance the way it should
+be measured: against what the same molecule would clear at with no target.
+Teclistamab clears 5.3 times faster than a target-free antibody at treatment
+start, and only a 2.2-fold part of that ever decays, because CD3 is not
+depletable.
 
 **Andy's flip-flop hypothesis, tested.** True for teclistamab early in
 treatment, false for elranatamab, and inapplicable to the intravenous
@@ -265,20 +271,124 @@ dosing interval, differing only in slope, with nothing that announces a
 saturable mechanism. The lower panel holds the 25-fold change in clearance,
 and clearance is not an observation.
 
-Every published TCE population model of an approved drug encodes the same
-decay, and each names target depletion or disease response as the cause.
+Every published TCE population model of an approved drug encodes a decay,
+and each names target depletion or disease response as the cause. The sizes
+are not comparable.
 
-| Drug | Clearance structure | At treatment start | Asymptote | Decay |
-|:---|:---|---:|---:|:---|
-| Odronextamab | Linear + Michaelis-Menten with time-declining $V_{\max}$ | ~5.6 L/day | 0.22 L/day | $K_v$ = 1.09 /day |
-| Mosunetuzumab | $CL_{\rm base} \to CL_{ss}$, exponential | 1.08 L/day | 0.584 L/day | half-life 16.3 days |
-| Teclistamab | $CL_1 + CL_2 e^{-K_{DES}t}$ | 0.996 L/day | 0.449 L/day | $K_{DES}$ = 0.0292 /day |
-| Talquetamab | Time-independent + time-dependent linear | half-life 7.56 days | half-life 12.2 days | not transcribed |
-| Epcoritamab | Quasi-steady-state TMDD, two-compartment | apparent CL/F 0.53 L/day at end of cycle 3 | not transcribed | concentration-driven |
-| Glofitamab | Linear, two-compartment | 0.6–1 L/day | same | none |
+| Drug | Clearance structure | At start | Asymptote | Fold | Decay half-life |
+|:---|:---|---:|---:|---:|---:|
+| Odronextamab, DLBCL | Linear + Michaelis-Menten, $V_{\max}$ declining | ~5.6 L/d | 0.22 L/d | **26** | **0.64 d** |
+| Odronextamab, follicular | same, with the $K_v$ covariate | | | | 5.8 d |
+| Teclistamab | $CL_1 + CL_2 e^{-K_{DES}t}$ | 0.996 L/d | 0.449 L/d | 2.2 | 23.7 d |
+| Mosunetuzumab | $CL_{\rm base}\to CL_{ss}$, exponential | 1.08 L/d | 0.584 L/d | 1.8 | 16.3 d |
+| Talquetamab | Time-independent + time-dependent linear | $t_{1/2}$ 7.56 d | $t_{1/2}$ 12.2 d | 1.6 | not transcribed |
+| Epcoritamab | Quasi-steady-state TMDD | CL/F 0.53 L/d at end of cycle 3 | not transcribed | | concentration-driven |
+| Glofitamab | Linear | 0.6–1 L/d | same | 1.0 | none |
 
-: How each published model handles the target sink. ⚠️ Transcribed, unverified.
-{tbl-colwidths="[16,32,18,15,19]"}
+: Size and speed of the decaying clearance component. ⚠️ Transcribed,
+unverified. {tbl-colwidths="[17,28,13,12,8,22]"}
+
+**Two different things are in that table, and only one of them is TMDD.**
+
+Odronextamab in DLBCL loses 96% of its clearance with a half-life of
+**0.64 days**. That is the timescale of killing target-bearing cells, and
+the magnitude of a target sink that supplies 91 to 97% of clearance at the
+priming dose. It is TMDD.
+
+Teclistamab and mosunetuzumab lose 45 to 55% of their clearance with
+half-lives of **24 and 16 days**. Neither timescale is target-cell killing.
+A T-cell engager at an active dose depletes circulating B cells or plasma
+cells within days, not over three weeks, and the teclistamab and
+talquetamab authors both name the alternative in their own discussions:
+falling tumor burden, improving disease status, resolving cancer-related
+cachexia. A three-week decay is a tumor shrinking, not a receptor pool
+emptying.
+
+So the objection that a two-fold time-dependent clearance cannot account
+for TMDD is correct, and it has the right target. In teclistamab and
+mosunetuzumab the time-dependent term is largely **not measuring TMDD at
+all**. It is measuring disease response, which is why it is small and slow.
+
+### 4a. Where the Target-Mediated Clearance Actually Is
+
+Measure it against what the same molecule would clear at with no target to
+bind. Odronextamab's own fitted linear clearance, 0.189 L/day, is the
+reference, and its authors call it typical for a monoclonal antibody.
+
+```{r budget}
+igg <- 0.189   # L/day, odronextamab's fitted linear CL
+tibble(
+  Drug  = c("Teclistamab", "Mosunetuzumab", "Odronextamab (DLBCL)"),
+  Vss   = c(5.47, 11.66, 9.41),
+  CL0   = c(0.996, 1.080, 5.620),
+  CLinf = c(0.449, 0.584, 0.219)) |>
+  transmute(
+    Drug,
+    `t1/2 with no target (d)`  = round(log(2)*Vss/igg, 1),
+    `t1/2 at start (d)`        = round(log(2)*Vss/CL0, 1),
+    `t1/2 at steady state (d)` = round(log(2)*Vss/CLinf, 1),
+    `CL0 / IgG CL`             = round(CL0/igg, 1),
+    `CLinf / IgG CL`           = round(CLinf/igg, 1)) |>
+  knitr::kable()
+```
+
+Teclistamab clears 5.3 times faster at treatment start than a target-free
+antibody of its size, which is 3.8 days of half-life against 20. The 3.8
+days is the figure Pearce et al. report for teclistamab in patients, so the
+arithmetic closes. **That 5-fold is the TMDD, and only a 2.2-fold part of
+it is the time-dependent term.** The rest never decays.
+
+**A simulation says the reason is not the one I first wrote here.** The
+first version of this section attributed the non-decaying excess to a
+standing CD3 sink, on the argument that a TCE kills antigen-bearing cells
+and does not kill T cells. Section 9 tests that with a two-pool target
+depletion model, and the CD3 pool turns out to contribute 13% of clearance
+at the priming dose and about 0.5% at the therapeutic dose, where it is
+saturated. It cannot carry 26% of the budget at any dose. What the
+non-decaying excess is remains open, and the honest split of $CL_1$ is:
+
+| Route | L/day | Share | Visible as |
+|:---|---:|---:|:---|
+| Intrinsic IgG catabolism | 0.189 | 19% | $CL_1$ |
+| Non-decaying excess, mechanism not established | 0.260 | 26% | $CL_1$ |
+| Depletable target, BCMA | 0.547 | 55% | $CL_2$, the time-dependent term |
+| **Above intrinsic catabolism** | **0.807** | **81%** | one third of it |
+
+: Teclistamab clearance budget at treatment start, using 0.189 L/day as the
+target-free reference. The middle row is a residual, not an estimate of a
+named mechanism. {tbl-colwidths="[38,11,11,40]"}
+
+### 4b. Why It Shows Preclinically and Not in Patients
+
+TMDD is reported in cynomolgus monkey for three of the four CD20×CD3
+antibodies, at doses at or below 0.1 mg/kg. Every feature of that
+experiment is the opposite of the clinical one.
+
+| | Cynomolgus study | Patient study |
+|:---|:---|:---|
+| Target compartment | Healthy, full B-cell pool | Relapsed or refractory, often already depleted |
+| Prior anti-target therapy | None | 44% of the mosunetuzumab cohort carried residual rituximab, 8% obinutuzumab |
+| Dosing | Single dose, then follow | Weekly step-up, redosed before the profile resolves |
+| Sampling | Dense, hours after dosing | Sparse, predose and a few points per week |
+| Assay floor | Set for the dose given | Near the priming-dose concentrations |
+
+: Why the same molecule shows TMDD in one experiment and not the other
+{tbl-colwidths="[22,36,42]"}
+
+The window is the reason. With a sink half-life of 0.64 days, the full
+target-mediated clearance exists for about two days after the first dose,
+and 90% of it is gone by day 2.1. A cynomolgus study samples inside that
+window. A patient study takes its next sample at the day-7 predose, by
+which time the sink has been gone for five days.
+
+Pearce et al. reach the same conclusion from the other direction: their
+model under-predicts the observed half-lives of both mosunetuzumab and
+glofitamab in patients, and they speculate that the CD20-mediated
+clearance extrapolated from ofatumumab over-predicts the target burden in
+these heavily pretreated populations. The patients arrive with less target
+than the model assumes.
+
+### 4c. Glofitamab, and the Rejected Parameterizations
 
 Glofitamab is the row to read against the other five. It is the one TCE
 given after a mandatory 1000 mg obinutuzumab pretreatment, which depletes
@@ -293,11 +403,22 @@ the empirical exponential decay. Reading why those two failed is what
 tells you whether the empirical form is a convenience or a necessity, and
 it is entry 4 of the reading queue.
 
-**The verdict on explanation 2: it holds, and it is why TMDD is
-mis-filed.** A modeler who fits time-varying clearance has fit TMDD. The
-word does not appear in the parameter table, so a reader scanning
-parameter tables across this literature concludes that TCEs do not show
-TMDD.
+One thing the rejection is *not* evidence of. A time-dependent linear
+clearance is capable of recovering a large target-mediated effect when the
+data supports it: simulating the odronextamab model under its own regimen
+with dense cycle-1 sampling and a 0.01 mg/L quantitation limit, and
+refitting with teclistamab's $CL_1 + CL_2e^{-K_{DES}t}$ form, recovers a
+20-fold clearance change against a true 32-fold. Raise the quantitation
+limit to 0.10 mg/L and the same fit collapses, driving $CL_1$ to zero. The
+model form is adequate. The data underneath it, at the priming dose, is
+what decides what can be seen.
+
+**The verdict on explanation 2: it holds for odronextamab and it is why
+TMDD is mis-filed everywhere.** Where the sink is large it empties in two
+days, inside the window no clinical study samples. Where the decaying term
+is slow and small, it is measuring the tumor rather than the target, and
+the target-mediated clearance has been absorbed into a linear parameter
+that names no mechanism.
 
 ## 5. Explanation 3: Flip-Flop Kinetics After Subcutaneous Dosing
 
@@ -471,3 +592,173 @@ counts throughout.
 5. **Write the note to Bill Denney.** Section 4 of
    [PK parameters](pk-parameters.qmd) lists what `nlmixr2lib` is missing
    and is already in a form that can be sent.
+
+## 9. Simulation Study: Is the Sharp Drop There and Unobserved?
+
+Sections 3 and 4 argue from published fits. This section builds a mechanism,
+simulates it, and asks whether the argument survives. No quantitative systems
+pharmacology model, no trimer, no cytokine cascade. Two target pools with
+turnover, quasi-steady-state binding, and drug-driven killing of the pool
+that the drug is supposed to kill.
+
+$$
+\frac{dA_c}{dt} = -\frac{CL}{V_c}A_c-\frac{Q}{V_c}A_c+\frac{Q}{V_p}A_p
+- k_{int}^{CD3}R_{CD3}\frac{C}{K_{ss}^{CD3}+C}V_c
+- k_{int}^{TAA}R_{TAA}\frac{C}{K_{ss}^{TAA}+C}V_c
+$$
+$$
+\frac{dR_{CD3}}{dt}=k_{deg}\!\left(R^0_{CD3}-R_{CD3}\right)-k_{int}^{CD3}R_{CD3}\frac{C}{K_{ss}^{CD3}+C}
+$$
+$$
+\frac{dR_{TAA}}{dt}=k_{deg}\!\left(R^0_{TAA}-R_{TAA}\right)-k_{int}^{TAA}R_{TAA}\frac{C}{K_{ss}^{TAA}+C}-k_{\rm kill}R_{TAA}\frac{C}{K_{ss}^{TAA}+C}
+$$
+
+CD3 turns over and is not killed, because a T-cell engager does not kill T
+cells. The tumor antigen turns over and is killed, because that is the
+mechanism of action.
+
+**Scope, narrowed here and for the rest of this section.** Molecules with an
+intact Fc domain and therefore neonatal Fc receptor recycling. Blinatumomab,
+tebentafusp and the albumin-binding formats are out: at 54 kDa and without
+an Fc, blinatumomab clears in hours whatever it binds, and nothing below is
+about them.
+
+```{r sim-model}
+truth <- rxode2({
+  cc      <- central/vc
+  occ_cd3 <- cc/(kss_cd3 + cc)
+  occ_taa <- cc/(kss_taa + cc)
+  cl_cd3  <- kint_cd3*r_cd3*vc/(kss_cd3 + cc)
+  cl_taa  <- kint_taa*r_taa*vc/(kss_taa + cc)
+  cltot   <- cl + cl_cd3 + cl_taa
+  d/dt(central)    <- -cl/vc*central - q/vc*central + q/vp*peripheral -
+                       kint_cd3*r_cd3*vc*occ_cd3 - kint_taa*r_taa*vc*occ_taa
+  d/dt(peripheral) <-  q/vc*central - q/vp*peripheral
+  d/dt(r_cd3)      <-  kdeg_cd3*(r_cd3_0 - r_cd3) - kint_cd3*r_cd3*occ_cd3
+  d/dt(r_taa)      <-  kdeg_taa*(r_taa_0 - r_taa) - kint_taa*r_taa*occ_taa -
+                       kkill*r_taa*occ_taa
+  r_cd3(0) <- r_cd3_0
+  r_taa(0) <- r_taa_0
+})
+
+## CD3 arm from Pearce et al., independent of any fitted popPK:
+## 50,000 CD3 per T cell, 1500 T cells/uL, 5 L blood, 1.4%/min internalisation.
+cd3_mg <- 0.0934                       # mg of TCE for 1:1 occupancy of blood CD3
+## TAA arm from odronextamab's fitted Michaelis-Menten sink: Vmax0/km*Vc.
+p_sim <- c(cl = 0.189, vc = 4.99, vp = 4.42, q = 1.21,
+           kss_cd3 = 10*1e-9*150000*1000,   # 10 nM CD3 affinity, as mg/L
+           r_cd3_0 = cd3_mg/4.99, kint_cd3 = 0.014*60*24, kdeg_cd3 = log(2)/1,
+           kss_taa = 1.95, kint_taa = 1, kdeg_taa = log(2)/3, kkill = 1.09)
+p_sim["r_taa_0"] <- 7.50*p_sim[["kss_taa"]]/(p_sim[["kint_taa"]]*p_sim[["vc"]])
+```
+
+### 9.1 The Control: The Same Molecule Without the CD3 Arm
+
+Switch the CD3 pool off and what remains is a B-cell depleting antibody with
+the same CD20 affinity, the same target pool, the same Fc and the same
+disposition. Run both at a T-cell engager priming dose and at a
+rituximab-like dose, and the confound between *being a T-cell engager* and
+*being dosed at a microgram-per-kilogram level* comes apart.
+
+```{r control}
+half_life <- function(d, t1, t2) {
+  w <- dplyr::filter(d, time >= t1, time <= t2, cc > 0)
+  unname(-log(2)/coef(lm(log(cc) ~ time, data = w))[2])
+}
+one <- function(cd3, dose, label) {
+  p <- p_sim; if (!cd3) p["r_cd3_0"] <- 0
+  d <- as_tibble(rxSolve(truth, p, et(amt = dose, time = 0) |> et(seq(0, 42, by = 0.005))))
+  tibble(Molecule = label, `Dose` = paste(dose, "mg"),
+         `C0 (mg/L)` = signif(d$cc[2], 3),
+         `C0 / Kss`  = signif(d$cc[2]/p[["kss_taa"]], 3),
+         `t1/2 0-1 d`   = round(half_life(d, 0.01, 1), 2),
+         `t1/2 3-7 d`   = round(half_life(d, 3, 7), 2),
+         `t1/2 21-42 d` = round(half_life(d, 21, 42), 2)) |>
+    mutate(`Curvature ratio` = round(`t1/2 21-42 d`/`t1/2 0-1 d`, 1))
+}
+bind_rows(
+  one(TRUE,  0.7,  "T-cell engager"),
+  one(FALSE, 0.7,  "B-cell depleting mAb"),
+  one(TRUE,  1000, "T-cell engager"),
+  one(FALSE, 1000, "B-cell depleting mAb")) |>
+  knitr::kable()
+```
+
+**The CD3 arm makes no difference to the shape.** At 0.7 mg the engager and
+the plain antibody give curvature ratios of 7.5 and 7.0; at 1000 mg both give
+11.3. Whatever is going on, it is not something T-cell engagers do that
+antibodies do not. It is what the *dose* does.
+
+**And the sharp drop is there.** At 0.7 mg the apparent half-life is 0.39
+days over the first day and 2.9 days from week three, a 7.5-fold steepening.
+That is the elbow. It lives between 0.14 and 0.01 mg/L and it is over inside
+24 hours.
+
+### 9.2 Where the Elbow Sits at Each Dose
+
+```{r elbow}
+#| fig-height: 4.2
+#| fig-cap: "Single dose of the same molecule at four dose levels, with the CD3 arm on. Concentrations are scaled to the dose so the shapes can be compared. The horizontal line is $K_{ss}$ for the tumor antigen. A profile bends where it crosses that line; the 0.7 mg profile starts below it and never does."
+doses <- c(0.7, 20, 160, 1000)
+prof <- lapply(doses, function(dd) {
+  as_tibble(rxSolve(truth, p_sim, et(amt = dd, time = 0) |> et(seq(0, 42, by = 0.02)))) |>
+    mutate(dose = factor(paste(dd, "mg"), levels = paste(doses, "mg")))
+}) |> bind_rows()
+
+ggplot(prof, aes(time, cc, colour = dose)) +
+  geom_hline(yintercept = 1.95, linetype = 2, colour = "grey45") +
+  annotate("text", x = 41, y = 1.95, label = "Kss", hjust = 1, vjust = -0.5,
+           size = 3.2, colour = "grey35") +
+  geom_line(linewidth = 0.6) +
+  scale_y_log10() + annotation_logticks(sides = "l") +
+  labs(x = "Days after a single dose", y = "Concentration (mg/L)", colour = NULL)
+```
+
+The 1000 mg profile is the textbook picture: flat while the target is
+saturated, then bending as concentration falls toward $K_{ss}$. The 0.7 mg
+profile has its entire elbow in the first hours, below the bottom of the
+axis a clinical assay can reach.
+
+### 9.3 The Hypothesis That Survives
+
+Stated so that it can be shot at.
+
+> **A T-cell engager shows exactly the target-mediated disposition its
+> affinity and target burden imply. It is invisible because the priming dose
+> never puts the concentration above $K_{ss}$, so the elbow is compressed
+> into the first hours at concentrations near the assay floor; and because
+> the target is destroyed within a day or two, so by the therapeutic dose,
+> where concentrations finally exceed $K_{ss}$, there is no sink left to
+> bend the curve. Neither half of that has anything to do with CD3.**
+
+The predictions it makes, and how each could fail.
+
+| Prediction | Fails if |
+|:---|:---|
+| A B-cell depleting mAb dosed at 0.7 mg shows the same elbow as a TCE at 0.7 mg | The engager's profile is steeper, which would mean CD3 contributes |
+| Dense sampling over the first 24 h after a TCE priming dose, with a sub-ng/mL assay, shows a half-life under a day | The observed early half-life matches the reported terminal one |
+| A TCE given without step-up, straight to the full dose, shows the mAb-like elbow as concentration decays through $K_{ss}$ | The profile is log-linear at the full dose too |
+| Obinutuzumab pretreatment removes the elbow from a first glofitamab dose | Glofitamab shows an elbow anyway |
+
+: Predictions of the surviving hypothesis {tbl-colwidths="[62,38]"}
+
+Row 1 is already simulated above. Row 4 is already observed: glofitamab is
+pretreated and its published model is linear.
+
+### 9.4 What the Round-Trip Falsified
+
+The hypothesis this section started from was that the clinical sampling
+schedule hides a large target-mediated clearance, so a population fit reports
+a small time-dependent term instead. Simulating the odronextamab regimen from
+the mechanism above, sampling at predose and post-infusion times with a 0.10
+mg/L quantitation limit, and refitting with teclistamab's
+$CL_1+CL_2e^{-K_{DES}t}$ form recovers a 25-fold clearance change against a
+40-fold truth.
+
+**The clinical schedule does see it.** The published odronextamab model
+reports 26-fold, which is what this round-trip predicts, so nothing is being
+hidden there. That leaves teclistamab's 2.2-fold and mosunetuzumab's 1.8-fold
+needing a different explanation from sampling: a genuinely smaller target
+pool in heavily pretreated myeloma and lymphoma, a narrower dose range, or
+subcutaneous absorption smearing the early profile. Which of those it is, is
+the next simulation and is not done.

@@ -19,18 +19,25 @@ and compiles the pharmacokinetic parameters needed to work it out.
 
 | Explanation | Verdict |
 |:---|:---|
-| The priming dose sits below the Michaelis constant, where a saturable elimination is arithmetically first-order | ✅ **Holds.** Odronextamab's $k_m$ is 1.95 mg/L and the 0.7 mg priming dose peaks at 0.14 mg/L |
-| The target sink is destroyed during cycle 1, so the nonlinearity has no time to appear | ✅ **Holds.** Four of the five published models carry a decaying clearance term; odronextamab's total clearance falls 25-fold |
+| The priming dose never puts the concentration above the Michaelis constant, so the elbow is compressed into the first hours | ✅ **Holds, simulated.** Odronextamab's $k_m$ is 1.95 mg/L and its 0.7 mg priming dose peaks at 0.14 mg/L. The apparent half-life is 0.39 d over the first day against 2.9 d from week three |
+| The target is destroyed within a day or two, so by the therapeutic dose there is no sink left to bend the curve | ✅ **Holds, simulated.** 80% of the antigen pool is gone one day after a saturating dose |
+| The CD3 arm is what makes T-cell engagers different | ❌ **Falsified.** A B-cell depleting antibody with no CD3 arm, same target and same dose, gives a curvature ratio of 7.0 against the engager's 7.5 |
+| The published models report a small time-dependent clearance because the clinical schedule hides a large one | ❌ **Falsified.** A round-trip through the clinical schedule recovers 25-fold against a 40-fold truth |
 | Slow subcutaneous absorption rate-limits the terminal slope | ⚠️ **Narrow.** True for teclistamab early in treatment, false for elranatamab, inapplicable to the intravenous drugs |
-| Sampling and assay quantitation limits hide the drop | ❔ **Untestable from published summaries.** Stated as a data request |
 
-: The four explanations and where each stands {tbl-colwidths="[55,45]"}
+: Where each explanation stands after Section 9's simulations
+{tbl-colwidths="[42,58]"}
 
-The finding underneath all four: **TMDD in this class is reported as
-time-dependent clearance, not as a concentration nonlinearity.** A reader
-scanning parameter tables for a TMDD structure finds one, epcoritamab's,
-and concludes the mechanism is absent. It is in the other models under a
-different name.
+The finding underneath: **nothing about this is specific to T-cell
+engagers.** The same antibody, same target, same affinity, dosed at 0.7 mg
+rather than 1000 mg, behaves the same way. What a T-cell engager has is a
+dose three orders of magnitude below a conventional antibody's, and at that
+dose the target-mediated phase is over within a day at concentrations near
+the assay floor.
+
+**Scope.** Molecules with an intact Fc domain. Blinatumomab, tebentafusp and
+the albumin-binding formats clear in hours on molecular size alone and are
+here only as a contrast.
 
 ## Documents
 
