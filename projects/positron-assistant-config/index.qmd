@@ -11,7 +11,8 @@ toc: false
 **Obsolete, 2026-09-12.** The approval mode is set from the chat pane, not from
 a settings file. Click the icon at the lower left of the chat input box and
 pick **Auto mode**. The work below was done before that control was found, and
-is kept for the permission key reference it contains.
+is kept for the permission key reference it contains. The project is on the
+[archive page](../archive.qmd) rather than the [Projects page](../index.qmd).
 :::
 
 Posit Assistant asks for confirmation on every file it edits. Turning that off

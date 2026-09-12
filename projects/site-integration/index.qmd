@@ -7,6 +7,12 @@ date: last-modified
 toc: false
 ---
 
+::: {.callout-note appearance="simple"}
+**Archived, 2026-09-12.** The migration is done and this is the record of it.
+The project is on the [archive page](../archive.qmd) rather than the
+[Projects page](../index.qmd).
+:::
+
 The personal site at
 [sites.google.com/site/andrewsteinphd](https://sites.google.com/site/andrewsteinphd/home)
 and this site should be one site, with nothing dropped without a recorded

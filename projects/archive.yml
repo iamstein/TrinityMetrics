@@ -1,0 +1,17 @@
+- title: "Positron Assistant configuration"
+  subtitle: "Overtaken by a button"
+  description: >
+    Scoping a committed settings file to stop Posit Assistant asking before
+    every edit. Obsolete: the approval mode has a picker in the chat pane.
+    Kept for its reference table of permission keys.
+  categories: [GenAI]
+  path: positron-assistant-config/index.qmd
+
+- title: "Site integration"
+  subtitle: "Finished"
+  description: >
+    Merging the Google Sites personal site into this one, with nothing dropped
+    without a recorded decision to drop it. The content has moved, the site
+    answers at trinitymetrics.com, and the old pages point at it.
+  categories: [Site Maintenance]
+  path: site-integration/index.qmd

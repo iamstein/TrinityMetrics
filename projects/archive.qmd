@@ -1,0 +1,26 @@
+---
+title: "Archive"
+description: "Projects that are finished, or that were overtaken by something else. They keep their pages and their URLs."
+listing:
+  - id: archived
+    contents: archive.yml
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, categories, description]
+    categories: true
+    feed: false
+toc: false
+---
+
+Two kinds of project end up here. Some are finished, and the conclusion in them
+still stands. Some were overtaken, because the question they asked got answered
+somewhere else or stopped being a question. The card says which.
+
+Nothing moved to get here. Each project keeps the folder it was always in and
+the address it was always at, so a link to one of these pages still works. The
+only change is that the card no longer sits on the
+[Projects page](index.qmd).
+
+::: {#archived}
+:::

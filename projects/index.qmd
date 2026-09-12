@@ -102,3 +102,8 @@ biomarkers that track both.
 
 ::: {#earlier-work}
 :::
+
+## Archive
+
+Projects that are finished, or that were overtaken by something else, are on
+the [archive page](archive.qmd). They keep their pages and their URLs.

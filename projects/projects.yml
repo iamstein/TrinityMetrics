@@ -102,16 +102,6 @@
   categories: [GenAI, Draft]
   path: agentic-engineering-analysis/index.qmd
 
-- title: "Positron Assistant configuration"
-  subtitle: "Working document"
-  description: >
-    Posit Assistant asks before every edit, and turning that off wholesale
-    gives an assistant that will also push to a shared branch. Scoping the
-    committed settings file that sits between the two, for a group working
-    with clinical data.
-  categories: [GenAI, Draft]
-  path: positron-assistant-config/index.qmd
-
 - title: "Exposure metric guide"
   subtitle: "Working document"
   description: >
