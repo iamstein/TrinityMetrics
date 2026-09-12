@@ -14,20 +14,23 @@ data frame to a model provider. The setting that sits between the two is
 in the project root, committed so that everyone working in the repository gets
 the same posture.
 
-This project scopes that file before writing it. The specification lists
-twenty-two behaviors with a verdict on each, maps Posit's four approval modes
-onto the Claude Code modes some of the group already use, and records what the
-assistant sends to a provider without being asked. The last of those is the
-finding to read first if the project holds patient data.
+The recommended file is two settings long, and the specification says why it
+is that short. The test is whether git can undo the thing a rule would prevent,
+which removes almost every rule anyone would think to write. The specification
+also compares the `auto` and `normal` modes, carries a checklist of behaviors
+with a verdict on each, and records what the assistant sends to a provider
+without being asked. The last of those is the finding to read first if the
+project holds patient data.
 
-Nothing here has been run. The specification is a scoping document with six
-open questions, and every source is marked as transcribed rather than checked.
+No behavior in it has been observed in Positron yet. Eight open questions
+remain, three of which take about ten minutes each.
 
 ## Documents
 
-- [Working specification](specification.qmd). The checklist of behaviors, the
-  recommended settings file, the approval modes, the sandbox, the limits of
-  what a settings file enforces, and the open questions.
+- [Working specification](specification.qmd). The recommended settings file,
+  the test that keeps it short, `auto` against `normal`, the checklist of
+  behaviors, the sandbox, the limits of what any settings file enforces, and
+  the open questions.
 - [References](references.qmd). The Posit documentation, the general
   cross-vendor guidance on agent permissions, and a marker on each recording
   whether the claim drawn from it has been checked against the source.

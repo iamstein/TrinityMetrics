@@ -1,7 +1,7 @@
 ---
 title: "Positron Assistant configuration for a project"
 subtitle: "Working specification: what the assistant should be allowed to do, and the file that says so"
-description: "Scoping a committed settings file for Posit Assistant in Positron: a checklist of the behaviors wanted and not wanted, the approval mode that matches Claude Code's Auto, and what the assistant sends to a model provider without being asked."
+description: "A committed settings file for Posit Assistant in Positron: the two settings to write, the test that keeps the file short, how auto and normal differ, and what the assistant sends to a model provider without being asked."
 categories: [GenAI, working document]
 date: last-modified
 toc: true
@@ -10,48 +10,32 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**Scoping only, started 2026-09-11, revised 2026-09-12. No behavior below has
-been observed in Positron.** The documentation claims come from Posit pages
-read through a web fetch and carry ⚠️ on [the references page](references.qmd).
-Two settings files from this group were read on disk and carry ✅, and they
-have already corrected this document twice. Section 12 lists the nine checks
-outstanding, three of which take about ten minutes each and decide whether the
-recommendation in Section 3 does what it says. The finding in Section 5 is the
-one to read first.
+**No behavior below has been observed in Positron.** The documentation claims
+come from Posit pages read through a web fetch and carry ⚠️ on
+[the references page](references.qmd). Two settings files from this group were
+read on disk and carry ✅. Section 11 lists the checks outstanding. The finding
+in Section 6 is the one to read first.
 :::
 
 ## 1. Scope
 
-One file, `.posit/assistant/settings.json`, committed to a project
-repository, that does two things. It lets the assistant work in the repository
-without a confirmation click on every edit. It stops the assistant from
-sending patient data to a model provider, and from rewriting shared history.
+One file, `.posit/assistant/settings.json`, committed to a project repository,
+that lets the assistant work in the repository without a confirmation click on
+every edit, and stops it from doing damage that version control cannot undo.
 
 The reader is a statistician or pharmacometrician using Positron with the
-assistant turned on. Agent permission systems are explained from zero in
-Section 4. The software developers in the group can start at Section 6.
+assistant turned on. Section 4 explains agent permission systems from zero.
 
-**Out of scope.** This document does not compare models or providers, does not
-cover prompting, and does not cover Posit Workbench administration. It also
-does not make the assistant safe to point at identifiable patient data.
-Section 10 says why no settings file can do that.
+**Out of scope.** Model and provider comparison, prompting, and Posit Workbench
+administration. This document also does not make the assistant safe to point at
+identifiable patient data, and Section 10 says why no settings file can.
 
-## 2. Positron Assistant Is Now Called Posit Assistant
+**A note on the name.** Positron Assistant and Databot merged into Posit
+Assistant, which shipped as the default in Positron 2026.07. Both names are in
+circulation. The setting that turns it on is now `assistant.enabled`, gated by
+`ai.enabled`. The older `positron.assistant.enable` applies only before 2026.07.
 
-The product was renamed, and both names are in circulation.
-
-| Version | Name | Setting that turns it on |
-|---|---|---|
-| 2026.04 | Positron Assistant, in preview | `positron.assistant.enable` |
-| 2026.07 and later | Posit Assistant, on by default | `assistant.enabled`, gated by `ai.enabled` |
-
-Posit Assistant is Positron Assistant and Databot merged into one product. The
-older `positron.assistant.enable` setting is legacy and applies only before
-2026.07. Documentation written against the older name still describes the
-current product in most respects, and the configuration file described in
-Section 6 is new with the rename.
-
-## 3. The Recommendation
+## 2. The Recommendation
 
 Set the approval mode to `auto`, allow `executeCode`, and write nothing else.
 
@@ -64,113 +48,126 @@ Set the approval mode to `auto`, allow `executeCode`, and write nothing else.
 }
 ```
 
-The second line is there because `executeCode` runs R or Python in the active
-console session, which is the tool this group uses most. Section 4 says why no
-`bash` rule constrains it.
+**`approvalMode: auto`** lets the assistant read, edit, run, build and commit
+inside the project without asking, and gates everything that leaves it.
+Section 5 compares it against the `normal` default.
 
-The file is short because of the question in Section 3.1, which is the one to
-ask before writing any rule at all.
+**`executeCode: allow`** covers running R or Python in the active console
+session. That is the tool this group uses most, it is separate from `bash`, and
+no `bash` rule constrains it.
 
-### 3.1 Ask What Git Cannot Undo
-
-A permission rule earns its place only if it prevents something a `git restore`
-or a `git checkout` cannot. Sorting the risks that way empties most of the file.
-
-**Git undoes it, so no rule is needed.** A file deleted, overwritten,
-mangled or half-rewritten inside the project. A model definition changed by
-mistake. A lock file or a dependency list edited as a side effect of other
-work. All of these are recoverable from the last commit, and the cost of the
-mistake is the time since that commit.
-
-**Git does not undo it, and `auto` already covers it.** Anything outside the
-working directory, which is the boundary the mode is defined by. Credentials
-sent to an external endpoint. A force-push. A remote script piped into an
-interpreter. These are on Posit's published list of what the classifier blocks.
-
-**Git does not undo it, and nothing here covers it.** Data sent to the model
-provider, which Section 5 is about, and which no permission rule addresses.
-
-The second group is the only one where a written rule would add anything, and
-`auto` is already handling it. That is why the file is two settings.
-
-### 3.2 Commit Often, Because That Is the Actual Control
-
-The recommendation above rests on git, so the habit has to be real. Everything
-inside the project is recoverable to the last commit and nothing before it.
-Uncommitted work is the only project material that a mistake can destroy
-permanently, and it is the one thing no setting in this document protects.
-
-An assistant working in `auto` mode moves faster than one asking permission,
-which means more changes between commits unless the commits get more frequent.
-The mode and the habit go together.
-
-### 3.3 What You Might Add Later, and Why You Probably Will Not
-
-Three rules were in an earlier draft of this recommendation and came out. Each
-is listed with what it would buy, in case a project turns up that needs it.
-
-`"bash": {"git push --force*": "deny"}` duplicates a block `auto` already
-performs. It is written down rather than left to a classifier, which is the
-only argument for it. Add it if you push to a branch other people build on.
-
-`"external_directory": "ask"` duplicates the working-directory boundary that
-defines `auto`. Add it if you often open a workspace whose root is wider than
-one project, such as a folder containing every repository you have.
-
-`"bash": {"rm -rf *": "deny"}` is discussed in Section 8.4. The short version
-is that it guards the case git already covers, and misses the spelling
-variants.
+The file lives in the project root and is committed, so everyone working in the
+repository gets the same posture. A personal file at
+`~/.posit/assistant/settings.json` is overridden by it. Both paths were
+confirmed on disk on 2026-09-12.
 
 **⚠️ One thing here is unverified.** Whether `approvalMode` is accepted in a
-project-level settings file, or only globally. Section 12 has the check, and it
-takes about a minute.
+project-level file or only globally. The check takes a minute and is question 1
+in Section 11.
 
-## 4. How an Agent Permission System Decides What to Do
+## 3. The Test That Keeps the File Short
+
+Before writing any rule, ask whether git can undo the thing the rule prevents.
+Almost nothing survives that question.
+
+| Risk | Can git undo it | Rule needed |
+|---|---|---|
+| A file deleted, overwritten or mangled inside the project | Yes, to the last commit | No |
+| A model definition or dependency list changed by mistake | Yes, to the last commit | No |
+| Anything written outside the working directory | No | No, `auto` gates it |
+| Credentials sent to an external endpoint | No | No, `auto` blocks it |
+| A force-push | No | No, `auto` blocks it |
+| Data sent to the model provider | No | None exists, see Section 6 |
+
+Every row is either recoverable or already handled, which is why the file in
+Section 2 has two settings.
+
+**The habit carries the configuration.** Everything inside the project is
+recoverable to the last commit and nothing before it. Uncommitted work is the
+only project material a mistake can destroy permanently, and no setting in this
+document protects it. An assistant in `auto` mode makes more changes per hour
+than one asking permission, so the commits have to get more frequent to match.
+
+## 4. How the Permission System Works
 
 The assistant does not edit a file or run a command directly. It proposes a
-**tool call**, which is a named request such as "edit `model.R`" or "run
-`quarto render`". A permission layer sits between the proposal and the action
-and returns one of three answers.
+**tool call**, a named request such as "edit `model.R`" or "run
+`quarto render`". A permission layer answers each proposal with `allow`, which
+runs it silently, `ask`, which shows a dialog, or `deny`, which refuses and
+tells the assistant it was refused.
 
-- `allow` runs the tool call with no prompt.
-- `ask` shows the proposal and waits for a click.
-- `deny` refuses the tool call and tells the assistant it was refused.
+Each tool has a key used in the settings file.
 
-Each tool has a key used in the settings file. The reference page gives
-examples for four of them, and the full set is longer. These are the ones that
-decide anything here.
+| Key | What it governs |
+|---|---|
+| `executeCode` | Running R or Python in the active console session |
+| `bash` | Shell commands, matched as patterns |
+| `edit` | Changing or creating a file, matched per file pattern |
+| `read` | Reading a file |
+| `external_directory` | Any path outside the working directory |
+| `webfetch` | Retrieving a URL, including an intranet address |
+| `task` | Spawning a subagent, by type |
+| `skill` | Invoking a named skill |
 
-| Key | What it governs | Why it is in this table |
+The remaining keys are `glob`, `grep`, `list`, `websearch`, `todowrite`,
+`question`, `lsp` and `doom_loop`. None needs a rule in a pharmacometrics
+project.
+
+Both `bash` and `edit` take patterns, so `"git *": "allow"` and
+`"rm *": "deny"` can sit side by side. A tool can also take one answer for
+everything, written as `"read": "allow"`.
+
+A `deny` is documented as absolute: no approval, mode or setting gets past it,
+including in `auto` and `yolo`. That makes a written denial the strongest thing
+available, on the rare occasion one is needed.
+
+The **approval mode** answers everything the written rules do not mention,
+which under the recommendation in Section 2 is everything.
+
+## 5. Auto Against Normal
+
+Four modes exist. `restricted` is for a repository you did not write and do not
+trust. `yolo` removes the classifier and Section 10 is the argument against it.
+The real choice is between the two in the middle.
+
+| | `normal`, the default | `auto`, recommended |
 |---|---|---|
-| `executeCode` | Running R or Python in the active console session | The tool this group uses most, and the one Section 10 is about |
-| `bash` | Shell commands, matched as patterns | Where `git` and file manipulation rules go |
-| `edit` | Changing or creating a file, matched per file pattern | Items 2, 3 and 11 of the checklist |
-| `read` | Reading a file | Everything an assistant does starts here |
-| `external_directory` | Any path outside the working directory | The boundary `auto` mode is defined against |
-| `webfetch` | Retrieving a URL, including an intranet address | Section 5 |
-| `task` | Spawning a subagent, by type | Subtypes `explore` and `general` |
-| `skill` | Invoking a named skill | Appears in real configurations in this group |
+| Who judges a risky tool call | You, in a dialog box | A classifier model reading the call |
+| What the judgment uses | A fixed split of operations into safe and risky | The command, the path it touches, and the context |
+| Where the boundary sits | Wherever accumulated approvals have put it | The working directory, plus a fixed blocked list |
+| Is the decision written down | Yes, if you choose "for this project" | No |
+| Prompts per hour | Many at first, fewer over time | Few, and the number does not drift |
 
-The remaining documented keys are `glob`, `grep`, `list`, `websearch`,
-`todowrite`, `question`, `lsp` and `doom_loop`. None needs a rule in a
-pharmacometrics project.
+`auto` allows what stays inside the working directory: reading and editing
+files, running tests and builds, committing to the current branch, and
+read-only web requests. It blocks a published list: piping a remote script into
+an interpreter, sending credentials to an external endpoint, force-pushing, and
+modifying production infrastructure. `normal` publishes no equivalent list.
 
-Both `bash` and `edit` take patterns rather than a single answer, so
-`"git *": "allow"` and `"rm *": "deny"` can sit side by side, and so can
-`"*.R": "allow"` and `"renv.lock": "ask"`. A tool can also take one answer for
-everything it does, written as `"read": "allow"`.
+**✅ Choose `auto`, and the reason is drift rather than convenience.** The
+dialog in `normal` offers "allow for this project", which writes a permanent
+entry into the settings file. After a few weeks that file is an allowlist
+nobody designed, and it only ever grows. On day one `normal` is stricter than
+`auto`. On day sixty it is looser, because its boundary has moved to wherever
+the clicking put it, while the `auto` boundary has not moved at all.
 
-Two things then decide the answer to a given tool call. The per-tool rules in
-the settings file answer the calls they match. The **approval mode** is the
-posture that answers everything the rules do not mention, and Section 8
-compares the four modes available.
+A dialog that appears many times a day also stops being read.
 
-A configuration is working when a prompt appears for actions that leave the
-repository, and for nothing else. Prompting on every file edit is the
-complaint that started this project. Never prompting at all has its own
-section, Section 10.
+**The floor of `auto` is `normal`.** If the classifier blocks three tool calls
+in a row, the session drops back to `normal` and starts prompting. A session
+that suddenly asks permission for everything has been demoted, and the thing to
+look at is what the assistant was trying to do when it was blocked.
 
-## 5. What the Assistant Sends Without Being Asked
+**Neither mode documents what it does with `rm -rf`.** Deletion is not on the
+`auto` blocked list, so a recursive delete inside the working directory is
+inside the zone the mode allows, and one outside it is gated for crossing the
+boundary rather than for being destructive. A written
+`"bash": {"rm -rf *": "deny"}` would hold, since a deny is absolute. It is not
+recommended, because it guards a case git already covers and matches one
+spelling out of several. `rm -fr`, `rm -r -f` and `unlink(recursive = TRUE)` in
+the R console are all different strings.
+
+## 6. What the Assistant Sends Without Being Asked
 
 Posit Assistant attaches context to a chat turn automatically, and the list
 includes the contents of the R or Python session.
@@ -181,426 +178,192 @@ includes the contents of the R or Python session.
 - The current plot.
 - The project structure and its version control history.
 
-The setting `assistant.aiExcludes` takes a list of glob patterns, in the style
-of a `.gitignore` file, and excludes matching **files** from inline completions
-and chat context.
+The setting `assistant.aiExcludes` takes glob patterns in the style of a
+`.gitignore` file and excludes matching **files** from completions and chat
+context.
 
 **⚠️ Excluding a data file may not exclude the data.** The documentation
-describes `aiExcludes` as operating on file contents, and describes the
-Variables pane as a separate context source. Read literally, a data frame read
-from an excluded CSV file still reaches the provider through the session
-context once it is in memory. This has not been tested and it is the first
-thing to check.
+describes `aiExcludes` as operating on file contents and describes the
+Variables pane as a separate context source. Read literally, a data frame built
+from an excluded CSV file still reaches the provider once it is in memory.
+Untested, and it is question 2 in Section 11.
 
 **❌ Do not point the assistant at a session holding identifiable patient data
-until that check is done.** A settings file is the wrong control for this
-problem in any case. De-identify before the data reaches the machine, and keep
-the assistant off any project where that has not happened.
+until that check is done.** A settings file is the wrong control for this in
+any case. De-identify before the data reaches the machine.
 
-## 6. Where the Settings Live, and Which File Wins
+A related case: a `webfetch` rule allowing an intranet host means pages from
+that host become model context and go to the provider with everything else.
 
-Posit Assistant reads a plain JSON file at two levels.
+## 7. The Behavior Checklist
 
-| Level | Path | Committed to the repository |
-|---|---|---|
-| Global, all projects | `~/.posit/assistant/settings.json` | No |
-| Project | `.posit/assistant/settings.json` in the project root | Yes |
+Each row is a behavior and a verdict. ✅ runs with no prompt, ⚠️ prompts, ❌ is
+refused. Everything marked `auto` needs no written rule.
 
-Both paths were confirmed on disk on 2026-09-12 rather than taken from the
-documentation. The project file is where the Positron approval dialog writes a
-permission granted with the "For this project" scope, and it is tracked in git
-in the projects in this group that have one.
+**Reading and editing**
 
-Settings resolve last-wins in this order: built-in defaults, then the global
-file, then the project file, then environment variables, then command-line
-flags. A project file therefore overrides a personal one, which is the
-behavior wanted here. The project file is checked in so that everyone working
-in the repository gets the same posture.
-
-Model provider connections are a separate global file, `~/.posit/ai/providers.json`,
-and are not part of this project. Credentials do not belong in a committed
-file.
-
-Two environment variables are available to whoever administers a shared
-Workbench: `POSIT_ASSISTANT_SETTINGS_ENFORCED` sits above everything and
-cannot be overridden, and `POSIT_ASSISTANT_SETTINGS_DEFAULT` sits below
-everything. An enforced `approvalMode` acts as a ceiling rather than a fixed
-value, so a user can still choose a stricter mode than the administrator set.
-
-## 7. The Feature Checklist
-
-Each row is a behavior, a verdict, and the setting that implements it. The
-verdict reads: ✅ runs with no prompt, ⚠️ prompts for a click, ❌ refused.
-
-### 7.1 Reading and Editing in the Repository
-
-| # | Behavior | Verdict | Implemented by |
+| # | Behavior | Verdict | Handled by |
 |---|---|---|---|
-| 1 | Read any file in the project | ✅ | `"read": "allow"` |
-| 2 | Edit an existing file in the project | ✅ | `"edit": "allow"` |
-| 3 | Create a new file in the project | ✅ | `"edit": "allow"` |
-| 4 | Delete a file | ⚠️ | `"rm *": "ask"` |
-| 5 | Write anywhere outside the project | ❌ | `sandbox.enabled`, Section 9 |
-| 6 | Read `~/.ssh`, `~/.aws`, other credential paths | ❌ | `sandbox.enabled`, Section 9 |
+| 1 | Read any file in the project | ✅ | `auto` |
+| 2 | Edit an existing file in the project | ✅ | `auto` |
+| 3 | Create a new file in the project | ✅ | `auto` |
+| 4 | Delete a file in the project | ✅ | `auto`, recoverable by git |
+| 5 | Write anywhere outside the project | ⚠️ | `auto` boundary |
+| 6 | Read `~/.ssh`, `~/.aws`, other credential paths | ❌ | `sandbox`, Section 9 |
 
-Items 1 to 3 are the point of the exercise. An agent that asks permission to
-edit the file it was asked to edit is slower than doing the work by hand, and
-the group's complaint about the default is exactly this.
+**Running code**
 
-### 7.2 Running Code
-
-| # | Behavior | Verdict | Implemented by |
+| # | Behavior | Verdict | Handled by |
 |---|---|---|---|
-| 7 | Run R or Python in the console session | ✅ | `"executeCode": "allow"` |
-| 7a | Run an R or Python script from the shell | ✅ | `approvalMode: auto` |
-| 8 | Render a Quarto document | ✅ | `"quarto *": "allow"` |
-| 9 | Run a test suite | ✅ | `approvalMode: auto` |
-| 10 | Install a package | ✅ | `approvalMode: auto` |
-| 11 | Modify a dependency or model definition file | ✅ | `approvalMode: auto`, and see below |
-| 12 | Submit a job to a cluster or remote host | ❌ | `"ssh *": "deny"`, `"sbatch *": "deny"` |
+| 7 | Run R or Python in the console session | ✅ | `executeCode: allow` |
+| 8 | Run a script, render Quarto, run tests | ✅ | `auto` |
+| 9 | Install a package | ✅ | `auto` |
+| 10 | Change a dependency list or model definition | ✅ | `auto`, recoverable by git |
+| 11 | Submit a job to a cluster or remote host | ❌ | `"ssh *": "deny"`, `"sbatch *": "deny"` |
 
-Items 10 and 11 were ⚠️ in an earlier draft, on a reproducibility argument: a
-lock file or a model definition changed as a side effect of other work is a
-change nobody reviewed. Both are ✅ now. The change is recorded in Section 11,
-and the reason is the test in Section 3.1. A dependency list or an `.mlxtran`
-model file that changes by mistake is recoverable from the last commit, so a
-prompt buys a review that the diff already provides.
+Item 11 is the one case where a written rule earns its place on cost rather
+than on recoverability. A four-hour model fit is expensive to start by
+accident and the cost lands on a shared queue.
 
-Item 7 is the one to get right for this group. Posit Assistant has built-in
-access to the active R or Python session and can run code in it without any
-configuration. The `executeCode` tool is how, and Section 10 explains what it
-does to every other rule in the file.
+**Version control**
 
-Item 12 is more of a concern here than in general software work. A model fit
-that takes four hours on a cluster is expensive to start by accident, and the
-cost lands on a shared queue.
-
-### 7.3 Version Control
-
-| # | Behavior | Verdict | Implemented by |
+| # | Behavior | Verdict | Handled by |
 |---|---|---|---|
-| 13 | `git status`, `git diff`, `git log` | ✅ | `"git *": "allow"` |
-| 14 | `git add`, `git commit` on the current branch | ✅ | `"git *": "allow"` |
-| 15 | `git push` | ⚠️ | `approvalMode: auto` |
-| 16 | `git push --force` | ❌ | `approvalMode: auto` |
-| 17 | `git reset --hard`, `git checkout` over local changes | ⚠️ | `approvalMode: auto` |
+| 12 | `git status`, `git diff`, `git log` | ✅ | `auto` |
+| 13 | `git add`, `git commit` on the current branch | ✅ | `auto` |
+| 14 | `git push` | ⚠️ | `auto` |
+| 15 | `git push --force` | ❌ | `auto` blocked list |
+| 16 | `git reset --hard` over local changes | ⚠️ | `auto` |
 
-Committing freely and pushing on a prompt is the split that fits the way this
-group works. A commit is local and reversible. A push is visible to everyone
-and, in the force case, destroys work that is not yours.
+**The outside world**
 
-All three rows are handled by the mode rather than by a written rule. `auto`
-allows committing to the current branch and blocks force-pushing by name.
-Section 3.3 gives the argument for writing the force rule down anyway, and the
-argument for not bothering.
-
-### 7.4 The Outside World
-
-| # | Behavior | Verdict | Implemented by |
+| # | Behavior | Verdict | Handled by |
 |---|---|---|---|
-| 18 | Read-only web requests for documentation | ✅ | `approvalMode: auto` |
-| 19 | Send file contents to the model provider | ⚠️ | `assistant.aiExcludes`, Section 5 |
-| 20 | Send session variables to the model provider | ❌ | not solvable in settings, Section 5 |
-| 21 | Spawn a subagent | ⚠️ | `"task": {"general": "ask"}` |
-| 22 | Run an MCP server not listed in the project file | ❌ | `mcpServers`, unset by default |
+| 17 | Read-only web requests for documentation | ✅ | `auto` |
+| 18 | Send file contents to the model provider | ⚠️ | `assistant.aiExcludes` |
+| 19 | Send session variables to the model provider | ❌ | nothing, Section 6 |
+| 20 | Spawn a subagent | ⚠️ | `auto` |
+| 21 | Run an MCP server not listed in the project file | ❌ | `mcpServers`, unset |
 
-Model Context Protocol, abbreviated MCP, is a way of giving an assistant extra
-tools from an external process. An MCP server can do anything its author wrote
-it to do, and it is outside every rule in this file. None is configured here.
+Model Context Protocol, abbreviated MCP, gives an assistant extra tools from an
+external process. Such a server can do anything its author wrote it to do and
+sits outside every rule in this file. None is configured here.
 
-### 7.5 Converting a Configuration Built by Clicking
+## 8. Converting a Configuration Built by Clicking
 
-The Positron approval dialog writes each granted permission into
-`.posit/assistant/settings.json`. Clicking through a few weeks of work produces
-a file of thirty or forty entries that nobody chose as a set. Two real examples
-from this group were read on 2026-09-12, and the same three things were true of
-both.
+The approval dialog writes each granted permission into
+`.posit/assistant/settings.json`. A few weeks of clicking produces thirty or
+forty entries nobody chose as a set. Two real examples from this group were
+read on 2026-09-12, and the same three things were true of both.
 
-**Most entries are redundant under `auto`.** Rules for `git status`,
-`git diff`, `git log`, `git add`, `git commit`, `grep`, `head`, `tail`, `sed`,
-`ls`, `cp`, `R`, `Rscript`, `quarto render`, reading files, and fetching public
-documentation are all inside the working directory or read-only. The mode
-covers them. They can be deleted.
+**Most entries are redundant under `auto`.** Rules for `git status`, `git diff`,
+`git log`, `git add`, `git commit`, `grep`, `head`, `tail`, `sed`, `ls`, `cp`,
+`R`, `Rscript`, `quarto render`, reading files, and fetching public
+documentation are all inside the working directory or read-only. Delete them.
 
-**Four kinds of entry survive the conversion.** Pushing to a remote, reaching
-outside the project directory, running code in the console session, and
-fetching an internal address. Section 3 has a rule for each of the first three.
+**Four kinds of entry survive.** Pushing to a remote, reaching outside the
+project directory, running code in the console session, and fetching an
+internal address.
 
 **Neither file contained a single `deny`.** A configuration assembled by
-clicking Allow can only ever be an allowlist, because the dialog is only asked
-when something is about to run. Nothing accumulated that way will ever block a
-force-push or a credential read. The denials have to be written by hand, once.
+clicking Allow can only be an allowlist, because the dialog appears only when
+something is about to run. Nothing accumulated that way will block a force-push
+or a credential read.
 
-Two specific entries to look for when converting a file.
+Two entries to look for. ⚠️ `"bash": {"*": "allow"}` makes every other `bash`
+entry in the file decorative. ⚠️ `"git push *": "allow"` appears to match
+`git push --force` as well, since the flag is part of the string the pattern
+globs over.
 
-⚠️ **`"bash": {"*": "allow"}`** makes every other `bash` entry in the file
-decorative. Whether it also overrides a later `deny` is open question 4.
+## 9. Optional Additions
 
-⚠️ **`"git push *": "allow"`** appears to match `git push --force` as well,
-since the force flag is part of the argument string the pattern globs over.
-That is open question 5, and until it is answered a separate `deny` on the
-force case is the safe way to write it.
+None of these is in the recommendation. Each is listed with what it buys.
 
-## 8. The Approval Modes
+**`sandbox.enabled: true`** runs shell commands inside an operating-system
+sandbox, Seatbelt on macOS and bubblewrap on Linux. It restricts writes to the
+workspace and temp directories, blocks network access, and prevents reading
+paths such as `~/.ssh` and `~/.aws`. This is the only control in the document
+enforced by something other than the assistant honoring its own configuration,
+and it is what makes item 6 of the checklist a ❌ rather than a hope.
 
-Four modes, ordered from most to least restrictive.
+⚠️ **Turning the sandbox on breaks package installation**, because blocking
+network access stops `install.packages()` and `renv::restore()` when the
+assistant runs them. Turn it on for a project whose dependencies are stable,
+not for one being set up. Whether it covers `executeCode` as well as `bash` is
+question 6 in Section 11.
 
-| Mode | What it does | Claude Code equivalent |
-|---|---|---|
-| `restricted` | Confirmation on every action. Blocks project memory files and subagents. Applied automatically to an untrusted workspace | Plan mode, roughly |
-| `normal` | Safe operations run, risky ones prompt. Approvals can be granted once, for the session, or for the project. The default | Default mode |
-| `auto` | A classifier model judges each risky tool call. Actions inside the working directory run. A fixed list of operations is blocked | Auto |
-| `yolo` | Everything except explicitly dangerous operations runs with no prompt | `--dangerously-skip-permissions` |
+**`"bash": {"git push --force*": "deny"}`** writes down a block `auto` already
+performs, so it does not depend on a classifier. Add it if you push to a branch
+other people build on.
 
-The choice in practice is between `normal` and `auto`, and Sections 8.1 to 8.3
-are about that choice. `restricted` is for a repository you did not write and
-do not trust. `yolo` removes the classifier that makes `auto` acceptable, and
-Section 10 is the argument against it.
+**`"external_directory": "ask"`** duplicates the working-directory boundary.
+Add it if you open a workspace whose root is wider than one project, such as a
+folder holding every repository you have.
 
-### 8.1 What Each Mode Does Differently
+## 10. What This Cannot Do
 
-The modes differ in who decides a risky call, and in what happens to the
-decision afterwards. The second difference is the one that changes how a
-project looks after two months.
-
-| | `normal` | `auto` |
-|---|---|---|
-| Who judges a risky tool call | You, in a dialog box | A classifier model reading the call |
-| What the judgment is based on | A fixed classification of operations into safe and risky | The command, the path it touches, and the context it was requested in |
-| Where the boundary sits | Wherever your accumulated approvals have put it | The working directory, plus a fixed blocked list |
-| Is the decision written down | Yes, if you choose "for this project" | No |
-| Prompts per hour | Many at first, fewer over time | Few, and the number does not drift |
-| What a mistake costs | A permanent allowlist entry made while thinking about something else | One misjudged call, not persisted |
-
-**`auto` allows what stays inside the working directory.** Reading and editing
-files, running tests and builds, committing to the current branch, and
-read-only web requests. **It blocks a published list:** piping a remote script
-into an interpreter, sending credentials to an external endpoint, force-pushing,
-and modifying production infrastructure.
-
-`normal` has no equivalent published list. It classifies operations as safe or
-risky and prompts on the risky ones, and the documentation does not enumerate
-which is which.
-
-### 8.2 Normal Gets Looser Over Time and Auto Does Not
-
-The dialog box in `normal` offers three scopes: allow once, allow for this
-session, allow for this project. The third writes a permanent entry into
-`.posit/assistant/settings.json`.
-
-That is where the two configurations in Section 7.5 came from. Neither was
-designed. Both are the residue of clicking the third button while thinking
-about the analysis rather than about the permission. One of them contains
-`"bash": {"*": "allow"}`, which permits every shell command in that project
-from then on, and which nobody would write deliberately.
-
-So the two modes cross over.
-
-- On day one, `normal` is stricter. It prompts on things `auto` would run.
-- On day sixty, `normal` is looser. Its boundary has moved to wherever the
-  accumulated approvals put it, and it only ever moves outward. The boundary in
-  `auto` on day sixty is the boundary on day one.
-
-A dialog that appears many times a day also stops being read. The prompts in
-`normal` are frequent enough to become a reflex, and a reflex is not a review.
-Blocks in `auto` are rare enough to be informative when they happen.
-
-**✅ `auto` is the recommendation, and the accumulation argument is the
-stronger half of the reason.** The weaker half is that it prompts less, which
-is what makes people ask for it.
-
-### 8.3 The Demotion, and Why Normal Is the Floor
-
-If the classifier blocks three tool calls in a row, the session drops back to
-`normal` and starts prompting again. A session that suddenly asks permission
-for everything has not broken. It has been demoted, and the thing to look at is
-what the assistant was trying to do when it was blocked.
-
-`normal` is therefore the floor of `auto` rather than an alternative to it.
-Choosing `auto` is choosing where the session starts, not a promise about where
-it stays.
-
-### 8.4 Neither Mode Documents What It Does With `rm -rf`
-
-The obvious expectation is that any mode catches a recursive delete. Neither
-mode's documentation says so.
-
-`auto` publishes what it blocks, and deletion is not on the list. A `rm -rf` on
-a path inside the working directory is inside the boundary the mode allows. A
-`rm -rf` on a path outside it crosses the boundary and is gated for that
-reason, not because of what the command is.
-
-`normal` would presumably classify a recursive delete as risky and prompt. That
-is an inference from the phrase "safe operations run automatically", not a
-documented behavior, and it holds only until someone clicks "for this project"
-on an `rm` command once.
-
-**A written `deny` beats both.** The documentation states that a deny rule is
-absolute, that no approval, mode or setting gets past it, and that deny rules
-are enforced even in `auto` and `yolo`. So `"rm -rf *": "deny"` does what it
-says.
-
-Two reasons it is still not in the recommendation.
-
-It guards the case git already covers. A recursive delete inside the project is
-recoverable from the last commit, and a recursive delete outside the project is
-already gated by the working-directory boundary.
-
-It matches a spelling rather than an intent. `rm -rf build` matches the
-pattern. `rm -fr build`, `rm -r -f build` and `rm --recursive --force build` are
-different strings, and `unlink("build", recursive = TRUE)` in the R console is
-not a `bash` call at all. A rule that catches one spelling of four, on a case
-git already covers, buys less than it appears to.
-
-## 9. The Sandbox
-
-Setting `sandbox.enabled` to `true` runs shell commands inside an
-operating-system sandbox. On macOS it uses Seatbelt, on Linux bubblewrap. The
-sandbox restricts writes to the workspace and temporary directories, blocks
-network access, and prevents reading paths such as `~/.ssh` and `~/.aws`. On
-Windows the same setting turns on a gated mode that checks commands against a
-built-in allowlist.
-
-**⚠️ Turning the sandbox on breaks package installation.** Blocking network
-access from shell commands stops `install.packages()`, `renv::restore()`, and
-`pip install` when the assistant runs them. For a project whose dependencies
-are already restored, that is a fair trade and the sandbox should be on. For a
-project being set up, it is not, and the choice has to be made per project
-rather than once for the group.
-
-The sandbox is the only item in this document that enforces items 5 and 6 of
-the checklist by a mechanism outside the assistant. Everything else depends on
-the assistant honoring its own configuration.
-
-## 10. What a Settings File Cannot Do
-
-Both vendors state the same caution, and it should be quoted rather than
-paraphrased in a group where some readers will assume otherwise. Posit
-describes these controls as best-effort administrative policy and not a
+Posit describes these controls as best-effort administrative policy and not a
 security boundary, noting that a user who controls their own environment can
 reach a provider directly whatever the settings say. The VS Code documentation,
-which covers the chat interface Positron inherits, says terminal auto-approval
-is a best-effort convenience and not a security boundary, because command
-detection varies across shells and an obfuscated command can evade a pattern.
+covering the chat interface Positron inherits, says terminal auto-approval is a
+convenience and not a security boundary, because command detection varies
+across shells and an obfuscated command can evade a pattern.
 
-Three consequences follow for this group.
+**`executeCode` goes around every `bash` rule.** R's `system()` and `system2()`,
+and Python's `subprocess`, run any shell command. Posit's own extension
+documentation says to treat `executeCode` with caution, because R and Python
+run arbitrary code with the user's full permissions. The conclusion is not to
+deny it, which would remove the reason to use Posit Assistant at all. The
+conclusion is that `bash` rules guard the obvious route and nothing more.
 
-**`executeCode` is a way around every `bash` rule in the file.** R's `system()`
-and `system2()`, and Python's `subprocess`, run any shell command. A carefully
-written `bash` allowlist sitting beside `"executeCode": {"*": "allow"}`
-constrains the assistant only as long as the assistant chooses the shell rather
-than the console. Posit's own extension documentation says to treat
-`executeCode` with caution for this reason, because R and Python both run
-arbitrary code with the user's full permissions.
+**A pattern matches a spelling, not an intent.** `"rm *": "deny"` does nothing
+against `rm` invoked through a shell variable or a script.
 
-The consequence is not that `executeCode` should be denied. Denying it removes
-the reason to use Posit Assistant over a general coding agent. The consequence
-is that `bash` rules are a guard against the assistant doing something careless
-by the obvious route, and they should be read as no stronger than that.
-
-A pattern such as `"rm *": "deny"` guards against an accident. It does not
-guard against an adversary, because `rm` invoked through a shell variable, a
-script, or an R `system()` call never matches the pattern in the first place.
-
-The classifier in `auto` mode is one model judging another model's request. It
+**The classifier in `auto` is one model judging another model's request.** It
 lowers the accident rate. It proves nothing.
 
-Confidentiality of patient data is handled before Positron opens, by
-de-identification and by which machine the data sits on. No value in this file
-substitutes for that.
+**Confidentiality of patient data is settled before Positron opens**, by
+de-identification and by which machine the data sits on.
 
-## 11. What Was Considered and Rejected
+## 11. Open Questions
 
-**A rule protecting `renv.lock`. Rejected, reinstated, then rejected again.**
-An early draft argued that `edit` takes one answer for every file, so
-protecting a single file meant reintroducing the prompt-on-every-edit problem.
-That was wrong, and real configurations in this group settle it: entries such
-as `"*.R": "allow"` show the key takes a pattern per file. The rule went into
-the recommendation on 2026-09-12 and came out the same day, for a better
-reason than the first one. No project in this group uses renv, and a lock file
-that changes by mistake is recoverable from the last commit. The rule protected
-a file that does not exist against a loss that git already covers.
+Questions 1, 3 and 4 each take about ten minutes at a Positron prompt, and
+together they decide whether the file in Section 2 does what it says.
 
-**The same rule applied to `.mlxtran` model definitions.** Proposed as the live
-version of the reproducibility concern, since Monolix model files are edited in
-these projects and a lock file is not. Rejected by Andy on 2026-09-12: creating
-and editing model files is ordinary work and should not prompt, and a mistake is
-recoverable from version control. This is the case that produced the test in
-Section 3.1, which then removed two further rules.
-
-**`"rm -rf *": "deny"`.** Kept for one turn on the grounds that a written deny
-beats any mode. Removed because it guards the case git already covers and
-matches one spelling out of several. Section 8.4 has the argument.
-
-**`yolo` as the default.** It matches the request to have the assistant work
-freely, and it removes the classifier that makes `auto` acceptable in a
-repository holding analysis code. The three-block demotion in `auto` is a
-feature for this reason.
-
-**Putting the settings in `.vscode/settings.json`.** Positron is built on VS
-Code and reads that file, but the assistant's permission vocabulary is Posit's
-own and lives in `.posit/assistant/settings.json`. The VS Code chat settings
-such as `chat.tools.terminal.autoApprove` belong to GitHub Copilot Chat. Which
-of the two applies when both are present is an open question, recorded below.
-
-## 12. Open Questions
-
-1. **Is `approvalMode` accepted in a project-level file?** The documentation
-   lists the per-project settings explicitly, and `approvalMode` is not among
-   them. It appears in the section on administrator environment variables.
-   Section 3 depends on the answer. Check by setting it in a project file and
-   reading the mode indicator in the chat pane.
-2. **Does `aiExcludes` cover the Variables pane?** Section 5 says it does not,
-   read literally. Check by loading an excluded CSV file into a data frame and
-   asking the assistant what columns it has.
-3. **Does the `auto` classifier gate `executeCode` at all?** The mode is
-   described in terms of the working directory, and a console session has no
-   directory. If the classifier does not see console code, `auto` constrains
-   less than Section 8 claims.
-4. **Inside one tool block, does a specific pattern beat `*`?** A file
-   containing both `"*": "allow"` and `"rm *": "deny"` under `bash` behaves
-   very differently depending on the answer. The documentation gives the
-   resolution order across files and says nothing about within one. Partly
-   closed on 2026-09-12: a `deny` is documented as absolute and enforced even
-   in `auto` and `yolo`, so a deny beats an allow. Whether a specific `allow`
-   beats a general one is still open.
-5. **Does `git push*` match `git push --force`?** Relevant only to anyone
-   adding the optional rule in Section 3.3.
+1. **Is `approvalMode` accepted in a project-level file?** It is absent from
+   the documented list of per-project settings and appears in the section on
+   administrator environment variables. Check by setting it and reading the
+   mode indicator in the chat pane.
+2. **Does `aiExcludes` cover the Variables pane?** Check by loading an excluded
+   CSV file into a data frame and asking the assistant what columns it has.
+3. **Does the `auto` classifier gate `executeCode` at all?** The mode is defined
+   by the working directory, and a console session has no directory.
+4. **Inside one tool block, does a specific pattern beat `*`?** A `deny` beats
+   an `allow`, which is documented. Whether a specific `allow` beats a general
+   one is not.
+5. **Does `git push*` match `git push --force`?** Relevant only to the optional
+   rule in Section 9.
 6. **Does the sandbox cover `executeCode`?** The sandbox is documented as
-   sandboxing shell tool execution. If console code is outside it, then
-   `system()` in R escapes the sandbox as well as the `bash` rules, and
-   Section 9 claims more than it should.
-7. **What is the exact key for `aiExcludes` after the rename?** The
-   documentation shows `positron.assistant.aiExcludes` in the 2026.02 release
-   notes and `assistant.aiExcludes` in the current settings table.
+   sandboxing shell tool execution. If console code sits outside it, `system()`
+   in R escapes the sandbox as well as the `bash` rules.
+7. **What is the current key for `aiExcludes`?** The 2026.02 release notes show
+   `positron.assistant.aiExcludes` and the current settings table shows
+   `assistant.aiExcludes`.
 8. **Do the VS Code chat settings apply at the same time?** If
    `chat.tools.terminal.autoApprove` is also read, a project needs consistent
    rules in two files.
-9. **What does the `auto` classifier do with a long-running R script?** A
-   four-hour model fit inside the working directory is not risky by the
-   classifier's definition and is expensive by ours.
 
-Questions 1, 4 and 5 are each answerable in about ten minutes at a Positron
-prompt, and together they decide whether the file in Section 3 does what it
-says.
+## 12. Where to Start
 
-## 13. Where to Start
-
-For the reader who wants to use this today, in order.
-
-1. Read Section 5, then decide whether the project has data that cannot go to
-   a provider. If it does, stop and fix that first.
-2. Copy the file in Section 3 into `.posit/assistant/settings.json` and commit
+1. Read Section 6 and decide whether the project holds data that cannot go to a
+   provider. If it does, stop and fix that first.
+2. Copy the file in Section 2 into `.posit/assistant/settings.json` and commit
    it.
 3. Delete whatever the approval dialog has already accumulated in that file.
-   Section 7.5 says how to tell which entries are worth keeping, and the answer
-   is usually none of them.
-4. Work for a week, committing often. Section 3.2 is the reason the habit
-   carries the configuration.
-5. Add a rule only when a specific prompt has annoyed you twice, or when
-   something happened that git could not undo. Section 3.3 lists the three
-   candidates and the argument against each.
+   Section 8 says how to tell which entries to keep, and the answer is usually
+   none of them.
+4. Work for a week, committing often.
+5. Add a rule only when a prompt has annoyed you twice, or when something
+   happened that git could not undo. Section 9 has the candidates.
 
-For the reader deciding whether to adopt any of this, read Sections 3.1, 8.2
-and 10. They are the test that empties the settings file, the reason `auto`
-beats `normal` over time, and the limit of what any of it buys.
+For the reader deciding whether to adopt any of this, read Sections 3, 5 and 10.
