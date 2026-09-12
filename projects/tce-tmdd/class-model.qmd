@@ -40,18 +40,25 @@ and 700-fold in concentration.
 | Odronextamab, follicular lymphoma | 41.2 mg | CD20 | IV | 0.45 |
 | Teclistamab, myeloma | 23.2 mg | BCMA | SC | 0.14 |
 | Odronextamab, DLBCL | 15.1 mg | CD20 | IV | 0.26 |
+| Epcoritamab, B-NHL | 10.5 mg | CD20 | SC | 0.16 |
 | Mosunetuzumab, one B-NHL patient | 1.4 mg | CD20 | IV | 0.32 |
 
 : One structure, one free parameter per setting {tbl-colwidths="[38,12,14,12,24]"}
 
-Four settings, two antigens, two routes, a 170-fold range of doses and a
-30-fold range of fitted target burdens. Among the three CD20 settings the
+Five settings, two antigens, two routes, a 300-fold range of doses and a
+30-fold range of fitted target burdens. Among the four CD20 settings the
 ordering is the biologically expected one: indolent follicular lymphoma
 carries the largest CD20-positive burden, aggressive DLBCL a smaller one, and
 the single mosunetuzumab patient sits below both.
 
+**The one external check available says the burdens are about right.**
+Epcoritamab's published model estimates its total target pool directly, at
+18.9 mg, and it is the only T-cell engager whose published model does. That
+sits inside the range fitted here and within a factor of two of the value
+this structure recovers from its profile. Section 8.
+
 **Teclistamab is the setting that most nearly broke the structure, and what
-it needed was not a new mechanism but a reachable target.** Section 6.
+it needed was not a new mechanism but a reachable target.** Section 7.
 
 **No CD3 arm is needed.** The engager and a plain B-cell depleting antibody
 were indistinguishable in simulation, and nothing in these three fits asks
@@ -140,13 +147,20 @@ setup <- list(
   tec = list(cl = .449, vc = 4.13, vt = 1.34, qt = 0.30, tmax = 176,
     ka = 0.133, fbio = 0.718, cmt = "depot",
     dt = c(0, 3, seq(7, 175, by = 7)),
-    amt = c(4.8, 24, rep(120, length(seq(7, 175, by = 7))))))
+    amt = c(4.8, 24, rep(120, length(seq(7, 175, by = 7))))),
+  # Epcoritamab: disposition from EMA/CHMP/419797/2023 Table 7 (run 154).
+  epcor = list(cl = .481, vc = 9.33, vt = 14.1, qt = 0.488, tmax = 176,
+    ka = 0.584, fbio = 1, cmt = "depot",
+    dt = c(0, 7, seq(14, 175, by = 7)),
+    amt = c(0.16, 0.8, rep(48, length(seq(14, 175, by = 7))))))
 obs <- list(
   odro_DLBCL = o1 |> filter(subtype == "DLBCL", conc_mg_L > 0.0035) |> transmute(day, conc = conc_mg_L),
   odro_FL    = o1 |> filter(subtype == "FL",    conc_mg_L > 0.0035) |> transmute(day, conc = conc_mg_L),
   mosun      = read.csv("data/mosunetuzumab_fig4a_obs.csv") |> transmute(day, conc = conc_ug_mL),
   tec        = read.csv("data/teclistamab_suppfig3_median.csv") |>
                  mutate(day = day + 7) |> filter(day >= 0.2) |>
+                 transmute(day, conc = conc_ug_mL),
+  epcor      = read.csv("data/epcoritamab_published_median.csv") |>
                  transmute(day, conc = conc_ug_mL))
 tibble(Setting = names(obs),
        n = sapply(obs, nrow),
@@ -214,7 +228,8 @@ fits <- lapply(setNames(names(setup), names(setup)), function(n)
   fit(n, free_disp = (n == "mosun")))
 
 tibble(Setting = c("Odronextamab, DLBCL", "Odronextamab, follicular",
-                   "Mosunetuzumab, one patient", "Teclistamab, myeloma"),
+                   "Mosunetuzumab, one patient", "Teclistamab, myeloma",
+                   "Epcoritamab, B-NHL"),
        `Target (mg)` = round(sapply(fits, `[[`, "target"), 2),
        `Implied cells` = sprintf("%.1e", sapply(fits, `[[`, "target")/1e3/1.5e5*6.022e23/5e4),
        `Residual SD (log)` = round(sapply(fits, `[[`, "sd"), 3),
@@ -228,7 +243,8 @@ Implied cells assume 5 × 10⁴ binding sites per cell and a 150 kDa antibody.
 #| fig-height: 8
 #| fig-cap: "One structure with one shared parameter set, fitted to four settings by the accessible target burden alone. Upper block, concentration: points are digitized, lines are the model; the teclistamab points are thinned eight-fold for legibility. Lower block, the target pool the same fit implies, as a percentage of its starting value."
 lab <- c(odro_DLBCL = "Odronextamab, DLBCL", odro_FL = "Odronextamab, follicular",
-         mosun = "Mosunetuzumab, one patient", tec = "Teclistamab, myeloma")
+         mosun = "Mosunetuzumab, one patient", tec = "Teclistamab, myeloma",
+         epcor = "Epcoritamab, B-NHL")
 S <- list(); O <- list()
 for (nm in names(setup)) {
   d <- setup[[nm]]; r <- fits[[nm]]
@@ -244,7 +260,7 @@ for (nm in names(setup)) {
               frac = (rc*r$vc + rt*d$vt)/(p[["rc0"]]*r$vc + p[["rt0"]]*d$vt),
               who = lab[[nm]])
   oo <- r$obs
-  if (nm == "tec") oo <- oo[seq(1, nrow(oo), by = 8), ]   # 324 points hide the line
+  if (nm %in% c("tec", "epcor")) oo <- oo[seq(1, nrow(oo), by = 8), ]  # dense curves hide the line
   O[[nm]] <- oo |> mutate(who = lab[[nm]])
 }
 sim <- bind_rows(S) |> mutate(who = factor(who, levels = lab))
@@ -312,10 +328,10 @@ are identified only up to the product of pool size, accessibility and
 affinity, so a factor of ten either way is unresolved and only a target
 measurement would close it.
 
-**Still open.** Epcoritamab, the only published T-cell engager model with a
-quasi-steady-state target-mediated structure in its own terms, which would be
-the first external check on the $K_{ss}$ used here rather than another fit
-that absorbs it.
+**Still open.** A target measurement. Every burden here is identified only up
+to the product of pool size, accessibility and affinity, and Section 8 shows
+two independently fitted models describing the same drug with pools three-fold
+apart. Only a B-cell or plasma-cell time course separates them.
 
 ## 7. Teclistamab, and Where Its Target Compartment Is
 
@@ -392,3 +408,147 @@ time-varying, and reported that neither improved the model. A binding pool
 that is part cellular and part soluble is consistent with both that
 screening result and this fit, and it is not evidence for either, because
 nothing here separates the two.
+
+## 8. Epcoritamab: The One External Check
+
+Epcoritamab is the only T-cell engager whose published model estimates a
+target pool as a parameter, so it is the only place the burdens fitted above
+can be checked against something other than themselves.
+
+Its population PK paper is paywalled, but the EMA public assessment report for
+Tepkinly prints the whole final parameter set, so no digitization is needed
+and the published model can simply be run.
+
+### 8.1 Their Structure Against This One
+
+| | Published epcoritamab model | This model |
+|:---|:---|:---|
+| Disposition | Two compartments, first-order SC absorption | Same |
+| Target binding | Quasi-steady state, constant $K_{ss}$ | Same |
+| Loss of bound drug | $k_{int}$ on the complex | Same |
+| Target pool | **Held at steady state**, $k_{deg}=k_{int}$, never depleted | **Depleted**, by $k_{int}$ and by $k_{\rm kill}$ on the cell |
+| Target location | Central only | Central and tissue |
+
+: The published epcoritamab model beside this one {tbl-colwidths="[22,40,38]"}
+
+With the pool held constant their target term reduces exactly to
+Michaelis-Menten, with $V_{\max}=k_{int}\cdot\rm BASE\cdot V_c$ and
+$K_m=K_{ss}$. **The structures agree except on whether the drug is allowed to
+destroy what it binds.**
+
+### 8.2 What Their Parameters Say
+
+```{r epcor-pub}
+P <- c(cl = 0.481, q = 0.488, vc = 9.33, vp = 14.1, ka = 0.584,
+       base = 2.03, kss = 0.214, kint = 0.0278)   # EPAR Table 7, run 154
+cl0 <- P[["cl"]] + P[["kint"]]*P[["base"]]*P[["vc"]]/P[["kss"]]
+tibble(Quantity = c("Total target pool, BASE x Vc",
+                    "Quasi-steady-state constant Kss",
+                    "Total clearance as C approaches 0",
+                    "Total clearance at saturation",
+                    "Ratio",
+                    "Maximum target-mediated elimination"),
+       Value = c(sprintf("%.2f mg", P[["base"]]*P[["vc"]]),
+                 sprintf("%.3f ug/mL", P[["kss"]]),
+                 sprintf("%.2f L/day", cl0),
+                 sprintf("%.3f L/day", P[["cl"]]),
+                 sprintf("%.1f-fold", cl0/P[["cl"]]),
+                 sprintf("%.3f mg/day", P[["kint"]]*P[["base"]]*P[["vc"]]))) |>
+  knitr::kable()
+```
+
+Simulating their own model through the approved step-up regimen shows where
+that six-fold sits.
+
+```{r epcor-sim}
+pub <- rxode2({
+  cc <- central/vc
+  cltot <- cl + kint*base*vc/(kss + cc)
+  d/dt(depot)   <- -ka*depot
+  d/dt(central) <-  ka*depot - cl/vc*central - q/vc*central + q/vp*periph -
+                    kint*base*(cc/(kss + cc))*vc
+  d/dt(periph)  <-  q/vc*central - q/vp*periph
+})
+d <- setup$epcor
+ev <- Reduce(function(e, i) e |> et(amt = d$amt[i], cmt = "depot", time = d$dt[i]),
+             seq_along(d$dt), et()) |> et(seq(0, 176, by = 0.02))
+as_tibble(rxSolve(pub, P, ev)) |>
+  filter(time %in% c(0.5, 7, 14, 17, 28, 56, 175)) |>
+  transmute(Day = time, `Conc (ug/mL)` = signif(cc, 3),
+            `Total CL (L/day)` = round(cltot, 3),
+            `% target-mediated` = round(100*(cltot - P[["cl"]])/cltot)) |>
+  knitr::kable()
+```
+
+**Target-mediated clearance is 83% of the total at the priming and
+intermediate doses and 9% at steady state.** That is the argument of this
+whole project, in a regulator's file, computed from a model somebody else
+fitted.
+
+The EPAR states plainly what happens to the evidence in that window: *"Plasma
+concentrations were in general < BLQ for the priming and intermediate dose."*
+The doses where target-mediated clearance does 83% of the work are the doses
+whose concentrations could not be measured.
+
+### 8.3 The Assessor's Own Caveat
+
+The EMA assessor reached the identifiability conclusion independently, and
+named the same two parameters:
+
+> There was a trend of underestimation of epcoritamab concentrations at doses
+> ≤12 mg suggesting that TMDD might be overestimated. This was further
+> strengthened that the sensitivity analysis for samples <BLQ method changed
+> the TMDD parameters Base and K~ss~ with 30-90%. Therefore, there is
+> uncertainty concerning the population predictions of the final model for the
+> low doses <12 mg. Since the impact of TMDD at a dose of 48 mg epcoritamab is
+> low compared to the non-specific clearance, popPK model is fit for purpose
+> to predict epcoritamab exposures for 48 mg dose.
+
+Base and $K_{ss}$ moving by 30 to 90% on a choice about how to handle values
+below the limit of quantification is the same non-identifiability Section 5
+finds by moving $K_{ss}$ by hand, arrived at from data rather than from
+algebra. The regulator's resolution is the practical one: the model is
+accepted for the dose it will be used at, and not for the doses where the
+mechanism lives.
+
+### 8.4 Fitting This Structure to Their Profile
+
+```{r epcor-fit}
+fit_at <- function(KSS) {
+  keep <- SH; SH[["kss"]] <<- KSS
+  r <- fit("epcor"); SH <<- keep
+  tibble(`Kss (ug/mL)` = KSS, `Target (mg)` = round(r$target, 2),
+         `Residual SD (log)` = round(r$sd, 3),
+         `Ratio to published 18.94 mg` = round(r$target/18.94, 2))
+}
+bind_rows(fit_at(1.95), fit_at(0.214)) |> knitr::kable()
+```
+
+At epcoritamab's own $K_{ss}$ this structure reproduces the published profile
+to a residual standard deviation of 0.08 on the log scale, an 8% typical
+error across a 6000-fold concentration range. It wants a target pool about a
+third of theirs.
+
+**The three-fold gap is the structural difference, not an error.** Their pool
+is regenerated as fast as it is consumed, so it has to be large enough to keep
+supplying clearance forever. This one is destroyed and stays destroyed, so a
+smaller pool does the same work. Two defensible models of the same profile
+disagree three-fold about how much target there is, which is the clearest
+statement available of why the burdens in Section 1 need a target measurement
+rather than another concentration.
+
+### 8.5 The $K_{ss}$ Used Here Is Nine-Fold Too High
+
+Epcoritamab's fitted $K_{ss}$ is 0.214 µg/mL. The value carried through
+Sections 2 to 7, taken from odronextamab's fitted Michaelis constant, is
+1.95 µg/mL. Both are fitted values for a CD20-directed T-cell engager and
+they differ nine-fold.
+
+Section 5 says what that does: $K_{ss}$ and the target burden trade almost
+exactly, so every burden in Section 1 would fall by roughly the same nine-fold
+if epcoritamab's value were adopted, and no fit would get better or worse.
+Which of the two is right is not decidable from concentrations, and it does
+not change any conclusion in this project, because every conclusion here is
+about ratios between settings rather than about the absolute size of a pool.
+It does mean **the milligram figures in Section 1 should be read as
+within-class comparisons and not as measurements.**

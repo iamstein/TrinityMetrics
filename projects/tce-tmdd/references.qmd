@@ -215,7 +215,21 @@ Everything the working documents draw on, whether or not it is in the queue.
   constants in the specification's Section 5 and the parameter page's Section
   3.4 come from here. **A preliminary analysis fixed inside somebody else's
   model is the weakest parameter source in this project.**
-- ❌ **Epcoritamab, 2025.** Queue entry 3.
+- ⚠️ **Epcoritamab.** The *Clin Pharmacokinet* paper (queue entry 3) is
+  paywalled and unread. The complete final parameter set was instead taken
+  from the **EMA public assessment report for Tepkinly**,
+  EMA/CHMP/419797/2023, Table 7 (run 154), page 46, at
+  <https://www.ema.europa.eu/en/documents/assessment-report/tepkinly-epar-public-assessment-report_en.pdf>.
+  Read 2026-09-12. Source of the whole of Section 8 of
+  [the class model](class-model.qmd): the model schematic on page 45, the
+  parameter table on page 46, the statement that concentrations were
+  generally below the limit of quantification at the priming and intermediate
+  doses, and the assessor's quoted caveat that the TMDD parameters Base and
+  Kss moved 30 to 90% with the choice of below-quantification handling. An
+  assessment report is a regulator's summary of a submission, not the
+  submission, so numbers in it are one remove from the analysis that produced
+  them; they are transcribed here and unverified against the population PK
+  report itself, which is not public.
 - ❌ **Talquetamab, 2025.** Queue entry 5.
 - ❌ **Djebli et al. 2020, glofitamab.** *Blood* 2020;136(Suppl 1):1.
   Conference abstract. Characterized in the specification's Section 4 as a

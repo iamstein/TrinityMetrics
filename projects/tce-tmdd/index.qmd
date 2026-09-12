@@ -73,10 +73,12 @@ here only as a contrast.
 - [One model across the class](class-model.qmd). The current state of the
   work. A five-state model with no CD3 arm, shared parameters fixed at
   biologically argued values, fitted to four drug-and-disease settings by the
-  accessible target burden alone: two antigens, two routes, a 170-fold range
+  accessible target burden alone: two antigens, two routes, a 300-fold range
   of doses. Residual standard deviations of 0.14 to 0.45 on the log scale.
   Section 7 is teclistamab, which fits only once its target is put somewhere
-  the drug can reach.
+  the drug can reach. Section 8 is epcoritamab, the one external check: its
+  published model estimates a target pool directly, and the EMA assessor
+  reports the same non-identifiability this project finds by algebra.
 - [The model against digitized data](digitized-fits.qmd). Figure 4A of the
   odronextamab paper digitized and fitted. DLBCL is reproduced, follicular
   lymphoma falsifies the structure, and the target pool turns out to be
