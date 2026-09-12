@@ -57,6 +57,19 @@ needs `categories: true` and `categories` added to its `fields:` list in
 `projects/index.qmd`, or the pill never renders; a listing with nothing to
 distinguish (`R packages`, `Matlab tools`) skips both.
 
+When a project finishes, or is overtaken so that its question no longer needs
+answering, move its whole card from `projects/projects.yml` to
+`projects/archive.yml`. That is the only step: the folder does not move, the
+URL does not change, and `projects/archive.qmd` lists whatever is in the second
+file. Quarto's listing `exclude:` does not filter yaml metadata, so a category
+such as `Archived` will not keep a card off the Projects page; the second file
+is the mechanism. Drop `Draft` on the way across, rewrite the `subtitle:` to
+say how the project ended, such as `Finished` or `Overtaken by a button`, and
+keep the topical category so the archived card still shows what kind of project
+it was. Add a callout at the top of the project's own `index.qmd` saying it is
+archived and pointing at `../archive.qmd`, because a reader arriving from a
+search result never sees either listing page.
+
 ## Other conventions in this repository
 
 - `.github/copilot-instructions.md` — Markdown mechanics: blank lines around
