@@ -50,27 +50,55 @@ older `positron.assistant.enable` setting is legacy and applies only before
 current product in most respects, and the configuration file described in
 Section 6 is new with the rename.
 
-## 3. The Recommendation, in Four Lines
+## 3. The Recommendation
 
 Set the approval mode to `auto`. That mode is Posit's name for the same posture
 Claude Code calls Auto, and the definitions are close enough that the
-translation needs no adjustment.
+translation needs no adjustment. Then add rules for the four things `auto` does
+not decide on its own.
 
 ```json
 {
   "approvalMode": "auto",
   "permission": {
+    "executeCode": "allow",
+    "edit": {
+      "renv.lock": "ask",
+      "*": "allow"
+    },
     "bash": {
-      "git push*": "ask",
-      "git push --force*": "deny"
-    }
+      "git push --force*": "deny",
+      "git push*": "ask"
+    },
+    "external_directory": "ask"
   }
 }
 ```
 
-Section 7 gives the fuller file and says what each line buys. Section 12
-records the one thing about the four lines above that is unverified: whether
-`approvalMode` is accepted in a project-level file, or only globally.
+Four lines of that file carry the weight, and each one covers a case `auto`
+leaves open.
+
+`executeCode` runs R or Python in the active console session. Section 4
+explains why it is the tool this group uses most and the one no `bash` rule
+constrains.
+
+`edit` accepts a pattern per file, so the reproducibility concern in item 11 of
+the checklist is a one-line rule rather than the unsolvable problem an earlier
+draft of this document called it. Anything matching `*` is edited freely and
+`renv.lock` prompts.
+
+The two `git push` rules are the only denials in the file. `auto` already
+blocks force-push by classifier, and a written rule costs nothing and does not
+depend on a model's judgment.
+
+`external_directory` governs paths outside the project. `auto` draws its
+boundary at the working directory, so reaching outside it is the case the mode
+was never going to cover.
+
+**⚠️ Section 12 records what is unverified here.** Whether `approvalMode` is
+accepted in a project-level file, whether a specific pattern beats `*` inside
+one block, and whether `git push*` matches `git push --force`. The last is the
+reason the force rule is written separately rather than relied on.
 
 ## 4. How an Agent Permission System Decides What to Do
 
@@ -83,11 +111,29 @@ and returns one of three answers.
 - `ask` shows the proposal and waits for a click.
 - `deny` refuses the tool call and tells the assistant it was refused.
 
-Each tool has a key used in the settings file. The documented keys are `bash`
-for shell commands, `read` for reading a file, `edit` for changing one, and
-`task` for spawning a subagent, with subtypes `explore` and `general`. The
-`bash` key takes patterns rather than a single answer, so `"git *": "allow"`
-and `"rm *": "deny"` can sit side by side.
+Each tool has a key used in the settings file. The reference page gives
+examples for four of them, and the full set is longer. These are the ones that
+decide anything here.
+
+| Key | What it governs | Why it is in this table |
+|---|---|---|
+| `executeCode` | Running R or Python in the active console session | The tool this group uses most, and the one Section 10 is about |
+| `bash` | Shell commands, matched as patterns | Where `git` and file manipulation rules go |
+| `edit` | Changing or creating a file, matched per file pattern | Items 2, 3 and 11 of the checklist |
+| `read` | Reading a file | Everything an assistant does starts here |
+| `external_directory` | Any path outside the working directory | The boundary `auto` mode is defined against |
+| `webfetch` | Retrieving a URL, including an intranet address | Section 5 |
+| `task` | Spawning a subagent, by type | Subtypes `explore` and `general` |
+| `skill` | Invoking a named skill | Appears in real configurations in this group |
+
+The remaining documented keys are `glob`, `grep`, `list`, `websearch`,
+`todowrite`, `question`, `lsp` and `doom_loop`. None needs a rule in a
+pharmacometrics project.
+
+Both `bash` and `edit` take patterns rather than a single answer, so
+`"git *": "allow"` and `"rm *": "deny"` can sit side by side, and so can
+`"*.R": "allow"` and `"renv.lock": "ask"`. A tool can also take one answer for
+everything it does, written as `"read": "allow"`.
 
 Two things then decide the answer to a given tool call. The per-tool rules in
 the settings file answer the calls they match. The **approval mode** is the
@@ -135,6 +181,11 @@ Posit Assistant reads a plain JSON file at two levels.
 | Global, all projects | `~/.posit/assistant/settings.json` | No |
 | Project | `.posit/assistant/settings.json` in the project root | Yes |
 
+Both paths were confirmed on disk on 2026-09-12 rather than taken from the
+documentation. The project file is where the Positron approval dialog writes a
+permission granted with the "For this project" scope, and it is tracked in git
+in the projects in this group that have one.
+
 Settings resolve last-wins in this order: built-in defaults, then the global
 file, then the project file, then environment variables, then command-line
 flags. A project file therefore overrides a personal one, which is the
@@ -175,7 +226,8 @@ the group's complaint about the default is exactly this.
 
 | # | Behavior | Verdict | Implemented by |
 |---|---|---|---|
-| 7 | Run an R or Python script in the project | ✅ | `approvalMode: auto` |
+| 7 | Run R or Python in the console session | ✅ | `"executeCode": "allow"` |
+| 7a | Run an R or Python script from the shell | ✅ | `approvalMode: auto` |
 | 8 | Render a Quarto document | ✅ | `"quarto *": "allow"` |
 | 9 | Run a test suite | ✅ | `approvalMode: auto` |
 | 10 | Install a package | ⚠️ | `"R -e install.packages*": "ask"` |
@@ -184,10 +236,14 @@ the group's complaint about the default is exactly this.
 
 Items 10 and 11 are about reproducibility rather than safety. A lock file
 changed as a side effect of an agent fixing something else is a change nobody
-reviewed, and it propagates to every collaborator on the next restore. There is
-no `permission` key for editing one named file, so item 11 is currently
-enforced by review rather than by the settings file, and Section 12 records
-that gap.
+reviewed, and it propagates to every collaborator on the next restore. The
+`edit` key takes a pattern per file, so item 11 is a single rule,
+`"renv.lock": "ask"` alongside `"*": "allow"`.
+
+Item 7 is the one to get right for this group. Posit Assistant has built-in
+access to the active R or Python session and can run code in it without any
+configuration. The `executeCode` tool is how, and Section 10 explains what it
+does to every other rule in the file.
 
 Item 12 is more of a concern here than in general software work. A model fit
 that takes four hours on a cluster is expensive to start by accident, and the
@@ -220,6 +276,39 @@ and, in the force case, destroys work that is not yours.
 Model Context Protocol, abbreviated MCP, is a way of giving an assistant extra
 tools from an external process. An MCP server can do anything its author wrote
 it to do, and it is outside every rule in this file. None is configured here.
+
+### 7.5 Converting a Configuration Built by Clicking
+
+The Positron approval dialog writes each granted permission into
+`.posit/assistant/settings.json`. Clicking through a few weeks of work produces
+a file of thirty or forty entries that nobody chose as a set. Two real examples
+from this group were read on 2026-09-12, and the same three things were true of
+both.
+
+**Most entries are redundant under `auto`.** Rules for `git status`,
+`git diff`, `git log`, `git add`, `git commit`, `grep`, `head`, `tail`, `sed`,
+`ls`, `cp`, `R`, `Rscript`, `quarto render`, reading files, and fetching public
+documentation are all inside the working directory or read-only. The mode
+covers them. They can be deleted.
+
+**Four kinds of entry survive the conversion.** Pushing to a remote, reaching
+outside the project directory, running code in the console session, and
+fetching an internal address. Section 3 has a rule for each of the first three.
+
+**Neither file contained a single `deny`.** A configuration assembled by
+clicking Allow can only ever be an allowlist, because the dialog is only asked
+when something is about to run. Nothing accumulated that way will ever block a
+force-push or a credential read. The denials have to be written by hand, once.
+
+Two specific entries to look for when converting a file.
+
+⚠️ **`"bash": {"*": "allow"}`** makes every other `bash` entry in the file
+decorative. Whether it also overrides a later `deny` is open question 4.
+
+⚠️ **`"git push *": "allow"`** appears to match `git push --force` as well,
+since the force flag is part of the argument string the pattern globs over.
+That is open question 5, and until it is answered a separate `deny` on the
+force case is the safe way to write it.
 
 ## 8. The Approval Modes, and Which One Matches Claude Code
 
@@ -279,6 +368,19 @@ detection varies across shells and an obfuscated command can evade a pattern.
 
 Three consequences follow for this group.
 
+**`executeCode` is a way around every `bash` rule in the file.** R's `system()`
+and `system2()`, and Python's `subprocess`, run any shell command. A carefully
+written `bash` allowlist sitting beside `"executeCode": {"*": "allow"}`
+constrains the assistant only as long as the assistant chooses the shell rather
+than the console. Posit's own extension documentation says to treat
+`executeCode` with caution for this reason, because R and Python both run
+arbitrary code with the user's full permissions.
+
+The consequence is not that `executeCode` should be denied. Denying it removes
+the reason to use Posit Assistant over a general coding agent. The consequence
+is that `bash` rules are a guard against the assistant doing something careless
+by the obvious route, and they should be read as no stronger than that.
+
 A pattern such as `"rm *": "deny"` guards against an accident. It does not
 guard against an adversary, because `rm` invoked through a shell variable, a
 script, or an R `system()` call never matches the pattern in the first place.
@@ -292,11 +394,18 @@ substitutes for that.
 
 ## 11. What Was Considered and Rejected
 
-**A per-file permission rule protecting `renv.lock`.** The `permission` keys
-are tool names, and `edit` takes one answer for every file. Setting
-`"edit": "ask"` to protect one file reintroduces the prompt-on-every-edit
-problem the project exists to solve. Review catches a lock file change in the
-diff.
+**A per-file permission rule protecting `renv.lock`, rejected and then
+reinstated.** An earlier draft of this document argued that `edit` takes one
+answer for every file, so protecting a single file meant reintroducing the
+prompt-on-every-edit problem the project exists to solve. That was wrong.
+Configurations written by clicking through the Positron approval dialog contain
+entries such as `"*.R": "allow"` and `"*.qmd": "allow"` under `edit`, which
+settles it: the key takes a pattern per file. The rule is in Section 3.
+
+The correction is recorded rather than deleted because it came from reading a
+real settings file rather than from the documentation, which does not say
+either way. Where this document and a working configuration disagree, the
+configuration wins.
 
 **`yolo` as the default.** It matches the request to have the assistant work
 freely, and it removes the classifier that makes `auto` acceptable in a
@@ -319,18 +428,29 @@ of the two applies when both are present is an open question, recorded below.
 2. **Does `aiExcludes` cover the Variables pane?** Section 5 says it does not,
    read literally. Check by loading an excluded CSV file into a data frame and
    asking the assistant what columns it has.
-3. **What is the exact key for `aiExcludes` after the rename?** The
+3. **Does the `auto` classifier gate `executeCode` at all?** The mode is
+   described in terms of the working directory, and a console session has no
+   directory. If the classifier does not see console code, `auto` constrains
+   less than Section 8 claims.
+4. **Inside one tool block, does a specific pattern beat `*`?** A file
+   containing both `"*": "allow"` and `"rm *": "deny"` under `bash` behaves
+   very differently depending on the answer. The documentation gives the
+   resolution order across files and says nothing about within one.
+5. **Does `git push*` match `git push --force`?** Section 3 writes the force
+   denial separately because the answer is unknown.
+6. **What is the exact key for `aiExcludes` after the rename?** The
    documentation shows `positron.assistant.aiExcludes` in the 2026.02 release
    notes and `assistant.aiExcludes` in the current settings table.
-4. **Do the VS Code chat settings apply at the same time?** If
+7. **Do the VS Code chat settings apply at the same time?** If
    `chat.tools.terminal.autoApprove` is also read, a project needs consistent
    rules in two files.
-5. **Is there a `write` key distinct from `edit`?** The documented examples
-   show `bash`, `read`, `edit`, and `task`. Whether creating a new file is
-   `edit` or something else changes items 2 and 3 of the checklist.
-6. **What does the `auto` classifier do with a long-running R script?** A
+8. **What does the `auto` classifier do with a long-running R script?** A
    four-hour model fit inside the working directory is not risky by the
    classifier's definition and is expensive by ours.
+
+Questions 1, 4 and 5 are each answerable in about ten minutes at a Positron
+prompt, and together they decide whether the file in Section 3 does what it
+says.
 
 ## 13. Where to Start
 

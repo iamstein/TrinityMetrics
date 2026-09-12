@@ -10,10 +10,13 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**Nothing here is ✅, and the reason is the same for every entry.** Every page
-below was read on 2026-09-11 through an automated web fetch, which returns a
-summary written by a small model rather than the page itself. A summary is a
-transcription, so every source carries ⚠️ and none carries ✅. The settings
+**One entry is ✅, and it is the one read on disk rather than on the web.**
+Every documentation page below was read on 2026-09-11 through an automated web
+fetch, which returns a summary written by a small model rather than the page
+itself. A summary is a transcription, so those sources carry ⚠️. The exception
+is the settings files in this group, read directly on 2026-09-12, which settled
+the project file path and four permission keys the documentation never
+mentions. The settings
 names, the four approval mode definitions, and the context list in Section 5
 of the specification all came through that route. Opening these pages in a
 browser and confirming the exact key names is the cheapest useful work left on
@@ -106,8 +109,18 @@ Positron at the same time as the Posit settings, which is open question 4.
 resolution order, the `permission` block, `sandbox.enabled`, `useHooks`,
 `skills.paths`, `workspace.allowedRoots`, and the two administrator
 environment variables. Sections 6, 7 and 9 of the specification rest on this
-page.
+page. The file locations are the one claim from it now marked ✅ below.
 <https://assistant.posit.co/docs/reference/config-file/>
+
+✅ **Two settings files in this group, read on disk 2026-09-12.**
+`~/.posit/assistant/settings.json` and
+`/Users/steinanf/git/synpmx/.posit/assistant/settings.json`, plus two further
+project files supplied by Andy in conversation. These confirm the project file
+path in Section 6, that the file is tracked in git, and that `edit` accepts a
+pattern per file. They are also the source of the permission keys
+`executeCode`, `external_directory`, `webfetch` and `skill`, none of which
+appears in the reference page examples. Section 7.5 and the correction in
+Section 11 come from these files rather than from documentation.
 
 ⚠️ **Posit Assistant, Permissions and approval modes.** The `restricted`,
 `normal`, `auto` and `yolo` definitions in Section 8, and the statement that an
@@ -157,6 +170,30 @@ configurations to agree.
 third vendor, and the clearest published treatment of sandboxing and approval
 as two separate controls rather than one. Relevant to Section 9.
 <https://developers.openai.com/codex/agent-approvals-security>
+
+### Posit on privacy and on Claude Code
+
+❌ **Posit, Privacy and AI assistants.** Posit's own statement on what an
+assistant sends and where it goes. The general-recommendations source closest
+to this group's actual concern, and it should be read alongside Section 5.
+<https://posit.co/blog/trust-llm-tools>
+
+❌ **Posit, Comparing Posit Assistant and Claude Code.** A direct comparison by
+the vendor, published 2026-06-08. Section 8 of the specification maps the four
+approval modes onto the Claude Code modes by reading two descriptions side by
+side. This page may do the mapping properly and supersede that section.
+<https://opensource.posit.co/blog/2026-06-08_comparing-posit-assistant-and-claude-code/>
+
+❌ **Posit Assistant sees your data, code and visualizations.** The vendor's
+description of built-in session access, which is the capability Section 5
+treats as a confidentiality problem. Reading the two together is the fastest
+route to open question 2.
+<https://posit.co/blog/posit-assistant-ai-sees-your-data-code-and-visualizations-reproducible-analysis>
+
+⚠️ **Positron, Extension development.** Source of the caution that the
+`executeCode` interface runs arbitrary R and Python code with the user's full
+permissions, which is the mechanism in Section 10.
+<https://positron.posit.co/extension-development.html>
 
 ### Discussion threads
 
