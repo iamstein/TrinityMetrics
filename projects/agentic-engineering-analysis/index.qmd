@@ -28,3 +28,8 @@ from.
 - [References](references.qmd). The two sources this draws on, and a marker on
   each recording whether the claim drawn from it has been checked against the
   source.
+- `acop_abstract_2027_idea.md`. A draft idea for an ACoP 2027 abstract on the
+  pharmacometrics case: the five stages of an analysis, who reviews what, and
+  what changes once an agent does the hands-on work. Not linked, because the
+  site renders `.qmd` only and this one stays a working file in the
+  repository.
