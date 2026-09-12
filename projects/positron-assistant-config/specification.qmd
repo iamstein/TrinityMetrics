@@ -9,6 +9,16 @@ toc-depth: 2
 toc-location: left
 ---
 
+::: {.callout-important appearance="simple"}
+**Obsolete, 2026-09-12.** The approval mode is set from the chat pane, not from
+a settings file. Click the icon at the lower left of the chat input box and
+pick **Auto mode**. Nothing else in this document is needed to get that.
+
+The shipped picker offers Normal, Plan, Auto, Cleaning and Ask, which is not
+the list of modes described below. What follows is kept for the permission key
+reference and for the description of what Auto mode allows.
+:::
+
 ## 1. Scope
 
 One file, `.posit/assistant/settings.json`, committed to a project repository,
