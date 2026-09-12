@@ -72,10 +72,11 @@ here only as a contrast.
   it supports, and the digitization sequence that would settle it.
 - [One model across the class](class-model.qmd). The current state of the
   work. A five-state model with no CD3 arm, shared parameters fixed at
-  biologically argued values, fitted to three drug-and-disease settings by the
-  accessible target burden alone. Residual standard deviations of 0.26, 0.45
-  and 0.32 on the log scale, and target burdens ordered the way the diseases
-  are.
+  biologically argued values, fitted to four drug-and-disease settings by the
+  accessible target burden alone: two antigens, two routes, a 170-fold range
+  of doses. Residual standard deviations of 0.14 to 0.45 on the log scale.
+  Section 7 is teclistamab, which fits only once its target is put somewhere
+  the drug can reach.
 - [The model against digitized data](digitized-fits.qmd). Figure 4A of the
   odronextamab paper digitized and fitted. DLBCL is reproduced, follicular
   lymphoma falsifies the structure, and the target pool turns out to be

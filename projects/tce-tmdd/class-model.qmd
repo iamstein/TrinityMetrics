@@ -35,19 +35,23 @@ and 700-fold in concentration.
 
 **The only thing that changes between them is how much target there is.**
 
-| Setting | Accessible target | Implied cells | Residual SD (log) |
-|:---|---:|---:|---:|
-| Odronextamab, follicular lymphoma | 41.2 mg | 3.3 × 10¹² | 0.45 |
-| Odronextamab, DLBCL | 15.1 mg | 1.2 × 10¹² | 0.26 |
-| Mosunetuzumab, one B-NHL patient | 1.4 mg | 1.2 × 10¹¹ | 0.32 |
+| Setting | Target | Antigen | Route | Residual SD (log) |
+|:---|---:|:---|:---|---:|
+| Odronextamab, follicular lymphoma | 41.2 mg | CD20 | IV | 0.45 |
+| Teclistamab, myeloma | 23.2 mg | BCMA | SC | 0.14 |
+| Odronextamab, DLBCL | 15.1 mg | CD20 | IV | 0.26 |
+| Mosunetuzumab, one B-NHL patient | 1.4 mg | CD20 | IV | 0.32 |
 
-: One structure, one free parameter per setting {tbl-colwidths="[42,16,20,22]"}
+: One structure, one free parameter per setting {tbl-colwidths="[38,12,14,12,24]"}
 
-The ordering is the biologically expected one. Follicular lymphoma is
-indolent and carries the largest CD20-positive burden; DLBCL is aggressive
-with a smaller one; the mosunetuzumab patient is a single individual
-partway through the range. The spread is about 30-fold across a class where
-the drugs themselves differ 30-fold in dose.
+Four settings, two antigens, two routes, a 170-fold range of doses and a
+30-fold range of fitted target burdens. Among the three CD20 settings the
+ordering is the biologically expected one: indolent follicular lymphoma
+carries the largest CD20-positive burden, aggressive DLBCL a smaller one, and
+the single mosunetuzumab patient sits below both.
+
+**Teclistamab is the setting that most nearly broke the structure, and what
+it needed was not a new mechanism but a reachable target.** Section 6.
 
 **No CD3 arm is needed.** The engager and a plain B-cell depleting antibody
 were indistinguishable in simulation, and nothing in these three fits asks
@@ -100,11 +104,13 @@ m <- rxode2({
   cc <- central/vc; ct <- tissue/vt
   oc <- cc/(kss + cc); ot <- ct/(kss + ct)
   cltot <- cl + kint*rc*vc/(kss + cc) + kint*rt*vt/(kss + ct)
-  d/dt(central) <- -cl/vc*central - qt/vc*central + qt/vt*tissue - kint*rc*vc*oc
+  d/dt(depot)   <- -ka*depot
+  d/dt(central) <-  ka*depot - cl/vc*central - qt/vc*central + qt/vt*tissue - kint*rc*vc*oc
   d/dt(tissue)  <-  qt/vc*central - qt/vt*tissue - kint*rt*vt*ot
   d/dt(rc) <- kdeg*(rc0 - rc) - (kint + kkill)*rc*oc
   d/dt(rt) <- kdeg*(rt0 - rt) - (kint + kkill)*rt*ot
   rc(0) <- rc0; rt(0) <- rt0
+  f(depot) <- fbio
 })
 SH <- c(kss = 1.95, kint = 1.0, kkill = 1.0, kdeg = log(2)/3, ftis = 0.9)
 ```
@@ -120,15 +126,28 @@ the panel with the least residual rituximab competing for CD20.
 o1 <- read.csv("data/odronextamab_fig4A_medians.csv")
 setup <- list(
   odro_DLBCL = list(cl = .189, vc = 4.99, vt = 4.42, qt = 1.21, tmax = 22,
+    ka = 100, fbio = 1, cmt = "central",
     dt = c(0,1,7,8,14,15,21), amt = c(.2,.5,2,2,10,10,160)),
   odro_FL = list(cl = .189, vc = 4.99, vt = 4.42, qt = 1.21, tmax = 22,
+    ka = 100, fbio = 1, cmt = "central",
     dt = c(0,1,7,8,14,15,21), amt = c(.2,.5,2,2,10,10,160)),
   mosun = list(cl = .584, vc = 5.49, vt = 6.17, qt = 1.46, tmax = 110,
-    dt = c(0,7.12,13.12,21.0,42.4,63.4,84.2,105.2), amt = c(1,2,60,60,30,30,30,30)))
+    ka = 100, fbio = 1, cmt = "central",
+    dt = c(0,7.12,13.12,21.0,42.4,63.4,84.2,105.2), amt = c(1,2,60,60,30,30,30,30)),
+  # Teclistamab: subcutaneous, and its target compartment is given
+  # antibody-like access rather than the Q = 0.039 L/day deep compartment the
+  # published model fits. Section 6 is about that substitution.
+  tec = list(cl = .449, vc = 4.13, vt = 1.34, qt = 0.30, tmax = 176,
+    ka = 0.133, fbio = 0.718, cmt = "depot",
+    dt = c(0, 3, seq(7, 175, by = 7)),
+    amt = c(4.8, 24, rep(120, length(seq(7, 175, by = 7))))))
 obs <- list(
   odro_DLBCL = o1 |> filter(subtype == "DLBCL", conc_mg_L > 0.0035) |> transmute(day, conc = conc_mg_L),
   odro_FL    = o1 |> filter(subtype == "FL",    conc_mg_L > 0.0035) |> transmute(day, conc = conc_mg_L),
-  mosun      = read.csv("data/mosunetuzumab_fig4a_obs.csv") |> transmute(day, conc = conc_ug_mL))
+  mosun      = read.csv("data/mosunetuzumab_fig4a_obs.csv") |> transmute(day, conc = conc_ug_mL),
+  tec        = read.csv("data/teclistamab_suppfig3_median.csv") |>
+                 mutate(day = day + 7) |> filter(day >= 0.2) |>
+                 transmute(day, conc = conc_ug_mL))
 tibble(Setting = names(obs),
        n = sapply(obs, nrow),
        `Range (mg/L)` = sapply(obs, function(o) sprintf("%.4g to %.3g", min(o$conc), max(o$conc))),
@@ -158,15 +177,16 @@ align <- function(o, dtimes) {
 ```{r fit}
 fit <- function(nm, free_disp = FALSE) {
   d <- setup[[nm]]; al <- align(obs[[nm]], d$dt); o <- al$obs; d$dt <- al$dt
-  ev <- Reduce(function(e, i) e |> et(amt = d$amt[i], cmt = "central",
-                                      time = d$dt[i], dur = 2/24),
+  ev <- Reduce(function(e, i) e |> et(amt = d$amt[i], cmt = d$cmt, time = d$dt[i],
+                                      dur = if (d$cmt == "central") 2/24 else NULL),
                seq_along(d$dt), et()) |> et(seq(0, d$tmax, by = 0.005))
   f <- function(lp) {
     cl <- if (free_disp) exp(lp[2]) else d$cl
     vc <- if (free_disp) exp(lp[3]) else d$vc
     tot <- exp(lp[1])
-    p <- c(cl = cl, vc = vc, vt = d$vt, qt = d$qt, kss = SH[["kss"]],
-           kint = SH[["kint"]], kkill = SH[["kkill"]], kdeg = SH[["kdeg"]],
+    p <- c(cl = cl, vc = vc, vt = d$vt, qt = d$qt, ka = d$ka, fbio = d$fbio,
+           kss = SH[["kss"]], kint = SH[["kint"]], kkill = SH[["kkill"]],
+           kdeg = SH[["kdeg"]],
            rc0 = tot*(1 - SH[["ftis"]])/vc, rt0 = tot*SH[["ftis"]]/d$vt)
     s <- try(as_tibble(rxSolve(m, p, ev)), silent = TRUE)
     if (inherits(s, "try-error")) return(1e9)
@@ -194,7 +214,7 @@ fits <- lapply(setNames(names(setup), names(setup)), function(n)
   fit(n, free_disp = (n == "mosun")))
 
 tibble(Setting = c("Odronextamab, DLBCL", "Odronextamab, follicular",
-                   "Mosunetuzumab, one patient"),
+                   "Mosunetuzumab, one patient", "Teclistamab, myeloma"),
        `Target (mg)` = round(sapply(fits, `[[`, "target"), 2),
        `Implied cells` = sprintf("%.1e", sapply(fits, `[[`, "target")/1e3/1.5e5*6.022e23/5e4),
        `Residual SD (log)` = round(sapply(fits, `[[`, "sd"), 3),
@@ -205,34 +225,38 @@ tibble(Setting = c("Odronextamab, DLBCL", "Odronextamab, follicular",
 Implied cells assume 5 × 10⁴ binding sites per cell and a 150 kDa antibody.
 
 ```{r overlay}
-#| fig-cap: "One structure with one shared parameter set, fitted to three settings by the accessible target burden alone. Upper row, concentration: points are digitized observations, lines are the model. Lower row, the target pool the same fit implies, as a percentage of its starting value."
+#| fig-height: 8
+#| fig-cap: "One structure with one shared parameter set, fitted to four settings by the accessible target burden alone. Upper block, concentration: points are digitized, lines are the model; the teclistamab points are thinned eight-fold for legibility. Lower block, the target pool the same fit implies, as a percentage of its starting value."
 lab <- c(odro_DLBCL = "Odronextamab, DLBCL", odro_FL = "Odronextamab, follicular",
-         mosun = "Mosunetuzumab, one patient")
+         mosun = "Mosunetuzumab, one patient", tec = "Teclistamab, myeloma")
 S <- list(); O <- list()
 for (nm in names(setup)) {
   d <- setup[[nm]]; r <- fits[[nm]]
-  ev <- Reduce(function(e, i) e |> et(amt = d$amt[i], cmt = "central",
-                                      time = r$dt[i], dur = 2/24),
+  ev <- Reduce(function(e, i) e |> et(amt = d$amt[i], cmt = d$cmt, time = r$dt[i],
+                                      dur = if (d$cmt == "central") 2/24 else NULL),
                seq_along(r$dt), et()) |> et(seq(0, d$tmax, by = 0.005))
-  p <- c(cl = r$cl, vc = r$vc, vt = d$vt, qt = d$qt, kss = SH[["kss"]],
-         kint = SH[["kint"]], kkill = SH[["kkill"]], kdeg = SH[["kdeg"]],
+  p <- c(cl = r$cl, vc = r$vc, vt = d$vt, qt = d$qt, ka = d$ka, fbio = d$fbio,
+         kss = SH[["kss"]], kint = SH[["kint"]], kkill = SH[["kkill"]],
+         kdeg = SH[["kdeg"]],
          rc0 = r$target*(1 - SH[["ftis"]])/r$vc, rt0 = r$target*SH[["ftis"]]/d$vt)
   S[[nm]] <- as_tibble(rxSolve(m, p, ev)) |>
     transmute(day = time, conc = cc,
               frac = (rc*r$vc + rt*d$vt)/(p[["rc0"]]*r$vc + p[["rt0"]]*d$vt),
               who = lab[[nm]])
-  O[[nm]] <- r$obs |> mutate(who = lab[[nm]])
+  oo <- r$obs
+  if (nm == "tec") oo <- oo[seq(1, nrow(oo), by = 8), ]   # 324 points hide the line
+  O[[nm]] <- oo |> mutate(who = lab[[nm]])
 }
 sim <- bind_rows(S) |> mutate(who = factor(who, levels = lab))
 ob  <- bind_rows(O)  |> mutate(who = factor(who, levels = lab))
 
 g1 <- ggplot(sim, aes(day, conc)) + geom_line(linewidth = .5, colour = "#2C6FB5") +
   geom_point(data = ob, aes(day, conc), colour = "#C0392B", size = 1.7) +
-  facet_wrap(~who, scales = "free_x") + scale_y_log10() +
+  facet_wrap(~who, scales = "free_x", ncol = 2) + scale_y_log10() +
   annotation_logticks(sides = "l") +
   labs(x = NULL, y = "Concentration (mg/L)")
 g2 <- ggplot(sim, aes(day, 100*frac)) + geom_line(linewidth = .5, colour = "#2E7D5B") +
-  facet_wrap(~who, scales = "free_x") +
+  facet_wrap(~who, scales = "free_x", ncol = 2) +
   labs(x = "Days after first dose", y = "Target pool remaining (%)")
 g1 / g2
 ```
@@ -288,8 +312,83 @@ are identified only up to the product of pool size, accessibility and
 affinity, so a factor of ten either way is unresolved and only a target
 measurement would close it.
 
-**Still open.** Teclistamab, which is subcutaneous and in myeloma rather than
-lymphoma, and whose published paper carries no concentration-time figure, so
-the profile has to come from the supplement. It is the next setting and the
-one most likely to break the structure, because a BCMA target on marrow
-plasma cells is the furthest from the two CD20 settings fitted here.
+**Still open.** Epcoritamab, the only published T-cell engager model with a
+quasi-steady-state target-mediated structure in its own terms, which would be
+the first external check on the $K_{ss}$ used here rather than another fit
+that absorbs it.
+
+## 7. Teclistamab, and Where Its Target Compartment Is
+
+Teclistamab is subcutaneous, its antigen is BCMA on marrow plasma cells
+rather than CD20 on nodal B cells, and its published paper carries no
+concentration-time figure at all. The profile used here is Supplemental
+Figure 3, the final population model's own simulated median at the
+recommended phase II dose, digitized from a 300 dpi render of the supplement.
+
+It fits, at a residual standard deviation of 0.135 across 324 points and a
+780-fold concentration range, but **only after one substitution**.
+
+```{r tec-qt}
+#| fig-cap: "Teclistamab fitted with the target compartment given three different degrees of access. The published intercompartmental clearance of 0.039 L/day makes the compartment unreachable, so the fit compensates with a target pool that never engages."
+qt_scan <- function(qt) {
+  keep <- setup$tec$qt; setup$tec$qt <<- qt
+  r <- fit("tec"); setup$tec$qt <<- keep
+  d <- setup$tec
+  ev <- Reduce(function(e, i) e |> et(amt = d$amt[i], cmt = "depot", time = r$dt[i]),
+               seq_along(r$dt), et()) |> et(seq(0, d$tmax, by = 0.02))
+  p <- c(cl = d$cl, vc = d$vc, vt = d$vt, qt = qt, ka = d$ka, fbio = d$fbio,
+         kss = SH[["kss"]], kint = SH[["kint"]], kkill = SH[["kkill"]],
+         kdeg = SH[["kdeg"]],
+         rc0 = r$target*(1 - SH[["ftis"]])/d$vc, rt0 = r$target*SH[["ftis"]]/d$vt)
+  s <- as_tibble(rxSolve(m, p, ev))
+  tibble(`Qt (L/day)` = qt, `Target (mg)` = round(r$target, 2),
+         `Residual SD (log)` = round(r$sd, 3),
+         `CL at start` = round(s$cltot[s$time == 0.2], 2),
+         `CL at 24 wk` = round(s$cltot[nrow(s)], 3))
+}
+bind_rows(lapply(c(0.039, 0.3, 1.0), qt_scan)) |> knitr::kable()
+```
+
+At the published $Q$ of 0.039 L/day the peripheral compartment has a
+26-day equilibration time and the drug never reaches the target in it. The
+fit responds by inflating the pool until the small central fraction does the
+work, and total clearance sits near 32 L/day throughout, which is
+seventy times what the published model estimates.
+
+Give the compartment antibody-like access, $Q$ between 0.3 and 1 L/day, and
+the fit improves, the pool falls to about 23 mg, and total clearance runs from
+12 L/day at the step-up dose to 0.60 L/day at week 24. The published
+time-dependent clearance runs from 0.996 to 0.449 L/day. **The asymptote
+agrees within 35%; the value at the step-up dose does not agree at all, and
+that disagreement is the whole argument of this project**: a clearance model
+that is linear in concentration cannot report a clearance of 12 L/day at
+0.03 µg/mL, so it reports the average of what it saw instead.
+
+The reading is that the deep compartment Miao et al. fit, with a 55%
+relative standard error on its intercompartmental clearance, is not the
+marrow the target lives in. It is whatever the terminal phase of a
+subcutaneous profile requires, and the target sits somewhere the drug
+actually gets to.
+
+### 7.1 Is 23 mg of BCMA Plausible?
+
+Converting at BCMA's receptor density rather than CD20's, 12,590 sites per
+plasma cell from the elranatamab systems model:
+
+```{r bcma}
+tibble(Quantity = c("Fitted target pool",
+                    "Binding sites",
+                    "Cells at 12,590 BCMA sites each",
+                    "Plausible myeloma plasma-cell burden"),
+       Value = c("23.2 mg", "9.3e16", "7.4e12", "~1e11 to 1e12")) |>
+  knitr::kable()
+```
+
+The fitted pool is five to seventy times a plausible cellular burden, so it
+is not all membrane BCMA. Soluble BCMA is the obvious remainder: it is shed
+into serum at high concentration in myeloma, it binds the same arm, and
+Miao et al. screened it as a covariate on clearance, both at baseline and
+time-varying, and reported that neither improved the model. A binding pool
+that is part cellular and part soluble is consistent with both that
+screening result and this fit, and it is not evidence for either, because
+nothing here separates the two.
