@@ -64,8 +64,7 @@ listing:
 toc: false
 ---
 
-Longer-running work: open-source tools, and working documents for problems
-that do not fit in a blog post.
+Projects such as open-source tools and working documents.
 
 ## R packages
 
@@ -74,16 +73,10 @@ that do not fit in a blog post.
 
 ## Dose-response methods
 
-Working documents on how to choose an exposure metric, size a study, and fit
-a dose-response model.
-
 ::: {#dose-response}
 :::
 
 ## Immunology and T-cell engagers
-
-Working documents on T-cell engager dosing, B-cell depletion, and the immune
-biomarkers that track both.
 
 ::: {#immunology}
 :::
@@ -105,5 +98,5 @@ biomarkers that track both.
 
 ## Archive
 
-Projects that are finished, or that were overtaken by something else, are on
-the [archive page](archive.qmd). They keep their pages and their URLs.
+Projects that are no longer relevant are on the [archive page](archive.qmd).
+They keep their pages and their URLs.

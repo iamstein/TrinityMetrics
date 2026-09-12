@@ -32,15 +32,24 @@ cards() {
   done
 }
 
+# A project folder is one holding an index.qmd. Quarto writes build directories
+# such as projects/index_files/ alongside them, and those are not projects.
 echo "Folders under projects/ with no card"
+found=0
 for d in projects/*/; do
   name=$(basename "$d")
+  case "$name" in *_files|.*) continue;; esac
+  if [ ! -f "$d/index.qmd" ]; then
+    note "$name  (no index.qmd; every project folder carries one)"
+    found=1; status=1
+    continue
+  fi
   if ! cards | cut -f1 | grep -qx "$name/index.qmd"; then
     note "$name  (add a card to $PROJECTS or $ARCHIVE)"
-    status=1
+    found=1; status=1
   fi
 done
-[ "$status" -eq 0 ] && note "none"
+[ "$found" -eq 0 ] && note "none"
 
 echo "Folders carrying a card in both files"
 dupes=$(cards | cut -f1 | sort | uniq -d)

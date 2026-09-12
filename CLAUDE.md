@@ -40,6 +40,12 @@ it, the working specification first, as a plain list rather than a Quarto
 listing. When a document there is added, renamed or removed, update that list
 in the same commit.
 
+After adding, renaming or removing a folder under `projects/`, run
+`_scripts/check-project-cards.sh`. It reports any folder with no card, any
+folder carrying a card in both yml files, and any card pointing at a file that
+does not exist. `site-integration` sat with no card for weeks and nobody
+noticed, which is the case it catches.
+
 A project that reads sources also carries a `references.qmd` in the same
 folder: the reading queue, the source list, and a status marker on every entry
 recording whether the claim the project draws from it has been checked against
@@ -57,8 +63,15 @@ needs `categories: true` and `categories` added to its `fields:` list in
 `projects/index.qmd`, or the pill never renders; a listing with nothing to
 distinguish (`R packages`, `Matlab tools`) skips both.
 
-When a project finishes, or is overtaken so that its question no longer needs
-answering, move its whole card from `projects/projects.yml` to
+Archive on relevance, not on completion. A finished project stays on the
+Projects page for as long as someone would still go to it: `xgx` and `xgxr` are
+done and stay, because people still use them. A project moves to the archive
+when it stops being something to refer to, either because its question got
+answered somewhere else or because the work it records is over. `site-integration`
+and `positron-assistant-config` are the two cases so far. Finishing is not on
+its own a reason to archive.
+
+To archive, move the whole card from `projects/projects.yml` to
 `projects/archive.yml`. That is the only step: the folder does not move, the
 URL does not change, and `projects/archive.qmd` lists whatever is in the second
 file. Quarto's listing `exclude:` does not filter yaml metadata, so a category
