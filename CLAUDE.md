@@ -81,7 +81,14 @@ say how the project ended, such as `Finished` or `Overtaken by a button`, and
 keep the topical category so the archived card still shows what kind of project
 it was. Add a callout at the top of the project's own `index.qmd` saying it is
 archived and pointing at `../archive.qmd`, because a reader arriving from a
-search result never sees either listing page.
+search result never sees either listing page. A card whose `path:` leaves
+`projects/`, as the MATLAB one points at `../software.qmd`, gets no callout;
+that page is not a project folder and says for itself that it is kept for the
+record.
+
+When the last card leaves a section, delete the section heading and its
+listing from `projects/index.qmd` in the same commit. An emptied listing still
+renders its heading, with nothing under it.
 
 ## Other conventions in this repository
 

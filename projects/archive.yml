@@ -25,3 +25,12 @@
     demo page are kept as given.
   categories: [GenAI]
   path: claude-code-at-work/index.qmd
+
+- title: "Matlab Tools for Tumor Spheroid and Collagen Network Analysis"
+  subtitle: "MATLAB, before 2011"
+  description: >
+    AIRE, FIRE and BEAMS: MATLAB tools written during the PhD thesis and
+    postdoc, for tumour spheroid invasive radii, network geometry from
+    confocal images, and beam network deformation.
+  categories: [Matlab tools]
+  path: ../software.qmd

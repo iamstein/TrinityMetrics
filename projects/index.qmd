@@ -51,16 +51,6 @@ listing:
     fields: [title, categories, description]
     categories: true
     feed: false
-  - id: earlier-work
-    contents: projects.yml
-    include:
-      categories: "Matlab tools"
-    type: grid
-    grid-columns: 2
-    sort: false
-    fields: [title, description]
-    categories: false
-    feed: false
 toc: false
 ---
 
@@ -89,11 +79,6 @@ Projects such as open-source tools and working documents.
 ## Site
 
 ::: {#site-projects}
-:::
-
-## Matlab tools
-
-::: {#earlier-work}
 :::
 
 ## Archive
