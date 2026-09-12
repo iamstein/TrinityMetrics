@@ -39,14 +39,32 @@ Section 4 compares it against the `normal` default.
 session. That is the tool this group uses most, it is separate from `bash`, and
 no `bash` rule constrains it.
 
-The file lives in the project root and is committed, so everyone working in the
-repository gets the same posture. A personal file at
-`~/.posit/assistant/settings.json` is overridden by it. Both paths were
-confirmed on disk on 2026-09-12.
+**The same JSON works in either of two places.** Both paths were confirmed on
+disk on 2026-09-12.
+
+| Path | Applies to | Committed |
+|---|---|---|
+| `~/.posit/assistant/settings.json` | Every project you open | No, personal to you |
+| `.posit/assistant/settings.json` in the project root | That project only | Yes, shared with collaborators |
+
+Settings resolve last-wins, defaults then home then project, so a project file
+overrides the home file key by key.
+
+**✅ Start with the home file.** One edit covers every repository, including the
+ones not created yet, and it avoids the unverified claim below. Nothing in the
+recommendation is project-specific, so there is little to gain from writing it
+once per repository.
+
+Add a project file later, carrying `executeCode` alone, when you want everyone
+working in one repository to get the same posture without each of them setting
+it up. That is the case for a shared analysis repository and not much else.
 
 **⚠️ One thing here is unverified.** Whether `approvalMode` is accepted in a
-project-level file or only globally. Set it, then read the mode indicator in
-the chat pane. The check takes a minute.
+project-level file at all, or only in the home file and the administrator
+environment variables. It is absent from the documented list of per-project
+settings. If it turns out to be home-only, the home file is the sole place it
+works, which is a further reason to start there. Set it, then read the mode
+indicator in the chat pane. The check takes a minute.
 
 ## 3. How the Permission System Works
 
@@ -178,6 +196,9 @@ unverified.
 
 ## 7. Where to Start
 
-1. Copy the file in Section 2 into `.posit/assistant/settings.json` and commit
-   it.
+1. Copy the file in Section 2 into `~/.posit/assistant/settings.json`. That
+   covers every project at once and nothing needs committing.
 2. Add a rule only when a prompt has annoyed you twice.
+3. Copy the `executeCode` line into a project's own
+   `.posit/assistant/settings.json` and commit it, but only for a repository
+   other people work in.
