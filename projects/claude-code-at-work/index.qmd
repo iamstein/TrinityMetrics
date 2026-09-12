@@ -7,6 +7,12 @@ date: last-modified
 toc: false
 ---
 
+::: {.callout-note appearance="simple"}
+**Archived, 2026-09-12.** The talk was given. The deck and the demo page are
+kept as they were on the day. The project is on the
+[archive page](../archive.qmd) rather than the [Projects page](../index.qmd).
+:::
+
 An informal 15-minute talk at the AI symposium, which meets a couple of times
 a week for people to show how they use these tools. On how Claude Code is being
 used for open-source pharmacometrics work. Everything shown is public and none

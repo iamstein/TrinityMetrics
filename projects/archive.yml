@@ -15,3 +15,13 @@
     answers at trinitymetrics.com, and the old pages point at it.
   categories: [Site Maintenance]
   path: site-integration/index.qmd
+
+- title: "Claude Code at Work"
+  subtitle: "Given"
+  description: >
+    A fifteen-minute show-and-tell at the AI symposium on using Claude Code for
+    open-source pharmacometrics: four worked examples, how it is set up, and
+    what has to be checked before the output is trusted. The deck and its live
+    demo page are kept as given.
+  categories: [GenAI]
+  path: claude-code-at-work/index.qmd
