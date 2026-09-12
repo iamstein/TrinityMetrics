@@ -90,6 +90,13 @@ When the last card leaves a section, delete the section heading and its
 listing from `projects/index.qmd` in the same commit. An emptied listing still
 renders its heading, with nothing under it.
 
+`projects/archive.qmd` carries the same sections, in the same order, so a
+project keeps its heading when it moves. Archiving into a category the archive
+page has no section for means adding one, listing and heading together. Do not
+create sections there ahead of need, for the same reason an emptied one comes
+out. Archive listings show `subtitle` and set `categories: false`, since the
+heading already says the category and `Draft` is dropped on the way across.
+
 ## Other conventions in this repository
 
 - `.github/copilot-instructions.md` — Markdown mechanics: blank lines around

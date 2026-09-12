@@ -1,14 +1,36 @@
 ---
 title: "Archive"
-description: "Projects that are finished, or that were overtaken by something else. They keep their pages and their URLs."
+description: "Projects that are no longer relevant. They keep their pages and their URLs."
 listing:
-  - id: archived
+  - id: archive-genai
     contents: archive.yml
+    include:
+      categories: "GenAI"
     type: grid
     grid-columns: 2
     sort: false
-    fields: [title, categories, description]
-    categories: true
+    fields: [title, subtitle, description]
+    categories: false
+    feed: false
+  - id: archive-site
+    contents: archive.yml
+    include:
+      categories: "Site Maintenance"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, subtitle, description]
+    categories: false
+    feed: false
+  - id: archive-matlab
+    contents: archive.yml
+    include:
+      categories: "Matlab tools"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, subtitle, description]
+    categories: false
     feed: false
 toc: false
 ---
@@ -18,5 +40,20 @@ still stands. Some were overtaken, because the question they asked got answered
 somewhere else or stopped being a question. These cards no longer sit on the
 [Projects page](index.qmd).
 
-::: {#archived}
+The sections match the ones there, so a project keeps its heading when it moves.
+Each card's subtitle says how that project ended.
+
+## GenAI
+
+::: {#archive-genai}
+:::
+
+## Site Maintenance
+
+::: {#archive-site}
+:::
+
+## Matlab tools
+
+::: {#archive-matlab}
 :::
