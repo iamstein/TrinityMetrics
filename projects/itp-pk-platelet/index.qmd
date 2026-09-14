@@ -1,35 +1,32 @@
 ---
 title: "ITP-PK-Platelet"
-subtitle: "Selecting a Phase 2 dose for a B-cell depleting agent in immune thrombocytopenia"
-description: "Index of the documents in the ITP-PK-Platelet project: the working specification and its literature review."
+subtitle: "Evaluating models for Phase 2 dose and regimen selection in immune thrombocytopenia"
+description: "Working specification, critical review and reference notebook for evaluating PK–platelet modelling, durable control and immune recovery in ITP."
 categories: [pharmacometrics, immunology, dose selection, working document]
 date: last-modified
 toc: false
 ---
 
-A B-cell depleting agent has been given to a few dozen patients with immune
-thrombocytopenia in a dose escalation and a single expansion cohort, with
-serial drug concentrations, B-cell counts and platelet counts. Can a model of
-those three time courses select the Phase 2 dose? The literature has the
-platelet half of that model and the B-cell half, in separate places and for
-separate drugs, and nothing that joins them in this disease. The references
-document widens the search to every ITP drug that blocks antibody-mediated
-platelet destruction, and asks why the join is missing. Nothing has been fit
-here yet.
+A small dose escalation followed by two randomized expansion arms could
+provide serial drug concentrations, B-cell counts and platelet counts for a
+B-cell depleting agent in ITP. This project asks whether those measurements
+improve a Phase 2 dose or regimen decision over simpler analyses of the same
+patients. The clinical objective is durable platelet control with acceptable
+immune recovery. Prolonged depletion is not assumed to improve a true reset.
+No PK–platelet model or decision simulation has been run yet.
 
 ## Documents
 
-- [Working specification](specification.qmd). Section 2 gives the ITP endpoint
-  definitions from the IWG 2009 consensus paper. Then the model, the data it
-  requires, the identifiability problems, the dose selection rule, and the
-  simulation study that scores the rule against picking the highest safe dose.
-  Section 19 gives the reasons no such model has been published, split into
-  those that apply here and those that do not, with a table of every attempt. Its
-  **In brief** section is one screen and says what the rest argues.
-- [References](references.qmd). The literature review that opens with what
-  exists and what does not, then the reading queue in order, then a marker on
-  every source recording whether the specification's use of it has been
-  checked, plus the FDA, EMA and PMDA reviews of the three ITP drugs that
-  block platelet destruction, read in full, and a table of the TPO-RA
-  PK-platelet models the specification borrows from. Six sources have been
-  read; the rest are ❌.
+- [Working specification](specification.qmd). Revised after critical review.
+  Defines the clinical endpoint and tradeoffs, compares progressively more
+  complex models, allows benefit to persist after B-cell recovery, and
+  specifies the simulation needed to establish incremental decision value.
+- [Critical review](specification-review.md). Review of the earlier
+  specification, including its equations, biological assumptions and
+  sample-size claims. Preserved as the rationale for the revision.
+- [Reference notebook](references.qmd). Earlier search and reading notes,
+  with a revision notice and source qualifications. Historical interpretations
+  are not necessarily the conclusions of the revised specification.
+- [Illustrative calculations](scripts/specification-calculations.R).
+  Reproduces Section 14's exact two-arm selection probabilities and simple
+  dose-response calculations; these do not establish PK-model sample savings.

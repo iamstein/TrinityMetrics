@@ -10,18 +10,22 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**Six sources have been read; the rest were assembled on 2026-09-09 from web
-search results and abstracts.** Entry 1, the IWG 2009 consensus paper, and
-entries 22 to 25, the FDA, EMA and PMDA reviews of rilzabrutinib, fostamatinib
-and efgartigimod in ITP, were read in full and are ✅, as is the PAGE 2009
-poster behind entry 26. Every other marker is ❌, including the numbers
-Section 7 and Section 16 of the specification quote: the ianalumab 3
-against 9 mg/kg comparison, the rituximab low-dose response rates, the
-efgartigimod immunoglobulin G reduction, and the four-compartment platelet
-model structure all come from search summaries rather than from the papers. A
-search summary is weaker evidence than an abstract, which is itself weaker
-than the paper. Treat each entry as a prediction about what its source says,
-and correct the entry when the source is read.
+**Historical research notebook; specification revised 14 September 2026.**
+The [revised specification](specification.qmd) supersedes this notebook's
+earlier modelling conclusions and section references. In particular, total
+IgG does not identify the pathogenic plasma-cell floor, similar aggregate
+dose results do not establish a plateau boundary, and the simple logistic
+information calculation does not establish PK–platelet sample-size savings.
+The [critical review](specification-review.md) explains these corrections.
+
+The original search was assembled on 2026-09-09. The earlier project recorded
+full reading of the IWG paper, regulatory reviews in entries 22–25 and the
+PAGE poster in entry 26; other entries have more limited verification.
+The critical review checked additional primary reports and PMDA Section
+6.R.1, but did not re-audit every entry or retrieve the full FDA rilzabrutinib
+PDF. Preserve the distinction between an abstract, a search extract and a
+full source. Markers below describe the earlier entry-specific work, not a
+blanket endorsement of its interpretation in the revised specification.
 :::
 
 The working document is [the specification](specification.qmd), and the
@@ -40,7 +44,8 @@ On a **reading-queue** entry, ✅ means the question posed against that entry
 has been answered, by reading the paper or by deciding it is out of scope, and
 the note on the entry says which. On a **source** entry below the queue, ✅
 keeps the stricter meaning: the claim the specification draws from it has been
-checked against the source. None is ✅ yet.
+checked against the source. Interpret these markers together with the
+revision notice above.
 
 ## What the search found
 
