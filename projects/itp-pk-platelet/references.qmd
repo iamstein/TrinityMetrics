@@ -1148,3 +1148,19 @@ have not been digitized or fitted.
 paper returned HTTP 403 from the publisher. The gallery lists the figures
 requested from those papers and the remaining gaps in early corticosteroid
 and paired B-cell phenotype/platelet trajectories.
+
+
+## B-cell–Platelet Relationship Sources
+
+The [B-cell–platelet relationship review](bcell-platelet-relationship.qmd)
+contains 15 numbered primary-study entries with individual verification status,
+covering peripheral recovery, immune subsets, antibodies and tissue reservoirs.
+Source checks were performed on 2026-09-14. Arnold 2017 and Hayashi 2021 remain
+abstract-only; the other entries identify the full-text portions checked.
+
+The [2022 Canales-Herrerias publication](https://pmc.ncbi.nlm.nih.gov/articles/PMC9197514/)
+supersedes the 2021 dissemination preprint listed above for this question.
+The [Crickx 2021 report](https://pmc.ncbi.nlm.nih.gov/articles/PMC7610758/)
+was also checked beyond the abstract for the new review. These studies support
+distinguishing pathogenic reservoirs from total B-cell counts, but do not
+validate a transferable ITP dose-selection threshold.

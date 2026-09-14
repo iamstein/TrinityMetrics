@@ -1,0 +1,34 @@
+[
+  {
+    "file": "daratumumab-blood-platelets.jpg",
+    "author": "Canales-Herrerias et al.",
+    "title": "High-affinity autoreactive plasma cells disseminate through multiple organs in patients with immune thrombocytopenic purpura",
+    "year": 2022,
+    "doi": "10.1172/JCI153580",
+    "figure": "4",
+    "article_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9197514/",
+    "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9197514/figure/F4/",
+    "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ae8c/9197514/3498c22e44ba/jci-132-153580-g169.jpg",
+    "retrieved": "2026-09-14",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "changes": "None; original source JPEG, scaled for display.",
+    "sha256": "1aeaa7c18005a81078c4ff9c9fdab426d95e9aab69f665e605417011e00686ff"
+  },
+  {
+    "file": "daratumumab-tissue-platelets.jpg",
+    "author": "Canales-Herrerias et al.",
+    "title": "High-affinity autoreactive plasma cells disseminate through multiple organs in patients with immune thrombocytopenic purpura",
+    "year": 2022,
+    "doi": "10.1172/JCI153580",
+    "figure": "5",
+    "article_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9197514/",
+    "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9197514/figure/F5/",
+    "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ae8c/9197514/7d7945436d0d/jci-132-153580-g170.jpg",
+    "retrieved": "2026-09-14",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "changes": "None; original source JPEG, scaled for display.",
+    "sha256": "a96baeba1591d4699ef62f6e8e43268d42430325e5870a8cedb639aec5c2fc70"
+  }
+]
