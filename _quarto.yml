@@ -28,14 +28,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: projects/index.qmd
-        text: Projects
-      - href: guides/index.qmd
-        text: Learning Guides
       - href: pmx-tools.qmd
         text: PMX Tools
+      - href: guides/index.qmd
+        text: Learning Guides
       - href: talks.qmd
         text: Talks
+      - href: projects/index.qmd
+        text: Projects
       - text: About
         menu:
           - href: about.qmd
