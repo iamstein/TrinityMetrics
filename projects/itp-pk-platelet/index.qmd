@@ -35,6 +35,9 @@ reported separately.
 - [Reference notebook](references.qmd). Earlier search and reading notes,
   with a revision notice and source qualifications. Historical interpretations
   are not necessarily the conclusions of the revised specification.
+- [Platelet kinetics gallery](platelet-kinetics.qmd). Published count trajectories
+  and response-duration figures across ITP therapies, with local images,
+  source links and notes on interpretation. Includes a list of missing figures.
 - [Illustrative calculations](scripts/specification-calculations.R).
   Reproduces Section 14's exact two-arm selection probabilities and simple
   dose-response calculations; these do not establish PK-model sample savings.

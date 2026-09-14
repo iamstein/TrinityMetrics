@@ -1132,3 +1132,19 @@ model.
   and 27, and nothing to the project's premise.
 - **The rilzabrutinib exposure-response report SAN3001**, cited in entry 22
   and not public. The model structure is there and not in the review.
+
+## Platelet Kinetics Figure Sources
+
+**Checked against source figures, 2026-09-14.** The
+[platelet kinetics gallery](platelet-kinetics.qmd) adds 20 images across B-cell
+depletion, TPO-pathway therapies, IVIg/anti-D, corticosteroids, FcRn inhibition,
+BTK/SYK inhibition, anti-CD38 therapy and splenectomy. Each entry links to its
+paper and original legend; the [source manifest](platelet-kinetics-images/sources.json)
+records attribution and image provenance. Checks cover the displayed quantity,
+population and interpretation notes, including source inconsistencies. Curves
+have not been digitized or fitted.
+
+**Access blocked.** Ianalumab VAYHIT2 and the randomized Phase 2 mezagitamab
+paper returned HTTP 403 from the publisher. The gallery lists the figures
+requested from those papers and the remaining gaps in early corticosteroid
+and paired B-cell phenotype/platelet trajectories.
