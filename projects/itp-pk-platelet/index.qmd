@@ -15,6 +15,14 @@ patients. The clinical objective is durable platelet control with acceptable
 immune recovery. Prolonged depletion is not assumed to improve a true reset.
 No PK–platelet model or decision simulation has been run yet.
 
+A second design has only six ITP expansion patients per dose, supported by
+larger same-agent cohorts in other indications. It asks whether shared PK,
+peripheral and tissue depletion, and B-cell immunophenotypes can support an
+ITP dose shortlist, either on pharmacology alone or through an ITP-specific
+immune-to-platelet model. Healthy naive-cell recovery can be compatible with
+a durable reset; biological dose support and clinical efficacy support are
+reported separately.
+
 ## Documents
 
 - [Working specification](specification.qmd). Revised after critical review.

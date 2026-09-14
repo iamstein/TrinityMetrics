@@ -39,8 +39,8 @@ pooling_ratio <- function(p_top, delta, x, n) {
 }
 
 report_calculations <- function() {
-  selection <- data.frame(p_low = c(.45, .45, .50, .50),
-                          p_high = .55, n_per_arm = c(20, 40, 141, 142))
+  selection <- data.frame(p_low = c(.45, .45, .45, .50, .50),
+                          p_high = .55, n_per_arm = c(6, 20, 40, 141, 142))
   selection$probability_correct <- mapply(pcs_two, selection$n_per_arm,
                                          selection$p_high, selection$p_low)
   cat("Exact two-arm selection probability; ties split equally\n")

@@ -33,6 +33,29 @@ folder's other documents are on [the project index](index.qmd).
 
 ## Status markers
 
+The specification now also includes a sparse-ITP/cross-indication design
+(Sections 1.4, 8.7, 13.4 and 15.6). The additional evidence below supports
+that question without validating transfer of a reset threshold to ITP.
+
+### Additional primary evidence for cross-indication modelling
+
+- [PAGE 2018 abstract 8543](https://www.page-meeting.org/Abstracts/model-based-dose-selection-for-the-phase-2b-study-of-ianalumab-in-primary-sjogrens-syndrome/).
+  Conference abstract read for this extension. The ianalumab PK–B-cell model
+  used rheumatoid arthritis and Sjögren's data; the tissue receptor-occupancy
+  component was hypothetical because tissue data were unavailable. This is
+  a modelling precedent, not an ITP efficacy or biopsy-validation study.
+- [Rituximab B-cell biomarkers in ANCA-associated vasculitis](https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2021.803175/full).
+  Primary observational report; methods and relevant results checked.
+  Naive-cell repopulation was associated with longer time to relapse.
+  This motivates separating subsets, not transferring a clinical decision
+  rule from vasculitis to ITP.
+- [Crickx et al., ITP relapse study](https://pubmed.ncbi.nlm.nih.gov/33853929/).
+  Primary-report abstract checked. Surviving memory and newly generated
+  cells can contribute to relapse, so a naive phenotype alone cannot prove
+  elimination of pathogenic activity.
+
+### Historical marker definitions
+
 - ❌ **Not checked.** No claim in the working document has been verified
   against this source. Where the working document characterizes it, the
   characterization comes from an abstract or a search result.

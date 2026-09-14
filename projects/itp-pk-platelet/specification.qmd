@@ -1,5 +1,5 @@
 ---
-description: "When can longitudinal platelets, pharmacokinetics and immune measurements improve Phase 2 dose or regimen selection in ITP? A specification comparing simple and joint models, reversible suppression and persistent benefit, with clinical efficacy, immune recovery and decision uncertainty considered together."
+description: "When can PK, B-cell phenotypes, biopsies and platelet data improve ITP regimen selection? Compares ITP-only modelling and cross-indication borrowing with sparse ITP cohorts, distinguishing sufficient deep depletion and persistent reset from prolonged suppression."
 categories: [pharmacometrics, immunology, dose selection, working document]
 date: last-modified
 toc: true

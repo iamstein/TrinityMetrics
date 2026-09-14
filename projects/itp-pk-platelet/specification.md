@@ -1,4 +1,4 @@
-# PK–platelet modelling to support Phase 2 dose and regimen selection in ITP
+# PK, B-cell and platelet modelling to support Phase 2 regimen selection in ITP
 
 *Working specification for a B-cell depleting agent with escalation and randomized expansion data. Revised 14 September 2026 following critical review.*
 
@@ -8,6 +8,8 @@
 
 **The question.** In a small study of a B-cell depleting agent in immune thrombocytopenia (ITP), can longitudinal platelet counts, pharmacokinetics (PK) and immune measurements improve the selection of a Phase 2 dose or short-course regimen over simpler analyses of the same patients?
 
+**A second, linked question.** What if ITP expansion has only six patients per dose, but the same agent has been studied at several doses in other indications? Can shared PK and immune data, including tissue biopsies and B-cell immunophenotypes, identify a biologically adequate regimen for ITP? Evaluate both a pharmacology-based shortlist without a platelet model and a joint model in which all indications inform transportable PK/immune parameters while ITP data inform the immune-to-platelet relationship. Neither route assumes that external clinical responses are ITP responses.
+
 **The clinical objective.** Preserve durable platelet control while avoiding unnecessary treatment and immune impairment. If a lower dose achieves the same durable immune reset, longer B-cell depletion offers no additional efficacy benefit and may impose additional burden. Depletion duration is a candidate predictor and immune recovery measure, not an efficacy objective or a calibrated infection-risk measure.
 
 **The biological alternatives.** Benefit may require continued suppression of pathogenic immunity, may persist after healthy B-cell repopulation, or may follow different patterns in different patients. A model that makes platelet benefit disappear whenever total B cells return cannot test a reset hypothesis. This specification compares reversible suppression, persistent benefit consistent with reset, and mixtures of transient responders, durable responders and nonresponders. Persistence over follow-up is not proof of permanent immune tolerance.
@@ -15,6 +17,8 @@
 **The working conclusion.** PK–platelet modelling could be useful when doses or regimens differ in response onset, durability, rescue requirements, treatment-free control or immune recovery, and those differences are supported by the study design. It may also help choose the next informative regimen. Its incremental value must be demonstrated against arm-level response estimates, simple dose-response curves and longitudinal platelet models without PK. A saturated peripheral B-cell biomarker does not rule out useful platelet modelling; it may rule out forcing the efficacy model through that biomarker.
 
 **What is not yet known.** Whether PK adds decision-relevant information beyond assigned dose; whether B cells add information beyond PK and platelets; whether a persistent-response component is identifiable; and whether any gain is large enough to reduce patients, follow-up or decision loss. No numerical saving is assumed.
+
+With cross-indication data, the additional uncertainty is transportability: drug exposure, peripheral depletion, tissue engagement and the composition of recovery may transfer to different degrees. Return of naive cells can be compatible with the intended reset. The desired effect may be sufficiently deep depletion of relevant cells followed by durable loss of pathogenic activity, rather than prolonged absence of all B cells. That proposed sufficiency must be tested, not defined into the dose-selection rule.
 
 **How the project answers the question.** Specify a clinical decision, compare increasingly complex models under that same decision, and simulate plausible biological and trial-management alternatives. Report efficacy loss, unnecessary immune burden, calibration and inconclusive decisions, including model failures. Use available real data for exploratory checks and prior calibration alongside simulation.
 
@@ -38,19 +42,29 @@ The intended data include serum drug concentration, circulating B-cell counts, i
 
 Before using the work for an actual dose recommendation, the clinical team must set the endpoint and follow-up horizon, minimum worthwhile efficacy, acceptable efficacy loss, safety exclusions, and the importance of immune recovery and treatment burden. Sections 3 and 13 define how those choices enter the analysis. Illustrative simulation settings are labelled as such; they do not establish clinical standards.
 
-## 2. Main uncertainties
+### 1.4 Sparse ITP with data from other indications
+
+Add a second design family: six ITP expansion patients at each of two or three doses, alongside dose-ranging data for the **same agent** in other indications. For the initial simulation interpret the external example as 20 patients per dose at three doses in one other indication; also examine 20 patients total spread across those doses and multiple external indications. Report patients by indication and dose so that this illustrative allocation is not mistaken for an actual dataset. Keep ITP escalation data when available, but also examine its absence.
+
+The external dataset can include concentration, total peripheral B cells, B-cell subsets, tissue samples, immunoglobulins and safety. Access to patient-level sampling, regimen and assay information is assumed for the joint analysis; aggregate publications alone support a weaker prior-based analysis, with their uncertainty and selection limitations retained. Different drugs provide biological context or weak sensitivity priors unless a separate cross-drug bridge is justified.
+
+Two distinct deliverables are evaluated. **Pharmacological dose support** asks which regimens achieve a specified immune effect in the ITP population with acceptable recovery and burden. **Clinical dose support** asks which regimens produce acceptable durable ITP control. The former can be useful without fitting platelets, for selecting doses to test; it does not establish the latter. The joint model connects these questions when the ITP data support the connection.
+
+## 2. Main uncertainties and challenges
 
 Rank these by their potential to change the decision rather than by the number of unobserved compartments.
 
-1. **Persistence mechanism.** Does benefit disappear with reconstitution, persist after reconstitution, or vary by patient? Short follow-up during complete depletion may not distinguish these possibilities.
-2. **Clinical tradeoff.** How much efficacy loss is acceptable for a reduction in exposure, treatment burden or immune impairment? Higher-than-needed dosing is not assumed to be the cheap error.
-3. **Design and attribution.** Are expansion regimens randomized, background treatment controlled, and escalation cohorts exchangeable with expansion? A good fit cannot repair an unidentified causal contrast.
-4. **Incremental information.** Do repeated platelets, PK or immune markers improve the decision beyond a simple dose-response analysis?
-5. **Peripheral versus pathogenic immunity.** Blood B cells may not track the tissue cells or pathogenic activity that determine response. This challenges a specific biomarker link, not all dose–platelet models.
-6. **Response heterogeneity.** Effects may be continuous, clustered, delayed or transient. A binary endpoint does not establish a binary biological response.
-7. **Observation and management.** Rescue, TPO receptor agonist (TPO-RA) tapering, corticosteroids, biological platelet fluctuations, missed visits and dropout can dominate apparent durability.
-8. **Prior transfer.** Parameters from another agent, disease or age group may not transfer. Published response-time ranges do not directly identify a transduction rate.
-9. **Immune safety.** Total B-cell count and total IgG incompletely describe immune competence. Rare events cannot be estimated precisely from this reference design.
+1.  **Persistence mechanism.** Does benefit disappear with reconstitution of B cells or does it persist after reconstitution (e.g. due to B cell reset). Short follow-up during complete depletion may not distinguish these possibilities.
+2.  **Clinical trade-off.** How much efficacy loss is acceptable for a reduction in exposure, treatment burden or immune impairment?
+3.  **Design and attribution.** Are expansion regimens randomized, background treatment controlled, and escalation cohorts exchangeable with expansion? A good fit cannot repair an unidentified causal contrast.
+4.  **Incremental information.** Do repeated platelets, PK, or immune markers improve the decision beyond a simple dose-response analysis? Would a longitudinal PKPD model help further?
+5.  **Peripheral versus pathogenic immunity.** Blood B cells may not track the tissue cells or pathogenic activity that determine response. This challenges a specific biomarker link, not all dose–platelet models.
+6.  **Response heterogeneity.** Effects may be continuous, clustered, delayed or transient. A binary endpoint does not establish a binary biological response.
+7.  **Observation and management.** Rescue, TPO receptor agonist (TPO-RA) tapering, corticosteroids, biological platelet fluctuations, missed visits and dropout can dominate apparent durability.
+8.  **Prior transfer.** Parameters from another agent, disease or age group may not transfer. Published response-time ranges do not directly identify a transduction rate.
+9.  **Immune safety.** Total B-cell count and total IgG incompletely describe immune competence. Rare events cannot be estimated precisely from this reference design.
+
+10. **Cross-indication transport.** Other indications may identify exposure and immune trajectories well while leaving ITP tissue engagement or the immune-to-platelet link unresolved. With only a few indications, between-indication heterogeneity is itself weakly estimated. Distinguish genuine borrowing from precision imposed by assuming identical biology.
 
 ## 3. Clinical endpoints and estimands
 
@@ -59,7 +73,7 @@ Rank these by their potential to change the decision rather than by the number o
 The International Working Group (IWG) criteria provide terminology, not an automatic endpoint specification for this project. The original source is [Rodeghiero et al., Blood 2009](https://doi.org/10.1182/blood-2008-07-162503), read in the earlier project review.
 
 | Term | IWG definition |
-|:---|:---|
+|:-----------------------------------|:-----------------------------------|
 | Complete response, CR | Platelets $\ge100\times10^9$/L and absence of bleeding |
 | Response, R | Platelets $\ge30\times10^9$/L, at least twice baseline, and absence of bleeding |
 | No response | Platelets below 30, less than twice baseline, or bleeding |
@@ -79,7 +93,7 @@ For each regimen $r$, define $p(r)$ as the probability of meeting the **protocol
 The protocol must resolve all of the following:
 
 | Component | Required specification |
-|:---|:---|
+|:-----------------------------------|:-----------------------------------|
 | Population | Disease phase, baseline platelet criteria, prior B-cell therapy, splenectomy and concomitant treatment |
 | Treatment | Complete investigational regimen and the background-treatment policy |
 | Platelet endpoint | Threshold, confirmation rules, assessment window and required fraction of qualifying visits |
@@ -89,7 +103,7 @@ The protocol must resolve all of the following:
 | Missing observations | Prespecified classification and sensitivity analyses; do not silently shrink the required denominator |
 | Summary | Probability of durable control, with secondary time-to-event and burden summaries |
 
-For a reset-oriented programme, sustained control after the investigational course and protocol-defined withdrawal of background therapy is particularly relevant. Control while a TPO-RA continues is a separate estimand. Do not condition the main randomized comparison on patients who successfully taper; taper success is an outcome of the assigned policy.
+For a reset-oriented program, sustained control after the investigational course and protocol-defined withdrawal of background therapy is particularly relevant. Control while a TPO-RA continues is a separate estimand. Do not condition the main randomized comparison on patients who successfully taper; taper success is an outcome of the assigned policy.
 
 ### 3.3 Secondary outcomes and immune recovery
 
@@ -108,7 +122,7 @@ For otherwise identical event definitions, adding a no-bleeding requirement can 
 ## 4. Biomarkers and what they can support
 
 | Measurement | Potential contribution | Limitation to carry into the analysis |
-|:---|:---|:---|
+|:-----------------------|:-----------------------|:-----------------------|
 | Platelet count | Endpoint trajectory, onset, fluctuations and durability | Reflects production, destruction and treatment management together |
 | Circulating CD19+ or CD20+ cells | Peripheral depletion and recovery | Does not establish tissue depletion or pathogenic activity; below-limit values are censored |
 | Naive and memory B cells, plasmablasts | Composition of recovery and candidate activity markers | Requires validated gating, adequate counts and a justified link to response |
@@ -124,6 +138,16 @@ For otherwise identical event definitions, adding a no-bleeding requirement can 
 Nonspecific platelet-associated IgG should not be substituted for glycoprotein-specific testing. Anti-GPIb/IX specificity is an exploratory response covariate, not an established rule for predicting treatment failure; a primary IVIg study did not confirm a reliable response prediction. [Rogier et al., 2020](https://pubmed.ncbi.nlm.nih.gov/32630482/).
 
 Include a marker in the decision model only if its added information is worth its measurement and modelling burden. A measured intermediate need not improve prediction, even when biologically relevant. The simulation compares models with and without each added layer.
+
+### 4.1 Tissue biopsies and immunophenotypes for the cross-indication question
+
+A paired baseline/on-treatment biopsy can reveal local depth of depletion hidden by saturated blood measurements. Record tissue identity, sampling time relative to treatment and recovery, cell density or absolute abundance where possible, subset definitions, receptor expression, assay sensitivity and spatial sampling variation. A single post-treatment biopsy without a baseline gives weaker within-patient depletion information; two samples cannot establish the duration of local depletion or a durable reset. Model the observed tissue, not an unspecified universal tissue compartment. A salivary-gland sample in another indication is not a direct observation of ITP spleen or marrow.
+
+Separate three layers of evidence: depletion of relevant cells; subsequent immune composition compatible with reset; and durable clinical control. Measure naive/transitional, memory/activated and plasmablast populations with harmonized, prespecified gates, using both absolute counts and proportions. Ratios near complete depletion can be unstable, and proportions can change solely because another subset disappears. A memory phenotype is not equivalent to autoreactivity; clonotype or antigen-specific measurements, where feasible, strengthen interpretation but also require a measurement model.
+
+A naive-dominant recovery pattern with reduced candidate pathogenic activity is a **candidate reset signature**, not a validated surrogate for ITP response. Do not penalize naive-cell return as loss of effect by construction. Conversely, do not assume every returning naive cell is harmless indefinitely: relapse-associated immune responses in ITP have involved newly generated as well as surviving cells. Longitudinal phenotype, activity and clinical data must distinguish these possibilities. [ITP relapse study](https://pubmed.ncbi.nlm.nih.gov/33853929/).
+
+Freeze any proposed signature and thresholds before comparing doses; evaluate alternative definitions. Do not derive a high-dimensional reset score and claim validation on the same 12–18 ITP expansion patients. External discovery of a phenotype score is possible, but its clinical meaning in ITP still requires evaluation.
 
 ## 5. Use of other drugs as evidence
 
@@ -164,7 +188,7 @@ A platelet response model must allow benefit to persist independently of total B
 ### 8.1 A hierarchy that measures incremental value
 
 | Model | Data and structure | Incremental question |
-|:---|:---|:---|
+|:-----------------------|:-----------------------|:-----------------------|
 | M0: arm-level endpoint | Protocol-defined response by randomized regimen; regularization and parsimonious baseline adjustment | What does the randomized comparison already support? |
 | M1: dose-response endpoint | M0 plus justified pooling across dose levels under alternative shapes | What is gained by a shape assumption? |
 | M2: dose–longitudinal platelet | Assigned regimen, baseline and platelet trajectories; continuous-effect and response/relapse alternatives | Do repeated platelets improve the clinical decision? |
@@ -285,10 +309,51 @@ PK and B-cell likelihoods include their measurement errors and limits. Marker ex
 
 Background treatment, rescue and dropout are part of the generating process. Specify their rules and effect durations in each scenario. Model post-rescue observations through those effects, or use a prespecified primary endpoint analysis with rescue classified as failure and a separate sensitivity analysis for the latent platelet course. No fit may quietly treat informative post-rescue missingness as random.
 
+### 8.7 Cross-indication PK–immune model with an ITP-specific clinical link
+
+Let $j$ identify indication and $i$ identify patient. The shared model is for drug exposure and **measured immune states**, not a common clinical response across diseases. Let $X_{ij}(t)$ contain the parsimonious immune states supported by the assays, potentially peripheral naive cells $N$, memory/activated cells $M$, plasmablasts $V$ and tissue states $T_\ell$ for sampled tissue $\ell$. Do not add all these states when data support only a subset. Preserve observation definitions and account for overlap between gates rather than summing overlapping populations.
+
+| Model component | Potential cross-indication contribution | What remains indication- or tissue-specific |
+|:---|:---|:---|
+| PK | Clearance, distribution, absorption, exposure variability and covariate effects | Disease effects on clearance, target burden, route and treatment history |
+| Peripheral immune dynamics | Concentration-dependent depletion, subset recovery and assay parameters where harmonized | Baseline composition, turnover, treatment effects and disease-dependent sensitivity |
+| Tissue engagement | Exposure-to-depletion or occupancy in the tissue actually sampled | Partition, potency, local populations and mapping to ITP-relevant organs |
+| Immune reconstitution | Time courses of measured subsets and candidate reset signatures | Whether those signatures reflect loss of ITP pathogenic activity |
+| Platelet response | No direct efficacy borrowing from non-ITP endpoints | ITP baseline, immune-to-platelet effect, onset, persistence, relapse and background-treatment effects |
+| Safety | Additional exposure and immune-recovery observations | Baseline infection risk, concomitant immunosuppression, prophylaxis and outcome ascertainment |
+
+For a positive parameter considered potentially transportable, use a hierarchy such as
+
+$$
+\log\theta_{ij}=\mu_\theta+\beta_\theta^\top x_{ij}+b_{\theta j}+v_{\theta i},
+\qquad b_{\theta j}\sim N(0,\tau_\theta^2),\quad v_{\theta i}\sim N(0,\omega_\theta^2).
+$$
+
+Here $x$ contains prespecified baseline covariates, $b$ represents between-indication differences and $v$ patient variability; linked parameters may have a justified covariance structure. Use a suitable link for bounded parameters. Fit tissue-specific effects separately from indication effects where the data permit; when each tissue is observed in only one indication, their effects cannot be disentangled from those data alone. Do not shrink unobserved ITP tissue parameters tightly solely because a different tissue was precisely measured.
+
+Compare no borrowing, complete pooling and robust partial borrowing. Complete pooling is a strong-assumption benchmark, not the default. With few indications, examine fixed plausible heterogeneity scales and robust mixture priors as well as estimating $\tau$. Report conflict with ITP immune data and the effect of weakening or removing each external indication. Shared molecular target or drug identity alone does not establish transportability.
+
+For a joint analysis, write the observed-data likelihood schematically as
+
+$$
+L=\prod_j\prod_{i\in j} L_{\rm PK,immune}(D_{ij}^{\rm PK,immune}\mid\Theta_j)
+\;\times\!\prod_{i\in\mathrm{ITP}}L_{\rm clinical}(D_i^{P,\rm events}\mid X_i,C_i,\psi_{\rm ITP}),
+$$
+
+with latent states and random effects integrated consistently. The clinical factor includes the ITP treatment-management and observation processes; $\psi_{\rm ITP}$ is not borrowed from another disease's efficacy endpoint. External patients contribute PK/immune likelihoods, not unobserved platelet responses. The factorization does not justify treating correlated measurements as independent.
+
+As a complementary modular analysis, first fit the PK/immune hierarchy using immune and concentration data from all indications, then propagate posterior draws of the ITP immune trajectories into an ITP-only clinical fit. Compare this with the joint fit to assess whether a misspecified platelet model is pulling the shared immune model toward a false mechanism. This requires coherent conditional updating or an explicit cut-feedback analysis, not fixing upstream parameters at point estimates. Do not reuse an external posterior as a prior and then include those same external data again.
+
+**The persistent state needs an ITP-specific interpretation.** In Section 8.4, $R$ denotes reduced pathogenic activity relevant to platelets. It is not identified simply by a naive-cell percentage. To connect phenotypes to persistent benefit, test a prespecified low-dimensional induction input $f_I(C,X,T)$ and an ITP-specific activity/relapse model. Total B-cell recovery need not make $R$ fall. Relevant-cell or tissue depletion can trigger a change that persists after exposure ends and naive cells return. An association between phenotypes and response is a candidate predictive link, not proof that changing that phenotype causes remission.
+
+A model that sets $R$ equal to a shared external reset score would assume the main clinical bridge rather than learn it. Retain alternatives where similar total-cell depletion produces different tissue effects, where a naive-dominant signature accompanies ongoing pathogenic plasma-cell activity, and where the same immune signature has different clinical consequences across indications. With sparse ITP data, fit only a small number of clinical-link parameters; additional external immune measurements do not justify an unrestricted ITP-specific model.
+
+**Explicitly test sufficient deep depletion rather than cumulative suppression.** In one generating alternative, define an induction trigger as the first time a relevant tissue/cell state crosses a prespecified depletion threshold, optionally with a short required dwell time. Upon that trigger set $R_i$ to an individual persistent level $r_i^*$; additional exposure after the trigger gives no further efficacy, and naive-cell return does not reduce $R_i$. A trigger may still fail to induce benefit in some patients. Vary the threshold, dwell time, persistence and tissue transport, and compare with gradual cumulative induction and suppression-only mechanisms. These are hypothetical generating cases, not validated reset criteria. This alternative is necessary to test whether a model can identify a lower dose or shorter course when deeper or longer treatment beyond adequate induction adds only burden.
+
 ## 9. Data and design requirements
 
 | Requirement | Decision it supports | Consequence if limited |
-|:---|:---|:---|
+|:-----------------------|:-----------------------|:-----------------------|
 | Concurrent randomized expansion regimens | Causal comparison of studied options | Observational contrasts need stronger assumptions |
 | Informative regimen coverage | Dose-response shape or schedule effects | Two doses may support only their direct comparison |
 | Dosing, sampling and adherence records | PK and regimen simulation | Exposure uncertainty increases |
@@ -303,6 +368,8 @@ Background treatment, rescue and dropout are part of the generating process. Spe
 
 There is no universal fatal requirement for three doses, a fourfold or eightfold dose range, or complete recovery in every patient. Choose sampling and dose range to resolve the intended decision. Weekly early platelet/B-cell visits and monthly later immune visits are candidate schedules to test, not blanket requirements. An early dose decision and longer immune follow-up can have different data cuts.
 
+For cross-indication borrowing, require an indication-by-dose-by-assay inventory: exposure overlap, baseline immune composition, prior B-cell treatment, background immunosuppression, assay gates and limits, biopsy tissue and timing, and follow-up through recovery. Include overlapping core PK and immunophenotype measurements in ITP to test the bridge. If ITP has no comparable immune observations, transfer cannot be checked locally and the output must reflect that. Model biopsy availability and selection when sampling depends on disease activity or response.
+
 ## 10. Identifiability, priors and validation
 
 Check practical identifiability at the level of the intended predictions as well as individual parameters. Confounding among baseline production/loss, drug sensitivity, induction delay and relapse is expected. PK parameters, recovery rates and persistent-response fractions may remain uncertain even with many repeated measurements.
@@ -312,6 +379,15 @@ Use prior predictive simulations, parameter-recovery studies, posterior coverage
 For Bayesian fits, prespecify computational diagnostics and remedial actions, including convergence, effective sample sizes and divergent transitions where relevant. For likelihood fits, use profiles and numerical conditioning where appropriate. Diagnose fits before scoring; include computational failures in the operating-characteristic denominator under the fallback policy.
 
 Evaluate held-out patients and, where feasible, dose groups or cohorts. Do not validate generalization by randomly withholding individual counts while retaining the rest of the same patient's trajectory. Check response onset, count distributions, autocorrelation, rescue frequency, durable response and immune recovery, not just mean platelets. Good predictive fit within the observed window does not validate post-recovery extrapolation.
+
+For the sparse ITP design, report upstream and downstream uncertainty separately. For a predicted ITP response quantity $g$ and upstream parameters $\Theta$,
+
+$$
+\operatorname{Var}(g\mid D)=E_{\Theta\mid D}\{\operatorname{Var}(g\mid\Theta,D)\}
++\operatorname{Var}_{\Theta\mid D}\{E(g\mid\Theta,D)\}.
+$$
+
+External immune data can reduce uncertainty about $\Theta$ and thereby improve prediction, but cannot guarantee resolution of the conditional ITP clinical link. Report both terms, or a suitable simulation decomposition, rather than assigning all external patients an ITP-equivalent sample size. Evaluate leave-one-indication-out prediction of immune observations, deliberately withheld ITP immune data where feasible, and sensitivity to the ITP-specific tissue offset. These checks test transport of measured biology, not validation of an unmeasured clinical surrogate.
 
 ## 11. Exposure–response confounding and pooling
 
@@ -357,6 +433,14 @@ If no regimen is eligible, distinguish evidence of inadequate efficacy from insu
 
 Apply this same selection framework to M0–M5. Use highest clinically acceptable dose and empirical highest response as descriptive benchmarks, not the only competitors. A biomarker-only benchmark, if included, tests the historical practice of relying on depletion; it does not define the clinical objective. No primary benchmark should maximize depletion duration.
 
+### 13.4 Pharmacology-based dose support when the platelet link is unresolved
+
+A useful second output is a shortlist of regimens predicted to achieve a prespecified biological profile in ITP: sufficient depletion of the relevant measured cell/tissue population during induction, a specified subsequent immunophenotype trajectory, and acceptable immune burden. Report probability of achieving that profile and its dependence on tissue-transport and signature assumptions. Label unvalidated thresholds as hypotheses. Do not optimize maximal depletion depth, longest depletion, or maximal memory-cell loss without defining what is adequate and why.
+
+A pharmacological shortlist can justify which doses or course lengths to investigate in ITP even when six patients per dose cannot establish near-optimal clinical efficacy. It does not satisfy Section 13.1 unless the ITP endpoint probability and its uncertainty support that rule. Present three possible outcomes explicitly: a clinically supported choice; a biological shortlist needing clinical confirmation; or unresolved pharmacology requiring better tissue/subset or dose coverage. Candidate healthy naive-cell return is compatible with the desired biological profile and is not automatically scored as failure.
+
+Compare an ITP-only pharmacology model with its cross-indication version before adding the platelet link. This isolates the standalone question the additional data can answer. Decisions between these biological shortlists are scored against true biological-profile attainment in simulation; clinical claims are additionally scored against true ITP outcomes. Do not compare a biomarker target and a clinical target as though they were the same endpoint.
+
 ## 14. Sample size: illustrations and the unanswered question
 
 ### 14.1 Selecting a higher response rate is not selecting a near-optimal regimen
@@ -368,7 +452,8 @@ $$
 $$
 
 | Higher true rate | Lower true rate | Patients per arm | Exact probability of selecting higher rate |
-|---:|---:|---:|---:|
+|-----------------:|-----------------:|-----------------:|-----------------:|
+| 55% | 45% | 6 | 63.31% |
 | 55% | 45% | 20 | 73.57% |
 | 55% | 45% | 40 | 81.43% |
 | 55% | 50% | 141 | 79.97% |
@@ -390,6 +475,8 @@ Do not convert this variance ratio into a claim that a PK–platelet model saves
 
 Estimate sample-size or follow-up savings only after defining acceptable decision performance, including efficacy loss, burden and inconclusive outcomes. Report scenario-specific results and uncertainty; do not promise a single saving across biological mechanisms.
 
+With six ITP patients per dose, one additional responder changes an observed arm rate by 16.7 percentage points. The 63.31% correct-selection example above illustrates the limited clinical information for a ten-point true contrast; it is not the operating characteristic of the joint model. Twenty external patients at each of several doses can materially improve upstream estimates when transport is justified, but they do not become additional ITP responder observations. Quantify borrowing separately for PK, immune trajectories and the final decision.
+
 ## 15. Simulation study
 
 ### 15.1 Define complete scenarios before fitting
@@ -401,7 +488,7 @@ Start with a deliberately small debugging set, then vary escalation levels (3 or
 ### 15.2 Required biological and design alternatives
 
 | Scenario family | What must be challenged |
-|:---|:---|
+|:-----------------------------------|:-----------------------------------|
 | Reversible suppression | Relapse follows loss of suppression; persistent-effect fits may overpredict durability |
 | Persistent benefit | Control persists despite early B-cell recovery; suppression-only fits may favor unnecessary depletion |
 | Mixed responses | Nonresponse, transient response and persistent response coexist |
@@ -442,6 +529,18 @@ Use at least enough replicates for the required precision. For orientation, 2,00
 
 Produce a main comparison of decision performance versus sample size and follow-up, separated by persistence mechanism. Include sensitivity tables for safety/burden weights, priors, dose coverage and misspecification; a failure/inconclusive-rate table; and a measurement-ablation summary. A favorable average must not hide substantial harm in a plausible subgroup of scenarios.
 
+### 15.6 Dedicated sparse-ITP and cross-indication experiment
+
+Hold ITP expansion at six patients per dose for two or three doses. Compare external sample sizes of zero, 20 total across three doses, and 20 per dose across three doses; extend to multiple indications with exact allocations recorded. Vary dose/exposure overlap and common measurement availability, not only external patient count.
+
+Compare: ITP-only M0–M5 where estimable; PK-only borrowing; PK plus total peripheral-cell borrowing; addition of subsets; addition of biopsies; and the combined cross-indication model. At each relevant stage compare a pharmacological shortlist without a platelet link against the joint clinical analysis. Include complete pooling, no pooling, robust partial pooling and modular versus full joint fitting. With scarce ITP data, prespecify parsimonious variants rather than fitting every possible biomarker coefficient.
+
+Generate cases with transferable PK and immune effects; transferable PK but different peripheral sensitivity; matched blood depletion but different tissue potency; different tissue identity across indications; matching naive-dominant recovery but different ITP pathogenic activity; and a biopsy/reset signature that truly predicts an additional ITP benefit. Also include all doses biologically adequate, naive recovery compatible with durable control, clinically irrelevant prolonged depletion, persistent pathogenic plasma cells despite an apparent signature, and sampling/assay differences that falsely suggest cross-indication agreement.
+
+The true ITP outcomes come from the specified ITP mechanism, not by defining biomarker-profile attainment as clinical success. A particularly important stress case is external biological saturation at a dose below that required in ITP; score false low-dose confidence. The converse case assesses unnecessary higher dosing when ITP requires less exposure than other diseases.
+
+Report biological-profile calibration, tissue/subset prediction error, clinical decision loss and confidence, borrowing-induced harm, and how often the result remains a biological shortlist rather than a clinically supported choice. Give every method the same ITP patients and distinguish external data already available from external recruitment performed for this purpose. Compare the marginal value of another external cohort, a paired biopsy/subset follow-up and additional randomized ITP patients. Better external immune precision is not a success if it produces a more confident wrong ITP dose.
+
 ## 16. External plausibility checks
 
 Published aggregate data can constrain plausible response and recovery patterns but cannot validate a generic compound's dose-response curve. Reproduce the relevant population, dosing, background therapy, observation window and endpoint before comparison. Retain uncertainty and separate sources used to set priors from independent checks.
@@ -451,6 +550,10 @@ Published aggregate data can constrain plausible response and recovery patterns 
 **Rituximab regimens and follow-up.** Compare low- and standard-dose reports only after checking populations, endpoints and concomitant treatment. Similar pooled response rates do not establish equivalence. Long-term response and recovery observations can challenge predictions of inevitable immediate relapse or guaranteed permanent reset; they do not identify the precise persistent-response mechanism. [Long-term follow-up](https://pubmed.ncbi.nlm.nih.gov/22566601/).
 
 A failure of a design-matched check prompts investigation of assumptions and uncertainty. A mismatch to one aggregate point estimate is not by itself proof that a model is wrong. Do not require unobserved doses to have a particular efficacy merely to pass a check.
+
+For the cross-indication question, a primary PAGE conference abstract describes an ianalumab PK–B-cell model using rheumatoid arthritis and Sjögren's data to support Sjögren's dose selection, together with a tissue receptor-occupancy model whose tissue data were unavailable. This is a precedent for combining shared pharmacology with explicit tissue assumptions, not empirical validation of biopsy transport or an ITP reset threshold. [PAGE 2018 abstract 8543](https://www.page-meeting.org/Abstracts/model-based-dose-selection-for-the-phase-2b-study-of-ianalumab-in-primary-sjogrens-syndrome/).
+
+In an observational ANCA-associated vasculitis cohort, naive-cell repopulation was associated with longer time to relapse. This supports considering healthy reconstitution separately from total depletion, but neither its clinical association nor a proposed retreatment rule is transferred directly to ITP. [Primary cohort report](https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2021.803175/full).
 
 ## 17. Findings that would limit or negate value
 
@@ -466,25 +569,29 @@ A failure of a design-matched check prompts investigation of assumptions and unc
 
 **Benefit–risk remains unresolved.** When immune safety information is inadequate, return an efficacy shortlist and explicit remaining tradeoffs rather than claim a benefit–risk optimum. Negative and inconclusive evaluations are valid deliverables.
 
+**The cross-indication bridge is weak.** Good external PK or biopsy fits may fail to predict ITP immune observations, or may leave the immune-to-platelet link too uncertain. Retain the value of any improved pharmacological shortlist while withdrawing unsupported clinical certainty. If no external biological contrast reaches beyond saturated peripheral depletion, increasing external sample size alone may add little to the ITP choice.
+
 ## 18. Milestones
 
-1. **Finalize the decision framework.** Write the endpoint, population, regimen set, treatment-management policy, clinical tolerances and inconclusive policy. For generic simulations, label a finite grid of hypothetical settings.
-2. **Audit decision-critical sources and data.** Verify endpoint definitions, parameter units, prior populations and relevant immune follow-up. Record access and verification limitations. Inspect available real-data trajectories and management events.
-3. **Build simple baselines.** Implement M0 and M1, then a parsimonious M2. Reproduce Section 14's calculations and establish a common decision function.
-4. **Specify complete generating cases.** Implement suppression, persistent benefit and major structural alternatives with parameter manifests and observation/management processes. Use prior predictive checks rather than fixing every literature value.
-5. **Add PK and immune models incrementally.** Implement M3 and M4 only after lower-level checks, calibrating late PK, depletion and recovery. Confirm that persistent models retain benefit after total B-cell recovery.
-6. **Run pilot recovery and decision checks.** Establish failure handling, numerical stability and plausible endpoint distributions before the larger simulation.
-7. **Run the prespecified comparison and sensitivity analysis.** Report decision loss, acceptability, calibration, inconclusive decisions and measurement value.
-8. **Perform external checks and clinical review.** Assess transfer limitations and determine whether the output supports a shortlist, a regimen choice or another study design.
+1.  **Finalize the decision framework.** Write the endpoint, population, regimen set, treatment-management policy, clinical tolerances and inconclusive policy. For generic simulations, label a finite grid of hypothetical settings.
+2.  **Audit decision-critical sources and data.** Verify endpoint definitions, parameter units, prior populations and relevant immune follow-up. Record access and verification limitations. Inspect available real-data trajectories and management events.
+3.  **Build simple baselines.** Implement M0 and M1, then a parsimonious M2. Reproduce Section 14's calculations and establish a common decision function.
+4.  **Specify complete generating cases.** Implement suppression, persistent benefit and major structural alternatives with parameter manifests and observation/management processes. Use prior predictive checks rather than fixing every literature value.
+5.  **Add PK and immune models incrementally.** Implement M3 and M4 only after lower-level checks, calibrating late PK, depletion and recovery. Confirm that persistent models retain benefit after total B-cell recovery.
+6.  **Run pilot recovery and decision checks.** Establish failure handling, numerical stability and plausible endpoint distributions before the larger simulation.
+7.  **Run the prespecified comparison and sensitivity analysis.** Report decision loss, acceptability, calibration, inconclusive decisions and measurement value.
+8.  **Perform external checks and clinical review.** Assess transfer limitations and determine whether the output supports a shortlist, a regimen choice or another study design.
 
 No milestone guarantees a particular model will win. Exploratory fitting to available real data and simulation can proceed iteratively; real-data fitting need not wait for an assumed full mechanistic model to pass.
+
+For the second design family, add an indication/assay/tissue inventory before pooling, a prespecified subset signature and parameter-sharing map, cross-indication immune prediction checks, and the dedicated Section 15.6 experiment. Deliver both the standalone pharmacological shortlist evaluation and the ITP clinical-link evaluation.
 
 ## 19. What previous modelling attempts establish
 
 The reference search found relevant regulatory and published modelling examples. Its incompleteness does not establish that no other PK–platelet model exists. These examples show feasibility constraints and differing uses, not a general rule that destruction-blocking therapies have binary effects or cannot be modelled continuously.
 
 | Example | Evidence and interpretation | Verification basis |
-|:---|:---|:---|
+|:-----------------------|:-----------------------|:-----------------------|
 | Fostamatinib | FDA records failure of attempted continuous platelet models; design and exposure-response interpretation require attention to titration and outcome timing | Earlier project reading of FDA/EMA reviews; FDA search extract corroborated in the critical review |
 | Efgartigimod | PMDA describes insufficient explanation of between-patient platelet variation for Phase 2-based regimen simulations; IgG reduction informed the subsequent regimen | PMDA Section 6.R.1 checked during critical review |
 | Rilzabrutinib | Earlier notes describe a longitudinal model in 305 pooled patients supporting an already chosen regimen; a continuous association did not establish a durable-endpoint dose contrast | Earlier project reading; full FDA PDF was not retrievable during critical review, so detailed extraction still needs audit before reuse |
@@ -505,3 +612,5 @@ This specification is for a pharmacometrician and clinical team evaluating wheth
 The strongest opportunity is a study with credible regimen contrasts, informative longitudinal response or relapse, recorded background treatment and sufficient follow-up to assess the desired durability. A model may help retain benefit while reducing unnecessary depletion or shortening a course. Peripheral biomarker saturation does not remove that opportunity, but it limits what the biomarker can establish.
 
 Proceed with the model hierarchy and competing persistence mechanisms. Advance to a joint PK–B-cell–platelet model only when it improves a clinically relevant decision robustly over simpler methods. The deliverable may be a regimen recommendation under agreed clinical tradeoffs, an efficacy shortlist, evidence that a simpler analysis is sufficient, or a design for obtaining the missing information. Sample-size savings and a recoverable plateau boundary are possible findings, not premises.
+
+The same framework also covers six ITP patients per dose supported by larger same-agent cohorts in other indications. Borrow transportable pharmacology, qualify tissue and phenotype transfer, and retain an ITP-specific clinical link. Sufficient induction of a durable change with healthy naive-cell recovery may be the desired regimen profile; the analysis must establish when the available evidence can support that interpretation and when further ITP data are necessary.
