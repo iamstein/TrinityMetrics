@@ -25,7 +25,7 @@ from.
 - [Working specification](specification.qmd). What is already in place here,
   how to write the initial spec, how the work divides between Andy and the
   agent, and what a new project starts with.
-- [References](references.qmd). The two sources this draws on, and a marker on
+- [References](references.qmd). The sources this draws on, and a marker on
   each recording whether the claim drawn from it has been checked against the
   source.
 - `acop_abstract_2027_idea.md`. A draft idea for an ACoP 2027 abstract on the
@@ -33,3 +33,17 @@ from.
   what changes once an agent does the hands-on work. Not linked, because the
   site renders `.qmd` only and this one stays a working file in the
   repository.
+
+## Related reading
+
+[Context Engineering for AI-Assisted Pharmacometrics: A Practical Tutorial](https://ascpt.onlinelibrary.wiley.com/doi/10.1002/psp4.70317)
+(Pritchard-Bell et al., 2026) describes task definitions that give an agent the
+domain rules, verification criteria and examples it needs at each step. Tasks
+start with fresh context and pass results through workspace files.
+
+My reservation is the covariate-selection rule: the tutorial specifies an
+objective function value decrease of ΔOFV > 3.84 for inclusion and uses forward
+selection and backward elimination. I tend to prefer a full covariate model,
+with scientifically motivated covariates specified together, because stepwise
+selection can overfit noise. I would want the task definition to reflect that
+choice before asking an agent to develop the covariate model.

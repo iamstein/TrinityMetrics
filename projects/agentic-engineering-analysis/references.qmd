@@ -10,13 +10,14 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**Neither source has been read in full.** Both were retrieved on 2026-09-02
+**The two original sources have not been read in full.** Both were retrieved on 2026-09-02
 through an automated fetch that returns a summary rather than the page, so
 every quotation and section heading below reached this project second-hand.
 The working document's Section 1 and Section 2 characterize both sources, and
 those characterizations are what needs checking. The observations in Sections
 3, 4 and 5 come from this repository's own history and do not depend on either
-paper.
+paper. The context-engineering tutorial added on 2026-09-17 has been checked
+for the specific claims recorded below.
 :::
 
 The working document is [the specification](specification.qmd), and the
@@ -35,7 +36,7 @@ Change a marker when the check is done, not when the page is opened.
 
 ## Reading queue
 
-Both, and the playbook first.
+The two original sources remain in the queue, with the playbook first.
 
 1.  ⚠️ **The AI-Native SDLC Playbook.** Read first. Section 2 of the working
     document maps this repository's existing artifacts onto its vocabulary, so
@@ -50,6 +51,20 @@ Both, and the playbook first.
     mechanism the working document's Section 5 does not have?
 
 ## Sources
+
+**✅ Pritchard-Bell A, Lin C-W, Holmes W, Doshi S. Context Engineering for
+AI-Assisted Pharmacometrics: A Practical Tutorial.** CPT: Pharmacometrics &
+Systems Pharmacology, 2026;15:e70317.
+[Publisher article](https://ascpt.onlinelibrary.wiley.com/doi/10.1002/psp4.70317)
+· [Open full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC13442926/)
+
+Checked against the full-text passages on 2026-09-17: task-specific rules,
+verification and examples; fresh context with workspace-file handoffs; the
+ΔOFV > 3.84 covariate-inclusion threshold in Section 1; and forward selection
+and backward elimination in Section 4.3. Used in the project index's related
+reading. The preference there for a full covariate model, and concern about
+overfitting noise through stepwise selection, are Andy's methodological
+reservation, not a conclusion of the tutorial.
 
 **⚠️ Anthropic. The AI-Native SDLC Playbook.**
 [claude.com/blog/the-ai-native-sdlc-playbook](https://claude.com/blog/the-ai-native-sdlc-playbook)
