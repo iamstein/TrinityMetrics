@@ -1,16 +1,6 @@
 ---
-title: "Projects"
+title: "Ongoing Projects"
 listing:
-  - id: r-packages
-    contents: projects.yml
-    include:
-      categories: "R package"
-    type: grid
-    grid-columns: 2
-    sort: false
-    fields: [title, description]
-    categories: false
-    feed: false
   - id: dose-response
     contents: projects.yml
     include:
@@ -54,12 +44,7 @@ listing:
 toc: false
 ---
 
-Projects such as open-source tools and working documents.
-
-## R packages
-
-::: {#r-packages}
-:::
+Projects in progress, including open-source tools and working documents.
 
 ## Dose-response methods
 

@@ -4,26 +4,8 @@
     Generating realistic synthetic PK/PD datasets, so that analysis workflows,
     teaching material, and tooling can be developed and shared without
     exposing real clinical data.
-  categories: [R package]
+  categories: [GenAI]
   path: https://iamstein.github.io/synpmx/
-
-- title: "xgx"
-  subtitle: "Open-source resource"
-  description: >
-    Eploratory Graphics : a guide to the graphics that make
-    pharmacokinetic and pharmacodynamic data interpretable, with worked
-    examples for each figure type.
-  categories: [R package]
-  path: https://opensource.nibr.com/xgx/
-
-- title: "xgxr"
-  subtitle: "R package"
-  description: >
-    The R package behind xgx: helper functions for the axes, scales, and
-    summaries that exploratory pharmacokinetic and pharmacodynamic graphics
-    keep needing.
-  categories: [R package]
-  path: https://cran.r-project.org/package=xgxr
 
 - title: "Faster first-in-human TCE studies"
   subtitle: "Working document"
