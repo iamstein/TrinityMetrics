@@ -1,0 +1,172 @@
+---
+title: "imm-biopsy: references"
+subtitle: "Reading queue, source claims and verification status"
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: true
+---
+
+::: {.callout-important appearance="simple"}
+**The initial study summaries come from the supplied review.** They have not
+been independently verified in full for this project. On 21 September 2026,
+the four supplied publisher/meeting links could not be retrieved with the web
+tool. The missing Feng citation was located, and its publisher abstract and
+selected figure captions were accessible. The limited check is recorded below;
+it does not verify all sampling details.
+:::
+
+See the [working specification](specification.qmd) for the extraction rules and
+the [supplied evidence brief](evidence-brief.qmd) for the original wording.
+
+## Status markers
+
+- ❌ **Not checked.** A candidate source or question has not been checked.
+- ⚠️ **Transcribed, unverified.** A claim comes from the supplied brief and
+  still requires checking against the original source.
+- ✅ **Checked.** The specific claim named in the entry has been verified
+  against the stated source passage. This does not imply full-paper review.
+
+Change a marker when the claim has been checked, not when a page is opened.
+
+## Reading queue
+
+1. ⚠️ **Minopoulou 2024.** Verify the negative node with residual marrow cells,
+   the phenotypes and the week-16 pairing. This directly addresses the proposed
+   use of one biopsy to infer another tissue's result.
+2. ⚠️ **Teng 2007.** Establish the evaluable blood–marrow–synovium pairs and
+   assay-specific denominators before using the larger enrollment count.
+3. ⚠️ **Albach 2026.** Read Figure 2 and Extended Data Figure 3 against patient
+   identity, prior rituximab and exact biopsy timing.
+4. ⚠️ **Tur 2024/2025.** Separate serial nodes from organ specimens supplied by
+   additional patients; check the comparator sampling and assays.
+5. ⚠️ **Feng 2025.** Resolve which patients supplied marrow at which visits,
+   and how residual cells were distinguished from recovering populations.
+
+## Sources
+
+### Minopoulou et al., ACR 2024 {#minopoulou}
+
+**⚠️ Transcribed, unverified.** American College of Rheumatology conference
+abstract: [Anti-CD19 chimeric antigen receptor T-cell therapy induces
+multicompartmental B-cell depletion in peripheral blood, bone marrow and lymph
+nodes of systemic lupus erythematosus](https://acrabstracts.org/abstract/anti-cd19-chimeric-antigen-receptor-t-cell-therapy-induces-multicompartmental-b-cell-depletion-in-peripheral-blood-bone-marrow-and-lymph-nodes-of-systemic-lupus-erythematosus/).
+
+**Population and treatment.** The brief reports one patient with refractory
+systemic lupus erythematosus (SLE), receiving anti-CD19 CAR-T therapy KYV-101
+following fludarabine/cyclophosphamide conditioning.
+
+**Sampling and observation.** Blood, inguinal node and marrow at week 16;
+no detectable B cells in blood or node, with a few naïve B cells in marrow.
+Pretreatment tissue biopsies were not specified.
+
+**Use and limit.** Candidate example of same-patient cross-tissue discordance.
+A single conference case cannot estimate its frequency or establish whether
+remaining cells are pathogenic, persistent or newly generated.
+
+**Remaining check.** Verify the assay panel, detection threshold, sample
+amount, pairing and precise wording in the abstract; seek a subsequent report.
+
+### Teng et al., Arthritis & Rheumatism, 2007 {#teng}
+
+**⚠️ Transcribed, unverified.** [Immunohistochemical analysis as a means to
+predict responsiveness to rituximab treatment](https://onlinelibrary.wiley.com/doi/10.1002/art.22967).
+
+**Population and treatment.** The brief reports 25 enrolled patients with
+refractory rheumatoid arthritis (RA), treated with rituximab.
+
+**Sampling and observation.** Blood and marrow flow cytometry, and synovial
+immunohistochemistry, before treatment and at week 12. Reported CD20-positive
+cell depletion and evaluation of synovial CD20-negative/CD79a-positive cells.
+CD79a is a B-lineage marker; immunohistochemistry identifies cells by staining
+tissue sections.
+
+**Use and limit.** Precedent for two tissues plus blood over time. Enrollment
+is not the verified number of complete matched measurements; phenotypes and
+assays require separate extraction.
+
+**Remaining check.** Read methods and results for evaluable pairs, sample
+amount, assay definitions and the relationship to autoantibody findings.
+
+### Albach et al., Nature Medicine, 2026 — COMPARE {#albach}
+
+**⚠️ Transcribed, unverified.** [Article](https://www.nature.com/articles/s41591-026-04603-3)
+· [Figure 2](https://www.nature.com/articles/s41591-026-04603-3/figures/2).
+
+**Population and treatment.** The brief reports six patients with refractory
+RA receiving CD19 CAR-T therapy, mivocabtagene autoleucel, after conditioning.
+
+**Sampling and observation.** The Figure 2 paired marrow/synovium analysis
+was from one patient; pretreatment samples were four months after rituximab.
+The brief reports depletion of remaining CD19-positive marrow B cells with
+persistence of predominantly CD19-negative plasma cells. The week-16 node
+sample in Extended Data Figure 3 came from a different patient.
+
+**Use and limit.** A same-patient, two-tissue precedent. Six enrolled patients
+must not become six matched node–marrow–synovium sets. Prior treatment limits
+attribution to modality alone.
+
+**Remaining check.** Confirm patient identifiers, exact post-treatment timing,
+synovial results, specimen types and assay-specific denominators.
+
+### Tur et al., Annals of the Rheumatic Diseases, online 2024 / issue 2025 {#tur}
+
+**⚠️ Transcribed, unverified.** [CD19-CAR T-cell therapy induces deep tissue
+depletion of B cells](https://www.sciencedirect.com/science/article/pii/S0003496724005740).
+
+**Population and treatment.** The brief reports five CAR-T-treated patients
+with SLE or systemic sclerosis, five rituximab-treated comparators and three
+additional CAR-T-treated patients supplying other organ specimens.
+
+**Sampling and observation.** Inguinal nodes before conditioning and about
+two months after CAR-T, before blood B-cell reappearance. The brief reports
+no detectable CD19/CD20-positive nodal B cells after CAR-T, with plasma cells
+remaining; nodal B cells remained after rituximab despite blood depletion.
+Colon, kidney and gallbladder specimens each came from an additional patient.
+
+**Use and limit.** Serial local depletion and a blood–node comparison.
+Different patients supplying different organs do not establish within-patient
+node–organ concordance. Treatment groups were not randomized.
+
+**Remaining check.** Confirm timing, site matching, assay thresholds, tissue
+amounts and disease/conditioning differences between groups.
+
+### Feng et al., Nature Medicine, 2025 {#feng}
+
+**⚠️ Sampling details transcribed, partially checked.** [Co-infusion of
+CD19-targeting and BCMA-targeting CAR-T cells for treatment-refractory systemic
+lupus erythematosus: a phase 1 trial](https://www.nature.com/articles/s41591-025-03937-8).
+Nature Medicine 31, 3725–3736. DOI: 10.1038/s41591-025-03937-8.
+
+**Population and treatment.** Fifteen patients with refractory SLE receiving
+co-infused CD19- and B-cell maturation antigen (BCMA)-directed CAR-T cells
+following fludarabine/cyclophosphamide conditioning.
+
+**Sampling and observation.** The supplied brief describes detailed blood and
+marrow single-cell analyses from three patients before treatment and during
+immune recovery, addressing plasma cells, autoreactive clones and naïve-cell
+reconstitution. Preserve mononuclear-cell samples as that specimen type;
+serial intact-tissue biopsies have not been established.
+
+**Use and limit.** Relevant to phenotype and clonality during recovery.
+Dual-target therapy does not validate a node measurement as a marrow surrogate.
+
+**Check completed.** ✅ On 21 September 2026, the publisher abstract confirmed
+the cohort size, dual targets and conditioning. The Extended Data Figure 1
+caption identifies blood and marrow mononuclear-cell groups from three
+patients. These checks establish neither complete serial marrow pairing nor
+marrow sampling at every clinical follow-up visit.
+
+**Remaining check.** Full methods, Figure 5 and supplements for specimen dates,
+paired counts, detection thresholds and the basis for claims about clone loss.
+
+## Not yet read
+
+- ❌ Human studies of blood–tissue tracking outside this initial selection,
+  including anti-CD20 therapy and T-cell engagers.
+- ❌ Biopsy reproducibility studies using separate cores or regions within an
+  organ, including methods for quantifying cellular aggregates.
+- ❌ Assay-validation studies for tissue B-cell detection and recovery after
+  processing, including marker interpretation after targeted therapy.
+
+These are search topics, not identified sources. Record citations and screening
+results when the search is performed.

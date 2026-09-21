@@ -1,0 +1,221 @@
+---
+title: "imm-biopsy: working specification"
+subtitle: "Inferring tissue B-cell depletion from blood and biopsy measurements"
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: true
+---
+
+## 1. Question and scope
+
+Determine what a peripheral blood measurement or a biopsy from tissue A can
+establish about B cells in tissue B in the same patient. The intended use is
+interpretation of pharmacodynamic measurements and design of a tissue-sampling
+program for B-cell-depleting therapies in autoimmune disease.
+
+The initial evidence comes from the [supplied brief](evidence-brief.qmd).
+Its study-level findings remain provisional until the checks in
+[References](references.qmd) are completed. The brief is a targeted literature
+selection; a systematic search has not been performed.
+
+**Out of scope:** individual treatment recommendations, a ranking of therapies
+from unmatched studies, and a claim that one negative biopsy establishes
+whole-body eradication of B-lineage cells.
+
+The project should answer:
+
+1. How well do blood counts track local tissue burden, depletion and recovery?
+2. Given a negative biopsy in one tissue, how often are cells still detected
+   in another tissue sampled in the same patient at a comparable time?
+3. How much disagreement is attributable to spatial sampling within a tissue,
+   assay limitations, phenotype definitions or different sampling times?
+4. Which residual or recovering populations are associated with persistent
+   disease, relapse or clinical benefit?
+5. What additional sampling would most reduce uncertainty for a specified
+   development decision?
+
+## 2. Measurement definitions
+
+A negative result means no cells meeting the assay's definition were detected
+in the material examined. Report the phenotype, count or density, denominator,
+assay threshold, anatomical location and time. For example: “No CD19-positive
+cells detected in the analyzed lymph-node sections at week 8,” followed by the
+analyzed area and detection rule when available.
+
+CD19 and CD20 are cluster-of-differentiation surface markers used to identify
+overlapping B-cell populations. Keep marker-defined populations separate from
+functional claims about pathogenic cells. Extract naïve and memory B cells,
+plasmablasts and plasma cells separately where the study permits. A plasmablast
+is a proliferating antibody-secreting cell; a plasma cell is a differentiated
+antibody-secreting cell. Record the actual marker panel used to distinguish them.
+
+| Quantity | Required definition | Interpretation limit |
+|---|---|---|
+| Blood burden | Absolute cells per volume, or a reported fraction with its denominator | A percentage can change when other cell populations change |
+| Tissue burden | Cells per analyzed area, volume or mass; or fraction of evaluable recovered cells | Histology preserves location; a cell suspension represents recovered cells |
+| Local depletion | Change from pretreatment burden using comparable sampling and assays | Without baseline tissue data, percentage depletion is not estimable |
+| Nondetection | Observed zero with sample amount, detection rule and assay sensitivity | Zero is an observation, not proof of biological absence |
+| Recovery | Reappearance over time of a specified phenotype | A single later sample cannot separate survival from regeneration |
+| Disease-relevant depletion | Change in a population linked to disease activity or pathogenic function | Marker depletion and clinical benefit are separate outcomes |
+
+For a measurable baseline, define percentage reduction as
+$100(1-B_{\mathrm{post}}/B_{\mathrm{pre}})$, retaining the original units.
+If the post-treatment value is censored below a threshold, carry that censoring
+into the result. Do not substitute zero and report an exact 100% reduction.
+A pretreatment zero makes this percentage undefined.
+
+## 3. Evidence designs
+
+Classify each observation by the inference its sampling supports.
+
+| Sampling design | Question it can address | Restriction |
+|---|---|---|
+| Blood plus one tissue in one patient | Does blood track that tissue? | Does not establish agreement between two tissues |
+| Two tissues in one patient at matched times | Is depletion concordant across those tissues? | Does not describe unsampled organs |
+| Serial sampling of one tissue | How does local burden change over time? | Does not establish synchronous changes elsewhere |
+| Separate regions or cores in one organ | How reproducible is local sampling? | Sections from one core are not independent spatial replicates |
+| Different organs from different patients | Has depletion been observed in several tissue types? | Cannot estimate within-patient cross-tissue agreement |
+
+“Matched” requires documented dates relative to treatment, and a justified time
+window specified before analysis. Store the actual interval between samples.
+Keep marrow aspirates, marrow core biopsies and other cell suspensions distinct.
+
+The initial brief identifies the following evidence to check:
+
+- [Minopoulou 2024](references.qmd#minopoulou): a same-patient node–marrow
+  discordance observation, reported in a conference abstract.
+- [Albach 2026](references.qmd#albach): paired marrow and synovial observations
+  in a mechanistic subset of the COMPARE trial.
+- [Teng 2007](references.qmd#teng): blood, marrow and synovium before and after
+  rituximab; evaluable matched counts need confirmation.
+- [Tur 2024/2025](references.qmd#tur): serial lymph-node samples, with other
+  organs contributed by additional patients.
+- [Feng 2025](references.qmd#feng): blood and marrow cell populations during
+  recovery after dual-target therapy.
+
+## 4. Sources of variability
+
+Represent the following separately when extracting evidence and considering a
+model. Their relative contributions have not been estimated by this project.
+
+| Source | Information to collect | Question for analysis |
+|---|---|---|
+| Within-tissue sampling | Site, core count, core size, section spacing, analyzed area and cellular aggregates | Could the sampled region miss residual cells? |
+| Between-tissue biology | Organ, disease involvement, baseline burden and tissue architecture | Are differences consistent across patients? |
+| Cell population | Marker panel, phenotype, target expression and clonality when available | Are the assays measuring the same population? |
+| Assay and processing | Staining, flow cytometry or sequencing; recovery, viability and thresholds | Could measurement differences explain discordance? |
+| Time | Treatment, conditioning, biopsy and blood-sampling dates | Could the samples represent different phases of depletion or recovery? |
+| Patient and treatment | Disease, prior therapy, regimen and conditioning | To which patients and treatments could the finding transfer? |
+| Selection into biopsy | Clinical indication, research sampling, consent and missing repeat samples | Were persistent disease or accessible tissues preferentially sampled? |
+
+Tissue exposure, effector-cell availability and local survival conditions are
+candidate biological explanations. Record measured evidence separately from a
+mechanism proposed by an author or by this project.
+
+## 5. Extraction requirements
+
+Use one record per patient, specimen, time, assay and phenotype when individual
+information is available. Link paired observations by patient identifier.
+Retain aggregate-only reports as aggregate records; do not invent individual
+observations from a study total.
+
+| Field group | Required fields |
+|---|---|
+| Provenance | Study identifier, linked reports, source URL, page/figure/table, extraction date, verification status |
+| Denominators | Total enrollment, tissue subset, evaluable patients and paired patients for each comparison |
+| Clinical context | Disease, involved organs, prior B-cell therapy, regimen, target, conditioning and concomitant treatment |
+| Sample | Patient identifier if reported, tissue, region, collection method, date, relation to treatment and baseline availability |
+| Assay | Platform, marker panel, gating/staining definition, sample amount, recovery and detection/quantification limits |
+| Result | Raw count, density or fraction, units, denominator, nondetection/censoring and uncertainty |
+| Pairing | Other specimen identifier, same-patient status, timing difference and phenotype comparability |
+| Clinical outcome | Disease measure, response or relapse definition, date and relationship to sampling |
+| Missingness | Not reported, not collected, failed assay or unavailable source; reason when known |
+
+Keep CD19-only chimeric antigen receptor T-cell (CAR-T) therapy, dual-target
+CAR-T therapy and anti-CD20 antibodies separate. Record lymphodepleting
+conditioning and treatment sequence. Add T-cell engagers if a subsequent
+search identifies relevant human tissue measurements.
+
+Check for repeated publication of the same patients before counting evidence
+across reports. Total enrollment must never stand in for a missing paired
+sample count.
+
+## 6. Analysis plan
+
+Start with an evidence map by tissue pair, treatment, phenotype, assay and time.
+The first deliverable is a table of which comparisons are actually observed,
+with missing comparisons explicit. Draw patient-level blood and tissue
+trajectories only where repeated measurements are available.
+
+For a prespecified tissue pair A and B, phenotype and time window, tabulate
+both detected, A detected/B negative, A negative/B detected and both negative.
+A directly relevant quantity is
+
+$$
+\widehat{P}(B\text{ detected}\mid A\text{ negative})
+= \frac{n(A\text{ negative},B\text{ detected})}
+       {n(A\text{ negative},B\text{ evaluable})}.
+$$
+
+This estimates observed discordance among the sampled patients under the two
+assays. Its complement describes observed nondetection in B; it does not
+estimate absence of cells throughout B or throughout the body. If the
+denominator is zero, report the quantity as not estimable. Report the numerator,
+denominator and an interval with the estimate. Repeated visits from one patient
+require an analysis that accounts for within-patient dependence.
+
+Assess quantitative association separately from categorical agreement. A
+correlation between blood and tissue values does not by itself establish that
+a negative blood sample predicts a negative tissue sample. Preserve assay units
+and thresholds; avoid combining incomparable densities and cell fractions.
+
+A later hierarchical model could separate variation between patients, tissues
+and replicate samples, while representing values below detection limits.
+Estimate only components supported by the sampling design. Without replicate
+cores, within-tissue variation and measurement error may remain inseparable;
+without paired tissues, cross-tissue dependence cannot be learned from these
+studies alone. Any simulation using assumed dependence must label it as an
+assumption and vary it in sensitivity analysis.
+
+The supplied brief provides no validated numerical probability that a negative
+node predicts depletion in every disease-relevant tissue. Leave that quantity
+unestimated unless new evidence supports a narrower, explicitly defined claim.
+
+## 7. Work sequence and acceptance criteria
+
+1. Verify the five source entries against the specific passages and figures
+   listed in the reading queue. Preserve unresolved counts and timing as missing.
+2. Extend the search to peripheral blood–tissue comparisons, paired human
+   tissues and repeated cores. Record search terms, databases, dates and
+   exclusions before describing the review as systematic.
+3. Build the extraction table and evidence map. Each finding must have a
+   source location, status and correct paired denominator.
+4. Assess whether any tissue pair has enough comparable observations for
+   quantitative analysis. If it does not, report the observations and the
+   evidence gap without a pooled probability.
+5. Draft a sampling proposal for a specified disease and regimen, stating the
+   tissues, cell populations, timing, assays and development decision it serves.
+
+The working synthesis is ready for review when every claim distinguishes local
+measurement from extrapolation, every negative result retains its measurement
+limits, and study conclusions remain separate from proposed mechanisms.
+
+## 8. Decisions still open
+
+- Which disease, treatment and development decision should the first sampling
+  proposal address?
+- Which tissue is feasible as the routinely sampled site, and which
+  disease-relevant tissue would it need to represent?
+- Is the desired endpoint initial depletion, duration below a threshold,
+  recovery of particular populations, or a relationship to clinical benefit?
+- Which paired data and assay-validation materials can be obtained beyond the
+  published reports?
+
+## Document responsibilities
+
+| Document | Reader | Kind | Length |
+|---|---|---|---|
+| Project index | Someone finding the project | How-to | Short |
+| Working specification | Someone conducting the review and planning analysis | Reference | Enough to define measurements, extraction and decisions |
+| References | Someone verifying a claim | Reference | One consistent entry per source |
+| Supplied evidence brief | Someone checking the starting context | Source record | Preserved as received |

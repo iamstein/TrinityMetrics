@@ -1,0 +1,109 @@
+---
+title: "Biopsy variability after B-cell-depleting therapy"
+subtitle: "Supplied evidence brief, 21 September 2026"
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: true
+---
+
+::: {.callout-note appearance="simple"}
+The text below is preserved as supplied. Its verification statements describe
+the prior review. Project-specific checks and the subsequently located Feng
+citation are recorded in [References](references.qmd).
+:::
+
+**Biopsy Variability After B-Cell-Depleting Therapy**
+
+Evidence brief for a working specification. Prepared 21 September 2026 from the literature reviewed in this discussion. The scope is inference about B-cell depletion across tissue locations, cell populations, patients, and time in autoimmune disease. The studies below are a targeted literature selection, not a systematic review or a validated basis for whole-body prediction.
+
+A biopsy with no detectable B cells establishes a result for the sampled material, measured with a particular assay at a particular time. It does not establish absence of B cells throughout that organ, in other organs, or at later times. Human studies demonstrate compartment differences, including a chimeric antigen receptor T-cell (CAR-T) case with no detectable B cells in blood or lymph node but a few detectable naïve B cells in marrow. The available evidence does not support a reliable numerical probability that a negative lymph-node biopsy predicts depletion in every disease-relevant tissue.
+
+The development question should specify which cell population must be depleted, in which compartments, for how long, and how that biological effect relates to clinical benefit. Literal absence of every B-lineage cell and elimination of the populations sustaining disease are different endpoints. Neither should be inferred solely from the other.
+
+The sources of uncertainty need to be represented separately in the working specification:
+
+| Source of uncertainty | What varies | Consequence for interpretation |
+|---|---|---|
+| Sampling within a tissue | The location and amount of tissue collected, including whether a core includes a cellular aggregate | A negative core cannot exclude cells elsewhere in the same organ or node. Repeated sections from one core provide less independent spatial information than samples from separate locations. |
+| Differences between tissues | Local B-cell populations, tissue architecture, treatment exposure, and availability of effector cells | Depletion in a lymph node may not describe marrow, synovium, kidney, skin, or another involved organ. These are candidate explanations for discordance; the studies below do not quantify each mechanism. |
+| Differences between cell populations | Naïve and memory B cells, plasmablasts, plasma cells, and their target expression | Depletion of CD19- or CD20-positive cells does not establish depletion of target-negative populations. CD19 and CD20 are cluster-of-differentiation surface markers; their expression defines overlapping but different populations. |
+| Assay and processing | Marker panel, tissue processing, cell recovery, detection threshold, analyzed area, and denominator | Flow cytometry, tissue staining, and sequencing answer different questions. A zero count must retain the amount of material examined and the assay's sensitivity. |
+| Time | Initial depletion, persistence, and subsequent repopulation | Residual cells at one visit may have survived treatment or appeared during recovery. One observation cannot distinguish these explanations. |
+| Patient and disease | Baseline tissue burden, organ involvement, disease activity, prior treatment, and regimen | A result in one disease or organ-involvement pattern may not transfer to another. The reviewed studies are insufficient to estimate these effects reliably. |
+| Tissue selection | Research biopsies versus clinically indicated biopsies, and who agrees to repeat sampling | A series enriched for persistent organ disease may overestimate discordance; accessible or low-burden tissues may underestimate it. |
+
+These are interpretation requirements and hypotheses for study design. They are not estimates of the relative contribution of each source of variability.
+
+“100% depletion” needs an operational definition. Report the observed count or density, the amount of tissue or number of evaluable cells, the cell phenotype, the assay threshold, and the sampling time. A statement such as “no CD19-positive cells detected in the analyzed lymph-node sections at week 8” is more interpretable than an unqualified statement of complete tissue depletion. A post-treatment negative sample without a pretreatment measurement also cannot establish the percentage reduction in that patient's tissue.
+
+Confidence in local depletion can increase through adequate tissue sampling, complementary assays, and repeated measurements. Confidence in extrapolation to other compartments requires paired observations from those compartments. No feasible biopsy program can establish literal absence of cells throughout the living body and at all future times. The practical objective is a bounded, decision-relevant inference about specified populations and tissues.
+
+The literature contains several different sampling designs. Their contributions should remain separate when extracting or pooling evidence:
+
+| Sampling design | What it can address | What it cannot establish by itself |
+|---|---|---|
+| Two or more tissues in the same patient at matched times | Observed cross-tissue agreement or discordance | Absence in unsampled tissue or a population-wide discordance rate from one case |
+| Blood plus one tissue in the same patient | Whether blood tracks that tissue | Agreement between two non-blood tissues |
+| Serial sampling of the same tissue or anatomical region | Local depletion and recovery over time | Synchronous changes elsewhere |
+| Different organs from different patients | Evidence that treatment effects occur in several tissue types | Within-patient cross-tissue correlation or the predictive value of one biopsy for another |
+| Multiple cores or regions within one organ | Spatial heterogeneity and sampling reproducibility | Agreement across organs |
+
+The following studies provide the most relevant observations identified in the discussion. Enrollment counts are distinguished from mechanistic subsets where the available report permits it. Missing paired-sample counts should remain missing in an evidence database rather than being replaced by total enrollment.
+
+1. **Minopoulou et al., American College of Rheumatology meeting, 2024: blood, lymph node, and marrow after CAR-T in lupus.**
+
+   **Population and treatment:** One patient with refractory systemic lupus erythematosus (SLE), treated with anti-CD19 CAR-T, KYV-101, after fludarabine/cyclophosphamide lymphodepletion.
+
+   **Sampling:** Blood before and after treatment; inguinal lymph-node and bone-marrow biopsies at 16 weeks, assessed by flow cytometry. Pretreatment tissue biopsies were not specified in the abstract.
+
+   **Finding:** No B cells were detected in blood or lymph node at week 16. Marrow B cells and CD19-positive plasmablasts/plasma cells were markedly diminished, but a few B cells with a naïve phenotype remained.
+
+   **Interpretation and limitation:** This is a direct example of a negative node with detectable marrow B cells. The remaining cells were not demonstrated to be pathogenic, and one tissue time point cannot distinguish persistence from regeneration. This is a conference abstract, not a full peer-reviewed paper.
+
+   [Source: Anti-CD19 CAR-T therapy induces multicompartmental B-cell depletion](https://acrabstracts.org/abstract/anti-cd19-chimeric-antigen-receptor-t-cell-therapy-induces-multicompartmental-b-cell-depletion-in-peripheral-blood-bone-marrow-and-lymph-nodes-of-systemic-lupus-erythematosus/).
+
+2. **Albach et al., Nature Medicine, 2026: paired marrow and synovium in the COMPARE trial.**
+
+   **Population and treatment:** Six patients with treatment-refractory rheumatoid arthritis (RA), treated with CD19 CAR-T, mivocabtagene autoleucel, after lymphodepletion.
+
+   **Sampling:** The detailed paired marrow and synovial tissue analysis in Figure 2 was from one patient, before and after CAR-T. The pretreatment specimens were obtained four months after rituximab. A lymph-node specimen at week 16 came from a different patient. Exact post-treatment timing for the paired marrow/synovial analysis was not verified in this review.
+
+   **Finding:** CD19-positive marrow B cells remaining after prior rituximab were depleted after CAR-T. Predominantly CD19-negative marrow plasma cells persisted; the figure also presents paired synovial staining.
+
+   **Interpretation and limitation:** This provides a same-patient, two-tissue precedent. It must not be counted as six patients with matched node, marrow, and synovium measurements. The sequential treatment history also limits attribution of differences to modality alone.
+
+   [Source: COMPARE paper, Figure 2](https://www.nature.com/articles/s41591-026-04603-3/figures/2); [lymph-node observation in Extended Data Figure 3](https://www.nature.com/articles/s41591-026-04603-3).
+
+3. **Teng et al., Arthritis & Rheumatism, 2007: blood, marrow, and synovium before and after rituximab.**
+
+   **Population and treatment:** Twenty-five patients enrolled with refractory RA, treated with rituximab.
+
+   **Sampling:** Blood, marrow, and synovium before treatment and at 12 weeks. Blood and marrow were assessed by flow cytometry; synovium by immunohistochemistry, which identifies cells through staining in tissue sections.
+
+   **Finding:** The study reported depletion of CD20-positive B cells across compartments. Synovial CD20-negative, CD79a-positive populations were also examined and related to autoantibody findings. CD79a is another B-lineage marker.
+
+   **Interpretation and limitation:** This is a precedent for a longitudinal design involving two tissues plus blood. The marker-defined populations should be extracted separately. Complete matched sample counts for each assay in all 25 patients were not verified from the abstract, and its wording should not be converted into universal eradication of all B-lineage cells.
+
+   [Source: Immunohistochemical analysis as a means to predict responsiveness to rituximab treatment](https://onlinelibrary.wiley.com/doi/10.1002/art.22967).
+
+4. **Tur et al., Annals of the Rheumatic Diseases, online 2024 / issue 2025: serial lymph-node biopsies after CAR-T.**
+
+   **Population and treatment:** Five patients with SLE or systemic sclerosis receiving CD19 CAR-T, with five rituximab-treated autoimmune-disease comparators. Three additional CAR-T-treated patients supplied other organ specimens.
+
+   **Sampling:** Inguinal lymph-node biopsies before conditioning and approximately two months after CAR-T, before blood B-cell reappearance. Follow-up sampling used the same-side anatomical region. Colon, kidney, and gallbladder specimens came from three additional patients, one organ each.
+
+   **Finding:** No CD19- or CD20-positive B cells were detected in the post-CAR-T nodes, while plasma cells persisted. Rituximab-treated patients retained nodal B cells despite blood depletion. The additional organ specimens were also B-cell negative.
+
+   **Interpretation and limitation:** The study supports deep depletion in sampled nodes and several tissue types. The organ specimens do not establish node–organ concordance within individuals. The treatment comparison is nonrandomized and differs in disease, sampling time, and conditioning.
+
+   [Source: CD19-CAR T-cell therapy induces deep tissue depletion of B cells](https://www.sciencedirect.com/science/article/pii/S0003496724005740).
+
+5. **Feng et al., Nature Medicine, 2025: blood and marrow immune recovery after dual-target CAR-T.**
+
+   **Population and treatment:** Fifteen patients with refractory SLE receiving co-infused CD19-directed and B-cell maturation antigen (BCMA)-directed CAR-T after lymphodepletion.
+
+   **Sampling:** Three patients contributed detailed blood and marrow single-cell analyses before treatment and at immune recovery. These were mononuclear-cell samples; the reviewed material did not establish serial intact-tissue histological biopsies. The study's longer clinical and molecular follow-up should not be treated as repeated marrow sampling at every visit.
+
+   **Finding:** The study examined compartment-specific B-lineage populations, including marrow CD19-negative plasma cells, changes in tracked autoreactive clones, and naïve B-cell reconstitution.
+
+   **Interpretation and limitation:** This is relevant to the identity and clonality of recovering cells. It does not validate a lymph-node measurement as a marrow surrogate, and the dual-target treatment should remain separate from CD19-only CAR-T in synthesis.

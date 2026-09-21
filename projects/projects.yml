@@ -57,6 +57,15 @@
   categories: [Immunology and T-cell engagers, Draft]
   path: itp-pk-platelet/index.qmd
 
+- title: "imm-biopsy"
+  subtitle: "Working document"
+  description: >
+    How well peripheral blood B cells track tissue B cells, and whether a
+    biopsy in one tissue describes depletion and recovery in another.
+    Paired human observations, sampling variability and assay limits.
+  categories: [Immunology and T-cell engagers, Draft]
+  path: imm-biopsy/index.qmd
+
 - title: "B-cell indirect-response estimation"
   subtitle: "Working document"
   description: >

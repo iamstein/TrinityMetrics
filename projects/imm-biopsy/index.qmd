@@ -1,0 +1,21 @@
+---
+title: "imm-biopsy"
+subtitle: "Peripheral and tissue B cells: what a biopsy can tell us about other tissues"
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: false
+---
+
+How well do peripheral blood B-cell measurements track tissue B cells, and
+how well does a biopsy from one tissue describe what is happening in another?
+The initial focus is depletion and recovery after B-cell-directed therapy in
+autoimmune disease, including the sampling and assay limits of a negative biopsy.
+
+## Documents
+
+- [Working specification](specification.qmd). The questions, measurement
+  definitions, evidence requirements and planned analysis.
+- [References](references.qmd). The five studies in the initial review, their
+  verification status and the questions to resolve in each.
+- [Supplied evidence brief](evidence-brief.qmd). The review received on
+  21 September 2026, preserved as the starting record.
