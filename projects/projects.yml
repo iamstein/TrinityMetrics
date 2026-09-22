@@ -57,6 +57,15 @@
   categories: [Immunology and T-cell engagers, Draft]
   path: itp-pk-platelet/index.qmd
 
+- title: "imm-bcell-plasma-cause"
+  subtitle: "Working document"
+  description: >
+    Which autoimmune diseases and patients depend on B cells or plasma
+    cells? Evidence for CD19, CD20 and BCMA targeting, a disease ranking,
+    and what rituximab response or failure can tell us.
+  categories: [Immunology and T-cell engagers, Draft]
+  path: imm-bcell-plasma-cause/index.qmd
+
 - title: "imm-biopsy"
   subtitle: "Working document"
   description: >

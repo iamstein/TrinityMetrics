@@ -1,0 +1,25 @@
+---
+title: "imm-bcell-plasma-cause"
+subtitle: "Which autoimmune diseases depend on B cells or plasma cells?"
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: false
+toc-depth: 2
+---
+
+Which autoimmune diseases improve when B cells or plasma cells are targeted,
+and what can identify the patients most likely to benefit? This project compares
+disease mechanisms with clinical intervention evidence, including response and
+nonresponse to rituximab.
+
+## Documents
+
+- [Working specification](specification.qmd). Scope, evidence standards and
+  the questions that remain to be answered.
+- [Evidence review and disease ranking](evidence-review.qmd). The initial
+  synthesis, target comparison and approach to patient stratification.
+- [References](references.qmd). Recommended reviews first, followed by the
+  studies supporting the synthesis and their verification status.
+
+The related [imm-biopsy project](../imm-biopsy/index.qmd) addresses whether blood
+and biopsy measurements represent B cells in other tissues.

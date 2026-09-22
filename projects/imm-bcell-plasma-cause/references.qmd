@@ -1,0 +1,443 @@
+---
+title: "B-cell and plasma-cell causality: references"
+subtitle: "Recommended reviews and the clinical evidence behind the ranking"
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+## Status markers
+
+- ✅ **Checked claim.** The narrow statement used here was checked against a
+  source abstract, caption or specified full-text passage. The entry states
+  the access level; this is not a claim of full-paper appraisal.
+- ⚠️ **Partially checked.** Relevant information was retrieved, but the
+  interpretation requires additional source checks.
+- ❌ **Not checked.** A reading task remains open.
+
+Searches on 22 September 2026 used PubMed and publisher pages, with terms
+combining B-cell/plasma-cell targeting, reviews, indication names, rituximab
+response predictors, and named trials. Recent searches specifically checked
+2025–2026 SLE, myasthenia and Sjögren's developments. This is a targeted
+selection, without systematic screening or a formal risk-of-bias assessment.
+Some findings were retrieved as indexed excerpts of primary abstracts when
+direct page opening failed. Such entries are labelled accordingly.
+
+The [evidence review](evidence-review.qmd) contains the disease ranking. Its
+ordering and patient-interpretation framework are the project's synthesis,
+not a ranking published by one of these sources.
+
+## Reading queue
+
+1. ⚠️ **Abeles 2024, Yuan and Xu 2026, and Schett 2024.** Read the complete reviews against the
+   distinction between antibody-mediated and other B-cell functions.
+2. ⚠️ **Stockfelt 2025, then Wincup 2026.** Resolve which predictors of
+   rituximab benefit have replication and which are associations after treatment.
+3. ⚠️ **Fooksman 2024, Halliley 2015 and KDIGO 2026.** Separate long-lived plasma-cell
+   function from CD19 status or marrow residence alone.
+4. ⚠️ **SSc fibrosis review, 2026.** Identify the evidence that immune targeting
+   changes organ disease versus established fibrotic damage.
+5. ⚠️ **R4RA and STRAP.** Appraise comparative biomarker effects, validation
+   cohorts and the evidence that profiling improves a treatment decision.
+6. ⚠️ **Recent modality studies.** Compare full methods for REGENCY, ALLEGORY,
+   MINT and Descartes-08 before using them in a quantitative comparison.
+
+## Reviews to prioritize
+
+### Abeles et al. 2024 — B Cell–Directed Therapy in Autoimmunity {#abeles}
+
+**✅ Abstract checked; full review pending.** Annual Review of Immunology
+42:103–126. [Journal article](https://www.annualreviews.org/content/journals/10.1146/annurev-immunol-083122-044829).
+
+Start here for the cross-disease framework: antibodies, antigen presentation
+and cytokine functions, and why clinical efficacy varies by indication.
+The publisher abstract and bibliography were accessible; detailed disease
+claims in this project use the additional trials and reviews below.
+
+### Yuan and Xu 2026 — Translating B-Cell and Plasma-Cell Targeting from Oncology to Autoimmunity: Modalities, Quantitative Bridging, and a Development Roadmap {#yuan}
+
+**✅ Abstract and indexed mechanistic passages checked; full review pending.**
+Clinical Pharmacology & Therapeutics 120:598–613. DOI: 10.1002/cpt.70352.
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/42244451/)
+· [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC13338978/).
+
+A close match to this project: compares dependence on B-cell precursors,
+tissue inflammation and established plasma-cell populations, then relates
+those hypotheses to target coverage and treatment modality. Its proposed
+classification and quantitative development approach need validation before
+they can guide individual treatment selection.
+
+### Floege et al. 2026 — Targeting B cells in immune-mediated kidney diseases: conclusions from a KDIGO Controversies Conference {#kdigo}
+
+**✅ Abstract and indexed plasma-cell and disease-comparison passages checked.**
+Kidney International 110:548–565. KDIGO means Kidney Disease: Improving Global
+Outcomes. [Journal](https://doi.org/10.1016/j.kint.2026.02.029)
+· [Conference report PDF](https://kdigo.org/wp-content/uploads/2026/09/KDIGO-B-Cell-Controversies-Conference-Report.pdf).
+
+Prioritize for kidney disease comparisons and the distinction between CD19
+expression and plasma-cell lifespan. Both CD19-positive and CD19-negative
+plasma-cell populations can persist. This conference synthesis identifies
+research gaps; it is not evidence that broader depletion always improves
+outcomes.
+
+### Schett et al. 2024 — B-cell depletion in autoimmune diseases {#schett}
+
+**✅ Abstract checked; full review pending.** Annals of the Rheumatic Diseases
+83:1409–1420. [PubMed](https://pubmed.ncbi.nlm.nih.gov/38777374/).
+DOI: 10.1136/ard-2024-225727.
+
+Read for antibody depletion versus engineered-cell approaches and the proposal
+that deeper depletion can change remission durability. Useful companion to
+Abeles; its synthesis is not comparative proof of CAR-T superiority.
+
+### Stockfelt, Teng and Vital 2025 — Opportunities and limitations of B cell depletion approaches in SLE {#stockfelt}
+
+**✅ Publisher abstract and summary points checked.** Nature Reviews Rheumatology
+21:111–126. [Journal article](https://www.nature.com/articles/s41584-024-01210-9).
+
+Prioritize for rituximab nonresponse: residual cells, immunogenicity,
+B-cell-activating factor (BAFF), and alternative inflammatory mechanisms.
+Full text was subscription-restricted. Subsequent trials below update its
+clinical context.
+
+### Wincup et al. 2026 — The why, what, who and when of B cell depletion in systemic lupus erythematosus: biological rationale, patient stratification and evolving therapeutic modalities {#wincup}
+
+**✅ Indexed abstract checked; full-text review pending.** Rheumatology.
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/42599215/)
+· [PMC full-text link](https://pmc.ncbi.nlm.nih.gov/articles/PMC13505633/).
+
+The closest match to this project's patient-selection question. Read for
+compartment, modality and treatment timing. Direct PMC retrieval encountered a
+browser challenge; no full-paper verification is claimed.
+
+### Fooksman, Jing and Park 2024 — New insights into the ontogeny, diversity, maturation and survival of long-lived plasma cells {#fooksman}
+
+**✅ Publisher abstract checked; full review pending.** Nature Reviews Immunology
+24:461–470. [Journal article](https://www.nature.com/articles/s41577-024-00991-0).
+
+Read for how plasma cells acquire longevity and depend on survival conditions.
+Supports the distinction between an antibody-producing phenotype and durable
+persistence; it is not a clinical test for BCMA response.
+
+### Lee, Rojas and Gommerman 2021 — B cell depletion therapies in autoimmune disease: advances and mechanistic insights {#lee}
+
+**✅ Abstract and indexed mechanistic passages checked.** Nature Reviews Drug
+Discovery 20:179–199. [Journal article](https://www.nature.com/articles/s41573-020-00092-2)
+· [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC7737718/).
+
+A foundational review of benefits despite persistence of antibodies and plasma
+cells. Use for mechanism, with newer trials for efficacy. A later author
+correction is linked from the journal record; check the corrected full text
+before extracting figures or detailed tables.
+
+### Junt et al. 2025 — Defining immune reset: achieving sustained remission in autoimmune diseases {#junt}
+
+**✅ Publisher abstract checked; full perspective pending.** Nature Reviews
+Immunology 25:528–541. [Journal article](https://www.nature.com/articles/s41577-025-01141-w).
+
+A perspective on what durable remission and immune reconstitution would need
+to show. Read when distinguishing a mechanistic hypothesis from demonstrated
+long-term benefit after a particular modality.
+
+### Mechanisms of fibrotic tissue remodelling: insights from systemic sclerosis, 2026 {#ssc-review}
+
+**✅ Publisher abstract and summary points checked.** Nature Reviews Rheumatology
+22:221–238. [Journal article](https://www.nature.com/articles/s41584-025-01349-z).
+
+The SSc counterweight to an exclusively B-cell explanation: vascular injury,
+immune interactions and tissue-intrinsic fibrosis mechanisms. Full-text review
+is needed for specific organ and patient-selection claims.
+
+### Kawano 2025 — IgG4-related Disease: Recent Topics on Immunological Aspects of This Disorder and Their Application in New Treatment Strategies {#igg4-review}
+
+**✅ Abstract checked.** Internal Medicine 64:31–39.
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/38369350/).
+
+Read for tertiary lymphoid tissue and interactions of B cells with T cells and
+other lesion-forming populations. A response to CD19 depletion need not make
+serum IgG4 concentration the sole pathogenic mechanism.
+
+### Rituximab for myasthenia gravis, 2025 — Cochrane review {#mg-review}
+
+**✅ Indexed review methods and conclusions checked.**
+[Full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC12224225/).
+
+Compares RINOMAX and BeatMG and exposes the limits of pooling their populations.
+MuSK-specific rituximab evidence is largely outside those randomized studies.
+Read with the newer CD19 and BCMA trials below, not as a complete current
+inventory of myasthenia therapies.
+
+### Rituximab in the treatment of immune thrombocytopenia: what is the role of this agent in 2019? {#itp}
+
+**✅ Indexed clinical and durability passages checked.** Haematologica.
+[Review](https://pmc.ncbi.nlm.nih.gov/articles/PMC6545833/).
+
+Useful for heterogeneity, initial responses and loss of response over time.
+Its age limits its use for current treatment sequencing; this project uses it
+for interpreting rituximab, not for current guideline recommendations.
+
+### Targeted immunosuppressive and immunomodulatory therapies for idiopathic inflammatory myopathies, 2025 — Cochrane review {#myositis-review}
+
+**✅ Indexed rituximab analysis checked.**
+[Review](https://pmc.ncbi.nlm.nih.gov/articles/PMC12315092/).
+
+Read for the low certainty of comparative rituximab evidence and the design
+limitations of RIM. The pooled label “myositis” conceals clinically different
+subgroups.
+
+## Studies supporting disease and target comparisons
+
+### Halliley et al. 2015 — human long-lived plasma cells {#halliley}
+
+**✅ Indexed abstract and results passages checked.** Immunity 43:132–145.
+[Study](https://pmc.ncbi.nlm.nih.gov/articles/PMC4680845/).
+
+Identifies a CD19-negative marrow plasma-cell subset containing durable
+antiviral antibody production. Supports a population that CD19 targeting can
+spare; it does not classify every autoimmune plasma cell by longevity.
+
+### Joly et al. 2017 — Ritux 3, pemphigus {#ritux3}
+
+**✅ Primary abstract checked.** Lancet.
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/28342637/).
+
+Randomized open-label comparison of rituximab plus short-course prednisone
+versus prednisone alone. Month-24 complete remission off therapy was 41/46
+versus 15/44. The result applies to the treatment strategies studied.
+
+### Cree et al. 2019 — N-MOmentum, NMOSD {#nmomentum}
+
+**✅ Primary abstract result checked.** Lancet 394:1352–1363.
+[Trial](https://www.sciencedirect.com/science/article/pii/S0140673619318173).
+
+Inebilizumab versus placebo; attacks in 21/174 versus 22/56 during the randomized
+period. Those are overall trial denominators, not an exclusively
+AQP4-positive-subgroup estimate. Interpretation emphasizes AQP4-positive disease;
+extract subtype-specific results before estimating subgroup benefit.
+
+### Stone et al. 2010 — RAVE, ANCA-associated vasculitis {#rave}
+
+**✅ Primary abstract checked.** New England Journal of Medicine 363:221–232.
+[Trial](https://www.nejm.org/doi/full/10.1056/NEJMoa0909905).
+
+Randomized noninferiority trial in 197 ANCA-positive patients. Six-month
+remission off prednisone: 64% with rituximab versus 53% with the
+cyclophosphamide-based comparator. Noninferiority does not establish universal
+superiority; glucocorticoids accompanied induction.
+
+### Stone et al. 2025 — MITIGATE, IgG4-RD {#mitigate}
+
+**✅ Primary abstract checked.** New England Journal of Medicine 392:1168–1177;
+online November 2024. [Trial](https://www.nejm.org/doi/10.1056/NEJMoa2409712).
+
+Phase 3 CD19-antibody evidence used in the review's flare comparison. The
+hazard ratio was 0.13 (95% confidence interval 0.06–0.28). Serious adverse
+events were reported in 18% versus 9%; compare benefit and harm within this
+population, not with unrelated trial populations.
+
+### Nowak et al. 2025 — MINT, generalized MG {#mint}
+
+**✅ Primary abstract checked.** New England Journal of Medicine 392:2309–2320.
+[Trial](https://www.nejm.org/doi/full/10.1056/NEJMoa2501561).
+
+Randomized 238 AChR- or MuSK-antibody-positive participants. The MG-ADL result
+used in the review is a week-26 between-group effect. Subtype-specific precision
+and longer-term durability require the full tables; do not infer equivalence
+of benefit across antibody subgroups.
+
+### Hauser et al. 2017 — OPERA I and II, relapsing MS {#opera}
+
+**✅ Primary abstract checked.** New England Journal of Medicine 376:221–234.
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/28002679/).
+
+Two trials randomized 821 and 835 participants. Ocrelizumab reduced annualized
+relapses relative to interferon beta-1a. Supports clinical B-cell involvement;
+the trials do not isolate antibody production as the required mechanism.
+
+### Cohen et al. 2006 — REFLEX, RA {#reflex}
+
+**✅ Primary abstract checked.** Arthritis & Rheumatism 54:2793–2806.
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/16947627/).
+
+The review preserves the week-24 ACR20 endpoint, anti-TNF inadequate-responder
+population and methotrexate background. Do not relabel this improvement rate as
+remission or extrapolate it to an unselected RA population.
+
+### Updated consensus statement on rituximab in RA, 2011 {#ra-consensus}
+
+**✅ Indexed serostatus passages checked.**
+[Consensus review](https://pmc.ncbi.nlm.nih.gov/articles/PMC3086093/).
+
+Supports rheumatoid factor/anticitrullinated protein antibody enrichment.
+Used for this historical evidence, not as current prescribing guidance.
+
+### Furie et al. 2025 — REGENCY, lupus nephritis {#regency}
+
+**✅ Primary abstract checked.** New England Journal of Medicine 392:1471–1483.
+[Trial](https://www.nejm.org/doi/abs/10.1056/NEJMoa2410965).
+
+271 randomized patients; the review reports complete renal response at week 76.
+Both groups received standard therapy. More serious adverse events, chiefly
+infections and COVID-19-related events, occurred with obinutuzumab. This was not
+a rituximab comparison.
+
+### Furie et al. 2026 — ALLEGORY, nonrenal SLE {#allegory}
+
+**✅ Indexed primary abstract checked.** New England Journal of Medicine
+395:243–254. [PubMed](https://pubmed.ncbi.nlm.nih.gov/41789864/)
+· [Journal](https://www.nejm.org/doi/10.1056/NEJMoa2516150).
+
+Supports the reported week-52 SRI-4 comparison with standard therapy in both
+arms. Proliferative or membranous lupus nephritis was excluded. The primary
+abstract was retrieved through search; direct publisher retrieval failed.
+Detailed endpoint handling and subgroup effects remain to be extracted.
+
+### Ebata et al. 2021 — DESIRES, SSc {#desires}
+
+**✅ Primary abstract checked.** Lancet Rheumatology 3:e489–e497.
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/38279402/).
+
+Randomized, blinded, placebo-controlled trial supporting the skin-score effect
+reported in the review. Enrollment required a modified Rodnan skin score of at
+least 10. No inference of efficacy across all SSc organs is made here.
+
+### DESIRES predictor analysis, 2022 {#desires-predictors}
+
+**✅ Abstract design checked; detailed predictor appraisal pending.**
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/35136981/).
+
+Post hoc analysis considered 27 baseline factors in 54 participants. A small
+exploratory model cannot itself establish a validated patient-selection rule.
+
+### Bowman et al. 2017 — TRACTISS, Sjögren's {#tractiss}
+
+**✅ Primary abstract and indexed results checked.** Arthritis & Rheumatology
+69:1440–1450. [Trial](https://acrjournals.onlinelibrary.wiley.com/doi/abs/10.1002/art.40093)
+· [Author manuscript and repository abstract](https://eprints.whiterose.ac.uk/id/eprint/113397/).
+
+Anti-Ro-positive participants with fatigue and oral dryness; the primary
+symptom endpoint was not met. This constrains claims for rituximab symptom
+benefit, without resolving every systemic manifestation or other target.
+
+### Fervenza et al. 2019 — MENTOR, primary membranous nephropathy {#mentor}
+
+**✅ Indexed primary report results checked.** New England Journal of Medicine
+381:36–46. [Trial](https://www.nejm.org/doi/abs/10.1056/NEJMoa1814427).
+
+Rituximab was noninferior to cyclosporine for inducing proteinuria remission
+at 12 months and superior for maintaining remission through 24 months.
+The maintenance result depends on the comparator regimen and follow-up;
+it is not a direct comparison of CD20 with CD19 or BCMA.
+
+### Lafayette et al. 2017 — rituximab in IgA nephropathy {#iga-rituximab}
+
+**✅ Primary abstract checked.** Journal of the American Society of Nephrology
+28:1306–1313. [PubMed](https://pubmed.ncbi.nlm.nih.gov/27821627/).
+
+Open-label randomized study of 34 adults with proteinuria and impaired kidney
+function. Depletion without a renal or disease-associated antibody effect
+is a counterexample to using peripheral B-cell loss as a sufficient surrogate
+for benefit. The small trial does not test all disease stages or other targets.
+
+### Grader-Beck et al. 2025 — NEPTUNUS-1 and NEPTUNUS-2, Sjögren's {#neptunus}
+
+**✅ Meeting abstract checked; full journal appraisal pending.**
+[ACR abstract LB24](https://acrabstracts.org/abstract/ianalumab-demonstrates-significant-reduction-in-disease-activity-in-patients-with-sjogrens-disease-efficacy-and-safety-results-from-two-global-phase-3-randomized-placebo-controlled-double-blind-s/).
+
+Two randomized phase 3 studies reported positive week-48 systemic disease
+activity endpoints with monthly ianalumab. This antibody combines B-cell
+depletion with BAFF-receptor blockade. A full primary journal report was not
+located in this search; conference evidence remains labelled as such.
+
+### Patel et al. 2012 — long-term rituximab response in ITP {#itp-followup}
+
+**✅ Indexed primary results checked.** Blood.
+[Study](https://pmc.ncbi.nlm.nih.gov/articles/PMC3383014/).
+
+Estimated five-year sustained treatment-free responses were approximately
+21% in adults and 26% in children. This is long-term observational evidence,
+not a randomized comparison or an individual prediction model.
+
+### Oddis et al. 2013 — RIM, inflammatory myositis {#rim}
+
+**✅ Primary abstract checked.** Arthritis & Rheumatism 65:314–324.
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/23124935/).
+
+Early versus delayed rituximab, with 200 randomized participants. The primary
+comparison was negative even though many eventually improved. The latter
+observation cannot supply a placebo-adjusted response rate.
+
+## Patient stratification and emerging modalities
+
+### Humby et al. 2021 — R4RA {#r4ra}
+
+**✅ Primary abstract and result table passages checked.** Lancet.
+[Full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC7829614/).
+
+Primary histology-based B-cell-poor comparison: no significant difference.
+The RNA-defined B-cell-poor comparison favoured tocilizumab. Preserve the
+classification method and analysis population when discussing a tissue test.
+
+### STRAP molecular profiling, 2025 {#strap}
+
+**✅ Indexed results and discussion checked; full prediction-model audit pending.**
+Nature Communications 16:5374.
+[Study](https://www.nature.com/articles/s41467-025-60987-9).
+
+Response-associated signatures support tissue stratification research. Shared
+B-cell gene modules in responses to more than one drug caution against equating
+a B-cell signature with specific dependence on rituximab. Assess validation and
+prospective utility before proposing implementation.
+
+### Müller et al. 2024 — CD19 CAR-T case series {#muller}
+
+**✅ Primary abstract checked.** New England Journal of Medicine 390:687–700.
+[Study](https://www.nejm.org/doi/10.1056/NEJMoa2308917).
+
+Fifteen patients spanning SLE, inflammatory myositis and SSc, treated after
+fludarabine/cyclophosphamide. Remission signals support investigation, but
+uncontrolled selection and conditioning prevent target-specific causal
+attribution and a comparative response estimate.
+
+### Feng et al. 2025 — dual CD19/BCMA CAR-T in SLE {#feng}
+
+**✅ Publisher abstract checked.** Nature Medicine 31:3725–3736.
+[Study](https://www.nature.com/articles/s41591-025-03937-8).
+
+Fifteen patients with refractory SLE. Dual targeting and conditioning prevent
+isolation of the BCMA contribution. Tissue and clone interpretation is also
+tracked in [imm-biopsy](../imm-biopsy/references.qmd#feng).
+
+### Bucci et al. 2025 — BCMA T-cell engager therapy {#bucci}
+
+**✅ Publisher summary checked; detailed letter and supplement pending.**
+New England Journal of Medicine 393:1544–1547.
+[Report](https://www.nejm.org/doi/abs/10.1056/NEJMc2506740).
+
+Ten refractory autoimmune-disease patients receiving teclistamab. Clinical
+and serologic signals are hypothesis-generating; no comparator establishes
+superiority or identifies who benefits after CD20 depletion.
+
+### Vu et al. 2026 — Descartes-08 randomized phase 2b MG trial {#descartes}
+
+**✅ Full-text participant flow, endpoint and results passages checked.**
+Nature Medicine 32:1131–1141.
+[Trial](https://www.nature.com/articles/s41591-025-04171-y).
+
+The review distinguishes the randomized/safety population from the primary
+efficacy subset. Read the endpoint amendment and analysis-set rationale before
+using its effect size; background therapy also limits drug-free-remission
+claims. It is not a direct comparison with CD19 or CD20 treatment.
+
+## Unresolved source checks
+
+- ❌ Full risk-of-bias and endpoint appraisal for the trials used in the ranking.
+- ❌ Replicated, prospective patient-selection performance for RA synovial
+  classifiers and SLE/SSc biomarkers.
+- ❌ Direct target or modality comparisons specifically in documented rituximab
+  nonresponders, including adequate tissue-depletion measurements.
+- ❌ Detailed clinical subtypes within myositis and ITP, and a systematic search
+  for newer results that would change their tier.
+- ❌ Disease-specific BCMA evidence beyond the MG randomized trial and the
+  early rheumatic-disease reports summarized here.

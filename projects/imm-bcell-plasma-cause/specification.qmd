@@ -1,0 +1,128 @@
+---
+title: "B cells and plasma cells in autoimmune disease: working specification"
+subtitle: "Disease mechanisms, treatment response and patient selection"
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+## 1. Objective
+
+Determine how strongly each autoimmune indication depends on B cells, plasma
+cells or other mechanisms, and which observations can predict benefit from
+CD19-, CD20- or B-cell maturation antigen (BCMA)-directed therapy. CD19 and CD20
+are cell-surface markers; BCMA is a receptor commonly expressed on
+antibody-secreting cells. Target expression and treatment modality must both
+be specified.
+
+The initial [evidence review](evidence-review.qmd) answers this question at the
+indication level and identifies patient-level evidence. Rheumatoid arthritis
+(RA), systemic lupus erythematosus (SLE) and systemic sclerosis (SSc) receive
+additional discussion. Other indications provide comparisons in which antibody
+causality, treatment effects or biomarker interpretation are better established.
+
+**Out of scope:** individual prescribing advice, an exhaustive guideline or
+approval inventory, and a numerical probability of response for a patient
+without a validated prediction model.
+
+## 2. Questions
+
+1. What shows that a B-lineage population contributes causally to disease?
+2. Does the contribution involve antibodies, antigen presentation, cytokines,
+   support of other immune cells, or several functions?
+3. Does antibody production depend on continual replacement from B cells, or
+   on established plasma cells that can survive B-cell depletion?
+4. Which treatment trials establish clinical benefit, for which organ
+   manifestation, disease stage, endpoint and background treatment?
+5. Which baseline measurements predict a treatment-specific benefit?
+6. What can response, relapse or nonresponse to rituximab tell us about the
+   mechanism in an individual?
+7. Which evidence supports CD19 or BCMA targeting after anti-CD20 failure,
+   and which proposed treatment sequences remain hypotheses?
+
+## 3. Evidence standards
+
+Keep three judgments separate: mechanistic involvement, demonstrated treatment
+benefit and individual response prediction. A disease can have strong evidence
+for the first two and no validated classifier for the third.
+
+| Evidence | What it supports | Required limitation |
+|---|---|---|
+| Functional autoantibody experiments | An antibody can produce a specified effect | Confirm relevance to human disease and the population making it |
+| Randomized clinical intervention | An incremental treatment effect in the studied population | Preserve comparator, background treatment, endpoint and time |
+| Tissue or blood profiling | Association with a compartment or disease state | Infiltration and marker abundance do not establish causal dependence |
+| Treatment-by-biomarker interaction | Different relative benefit by biomarker status | Require replication and prospective assessment of clinical utility |
+| Observational response association | A candidate enrichment or monitoring marker | Confounding and prognosis can mimic treatment prediction |
+| Uncontrolled cell-therapy series | Feasibility and a signal warranting trials | Selection, conditioning and concomitant treatment limit attribution |
+
+A marker associated with response within a treated cohort is not automatically
+a treatment-selection marker. The stronger test is whether the marker changes
+the comparative treatment effect, followed by validation in another cohort.
+
+## 4. Ranking rules
+
+The initial ranking uses ordered evidence tiers for expected clinical benefit
+from a specified B-lineage intervention. It is a project synthesis, not a
+validated score or an ordering of response percentages across diseases.
+Conditions within a tier are tied. An independent biological comparison records
+how clearly pathogenic antibodies have been established.
+
+Split indications when mechanism or treatment evidence differs: antibody
+subtypes in myasthenia gravis, seropositive and seronegative RA, renal and
+nonrenal SLE, inflammatory activity and accumulated damage, and individual
+myositis syndromes. Do not label every nonresponder “plasma-cell driven.”
+
+## 5. Extraction requirements
+
+For each source, record the citation and source location, publication type,
+population and exclusions, randomized and analyzed counts, organ manifestation,
+serology, disease duration, prior therapies, target, modality, regimen,
+conditioning, comparator, background therapy, endpoint, assessment time,
+absolute result, uncertainty and relevant harms. Preserve trial amendments,
+missing-data handling, subgroup status and overlapping patient cohorts.
+
+For each proposed biomarker, record whether it is diagnostic, prognostic,
+predictive of comparative benefit, pharmacodynamic or a relapse-monitoring
+marker. Record its assay, tissue, threshold, timing, external validation and
+what alternative explanation remains.
+
+For treatment failure, distinguish failure to reach the relevant cells,
+persistence of a different population, inadequate observation time, active
+alternative biology, and irreversible damage. Coordinate tissue interpretation
+with [imm-biopsy](../imm-biopsy/specification.qmd).
+
+## 6. Work completed and next steps
+
+The initial synthesis was assembled on 22 September 2026 from targeted searches
+of PubMed and journal sites. It includes contemporary reviews, positive and
+negative trials, and emerging CD19 and BCMA studies. Source access was uneven;
+[References](references.qmd) states exactly what was checked. This is a focused
+review, not a systematic review.
+
+Next, prioritize full-methods review of patient-selection evidence in RA, SLE
+and SSc; extract baseline biomarkers alongside organ outcomes; and evaluate
+whether any classifier has prospective evidence of improving treatment choice.
+Resolve the outstanding source checks before building a numerical response
+model. Keep the ranking qualitative until comparable individual data support
+more detailed prediction.
+
+Acceptance criteria for each revision:
+
+- Every disease judgment has linked evidence and a stated population.
+- Target and modality are separate; antibody and cell-therapy results are not
+  treated as interchangeable.
+- Negative trials and competing biological explanations remain visible.
+- An unvalidated biomarker is labelled as such.
+- Disease activity, damage, clinical benefit and antibody changes are distinct.
+- Numerical effects retain their endpoint and comparator; no cross-trial
+  response-rate league table is presented as comparative efficacy.
+
+## Document responsibilities
+
+| Document | Reader | Kind | Length |
+|---|---|---|---|
+| Index | Someone finding the project | How-to | Short |
+| Specification | Someone extending the analysis | Reference | Enough to define the work and evidence standards |
+| Evidence review | Someone comparing indications and mechanisms | Reference | Detailed enough to assess the ranking |
+| References | Someone choosing a review or checking a claim | Reference | Annotated, with source-access limits |

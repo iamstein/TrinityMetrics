@@ -1,0 +1,338 @@
+---
+title: "Which autoimmune diseases are B-cell or plasma-cell driven?"
+subtitle: "Evidence review and provisional disease ranking — 22 September 2026"
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+## 1. Current assessment
+
+B-cell targeting has demonstrated clinical benefit in several autoimmune
+diseases, but a diagnosis alone rarely identifies the responsible B-lineage
+population in an individual. Plasma cells are differentiated B-lineage cells;
+“B-cell driven” and “plasma-cell driven” describe potentially overlapping
+mechanisms. B cells can also sustain disease by presenting antigen to T cells
+and producing inflammatory signals. [Abeles et al., 2024](references.qmd#abeles).
+
+For the three main indications in this project, **seropositive rheumatoid
+arthritis (RA) and active systemic lupus erythematosus (SLE) have stronger
+clinical intervention evidence than systemic sclerosis (SSc)**. SLE now has
+positive anti-CD20 trials in both nephritis and nonrenal disease. None of these
+findings establishes that all manifestations, or all patients, will respond.
+[REFLEX](references.qmd#reflex), [REGENCY](references.qmd#regency),
+[ALLEGORY](references.qmd#allegory), [DESIRES](references.qmd#desires).
+
+Rituximab response supports the involvement of a CD20-accessible immune pathway.
+Nonresponse has several explanations: inadequate depletion, spared plasma
+cells, a different inflammatory pathway, damage that cannot reverse, or an
+endpoint and timing that miss the benefit. Current reviews do not provide a
+validated universal test assigning patients to a B-cell, plasma-cell or
+non-B-cell category. [Stockfelt et al., 2025](references.qmd#stockfelt),
+[Wincup et al., 2026](references.qmd#wincup).
+
+**Scope:** a focused research synthesis for indication and biomarker planning.
+It is not an individual treatment recommendation or a systematic review.
+Sources and access limits are recorded in [References](references.qmd).
+
+## 2. What the targets reach
+
+A **plasmablast** is a proliferating antibody-secreting cell. A **plasma cell**
+is a differentiated antibody-secreting cell; some survive for years in tissue
+niches. Long survival cannot be inferred from anatomical location alone.
+[Fooksman et al., 2024](references.qmd#fooksman).
+
+| Target | Main biological reach | Consequence for interpreting response |
+|---|---|---|
+| CD20 | Most mature naïve and memory B cells; generally absent from terminal plasma cells | Can interrupt B-cell functions and replacement of short-lived antibody-secreting cells while sparing established plasma cells |
+| CD19 | A broader B-lineage range, including many plasmablasts and some plasma cells | Can reach populations spared by CD20 targeting, but cannot be assumed to remove CD19-negative plasma cells |
+| BCMA: B-cell maturation antigen | Many plasmablasts and plasma cells, including populations beyond CD19/CD20 reach | Tests a more direct antibody-secreting-cell hypothesis; conventional B-cell precursors can remain |
+
+These are biological ranges, not guarantees of in vivo depletion. Human marrow
+contains a CD19-negative population with long-lived antibody production, but
+CD19-positive plasma cells can also persist for years. CD19 expression therefore
+does not divide plasma cells into short-lived and long-lived populations.
+Expression varies with differentiation and tissue. [Halliley et al., 2015](references.qmd#halliley),
+[KDIGO conference report, 2026](references.qmd#kdigo),
+[Lee et al., 2021](references.qmd#lee).
+
+**The target does not specify the modality.** Rituximab and obinutuzumab both
+target CD20 but differ in their biological properties. Inebilizumab is a
+CD19 antibody; a CD19 chimeric antigen receptor T-cell (CAR-T) product adds
+engineered effector cells and often lymphodepleting chemotherapy. BCMA-directed
+T-cell engagers and transient messenger-RNA CAR-T products also differ in
+persistence, dosing and conditioning. An apparent benefit after switching
+modalities does not isolate the contribution of the new antigen target.
+[Schett et al., 2024](references.qmd#schett),
+[Vu et al., 2026](references.qmd#descartes).
+
+A useful working classification asks whether disease depends on continual
+replacement of antibody-secreting cells, persistent tissue immune activity, or
+established plasma-cell populations. Yuan and Xu propose a related framework
+for comparing targets and modalities. These categories organize hypotheses;
+they have not been validated as patient-assignment rules.
+[Yuan and Xu, 2026](references.qmd#yuan).
+
+## 3. Disease ranking for expected clinical benefit {#ranking}
+
+**Rank 1 is the highest tier. Conditions within a tier are tied.** The ranking
+reflects confidence that a specified intervention can improve a specified
+outcome, using randomized evidence, reproducibility and population definition.
+It is the project's interpretation of the cited studies. It does not estimate
+which disease has the largest response rate or compare unlike trial endpoints.
+
+| Rank | Indication or subgroup | Evidence supporting B-lineage targeting | Main qualification |
+|---|---|---|---|
+| **1 — established controlled benefit** | Pemphigus, especially antibody-defined pemphigus vulgaris | Rituximab plus short-course prednisone improved complete remission off therapy in Ritux 3 | Benefit from interrupting B-cell supply does not require direct killing of every plasma cell. [Ritux 3](references.qmd#ritux3) |
+| **1** | Aquaporin-4-antibody-positive neuromyelitis optica spectrum disorder (AQP4-positive NMOSD) | CD19 antibody inebilizumab reduced attacks in N-MOmentum | Preventing new attacks differs from repairing established neurological injury. Do not transfer to seronegative disease. [N-MOmentum](references.qmd#nmomentum) |
+| **1** | Antineutrophil cytoplasmic antibody (ANCA)-associated granulomatosis with polyangiitis or microscopic polyangiitis | Rituximab was noninferior to cyclophosphamide for induction in RAVE | Specify subtype and organ activity; this is not a claim about all vasculitis. [RAVE](references.qmd#rave) |
+| **1** | Active immunoglobulin G4-related disease (IgG4-RD) | Inebilizumab reduced flares in the phase 3 MITIGATE trial | B-cell intervention evidence is stronger than a claim that serum IgG4 alone causes all injury. [MITIGATE](references.qmd#mitigate) |
+| **1** | Antibody-positive generalized myasthenia gravis (MG) | Positive phase 3 CD19-antibody evidence in MINT | Separate acetylcholine-receptor (AChR) and muscle-specific kinase (MuSK) antibodies. Rituximab and BCMA evidence differ by subtype and trial. [MINT](references.qmd#mint) |
+| **1** | Relapsing multiple sclerosis (MS) | Anti-CD20 therapy reduced relapse activity in two OPERA trials | Does not establish plasma-cell dominance or equivalent benefit for established noninflammatory progression. [OPERA](references.qmd#opera) |
+| **1** | Active seropositive RA | Controlled rituximab benefit; rheumatoid factor and anticitrullinated protein antibodies enrich response | Several other inflammatory pathways can remain active. [REFLEX](references.qmd#reflex), [RA consensus](references.qmd#ra-consensus) |
+| **1** | Active SLE, with renal and nonrenal populations assessed separately | Positive obinutuzumab trials: REGENCY and ALLEGORY | Earlier rituximab trials were negative; anti-CD20 antibodies and trial populations are not interchangeable. [REGENCY](references.qmd#regency), [ALLEGORY](references.qmd#allegory) |
+| **1** | Primary membranous nephropathy at risk of progression | Rituximab maintained proteinuria remission better than cyclosporine at 24 months in MENTOR | Antibody activity and clinical recovery can occur on different timescales; distinguish primary disease from secondary causes. [MENTOR](references.qmd#mentor), [KDIGO](references.qmd#kdigo) |
+| **2 — benefit supported, narrower or less mature evidence** | SSc with measurable active skin disease | DESIRES supports a skin-score effect of rituximab | A small trial and a defined endpoint; fibrosis, vasculopathy and organ-specific disease require separate assessment. [DESIRES](references.qmd#desires) |
+| **2** | Active systemic Sjögren's disease | New phase 3 ianalumab results support B-cell-pathway intervention | Evidence located here is a conference abstract; the target is BAFF receptor, outside CD19/CD20/BCMA. Rituximab symptom trials were negative. [NEPTUNUS](references.qmd#neptunus), [TRACTISS](references.qmd#tractiss) |
+| **2** | Immune thrombocytopenia (ITP) | Rituximab can produce responses, but long-term treatment-free durability is limited | Antibodies, cellular immunity and platelet production contribute differently across patients. [ITP review](references.qmd#itp), [ITP follow-up](references.qmd#itp-followup) |
+| **3 — selected-subgroup promise; comparative effect uncertain** | Selected inflammatory myopathies | Observational and subgroup signals, with emerging cell-therapy reports | The RIM trial did not meet its randomized primary comparison. Do not pool all myositis or infer efficacy from its overall improvement proportion. [RIM](references.qmd#rim), [myositis review](references.qmd#myositis-review) |
+
+Low expectation of reversing established damage is a separate judgment from a
+low expectation of suppressing future immune injury. Persistent dryness after
+gland loss, contractures, scarred organs or fixed neurological deficits should
+not be scored as direct evidence against a B-cell mechanism.
+
+### Ranking by antibody causality
+
+The clearest antibody-effector examples in this comparison are pemphigus,
+AQP4-positive NMOSD and antibody-defined MG. ANCA-associated vasculitis also
+has substantial antibody-mechanism evidence. These diseases are useful starting
+points for an antibody-secreting-cell hypothesis, although clinical response to
+upstream B-cell depletion can still be strong. [Abeles et al., 2024](references.qmd#abeles),
+[Lee et al., 2021](references.qmd#lee), [MG review](references.qmd#mg-review).
+
+SLE and ITP have substantial antibody involvement with heterogeneous additional
+mechanisms. RA and MS illustrate clinically useful B-cell targeting that need
+not remove all circulating antibodies. In IgG4-RD, activated B cells interact
+with T cells and fibrotic tissue; the disease name is not proof that total IgG4
+is the pathogenic agent. SSc and Sjögren's also combine immune activity with
+tissue processes that can persist after immune intervention.
+[Stockfelt](references.qmd#stockfelt), [ITP review](references.qmd#itp),
+[IgG4 review](references.qmd#igg4-review), [SSc review](references.qmd#ssc-review),
+[TRACTISS](references.qmd#tractiss).
+
+No defensible disease-wide ordering of “plasma-cell dependence” follows from
+this evidence. Autoantibody pathogenicity, cellular source and replaceability
+of that source are separate questions.
+
+### A negative CD20 result despite antibody involvement
+
+IgA nephropathy provides a useful counterexample. A 34-patient randomized trial
+found no significant improvement in proteinuria or kidney function with
+rituximab over one year, despite blood B-cell depletion. Galactose-deficient
+IgA1 and antibodies against it persisted. That supports investigating the
+source of the relevant antibodies; it does not demonstrate that BCMA treatment
+will work. Evidence for other B-lineage pathways in IgA nephropathy should be
+assessed separately from this negative rituximab result.
+[Lafayette et al., 2017](references.qmd#iga-rituximab),
+[KDIGO, 2026](references.qmd#kdigo).
+
+## 4. RA, SLE and SSc in more detail
+
+### Rheumatoid arthritis
+
+**Rituximab works in a substantial subset of active RA.** In REFLEX, patients
+with inadequate response to tumour necrosis factor inhibitors received
+rituximab or placebo with methotrexate. At week 24, 51% versus 18% met the
+American College of Rheumatology 20% improvement criterion. That endpoint is
+improvement, not remission or proof that the disease has a single driver.
+[REFLEX](references.qmd#reflex).
+
+Rheumatoid factor and anticitrullinated protein antibody positivity are useful
+enrichment features, but neither guarantees response nor establishes a
+long-lived plasma-cell mechanism. Synovial biology adds information: in R4RA,
+tocilizumab outperformed rituximab in the subgroup classified as B-cell poor by
+RNA sequencing. The primary histology-based comparison was not significant.
+Later STRAP molecular work identified response-associated signatures, including
+B-cell modules shared across responses to different drugs. These observations
+support further validation of tissue-based selection, not a universal binary
+biopsy test. [RA consensus](references.qmd#ra-consensus),
+[R4RA](references.qmd#r4ra), [STRAP](references.qmd#strap).
+
+**Patient-level interpretation:** combine serology with objective synovitis,
+prior treatment effects and evidence of depletion. Persistent pain with little
+inflammation is a different endpoint problem from persisting swollen joints.
+The hypothesis that a rituximab nonresponder needs CD19 or BCMA targeting remains
+unproven without more specific evidence; the reviewed sources do not establish
+a comparative advantage of either target for that subgroup.
+
+### Systemic lupus erythematosus
+
+**B-lineage involvement is strong, but the relevant compartment varies.**
+Immune-complex disease, antibody-secreting cells, B-cell antigen presentation
+and innate immune pathways can coexist. The negative rituximab EXPLORER and
+LUNAR trials remain part of the evidence; residual cells, immunogenicity and
+repopulation are among the explanations considered in mechanistic reviews.
+They are not proof that every negative trial is caused by shallow depletion.
+[Stockfelt et al.](references.qmd#stockfelt), [Wincup et al.](references.qmd#wincup).
+
+Newer randomized results change the clinical assessment. In active lupus
+nephritis, REGENCY found complete renal response at week 76 in 46.4% with
+obinutuzumab plus standard therapy versus 33.1% with standard therapy alone.
+ALLEGORY, in active SLE without proliferative or membranous nephritis, reported
+an SLE Responder Index-4 response at week 52 in 76.7% versus 53.5%. SRI-4 requires
+improved disease activity without specified worsening in other assessments;
+it does not mean remission. Neither trial directly compared obinutuzumab with
+rituximab. [REGENCY](references.qmd#regency), [ALLEGORY](references.qmd#allegory).
+
+**Patient-level interpretation:** identify active organ disease, damage,
+anti-double-stranded-DNA antibodies, complement, plasmablasts and prior
+depletion/repopulation patterns. Serology may enrich or track an immune-active
+phenotype without selecting the best target. Persistent pathogenic antibody
+activity despite documented depletion would strengthen a plasma-cell hypothesis,
+but persistence of an antibody titre alone is insufficient. Small CD19 CAR-T
+and dual CD19/BCMA studies support further trials; dual targeting cannot reveal
+which target was necessary. [Wincup](references.qmd#wincup),
+[Müller](references.qmd#muller), [Feng](references.qmd#feng).
+
+### Systemic sclerosis
+
+**B cells contribute, within a disease that also involves vascular injury and
+fibrotic tissue responses.** SSc should be classified by organ, current activity
+and damage, not by an assumption that autoantibody positivity means
+plasma-cell-dominant fibrosis. A recent review describes interactions among
+B cells, macrophages and fibroblasts, together with other mechanisms maintaining
+fibrosis. [Fibrotic tissue remodelling review](references.qmd#ssc-review).
+
+DESIRES randomized 56 patients and found a week-24 difference of −8.44 points
+in modified Rodnan skin-score change with rituximab versus placebo
+(95% confidence interval −11.00 to −5.88). Lower scores reflect less skin
+thickening. The trial supports an effect on skin disease; it does not establish
+reversal of every organ manifestation. Its exploratory response predictors
+require external validation. [DESIRES](references.qmd#desires),
+[DESIRES predictor analysis](references.qmd#desires-predictors).
+
+**Patient-level interpretation:** document the organ outcome one expects to
+change and evidence of ongoing activity. Disease-specific antibodies help
+define clinical subgroups, but the evidence checked here does not establish
+an antibody-based rule for choosing CD20, CD19 or BCMA. Cell-therapy series
+are encouraging; small uncontrolled studies with conditioning cannot supply
+a patient-specific response probability. [Müller](references.qmd#muller).
+
+## 5. How far CD19 and BCMA evidence goes
+
+The following comparison summarizes the evidence reviewed here. An early-study
+entry means that comparative benefit is unresolved, not that the target is
+biologically irrelevant.
+
+| Population | CD20 | CD19 | BCMA |
+|---|---|---|---|
+| Active RA, especially seropositive | Established rituximab benefit; selection remains imperfect. [REFLEX](references.qmd#reflex) | A mechanistic rationale for broader depletion; no comparative advantage established in the sources reviewed. [Yuan and Xu](references.qmd#yuan) | Early mixed-disease reports do not establish a RA treatment effect. [Bucci](references.qmd#bucci) |
+| Active SLE | Positive obinutuzumab trials; earlier rituximab trials negative. [REGENCY](references.qmd#regency), [ALLEGORY](references.qmd#allegory) | Encouraging uncontrolled CAR-T results; conditioning complicates attribution. [Müller](references.qmd#muller) | Early reports, including dual CD19/BCMA; the necessary target is unresolved. [Feng](references.qmd#feng) |
+| SSc | Small controlled skin-score trial. [DESIRES](references.qmd#desires) | Uncontrolled CAR-T series; organ-specific effects need confirmation. [Müller](references.qmd#muller) | Patient selection and comparative efficacy remain unresolved. [Yuan and Xu](references.qmd#yuan) |
+| Generalized MG | Rituximab evidence varies with antibody subtype, disease duration and trial design. [Cochrane review](references.qmd#mg-review) | Positive phase 3 in AChR- or MuSK-positive disease. [MINT](references.qmd#mint) | Small randomized signal with analysis-set limitations; MuSK-positive disease excluded. [Descartes-08](references.qmd#descartes) |
+
+CD19 antibody therapy has randomized evidence in IgG4-RD, antibody-positive MG
+and predominantly AQP4-positive NMOSD. In MITIGATE, treated flares occurred in
+7/68 participants receiving inebilizumab and 40/67 receiving placebo during
+52 weeks, with identical glucocorticoid tapers. In MINT, the week-26 adjusted
+between-group difference in the MG Activities of Daily Living score was −1.9
+points (95% confidence interval −2.9 to −1.0), favouring inebilizumab.
+These are disease-specific results, not evidence that CD19 always exceeds CD20.
+[MITIGATE](references.qmd#mitigate), [MINT](references.qmd#mint),
+[N-MOmentum](references.qmd#nmomentum).
+
+**BCMA has early randomized support in MG, with important design limits.**
+Descartes-08 produced the reported primary month-3 response in 10/15 versus 3/11
+patients in the reported primary efficacy population. The full report describes
+36 randomized patients but an academic-site efficacy subset of 26, and a
+primary-endpoint change before unblinding. MuSK-positive patients were excluded.
+This is a signal for confirmation, not proof of superiority over CD19/CD20 or
+of a universal plasma-cell classifier. [Vu et al., 2026](references.qmd#descartes).
+
+For refractory rheumatic diseases, a ten-patient teclistamab report provides an
+uncontrolled BCMA-directed treatment signal. The separate dual CD19/BCMA lupus
+study cannot isolate the BCMA contribution. These results justify studying
+antibody-secreting cells but do not establish a routine rescue sequence after
+rituximab failure. [Bucci et al., 2025](references.qmd#bucci),
+[Feng et al., 2025](references.qmd#feng).
+
+Benefits must be weighed against loss of protective immunity and
+modality-specific toxicity. Removing more B-lineage populations can also remove
+protective antibody production. Infection, reduced immunoglobulins, infusion
+reactions, and the conditioning and inflammatory toxicities of some cellular
+approaches belong in the comparison. Small series cannot establish comparative
+long-term safety. [Junt](references.qmd#junt), [Müller](references.qmd#muller),
+[REGENCY](references.qmd#regency).
+
+## 6. What can identify a likely responder?
+
+| Observation | What it can contribute | What it cannot establish |
+|---|---|---|
+| A disease-defining functional antibody, such as AQP4, MuSK or AChR | A more specific causal and clinical subgroup | The lifespan or target expression of the cells producing it |
+| RA rheumatoid factor or anticitrullinated protein antibodies | Enrichment for rituximab benefit | Certainty of response or a plasma-cell indication |
+| Autoantibody titre and complement over time in SLE | Disease-state and monitoring information in context | A universal treatment-selection threshold |
+| Peripheral B-cell depletion | Evidence that treatment affected the circulating compartment | Depletion in every involved tissue |
+| Synovial B-cell and plasma-cell profiles in RA | Candidate predictors of comparative response | A fully validated routine classifier across diseases |
+| Persistent disease-associated antibody after depletion | A reason to investigate surviving antibody-secreting cells | Proof that the antibody explains current symptoms |
+| Objective inflammation versus established damage | Whether the measured outcome plausibly changes with immune treatment | Which B-lineage target is best |
+| Previous response, relapse and retreatment response | Within-patient evidence consistent with pathway dependence | An unconfounded experiment or guaranteed benefit from another modality |
+
+The table combines clinical evidence with proposed interpretation; it is not a
+validated decision algorithm. The strongest examples here are antibody-defined
+MG/NMOSD populations and RA serologic enrichment. Tissue and molecular
+classifiers remain a research priority. [MINT](references.qmd#mint),
+[N-MOmentum](references.qmd#nmomentum), [RA consensus](references.qmd#ra-consensus),
+[R4RA](references.qmd#r4ra), [STRAP](references.qmd#strap),
+[Stockfelt](references.qmd#stockfelt).
+
+A baseline association with response may be prognostic: patients with more
+reversible disease may improve on several treatments. A predictive marker must
+help distinguish benefit from the treatment under consideration relative to a
+comparator. A post-treatment depletion measurement is pharmacodynamic and
+cannot be used as though it were a pretreatment selection test.
+
+## 7. Interpreting rituximab nonresponse
+
+Use the following questions to organize evidence before assigning a mechanism.
+They are a research framework, not instructions to escalate treatment.
+
+1. **Was the endpoint active disease?** Separate inflammation from damage,
+   unrelated symptoms and a measurement that cannot improve over the interval.
+2. **Was treatment delivered and active?** Examine exposure, treatment course,
+   immunogenicity where measured and the depth and duration of depletion.
+3. **Were the relevant tissues represented?** Negative blood findings do not
+   exclude tissue B cells. Use the [biopsy framework](../imm-biopsy/index.qmd).
+4. **What remained?** Document antibody-secreting cells, their target expression,
+   disease-relevant antibody activity and alternative inflammatory pathways.
+5. **Was there enough time, and what happened on recovery?** Persistent disease,
+   delayed improvement and relapse after reconstitution are different outcomes.
+6. **What does the next intervention test?** A deeper CD20 intervention, broader
+   CD19 intervention and plasma-cell-directed BCMA intervention test different
+   hypotheses; CAR-T conditioning can affect several of them simultaneously.
+
+This framework follows the resistance mechanisms discussed in
+[Stockfelt](references.qmd#stockfelt) and [Wincup](references.qmd#wincup).
+Repeated objective benefit temporally related to depletion increases the
+plausibility of a treatment-sensitive pathway. Clinical benefit without a fall
+in a measured antibody can reflect non-antibody B-cell functions, an incomplete
+antibody assay, or other treatment effects. [Lee](references.qmd#lee).
+
+## 8. Where to read first
+
+1. [Abeles et al., 2024](references.qmd#abeles): the broad comparison of
+   B-cell functions and clinical interventions.
+2. [Yuan and Xu, 2026](references.qmd#yuan): the closest cross-disease comparison
+   of target coverage, disease mechanisms and development strategy.
+3. [Stockfelt et al., 2025](references.qmd#stockfelt): the most directly useful
+   review of why rituximab response and failure are hard to interpret.
+4. [Wincup et al., 2026](references.qmd#wincup): recent SLE framing of target,
+   patient selection and timing.
+5. [Fooksman et al., 2024](references.qmd#fooksman), with the
+   [2026 KDIGO report](references.qmd#kdigo): plasma-cell longevity and
+   why CD19 status is not a complete measure of persistence.
+6. [The 2026 SSc fibrosis review](references.qmd#ssc-review): how non-B-cell
+   processes complicate the disease-level ranking.
+7. [R4RA](references.qmd#r4ra) and [STRAP](references.qmd#strap): primary studies to read when moving
+   from an indication-level argument to a patient-selection claim.
