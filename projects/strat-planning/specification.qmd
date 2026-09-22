@@ -1,0 +1,95 @@
+---
+title: "Annual Planning: Working Specification"
+subtitle: "Connecting project decisions to evidence and individual contributions"
+categories: [Strategy, Draft]
+date: last-modified
+toc: true
+---
+
+## Objective
+
+Give someone joining a project enough context to identify the consequential
+choices ahead and propose useful work. Keep the user's three questions at the
+center: what decisions will we make over the next year, what existing data will
+inform them, and what additional data should we generate?
+
+Add the information needed to act on those answers: the project's objective,
+available options, decision owner, deadline, current position and the evidence
+that could change that position. Distinguish reanalysis of existing data from
+collecting new observations.
+
+**Out of scope:** a complete project schedule, a budget approval process, an
+individual treatment recommendation, or a requirement to model every decision.
+The template records decision authority; it does not confer it.
+
+## Intended Use
+
+Use one worksheet per project and a rolling twelve-month horizon. An annual
+planning meeting establishes priorities. Refresh the worksheet when evidence,
+constraints or the project's objective changes, and before a consequential
+commitment. Copy the priority decisions into the one-slide overview for
+discussion with the team.
+
+The worksheet should also help Andy decide where to spend time across projects.
+A useful contribution has a named decision, an output someone can use and a
+delivery date that leaves time for review. Its value can come from clarifying
+the question or testing the logic before any model is built.
+
+## Structure
+
+| Component | Question it answers | Content |
+|---|---|---|
+| Project context | What are we trying to accomplish? | Intended outcome, current stage, route to success, constraints and assumptions |
+| Decision register | What choices are coming? | Options, current position, owner, deadline and linked decisions |
+| Evidence plan | What could change those choices? | Existing evidence, limitations, analysis, new data and usable-evidence dates |
+| Contribution plan | Where can I help? | Decision framing, critical review, modeling or study design, with an output and collaborator |
+| Decision record | What did we decide and why? | Selected option, rationale, residual uncertainty and conditions for reopening |
+
+The slide contains three priority decisions, with brief project context and a
+specific request for help. Three is a space limit for this template, not a rule
+about how many decisions a project should have. The worksheet keeps the full
+inventory and the reasoning behind each row.
+
+## Design Rules
+
+1. Write a decision as a choice among actions, including continuing, deferring
+   or stopping where those are feasible. An analysis or study is a means of
+   informing a choice.
+2. Define success and tradeoffs before comparing options. Record disagreement
+   about objectives separately from uncertainty about facts.
+3. Give each decision one accountable owner and a named forum. Identify the
+   people whose input that owner needs.
+4. Compare the decision deadline with the date evidence becomes usable after
+   collection, cleaning, analysis and review. A readout date alone is incomplete.
+5. Write a test of the current position: what plausible result would lead to
+   another action? If no result would change the action, explain the other
+   purpose of the work before making it a priority.
+6. Keep observation, inference and assumption distinct. More computation does
+   not create an unobserved comparison or resolve a disagreement about values.
+7. Identify early commitments that constrain later choices. Include work that
+   must start this year for a decision beyond the planning horizon.
+8. Record confidence in the evidence separately from team agreement. Consensus
+   alone does not establish that an assumption is supported.
+
+## Initial Deliverables
+
+| Document | Reader | Kind | Length |
+|---|---|---|---|
+| Project index | Someone finding the material | How-to | Short |
+| Working specification | Someone improving the template | Reference | Enough to define scope and acceptance |
+| Planning worksheet | A project contributor preparing a discussion | How-to and copyable form | Prompts, blank tables and one short example |
+| Overview page and slide | The team discussing priorities | Reference and presentation | One slide plus brief filling instructions |
+| References | Someone tracing the approach | Reference | Short, with source status |
+
+## Acceptance and Revision
+
+Test the template on one real project. Ask the decision owner to review the
+options and dates, and ask an evidence owner to check feasibility. The first
+test should reveal a concrete choice, the uncertainty affecting it and a useful
+next action. A slide containing only deliverables and study names needs another
+pass through the decision questions.
+
+Keep the revision lightweight: remove fields that nobody uses, retain the link
+from evidence to action, and record where the discussion changed the work plan.
+The current template is a proposed practice and has not yet been tested on a
+real project.

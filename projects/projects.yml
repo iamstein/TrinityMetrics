@@ -1,3 +1,13 @@
+- title: "Annual Planning"
+  subtitle: "Working template"
+  description: >
+    A project overview built around the coming year's decisions: what
+    existing evidence can tell us, what else we need to learn, and where
+    modeling or critical thinking could change the choice. Includes an
+    editable one-slide template.
+  categories: [Strategy, Draft]
+  path: strat-planning/index.qmd
+
 - title: "synpmx"
   subtitle: "R package"
   description: >

@@ -1,6 +1,16 @@
 ---
 title: "Ongoing Projects"
 listing:
+  - id: strategy-projects
+    contents: projects.yml
+    include:
+      categories: "Strategy"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, categories, description]
+    categories: true
+    feed: false
   - id: dose-response
     contents: projects.yml
     include:
@@ -45,6 +55,11 @@ toc: false
 ---
 
 Projects in progress, including open-source tools and working documents.
+
+## Strategy
+
+::: {#strategy-projects}
+:::
 
 ## Dose-response methods
 

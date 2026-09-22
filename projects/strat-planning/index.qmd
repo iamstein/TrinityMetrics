@@ -1,0 +1,26 @@
+---
+title: "Annual Planning"
+subtitle: "The decisions ahead, the evidence needed, and where I can help"
+categories: [Strategy, Draft]
+date: last-modified
+toc: false
+---
+
+Start with the project's purpose and the choices due over the next year.
+For each choice, identify the evidence already available, the additional work
+that could change it, and when that work must reach the decision maker.
+
+The overview also records where modeling or critical thinking could help:
+framing the question, exposing an assumption, comparing options, or designing
+a study that resolves a consequential uncertainty.
+
+## Documents
+
+- [Working specification](specification.qmd). Purpose, scope and how to judge
+  whether the template helps.
+- [Planning worksheet](planning-template.qmd). Copyable fields, a decision
+  register, evidence planning and a worked example.
+- [One-slide overview](overview.qmd). Editable PowerPoint template, preview
+  and guidance on what belongs on the slide.
+- [References and origins](references.qmd). The source of the structure and
+  its relationship to the existing dose-finding strategy project.

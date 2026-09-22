@@ -1,0 +1,49 @@
+---
+title: "Annual Planning: References and Origins"
+categories: [Strategy, Draft]
+date: last-modified
+toc: false
+---
+
+## Status Markers
+
+- ✅ **Checked:** the cited local material was read for the specific design
+  principle used here.
+- ⚠️ **Partially checked:** some material was read; the stated check remains.
+- ❌ **Not checked:** proposed reading or validation still to do.
+
+## Reading and Validation Queue
+
+1. ✅ Read the related dose-finding strategy's specification and specimen for
+   decision ownership, evidence timing and team agreement.
+2. ❌ Try the annual worksheet on a real project and have the decision owner
+   check whether its options, dates and proposed work describe the real choice.
+3. ❌ Review the first use with Andy: did it change a priority, expose an
+   assumption or identify a useful contribution?
+
+## Sources
+
+### Andy's Project Brief
+
+**✅ Supplied in this conversation.** The organizing questions are the
+decisions due in the next year, the existing data that will inform them, and
+the additional data to generate. The request also asks for a broad project
+view and places to contribute through modeling or critical thinking.
+
+### TCE Dose-Finding Strategy, Local Project
+
+**✅ Specification and specimen read.**
+[Working specification](../tce-dose-finding-strategy/specification.qmd)
+and [specimen page](../tce-dose-finding-strategy/one-page-strategy.qmd).
+
+The annual template adopts the separation of decision and evidence dates,
+the current working position, an accountable decision owner and the distinction
+between team agreement and evidence. Its broader project and contribution
+questions are additions for this request. No clinical assertions or invented
+specimen results from that project are carried forward.
+
+### Proposed Additions
+
+The switching criterion, opportunity view across projects and first-use review
+are proposed working practices. They have not been validated as a planning
+method. No external literature review was needed for this initial template.

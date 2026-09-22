@@ -1,0 +1,191 @@
+---
+title: "Annual Planning Worksheet"
+subtitle: "Project context, decisions, evidence and where I can contribute"
+categories: [Strategy, Draft]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+Use one copy per project. Begin with the project context, then write the choices
+due over the next year. Fill in evidence and proposed work against those
+choices. Transfer the three priorities for the next team discussion to the
+[overview slide](overview.qmd).
+
+## 1. Project Context
+
+| Field | Fill in |
+|---|---|
+| Project and planning period | [Project; start and end dates] |
+| Page owner and last review | [Name; date; next review] |
+| Purpose | [Who benefits, what improves, and why this project is a useful route] |
+| Success by the end of the period | [An observable outcome, with the basis for judging it] |
+| Current position | [Stage, strongest result so far, and what remains unresolved] |
+| Longer-term destination | [What this year's work enables beyond the next twelve months] |
+| Constraints | [Resources, access, timing or commitments that limit the choices] |
+| Assumptions to challenge | [What must be true for the current plan to succeed?] |
+| Alternatives | [Another route to the same outcome, including stopping or deferring] |
+
+An overview should explain how the project is expected to succeed. Write that
+argument in a few sentences: the need, the proposed intervention, the observable
+result and the condition under which the project should continue. Mark the
+least-supported link. This is often a useful place for critical thinking before
+the team asks for an analysis.
+
+## 2. Decisions Over the Next Year
+
+| ID and choice | Options and current position | Owner and forum | Decide by | Dependencies and cost of changing later |
+|---|---|---|---|---|
+| D1: [Which action?] | [A / B / defer; currently A because…] | [One name; meeting] | [Date] | [Depends on…; commits us to…] |
+| D2: [Which action?] | [Options; current position] | [Name; forum] | [Date] | [Related decisions; reversibility] |
+| D3: [Which action?] | [Options; current position] | [Name; forum] | [Date] | [Related decisions; reversibility] |
+
+Expand the register as needed. Include decisions about the project's direction,
+population, study design, resource allocation, operational feasibility and
+when to stop. A milestone such as a data readout becomes useful here when it is
+paired with the action it could change.
+
+For each priority row, copy this short decision brief:
+
+```text
+Decision ID and question:
+Why this choice affects the project:
+Options, including the default if we take no action:
+Current position and rationale:
+Success criteria and tradeoffs:
+Result or threshold that would change our choice:
+Assumptions that could reverse the comparison:
+Evidence confidence and reason:
+Team agreement, unresolved objection and whose input is missing:
+Decision owner, forum and deadline:
+Latest date evidence must be usable:
+```
+
+Agree on the switching criterion before commissioning work. It can be a
+quantitative threshold or a qualitative finding. If an exact threshold is
+premature, describe the alternative outcomes and the action each would support.
+
+## 3. Existing Data and Additional Evidence
+
+### Existing Evidence
+
+| Decision | Dataset or other source | What it already tells us | Limitation for this choice | Access and next analysis |
+|---|---|---|---|---|
+| [D1] | [Study, dataset, external result or expert judgment; link and version] | [Observation and uncertainty] | [Missing comparison, population mismatch, measurement limit or bias] | [Owner; access date; analysis needed] |
+
+Record whether each source is available now, collected but not accessible,
+still maturing, or only planned. Distinguish a result actually observed from a
+model-based inference and an assumption carried forward from another setting.
+An existing dataset can inform the decision through a new analysis without
+requiring another study.
+
+### Proposed Work
+
+| Decision and unresolved question | Work and output | Why the result could change the choice | Delivery and review date | Cost, burden and dependency |
+|---|---|---|---|---|
+| [D1; uncertainty] | [Reanalyze existing data / model / collect new data; usable output] | [If result X, choose A; if Y, choose B] | [Evidence owner; usable by date] | [Effort, access, participant burden or prerequisite] |
+
+For new data, specify who or what to measure, the comparator, endpoint, timing
+and required precision. For a model, specify the inputs, assumptions, prediction
+to be checked and decision comparison it will support. Include preparation and
+review time when working backward from the decision deadline.
+
+If the work finishes too late, make the timing conflict explicit. The team can
+change the decision date, accelerate or simplify the evidence plan, or proceed
+with a stated uncertainty and a way to revisit the choice. Recording the study
+as “in progress” leaves this conflict unresolved.
+
+## 4. Where I Can Contribute
+
+| Situation | Useful contribution | Output the team can use |
+|---|---|---|
+| The project has activities but no explicit choice | Clarify the objective, options and decision owner | A decision brief the owner agrees describes the choice |
+| The team agrees on the plan but relies on an untested explanation | Identify alternative explanations and evidence against the preferred one | Assumptions ranked by their effect on the choice |
+| Data exist in separate reports | Reconcile definitions, populations and timing | An evidence summary with the unresolved comparisons visible |
+| Options trade benefit, risk, time or resources differently | Quantify scenarios and test sensitivity to uncertain inputs | A comparison showing when the preferred action changes |
+| Another study is proposed | Assess which uncertainty the study can resolve and whether it arrives in time | A design comparison tied to a decision and its deadline |
+| The team disagrees | Separate disagreement about evidence from disagreement about objectives or constraints | The specific issue for the decision owner to resolve |
+
+Modeling is useful when the decision depends on a quantitative relationship,
+an extrapolation, a combination of evidence or an uncertain future outcome.
+Begin with the simplest analysis that can distinguish the options. A sensitivity
+analysis varies uncertain inputs and checks whether the preferred action changes;
+it can reveal where new data would be useful before a more elaborate model is
+built.
+
+A discussion may be sufficient when the obstacle is an unclear objective, an
+unavailable option, a conflict between stakeholders or missing authority to act.
+Analyses can also have a required documentation or monitoring purpose. Name that
+purpose explicitly when the immediate decision would stay the same.
+
+### My Proposed Commitment
+
+```text
+Decision I can help with:
+Specific question I will answer:
+Output and how the decision owner will use it:
+Collaborator and data/access needed:
+First useful result by:
+Time or resources I can commit:
+Condition for stopping, simplifying or changing the work:
+```
+
+## 5. Priorities Across Projects
+
+Give priority to consequential choices where a plausible finding could change
+the action and useful work can finish before the commitment. High uncertainty
+alone does not establish priority: a highly uncertain quantity may have little
+effect on which option is best.
+
+| Project and decision | Consequence and reversibility | Uncertainty that could change the choice | Feasible contribution before the deadline | Priority and next action |
+|---|---|---|---|---|
+| [Project; D1] | [Effect of choosing poorly; cost of revisiting] | [Specific unknown] | [Output; effort; date; collaborator] | [Do now / schedule / monitor / decline; reason] |
+
+Use explicit judgments before constructing a numerical score. Separate
+required work from discretionary investigations. Look for a shared dataset,
+assay or model that can inform several decisions, and for competing commitments
+that depend on the same people. Also identify long-lead work that must begin
+this year to inform a later decision.
+
+## 6. Worked Example
+
+**Illustrative planning example.** Program X, its dates and all proposed
+findings below are invented. They show the form of a discussion, without
+recommending a real study or clinical strategy.
+
+| Field | Example |
+|---|---|
+| Annual objective | Agree on the next study's population before the November protocol commitment |
+| Decision | Enroll broadly or restrict enrollment using biomarker M |
+| Current position | Broad enrollment because the biomarker's selection value is unresolved |
+| Existing evidence | An exploratory association in previously treated participants; archived samples remain available |
+| Limitation | The association may reflect prognosis or measurement differences rather than a difference in treatment benefit |
+| Critical-thinking contribution | Define the evidence needed to justify restriction and challenge alternative explanations |
+| Modeling contribution | Compare the consequences of broad versus restricted enrollment under plausible biomarker effects and misclassification |
+| Additional data | Consider an assay and sample-analysis plan only if it can resolve an uncertainty that changes the choice |
+| Timing conflict | A new prospective dataset would arrive after the November commitment |
+| Immediate action | Confirm archived-sample access and assay readiness; agree on a usable-evidence date with the decision owner |
+| If uncertainty remains | Record the assumptions supporting the choice and the later result that would reopen it |
+
+The example distinguishes the observed association from the inference needed
+for patient selection. Simulation can describe the consequences of that
+uncertainty; it cannot by itself establish that the biomarker identifies a
+different treatment effect.
+
+## 7. Review and Decision Record
+
+At the annual review, agree on the objective and decision inventory. At regular
+project reviews, update the current positions and evidence dates. Revisit the
+plan when new data, a competing program, a resource change or a failed
+assumption changes the options. Keep a specific next review date on the page.
+
+Once a decision is made, move it to the record below and free space on the
+overview for the next choice.
+
+| Decision and date | Selected option and rationale | Evidence used and remaining uncertainty | Owner and conditions for reopening |
+|---|---|---|---|
+| [D1; date] | [Choice; tradeoff accepted] | [Versioned sources; uncertainty accepted] | [Name; trigger and review date] |
+
+For the next conversation, bring the project context and one fully developed
+decision brief. Once the team agrees that the brief describes the real choice,
+complete the evidence plan and propose a contribution.
