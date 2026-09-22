@@ -1,0 +1,220 @@
+---
+title: "Specification for Model Based TDP"
+subtitle: "Testing whether integrated modeling improves a biomarker-based dose decision"
+description: "A staged comparison of responder counts, continuous and longitudinal dose-response models, and integrated PK/PD predictions for a population biomarker target."
+categories: [Dose-response methods, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+## Question and Current Status
+
+Does an integrated model improve selection of a dose that produces at least
+an 80% biomarker decline in at least 90% of the target population, compared
+with requiring at least nine observed responders among ten patients?
+Start with three cohorts of ten patients at increasing doses.
+
+The [literature review](literature-review.qmd) and
+[single-assessment comparison](worked-comparison.qmd) are complete initial
+deliverables. The longitudinal and integrated PK/PD simulation described
+below is planned work. This activity assesses a biomarker decision; clinical
+benefit, safety optimization and adaptive allocation are outside its first
+stage.
+
+TDP is retained as the activity's label for the stated decision criterion;
+its expanded name has not been specified. The operational definition below
+does not depend on that terminology.
+
+| Document | Reader | Kind | Length |
+|---|---|---|---|
+| Index | Finding the activity's documents | How-to | Short |
+| Specification | Implementing and reviewing the comparison | Reference | As needed |
+| Literature review | Understanding the prior art and its applicability | Explanation | Focused synthesis |
+| Worked comparison | Checking the calculations and assumptions | Worked example | Reproducible results with interpretation |
+| References | Checking sources and choosing what to read | Reference | Annotated source list |
+
+## Response Definition and Population
+
+Define response for patient $i$ at dose $d$ by
+
+$$
+R_i(d)=\mathbb 1\!\left\{\frac{B_i(t^*;d)}{B_i(0)}\le0.20\right\},
+\qquad p(d)=P\{R_i(d)=1\}.
+$$
+
+The first stage uses one protocol-defined assessment $t^*$, a positive
+biomarker and a target population shared across doses. The simulation has
+complete follow-up and no rescue. The biological thresholds, 80% and 90%,
+are inputs from the motivating question, not findings from the literature.
+
+Before applying the method to a program, specify the assessment window,
+baseline definition, target population and how intercurrent events affect
+response. A reduction at one visit, a trough reduction and sustained
+reduction throughout an interval are different endpoints. If discontinuation
+or rescue counts as failure, the model must include it in $R_i$.
+
+Use the observed-assay endpoint for the primary comparison. A latent
+error-free biomarker threshold is a separate estimand. Removing assay error
+from model predictions while retaining it in the observed-count comparator
+would change the target. Values below quantification require a censoring
+model; substitution by zero or half the limit is a sensitivity analysis,
+not the default likelihood.
+
+## Decisions and Measures of Performance
+
+The dose-selection target is
+
+$$
+d^*=\min\{d\in\{d_1,d_2,d_3\}:p(d)\ge0.90\},
+$$
+
+with an explicit no-dose outcome when the set is empty. Restrict the initial
+decision to tested doses. Interpolation can be evaluated later, with its own
+error criterion and no extrapolation beyond the studied range.
+
+| Decision | Rule | Performance to report |
+|---|---|---|
+| Descriptive dose selection | Lowest dose with estimated $p(d)\ge0.90$ | Correct lowest dose; inadequate dose; higher adequate dose; no dose |
+| Evidence of population attainment | Lowest dose passing a calibrated test of $p(d)\le0.90$, or a posterior criterion | False attainment declarations across all doses; probability of selecting an adequate dose; lowest-dose selection |
+| Predicting a future cohort | Predict $P(K_{\rm next}\ge9\mid\mathcal D)$ | Predictive calibration and scoring on independent cohorts |
+
+For Bayesian evidence, calculate $q_d=P\{p(d)\ge0.90\mid\mathcal D\}$ and
+select when $q_d\ge\gamma$, with $\gamma$ set before evaluation. A nominal
+95% posterior probability is not a guarantee of a 5% frequentist false-go
+rate. Calibrate and validate the entire selection procedure across null
+scenarios, including partial nulls where some doses qualify and others do not.
+
+Statistical power must name an alternative, for example a true response rate
+of 95% at an adequate dose. High probability of rejecting $p\le0.90$ when
+the truth is exactly 90% is incompatible with controlling the boundary
+type I error. Detecting any dose effect, selecting the lowest adequate dose,
+and establishing population attainment should not share one power label.
+
+## Analysis Comparators
+
+| ID | Analysis | Status |
+|---|---|---|
+| M0 | Independent responder counts; observed 9-of-10 rule; exact-binomial evidence rule | Implemented |
+| M1 | Binary response pooled with an order-restricted dose relationship | Point-estimate rule implemented; calibrated binary dose-model inference planned |
+| M2 | Separate continuous log-ratio distribution at each dose | Implemented |
+| M3 | Separate means with shared residual variability | Implemented |
+| M4 | Continuous dose-response model sharing mean-shape and variance information | Simple log-dose model implemented; Emax/model uncertainty planned |
+| M5 | Longitudinal biomarker model with dose, without PK | Planned |
+| M6 | Joint population PK/PD model | Planned |
+
+Compare successive models and also compare M6 against the best simpler
+calibrated comparator. Add a shrinkage or bias-reduced binary regression to
+M1 before attributing gains to mechanistic PK. Evaluate weakly informative
+and externally informed priors separately, using the same external evidence
+where it is applicable to competing analyses.
+
+For M4, consider a limited prespecified set of shapes: a log-dose line,
+an Emax curve, and a plateau or flexible monotone alternative. Three dose
+levels provide limited independent information about shape. Fitting an
+unconstrained four-parameter sigmoid simply because there are 30 observations
+does not make its parameters identifiable. Parameter restrictions require
+scientific support and sensitivity analysis. Generalized MCP-Mod is related
+prior art for shape uncertainty, as described in the
+[review](literature-review.qmd#pooling-across-doses-and-adding-pharmacology).
+
+## Integrated Model {#integrated-model}
+
+A starting M6 generator can use a population PK model for exposure $C_i(t;d)$
+and an inhibitory Emax effect on biomarker production:
+
+$$
+\frac{dB_i}{dt}=k_{{\rm in},i}
+\left(1-\frac{I_{\max,i}C_i(t;d)}{IC_{50,i}+C_i(t;d)}\right)
+-k_{{\rm out},i}B_i(t),\qquad
+B_i(0)=\frac{k_{{\rm in},i}}{k_{{\rm out},i}}.
+$$
+
+This is a candidate mechanism, not a claim about the unspecified biomarker.
+Use random effects for biologically supported heterogeneity and an observation
+model for PK, baseline and repeated biomarker samples. Alternative generators
+should include stimulation of loss, a delayed effect, incomplete maximum
+response and a refractory patient subgroup.
+
+For each parameter draw from a fitted model:
+
+1. Sample new patients from the target covariate distribution and population
+   random-effects distribution. Preserve relevant covariance.
+2. Simulate each candidate regimen, the biomarker trajectory and the protocol's
+   observation process, including assay noise for the observed endpoint.
+3. Apply the same response rule as M0 and calculate the responder fraction
+   $p_d$ in a sufficiently large simulated population.
+4. Repeat over parameter uncertainty to estimate $q_d$, credible intervals
+   for $p_d$, and the distribution of $d^*$.
+
+The inner simulation represents variation among patients; the outer draws
+represent uncertainty in the fitted model. Averaging $p_d$ over draws gives
+the posterior predictive responder probability, which is different from
+$P(p_d\ge0.90\mid\mathcal D)$. Counting successes among the original
+patients' empirical Bayes predictions can understate population variability.
+
+M5 should use the same biomarker sampling times and observation model, with
+a parsimonious dose-dependent trajectory in place of the PK link. Evaluate
+M6 with jointly estimated PK and PD; a two-stage version must propagate PK
+estimation uncertainty. Conditioning on perfectly known exposures is an
+explicit idealized benchmark only.
+
+## Simulation Design
+
+Hold the cohort allocation fixed while comparing analyses. The initial
+example uses relative doses 1, 2 and 4; a program-specific version must
+choose doses and sampling times based on the plausible biomarker dynamics.
+
+| Dimension | Required scenarios |
+|---|---|
+| Target attainment | None adequate; lowest, middle or highest dose first adequate; all adequate; rates just below, at and above 90% |
+| Dose shape | Gradual increase, early plateau, late steep rise, nonmonotonic response |
+| Distribution | Normal log ratio, skewness, heavy tails, refractory mixture, dose-dependent variance |
+| PK contribution | Exposure informative versus redundant; high versus low PK variability; sparse versus rich PK sampling |
+| Repeated measures | Few versus many visits; low versus high within-patient correlation; delayed or transient suppression |
+| Observation process | Assay error, noisy baseline, quantification limits, unequal assessment times |
+| Trial conduct | Missingness related to observed history or latent response; rescue; sequential-cohort population drift |
+| External information | None, compatible prior, conflicting prior; uncertain population variability |
+| Model uncertainty | Correct structure, wrong mean shape, wrong variance, wrong PK/PD mechanism |
+| Sample size | 5, 10, 20 and 30 patients per dose, with identical candidate doses |
+
+First vary one feature at a time to identify its effect, then combine
+plausible adverse features. Use separate simulation seeds and trials for
+decision-threshold calibration and performance evaluation. Preserve failed
+fits in the denominator and report their frequency and fallback decision.
+Do not discard difficult simulated studies.
+
+The principal performance outputs are correct lowest-dose selection and
+selection of an inadequate dose. Also report probability bias, root mean
+squared error, interval coverage and width by dose, selection of a higher
+adequate dose, no-dose decisions, and failure to converge. For evidence
+rules, report both selection of an inadequate dose and declaration of any
+inadequate dose, even when a different dose is selected.
+
+Use paired simulation draws across methods and report Monte Carlo standard
+errors for differences. Begin with 10,000 replicates per scenario for cheap
+models; the worst-case standard error for a single proportion is then
+0.5 percentage points. Choose the replication count for expensive joint
+models from the precision required for the false-go comparison.
+
+Define sample savings only at matched performance: the same target correct
+decision rate, the same acceptable false-go rate, and adequate coverage in
+the prespecified sensitivity scenarios. More frequent positive decisions
+alone do not establish a benefit.
+
+## Completion Criteria for the Integrated Comparison
+
+- Reproduce M0's operating characteristics analytically and M2's
+  normal-model uncertainty calculation independently.
+- Show where each source of information changes the decision, using the
+  M0–M6 comparisons and the same simulated studies.
+- Verify population predictions against a large independently generated
+  population, including the response tail and all failure components.
+- Identify scenarios in which added modeling gives no benefit or selects
+  inadequate doses more often.
+- Report whether the gain survives matched false-go rates, model uncertainty
+  and conflicting external information before recommending a smaller study.
+
+Source claims and open reading tasks are maintained in
+[References](references.qmd); calculations and implementation checks live in
+the [worked comparison](worked-comparison.qmd).

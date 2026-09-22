@@ -1,0 +1,209 @@
+---
+title: "Model-Based Assessment of a Biomarker Response Target"
+subtitle: "Prior art, evidence for efficiency gains and implications for a 90%/80% criterion"
+description: "A focused review of probability of pharmacological success, distributional responder estimation, augmented binary methods and pharmacometric trial comparisons."
+categories: [Dose-response methods, literature review]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+**The proposed approach has substantial prior art.** Probability of
+pharmacological success (PoPS) supplies the decision framework. Distributional
+responder estimation supplies the simplest statistical method. Longitudinal
+and pharmacometric models can add information, but their incremental value
+needs to be measured against those simpler methods.
+
+The reviewed sources do not establish a general power multiplier for three
+cohorts of ten patients and a requirement of 80% biomarker decline in 90% of
+patients. This is a focused methods review, with source checks and search
+limitations recorded in the [reference notebook](references.qmd). It does
+not establish that this biomarker threshold predicts clinical benefit.
+
+## 1. The Closest Decision Framework
+
+[Zhou, Graff and Chen (2020)](https://doi.org/10.1371/journal.pone.0240234)
+define PoPS around achieving a specified level of pharmacology in a specified
+fraction of patients, subject to safety constraints. Their examples combine
+population pharmacokinetic/pharmacodynamic (PK/PD) models with uncertainty
+about compound properties and biological requirements. This is a close match
+to the proposed 90%/80% criterion. Their simulation-based applications support
+the framework; they do not compare its sampling performance against a
+9-of-10 clinical responder rule.
+
+[Chen et al. (2023)](https://doi.org/10.1186/s12967-022-03849-y) extend the
+framework through four anonymized development cases. The paper explicitly
+separates between-patient variability from uncertainty about parameters and
+translation. Its antibiotic example connects PoPS with probability of target
+attainment. The cases demonstrate use in decisions, rather than establish
+a repeated-trial false-positive rate or sample size saving for this activity.
+
+For the present problem, define the population responder fraction at dose
+$d$ as
+
+$$
+p_d(\theta)=P\{B(t^*)/B(0)\le0.2\mid d,\theta\},
+$$
+
+where $\theta$ includes the population mean parameters and the parameters
+describing variability. A Bayesian implementation can then calculate
+
+$$
+q_d=P\{p_d(\theta)\ge0.90\mid\mathcal D\}.
+$$
+
+Here $p_d$ describes patients, while $q_d$ describes uncertainty about whether
+their population meets the target. A third quantity,
+$P(K_{\rm next}\ge9\mid\mathcal D)$, predicts whether the next cohort of ten
+will pass. Those probabilities can differ substantially. PoPS supports the
+second kind of question; the calculation must state which sources of
+uncertainty it includes.
+
+## 2. Retaining the Continuous Biomarker
+
+The most direct statistical predecessor is
+[Suissa (1991)](https://pubmed.ncbi.nlm.nih.gov/1999683/). The method estimates
+the probability of falling beyond a threshold from a normal continuous
+outcome, including its variance, instead of first reducing observations to
+zero or one. The abstract reports efficiency gains and sensitivity to
+heavier-tailed distributions. This supports both the initial estimator and
+the need for distributional stress tests; full-text formulas have not been
+audited here.
+
+[Peacock et al. (2012)](https://doi.org/10.1002/sim.5354) call this a
+**distributional approach**. Their abstract describes obtaining differences
+in proportions and confidence intervals from continuous data under stated
+distributional assumptions. This allows a clinically interpretable response
+threshold to remain the reporting scale while retaining continuous data for
+estimation.
+
+For this activity, a normal model for the log biomarker ratio gives
+$p_d=\Phi\{[\log(0.2)-\mu_d]/\sigma_d\}$. A patient just above the
+response threshold and a patient far above it have different implications
+for estimating $\mu_d$ and $\sigma_d$. A count treats both as failures.
+The extra information is useful only insofar as the fitted distribution
+predicts the probability near and beyond the threshold.
+
+[van Zwet, Harrell and Senn (2026)](https://doi.org/10.1002/sim.70402)
+provide a recent treatment of information loss from dichotomization,
+including an empirical survey and a worked trial example. Their
+normal-distribution calculations connect continuous effect estimates to
+response probabilities. Their across-trial comparison is not a randomized
+experiment comparing analysis methods, and neither it nor their two-arm
+example quantifies the benefit for a small dose-selection study.
+
+## 3. Composite and Longitudinal Responder Endpoints
+
+An **augmented binary analysis** fits the continuous components and any
+intrinsically binary components of a responder endpoint jointly, then
+integrates their fitted joint distribution over the region defining success.
+The result remains a response probability.
+
+[Wason and Seaman (2013)](https://pmc.ncbi.nlm.nih.gov/articles/PMC4282550/)
+developed this approach for tumor measurements plus failure events. Their
+comparisons show that gains depend on which component drives failure; some
+high-response scenarios yield little or no benefit. Their original
+parameter-rich implementation recommended at least 50 patients per arm.
+It should not be transplanted unchanged into ten-patient cohorts.
+
+[McMenamin, Berglind and Wason (2018)](https://doi.org/10.1186/s13023-018-0819-1)
+examine smaller samples by resampling a rheumatoid arthritis trial. They
+study bias-reduced binary models and corrections for small-sample variance
+estimation. Their results include type I error inflation for some unadjusted
+analyses and improved performance after correction. This is direct evidence
+that apparent power gains need calibration in small studies.
+
+[McMenamin et al. (2021)](https://doi.org/10.1186/s41927-021-00224-0)
+demonstrate software using the MUSE lupus trial. Their worked planning
+example requires 50 patients per arm with the augmented approach versus
+135 with the standard approach, for 80% power at a one-sided 5% level.
+These are reported calculations for that endpoint and assumed effect,
+not a reduction transferable to this biomarker or independently reproduced
+here.
+
+A single biomarker at one visit does not require the entire augmented-binary
+machinery. A distributional model is a sufficient first comparator. If
+response additionally requires no rescue treatment, no dropout-related
+failure, or sustained depletion, the joint modeling literature becomes
+more directly applicable. A model must retain those failure criteria when
+estimating the same endpoint.
+
+## 4. Pooling Across Doses and Adding Pharmacology
+
+Pooling across dose levels assumes a relationship between their response
+distributions. A binary dose-response model can already borrow information;
+therefore, comparing a full PK/PD model only against independent counts would
+not identify which part of modeling helped.
+
+[Pinheiro et al. (2014)](https://pubmed.ncbi.nlm.nih.gov/24302486/) extend
+Multiple Comparison Procedures and Modeling (MCP-Mod) to general parametric
+models. The approach addresses uncertainty about the dose-response shape.
+Its abstract supports considering several plausible shapes and endpoints.
+Detecting a nonflat mean dose-response curve does not by itself establish
+that 90% of patients exceed an individual biomarker threshold.
+
+[Karlsson et al. (2013)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3600728/)
+compare pharmacometric analyses with conventional tests in simulated stroke
+and diabetes proof-of-concept studies. They report 4.3-fold and 8.4-fold
+sample size differences in their two-arm examples. The comparator discards
+information used by the longitudinal model; estimation also relies on the
+simulation models. These are useful demonstrations of potential, but their
+drug-effect tests answer a different question from certifying a population
+response fraction. They motivate a longitudinal statistical comparator in
+addition to a responder count.
+
+[Zandvliet et al. (2010; online 2009)](https://doi.org/10.1007/s10637-008-9216-2)
+evaluate a two-stage PK/PD dose-selection design for anticancer agents with
+myelosuppression. Their post-hoc model-based recommended doses have lower
+root mean squared error than conventional selections in the simulation.
+This is a closer precedent for evaluating a dose decision, but it concerns
+toxicity, several regimens and a different development design.
+
+## 5. Implications for the 90%/80% Criterion
+
+The criterion concerns a tail of the response distribution. On the log-ratio
+scale, the 90th percentile must lie at or below $\log(0.2)$. A precise
+prediction for the typical patient can coexist with poor information about
+that percentile.
+
+| Source of added information | Comparison that measures it | Main assumption to challenge |
+|---|---|---|
+| Response magnitudes | Continuous model versus counts within each arm | Tail distribution and assay behavior |
+| Dose ordering | Monotone binary model versus independent counts | Exchangeability and monotonicity |
+| Shared variability | Separate means with shared versus separate SDs | Dose-dependent spread or mixtures |
+| Dose-response shape | Continuous dose curve versus separate continuous arm models | Plateau, steep transition or nonmonotonicity |
+| Repeated biomarkers | Longitudinal model versus assessment-time model | Within-patient correlation and informative missingness |
+| Individual exposure | PK/PD model versus longitudinal model without PK | Exposure measurement error and exposure-outcome confounding |
+| External evidence | The same model with and without external information | Prior-data conflict and transportability |
+
+The [worked comparison](worked-comparison.qmd) implements the first four
+comparisons. It shows that continuous models may improve dose selection,
+and that sharing an incorrect variance can produce false confidence. The
+last three comparisons require a larger simulation and are specified in
+the [working specification](specification.qmd).
+
+Repeated measurements can reduce uncertainty about an individual's biomarker
+trajectory. They do not create additional independent patients from which to
+estimate population heterogeneity. Likewise, a large simulated virtual
+population reduces Monte Carlo noise, while uncertainty in its fitted
+generating model remains.
+
+Sequential dose cohorts also require attention to calendar time, disease
+severity and changes in background therapy. An integrated model cannot
+identify a causal dose effect from a completely confounded design merely
+by fitting the observations well. The first simulation should hold the
+design fixed; later work can assess changed sampling or allocation.
+
+## 6. Reading Order
+
+1. **Zhou et al. 2020, followed by Chen et al. 2023:** the closest formulation
+   of the pharmacology-in-a-fraction-of-patients decision.
+2. **Suissa 1991 and Peacock et al. 2012:** the simplest approach for a
+   single continuous biomarker. Full-text methodological audit remains open.
+3. **Wason and Seaman 2013, then McMenamin et al. 2018:** retaining the
+   responder endpoint, with small-sample failure modes made explicit.
+4. **Karlsson et al. 2013 and Zandvliet et al. 2010:** how to assess the
+   additional contribution of pharmacometric modeling and dose selection.
+
+The [reference notebook](references.qmd) records what was checked in each
+paper, including sources consulted only through their abstracts.

@@ -1,0 +1,306 @@
+---
+title: "A Model-Based Comparison for Three Cohorts of Ten"
+subtitle: "Response rates, dose selection and evidence that the population meets the target"
+description: "Reproducible binomial calculations and simulations comparing observed responder counts with continuous biomarker models, including misspecified dose-response and variance assumptions."
+categories: [Dose-response methods, simulation]
+date: last-modified
+toc: true
+toc-depth: 2
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+---
+
+```{r}
+source("scripts/tdp-calculations.R")
+validate_tdp_calculations()
+benchmark <- run_tdp_benchmark()
+pct <- function(x, digits = 1) paste0(formatC(100*x, format="f", digits=digits), "%")
+value <- function(table, scenario, method, column) {
+  table[table$scenario == scenario & table$method == method, column]
+}
+library(ggplot2)
+theme_set(theme_minimal(base_size = 12))
+```
+
+**Continuous-data modeling can improve this decision, but the benefit depends
+on the assumptions used to share information.** The calculations below keep
+the response definition fixed: at least an 80% biomarker decline at a
+prespecified assessment, with a target population response rate of 90%.
+
+These are synthetic, single-assessment examples. They do not quantify the
+additional benefit of pharmacokinetics (PK) or longitudinal pharmacodynamics
+(PD). The [specification](specification.qmd) defines those comparisons;
+the [literature review](literature-review.qmd) explains their published basis.
+
+## 1. What Nine Responders Out of Ten Establishes
+
+If patients independently respond with probability $p$, the probability that
+the observed cohort passes is
+
+$$
+P(K\ge9\mid p)=10p^9(1-p)+p^{10},\qquad K\sim\mathrm{Binomial}(10,p).
+$$
+
+```{r}
+ps <- c(.5, .7, .8, .85, .9, .95)
+knitr::kable(data.frame(
+  `True population response rate` = pct(ps),
+  `Chance of at least 9/10 responders` = pct(binomial_pass(ps)),
+  check.names = FALSE
+))
+```
+
+A cohort with a true response rate of 80% passes the rule
+`r pct(binomial_pass(.8))` of the time. At exactly the 90% population target,
+the observed cohort fails `r pct(1-binomial_pass(.9))` of the time. These are
+properties of the rule, before introducing any model.
+
+When three independent cohorts all have a true response rate of 80%, at
+least one passes with probability
+$1-\{1-P(K\ge9\mid p=0.8)\}^3$ =
+`r pct(1-(1-binomial_pass(.8))^3)`.
+Selecting any passing dose therefore requires evaluating the whole selection
+procedure, including the opportunity to pass at several doses.
+
+```{r}
+k <- c(9, 10)
+knitr::kable(data.frame(
+  `Observed responders` = paste0(k, "/10"),
+  `One-sided 95% exact lower bound on p` = pct(exact_lower(k, 10)),
+  `Pr(p >= 90% | data), uniform Beta(1,1) prior` =
+    pct(pbeta(.9, k+1, 10-k+1, lower.tail=FALSE)),
+  check.names = FALSE
+))
+```
+
+The confidence bound and the Bayesian probability answer different questions;
+the latter depends on the stated prior. Neither analysis of 9/10 establishes
+the population target with high certainty. Even 10/10 cannot reject
+$H_0:p\le0.9$ in a conventional, nonrandomized one-sided 5% exact binomial
+test: its smallest attainable p-value is $0.9^{10}$ = `r pct(.9^10)`.
+With all successes, at least `r ceiling(log(.05)/log(.9))` patients at one
+dose are needed for the one-sided 95% exact lower bound to exceed 90%.
+This is an all-success bound, not a powered sample size recommendation.
+
+## 2. Estimating the Same Response Rate From Continuous Data
+
+Define $Y=\log\{B(t^*)/B(0)\}$, where $B$ is a positive biomarker and
+$t^*$ is the assessment time. An 80% decline corresponds to
+$Y\le c=\log(0.2)$. Under the illustrative model
+$Y\mid d\sim N\{\mu(d),\sigma(d)^2\}$,
+
+$$
+p(d)=\Phi\!\left(\frac{c-\mu(d)}{\sigma(d)}\right).
+$$
+
+The fitted mean and the spread both determine the responder fraction.
+Estimating only the mean decline, or counting responders among fitted
+individual means after shrinkage, does not calculate this population
+quantity. The normal model here describes observed log ratios, so its
+standard deviation (SD) includes all variation in that observed endpoint.
+
+For a single dose, the large-sample variance of the plug-in estimate is
+approximately
+
+$$
+\operatorname{Var}(\widehat p_{\rm continuous})
+\approx\frac{\phi(z)^2}{n}\left(1+\frac{z^2}{2}\right),
+\quad z=\Phi^{-1}(p).
+$$
+
+The $z^2/2$ term accounts for estimating the standard deviation. It follows
+by applying the delta method to the sample mean and standard deviation of
+normal data. The binary estimator has variance $p(1-p)/n$.
+The ratio of these variances is an approximate ratio of required sample
+sizes for equally precise estimation of $p$.
+
+```{r}
+eff <- normal_efficiency(c(.5, .8, .9, .95))
+knitr::kable(data.frame(
+  `True response rate` = pct(eff$p),
+  `Binary / continuous variance, SD estimated` = round(eff$estimated_sd, 2),
+  `Binary / continuous variance, SD known` = round(eff$known_sd, 2),
+  check.names = FALSE
+))
+```
+
+At $p=0.9$, the estimated-SD calculation gives an efficiency factor of
+`r round(normal_efficiency(.9)$estimated_sd, 2)`, equivalent asymptotically
+to a `r pct(1-1/normal_efficiency(.9)$estimated_sd)` sample size reduction
+for this estimation problem. Treating the SD as known would exaggerate the
+gain when it must be learned from these patients. These calculations are
+neither a finite-sample power result nor an additional benefit from PK.
+The distributional-estimation idea goes back at least to
+[Suissa (1991)](https://pubmed.ncbi.nlm.nih.gov/1999683/); the calculation
+above is independently implemented for this example.
+
+## 3. Comparing Dose Decisions
+
+Each simulated study has ten independent patients at each of three relative
+doses, 1, 2 and 4. There is one observed log biomarker ratio per patient,
+complete follow-up, and no assay censoring. All methods receive the same
+patients. The decision is to select the lowest tested dose whose estimated
+response probability reaches 90%, or select no dose if none qualifies.
+
+| Method | Information and assumptions |
+|---|---|
+| M0 Counts | Separate responder proportions. A dose passes at 9/10 or 10/10. |
+| M1 Binary monotone | Isotonic binomial estimates: pool neighboring arms only when their observed response rates decrease with dose. |
+| M2 Continuous per arm | Separate normal mean and SD for each dose's log ratio. |
+| M3 Shared SD | Separate means, with a common residual SD estimated from all three arms. |
+| M4 Dose curve | A straight line for mean log ratio against log dose, with a common residual SD. |
+
+M2 isolates the gain from retaining response magnitudes. M3 shares variance
+information. M4 also shares information about the means. With equal cohort
+sizes, isotonic least squares on the observed proportions gives the
+order-restricted binomial maximum likelihood estimates used in M1.
+M4's slope is unconstrained; a reversal can be fitted. Its log-dose shape
+only applies over the tested range and is not a mechanistic dose model.
+
+```{r}
+truth <- benchmark$truth
+truth$scenario <- factor(truth$scenario, levels = unique(truth$scenario))
+truth$label <- paste0(pct(truth$p), " (SD ", truth$sigma, ")")
+truth_wide <- reshape(truth[,c("scenario","dose","label")],
+                      idvar="scenario", timevar="dose", direction="wide")
+names(truth_wide) <- c("Scenario", "Dose 1: p (SD)", "Dose 2: p (SD)", "Dose 4: p (SD)")
+knitr::kable(truth_wide, row.names=FALSE)
+```
+
+The first two scenarios satisfy M4's shape and common-SD assumptions. The
+plateau also satisfies the linear model, with zero slope. The late-rise
+scenario violates the linear mean shape. The last scenario violates both
+M4's mean shape and the shared-SD assumption; all doses are inadequate.
+M2 remains correctly specified in every scenario because the log ratios
+within each arm are normal.
+
+```{r}
+#| label: fig-selection
+#| fig-width: 9
+#| fig-height: 8
+#| fig-cap: "Point-estimate decisions across 10,000 simulated studies per scenario. Correct means the lowest adequate dose, or no dose when all are inadequate. Selecting an inadequate dose means selecting one with true p below 90%. Horizontal bars are Monte Carlo 95% intervals, not uncertainty in the assumed biological scenarios."
+tab <- benchmark$point
+chart <- rbind(
+  data.frame(tab[,c("scenario","method")], outcome="Correct decision",
+             probability=tab$correct, mcse=tab$correct_mcse),
+  data.frame(tab[,c("scenario","method")], outcome="Inadequate dose selected",
+             probability=tab$inadequate, mcse=tab$inadequate_mcse)
+)
+chart$scenario <- factor(chart$scenario, levels=unique(tab$scenario))
+chart$method <- factor(chart$method, levels=rev(unique(tab$method)))
+ggplot(chart, aes(probability, method, color=outcome)) +
+  geom_point(position=position_dodge(width=.45), size=2) +
+  geom_errorbar(aes(xmin=pmax(0,probability-1.96*mcse),
+                    xmax=pmin(1,probability+1.96*mcse)),
+                orientation="y", position=position_dodge(width=.45), width=.15) +
+  facet_wrap(~scenario, ncol=2) +
+  scale_x_continuous(limits=c(0,1), labels=function(x) paste0(100*x,"%")) +
+  scale_color_manual(values=c("Correct decision"="#176B63", "Inadequate dose selected"="#B94C35")) +
+  labs(x="Fraction of simulated studies", y=NULL, color=NULL) +
+  theme(legend.position="bottom", panel.grid.major.y=element_blank())
+```
+
+When only the high dose qualifies under a smooth curve, correct selection
+rises from
+`r pct(value(tab,"Smooth: high qualifies","M0 Counts","correct"))` with
+counts to
+`r pct(value(tab,"Smooth: high qualifies","M4 Dose curve","correct"))`
+with the dose curve. In the late-rise scenario, the shared-SD model with
+separate means does better than imposing the linear mean shape.
+In the unequal-SD scenario, variance pooling makes the decision worse.
+
+The point-estimate rules do not control a 5% false-positive rate. Their
+different false-positive rates also mean that the difference in correct
+selection cannot be called a gain in statistical power at equal type I
+error. Precision, decision accuracy and evidence against a null hypothesis
+are separate comparisons.
+
+::: {.callout-note collapse="true" title="All Point-Estimate Decisions"}
+
+```{r}
+display_decisions <- function(a) {
+  data.frame(Scenario=a$scenario, Method=a$method,
+    `Correct decision`=pct(a$correct),
+    `Inadequate dose`=pct(a$inadequate),
+    `Higher adequate dose`=pct(a$higher_adequate),
+    `No dose`=pct(a$no_dose), check.names=FALSE)
+}
+knitr::kable(display_decisions(tab), row.names=FALSE)
+```
+
+When all doses are inadequate, a correct decision and a no-dose decision
+are the same event. Those two columns therefore overlap in those scenarios.
+In scenarios with an adequate dose, the four columns partition the decisions.
+
+:::
+
+## 4. Requiring Evidence That a Dose Exceeds the Target
+
+A second comparison asks for evidence against $H_0:p(d)\le0.9$.
+Every method receives a one-sided error allowance of $0.05/3$ per tested
+dose. The Bonferroni bound limits the chance of declaring any truly
+inadequate dose to at most 5%, provided each model's test is valid.
+The lowest dose that rejects its null is selected.
+
+For normal data with fitted mean $\widehat\mu_d$, residual SD $s$,
+residual degrees of freedom $\nu$, and mean-variance factor
+$h_d=\operatorname{Var}(\widehat\mu_d)/\sigma^2$,
+
+$$
+T_d=\frac{c-\widehat\mu_d}{s\sqrt{h_d}}
+\sim t_\nu\!\left(\frac{z_d}{\sqrt{h_d}}\right),
+\qquad z_d=\Phi^{-1}\{p(d)\}.
+$$
+
+The noncentral-$t$ distribution gives an exact upper critical value at
+$z_d=\Phi^{-1}(0.9)$. This accounts for uncertainty in the fitted mean and
+SD. M2 uses $h_d=1/10$, $\nu=9$; M3 uses $h_d=1/10$, $\nu=27$; M4 uses
+the regression prediction variance and $\nu=28$.
+The binary comparator uses an exact binomial test. M1 is omitted from this
+comparison because an order-restricted testing procedure has not been
+implemented.
+
+```{r}
+cert <- benchmark$certified
+knitr::kable(display_decisions(cert), row.names=FALSE)
+```
+
+The binary test cannot pass with ten patients per dose, as Section 1 showed.
+The normal-data tests can pass because they also observe how far the
+responses lie beyond the threshold. Their power is still limited close to
+the population target. A more distant, clearly adequate high dose is easier
+to certify than the lowest adequate dose.
+
+The apparent certainty can fail under misspecification. In the unequal-SD
+scenario, M3 selects an inadequate dose in
+`r pct(value(cert,"Unequal SD: none qualifies","M3 Shared SD","inadequate"))`
+of studies despite its nominal 5% familywise allowance. M2's corresponding
+rate is
+`r pct(value(cert,"Unequal SD: none qualifies","M2 Continuous per arm","inadequate"))`.
+This is why an integrated model needs a calibrated decision rule and
+plausible misspecification scenarios before a claim about sample savings.
+
+## 5. Reproduction and Next Comparison
+
+The [R source](scripts/tdp-calculations.R) contains the settings, generators,
+estimators, decision rules and numerical checks. This page reruns the
+calculations at render time. The simulation uses
+`r format(tdp_settings$nsim, big.mark=",")` replicates per scenario and
+seed `r tdp_settings$seed`. At that simulation size, the largest possible
+Monte Carlo standard error for a reported proportion is
+`r formatC(100*sqrt(.25/tdp_settings$nsim), format="f", digits=2)` percentage
+points; uncertainty about the scenario
+parameters is not included.
+
+The run also returns dose-specific bias and root mean squared error in
+`benchmark$estimates`. The analytical checks verify the binomial tail,
+confidence-bound calculation, no-dose selection and the noncentral-$t$
+test's boundary rejection rate by numerical integration.
+
+The next comparison adds repeated biomarker measurements, followed by PK,
+using the [same target and decision rules](specification.qmd#integrated-model).
+Those additions must improve on M2–M4 to establish an incremental benefit
+from integrated pharmacometric modeling.

@@ -1,0 +1,45 @@
+---
+title: "Model Based TDP"
+subtitle: "Model-based assessment of a biomarker response criterion"
+description: "Comparing an observed 9-of-10 responder rule with model-based predictions across doses, for a criterion of at least 80% biomarker decline in 90% of patients."
+categories: [Dose-response methods, working document]
+date: last-modified
+toc: false
+---
+
+Can a model fitted across three dose cohorts of ten patients make a better
+dose decision than requiring nine observed responders in a cohort, where
+response means at least an 80% biomarker decline?
+
+Published methods support retaining continuous biomarker measurements and
+integrating information across patients and doses. The closest decision
+framework is **probability of pharmacological success (PoPS)**. The size of
+the benefit for this particular criterion still depends on the response
+distribution, the model assumptions and the decision's required certainty.
+
+## Documents
+
+- [Working specification](specification.qmd). The response definition,
+  decisions, analysis comparisons and simulation program for an integrated
+  pharmacometric approach.
+- [Literature review](literature-review.qmd). Which published approaches
+  answer this question, what their comparisons establish, and where the
+  evidence stops.
+- [Worked comparison](worked-comparison.qmd). Exact calculations for the
+  9-of-10 rule and a reproducible simulation separating continuous-data
+  gains from pooling across doses.
+- [References](references.qmd). Ranked reading queue, search scope and
+  source-by-source verification notes.
+
+The initial calculations use a single biomarker assessment. Longitudinal and
+pharmacokinetic/pharmacodynamic comparisons are specified for the next stage.
+The activity does not establish a clinical efficacy or safety threshold.
+
+## Related Activities
+
+- [Sizing studies](../sizing-studies/index.qmd): precision and sample size
+  for dose-response characterization.
+- [Logistic regression for dose finding](../logistic-regression/index.qmd):
+  fitting binary dose-response relationships.
+- [ITP-PK-Platelet](../itp-pk-platelet/index.qmd): a disease-specific
+  investigation of the added value of integrated modeling.

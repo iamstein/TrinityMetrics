@@ -120,6 +120,16 @@
   categories: [Dose-response methods, Draft]
   path: sizing-studies/index.qmd
 
+- title: "Model Based TDP"
+  subtitle: "Working document"
+  description: >
+    Can an integrated dose-response model improve a decision requiring
+    at least 80% biomarker decline in 90% of patients? A literature review,
+    reproducible comparisons for three cohorts of ten, and a specification
+    for testing the added value of longitudinal and PK/PD data.
+  categories: [Dose-response methods, Draft]
+  path: pmx-model-based-tdp/index.qmd
+
 - title: "Logistic regression for dose finding"
   subtitle: "Working document"
   description: >

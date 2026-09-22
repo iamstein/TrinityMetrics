@@ -1,0 +1,269 @@
+---
+title: "References for Model Based TDP"
+subtitle: "Reading order, search scope and checked source claims"
+description: "Annotated sources for model-based biomarker response decisions, with explicit distinctions between checked full-text passages, abstract-only evidence and outstanding reading."
+categories: [Dose-response methods, references]
+date: last-modified
+toc: true
+toc-depth: 2
+---
+
+The [literature review](literature-review.qmd) gives the synthesis. The
+[specification](specification.qmd) defines the comparison, and the
+[worked example](worked-comparison.qmd) contains independently implemented
+calculations.
+
+## Status Markers
+
+- ❌ **Not checked.** The proposed claim or methodological detail has not
+  been verified against the source.
+- ⚠️ **Transcribed, unverified.** A numerical result or model detail has
+  been copied but not checked at its source location.
+- ✅ **Checked.** The specific claim recorded below was verified against
+  the stated source material. The access field distinguishes full-text
+  passages, indexed full text and abstracts. This does not mean that the
+  study was independently reproduced.
+
+Reading-queue markers refer to the question posed there. Source markers
+refer only to the narrower claim recorded in that source entry. An abstract
+can verify a paper's stated purpose while leaving its implementation audit
+open. No paper's simulations were independently reproduced in this review.
+
+## How to Read These
+
+Start with the population target and the decision being evaluated. For each
+comparison, check which data the comparator discards, which assumptions the
+model adds, and whether the result concerns precision, hypothesis-test power
+or dose-selection accuracy. A sample size ratio transfers only if those
+features transfer.
+
+## Reading Queue
+
+1. **Zhou 2020; Chen 2023 — does the proposed criterion already have a
+   name? ✅** PoPS is the closest match. Read the definition and simulation
+   construction first. The framework question is answered.
+2. **Suissa 1991; Peacock 2012 — how does continuous estimation recover a
+   responder probability? ❌** The abstracts establish the prior art.
+   Obtain and audit the full statistical derivations before reusing their
+   published variance formulas. The worked example uses its own derivation.
+3. **Wason and Seaman 2013; McMenamin et al. 2018 — what happens with
+   composite endpoints and small samples? ✅** The relevant methods,
+   results and discussion passages were checked. Implementation of a
+   composite endpoint here remains future work.
+4. **Karlsson 2013; Zandvliet 2010 — what supports an added PMX benefit?
+   ✅** The comparators and outcome measures establish useful but indirect
+   precedents. Reproducing their simulation code is outside this review.
+5. **Pinheiro 2014 — which shape-uncertainty method suits three dose levels?
+   ❌** Scope was checked in the abstract; the implementation and small
+   sample behavior need a separate assessment before use.
+
+## Search Scope
+
+Search performed on 22 September 2026 using web-indexed PubMed/PMC records,
+publisher pages and author or institutional repositories, with backward
+citation searching from the responder-analysis and PoPS papers. Searches
+covered:
+
+- `target decision profile`, `target dose profile`, `TDP pharmacometrics`,
+  biomarker inhibition and model-based dose selection.
+- `probability of pharmacological success`, population coverage and
+  probability of target attainment.
+- `binary methods for continuous outcomes`, `distributional approach`,
+  `augmented binary`, responder endpoints and small-sample corrections.
+- Pharmacometric proof-of-concept power comparisons, model-based dose
+  selection and dose-response model uncertainty.
+- Recent work on the cost of dichotomization, including the 2026 paper below.
+
+Included primary methods papers and author-reported applications that
+preserve a response probability, evaluate dose decisions, or compare the
+information used by analyses. Included a methods overview to trace prior
+art. General endorsements of modeling, individual therapeutic drug
+monitoring and unrelated biomarker-selection designs were not used as
+evidence for this criterion.
+
+This is a focused review rather than a systematic database review: there
+was no exported database search, duplicate screening or exhaustive citation
+count. Some PMC direct requests returned browser checks; publisher versions
+or indexed source passages were used where indicated. No reviewed source
+was found to establish the exact three-by-ten, 90%/80% head-to-head
+comparison. This is a bounded search finding, not evidence that none exists.
+
+## Sources
+
+### 1. Zhou, Graff and Chen 2020 — PoPS Definition ✅
+
+Zhou X, Graff O, Chen C. *Quantifying the probability of pharmacological
+success to inform compound progression decisions.* PLOS ONE 15:e0240234.
+[Article and DOI](https://doi.org/10.1371/journal.pone.0240234).
+
+**Access and location:** Full text; Introduction, Materials and methods,
+Simulation setup and Results. **Checked claim:** Population pharmacological
+coverage and knowledge uncertainty are combined in a decision probability.
+**Applicability:** Direct conceptual match to a biomarker target in a
+specified fraction of patients. **Limit:** Simulation-based development
+applications, without a repeated-trial comparison against 9/10 responders.
+
+### 2. Chen et al. 2023 — PoPS Applications ✅
+
+Chen C, Zhou X, Lavezzi SM, Arshad U, Sharma R. *Concept and application of
+the probability of pharmacological success (PoPS) as a decision tool in
+drug development: a position paper.* Journal of Translational Medicine
+21:17. [Full text](https://doi.org/10.1186/s12967-022-03849-y).
+
+**Access and location:** Full text; equations and implementation sections,
+Cases 1–4. **Checked claim:** The framework distinguishes population
+variability from estimation and translational uncertainty. **Applicability:**
+Guides the nested simulation. **Limit:** Anonymized decision cases; the
+antibiotic case explicitly omitted several uncertainty components, so it
+should not be cited as an example of propagating all uncertainty.
+
+### 3. Suissa 1991 — Single Continuous Outcome ✅
+
+Suissa S. *Binary methods for continuous outcomes: a parametric alternative.*
+Journal of Clinical Epidemiology 44:241–248.
+[PubMed abstract](https://pubmed.ncbi.nlm.nih.gov/1999683/) ·
+[DOI](https://doi.org/10.1016/0895-4356(91)90035-8).
+
+**Access and location:** Abstract only. **Checked claim:** Normal-distribution
+estimation of threshold probabilities, with a stated heavier-tail
+sensitivity. **Applicability:** Earliest directly relevant predecessor found.
+**Limit:** Full-text equations and numerical examples remain unchecked.
+
+### 4. Peacock et al. 2012 — Distributional Approach ✅
+
+Peacock JL, Sauzet O, Ewings SM, Kerry SM. *Dichotomising continuous data
+while retaining statistical power using a distributional approach.*
+Statistics in Medicine 31:3089–3103.
+[Publisher abstract](https://doi.org/10.1002/sim.5354).
+
+**Access and location:** Publisher abstract; bibliographic details also
+checked against the authors' institutional record. **Checked claim:**
+Continuous-data modeling can produce proportion differences and intervals
+under distributional assumptions. **Applicability:** Terminology and method
+family. **Limit:** No numerical saving from this paper is transferred here;
+the full methods have not been audited.
+
+### 5. Wason and Seaman 2013 — Augmented Binary Method ✅
+
+Wason JMS, Seaman SR. *Using continuous data on tumour measurements to
+improve inference in phase II cancer studies.* Statistics in Medicine
+32:4639–4650. [Full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC4282550/) ·
+[DOI](https://doi.org/10.1002/sim.5867).
+
+**Access and location:** Full text; Sections 3.4–3.5 and Discussion.
+**Checked claim:** Relative performance depends on the failure mechanism;
+the original implementation carries a sample-size caution. **Applicability:**
+Retains a composite response definition while using its component data.
+**Limit:** Original parameterization is too elaborate to assume suitable
+for ten patients per arm.
+
+### 6. McMenamin, Berglind and Wason 2018 — Small Samples ✅
+
+McMenamin M, Berglind A, Wason JMS. *Improving the analysis of composite
+endpoints in rare disease trials.* Orphanet Journal of Rare Diseases 13:81.
+[Full text](https://doi.org/10.1186/s13023-018-0819-1).
+
+**Access and location:** Full text; Methods, Results on log-odds and
+probability scales, Discussion. **Checked claim:** Small-sample corrections
+change error control, which differs by effect scale. **Applicability:**
+Justifies explicit calibration. **Limit:** Resampling used 30–80 total
+patients split between two arms, not three cohorts of ten at a 90% target.
+
+### 7. McMenamin et al. 2021 — Software and MUSE Example ✅
+
+McMenamin M, Grayling MJ, Berglind A, Wason JMS. *Increasing power in the
+analysis of responder endpoints in rheumatology: a software tutorial.*
+BMC Rheumatology 5:54.
+[Full text](https://doi.org/10.1186/s41927-021-00224-0).
+
+**Access and location:** Full text; Results, Sample size determination and
+Figure 4 description. **Checked claim:** The reported 50-versus-135 planning
+comparison uses a specified risk difference, 80% power and one-sided 5%
+testing. **Applicability:** Concrete software-supported example.
+**Limit:** Disease- and endpoint-specific, without independent reproduction
+here. The review uses the explicit sample-size calculation rather than
+reconstructing savings from other prose about interval widths.
+
+### 8. Karlsson et al. 2013 — Pharmacometric Power Comparisons ✅
+
+Karlsson KE, Vong C, Bergstrand M, Jonsson EN, Karlsson MO. *Comparisons of
+Analysis Methods for Proof-of-Concept Trials.* CPT: Pharmacometrics &
+Systems Pharmacology 2:e23.
+[Source](https://pmc.ncbi.nlm.nih.gov/articles/PMC3600728/) ·
+[DOI](https://doi.org/10.1038/psp.2012.24).
+
+**Access and location:** Indexed PMC full-text passages; Abstract, Discussion
+and Methods. Direct page access returned a browser check.
+**Checked claim:** The reported gains compare drug-effect tests using
+different amounts of longitudinal information. **Applicability:** Supports
+including a longitudinal comparator. **Limit:** Correct-model simulations
+and proof-of-concept testing do not establish population-target attainment.
+
+### 9. Zandvliet et al. 2010 — Model-Based Dose Selection ✅
+
+Zandvliet AS, Karlsson MO, Schellens JHM, Copalu W, Beijnen JH, Huitema ADR.
+*Two-stage model-based clinical trial design to optimize phase I development
+of novel anticancer agents.* Investigational New Drugs 28:61–75; online
+2009. [Full text](https://doi.org/10.1007/s10637-008-9216-2).
+
+**Access and location:** Publisher full text; Summary, Methods and Results.
+**Checked claim:** Post-hoc model-based dose recommendations improved
+precision in the simulated myelosuppression setting. **Applicability:**
+Dose-decision performance as an outcome. **Limit:** Different endpoint,
+regimens and trial design; its numerical gain is not applied here.
+
+### 10. Pinheiro et al. 2014 — Dose-Response Shape Uncertainty ✅
+
+Pinheiro J, Bornkamp B, Glimm E, Bretz F. *Model-based dose finding under
+model uncertainty using general parametric models.* Statistics in Medicine
+33:1646–1661; online 2013.
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/24302486/) ·
+[DOI](https://doi.org/10.1002/sim.6052).
+
+**Access and location:** PubMed and author-preprint abstracts.
+**Checked claim:** Generalized MCP-Mod addresses multiple candidate shapes
+and broader endpoint models. **Applicability:** Shape uncertainty in M4.
+**Limit:** Full methods and finite-sample performance remain unchecked;
+trend detection alone does not test the population-coverage criterion.
+
+### 11. van Zwet, Harrell and Senn 2026 — Information Loss ✅
+
+van Zwet EW, Harrell FE Jr, Senn SJ. *An Empirical Assessment of the Cost of
+Dichotomization of the Outcome of Clinical Trials.* Statistics in Medicine
+45:e70402. [Full text](https://doi.org/10.1002/sim.70402).
+
+**Access and location:** Publisher full text; Sections 3–5; first published
+5 February 2026. **Checked claim:** Normal-distribution calculations recover
+response probabilities from continuous measurements and quantify information
+loss. **Applicability:** Current synthesis and worked example.
+**Limit:** The empirical comparison spans different trials and cannot
+isolate a causal benefit of one analysis method.
+
+### 12. Wason, McMenamin and Dodd 2020 — Methods Overview ✅
+
+Wason J, McMenamin M, Dodd S. *Analysis of responder-based endpoints:
+improving power through utilising continuous components.* Trials 21:427.
+[Full text](https://doi.org/10.1186/s13063-020-04353-8).
+
+**Access and location:** Publisher full text and PubMed abstract.
+**Checked claim:** Connects distributional and augmented-binary methods
+across clinical endpoint definitions. **Applicability:** Citation discovery
+and orientation. **Limit:** An overview, not an independent estimate of
+the proposed design's operating characteristics.
+
+## Further Reading Not Used for Quantitative Claims
+
+- ❌ **Lei et al. 2017.** *Comparison of Dichotomized and Distributional
+  Approaches in Rare Event Clinical Trial Design: a Fixed Bayesian Design.*
+  [PubMed](https://pubmed.ncbi.nlm.nih.gov/28503016/),
+  [DOI](https://doi.org/10.1080/02664763.2016.1214244).
+  Abstract screened; normal mixtures may inform the refractory-subgroup
+  sensitivity analysis. Full-text comparison not audited.
+- ❌ **Uryniak et al. 2011.** *Responder Analyses—A PhRMA Position Paper.*
+  [DOI](https://doi.org/10.1198/sbr.2011.10070).
+  Background position identified in citation searches. Publisher access
+  failed; no quantitative claim here relies on it.
+- ❌ **Sauzet et al. 2015.** *Dichotomisation using a distributional approach
+  when the outcome is skewed.*
+  [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC4422142/).
+  Identified for the nonnormal extension; methods not yet checked.
