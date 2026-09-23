@@ -10,7 +10,6 @@ execute:
   echo: false
   warning: false
   message: false
-  freeze: false
 ---
 
 ```{r}
