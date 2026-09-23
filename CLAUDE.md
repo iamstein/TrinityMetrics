@@ -111,3 +111,39 @@ The site is Quarto, published to GitHub Pages by `.github/workflows/publish.yml`
 on every push to `main`. `blog/drafts/**` is excluded from the render, so
 anything there is private until it moves. Preview a page with
 `quarto preview <file>.qmd`.
+
+## Frozen computation
+
+The publish workflow installs Quarto and Python, and no R. A page that runs R
+therefore has to replay from a cache committed under `_freeze`, which is what
+the site-wide `execute: freeze: auto` in `_quarto.yml` produces. A page that
+overrides it with `freeze: false` forces execution on the runner and fails the
+build. `projects/pmx-model-based-tdp/worked-comparison.qmd` shipped that way
+and broke publishing for every push until its cache was committed, including
+the pushes that had nothing to do with it.
+
+The error names R rather than the page that needs it:
+
+```
+ERROR: Error executing 'Rscript': Failed to spawn 'Rscript': entity not found
+Unable to locate an installed version of R.
+```
+
+That reads as a missing dependency on the runner, so look at the last page in
+the render list instead of at the workflow.
+
+After adding or changing a page that runs R, render it locally and commit its
+directory under `_freeze` in the same commit. When a render looks like it
+skipped the work, delete the page's directory under both `_freeze` and
+`.quarto/_freeze` and render again. The second is a local freezer cache, kept
+out of git, and it will replay a page whose committed cache you just deleted.
+
+Do not add R to the workflow. The pages here need `brms`, `rstanarm`, `rxode2`
+and `nlmixr2` between them, which means Stan and a compiler toolchain.
+Installing a subset is worse than installing none, because the build keeps
+passing until someone edits a page whose packages are missing, and the failure
+then arrives far from the change that caused it.
+
+Quarto finds R outside `PATH`, so rendering locally says nothing about whether
+a page will build on the runner. The run on `main` is the only check that
+settles it.
