@@ -103,6 +103,17 @@
   categories: [GenAI, Draft]
   path: agentic-engineering-analysis/index.qmd
 
+- title: "AI exposition"
+  subtitle: "Working document"
+  description: >
+    An AI draft arrives fluent and with the emphasis in the wrong places:
+    pages on the routine steps, a paragraph on the one that decided the
+    result, no prior art, no overview. Which instructions move the
+    emphasis back, and how to tell that one has. Starts from the writing
+    guide here and from Tao's account of AI proof exposition.
+  categories: [GenAI, Draft]
+  path: ai-exposition/index.qmd
+
 - title: "Exposure metric guide"
   subtitle: "Working document"
   description: >

@@ -1,0 +1,34 @@
+---
+title: "AI exposition"
+subtitle: "Guiding an AI to write for a human reader"
+description: "Index of the ai-exposition project: what is known about where AI-drafted explanatory writing fails a human reader, what guidance has been shown to fix it, and what is still to be tested."
+categories: [GenAI, working document]
+date: last-modified
+toc: false
+---
+
+An AI draft of a report, a vignette or a proof arrives with the spelling,
+the grammar and the formatting close to flawless, and with the emphasis
+in the wrong places: pages on the routine steps, a paragraph on the step
+that decided the result, no comparison with what was already published,
+and no overview that lets a reader decide whether to read on. This
+project asks what instructions move the emphasis back to where a human
+reader needs it, and how to tell when an instruction has worked. Behind
+that sits a second question, on what happens to a field once producing
+the result is cheap and reading it is not; Tao asks it for mathematics,
+and pharmacometrics runs parallel to it stage for stage.
+
+Two starting points. The [writing guide](https://github.com/iamstein/TrinityMetrics/blob/main/.github/skills/writing-for-andy/SKILL.md)
+in this repository is one: a set of rules derived from one reader's edits
+of AI drafts, already in use. Terence Tao's account of AI proof
+exposition is the other: the same failures, observed in a different
+field by a different reader.
+
+## Documents
+
+- [Working specification](specification.qmd). The question, the failures
+  named so far and their form in a modeling report, what the writing
+  guide already covers, the instructions to test, and how to test them.
+- [References](references.qmd). The sources, the reading queue, and a
+  marker on every entry recording whether the claim drawn from it has
+  been checked against the source.

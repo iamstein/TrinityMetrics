@@ -1,0 +1,403 @@
+---
+title: "AI exposition"
+subtitle: "Working specification"
+description: "Where AI-drafted explanatory writing fails a human reader, what the writing guide in this repository already does about it, what Tao's account of AI proof exposition adds, and the instructions to test next."
+categories: [GenAI, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-note appearance="simple"}
+**Started 2026-09-15, with no settled scope.** Section 1 names two
+questions, one on exposition and one on how a field changes under
+abundance. Sections 2 and 3 record what two sources say. Section 4 maps
+the failures onto a modeling report. Section 5 lists instructions to test and Section 6 says
+how a test would be scored. Nothing in Section 5 has been tested.
+:::
+
+## 1. Scope
+
+The standard the project measures against is Thurston's (reference 2),
+as Tao quotes it:
+
+> We are not trying to meet some abstract production quota of
+> definitions, theorems and proofs. The measure of our success is
+> whether what we do enables people to understand and think more clearly
+> and effectively about math.
+
+Substitute models, reports and analyses for definitions, theorems and
+proofs, and the sentence holds for pharmacometrics without other change.
+A correct report that leaves nobody's thinking clearer has not met the
+measure.
+
+The project carries two questions, and Tao's essay is the source for
+both.
+
+The first is how to instruct an AI so that the explanatory documents it
+drafts serve a human reader: a modeling report, a vignette, a literature
+review, a project specification. The documents are correct on arrival and
+fluent on arrival, and still go back for another round, because the
+emphasis is in the wrong place. Sections 2, 5 and 6 work on this one.
+
+The second is what happens to a field when the first stage of its
+pipeline becomes cheap: which stages the queue moves to, which of its
+institutions were built for scarcity, and what its members owe each
+other once generation is no longer the work. Tao asks it for
+mathematics, and the pharmacometric version runs in parallel stage for
+stage. Section 3 sets both fields side by side. This second question is
+the wider one, and the project will split if it grows sources of its
+own beyond Tao.
+
+**Out of scope.** Correctness of the content. Tone, grammar and formatting,
+which are already close to flawless. Choosing between models or tools.
+Prompting technique in general. The question is what to ask for in a
+document.
+
+## 2. What the writing guide already answers
+
+The [writing guide](https://github.com/iamstein/TrinityMetrics/blob/main/.github/skills/writing-for-andy/SKILL.md) is a
+set of rules derived from one reader's hand edits of AI drafts, kept with
+the evidence for each rule. It is a working answer to the question above
+for one reader, and it is the baseline any new instruction is tested
+against.
+
+It covers the surface failures completely. Its machine-prose tic list
+names the vocabulary, the contrastive antithesis, the rule of three, the
+significance announcement and the closing summary, and its checklist
+item 11 turns the list into a search run over every file before handover.
+
+It covers the emphasis failures partly, by observation rather than by
+rule:
+
+- O8 says the reader is an expert on one side of a field boundary and a
+  novice on the other, and that uniform explanation depth is wrong in
+  both directions at once.
+- O3 says locating prior art is a deliverable, and that being told an
+  idea already has a name is welcome.
+- O9 says "where do I start" is a literal request, and a survey ends
+  with a ranked entry path.
+- O14 says essay-shaped sections do not earn their length, and a
+  numbered subsection per item, each opening with what it asks, is what
+  survives review.
+- O16 says the design tradeoff is to be argued in the reply, with the
+  reason, before the code exists.
+
+What it does not have is a rule that says where in a document the
+difficulty lies, or an instruction that makes a draft show it. That is
+the gap Section 3 names.
+
+## 3. What Tao adds
+
+Terence Tao's essay on mathematics after AI (reference 1) carries an
+account of AI-drafted proofs that names four failures. The first three
+are in one paragraph:
+
+> Current AI tools have a decidedly mixed record with proof exposition.
+> On the one hand, the spelling, the grammar, and the formatting are
+> close to flawless. On the other hand, the writing very often dwells at
+> length on trivialities while passing briefly through, or even actively
+> obscuring, the most interesting and novel portions of the argument.
+> AI-generated mathematical texts also frequently fail to situate the
+> result in the prior literature, or to offer the high-level overview
+> that lets a reader decide whether the argument is worth their time.
+
+The fourth is the one he calls under-appreciated, and it is the one
+that applies to the document even after the first three are fixed:
+
+> A proof can be too slickly written, with the routine steps and the
+> genuinely difficult steps presented as being equally easy to digest.
+>
+> In a human-written proof, the parts of the argument that the author
+> found difficult typically retain some natural friction: an apologetic
+> remark, an unusually careful lemma, a change of notation, a paragraph
+> that has clearly been rewritten several times. This friction is
+> informative. It signals to the reader where to slow down and pay
+> attention, and it is one of the main channels by which the tacit
+> knowledge of a field is transmitted. An excessively AI-polished proof
+> may sand away both the "artificial" friction (typos, awkward phrasing,
+> disorganization) and the "natural" friction, leaving a text that is
+> easy to read and hard to learn from.
+
+His footnote on the flawless formatting reads, in full, "One can argue
+that they are too flawless."
+
+The four, named for use below:
+
+1. **Misplaced emphasis.** Length on the routine steps, brevity on the
+   novel one.
+2. **No prior literature.** The result is not placed against what was
+   already known.
+3. **No overview.** Nothing at the top lets the reader decide whether to
+   continue.
+4. **Uniform friction.** The hard step and the easy step read as equally
+   settled, so the reader cannot tell where to slow down.
+
+Failure 4 is a claim about what a reader uses a document for. A report
+that is read once for its conclusion is served by a smooth text. A
+report that is read to learn how the conclusion was reached, or to
+check it, or to reuse the method, needs the difficulty visible. The
+guide's O2 is the same observation from the other side: implementing a
+method is not understanding it, and a smooth description of an
+implemented method leaves the reader where they started.
+
+### The pipeline the failures sit in
+
+Tao arrives at the four failures by asking what problem solving is for,
+and answering in five attempts. The last reads:
+
+> **Goal 6.5** (final attempt?). Solve unsolved problems, verify them to
+> be correct, ensure they are clearly communicated, and have them
+> digested, accepted, and incorporated into the definitive theory of the
+> field.
+
+His Figure 4 draws the goal as a chain of five stages, with digestion as
+a dotted arrow that bypasses publication. Redrawn here with his labels:
+
+```{mermaid}
+%%| fig-cap: "Tao's Figure 4. Five stages, of which he says only the first was ever an explicit goal of the community."
+flowchart LR
+  A[Open problems] -- proof generation --> B[Unverified solutions]
+  B -- proof verification --> C[Verified solutions]
+  C -- proof exposition --> D[Well-written solutions]
+  D -- proof publication --> E[Accepted solutions]
+  E -- proof canonicalization --> F[Definitive solutions]
+  C -. proof digestion .-> F
+```
+
+The pharmacometric pipeline has the same five stages, and the same
+imbalance in which of them is treated as the job:
+
+1. **Generation.** The question and the data go in; a fitted model
+   comes out. The explicit goal, and the stage the modeler is judged
+   on.
+2. **Verification.** Diagnostics, a second pair of eyes on the code, a
+   check of the parameters against what was published. Required by
+   procedure, and done.
+3. **Exposition.** The report. Written because the procedure requires
+   one, after the answer is known, and this is where all four failures
+   in the list above sit.
+4. **Acceptance.** A dose is chosen, a design is agreed, a regulator
+   accepts the argument. Slow, human, and outside the modeler's control,
+   as Tao says of publication.
+5. **Canonicalization.** The model becomes the class model that the next
+   program starts from. Few reports reach this stage, and the ones that
+   do are the ones whose exposition let someone else reuse the reasoning.
+
+Digestion, the dotted arrow, is the team understanding the model well
+enough to think with it rather than cite it. It is the stage Thurston's
+sentence in Section 1 is about, and failure 4 is the one that blocks it:
+a report can be verified, written and accepted and still not be
+digested, if nothing in it says where the reasoning was hard.
+
+### Model abundance
+
+Tao's Section 7 says what happens to the pipeline when the first stage
+stops being the slow one. If AI tools solve problems at the rate he
+conditions on, proofs pile up at every later stage: generated faster
+than they can be verified, verified faster than they can be written up,
+written up faster than volunteer referees can read them, and published
+faster than the field can work them into definitive form. He calls the
+transition one from proof scarcity to proof abundance, and says the
+institutions of mathematics, journals, priority, hiring, prizes, were
+designed under scarcity and should be expected to behave poorly under
+abundance. The strain predates AI, in the growth of the literature and
+the load on refereeing; AI makes it worse.
+
+The pharmacometric version is model abundance, or analysis abundance.
+An agent that fits fifty candidate models overnight, each with its
+diagnostics, moves the queue to the stages that still run at human
+speed:
+
+1. Fits accumulate faster than a modeler can look at the diagnostics.
+2. Checked fits accumulate faster than reports can be written for them.
+3. Reports, even correct and well written, accumulate faster than the
+   reviewer, the clinical team and the regulator can read them.
+4. Accepted analyses accumulate faster than anyone works them into the
+   model the next program starts from.
+
+The institutions here were also designed under scarcity: one analysis
+plan, one report, one reviewer, one submission. The early signs Tao
+names have counterparts that predate agents: sensitivity analyses run
+because they were cheap rather than because anyone asked, and model
+libraries nobody opens.
+
+For this project the consequence is that abundance moves the four
+failures from a nuisance to the constraint. When fitting is cheap, the
+reviewer's hour is the scarce resource, and a report is judged by how
+little of that hour it wastes. The overview (failure 3) is what lets the
+reviewer triage fifty reports; the marked hard steps (failure 4) are
+what tell the reviewer where in one report to spend the hour. Tao's own
+suggestion for the abundance regime is a filter that flags submissions
+for "incoherent exposition" before a human reads them, which is the
+writing guide's checklist item 11, applied by the journal rather than
+the author.
+
+### The recommendations
+
+Tao's Section 8 quotes four recommendations to individual
+mathematicians from the Leiden Declaration on Artificial Intelligence
+and Mathematics (reference 9), and adds a rule of thumb of his own. The
+four, in his order, with their form for an analysis:
+
+1. **Disclose tool use.** A "tool and computational resource disclosure"
+   section in the paper. For a report, a section saying which parts an
+   agent drafted, fitted or checked. Tao's worst case is covert use
+   concealed to avoid criticism.
+2. **Support the needs of reviewing.** Disclose tool use, give "precise
+   and complete references to previous results", and provide formal
+   proofs where feasible. For a report, the prior-art paragraph of
+   instruction 3, and code that reruns.
+3. **Affirm the humanity of authorship.** Credit and responsibility stay
+   with people. A report is signed by the modeler who can defend it,
+   whichever tool fitted it.
+4. **Put effort into proper attribution.** Tools attribute badly, so the
+   author owes proactive effort to find and credit sources, and states
+   it explicitly where attribution is not possible. The ❌ marker on a
+   references page here is that explicit statement.
+
+Between the second and third he states the change in emphasis the
+recommendations serve: decrease the weight the culture places on proof
+generation and on being first, and increase the weight on digestion,
+which he lists as exposition, refereeing, publication and
+canonicalization.
+
+His own rule of thumb closes the section:
+
+> If the authors cannot convincingly demonstrate that they are able to
+> give a clear, expert-level talk on their results, one that is correct
+> and properly attributed, then the result should not be published. A
+> proof that no human can properly explain should be viewed as
+> incomplete, even if it has been formally verified.
+
+The analysis version: **a model that nobody on the team can explain in
+an expert-level talk is incomplete, whatever its diagnostics show and
+however carefully the code was reviewed.** The talk is a test the
+instructions in Section 5 can be checked against. A talk has to open
+with the overview (instruction 4), has to say which choice decided the
+answer (instruction 1), and has to say where the speaker is unsure
+(instruction 2), because an expert audience asks. A report from which
+that talk cannot be given has failed on one of the four, and the
+question in the room usually says which.
+
+## 4. The modeling report
+
+Tao writes about proofs. A pharmacometric modeling report is a document
+of the same shape, an argument from stated assumptions to a conclusion
+that someone else has to accept, and each of the four failures has a
+form in it.
+
+| Failure | In a proof | In a modeling report | Guide entry |
+|:---|:---|:---|:---|
+| 1. Misplaced emphasis | Pages on routine lemmas, a paragraph on the novel step | Pages on the base model and the covariate search, a paragraph on the mechanism that decided the dose | O8, O14 |
+| 2. No prior literature | The result is not placed against known results | No comparison with published models of the same drug or class, so the reader cannot tell what is new and what was inherited | O3 |
+| 3. No overview | Nothing at the top says whether to read on | No one-screen statement of the question, the answer and what the answer rests on | O9, rule 10 |
+| 4. Uniform friction | Hard and easy steps read as equally settled | The two-compartment choice and the choice of a mechanism the data barely identifies read as equally settled | O16, rule 10 in part |
+
+: The four failures, their form in a modeling report, and where the writing guide touches each {tbl-colwidths="[18,26,38,18]"}
+
+Failure 4 in a modeling report has a specific consequence. The reader
+of a report is usually deciding something: a dose, a design, whether to
+believe the model. The choices the modeler agonized over are the ones
+that decide the answer, and they are the ones a reviewer should
+question. A report in which every choice reads as routine invites no
+question anywhere, so the reviewer either questions everything or
+nothing.
+
+One example of a document in this repository that carries the friction
+is the [TCE-IPDE specification](../tce-ipde/specification.qmd). Its
+**In brief** section answers failure 3, its Section 1 carries an
+explicit fork between two approaches, and its
+[references page](../tce-ipde/references.qmd) marks every source with
+whether the claim drawn from it was checked. The markers are friction
+made visible: a ⚠️ on a transcribed parameter says to slow down there.
+
+## 5. Instructions to test
+
+Each is an instruction that could be added to a project's agent
+instructions or to the writing guide. None has been tested. Each is
+paired with the failure it addresses and the shape of output that would
+show it worked.
+
+1. **Name the decisive step.** Before drafting, state in one sentence
+   which choice the conclusion depends on most, and give that choice the
+   longest section. Addresses failure 1. Worked if the section lengths
+   track a reader's ranking of the choices by consequence.
+2. **Rank the choices by how much the data supported them.** In the
+   report, mark each modeling choice with one of three markers: decided
+   by the data, decided by precedent, decided by judgment. Addresses
+   failure 4. Worked if a reviewer's questions land on the judgment
+   entries. The ✅ ⚠️ ❌ markers on the references pages here are the
+   existing precedent for a marker inside a body of text.
+3. **Write the prior-art paragraph first.** Before the model is
+   described, state what has been published for the same drug or class,
+   and what in this analysis is inherited from it and what is new.
+   Addresses failure 2. Worked if the reader can say from that paragraph
+   alone what the analysis adds.
+4. **Lead with one screen.** The document opens with the question, the
+   answer, and the one thing the answer rests on, in under a screen.
+   Addresses failure 3. Already the practice in this repository's
+   working specifications; the test is whether it transfers to a report.
+5. **Leave the rewritten paragraph rough.** Where a passage was drafted
+   more than once because the first version was wrong, keep a sentence
+   saying what the first version got wrong. Addresses failure 4 directly,
+   by Tao's mechanism. This is the instruction most likely to be
+   rejected on review, since it asks for prose the reader would normally
+   delete, and it is the one the writing guide's open convention already
+   proposes: record what was tried and rejected, two lines per rejection.
+   Tao's own version, in the sentence after the Thurston quotation, is
+   that authors assist digestion "by describing the insights, the false
+   starts, and the stories from the period when they were working on the
+   problem", and that current tools are opaque about their own process.
+
+Instruction 5 is where the guide and Tao are in tension. The guide's
+rule 9 cuts characterization in favour of measurement, and rule 12 cuts
+the entry point thin. Tao's friction is a characterization, and it
+lengthens the document. The resolution may be the guide's own contract:
+the friction belongs in the reference-tier document, where length is
+permitted, and not in the entry point.
+
+## 6. How a test is scored
+
+The writing guide's evidence base is the reader's own edits, and that is
+the measure to reuse. An instruction has worked if a draft written under
+it comes back with fewer edits of the kind the instruction targets, over
+enough documents to tell.
+
+The procedure for one instruction:
+
+1. Pick a document to be drafted anyway.
+2. Draft it under the current guide, and record the edits it comes back
+   with, by rule number.
+3. Add the instruction and draft the next comparable document. Record
+   its edits the same way.
+4. The instruction stays if the edits it targets fell and no other kind
+   rose.
+
+Two documents per instruction is thin evidence. The guide's rules were
+each derived from one or two edits, so the standard is the same one it
+already applies, and a rule adopted this way carries its evidence with
+it in the same form.
+
+## 7. Open questions
+
+1. Whether failure 4 applies to the reader here at all. The guide's O10
+   says the reader accepts a longer first draft to iterate less; whether
+   he also wants the draft to show where it struggled is not in the
+   evidence, and instruction 5 is the test.
+2. Whether a model can locate its own difficulty. Tao's friction is a
+   by-product of effort, and a model's effort is not visible to it in
+   the same way. Instruction 2 asks the model to rank choices by data
+   support, which is a question about the data rather than about
+   effort, and may be answerable where instruction 5 is not.
+3. Whether the modeling-report guidance already published (references 6
+   and 7) asks for any of this. Those documents say what a report must
+   contain; if they already ask for the decisive choice to be named, the
+   instruction has a precedent outside this repository.
+4. Whether the reviewer's hour is the right measure once analyses are
+   cheap. Section 6 scores an instruction by the reader's edits on the
+   draft, which measures the author's rounds. Under abundance the cost
+   that grows is on the reading side, and the measure may need to be
+   the time a reviewer spends before reaching a verdict, or the number
+   of reports a reviewer can triage from their overviews alone.

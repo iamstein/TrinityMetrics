@@ -1,0 +1,191 @@
+---
+title: "References for the AI exposition project"
+subtitle: "What to read, in what order, and what has actually been checked"
+description: "The reading queue and source list for the AI exposition working document, with a status marker on every entry recording whether the claim drawn from it has been checked against the source."
+categories: [GenAI, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**One source checked, two transcribed second-hand, the rest unread.** The
+Tao passages quoted in the specification were read against the PDF on
+2026-09-15, so entry 1 is ✅. The Thurston sentence and the four Leiden recommendations are quoted
+as Tao quotes them and have not been checked against their sources, so
+entries 2 and 9 are ⚠️.
+The two modeling-report guidances, entries 6 and 7, are named from
+memory of their titles and have not been opened; the question posed
+against them in Section 7 of the specification is unanswered.
+:::
+
+The working document is [the specification](specification.qmd), and the
+folder's other documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the working document has been verified
+  against this source. Where the working document characterizes it, the
+  characterization comes from memory or from another source's citation.
+- ⚠️ **Transcribed, unverified.** A quotation or claim in the working
+  document came from this source at second hand and has not been checked
+  against the source itself.
+- ✅ **Checked.** Verified against the source.
+
+On a **reading-queue** entry, ✅ means the question posed against that
+entry has been answered, by reading the source or by deciding it is out
+of scope. The note on the entry says which.
+
+On a **source** entry below the queue, ✅ keeps its stricter meaning:
+the claim the specification draws from it has been checked against the
+source. Change a marker when the check is done, not when the paper is
+opened.
+
+## How to read these
+
+Read against the question under each entry rather than front to back.
+The general method is on the
+[Reading Papers](../../guides/reading-papers.qmd) page. Tao's essay is
+twelve pages and the passages that bear on this project are in one
+section, so the reading is short; the two regulatory guidances are
+longer and the question against each is a lookup.
+
+Notes go one line per question, carrying an answer and the page or
+section it came from, plus anything that contradicts the specification.
+
+## Reading queue
+
+Ordered so that each makes the next easier to read.
+
+### 1. Tao 2026 — Mathematics in the age of AI ✅
+
+arXiv, submitted 2026-08-17. <https://arxiv.org/abs/2608.16753>
+
+**Question.** What does the essay say AI-drafted exposition gets wrong,
+and does it say what to do about it?
+
+**Answer, 2026-09-15.** Section 6, pages 6 to 7. Four failures, quoted
+in Section 3 of the specification: misplaced emphasis, no prior
+literature, no overview, and uniform friction. Footnote 4 on the
+flawless formatting reads "One can argue that they are too flawless."
+The sentence after the Thurston quotation says authors assist digestion
+"by describing the insights, the false starts, and the stories from the
+period when they were working on the problem". Section 8 carries
+recommendations to the community; the one addressed to authors asks
+them to disclose tool use and give "precise and complete references to
+previous results", which is failure 2 as an instruction. Goal 6.5 and Figure 4, the five-stage pipeline with digestion as a
+dotted arrow, are on page 8, and the caption says only the first stage
+was ever an explicit goal of the community. Nothing in the
+essay proposes an instruction for failures 1 or 4. Section 7, page 9, lists four
+stages at which AI-generated proofs will pile up and names the
+transition from proof scarcity to proof abundance; its translation is
+in Section 3 of the specification. Section 8, pages 10 to 11, quotes four Leiden Declaration
+recommendations and closes with the rule of thumb that a result whose
+authors cannot give a clear expert-level talk on it should not be
+published; both are in Section 3 of the specification. Section 9 and
+Appendix A were not read.
+
+### 2. Thurston 1994 — On proof and progress in mathematics ⚠️
+
+*Bulletin of the American Mathematical Society* 30(2).
+
+**Question.** Beyond the sentence Tao quotes, what does Thurston say
+about how mathematical understanding is transmitted, and does any of it
+translate to a modeling report?
+
+**Status.** Not opened. The quotation in Section 1 of the specification
+is transcribed from Tao's page 7 and matches his text; whether it
+matches Thurston's is unchecked.
+
+### 3. The writing guide in this repository ✅
+
+[`.github/skills/writing-for-andy/SKILL.md`](https://github.com/iamstein/TrinityMetrics/blob/main/.github/skills/writing-for-andy/SKILL.md) in this repository.
+
+**Question.** Which of the four failures does it already have a rule or
+observation for?
+
+**Answer, 2026-09-15.** Read in full this session. The mapping is the
+last column of the table in Section 4 of the specification: O8 and O14
+for failure 1, O3 for failure 2, O9 and rule 10 for failure 3, O16 and
+rule 10 in part for failure 4. Its Part 5 proposes recording what was
+tried and rejected, which is instruction 5 in the specification.
+
+### 4. Passo 2024 — What's wrong with AI-generated docs ❌
+
+<https://passo.uno/whats-wrong-ai-generated-docs/>
+
+**Question.** The writing guide cites this for the catalogue of LLM
+pathologies (hedging, verbosity, over-elaboration). Does the catalogue
+include the emphasis failures, or only the surface ones? If it stops at
+the surface, the guide's tic list has already absorbed everything it
+offers.
+
+### 5. Diátaxis ❌
+
+<https://diataxis.fr/>
+
+**Question.** The four documentation kinds in the writing guide's
+contract come from here. Does the framework say anything about where
+difficulty should be visible within a document, or only about which
+kind a document is? Section 5 of the specification proposes resolving
+the friction tension by tier, and this is where that proposal would find
+or fail to find a precedent.
+
+### 6. EMA 2007 — Guideline on reporting the results of population pharmacokinetic analyses ❌
+
+European Medicines Agency, Committee for Medicinal Products for Human
+Use.
+
+**Question.** Does the required report content ask for the decisive
+modeling choice to be named, or for comparison with published models of
+the same drug? Open question 3 in the specification.
+
+### 7. FDA 2022 — Population pharmacokinetics, guidance for industry ❌
+
+US Food and Drug Administration.
+
+**Question.** Same as entry 6. The two together are the published
+standard for what a modeling report must contain, and if either already
+asks for what instructions 1 to 3 propose, the instruction has a
+precedent outside this repository.
+
+### 8. Tao 2021 — Exploring the toolkit of Jean Bourgain ❌
+
+*Bulletin of the American Mathematical Society* 58.
+
+**Question.** Tao's Figure 3 is an annotated Bourgain page, offered as
+the case where friction taught the reader. Does this essay say what in
+Bourgain's writing carried the signal? Lowest priority; it bears on
+failure 4 only and the specification does not cite it.
+
+### 9. Leiden Declaration on Artificial Intelligence and Mathematics ❌
+
+June 2026, endorsed by the International Mathematical Union. Cited by
+Tao as his reference 11.
+
+**Question.** Tao quotes four of its twenty-three recommendations, the
+ones addressed to individual mathematicians. Do the others, addressed to
+organizations, funders and policymakers, say anything about exposition
+or review that translates to how a modeling group runs its reviews?
+
+## Sources
+
+Every source the specification cites, with the claim drawn from it and a
+marker. Numbers match the queue above.
+
+- **1. Tao 2026.** ✅ The four failures, the footnote, the digestion
+  sentence, Goal 6.5, Figure 4, the four abundance stages, the four
+  recommendations and the rule of thumb, quoted, redrawn or paraphrased
+  in Sections 3 and 5 of the specification. Checked
+  against the PDF on 2026-09-15.
+- **2. Thurston 1994.** ⚠️ The measure-of-success sentence in Section 1
+  of the specification. Transcribed from Tao's quotation.
+- **3. The writing guide.** ✅ Every O-number and rule number in the
+  specification. Read in full on 2026-09-15.
+- **6. EMA 2007.** ❌ Named in open question 3 of the specification as
+  the published report standard. Not opened.
+- **7. FDA 2022.** ❌ Same as entry 6.
+- **9. Leiden Declaration 2026.** ⚠️ The four recommendations in
+  Section 3 of the specification, transcribed from Tao's quotation of
+  them. Not opened.
