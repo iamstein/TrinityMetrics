@@ -55,13 +55,21 @@ Two distinct deliverables are evaluated. **Pharmacological dose support** asks w
 Rank these by their potential to change the decision rather than by the number of unobserved compartments.
 
 1.  **Persistence mechanism.** Does benefit disappear with reconstitution of B cells or does it persist after reconstitution (e.g. due to B cell reset). Short follow-up during complete depletion may not distinguish these possibilities.
+
 2.  **Clinical trade-off.** How much efficacy loss is acceptable for a reduction in exposure, treatment burden or immune impairment?
+
 3.  **Design and attribution.** Are expansion regimens randomized, background treatment controlled, and escalation cohorts exchangeable with expansion? A good fit cannot repair an unidentified causal contrast.
+
 4.  **Incremental information.** Do repeated platelets, PK, or immune markers improve the decision beyond a simple dose-response analysis? Would a longitudinal PKPD model help further?
+
 5.  **Peripheral versus pathogenic immunity.** Blood B cells may not track the tissue cells or pathogenic activity that determine response. This challenges a specific biomarker link, not all dose–platelet models.
+
 6.  **Response heterogeneity.** Effects may be continuous, clustered, delayed or transient. A binary endpoint does not establish a binary biological response.
+
 7.  **Observation and management.** Rescue, TPO receptor agonist (TPO-RA) tapering, corticosteroids, biological platelet fluctuations, missed visits and dropout can dominate apparent durability.
+
 8.  **Prior transfer.** Parameters from another agent, disease or age group may not transfer. Published response-time ranges do not directly identify a transduction rate.
+
 9.  **Immune safety.** Total B-cell count and total IgG incompletely describe immune competence. Rare events cannot be estimated precisely from this reference design.
 
 10. **Cross-indication transport.** Other indications may identify exposure and immune trajectories well while leaving ITP tissue engagement or the immune-to-platelet link unresolved. With only a few indications, between-indication heterogeneity is itself weakly estimated. Distinguish genuine borrowing from precision imposed by assuming identical biology.
@@ -314,7 +322,7 @@ Background treatment, rescue and dropout are part of the generating process. Spe
 Let $j$ identify indication and $i$ identify patient. The shared model is for drug exposure and **measured immune states**, not a common clinical response across diseases. Let $X_{ij}(t)$ contain the parsimonious immune states supported by the assays, potentially peripheral naive cells $N$, memory/activated cells $M$, plasmablasts $V$ and tissue states $T_\ell$ for sampled tissue $\ell$. Do not add all these states when data support only a subset. Preserve observation definitions and account for overlap between gates rather than summing overlapping populations.
 
 | Model component | Potential cross-indication contribution | What remains indication- or tissue-specific |
-|:---|:---|:---|
+|:-----------------------|:-----------------------|:-----------------------|
 | PK | Clearance, distribution, absorption, exposure variability and covariate effects | Disease effects on clearance, target burden, route and treatment history |
 | Peripheral immune dynamics | Concentration-dependent depletion, subset recovery and assay parameters where harmonized | Baseline composition, turnover, treatment effects and disease-dependent sensitivity |
 | Tissue engagement | Exposure-to-depletion or occupancy in the tissue actually sampled | Partition, potency, local populations and mapping to ITP-relevant organs |
