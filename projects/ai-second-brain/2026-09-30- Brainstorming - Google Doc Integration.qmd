@@ -1,0 +1,143 @@
+# Second Brain / TrinityMetrics Ingestion Workflow
+
+TrinityMetrics can gradually become a durable knowledge base without requiring everything I have ever written to be migrated into it.
+
+The basic architecture is:
+
+- **Google Drive** remains the working home for long-form documents that are convenient to write and maintain there.
+- **TrinityMetrics** is the organized, durable knowledge layer: projects, notes, concepts, books, papers, topics, and other material worth retaining.
+- **GitHub** provides versioning and a transparent record of changes.
+- **AI** acts as librarian: finding material, summarizing it, proposing organization and relationships, and helping ingest it into TrinityMetrics.
+- **Obsidian** is optional. It may eventually be useful for browsing links and relationships, but it does not need to be central to the system.
+
+## Projects vs. Notes
+
+A useful distinction is:
+
+**Projects are open loops.** They are things I intend to investigate, develop, make, or think more deeply about.
+
+**Notes are retained knowledge.** They capture something worth remembering without necessarily asking anything further of me.
+
+Notes can be organized hierarchically where that makes retrieval easier:
+
+```text
+notes/
+├── books/
+├── papers/
+├── concepts/
+├── movies/
+└── topics/
+```
+
+Long-running or substantial Google Docs do not necessarily need to be moved into TrinityMetrics. A QMD page can summarize the material, explain why it matters, and link to the canonical Google Doc.
+
+## The Ingestion Queue
+
+Rather than migrating Google Drive wholesale, AI can periodically review it and create a **candidate ingestion queue**.
+
+For each potentially valuable document, AI could propose:
+
+- Document title and Google Drive link
+- Proposed TrinityMetrics location and filename
+- A short description of what the document contains
+- Why it may be worth preserving
+- Related existing notes or projects
+- A rough priority for ingestion
+
+For example:
+
+```text
+HIGH VALUE
+
+□ Meaning
+  Source: Google Doc
+  Proposed: notes/topics/meaning.qmd
+  Related: Wisdom
+  Why: substantial accumulated thinking about meaning and purpose
+
+□ Integrated Pathways / Life Tools
+  Source: Google Doc
+  Proposed: notes/topics/life-tools.qmd
+  Related: Wisdom, ACT, IFS
+  Why: synthesis of ideas and practices accumulated through Pathways
+
+□ Wanting — Luke Burgis
+  Source: Google Doc
+  Proposed: notes/books/wanting.qmd
+  Related: mimetic desire, Girard, Wisdom
+```
+
+Nothing is automatically ingested. The queue is a staging area.
+
+I decide which items are actually worth bringing into the knowledge base.
+
+## AI-Assisted Ingestion
+
+Once I approve an item, AI can perform the mechanical work:
+
+```text
+Google Drive
+     ↓
+AI discovery
+     ↓
+Candidate ingestion queue
+     ↓
+Human approval
+     ↓
+AI ingestion
+     ├── creates or updates QMD
+     ├── preserves link to source Google Doc
+     ├── writes concise summary
+     ├── identifies important concepts
+     ├── identifies related existing material
+     └── updates appropriate indexes
+     ↓
+Git diff / review
+     ↓
+TrinityMetrics
+```
+
+The Google Doc can remain the canonical working document. TrinityMetrics does not need to duplicate its full contents.
+
+Instead, the TrinityMetrics page should contain enough information to make the source **discoverable and useful**: what it is, why it matters, the main ideas, and how it connects to other material.
+
+## AI as Librarian
+
+As the corpus grows, AI can also periodically review TrinityMetrics itself.
+
+Useful tasks include:
+
+- finding related notes that are not linked;
+- identifying recurring ideas across books, papers, projects, and personal writing;
+- suggesting new concept pages when an idea appears repeatedly;
+- identifying duplicate or overlapping notes;
+- maintaining consistent metadata;
+- finding older material relevant to a current project;
+- identifying tensions or contradictions among ideas;
+- suggesting material that may deserve further development into a project.
+
+The goal is not to create a perfect taxonomy manually.
+
+The human contribution is primarily **judgment**: what is worth retaining, what is worth pursuing, and whether an AI-proposed connection is meaningful.
+
+AI handles much of the librarianship.
+
+## The Larger Goal
+
+The purpose of the system is not to maintain an elaborate "second brain." It is to make accumulated thinking **retrievable and reusable**.
+
+Ideally, it eventually supports questions such as:
+
+> What have I encountered before that is relevant to this problem?
+
+> What did I think was important about this book?
+
+> Across everything I've written about meaning, what themes keep recurring?
+
+> Which ideas from unrelated areas of my life appear to be connected?
+
+> What have I written that I have mostly forgotten?
+
+> Are there several notes here that together suggest a new project?
+
+The value of the system is therefore not the number of notes, links, tags, or graph nodes it contains. The value is whether things learned or thought in the past can become useful again in the present.

@@ -18,3 +18,7 @@ still has to be scoped. This folder holds the reminder and the open questions.
 - [Working specification](specification.qmd). What a second brain is, the
   sources to feed into it, the candidate tools, and the questions that decide
   the scope.
+
+- [Google Doc integration brainstorming](<2026-09-30- Brainstorming - Google Doc Integration.qmd>).
+  A proposed workflow for reviewing Google Drive documents, approving ingestion,
+  and retaining useful knowledge in TrinityMetrics.
