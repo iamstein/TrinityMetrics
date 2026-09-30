@@ -1,0 +1,237 @@
+---
+title: "References for B cell reset"
+subtitle: "Reading order, evidence checks and access limitations"
+description: "A claim-specific source register for B cell reconstitution and durable response in autoimmune disease."
+categories: [immunology, B cells, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+The [evidence review](evidence-review.qmd) contains the synthesis; the
+[specification](specification.qmd) contains the proposed study. Source checks
+were performed on 2026-09-30. This is a targeted literature review, not a
+systematic search or meta-analysis. No patient-level data were analysed.
+
+## Status Markers
+
+- ✅ **Checked.** The stated claim was checked in the relevant source text.
+  The note identifies the section and access level; it does not mean every
+  result or supplement was verified.
+- ⚠️ **Partial.** Abstract, indexed publisher text or selected passages were
+  available, but the full methods/results needed for a stronger claim were
+  not checked. Use only the limited claim recorded here.
+- ❌ **Not checked.** A reading lead only, not evidence supporting the review.
+
+Some publisher pages blocked direct retrieval while their indexed abstracts
+or article passages remained readable. Such checks are labelled partial.
+Values transcribed from a report have not been recalculated from raw data.
+
+## Reading Queue
+
+### Recommended Overview
+
+1. **Junt et al. 2025 — Defining immune reset: achieving sustained remission
+   in autoimmune diseases.** ⚠️
+   [Nature Reviews Immunology](https://doi.org/10.1038/s41577-025-01141-w).
+   **Question:** Which clinical, cellular and molecular meanings should be
+   separated? The publisher abstract confirms this framework. Full-text
+   reading remains outstanding; no detailed framework or threshold is
+   attributed to the unread sections.
+
+### Primary Studies to Read Next
+
+2. **CASTLE, Müller et al. 2026.** ✅ Read the B cell reconstitution results
+   and Extended Data Figure 4 legend to distinguish the paired analysis from
+   everyone contributing a sample. Source 7 below.
+3. **Md Yusof et al. 2017.** ⚠️ Read the plasmablast relapse analysis and its
+   supplementary validation figure. The reported threshold and accuracy
+   values were checked in indexed article text; the supplement and raw data
+   were not checked. Source 5.
+4. **Jenks et al. 2018.** ⚠️ Read the subset definitions and functional
+   experiments to understand why CD27-negative cells need subdivision.
+   Methods/discussion passages were available through the article index.
+   Source 10.
+5. **Li et al. 2026.** ⚠️ Obtain the full report to determine the timing and
+   number of relapse samples and whether the molecular findings precede
+   relapse. Abstract-level findings alone cannot establish prediction.
+   Source 8.
+
+## Sources
+
+### 1. Junt et al. 2025 — Definitions ⚠️
+
+*Defining immune reset: achieving sustained remission in autoimmune diseases.*
+Nature Reviews Immunology 25:528–541.
+[DOI](https://doi.org/10.1038/s41577-025-01141-w).
+
+**Used for:** The distinction among clinical, cellular and molecular reset
+concepts. **Checked in:** Publisher abstract. **Limit:** Perspective; not a
+validation dataset. Detailed full-text recommendations remain unread.
+
+### 2. Anolik et al. 2007 — Delayed Memory Recovery ⚠️
+
+*Delayed memory B cell recovery in peripheral blood and lymphoid tissue in
+systemic lupus erythematosus after B cell depletion therapy.*
+[PubMed abstract](https://pubmed.ncbi.nlm.nih.gov/17763423/);
+[DOI](https://doi.org/10.1002/art.22810).
+
+**Used for:** Prolonged memory-cell delay accompanying sustained response in
+a subset. **Checked in:** Abstract Methods and Results, including cohort size
+and mean follow-up. **Limit:** Individual trajectories and detailed gates
+were not extracted; no validated decision rule is claimed.
+
+### 3. Vital et al. 2011 — Return Before Relapse ⚠️
+
+*B cell biomarkers of rituximab responses in systemic lupus erythematosus.*
+Arthritis & Rheumatism 63:3038–3047.
+[Publisher abstract](https://doi.org/10.1002/art.30466).
+
+**Used for:** Faster memory/plasmablast return among earlier relapsers.
+**Checked in:** Indexed publisher abstract Methods and Results. **Limit:**
+No independent reanalysis of the longitudinal association; concurrent
+steroids and observational treatment must remain part of interpretation.
+
+### 4. Lazarus et al. 2012 — Heterogeneity at Relapse ⚠️
+
+*B-cell numbers and phenotype at clinical relapse following rituximab therapy
+differ in SLE patients according to anti-dsDNA antibody levels.* Rheumatology
+51:1208–1215.
+[Article](https://pmc.ncbi.nlm.nih.gov/articles/PMC3380246/);
+[DOI](https://doi.org/10.1093/rheumatology/ker526).
+
+**Used for:** Variation in relapse timing and phenotype with anti-DNA status.
+**Checked in:** Indexed abstract and Discussion. **Limit:** Phenotyping
+subgroup; full subgroup extraction and original figures remain unchecked.
+The review does not turn observations at relapse into validated prediction.
+
+### 5. Md Yusof et al. 2017 — Plasmablast Prediction ⚠️
+
+*Predicting and managing primary and secondary non-response to rituximab using
+B-cell biomarkers in systemic lupus erythematosus.* Annals of the Rheumatic
+Diseases 76:1829–1836.
+[Article](https://pmc.ncbi.nlm.nih.gov/articles/PMC5705851/);
+[Publisher PDF](https://ard.bmj.com/content/annrheumdis/76/11/1829.full.pdf).
+
+**Used for:** The month-6 plasmablast rule in the review. **Checked in:**
+Indexed Results, “Plasmablast repopulation as a biomarker of relapse,” including
+validation denominator, timing, threshold, confidence intervals and area under
+the curve. **Limit:** Supplementary Figure S1 not inspected. The biomarker
+subset is smaller than the overall clinical cohort; cross-centre or
+cross-therapy validation is not established here.
+
+### 6. Mackensen 2022 and Müller 2024 — Early CAR-T Reports ⚠️
+
+Mackensen et al. *Anti-CD19 CAR T cell therapy for refractory systemic lupus
+erythematosus.* Nature Medicine 28:2124–2132.
+[Article](https://doi.org/10.1038/s41591-022-02017-5).
+
+**Used for:** Remission continuing after return of naïve, non-class-switched
+B cells. **Checked in:** Publisher abstract. **Limit:** Small compassionate-use
+series; full methods and correction not checked for detailed phenotyping.
+
+Müller et al. *CD19 CAR T-Cell Therapy in Autoimmune Disease — A Case Series
+with Follow-up.* New England Journal of Medicine 390:687–700.
+[Article](https://doi.org/10.1056/NEJMoa2308917).
+
+**Used for:** Cohort composition and the longitudinal SLE phenotyping subset.
+**Checked in:** Indexed publisher recruitment text and B cell phenotype figure
+legend. **Limit:** No clinical outcome rates extracted here from the blocked
+full report. Patient overlap with earlier publications has not been mapped;
+these reports are not summed as independent cohorts.
+
+### 7. Müller et al. 2026 — CASTLE ✅
+
+*CD19 CAR-T cells for treatment-refractory autoimmune diseases: the phase 1/2
+CASTLE basket trial.* Nature Medicine 32:1142–1151.
+[Article](https://doi.org/10.1038/s41591-025-04185-6).
+
+**Used for:** Reconstitution pattern and its coexistence with clinical benefit.
+**Checked in:** Abstract, B cell results, long-term efficacy paragraph and
+Extended Data Figure 4 legend in publisher HTML. **Limit:** Individual-level
+prognostic analysis was not performed here. Different disease endpoints and
+phenotyping denominators are retained in the review.
+
+### 8. Li et al. 2026 — Autoimmune Hemolytic Anemia ⚠️
+
+*CD19 CAR T-Cell Therapy for Autoimmune Hemolytic Anemia.* New England Journal
+of Medicine 394:253–267.
+[Article](https://doi.org/10.1056/NEJMoa2509820).
+
+**Used for:** Clinical cohort description and the reported remission/relapse
+molecular observations. **Checked in:** Complete indexed publisher abstract.
+**Limit:** Full report blocked. Relapse count, tissue sampling, temporal
+ordering and causal interpretation of cell interactions were not verified.
+The phrase “relapse-associated niche” describes the reported mechanistic
+finding, not a validated predictive signature.
+
+### 9. Fedak et al. 2026 — BCMA-Directed Therapy in Myasthenia ⚠️
+
+*BCMA-directed mRNA CAR-T cell therapy for myasthenia gravis: exploratory
+biomarker analysis of a placebo-controlled phase 2b trial.*
+[Article](https://doi.org/10.1038/s41591-025-04170-z);
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/41514039/).
+
+**Used for:** Treatment-associated immune changes extending beyond bulk B cell
+reconstitution. **Checked in:** Abstract and indexed Discussion. **Limit:**
+Exploratory biomarker analyses; assay-specific denominators and multiplicity
+were not extracted. Randomization supports treatment comparison, not automatic
+validation of each proposed biomarker.
+
+### 10. Jenks et al. 2018 — Double-Negative Subsets ⚠️
+
+*Distinct Effector B Cells Induced by Unregulated Toll-like Receptor 7
+Contribute to Pathogenic Responses in Systemic Lupus Erythematosus.* Immunity.
+[Article](https://pmc.ncbi.nlm.nih.gov/articles/PMC6217820/).
+
+**Used for:** IgD/CD27 classification and refinement of DN2 cells.
+**Checked in:** Indexed Methods, Discussion and figure descriptions.
+**Limit:** Mechanistic disease study, not post-depletion prediction. The
+harmonized panel proposed here has not been validated as a complete assay.
+
+### 11. COMPARE 2026 — Rheumatoid Arthritis ⚠️
+
+*CD19 CAR T cell therapy for treatment-refractory seropositive rheumatoid
+arthritis: a phase 1 trial.* Nature Medicine; published 27 August 2026.
+[Article](https://doi.org/10.1038/s41591-026-04603-3).
+
+**Used for:** Distinguishing clinical improvement, remission and humoral
+change. **Checked in:** Publisher abstract, including cohort size, follow-up
+and clinical response endpoints. **Limit:** Full text requires subscription;
+no detailed returning-subset or relapse predictor is inferred.
+
+### 12. Wang et al. 2019 — Transitional Cells and Autoreactivity ⚠️
+
+*High TLR7 Expression Drives the Expansion of CD19+CD24hiCD38hi Transitional
+B Cells and Autoantibody Production in SLE Patients.* Frontiers in Immunology
+10:1243.
+[Article](https://doi.org/10.3389/fimmu.2019.01243).
+
+**Used for:** Transitional phenotype does not guarantee tolerance.
+**Checked in:** Indexed primary abstract and Discussion. **Limit:** Mechanistic
+SLE study rather than a reconstitution cohort; no relapse prediction claimed.
+
+## Search Scope and Remaining Checks
+
+Searches combined “B cell reset,” “immune reset,” “reconstitution,” “naïve,”
+“memory,” “plasmablast,” “relapse,” “rituximab” and “CAR T” with autoimmune
+disease terms. Primary publisher and PubMed/PMC records were prioritized;
+2026 CASTLE, hemolytic anemia, myasthenia and rheumatoid arthritis reports were
+included. This selection supports the two project questions but does not
+establish exhaustive coverage of every disease or intervention.
+
+The remaining checks are specific:
+
+- Obtain full text and supplements for the partial entries before reusing
+  their assay gates or effect estimates in a clinical protocol.
+- Map patient overlap among related CAR-T reports before any quantitative
+  evidence synthesis.
+- Extract event-level timing and nonresponder data for a formal assessment of
+  prediction, particularly from the newer molecular studies.
+- Extend the comparison to prospective T-cell-engager reconstitution cohorts
+  and other diseases as suitable longitudinal primary evidence is identified.
+
+The [proposed study](specification.qmd#proposed-analysis) addresses the missing
+prediction evidence. Completing the source checks would improve precision of
+the review, but would not substitute for validating a biomarker in new patients.

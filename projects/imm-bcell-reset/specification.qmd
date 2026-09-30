@@ -1,0 +1,195 @@
+---
+title: "B cell reset in autoimmune diseases"
+subtitle: "Working specification"
+description: "Questions, evidence standards and an analysis plan for measuring B cell reconstitution and testing its association with durable response."
+categories: [immunology, B cells, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+## 1. Questions
+
+1. **How is B cell reset characterized in autoimmune diseases?** Focus on
+   B cell immunophenotypes, with molecular, serological and functional
+   measurements where they add information.
+2. **Does B cell reset predict long-term response?** Establish whether a
+   measurement made during reconstitution predicts subsequent remission,
+   beyond what is already known from clinical response and treatment exposure.
+
+The [evidence review](evidence-review.qmd) answers these questions from the
+available studies. The [references](references.qmd) record the source checks
+and access limitations. The present evidence supports candidate biomarkers;
+a universal predictive definition remains unestablished.
+
+**Out of scope.** Disease dependence on B cells or plasma cells belongs to
+[imm-bcell-plasma-cause](../imm-bcell-plasma-cause/index.qmd), blood–tissue
+agreement to [imm-biopsy](../imm-biopsy/index.qmd), and depletion kinetics to
+[imm-bcell-indresp-est](../imm-bcell-indresp-est/index.qmd). This project is a
+research synthesis and study proposal; it does not specify patient treatment.
+
+| Document | Reader | Kind | Length |
+|---|---|---|---|
+| Index | Finding the documents | How-to | Short |
+| Specification | Planning a biomarker study | Reference | Enough to define measurements and analysis |
+| Evidence review | Interpreting reset claims | Reference | Definitions, evidence and limitations |
+| References | Checking a claim or choosing a paper | Reference | Source-specific notes |
+
+## 2. Operational Definitions
+
+Use separate variables for four observations. Combining them into a single
+label would obscure which part was actually measured.
+
+| Observation | Operational record |
+|---|---|
+| Depletion | Absolute B cell count, assay detection limit, nadir and duration below that limit |
+| Reconstitution | First confirmed return above a prespecified assay threshold, followed by the absolute-count trajectory |
+| Biological change | Returning subsets, antigen specificity or repertoire differ from baseline at a named time after treatment and after return |
+| Durable clinical response | Disease-specific response or remission maintained for a stated duration, with all concomitant and rescue therapy recorded |
+
+For this project, **phenotypic reset** means a sustained change in the
+composition of reconstituted B cells toward an explicitly defined reference
+pattern. This is a proposed descriptive definition, not a validated endpoint.
+The review describes the frequently reported transitional/naïve predominance
+and reduced memory/plasmablast compartments. A **functional tolerance** claim
+additionally requires evidence about self-reactivity; surface markers alone
+cannot establish it.
+
+A biomarker used to predict remission must be defined without including
+future remission in its definition. Otherwise the predictor contains the
+outcome it is supposed to predict.
+
+## 3. Evidence Standards
+
+Include human longitudinal studies with B cell or related biomarker
+measurements and clinical follow-up. Use mechanistic studies to interpret
+markers, and reviews to locate definitions and primary studies. Keep
+chimeric antigen receptor (CAR) T cells, anti-CD20 antibodies, B cell
+maturation antigen (BCMA) targeting and other interventions identifiable.
+Conditioning chemotherapy and continued maintenance therapy are exposures
+that can affect both reconstitution and outcome.
+
+For each study extract disease, treatment, conditioning, cohort size,
+phenotyping denominator, measurement times, subset gates, absolute counts,
+clinical endpoint, follow-up, relapse count when available, and whether the
+biomarker preceded relapse. Record absent information as unreported or
+not checked. Do not infer it from a figure caption.
+
+Distinguish:
+
+- Coexistence: a phenotype and remission occur in the same patients.
+- Prognostic association: an earlier measurement distinguishes later outcomes.
+- Validated prediction: performance is evaluated in a separate cohort with a
+  fixed assay and rule.
+- Causal mediation: an analysis supports the biological change as a mechanism
+  of benefit. Association alone does not settle this.
+
+Check for overlapping patients before combining publications. Small series
+and follow-up reports must not become independent replications by being
+counted twice. Do not pool remission percentages across incompatible disease
+endpoints.
+
+## 4. Proposed Sampling and Assays
+
+The schedule below is a design proposal, to be adapted to the intervention.
+It is not a schedule validated by the literature review.
+
+| Time | Measurements | Purpose |
+|---|---|---|
+| Before treatment and, for CAR-T, before conditioning | Absolute counts; full subset panel; serum; stored cells; disease activity; prior therapy | Separate pretreatment disease biology from conditioning effects |
+| Weeks 2 and 4, then monthly through month 6 | Sensitive absolute counts; drug/CAR exposure if available; clinical activity and safety | Establish depletion and detect return |
+| First quantifiable return, confirmed at the next visit | Full subset panel; serum; stored cells for repertoire/functional work | Characterize the first returning population |
+| Months 3, 6, 9, 12, 18 and 24 | Subsets when sufficient cells exist; disease-specific serology; clinical activity; medication use | Measure persistence and subsequent outcome |
+| Suspected flare, before rescue when feasible | Same panel and disease assessment | Distinguish changes preceding flare from effects of rescue |
+| Annually thereafter | Clinical outcome, medications and targeted immune measurements | Assess durability beyond two years |
+
+Record both time since treatment and time since B cell return. At each visit,
+report cells/µL, the fraction of B cells in each subset, the number of acquired
+B cell events, sample handling and assay limits. A percentage based on too few
+cells is unavailable, not zero. Use a prespecified event-count requirement
+qualified by the assay laboratory.
+
+A core panel should resolve transitional, mature naïve, unswitched memory,
+switched memory, double-negative cells and plasmablasts. The
+[review's measurement table](evidence-review.qmd#immunophenotypes) gives
+candidate gates and their interpretation. Add disease-relevant activated
+subsets and repertoire assays where samples permit. Retain serum for
+immunoglobulins and disease-specific autoantibodies. Track immunoglobulin
+replacement, vaccination and infection dates when interpreting antibody levels.
+
+## 5. Proposed Analysis
+
+### Prediction at a Fixed Landmark
+
+Use month 6 as a candidate landmark, chosen before inspecting outcomes.
+Among patients alive and in the required clinical response state at month 6,
+test whether the month-6 phenotype predicts subsequent loss of response
+through month 24. Report initial nonresponders and earlier failures separately;
+this estimand describes durability among landmark responders.
+
+Within that population, distinguish patients with sufficient B cell return
+for phenotyping from patients still depleted and patients with missing
+samples. Analyse a phenotypic predictor within the evaluable group and report
+that selection explicitly. Persistent depletion can be a separate predictor
+in the broader population; it cannot be assigned a favourable reset score.
+
+Start with prespecified continuous candidates: absolute switched-memory count,
+absolute plasmablast count and mature-naïve fraction. Do not optimise a
+binary cut-off against the same small dataset used to report performance.
+Compare a clinical model containing disease activity and treatment history
+with a model adding the biomarker. Adjust for disease, prior depletion,
+conditioning and ongoing therapy only as the sample and event count permit.
+Sparse relapse data support descriptive estimates, not a large multivariable
+model.
+
+For an adequately sized dataset, report discrimination, calibration and
+uncertainty, with validation in independent patients. A marker that separates
+risk groups but gives inaccurate absolute risks needs recalibration before
+use in decisions. Estimate sample size from the expected number of relapses
+and desired precision, rather than the number of flow-cytometry variables
+available.
+
+### Time Since Reconstitution
+
+As a secondary analysis, align trajectories on first confirmed return and
+examine subsequent relapse. Starting follow-up at infusion while classifying
+patients by a later return would give the returning group guaranteed survival
+time. A landmark analysis or appropriately specified time-dependent model
+avoids that error. An analysis restricted to returners answers a conditional
+question and must retain that qualification.
+
+### Clinical Endpoints and Intercurrent Events
+
+Define the disease-specific endpoint and medication rule before pooling data.
+For lupus, report the chosen remission definition and steroid/maintenance
+requirements separately. For sclerosis, distinguish prevention of progression
+from remission. For myositis, distinguish response from recovery of fixed
+muscle damage.
+
+A candidate durability endpoint is time to adjudicated disease flare or
+protocol-defined disease-directed rescue. Report each component. Treat death
+as a competing event for relapse and also report a sensitivity endpoint that
+counts death as failure. Account for informative loss to follow-up and
+retreatment; silently censoring patients at rescue could overstate durability.
+
+## 6. Deliverables and Remaining Scientific Questions
+
+The document set now contains definitions, a measurement table, populated
+clinical evidence tables and a source register. No patient-level analysis has
+been performed and no cut-off has been validated here.
+
+The unresolved scientific questions are:
+
+- Does phenotype improve prediction beyond early clinical and serological
+  response, within a disease and treatment class?
+- Does disappearance of known autoreactive clones add more information than
+  total memory or plasmablast counts?
+- How long must a changed phenotype persist to distinguish ordinary early
+  reconstitution from a durable change?
+- Which blood measurements fail because pathogenic cells persist in tissue?
+- Can protective responses recover while disease-specific autoreactivity stays
+  suppressed?
+
+These questions require prospective samples and clinical outcomes. They
+cannot be completed by extending the narrative alone.

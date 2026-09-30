@@ -1,0 +1,209 @@
+---
+title: "Measuring B cell reset and its relation to durable response"
+subtitle: "Immunophenotypes, complementary biomarkers and clinical evidence"
+description: "What B cell reconstitution measurements establish, and what evidence connects them to later autoimmune disease relapse."
+categories: [immunology, B cells, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+**A returning population dominated by naïve B cells is evidence of altered
+reconstitution. Its ability to predict lasting remission remains incompletely
+established.** The most directly predictive evidence in this review comes
+from longitudinal rituximab studies in systemic lupus erythematosus (SLE).
+CAR-T studies provide evidence that clinical benefit can persist after B cells
+return, with increasing molecular detail, but limited validation of prospective
+relapse predictors. Sources and access limits are in the
+[reference register](references.qmd).
+
+**Out of scope.** Treatment selection, dose selection and comparative safety
+recommendations. The [specification](specification.qmd) proposes measurements
+and analyses for research.
+
+## 1. Definitions and Interpretation
+
+An immunophenotype describes cells using measurable markers, usually proteins
+on the cell surface detected by flow cytometry. A gate is the rule used to
+assign measured cells to a subset. CD denotes *cluster of differentiation*;
+plus and minus signs indicate marker expression, while `hi` and `lo` indicate
+relatively high and low expression under the laboratory's gating procedure.
+
+A B cell receptor (BCR) is the cell's antigen-binding immunoglobulin. Naïve
+cells have not yet undergone the usual antigen-driven maturation into memory
+or antibody-secreting populations. Class switching changes the immunoglobulin
+class, such as from IgM to IgG. Somatic hypermutation changes the sequence of
+the antigen-binding region during maturation. Neither class switching nor
+mutation burden identifies the antigen recognized by a cell.
+
+The term reset can refer to a changed cell composition, a changed antigen
+repertoire, or durable control of disease. The
+[Junt perspective](https://doi.org/10.1038/s41577-025-01141-w) explicitly
+addresses clinical, cellular and molecular definitions. Those levels should
+be reported separately. In particular, calling the returning cells naïve does
+not demonstrate that they cannot recognize self-antigens.
+
+### A Measurement Hierarchy
+
+| Measurement | Supported conclusion | Additional evidence needed |
+|---|---|---|
+| Blood B cells below detection | Blood depletion at this assay's sensitivity | Tissue depletion and identity of surviving cells |
+| Return with altered subset composition | Phenotypic reconstitution | Persistence and antigen specificity |
+| Changed BCR sequences or reduced baseline-clone overlap | Repertoire change within the sampled population | Whether lost or new clones recognize disease antigens |
+| Reduced self-reactivity in a functional assay | Altered function under that assay | Persistence in vivo and prospective clinical association |
+| Remission after return without maintenance therapy | Observed clinical durability | A comparison establishing prediction or mechanism |
+
+A normal total count can conceal an abnormal subset distribution. Conversely,
+a high naïve fraction can arise because memory cells remain scarce while the
+absolute naïve count is still low. Both counts and fractions are needed.
+
+## 2. Immunophenotypes {#immunophenotypes}
+
+The table is a proposed harmonized measurement panel. Gates must be qualified
+locally and reconciled with each paper's definitions before comparing results.
+Begin with viable singlet leukocytes, exclude unwanted lineages and identify
+B-lineage cells using markers that remain interpretable after the treatment.
+Do not require CD20 expression to identify every antibody-secreting cell.
+Therapeutic binding or altered target expression can also complicate CD19 or
+CD20 detection; record antibody clones and the detection strategy.
+
+| Population | Candidate gate or assay | Interpretation during return |
+|---|---|---|
+| Total B cells | CD19-based enumeration with an independently qualified alternative when needed | Establishes abundance and the denominator for subset fractions |
+| Transitional B cells | CD19+ CD24hi CD38hi, usually IgD+ CD27−; distinguish from plasmablasts | Immature returning cells; abundance alone does not establish regulatory function |
+| Mature naïve B cells | IgD+ CD27− after separating transitional cells | Broad measure of reconstitution; add activation markers if disease biology requires |
+| Unswitched memory | IgD+ CD27+, with IgM when available | Memory retained without the usual switched-isotype phenotype |
+| Switched memory | IgD− CD27+, excluding plasmablasts | Recovery of an antigen-experienced compartment; surface IgG/IgA can refine classification |
+| Double-negative cells | IgD− CD27− | A heterogeneous compartment requiring further subdivision |
+| DN2-like cells | Within double-negative cells: CXCR5− CD11c+, often CD21lo/−; T-bet can be measured intracellularly | An activated, disease-associated candidate subset in lupus |
+| Plasmablasts | CD27hi CD38hi, often CD20− with variable CD19 | Circulating antibody-secreting cells; record absolute counts at adequate assay sensitivity |
+| Tissue plasma cells | Tissue-based panel including CD38, CD138 and BCMA, with CD19 status | A separate compartment; absence of blood plasmablasts does not establish its removal |
+
+The IgD/CD27 framework and refinement of double-negative cells are supported
+by [Jenks et al.](https://pmc.ncbi.nlm.nih.gov/articles/PMC6217820/), who linked
+DN2 cells to an extrafollicular pathway toward antibody-secreting cells in SLE.
+This also explains why CD27 negativity alone is insufficient to label a
+population naïve. CXCR5 is a chemokine receptor associated with follicular
+homing; T-bet is a transcription factor. Their interpretation depends on the
+full gate. DN2, age-associated B cells and all CD11c+ cells should not be
+collapsed into one interchangeable category.
+
+Published CAR-T panels sometimes use a broader naïve gate, CD20+ CD27−, and
+an immature gate different from CD24hi CD38hi. Preserve those original labels
+when extracting results. The proposed panel above deliberately provides more
+resolution; it cannot retroactively resolve populations in older data.
+
+[Wang et al.](https://doi.org/10.3389/fimmu.2019.01243) found that transitional
+cells from a subset of patients with lupus produced autoantibodies following
+Toll-like receptor 7 stimulation. Immaturity therefore cannot be taken as
+evidence of self-tolerance.
+
+Regulatory B cells require a functional qualification. A transitional gate
+can identify a population for testing, but a claim of restored immune
+regulation should specify an assay, such as cytokine production under defined
+stimulation or suppression of another cell response. This is an assay proposal,
+not an established predictor from the clinical cohorts below.
+
+## 3. Complementary Biomarkers
+
+| Measurement | Question it can answer | Interpretation constraint |
+|---|---|---|
+| Disease-specific autoantibodies | Does a disease-associated humoral response decline or recur? | Dependence on antibody specificity and disease; seronegativity is not a universal remission criterion |
+| Complement C3/C4, urine and organ measures in lupus | Does immune activity and organ involvement improve? | Clinical response measures can overlap with the outcome being predicted |
+| Total IgG/IgA/IgM and protective antibody titres | Is humoral immune capacity preserved or recovering? | Record immunoglobulin replacement; retained antibodies do not prove ability to make new responses |
+| BCR sequencing | Do pretreatment clones persist, and how do diversity, mutation and isotype change? | Match cell numbers and sequencing depth; an undetected clone may be unsampled |
+| Antigen-specific B cell assays or recombinant antibodies from single cells | Are returning cells autoreactive to the relevant antigens? | Greater mechanistic specificity, but assay availability and antigen selection limit coverage |
+| B cell activating factor (BAFF), interferon-related transcripts and T cell phenotypes | Does the environment that supports B cell activation change? | Exploratory context; specify assay and avoid calling an association causal |
+| Drug concentration, CAR abundance and tissue measurements | Could continuing treatment activity or residual tissue disease explain the result? | Blood measurements may not reflect all relevant compartments |
+
+The BCMA-targeted myasthenia study discussed below supports studying a wider
+immune response than the circulating B cell count. In contrast, a full
+multi-omics panel in every patient is not necessary to test a prespecified
+flow-cytometry predictor. Bank samples for later mechanistic work and keep the
+primary analysis small.
+
+## 4. Evidence After Anti-CD20 Depletion
+
+The rows summarize published observations; they are not pooled estimates.
+Reported numbers are literature extractions, not calculations from patient data.
+
+| Study and population | Measurement and timing | Clinical association | Interpretation |
+|---|---|---|---|
+| [Anolik 2007](https://pubmed.ncbi.nlm.nih.gov/17763423/), 15 rituximab-treated patients with SLE; mean follow-up 41 months | Blood and tonsil phenotyping; delayed CD27+ memory recovery | A subset with prolonged responses and autoantibody normalization had delayed memory recovery for years | Longitudinal association; no prospectively validated reset cut-off. Abstract-level extraction |
+| [Vital 2011](https://doi.org/10.1002/art.30466), 39 patients with SLE | Highly sensitive flow cytometry; memory and plasmablast return after week 26 | Faster return in patients with earlier relapse; incomplete depletion also associated with nonresponse | Supports separate depletion and reconstitution questions. Observational; abstract-level extraction |
+| [Lazarus 2012](https://pmc.ncbi.nlm.nih.gov/articles/PMC3380246/), 61 patients with refractory SLE; phenotyping in a subgroup | B cell counts, IgD/CD27 subsets and anti-double-stranded DNA antibodies | Relapse was delayed beyond return; the count and phenotype at relapse differed with anti-DNA levels | A single total-count threshold loses disease heterogeneity. Phenotype at relapse is not automatically a pre-relapse predictor |
+| [Md Yusof 2017](https://pmc.ncbi.nlm.nih.gov/articles/PMC5705851/), prospective rituximab cohort; relapse validation subset of 25 | Plasmablast count at month 6, before subsequent relapse | >0.0008 × 10⁹/L predicted relapse by 12 months with 73% sensitivity, 90% specificity and area under the curve 0.86 | Most explicit predictive rule here; small validation subset within the same research programme; not validated for CAR-T or other diseases |
+
+The last threshold equals **0.8 cells/µL**. Sensitivity describes the fraction
+of earlier relapses identified; specificity describes the fraction of later
+relapsers correctly classified. The reported confidence intervals were wide
+(45–92% and 56–99%, respectively). These results justify testing plasmablast
+counts prospectively, while leaving transportability and clinical utility open.
+The article's *Plasmablast repopulation as a biomarker of relapse* section is
+the source of these values.
+
+## 5. Evidence After CAR-T Therapy
+
+CAR-T denotes T cells engineered to express a chimeric antigen receptor.
+CD19-directed and BCMA-directed interventions target different B-lineage
+compartments and need separate interpretation.
+
+| Study and population | Reconstitution or biomarker observation | Clinical follow-up | Interpretation |
+|---|---|---|---|
+| [Mackensen 2022](https://doi.org/10.1038/s41591-022-02017-5), five refractory SLE patients | Returning cells were naïve with non-class-switched receptors; mean return at 110 days | Drug-free remission continued after return; median follow-up 8 months | Demonstrates remission after reconstitution; no relapsing comparison group |
+| [Müller 2024](https://doi.org/10.1056/NEJMoa2308917), 15 patients: SLE, myositis and systemic sclerosis | Longitudinal subset analysis, including early and established reconstitution in six SLE patients | Expanded follow-up series | Supports characterization across time; the detailed phenotyping subset must not be treated as all 15 patients. Check overlap with the earlier SLE report before combining |
+| [CASTLE, Müller 2026](https://doi.org/10.1038/s41591-025-04185-6), 24 patients across those three diseases | Paired analysis in 13 evaluable patients showed >90% naïve cells with very little memory/plasmablast representation | 22/24 met disease-specific efficacy endpoints; no relapse reported over median 13-month follow-up | Phenotypic and clinical observations coexist. With no relapse events, a relapse classifier cannot be validated |
+| [Li 2026](https://doi.org/10.1056/NEJMoa2509820), 11 patients with multirefractory autoimmune hemolytic anemia | Naïve predominance in remission; sequential molecular analyses implicated a relapse-associated B/T/plasma-cell niche | All initially achieved complete response; median follow-up 12.2 months | Adds relapse biology. Abstract does not establish a prospective classifier or provide enough detail here to extract relapse counts |
+| [Fedak 2026](https://doi.org/10.1038/s41591-025-04170-z), exploratory analyses from a randomized BCMA-directed RNA CAR-T trial in myasthenia gravis | Plasma-cell, autoantibody-repertoire and other immune changes; only subtle broad B cell changes | Placebo comparison and responder analyses | Broader evidence for treatment-associated immune change; no universal naïve-cell reset rule follows |
+| [COMPARE 2026](https://doi.org/10.1038/s41591-026-04603-3), six patients with refractory seropositive rheumatoid arthritis | Blood/tissue depletion and declines in autoantibodies | Follow-up 36–52 weeks; three patients reached DAS28-CRP remission and ACR70 response | Improvement and autoantibody change do not imply remission in every patient; no predictive reset threshold established by the abstract |
+
+CASTLE also illustrates denominator discipline: its extended-data phenotype
+figure includes patients with only one available time point, whereas the
+paired reconstitution statement concerns a smaller subset. Drug withdrawal,
+clinical response and remission are distinct outcomes. Its sclerosis endpoint
+was absence of progression, which should not be relabelled remission.
+
+In COMPARE, DAS28-CRP is a rheumatoid arthritis disease-activity score using
+28 joints and C-reactive protein; ACR70 indicates at least 70% improvement
+under the American College of Rheumatology response criteria. These are
+clinical measures, not measures of B cell tolerance.
+
+## 6. What Can Be Concluded About Long-Term Response?
+
+**There is evidence of association, with narrower evidence of prediction.**
+The rituximab data motivate measuring returning memory cells and plasmablasts.
+The CAR-T data motivate testing whether a changed returning population permits
+clinical control after depletion ends. Neither observation supplies a
+validated cross-disease surrogate endpoint.
+
+A surrogate endpoint would need to reliably capture treatment effects on
+clinical outcomes across appropriate studies. A patient-level correlation
+between a subset and relapse is insufficient. Likewise, treatment-induced
+change relative to placebo does not by itself show that the change mediates
+benefit.
+
+Long-term must name a duration. Months of follow-up after treatment may
+contain much less follow-up after reconstitution. Report both clocks, the
+number still observed at each visit, and ongoing treatment. Persistent
+therapeutic activity, conditioning, prior drugs, tissue persistence and fixed
+organ damage can all complicate interpretation.
+
+The available results favour a trajectory-based description: what returned,
+when it returned, whether the pattern persisted, and what happened afterward.
+A single high naïve percentage should remain a measured feature until a
+prespecified rule demonstrates predictive performance.
+
+## 7. Reading Order
+
+1. [Junt 2025](https://doi.org/10.1038/s41577-025-01141-w) for the conceptual
+   definitions; full-text access remains outstanding in this review.
+2. [CASTLE 2026](https://doi.org/10.1038/s41591-025-04185-6), especially the
+   B cell results and Extended Data Figure 4, for a current phenotype example.
+3. [Md Yusof 2017](https://pmc.ncbi.nlm.nih.gov/articles/PMC5705851/), the
+   plasmablast repopulation section, for an actual prospective-time-order
+   prediction question.
+4. [Jenks 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC6217820/) for the
+   biological reason to subdivide CD27-negative cells.
+5. [Li 2026](https://doi.org/10.1056/NEJMoa2509820) for relapse mechanisms;
+   obtain the full report before extracting a predictive rule.

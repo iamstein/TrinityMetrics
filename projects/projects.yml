@@ -76,6 +76,15 @@
   categories: [Immunology and T-cell engagers, Draft]
   path: imm-bcell-plasma-cause/index.qmd
 
+- title: "B cell reset in autoimmune diseases"
+  subtitle: "Working document"
+  description: >
+    What returns after B cell depletion, how to measure it, and whether
+    immunophenotypes and other biomarkers predict lasting remission.
+    Clinical evidence and a proposed longitudinal study.
+  categories: [Immunology and T-cell engagers, Draft]
+  path: imm-bcell-reset/index.qmd
+
 - title: "imm-biopsy"
   subtitle: "Working document"
   description: >

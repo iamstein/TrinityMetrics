@@ -1,0 +1,23 @@
+---
+title: "B cell reset in autoimmune diseases"
+subtitle: "What returns after depletion, and whether it predicts remission"
+description: "B cell immunophenotypes, complementary biomarkers and evidence connecting immune reconstitution with durable response."
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: false
+---
+
+How is B cell reset characterized, and how does it correlate with long-term
+response? The evidence supports measuring the composition and self-reactivity
+of returning B cells alongside clinical outcomes. A universal reset threshold
+that predicts lasting remission has not been established in the studies
+reviewed here.
+
+## Documents
+
+- [Working specification](specification.qmd). Scope, evidence standards,
+  proposed sampling and an analysis plan for testing prediction.
+- [Evidence review](evidence-review.qmd). Immunophenotype definitions,
+  complementary biomarkers, clinical evidence and interpretation.
+- [References](references.qmd). Recommended reading, claim-specific source
+  checks and remaining access limitations.
