@@ -1,0 +1,14 @@
+---
+title: "Negotiation"
+description: >
+  A pointer to the negotiation notes in Google Docs, which hold the material
+  itself.
+categories: [Concept notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Notes](https://docs.google.com/document/d/1duSerwxodH697GPpTVXEV9qtEsRBZkCOk7sqnr_UVGU/edit)
+in Google Docs, where the material is kept.
+
+A summary of what the document covers still needs writing here.

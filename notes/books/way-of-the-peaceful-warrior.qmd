@@ -1,0 +1,33 @@
+---
+title: "Way of the Peaceful Warrior"
+subtitle: "Dan Millman"
+description: >
+  Notes on Millman's Way of the Peaceful Warrior: training as a way of living
+  rather than a set of beliefs, and the claim that there are no ordinary
+  moments.
+categories: [Book notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1WAiKV6s-SQ8FD3FRSUyh0oEF_iGCCZ_TuJAiMhF_z2I/edit)
+in Google Docs, shared with
+[Shambhala](shambala.qmd).
+
+Dan Millman was a college gymnast, and the book is a semi-autobiographical
+account of his apprenticeship to a gas-station attendant he calls Socrates. The
+teaching arrives as instruction and correction during ordinary tasks rather than
+as doctrine, and the warrior of the title is someone training in how to live
+rather than someone preparing to fight.
+
+## Concepts
+
+- **There are no ordinary moments.** The claim the book turns on. Attention
+  given to the current moment is the practice, and the search for a more
+  significant one later is the obstacle.
+- **Training covers body, mind and emotions together.** Fitness of one without
+  the others leaves the whole unchanged.
+- **Unreasonable happiness.** Satisfaction held independently of circumstances
+  meeting your conditions, which removes the waiting.
+- **A warrior acts; everyone else prepares to.** The test applied throughout is
+  what was actually done, not what was understood.

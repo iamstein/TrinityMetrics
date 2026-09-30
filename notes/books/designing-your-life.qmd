@@ -1,0 +1,34 @@
+---
+title: "Designing Your Life"
+subtitle: "Bill Burnett and Dave Evans"
+description: >
+  Notes on Designing Your Life: treating a career as a design problem, the
+  Odyssey Plans, prototyping a direction before committing to it, and the
+  beliefs that have to be reframed first.
+categories: [Book notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1n2MSVX-SrnDsli4WiNrK0wxSwUfDyLOFy89eRyqg_yM/edit)
+in Google Docs.
+
+Bill Burnett and Dave Evans teach design at Stanford, and the book comes out of
+the course they built there. Their argument is that a career is a design
+problem rather than a puzzle with one correct solution, so the methods that
+work on a product work here: state the problem accurately, generate several
+options, build small cheap versions, and choose from what you learn.
+
+## Concepts
+
+- **Gravity problems.** A circumstance that cannot be acted on is a condition
+  to design around. Naming it stops the effort spent trying to solve it.
+- **Dysfunctional beliefs come before bad plans.** "There is one right job for
+  me" produces a search that cannot end. The reframe comes first.
+- **Three Odyssey Plans, not one.** Write out three different five-year
+  versions of the life, each plausible. Holding three at once stops any one
+  from being defended.
+- **Prototype before committing.** A conversation with somebody doing the work,
+  or a short stretch of doing it, costs days instead of years.
+- **Workview and lifeview.** Write down what work is for and what life is for,
+  then check whether the two agree.

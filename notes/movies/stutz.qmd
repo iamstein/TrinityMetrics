@@ -1,0 +1,37 @@
+---
+title: "Stutz"
+subtitle: "Jonah Hill's documentary on Phil Stutz"
+description: >
+  Notes on the documentary Stutz: tools to be used at the moment the difficulty
+  arrives, and the three conditions Stutz says cannot be avoided.
+categories: [Movie notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Notes](https://docs.google.com/document/d/1FyStTCjyqmHvwjNDyebYiiJh2WNb422O_sY7nMWkOuU/edit)
+in Google Docs.
+
+Phil Stutz is a psychiatrist, and Jonah Hill, who is his patient, made the film
+about him. What separates Stutz from the therapy the film sets him against is
+that he hands over **tools**: short visualizations to be used at the moment the
+difficulty arrives, rather than insights arrived at slowly over years. His
+starting claim is that three conditions cannot be escaped by anybody, so a
+usable method has to work in their presence: pain, uncertainty, and the
+requirement to keep working.
+
+## Concepts
+
+- **Part X.** The inner voice that blocks action and passes judgement. Stutz
+  treats it as permanent rather than curable, so the work is to act against it
+  repeatedly instead of waiting for it to quieten.
+- **The String of Pearls.** Each action is one pearl on a string, and every
+  pearl counts the same. Doing the thing counts for more than doing it well.
+  Each pearl also contains a dot, the imperfection that arrives with any act.
+- **The Shadow.** The part of yourself you are ashamed of. It is addressed by
+  facing it and speaking to it, which removes the effort spent hiding it.
+- **The Maze.** Being held up by comparison with somebody else, waiting for a
+  fairness that is not coming. The exit is an act of your own rather than a
+  settlement.
+- **Radical acceptance.** Look for what can be taken from an adverse event
+  instead of contesting that it happened.

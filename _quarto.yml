@@ -6,6 +6,7 @@ project:
     - "blog/**/*.qmd"
     - "projects/**/*.qmd"
     - "guides/**/*.qmd"
+    - "notes/**/*.qmd"
     - "!drafts/**"
     - "!blog/drafts/**"
     - "!Post_Ideas.md"
@@ -32,6 +33,8 @@ website:
         text: PMX Tools
       - href: guides/index.qmd
         text: Learning Guides
+      - href: notes/index.qmd
+        text: Notes
       - href: talks.qmd
         text: Talks
       - href: projects/index.qmd

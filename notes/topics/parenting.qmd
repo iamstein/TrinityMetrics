@@ -1,0 +1,14 @@
+---
+title: "Parenting"
+description: >
+  A pointer to the parenting notes in Google Docs, which hold the material
+  itself.
+categories: [Topic notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Notes](https://docs.google.com/document/d/1FuPiVN8QrFNEXyOjQ5RDz56Cg_5Ry3QKHcrV09eugq0/edit)
+in Google Docs, where the material is written and kept.
+
+A summary of what the document covers still needs writing here.

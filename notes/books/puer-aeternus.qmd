@@ -1,0 +1,31 @@
+---
+title: "The Problem of the Puer Aeternus"
+subtitle: "Marie-Louise von Franz"
+description: >
+  Notes on von Franz's lectures on the puer aeternus: the adult who keeps life
+  provisional, the fantasies that sustain it, and work as the way out.
+categories: [Book notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1Lu1YXNDjxHV82yFu3dJrJAXEpSrSls7dA-jaB6W-KO8/edit)
+in Google Docs.
+
+Marie-Louise von Franz was a Jungian analyst and a long-time collaborator of
+Jung, and the book is a series of lectures given at the C.G. Jung Institute in
+Zurich. The *puer aeternus*, the eternal youth, is her name for the adult who
+stays adolescent: full of promise, and unwilling to accept the particular
+limited life in front of him. She reads the pattern through two
+literary texts, Saint-Exupéry's *The Little Prince* and Bruno Goetz's novel
+*Das Reich ohne Raum*.
+
+## Concepts
+
+- **The provisional life.** The present arrangement is treated as temporary,
+  with the real life due to start later. Nothing has to be committed to while
+  that holds.
+- **Refusal of the ordinary.** Ordinary work and ordinary limits read as a
+  betrayal of something higher, which is how the pattern defends itself.
+- **The cure she names is work.** Sustained, unglamorous work on something
+  real, continued past the point where it stops being interesting.

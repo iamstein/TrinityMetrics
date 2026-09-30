@@ -1,0 +1,40 @@
+---
+title: "Acceptance and Commitment Therapy"
+subtitle: "Psychological flexibility, and the six processes that make it up"
+description: >
+  Notes on Acceptance and Commitment Therapy: workability rather than truth as
+  the test applied to a thought, and the six processes that make up
+  psychological flexibility.
+categories: [Concept notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/11S_zIoMZvZPkInh_To7vRmknIxi0uerc4KaqmqR1Qxo/edit)
+in Google Docs.
+
+Acceptance and Commitment Therapy (ACT, spoken as the word "act") was developed
+by Steven Hayes with Kirk Strosahl and Kelly Wilson. Its target is
+**psychological flexibility**: staying in contact with what is happening and
+continuing to act on what you value, including while what is happening is
+unpleasant. The test it applies to a thought is not whether the thought is true
+but whether acting on it gets you where you want to go, which is called
+workability.
+
+## Concepts
+
+The six processes, usually drawn as a hexagon.
+
+- **Acceptance.** Allow the unpleasant feeling to be present instead of
+  spending effort on removing it. The effort of avoidance is treated as the
+  problem to solve.
+- **Defusion.** Observe a thought as a thought rather than as an instruction or
+  a fact.
+- **Contact with the present moment.** Attend to what is happening now instead
+  of to a rehearsed past or forecast future.
+- **Self as context.** Notice the self that observes, which is not the same as
+  the story told about the self.
+- **Values.** Name what you want your life to be about, stated as a direction
+  rather than as a goal that can be completed.
+- **Committed action.** Take the step the value implies, now, at whatever size
+  is actually available.

@@ -1,0 +1,25 @@
+---
+title: "Finding Meaning in the Second Half of Life"
+subtitle: "James Hollis"
+description: >
+  Notes on the second half of life as a distinct task: the first-half
+  arrangements that stop working, and what is being asked for instead.
+categories: [Book notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1_hMHTmUAKbZox1Kcbe5CMEzsABAGuJ7B8CJW1_4EweM/edit)
+in Google Docs.
+
+James Hollis is a Jungian analyst, and his subject is the second half of life
+as its own developmental task rather than a decline from the first. The identity
+assembled in the first half, built to meet the demands of family and career,
+stops answering in the second, and what replaces it has to be chosen
+deliberately. The book sits close to
+[the puer aeternus notes](puer-aeternus.qmd), which describe the failure to
+make that passage at all.
+
+## Concepts
+
+To fill in from the notes.

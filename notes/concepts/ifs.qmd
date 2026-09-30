@@ -1,0 +1,42 @@
+---
+title: "Internal Family Systems"
+subtitle: "Parts, protectors, and the Self they are protecting"
+description: >
+  Notes on Internal Family Systems: the mind as a set of parts rather than one
+  voice, the protective role behind a destructive behaviour, and the Self that
+  does the work.
+categories: [Concept notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Notes](https://docs.google.com/document/d/1yPdTe3X5D1mdjTceMMsB8o6ezEmieB1lyqmnFk6w7-I/edit)
+in Google Docs.
+
+Internal Family Systems (IFS) was developed by Richard Schwartz, who arrived at
+it while working with families and finding that his patients described the same
+dynamics happening inside one person. Its starting position is that a mind is
+made of **parts** rather than a single voice, that having parts is the normal
+condition rather than a pathology, and that every part is attempting to protect
+you even when what it does causes harm.
+
+## Concepts
+
+- **The Self.** The seat of awareness underneath the parts, taken to be
+  undamaged whatever has happened. It is recognised by calm, curiosity and
+  compassion, and the work of the method is to get it into the room rather than
+  to install it.
+- **Exiles.** The young parts carrying the pain of what happened, pushed out of
+  awareness because feeling them was unbearable at the time.
+- **Managers.** Protectors working in advance, arranging life so that nothing
+  reaches an exile. Perfectionism, criticism and caretaking are typical jobs.
+- **Firefighters.** Protectors working after the fact, acting once an exile
+  breaks through. Numbing, bingeing and rage are typical, and they accept
+  damage as the price of stopping the pain.
+- **No bad parts.** A destructive behaviour is read as a protective role that
+  has no better option available. The question asked of a part is what it is
+  afraid would happen if it stopped.
+- **Unblending.** Separating from a part so you are *with* it instead of
+  *being* it, which is what makes the rest possible.
+- **Unburdening.** A part can hand back the belief or emotion it took on from
+  an event, and take up a different role afterwards.

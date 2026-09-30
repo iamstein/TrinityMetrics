@@ -1,0 +1,34 @@
+---
+title: "Shambhala: The Sacred Path of the Warrior"
+subtitle: "Chögyam Trungpa"
+description: >
+  Notes on Trungpa's Shambhala: basic goodness as the starting claim, the
+  cocoon that keeps it out of reach, and bravery as facing yourself without
+  deception.
+categories: [Book notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1WAiKV6s-SQ8FD3FRSUyh0oEF_iGCCZ_TuJAiMhF_z2I/edit)
+in Google Docs, shared with
+[Way of the Peaceful Warrior](way-of-the-peaceful-warrior.qmd).
+
+Chögyam Trungpa was a Tibetan Buddhist teacher, and the Shambhala teaching he
+set out here is presented as a secular path rather than a religious one. The
+warrior in his title is not a fighter. The word translates a Tibetan term for
+one who is brave, and the bravery is in facing yourself without deception.
+
+## Concepts
+
+- **Basic goodness.** Human nature is taken to be sound at the root, so the
+  work is uncovering something already present rather than repairing a defect.
+- **The cocoon.** The familiar shell of habits and avoidances, built for safety,
+  which keeps out the fresh air along with the threat. Stepping outside it is
+  the first act.
+- **Fearlessness comes through fear.** Not the absence of fear, but the state
+  reached by going into it and looking at it directly.
+- **The genuine heart of sadness.** A tenderness that arrives with real
+  openness, and a sign of it rather than a failure of it.
+- **Sacredness in ordinary conduct.** How you dress, eat and hold a room is
+  treated as the practice, not as a preliminary to it.

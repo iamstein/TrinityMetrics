@@ -1,0 +1,40 @@
+---
+title: "Fear-Setting"
+subtitle: "Writing down the feared outcome, how to prevent it, and how to repair it"
+description: >
+  Notes on Tim Ferriss's fear-setting exercise: the three pages it asks for, and
+  the cost of inaction that the third page prices.
+categories: [Concept notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Notes](https://docs.google.com/document/d/1Pljqb5P7xIwe8ul6lNiEc3Wc9-n4QXM7BsCFUKBQQaY/edit)
+in Google Docs.
+
+Fear-setting is Tim Ferriss's written exercise for a decision that has stalled
+on fear rather than on information. It descends from the Stoic practice of
+rehearsing the bad outcome in advance, and Seneca's line that we suffer more
+often in imagination than in reality is the claim it tests. The exercise is done
+on paper, as three pages, because a fear held in the head stays vague and a fear
+written out turns out to be smaller and more answerable.
+
+## The Three Pages
+
+1. **"What if I…?"** Name the action being avoided, then fill three columns.
+   **Define**: the worst things that could follow, listed to exhaustion rather
+   than to ten. **Prevent**: what would reduce the chance of each one.
+   **Repair**: what you would do if it happened anyway, and who you would ask.
+2. **The benefits of an attempt, or of partial success.** What a version that
+   only half works still buys you.
+3. **The cost of inaction.** What not acting costs at six months, one year and
+   three years, priced separately in money, in health and in how it feels. This
+   page is the one that usually decides it, because the cost of doing nothing
+   accrues quietly while the cost of acting is the only one being imagined.
+
+## Why It Works on a Page
+
+A feared outcome with a repair written next to it stops being a reason not to
+act. Most entries in the Define column turn out to be recoverable in a sentence,
+and the few that are not are the ones deserving the attention the whole list was
+absorbing.

@@ -1,0 +1,14 @@
+---
+title: "Boundaries"
+description: >
+  A pointer to the boundaries worksheet in Google Sheets, which holds the
+  material itself.
+categories: [Concept notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Worksheet](https://docs.google.com/spreadsheets/d/1kOz7ig9UDt6ycp7yeQuuSTxebtFXe8TihBGKLRDqKKI/edit)
+in Google Sheets, where the material is kept.
+
+A summary of what the worksheet covers still needs writing here.

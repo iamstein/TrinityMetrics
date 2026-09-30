@@ -1,0 +1,37 @@
+---
+title: "Wisdom"
+subtitle: "Personal documents on meaning and on how to live"
+description: >
+  An index of the personal Google Docs on meaning and on the tools for living,
+  with the book notes that sit alongside them.
+categories: [Topic notes, wisdom]
+date: last-modified
+toc: false
+---
+
+Writing that lives in Google Docs rather than on this site. Each document is
+edited in Google Docs and nothing is copied here. Sharing is set per document,
+so a link may ask for permission.
+
+## Documents
+
+- [Meaning](https://docs.google.com/document/d/1obCwUCVge446D9lFzWqNcnzfZHodsHNpo4oeLJUwAzY/edit).
+- [Life Tools](https://docs.google.com/document/d/1AlO-yNI7kMpmUimRWsj_A7OtLqInG0NaHsCbxny2Izs/edit),
+  learned in Pathways.
+
+## Book Notes
+
+- [Designing Your Life](../books/designing-your-life.qmd). Burnett and Evans on
+  treating a career as a design problem rather than a search for one right
+  answer.
+- [The Problem of the Puer Aeternus](../books/puer-aeternus.qmd). Von Franz on
+  the adult who keeps life provisional, and on work as the way out.
+- [Finding Meaning in the Second Half of Life](../books/second-half-of-life.qmd).
+  The second half as its own task rather than a decline from the first.
+
+## Other Notes
+
+- [Acceptance and Commitment Therapy](../concepts/acceptance-and-commitment-therapy.qmd).
+  Workability rather than truth as the test applied to a thought, and the six
+  processes of psychological flexibility.
+- [Parenting](parenting.qmd).

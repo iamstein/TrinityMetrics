@@ -1,0 +1,54 @@
+---
+title: "Notes"
+description: >
+  Notes on books, concepts and topics outside the modelling work, each one
+  pointing at the Google Doc that holds the material.
+toc: false
+---
+
+Reading notes and topic notes from outside the modelling work. The material
+itself is written in Google Docs and stays there; these pages say what each
+document holds and link to it. Sharing is set per document, so a link may ask
+for permission.
+
+Notes on pharmacometrics practice are in the
+[Learning Guides](../guides/index.qmd), and checklists for the modelling work
+are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
+
+## Topics
+
+- [Wisdom](topics/wisdom.qmd). The documents on meaning and on the tools for
+  living, and the book notes that sit alongside them.
+- [Parenting](topics/parenting.qmd).
+
+## Books
+
+- [Designing Your Life](books/designing-your-life.qmd). Burnett and Evans on
+  treating a career as a design problem rather than a search for one right
+  answer.
+- [The Problem of the Puer Aeternus](books/puer-aeternus.qmd). Von Franz on the
+  adult who keeps life provisional, and on work as the way out.
+- [Finding Meaning in the Second Half of Life](books/second-half-of-life.qmd).
+  Hollis on the second half as its own task.
+- [Shambhala: The Sacred Path of the Warrior](books/shambala.qmd). Trungpa on
+  basic goodness, and on bravery as facing yourself without deception.
+- [Way of the Peaceful Warrior](books/way-of-the-peaceful-warrior.qmd). Millman
+  on training as a way of living, and on there being no ordinary moments.
+
+## Concepts
+
+- [Acceptance and Commitment Therapy](concepts/acceptance-and-commitment-therapy.qmd).
+  Workability rather than truth as the test applied to a thought, and the six
+  processes of psychological flexibility.
+- [Internal Family Systems](concepts/ifs.qmd). The mind as a set of parts, the
+  protective role behind a destructive behaviour, and the Self that does the
+  work.
+- [Fear-Setting](concepts/fear-setting.qmd). Ferriss's three pages: the feared
+  outcome, how to prevent and repair it, and the cost of inaction.
+- [Boundaries](concepts/boundaries.qmd).
+- [Negotiation](concepts/negotiation.qmd).
+
+## Movies
+
+- [Stutz](movies/stutz.qmd). Tools to be used at the moment the difficulty
+  arrives, and the three conditions Stutz says cannot be escaped.
