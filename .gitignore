@@ -56,3 +56,6 @@ blog/drafts/*_files/
 **/*.quarto_ipynb
 
 .DS_STore
+
+# Obsidian workspace config
+.obsidian/

@@ -1,5 +1,5 @@
 ---
-title: "imm-bcell-plasma-cause"
+title: "Autoimmune diseases with B cells and Plasma cells on causal chain"
 subtitle: "Which autoimmune diseases depend on B cells or plasma cells?"
 categories: [immunology, B cells, Draft]
 date: last-modified
