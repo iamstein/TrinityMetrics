@@ -40,7 +40,7 @@ against the parts that exist.
 | Artifact here | What it is | The playbook's name for it |
 |---|---|---|
 | `CLAUDE.md` | Repository conventions: which guide to read when, the project folder rules, the site build | `CLAUDE.md`, institutional knowledge |
-| `.github/skills/writing-for-andy/SKILL.md` | The reader, the document contract, the prose rules, and a grep to run before handing over a draft | A skill: policy encoded as a constraint |
+| `.claude/skills/writing-for-andy/SKILL.md` | The reader, the document contract, the prose rules, and a grep to run before handing over a draft | A skill: policy encoded as a constraint |
 | `.github/copilot-instructions.md` | Markdown mechanics | Coding standards |
 | `projects/*/specification.qmd` | The working document for one problem | `spec.md` |
 | `projects/*/references.qmd` | Every source, with ❌ / ⚠️ / ✅ recording whether the claim drawn from it has been checked | A verification mechanism, and one the playbook does not have |

@@ -18,7 +18,7 @@ that sits a second question, on what happens to a field once producing
 the result is cheap and reading it is not; Tao asks it for mathematics,
 and pharmacometrics runs parallel to it stage for stage.
 
-Two starting points. The [writing guide](https://github.com/iamstein/TrinityMetrics/blob/main/.github/skills/writing-for-andy/SKILL.md)
+Two starting points. The [writing guide](https://github.com/iamstein/TrinityMetrics/blob/main/.claude/skills/writing-for-andy/SKILL.md)
 in this repository is one: a set of rules derived from one reader's edits
 of AI drafts, already in use. Terence Tao's account of AI proof
 exposition is the other: the same failures, observed in a different

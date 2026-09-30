@@ -57,7 +57,7 @@ document.
 
 ## 2. What the writing guide already answers
 
-The [writing guide](https://github.com/iamstein/TrinityMetrics/blob/main/.github/skills/writing-for-andy/SKILL.md) is a
+The [writing guide](https://github.com/iamstein/TrinityMetrics/blob/main/.claude/skills/writing-for-andy/SKILL.md) is a
 set of rules derived from one reader's hand edits of AI drafts, kept with
 the evidence for each rule. It is a working answer to the question above
 for one reader, and it is the baseline any new instruction is tested

@@ -2,20 +2,16 @@
 
 ## Writing guide
 
-Read `.github/skills/writing-for-andy/SKILL.md` before drafting a new document, or before
-substantially rewriting an existing one — a `.qmd` page, a blog post, a project
-document, `README.md`. Read it once per session, on the first such task, and
-again whenever Andy asks for it by name. Do not read it for code, configuration,
-a typo fix, a link change, or as a session preamble.
+The writing guide is the skill at `.claude/skills/writing-for-andy/SKILL.md`,
+also available as `/writing-for-andy`. Load it before drafting a new document,
+or before substantially rewriting an existing one — a `.qmd` page, a blog post,
+a project document, `README.md`. Load it once per session, on the first such
+task, and again whenever Andy asks for it by name. Do not load it for code,
+configuration, a typo fix, a link change, or as a session preamble. Do not edit
+it during a session; say in the conversation what looks wrong and let Andy
+decide.
 
-The guide originates in `iamstein/synpmx` at `design/WRITING_FOR_ANDY.md`. The
-copy here is adapted for this repository and has diverged from that one. It sits
-in `.github/skills/` rather than `.claude/skills/` so that it loads when this
-instruction says to read it, and not on every session. Do not edit it during a
-session; say in the conversation what looks wrong and let Andy decide.
-
-Its Part 1 document contract lists synpmx files. The equivalent for this
-repository:
+The guide's Part 1 asks for a document contract. For this repository:
 
 | Document | Reader | Kind | Length |
 |---|---|---|---|
@@ -63,15 +59,7 @@ needs `categories: true` and `categories` added to its `fields:` list in
 `projects/index.qmd`, or the pill never renders; a listing with nothing to
 distinguish (`R packages`, `Matlab tools`) skips both.
 
-Archive on relevance, not on completion. A finished project stays on the
-Projects page for as long as someone would still go to it: `xgx` and `xgxr` are
-done and stay, because people still use them. A project moves to the archive
-when it stops being something to refer to, either because its question got
-answered somewhere else or because the work it records is over. `site-integration`
-and `ai-positron-assistant-config` are the two cases so far. Finishing is not on
-its own a reason to archive.
-
-To archive, move the whole card from `projects/projects.yml` to
+To archive a project, move the whole card from `projects/projects.yml` to
 `projects/archive.yml`. That is the only step: the folder does not move, the
 URL does not change, and `projects/archive.qmd` lists whatever is in the second
 file. Quarto's listing `exclude:` does not filter yaml metadata, so a category
@@ -81,10 +69,7 @@ say how the project ended, such as `Finished` or `Overtaken by a button`, and
 keep the topical category so the archived card still shows what kind of project
 it was. Add a callout at the top of the project's own `index.qmd` saying it is
 archived and pointing at `../archive.qmd`, because a reader arriving from a
-search result never sees either listing page. A card whose `path:` leaves
-`projects/`, as the MATLAB one points at `../software.qmd`, gets no callout;
-that page is not a project folder and says for itself that it is kept for the
-record.
+search result never sees either listing page.
 
 When the last card leaves a section, delete the section heading and its
 listing from `projects/index.qmd` in the same commit. An emptied listing still
@@ -102,7 +87,7 @@ heading already says the category and `Draft` is dropped on the way across.
 - `.github/copilot-instructions.md` — Markdown mechanics: blank lines around
   lists and headings, `-` bullets, ATX headings, preserve each file's existing
   wrapping.
-- `.github/skills/evaluate-blog-posts/SKILL.md` — the rubric for judging whether
+- `.claude/skills/evaluate-blog-posts/SKILL.md` — the rubric for judging whether
   a blog draft is ready to publish.
 
 ## Site

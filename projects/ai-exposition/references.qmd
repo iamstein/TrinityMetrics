@@ -100,7 +100,7 @@ matches Thurston's is unchecked.
 
 ### 3. The writing guide in this repository ✅
 
-[`.github/skills/writing-for-andy/SKILL.md`](https://github.com/iamstein/TrinityMetrics/blob/main/.github/skills/writing-for-andy/SKILL.md) in this repository.
+[`.claude/skills/writing-for-andy/SKILL.md`](https://github.com/iamstein/TrinityMetrics/blob/main/.claude/skills/writing-for-andy/SKILL.md) in this repository.
 
 **Question.** Which of the four failures does it already have a rule or
 observation for?
