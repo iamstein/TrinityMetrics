@@ -37,9 +37,9 @@ The activity does not establish a clinical efficacy or safety threshold.
 
 ## Related Activities
 
-- [Sizing studies](../sizing-studies/index.qmd): precision and sample size
+- [Sizing studies](../pmx-sizing-studies/index.qmd): precision and sample size
   for dose-response characterization.
-- [Logistic regression for dose finding](../logistic-regression/index.qmd):
+- [Logistic regression for dose finding](../pmx-logistic-regression/index.qmd):
   fitting binary dose-response relationships.
-- [ITP-PK-Platelet](../itp-pk-platelet/index.qmd): a disease-specific
+- [ITP-PK-Platelet](../imm-itp-pk-platelet/index.qmd): a disease-specific
   investigation of the added value of integrated modeling.

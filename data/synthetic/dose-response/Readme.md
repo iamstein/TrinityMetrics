@@ -1,7 +1,7 @@
 # dose-response
 
 Two synthetic oncology Phase 1/2 datasets, used by the
-[sizing-studies](../../../projects/sizing-studies/) project to work the sample
+[pmx-sizing-studies](../../../projects/pmx-sizing-studies/) project to work the sample
 size calculations against real-shaped data rather than only formulas.
 
 ## dose_tumor_resp.rds

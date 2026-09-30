@@ -1,0 +1,20 @@
+---
+title: "Second Brain"
+subtitle: "An AI-searchable store of everything already written"
+description: "Index of the ai-second-brain project: a reminder to set up a second brain fed from Google Drive and TrinityMetrics, and the scoping still to do before building one."
+categories: [GenAI, working document]
+date: last-modified
+toc: false
+---
+
+A second brain is a single store of notes, documents and code that an AI
+assistant can search and answer questions from, so that work already done is
+found again instead of redone. The first two sources to feed into it are the
+Google Drive folder and this repository. Nothing is built yet, and the purpose
+still has to be scoped. This folder holds the reminder and the open questions.
+
+## Documents
+
+- [Working specification](specification.qmd). What a second brain is, the
+  sources to feed into it, the candidate tools, and the questions that decide
+  the scope.

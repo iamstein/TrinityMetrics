@@ -1,0 +1,50 @@
+---
+title: "Agentic engineering for data analysis tools"
+subtitle: "Writing the spec first, then commissioning the agent to build inside it"
+description: "Index of the documents in the ai-agentic-engineering-analysis project: an evergreen guide to specifying analysis work before an agent builds it, and the template new projects here start from."
+categories: [GenAI, working document]
+date: last-modified
+toc: false
+---
+
+Vibe coding accepts whatever the agent produces. Agentic engineering writes the
+requirements, the constraints and the checks first, then commissions the agent
+to build inside them. This project works out what that means for
+pharmacometrics and data analysis work, where the deliverable is usually an
+argument supported by numbers rather than a running service.
+
+Two questions drive it. How is the initial specification written, and who
+writes it. Everything else follows from those.
+
+The guide is evergreen: it is revised as the practice changes rather than
+finished. It is also the template that new projects in this repository start
+from.
+
+## Documents
+
+- [Working specification](specification.qmd). What is already in place here,
+  how to write the initial spec, how the work divides between Andy and the
+  agent, what a new project starts with, and two published planning tools,
+  Superpowers and Spec Kit.
+- [References](references.qmd). The sources this draws on, and a marker on
+  each recording whether the claim drawn from it has been checked against the
+  source.
+- `acop_abstract_2027_idea.md`. A draft idea for an ACoP 2027 abstract on the
+  pharmacometrics case: the five stages of an analysis, who reviews what, and
+  what changes once an agent does the hands-on work. Not linked, because the
+  site renders `.qmd` only and this one stays a working file in the
+  repository.
+
+## Related reading
+
+[Context Engineering for AI-Assisted Pharmacometrics: A Practical Tutorial](https://ascpt.onlinelibrary.wiley.com/doi/10.1002/psp4.70317)
+(Pritchard-Bell et al., 2026) describes task definitions that give an agent the
+domain rules, verification criteria and examples it needs at each step. Tasks
+start with fresh context and pass results through workspace files.
+
+My reservation is the covariate-selection rule: the tutorial specifies an
+objective function value decrease of ΔOFV > 3.84 for inclusion and uses forward
+selection and backward elimination. I tend to prefer a full covariate model,
+with scientifically motivated covariates specified together, because stepwise
+selection can overfit noise. I would want the task definition to reflect that
+choice before asking an agent to develop the covariate model.

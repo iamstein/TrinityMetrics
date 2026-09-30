@@ -5,7 +5,7 @@
     every edit. Obsolete: the approval mode has a picker in the chat pane.
     Kept for its reference table of permission keys.
   categories: [GenAI]
-  path: positron-assistant-config/index.qmd
+  path: ai-positron-assistant-config/index.qmd
 
 - title: "Site integration"
   subtitle: "Finished"
@@ -24,7 +24,7 @@
     what has to be checked before the output is trusted. The deck and its live
     demo page are kept as given.
   categories: [GenAI]
-  path: claude-code-at-work/index.qmd
+  path: ai-claude-code-at-work/index.qmd
 
 - title: "Matlab Tools for Tumor Spheroid and Collagen Network Analysis"
   subtitle: "MATLAB, before 2011"

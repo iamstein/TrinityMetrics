@@ -68,7 +68,7 @@ Projects page for as long as someone would still go to it: `xgx` and `xgxr` are
 done and stay, because people still use them. A project moves to the archive
 when it stops being something to refer to, either because its question got
 answered somewhere else or because the work it records is over. `site-integration`
-and `positron-assistant-config` are the two cases so far. Finishing is not on
+and `ai-positron-assistant-config` are the two cases so far. Finishing is not on
 its own a reason to archive.
 
 To archive, move the whole card from `projects/projects.yml` to

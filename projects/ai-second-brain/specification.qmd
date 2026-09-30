@@ -1,0 +1,98 @@
+---
+title: "Second Brain"
+subtitle: "Scoping an AI-searchable store of Google Drive, TrinityMetrics and the rest"
+description: "The working specification for the ai-second-brain project: the definition, the sources to feed in, the candidate tools, the open questions on purpose, and the first steps."
+categories: [GenAI, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+number-sections: false
+---
+
+::: {.callout-note appearance="simple"}
+**Reminder, 2026-09-30.** Nothing is built. The purpose in Section 1 is a first
+guess, and Section 5 lists the questions that have to be answered before
+choosing a tool.
+:::
+
+## 1. Goal
+
+Set up a second brain: one place holding the documents, notes and code
+accumulated over the years, searchable by an AI assistant that can answer a
+question from them and say which document the answer came from.
+
+The first guess at the purpose has two parts.
+
+- **Find past work.** A question such as "where did I work out the EC50
+  identifiability argument?" should return the document, not a search of four
+  places by hand.
+- **Keep learning.** Feeding the store and querying it is itself practice with
+  the tools, and the store makes connections between old and new projects
+  visible.
+
+## 2. Out of Scope
+
+- **Not published.** The store holds private material. Nothing from Google
+  Drive is copied into this repository, and this page describes the plan only.
+- **Not [Collected Wisdom](../collected-wisdom/index.qmd).** That project indexes
+  the personal Google Docs on meaning, parenting and music as a site. This one
+  is a private search tool over everything, work material included. The Google
+  Drive inventory in Section 3 can serve both.
+
+## 3. Sources
+
+| # | Source | What it holds | Notes |
+|---|---|---|---|
+| 1 | Google Drive | Documents, slides and spreadsheets from years of work | Have an agent scour it and propose what is useful before loading anything |
+| 2 | TrinityMetrics | Every project, blog post and guide on this site | Already in git and in Markdown, so the easiest source to load |
+| 3 | Other GitHub repositories | `synpmx`, `xgxr` and the rest | Code and vignettes |
+| 4 | Papers | The PDFs and reference manager library behind the literature reviews | |
+| 5 | Email and meeting notes | Decisions and the reasons for them | Most sensitive; decide last |
+| 6 | Claude conversations | Sessions that worked something out and were never written up | Check what can be exported |
+| 7 | Bookmarks and read-later lists | Things meant to be read | |
+
+Rows 1 and 2 come first. The rest wait until the purpose in Section 5 is
+settled, since each one widens what has to be kept private.
+
+For Google Drive, the first pass is an inventory rather than a load: a list of
+folders and documents, a sentence on each, and a mark for keep, skip or
+private. An agent with read access to Drive can draft it; Andy decides the
+marks.
+
+## 4. Candidate Tools
+
+A second brain in this sense is two parts: a store of documents, and a
+retrieval step that finds the passages relevant to a question and hands them to
+a language model to answer from. The second part is called retrieval-augmented
+generation (RAG). The tools below differ in where the store lives and who runs
+the retrieval.
+
+| Tool | Store | Fits |
+|---|---|---|
+| NotebookLM | Google, reads Drive directly | Google Drive with no copying; limits on source count per notebook |
+| Claude Projects | Uploaded files in claude.ai | A few dozen documents per project |
+| A folder of Markdown files, queried by Claude Code | Local disk, in git | TrinityMetrics and other repositories as they already are |
+| Obsidian | Local Markdown with links between notes | Writing new notes as well as searching old ones |
+
+None has been tried for this yet. The term "second brain" comes from Tiago
+Forte's *Building a Second Brain* (2022), which is about organizing notes by
+hand; the AI retrieval step is the newer part.
+
+## 5. Open Questions
+
+1. **What question should the store answer that cannot be answered now?** Two
+   or three real examples decide the tool better than a feature list.
+2. **Work and personal together, or apart?** Work material may have rules on
+   where it can be uploaded.
+3. **Load a copy, or point at the original?** A copy goes stale; a pointer
+   depends on the tool reading Drive or git directly.
+4. **Who adds to it, and when?** A store that is loaded once and never updated
+   stops being useful within a year.
+
+## 6. First Steps
+
+1. Write down three questions the second brain should be able to answer.
+2. Have an agent inventory Google Drive, as in Section 3.
+3. Try NotebookLM on a handful of Drive documents and Claude Code on
+   TrinityMetrics, and compare the answers to the three questions.
