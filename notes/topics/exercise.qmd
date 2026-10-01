@@ -1,0 +1,28 @@
+---
+title: "Exercise"
+description: >
+  A pointer to the exercise notes in Google Docs, and a list of every note on
+  the site tagged exercise.
+categories: [Topic notes, exercise]
+date: last-modified
+toc: false
+listing:
+  id: exercise-notes
+  contents:
+    - "../**/*.qmd"
+  include:
+    categories: "exercise"
+  exclude:
+    title: "Exercise"
+  type: table
+  fields: [title, description]
+  sort: title
+---
+
+[Notes](https://docs.google.com/document/d/11f3mSbfkeGKbJVN5AAmp6-6JEpRiBkbCIySyrH7Cmds/edit)
+in Google Docs, where the material is written and kept.
+
+## Notes Tagged Exercise
+
+::: {#exercise-notes}
+:::

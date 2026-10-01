@@ -1,0 +1,24 @@
+---
+title: "Two Hours a Week"
+subtitle: "Greg Pallone on how much strength training and cardio is enough"
+description: >
+  Notes on Greg Pallone's Substack post: resistance training and aerobic
+  exercise both lower mortality, and the benefit arrives at a modest weekly dose.
+categories: [Blog post notes, exercise]
+date: last-modified
+toc: false
+---
+
+[Two Hours a Week](https://gregpallone.substack.com/p/two-hours-a-week), by
+Greg Pallone on Substack, 1 September 2026.
+
+**Cardio and resistance training both help, and neither needs much time: 60 to
+90 minutes a week of resistance training, in two sessions, could be enough.**
+The post reports a Harvard cohort study in the *British Journal of Sports
+Medicine* that followed 147,374 adults for up to 30 years.
+
+- **Resistance training.** All-cause mortality was lowest at 90 to 120 minutes
+  a week, about 13% below people who did none. Past 120 minutes the benefit
+  stopped growing.
+- **Both together.** Combining resistance and aerobic exercise was associated
+  with a 45% lower mortality, more than either one alone.

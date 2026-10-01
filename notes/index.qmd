@@ -20,6 +20,8 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [Wisdom](topics/wisdom.qmd). The documents on meaning and on the tools for
   living, and the book notes that sit alongside them.
 - [Parenting](topics/parenting.qmd).
+- [Exercise](topics/exercise.qmd). The exercise notes in Google Docs, and every
+  note tagged exercise.
 
 ## Books
 
@@ -47,6 +49,12 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
   outcome, how to prevent and repair it, and the cost of inaction.
 - [Boundaries](concepts/boundaries.qmd).
 - [Negotiation](concepts/negotiation.qmd).
+
+## Blog Posts
+
+- [Two Hours a Week](blog-posts/two-hours-a-week.qmd). Pallone on strength
+  training and cardio: both help, and 60 to 90 minutes a week of resistance
+  training could be enough.
 
 ## Movies
 
