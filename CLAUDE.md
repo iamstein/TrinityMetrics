@@ -90,6 +90,28 @@ heading already says the category and `Draft` is dropped on the way across.
 - `.claude/skills/evaluate-blog-posts/SKILL.md` — the rubric for judging whether
   a blog draft is ready to publish.
 
+## Privacy
+
+The repository is public, so a committed line is public whether or not its
+page renders. Andy's family members are referred to by relationship and never
+by name, in pages, commit messages and code comments alike. Personal matters
+stay off the site unless he has asked for that specific text. What counts as
+personal is set by `sensitive-topics.txt` below, a list kept private because
+the list itself would say too much. When a note or page touches family
+or anything personal, show him the wording and ask before committing it.
+
+`_scripts/privacy-check.sh` runs as the commit-msg hook and enforces part of
+this. It reads two lists kept outside the repository, in
+`~/.config/trinitymetrics/`: `private-names.txt` blocks a commit, and
+`sensitive-topics.txt` holds one until it is committed again with
+`PRIVACY_REVIEWED=1`. Do not read, print or copy either list, do not set
+`PRIVACY_REVIEWED=1` without Andy's go-ahead for that commit, and never use
+`--no-verify`. A new clone needs `git config core.hooksPath .githooks` once.
+
+The check finds words and nothing else. A description that identifies a
+person without naming them passes it, which is why the rule above comes
+first.
+
 ## Site
 
 The site is Quarto, published to GitHub Pages by `.github/workflows/publish.yml`
