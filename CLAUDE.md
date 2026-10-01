@@ -106,7 +106,13 @@ this. It reads two lists kept outside the repository, in
 `sensitive-topics.txt` holds one until it is committed again with
 `PRIVACY_REVIEWED=1`. Do not read, print or copy either list, do not set
 `PRIVACY_REVIEWED=1` without Andy's go-ahead for that commit, and never use
-`--no-verify`. A new clone needs `git config core.hooksPath .githooks` once.
+`--no-verify`. A new clone needs `git config core.hooksPath .githooks` once;
+`.claude/settings.json` runs that at the start of every Claude Code session.
+Where the list files are absent, as in a cloud session, the check reads the
+variables `PRIVATE_NAMES` and `SENSITIVE_TOPICS` instead. The publish workflow
+runs `_scripts/privacy-check.sh --all` against the `PRIVATE_NAMES` repository
+secret and stops the build on a match, which keeps a name off the site but not
+out of the repository: by then the commit is public.
 
 The check finds words and nothing else. A description that identifies a
 person without naming them passes it, which is why the rule above comes
