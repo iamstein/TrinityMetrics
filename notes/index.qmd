@@ -55,6 +55,9 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [Two Hours a Week](blog-posts/two-hours-a-week.qmd). Pallone on strength
   training and cardio: both help, and 60 to 90 minutes a week of resistance
   training could be enough.
+- [Everyone Wants a Child Like Eileen Gu](blog-posts/everyone-wants-a-child-like-eileen.qmd).
+  Gordeljevic on accomplished children coming out of demanding childhoods, and
+  on parenting that is warm and expects a lot at once.
 
 ## Movies
 
