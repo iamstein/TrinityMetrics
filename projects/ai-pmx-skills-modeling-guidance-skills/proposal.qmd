@@ -1,0 +1,90 @@
+---
+title: "Pharmacometrics Modeling Skills: A Proposal"
+subtitle: "Keeping modeling guidance in a form any AI assistant loads at the moment of the work"
+description: "A one-page proposal for pmxskills: why skill files could replace static modeling guidance, and the rules for consensus, position pages, review and governance that keep the work from stalling."
+categories: [GenAI, Pharmacometrics methods, working document]
+date: last-modified
+toc: false
+---
+
+::: {.callout-note appearance="simple"}
+**Draft, 2026-10-02.** A vision and a process, for discussion. Nothing is
+built yet; the first skill is described in the
+[working specification](specification.qmd).
+:::
+
+**Mission.** Keep the field's agreed modeling practice in skill files that any
+AI assistant can load at the moment of the work, maintained in the open by the
+people who do the work.
+
+## The Problem with Guidance Documents
+
+A modeling guidance document takes years and a committee to write. Once
+published it is rarely maintained, so it goes stale, and it lives in a folder
+the modeler has to remember to open. When its authors move on, it is often
+lost.
+
+A skill file is a Markdown file of instructions that an AI assistant loads
+before a task. Each problem above has a possible answer in that format.
+
+| Guidance documents | Skill files |
+|---|---|
+| Have to be found and remembered during the work | Loaded by the assistant whenever the task matches |
+| Rarely updated after publication | Rebuilt every year by AI from curated sources, reviewed by people |
+| Written from scratch by a committee | Drafted by AI; people decide what stays |
+| Scattered across companies and journals | One public repository, at pmxskills.com |
+| Tied to one company's tools | Plain text that any assistant can read |
+
+**Out of scope.** The skills write no new guidance, restating and citing what
+exists, and they do not replace the modeler's judgment.
+
+## Consensus and Position Pages
+
+Most of modeling practice is already agreed, and a smaller part is argued
+about. The two are kept in different places so that the argument never holds
+up the skill.
+
+- **The skill holds only the agreed practice, as instructions.** For example:
+  "Use a prediction-corrected VPC when dose differs across subjects."
+- **A contested topic gets one line in the skill and a link.** For example:
+  "Practice differs on stepwise covariate selection versus full-model
+  approaches; see the position page and ask the modeler which to use." The
+  assistant asks instead of choosing.
+- **A position page is written by the people who hold that position.** Each
+  view is stated at its strongest, with its references. Position pages are not
+  merged into consensus; when the field settles, the skill's one line becomes
+  an instruction.
+
+## Review Rules
+
+The AI can always write more than people can read, so the rules limit what
+anyone is asked to read.
+
+1. **Each skill has a length limit,** a few hundred lines. A new instruction
+   replaces an old one or fits within the limit.
+2. **Reviewers read a change list.** Every proposed change carries a one-line
+   reason and a citation, and the list is ranked; a review covers the top ten,
+   and the rest waits for the next round.
+3. **A change merges after two weeks unless an editor objects.** An objection
+   does not block the change indefinitely: the topic moves to a position page.
+   Apache projects call this rule lazy consensus.
+4. **Every skill is tested on example tasks.** Each task lists the checks a good
+   run should report. Reviewers check that the skill still produces them,
+   which is quicker than rereading its text.
+
+## Governance
+
+- **Editors.** Three to five people to start, chosen because they see the need,
+  work well together and respect each other's thinking. Editors merge changes
+  and rule on objections. The group widens once a first version exists.
+- **Contributors.** Anyone, through an issue or a pull request on GitHub.
+- **Yearly rebuild.** An AI assistant rebuilds each skill from the current
+  skill, the curated references and checklists, a review of literature
+  published since the last rebuild, and a second AI pass asking what is
+  missing. The rebuild arrives as a change list under the review rules above.
+- **Full review, every three years as a first guess.** The editors re-read the
+  topics, references and position pages from scratch, and decide whether the
+  set of skills should change.
+- **Home.** pmxskills.com and a public GitHub repository, independent of any
+  one company or tool. ISoP is the natural long-term home if the project
+  outgrows a small group.

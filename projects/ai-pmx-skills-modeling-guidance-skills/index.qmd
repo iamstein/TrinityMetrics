@@ -16,8 +16,13 @@ schedule. Nothing is built yet, and the scope is still open.
 
 ## Documents
 
-- [Working specification](specification.qmd). The goal, the inputs to a skill,
-  the yearly rebuild, the review group, and the questions still to settle.
+- [Working specification](specification.qmd). The goal, the first skill on
+  model evaluation in nlmixr2 in two modes, the inputs, the yearly rebuild,
+  and the questions still to settle.
+
+- [Proposal](proposal.qmd). One page: why skill files could replace static
+  guidance documents, and the rules for consensus, position pages, review and
+  governance.
 
 - [References](references.qmd). The reading queue for the first reference
   list, with a status marker on every entry.

@@ -76,3 +76,10 @@ model building and evaluation, covariate modeling.
 
 *The AAPS Journal.* The standard form of the visual predictive check where
 dose or covariates differ across subjects.
+
+### 9. Fidler et al. 2019 — nlmixr and related open-source R packages ❌
+
+*CPT: Pharmacometrics & Systems Pharmacology.* The tutorial for nlmixr, the
+predecessor of nlmixr2: model specification, estimation and diagnostics. Read
+alongside the current documentation at nlmixr2.org, since names and defaults
+have changed since 2019.
