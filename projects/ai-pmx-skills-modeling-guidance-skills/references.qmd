@@ -1,0 +1,78 @@
+---
+title: "References for Pharmacometrics Modeling Skills"
+subtitle: "What to read, in what order, and what has actually been checked"
+description: "The reading queue for the ai-pmx-skills-modeling-guidance-skills project, with a status marker on every entry recording whether it has been verified against its source."
+categories: [GenAI, pharmacometrics, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing below has been read or checked.** The queue was written from memory
+on 2026-10-02 as a starting list. Authors, years and journals need confirming
+before any entry is cited in a skill.
+:::
+
+The working document is [the specification](specification.qmd), and the
+folder's other documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** The entry has not been read, and its description here
+  comes from memory or a search result.
+- ⚠️ **Transcribed, unverified.** A checklist item or recommendation in a
+  skill came from this source but has not been checked against it.
+- ✅ **Checked.** Verified against the source.
+
+On a reading-queue entry, ✅ means the question under the entry has been
+answered, by reading the source or by deciding it is out of scope. Change a
+marker when the check is done, not when the source is opened.
+
+## Reading queue
+
+The question under every entry is the same: which checks or recommendations
+does this source give, and which topic in Section 3 of the specification do
+they belong to?
+
+### 1. Byon et al. 2013 — an internal population PK analysis guidance ❌
+
+*CPT: Pharmacometrics & Systems Pharmacology.* A company's account of writing
+and using an internal guidance for population modeling. The closest published
+precedent for this project; read first.
+
+### 2. FDA 2022 — Population Pharmacokinetics, guidance for industry ❌
+
+What the agency expects of a population PK analysis: data, model development,
+evaluation and reporting.
+
+### 3. EMA 2007 — Guideline on reporting the results of population pharmacokinetic analyses ❌
+
+The European counterpart, on reporting.
+
+### 4. ICH M15 — General principles for model-informed drug development ❌
+
+Model risk, model credibility and the documentation a model analysis owes.
+Check the status of the guideline before citing it.
+
+### 5. Dykstra et al. 2015 — reporting guidelines for population PK analyses ❌
+
+*Journal of Pharmacokinetics and Pharmacodynamics.* A reporting checklist
+written by modelers.
+
+### 6. Nguyen et al. 2017 — model evaluation of continuous data pharmacometric models ❌
+
+*CPT: Pharmacometrics & Systems Pharmacology.* The metrics and graphics for
+evaluating a model, with what each one can and cannot show. The likely backbone
+of a model evaluation skill.
+
+### 7. Mould and Upton 2012 and 2013, Upton and Mould 2014 — population modeling tutorials ❌
+
+*CPT: Pharmacometrics & Systems Pharmacology*, three parts: basic concepts,
+model building and evaluation, covariate modeling.
+
+### 8. Bergstrand et al. 2011 — prediction-corrected visual predictive checks ❌
+
+*The AAPS Journal.* The standard form of the visual predictive check where
+dose or covariates differ across subjects.

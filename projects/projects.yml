@@ -122,6 +122,16 @@
   categories: [GenAI, Draft]
   path: ai-second-brain/index.qmd
 
+- title: "Pharmacometrics modeling skills"
+  subtitle: "Working document"
+  description: >
+    Folding published references and internal modeling guidance into a few
+    AI skill files for building and evaluating pharmacometrics models, kept
+    on GitHub for anyone to comment on, rebuilt each year by AI, and
+    reviewed by a small group.
+  categories: [GenAI, Pharmacometrics methods, Draft]
+  path: ai-pmx-skills-modeling-guidance-skills/index.qmd
+
 - title: "Exposure metric guide"
   subtitle: "Working document"
   description: >

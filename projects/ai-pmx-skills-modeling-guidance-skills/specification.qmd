@@ -1,0 +1,113 @@
+---
+title: "Pharmacometrics Modeling Skills"
+subtitle: "Scoping a small set of AI skills for building and evaluating pharmacometrics models"
+description: "The working specification for the ai-pmx-skills-modeling-guidance-skills project: the goal, the inputs, the yearly rebuild, the review group, open questions and first steps."
+categories: [GenAI, Pharmacometrics methods, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+number-sections: false
+---
+
+::: {.callout-note appearance="simple"}
+**Idea, 2026-10-02.** Nothing is built. Sections 3 to 5 are a first sketch,
+and Section 6 lists what has to be decided before the first skill is written.
+:::
+
+## 1. Goal
+
+Write a few skill files that an AI assistant loads before building or
+evaluating a pharmacometrics model, so that its work follows the practice
+already written down in published guidance and in internal guidance documents.
+
+A skill here means a Markdown file of instructions, with a short description
+that tells the assistant when to load it, in the format Claude Code and similar
+tools read. One skill per task is the starting assumption: for example one for
+building a population model, one for evaluating it, one for reporting it.
+
+There is a lot of good guidance on this topic already, spread across
+regulatory guidance, tutorials in *CPT: Pharmacometrics & Systems
+Pharmacology*, and company-internal documents. None of it is in a form an
+assistant loads before a task.
+
+## 2. Out of Scope
+
+- **Not a new guidance document.** The skills restate and cite guidance that
+  exists. Where the sources disagree, the skill says so and names both.
+- **Not a replacement for the modeler's judgment.** A skill sets the checks an
+  assistant runs and reports; the modeler decides what a failed check means.
+- **No unpublished internal material.** Internal guidance enters only as a
+  checklist that has been cleared for publication.
+
+## 3. Inputs
+
+| # | Input | What it holds | Status |
+|---|---|---|---|
+| 1 | Reference list | A couple of published sources per topic, the shortest set that covers it | First queue in [References](references.qmd) |
+| 2 | Checklists | Internal guidance documents reduced to checklists that can be published | Not started; needs a clearance route |
+| 3 | The skill files | The current version of each skill | Not started |
+
+The reference list comes first, because it decides the topics. A first guess
+at the topics: data assembly, structural model building, covariate modeling,
+parameter estimation and its diagnostics, model evaluation including visual
+predictive checks, simulation, and reporting.
+
+## 4. The Yearly Rebuild
+
+Most of the upkeep could be done by an AI assistant rebuilding each skill once
+a year from four inputs.
+
+1. The existing skill.
+2. The curated references and checklists in Section 3.
+3. A new literature review, asking for anything published since the last
+   rebuild that should be included.
+4. A separate review pass, by a second model or a set of agents, asking what
+   is missing, wrong or out of date in the rebuilt skill.
+
+The rebuild arrives as a pull request: a proposed change on GitHub that shows
+every line added or removed, which the review group in Section 5 reads and
+accepts or sends back. The literature review in step 3 also proposes additions
+to the reference list, so the list grows through the same review.
+
+## 5. Governance
+
+The hard part is who decides what goes in. The proposal is to start with a
+small, selective group: people who see the need, like working together and
+respect each other's thinking. A wider group can come later, once a first
+version exists for it to review.
+
+GitHub carries most of the process. Anyone can open an issue or propose an
+edit; the group merges.
+
+The review schedule has two tiers, because a deep review every one, three or
+five years is probably too slow on its own while the tools change this fast.
+
+- **Every year.** The group reads the rebuild pull request from Section 4.
+  This is a diff review, sized in hours.
+- **Every three years, as a first guess.** The group re-reads the topics,
+  the reference list and the checklists from scratch, and decides whether the
+  set of skills itself should change.
+
+## 6. Open Questions
+
+1. **Which internal guidance documents exist, and who can clear a checklist
+   drawn from one for publication?** This decides whether input 2 in Section 3
+   is possible at all.
+2. **Who is in the first review group?** Names, and how many.
+3. **Where does the repository live?** A personal GitHub account, an
+   organization created for it, or an existing society's account.
+4. **How many skills, split how?** By task, as in Section 1, or by model type.
+5. **How is a skill tested?** A skill should be run against real modeling
+   tasks before anyone relies on it. One option is a small set of
+   example datasets, each with the checks a good run should report.
+
+## 7. First Steps
+
+1. Build the first reference list, a couple of sources per topic, and check
+   each entry against its source.
+2. Pick one internal guidance document and draft the checklist it reduces to,
+   to see what clearance involves.
+3. Write a first skill for one topic, model evaluation being the narrowest, and
+   run it on an example dataset.
+4. Ask two or three people whether they would join the review group.

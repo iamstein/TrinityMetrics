@@ -1,0 +1,23 @@
+---
+title: "Pharmacometrics Modeling Skills"
+subtitle: "GenAI skills for building and evaluating pharmacometrics models"
+description: "Index of the ai-pmx-skills-modeling-guidance-skills project: folding published references and internal modeling guidance into a few AI skill files, kept on GitHub and rebuilt on a schedule."
+categories: [GenAI, Pharmacometrics methods, working document]
+date: last-modified
+toc: false
+---
+
+A skill is a file of instructions an AI assistant loads before a task. This
+project proposes a few skill files for building and evaluating pharmacometrics
+models, assembled from the published guidance and from internal guidance
+documents turned into checklists that can be published. The files would live
+on GitHub, where anyone can comment or propose an edit, and be rebuilt on a
+schedule. Nothing is built yet, and the scope is still open.
+
+## Documents
+
+- [Working specification](specification.qmd). The goal, the inputs to a skill,
+  the yearly rebuild, the review group, and the questions still to settle.
+
+- [References](references.qmd). The reading queue for the first reference
+  list, with a status marker on every entry.
