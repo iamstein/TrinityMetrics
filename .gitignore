@@ -59,3 +59,6 @@ blog/drafts/*_files/
 
 # Obsidian workspace config
 .obsidian/
+
+# Private notes kept out of the repository
+projects/ai-pmx-skills-modeling-guidance-skills/2026-10-02-pharmacometrics-skill-libraries-review.md
