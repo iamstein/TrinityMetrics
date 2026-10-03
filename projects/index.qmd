@@ -1,6 +1,16 @@
 ---
 title: "Ongoing Projects"
 listing:
+  - id: strategy-projects
+    contents: projects.yml
+    include:
+      categories: "Strategy"
+    type: grid
+    grid-columns: 2
+    sort: false
+    fields: [title, categories, description]
+    categories: true
+    feed: false
   - id: genai-projects
     contents: projects.yml
     include:
@@ -31,20 +41,15 @@ listing:
     fields: [title, categories, description]
     categories: true
     feed: false
-  - id: strategy-projects
-    contents: projects.yml
-    include:
-      categories: "Strategy"
-    type: grid
-    grid-columns: 2
-    sort: false
-    fields: [title, categories, description]
-    categories: true
-    feed: false
 toc: false
 ---
 
 Projects in progress, including open-source tools and working documents.
+
+## Strategy
+
+::: {#strategy-projects}
+:::
 
 ## GenAI
 
@@ -59,11 +64,6 @@ Projects in progress, including open-source tools and working documents.
 ## Immunology and T-cell engagers
 
 ::: {#immunology}
-:::
-
-## Strategy
-
-::: {#strategy-projects}
 :::
 
 ## Archive
