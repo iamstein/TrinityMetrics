@@ -2,7 +2,7 @@
 title: "Specification for Model Based TDP"
 subtitle: "Testing whether integrated modeling improves a biomarker-based dose decision"
 description: "A staged comparison of responder counts, continuous and longitudinal dose-response models, and integrated PK/PD predictions for a population biomarker target."
-categories: [Dose-response methods, working document]
+categories: [Pharmacometrics methods, working document]
 date: last-modified
 toc: true
 toc-depth: 2

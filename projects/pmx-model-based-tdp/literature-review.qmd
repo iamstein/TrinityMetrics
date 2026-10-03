@@ -2,7 +2,7 @@
 title: "Model-Based Assessment of a Biomarker Response Target"
 subtitle: "Prior art, evidence for efficiency gains and implications for a 90%/80% criterion"
 description: "A focused review of probability of pharmacological success, distributional responder estimation, augmented binary methods and pharmacometric trial comparisons."
-categories: [Dose-response methods, literature review]
+categories: [Pharmacometrics methods, literature review]
 date: last-modified
 toc: true
 toc-depth: 2

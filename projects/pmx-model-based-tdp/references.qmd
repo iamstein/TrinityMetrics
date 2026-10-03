@@ -2,7 +2,7 @@
 title: "References for Model Based TDP"
 subtitle: "Reading order, search scope and checked source claims"
 description: "Annotated sources for model-based biomarker response decisions, with explicit distinctions between checked full-text passages, abstract-only evidence and outstanding reading."
-categories: [Dose-response methods, references]
+categories: [Pharmacometrics methods, references]
 date: last-modified
 toc: true
 toc-depth: 2

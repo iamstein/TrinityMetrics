@@ -50,7 +50,7 @@ and section order included.
 
 A project's card on the Projects page carries `Draft` in its `categories:`
 list in `projects/projects.yml` for as long as it is one, alongside the
-category that puts it in the right section (`Dose-response methods`,
+category that puts it in the right section (`Pharmacometrics methods`,
 `Immunology and T-cell engagers`, `GenAI`, `Site Maintenance`). Remove `Draft`
 in the same commit that the project stops being one — there is no `Public`
 category, since every published page is public by default and a second label

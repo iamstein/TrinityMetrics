@@ -2,7 +2,7 @@
 title: "References for the pmx-logistic-regression project"
 subtitle: "What the diagnostics draw on, and what has actually been checked"
 description: "The sources behind the pmx-logistic-regression project's method comparison and diagnostics, with a status marker on each recording whether the claim drawn from it has been checked against the source."
-categories: [Dose-response methods, references]
+categories: [Pharmacometrics methods, references]
 date: last-modified
 toc: true
 toc-depth: 2

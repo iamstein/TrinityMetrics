@@ -7,6 +7,14 @@ date: last-modified
 toc: false
 ---
 
+::: {.callout-important appearance="simple"}
+**Archived, 2026-10-02.** AI writing is changing quickly enough that guidance
+worked out against one model generation may not hold for the next, so this
+project stopped before it reached a result. The documents are kept as they
+stood. The project is on the [archive page](../archive.qmd) rather than the
+[Projects page](../index.qmd).
+:::
+
 An AI draft of a report, a vignette or a proof arrives with the spelling,
 the grammar and the formatting close to flawless, and with the emphasis
 in the wrong places: pages on the routine steps, a paragraph on the step

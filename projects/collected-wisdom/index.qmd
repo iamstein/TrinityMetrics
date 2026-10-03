@@ -7,6 +7,14 @@ date: last-modified
 toc: false
 ---
 
+::: {.callout-important appearance="simple"}
+**Archived, 2026-10-02.** A separate site is not the goal. What is wanted is a
+store of past writing that can be searched and drawn on, and the
+[Second Brain](../ai-second-brain/index.qmd) project already covers that. The
+scope below is kept as it stood. The project is on the
+[archive page](../archive.qmd) rather than the [Projects page](../index.qmd).
+:::
+
 A second site, in its own repository, indexing the writing that has accumulated
 in Google Docs and does not belong on TrinityMetrics: the doc on meaning, the
 pathways tools, the parenting material, the ukulele and Hamilton song maps. The

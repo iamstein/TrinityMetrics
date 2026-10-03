@@ -1,3 +1,14 @@
+- title: "AI exposition"
+  subtitle: "Set aside while the models move"
+  description: >
+    An AI draft arrives fluent and with the emphasis in the wrong places:
+    pages on the routine steps, a paragraph on the one that decided the
+    result, no prior art, no overview. Which instructions move the
+    emphasis back, and how to tell that one has. Starts from the writing
+    guide here and from Tao's account of AI proof exposition.
+  categories: [GenAI]
+  path: ai-exposition/index.qmd
+
 - title: "Positron Assistant configuration"
   subtitle: "Overtaken by a button"
   description: >
@@ -6,6 +17,16 @@
     Kept for its reference table of permission keys.
   categories: [GenAI]
   path: ai-positron-assistant-config/index.qmd
+
+- title: "Collected Wisdom"
+  subtitle: "Folded into Second Brain"
+  description: >
+    Scoping a second site, in its own repository, that indexes the personal
+    Google Docs on meaning, parenting and music for their author: what it
+    holds, what stays unshared, and the inventory that decides whether to
+    build it.
+  categories: [Site Maintenance]
+  path: collected-wisdom/index.qmd
 
 - title: "Site integration"
   subtitle: "Finished"

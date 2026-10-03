@@ -2,7 +2,7 @@
 title: "Model Based TDP"
 subtitle: "Model-based assessment of a biomarker response criterion"
 description: "Comparing an observed 9-of-10 responder rule with model-based predictions across doses, for a criterion of at least 80% biomarker decline in 90% of patients."
-categories: [Dose-response methods, working document]
+categories: [Pharmacometrics methods, working document]
 date: last-modified
 toc: false
 ---

@@ -113,17 +113,6 @@
   categories: [GenAI, Draft]
   path: ai-agentic-engineering-analysis/index.qmd
 
-- title: "AI exposition"
-  subtitle: "Working document"
-  description: >
-    An AI draft arrives fluent and with the emphasis in the wrong places:
-    pages on the routine steps, a paragraph on the one that decided the
-    result, no prior art, no overview. Which instructions move the
-    emphasis back, and how to tell that one has. Starts from the writing
-    guide here and from Tao's account of AI proof exposition.
-  categories: [GenAI, Draft]
-  path: ai-exposition/index.qmd
-
 - title: "Second Brain"
   subtitle: "Working document"
   description: >
@@ -138,7 +127,7 @@
   description: >
     Turning the Choosing a PK Metric R Markdown file into a PMX Tools page:
     what the source holds, what changed in the conversion, and what is left.
-  categories: [Dose-response methods, Draft]
+  categories: [Pharmacometrics methods, Draft]
   path: pmx-exposure-metric/index.qmd
 
 - title: "Sizing studies"
@@ -147,7 +136,7 @@
     How many patients a Phase 1/2 expansion cohort needs to characterize a
     dose-response or biomarker-response relationship: Frank Harrell's rule of
     thumb, Richard Riley's four-question framework, and worked examples.
-  categories: [Dose-response methods, Draft]
+  categories: [Pharmacometrics methods, Draft]
   path: pmx-sizing-studies/index.qmd
 
 - title: "Model Based TDP"
@@ -157,7 +146,7 @@
     at least 80% biomarker decline in 90% of patients? A literature review,
     reproducible comparisons for three cohorts of ten, and a specification
     for testing the added value of longitudinal and PK/PD data.
-  categories: [Dose-response methods, Draft]
+  categories: [Pharmacometrics methods, Draft]
   path: pmx-model-based-tdp/index.qmd
 
 - title: "Logistic regression for dose finding"
@@ -166,7 +155,7 @@
     Picking a method, glm against Bayesian alternatives, and picking the
     right diagnostics for a fitted model. Both drafts, to be extended as time
     allows.
-  categories: [Dose-response methods, Draft]
+  categories: [Pharmacometrics methods, Draft]
   path: pmx-logistic-regression/index.qmd
 
 - title: "Immune biomarkers and infection risk"
@@ -178,13 +167,3 @@
     infection?
   categories: [Immunology and T-cell engagers, Draft]
   path: imm-biomarkers-infection/index.qmd
-
-- title: "Collected Wisdom"
-  subtitle: "Working document"
-  description: >
-    Scoping a second site, in its own repository, that indexes the personal
-    Google Docs on meaning, parenting and music for their author: what it
-    holds, what stays unshared, and the inventory that decides whether to
-    build it.
-  categories: [Site Maintenance, Draft]
-  path: collected-wisdom/index.qmd

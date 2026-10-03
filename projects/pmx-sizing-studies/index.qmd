@@ -2,7 +2,7 @@
 title: "Sizing studies"
 subtitle: "How many patients a cohort needs to characterize dose-response"
 description: "Index of the documents in the pmx-sizing-studies project: how many patients a Phase 1/2 expansion cohort needs to characterize a dose-response or biomarker-response relationship, and the references it draws the sample size criteria from."
-categories: [Dose-response methods]
+categories: [Pharmacometrics methods]
 date: last-modified
 toc: false
 ---

@@ -2,7 +2,7 @@
 title: "A Model-Based Comparison for Three Cohorts of Ten"
 subtitle: "Response rates, dose selection and evidence that the population meets the target"
 description: "Reproducible binomial calculations and simulations comparing observed responder counts with continuous biomarker models, including misspecified dose-response and variance assumptions."
-categories: [Dose-response methods, simulation]
+categories: [Pharmacometrics methods, simulation]
 date: last-modified
 toc: true
 toc-depth: 2

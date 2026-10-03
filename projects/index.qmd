@@ -1,20 +1,20 @@
 ---
 title: "Ongoing Projects"
 listing:
-  - id: strategy-projects
+  - id: genai-projects
     contents: projects.yml
     include:
-      categories: "Strategy"
+      categories: "GenAI"
     type: grid
     grid-columns: 2
     sort: false
     fields: [title, categories, description]
     categories: true
     feed: false
-  - id: dose-response
+  - id: pmx-methods
     contents: projects.yml
     include:
-      categories: "Dose-response methods"
+      categories: "Pharmacometrics methods"
     type: grid
     grid-columns: 2
     sort: false
@@ -31,20 +31,10 @@ listing:
     fields: [title, categories, description]
     categories: true
     feed: false
-  - id: genai-projects
+  - id: strategy-projects
     contents: projects.yml
     include:
-      categories: "GenAI"
-    type: grid
-    grid-columns: 2
-    sort: false
-    fields: [title, categories, description]
-    categories: true
-    feed: false
-  - id: site-projects
-    contents: projects.yml
-    include:
-      categories: "Site Maintenance"
+      categories: "Strategy"
     type: grid
     grid-columns: 2
     sort: false
@@ -56,14 +46,14 @@ toc: false
 
 Projects in progress, including open-source tools and working documents.
 
-## Strategy
+## GenAI
 
-::: {#strategy-projects}
+::: {#genai-projects}
 :::
 
-## Dose-response methods
+## Pharmacometrics methods
 
-::: {#dose-response}
+::: {#pmx-methods}
 :::
 
 ## Immunology and T-cell engagers
@@ -71,14 +61,9 @@ Projects in progress, including open-source tools and working documents.
 ::: {#immunology}
 :::
 
-## GenAI
+## Strategy
 
-::: {#genai-projects}
-:::
-
-## Site
-
-::: {#site-projects}
+::: {#strategy-projects}
 :::
 
 ## Archive
