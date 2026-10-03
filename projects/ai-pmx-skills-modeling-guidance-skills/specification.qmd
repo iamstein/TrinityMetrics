@@ -13,7 +13,8 @@ number-sections: false
 ::: {.callout-note appearance="simple"}
 **Idea, 2026-10-02.** Nothing is built. The vision, governance and review rules
 are in [the proposal](proposal.qmd); this page carries the working detail,
-starting with the first skill in Section 4.
+starting with the first skill in Section 4. The first step, in Section 9, tests
+whether a skill helps at all.
 :::
 
 ## 1. Goal
@@ -121,12 +122,46 @@ The rebuild arrives as a pull request: a proposed change on GitHub that shows
 every line added or removed, reviewed under the rules in
 [the proposal](proposal.qmd).
 
-## 6. Open Questions
+## 6. Risk: Models Outgrowing Skills
+
+Models may soon write their own skills and best practices, well enough that a
+human-curated skill adds little. Current models already explain a VPC and why
+shrinkage matters, and the 2026-10-02 search found eleven public libraries of
+pharmacometrics skills. The parts of this project differ in how exposed they
+are.
+
+| Part | Exposure | Why |
+|---|---|---|
+| Skill text on which diagnostics to run and how to read them | High | What a model is most likely to write well unaided |
+| Test cases with known problems | Low | They measure any assistant's model evaluation, whoever wrote the skill |
+| Position pages and published checklists from internal guidance | Low | Agreement in the field and unpublished experience are not in the training data |
+
+**The test for this risk is a comparison with and without the skill.** Run an
+assistant on the test cases in Section 4 twice, once with the draft skill
+loaded and once without. If the assistant without the skill already reports the
+expected findings, the skill text is not needed and the project shrinks to the
+test cases. If the skill helps, the cases it changes show where.
+
+The design shrinks with the risk. Under the length limit in
+[the proposal](proposal.qmd), a skill drops whatever models already do well and
+keeps the contested and the unpublished parts.
+
+## 7. Who Does the Work
+
+Andy, alone, to start. He is learning nlmixr2 and wants the evaluation skill
+for his own work, so it is useful to one person from the first day and needs no
+group to agree on anything. If others find it useful, a person or two may join;
+a wider group of editors waits until then. A possible outcome is an ACoP poster
+in 2027 describing the skill and the comparison in Section 6.
+
+## 8. Open Questions
 
 1. **Which internal guidance documents exist, and who can clear a checklist
    drawn from one for publication?** This decides whether input 2 in Section 3
    is possible at all.
-2. **Who are the first editors?** Names, and how many.
+2. **What does the comparison in Section 6 measure?** A count of expected
+   findings reported per test case is the simplest; whether a suggested next
+   step was sensible needs a person to judge.
 3. **Where does the work start?** pmxskills.com is registered. ISoP is the
    right long-term home; the nlmixr2 community could host the first skill,
    since it already works through GitHub, at the cost of tying that skill to
@@ -135,11 +170,13 @@ every line added or removed, reviewed under the rules in
 5. **Where does Mode 2 draw the line on plots?** Section 4 proposes two export
    tiers; someone who owns clinical data has to say which is acceptable.
 
-## 7. First Steps
+## 9. First Steps
 
-1. Draft the Mode 1 skill for nlmixr2 model evaluation and run it on an
-   nlmixr2 example dataset.
-2. Write three test cases with known problems, as in Section 4.
-3. Define the Mode 2 export and run the same test cases through it.
-4. Check entries 1, 6 and 9 in [References](references.qmd) against their
+1. Write three or four test cases with known problems, as in Section 4, on
+   nlmixr2 example datasets or synpmx data.
+2. Run an assistant on them without any skill, and record what it finds.
+3. Draft the Mode 1 skill for nlmixr2 model evaluation and run the same cases
+   with it loaded, as in Section 6.
+4. Define the Mode 2 export and run the same test cases through it.
+5. Check entries 1, 6 and 9 in [References](references.qmd) against their
    sources, since the skill's checks come from them.

@@ -74,9 +74,10 @@ anyone is asked to read.
 
 ## Governance
 
-- **Editors.** Three to five people to start, chosen because they see the need,
-  work well together and respect each other's thinking. Editors merge changes
-  and rule on objections. The group widens once a first version exists.
+- **Editors.** One to start, Andy, who merges changes and rules on objections.
+  A person or two join once the skill is useful to someone else. A larger
+  group, if it comes, is chosen from people who see the need, work well
+  together and respect each other's thinking.
 - **Contributors.** Anyone, through an issue or a pull request on GitHub.
 - **Yearly rebuild.** An AI assistant rebuilds each skill from the current
   skill, the curated references and checklists, a review of literature
