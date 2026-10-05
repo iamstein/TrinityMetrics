@@ -22,6 +22,8 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [Parenting](topics/parenting.qmd).
 - [Exercise](topics/exercise.qmd). The exercise notes in Google Docs, and every
   note tagged exercise.
+- [Buddhism](topics/buddhism.qmd). The learning guide, the ten oxherding
+  pictures and the eightfold path, in Google Docs.
 
 ## Books
 
