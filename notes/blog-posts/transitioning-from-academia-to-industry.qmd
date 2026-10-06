@@ -1,0 +1,29 @@
+---
+title: "Transitioning from Academia to Industry"
+subtitle: "Andy Stein on career lessons that turn out to be life lessons"
+description: >
+  Notes on Andy Stein's Medium post: the mindsets that help a PhD student or
+  postdoc move into industry are the same ones that help outside work.
+categories: [Blog post notes, career, wisdom]
+date: last-modified
+toc: false
+---
+
+[Transitioning from Academia to Industry](https://medium.com/@andy.stein/transitioning-from-academia-to-industry-57500b0fca74),
+by Andy Stein on Medium, 13 February 2022.
+
+**Most of the advice for moving from academia to industry is also advice for
+living.** The post introduces a
+[career guide](https://sites.google.com/site/andrewsteinphd/career-advice)
+written as a pre-read for PhD students and postdocs who ask for advice, and
+notes that the topics friends and colleagues suggested adding were mostly life
+lessons.
+
+- **Curiosity.** Staying open to learning, to feedback and to wonder.
+- **Collaboration.** Everyone has blind spots, and working with others fills
+  them.
+- **Mindfulness.** In a difficult moment, pausing to choose the words and the
+  action from a place of equanimity.
+- **Practice carries over.** Noticing a reaction, asking where it comes from
+  and then choosing how to act takes practice, a coach or a therapist can help
+  build it, and a skill practised in one domain carries over to the others.

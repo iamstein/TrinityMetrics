@@ -60,6 +60,14 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [Everyone Wants a Child Like Eileen Gu](blog-posts/everyone-wants-a-child-like-eileen.qmd).
   Gordeljevic on accomplished children coming out of demanding childhoods, and
   on parenting that is warm and expects a lot at once.
+- [Transitioning from Academia to Industry](blog-posts/transitioning-from-academia-to-industry.qmd).
+  Andy Stein on the mindsets that help in a move to industry and help
+  everywhere else too.
+- [Thinking of God as the Vanishing Point at Infinity](blog-posts/thinking-of-god-as-the-vanishing-point.qmd).
+  Andy Stein on family, career and community as paths that meet at a single
+  point.
+- [Five Practical Tips to Parenting, from a Quantitative Drug Developer](blog-posts/five-practical-tips-to-parenting.qmd).
+  Andy Stein on uncertainty, variability and biomarkers in raising children.
 
 ## Movies
 

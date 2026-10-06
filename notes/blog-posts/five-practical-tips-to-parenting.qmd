@@ -1,0 +1,31 @@
+---
+title: "Five Practical Tips to Parenting, from a Quantitative Drug Developer"
+subtitle: "Andy Stein on parenting with the ideas of drug development"
+description: >
+  Notes on Andy Stein's Medium post: uncertainty, variability and biomarkers,
+  borrowed from quantitative drug development and applied to raising children.
+categories: [Blog post notes, parenting]
+date: last-modified
+toc: false
+---
+
+[Five Practical Tips to Parenting, from a Quantitative Drug Developer](https://medium.com/@andy.stein/five-practical-tips-to-parenting-from-a-quantitative-drug-developer-bda0cc794142),
+by Andy Stein on Medium, 4 October 2021.
+
+**Much of how a child turns out is outside a parent's control, so the post
+recommends being present, trying things and watching a few signals.** It draws
+on Bryan Caplan's *Selfish Reasons to Have More Kids*, Emily Oster's
+*Cribsheet* and the US Air Force's discovery of the flaw of averages.
+
+1. **Uncertainty and lack of control.** Genetics and environment decide much of
+   the outcome, and children tend to turn out like their genetic parents. The
+   best a parent can do is be present, love and listen.
+2. **Variability.** No child is average in every respect, so a study about the
+   average child is a starting point. Try things and keep what works.
+3. **Biomarkers.** Among all the rules and opinions, what a parent needs is a
+   signal that something is really wrong. A baby whose weight stays within
+   reasonable bounds is almost certainly well nourished.
+4. **Childhood wounding is necessary.** Leaving abuse aside, no parent meets
+   every want and need, and overprotection makes a wound of its own.
+5. **Memories can be influenced.** How children remember their parents depends
+   largely on how loving, communicative and conflict-prone the family was.
