@@ -6,8 +6,8 @@ description: >
 toc: false
 ---
 
-Reading notes and topic notes from outside the modelling work. The material
-itself is written in Google Docs and stays there; these pages say what each
+Reading notes and topic notes from outside the modelling work. Much of the material
+ is written in Google Docs; these pages say what each
 document holds and link to it. Sharing is set per document, so a link may ask
 for permission.
 
