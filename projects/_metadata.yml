@@ -1,0 +1,3 @@
+# Project pages carry `date: last-modified`, so the date is the last edit.
+language:
+  title-block-published: "Last edited"

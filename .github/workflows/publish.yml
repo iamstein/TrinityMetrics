@@ -28,6 +28,9 @@ jobs:
           PRIVATE_NAMES: ${{ secrets.PRIVATE_NAMES }}
         run: _scripts/privacy-check.sh --all
 
+      - name: Date each page by its last commit
+        run: _scripts/restore-mtimes.sh
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
