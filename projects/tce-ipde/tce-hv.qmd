@@ -12,83 +12,72 @@ html-math-method: mathjax
 ---
 
 ::: {.callout-note appearance="simple"}
-A working note in the project on [speeding up first-in-human T-cell
-engager studies](index.qmd): one of the approaches collected there,
-and the search that followed it. The registry and abstract search was
-run on 2026-09-10. Every source is characterized from a registry record, an
-abstract or a press release, none has been read, and every entry in the
+One of the approaches in the project on [speeding up first-in-human
+T-cell engager studies](index.qmd). The registry and abstract search was
+run on 2026-09-10. Every source is characterized from a registry record,
+an abstract or a press release; none has been read, and every entry in
+the
 [references](references.qmd#reading-queue-t-cell-engagers-in-healthy-volunteers)
 carries ❌.
 :::
 
-## In brief
+## In Brief
 
-**The idea.** Give one or two doses of the T-cell engager (TCE) to
-healthy volunteers (HVs), climbing a dose ladder until the first sign of
+**The idea.** Give healthy volunteers (HVs) one or two doses of the
+T-cell engager (TCE), climbing a dose ladder until the first sign of
 activity: a grade 1 cytokine release (fever), or peripheral B cells
 falling by half. That dose, found in weeks in a phase 1 unit, becomes
 the starting neighbourhood for patients, and the patient study begins
 where a conventional escalation would have finished.
 
-**It has been done.** ✅ Three healthy volunteer studies of T-cell
-engagers are registered, all started between December 2025 and July
-2026, all in Melbourne, all for autoimmune indications, all
-subcutaneous: an absolute bioavailability study of cizutamig, a BCMA x
-CD3 engager of Chinese origin; a first-in-human escalation of XmAb657, a
-CD19 x CD3 engager, that enrols healthy participants alongside patients;
-and a first-in-human study of CND319, a CD19/CD20 engager, with a
-single-ascending-dose part in healthy adults. None has posted a result.
-Section 2 has the table.
+**✅ It has been done.** Three healthy volunteer studies of TCEs are
+registered, all started between December 2025 and July 2026, all in
+Melbourne, all for autoimmune indications, and all subcutaneous. None
+has posted a result. Section 2 has the table.
 
-**Where it applies.** ⚠️ Autoimmune programmes, and only those. The
-three sponsors that dosed volunteers all built molecules with a tuned
-CD3 arm and an extended half-life, intended for one or two
-administrations, and the volunteer's B-cell count is the same
-measurement as the patient's. In oncology the target burden that drives
-cytokine release is absent in a volunteer, so the dose that produces
-fever in a volunteer says little about the dose that produces it in a
-patient with a tumour, and no oncology TCE has been given to volunteers.
-Section 4 works through the translation.
+**⚠️ It applies to autoimmune programmes only.** The three sponsors that
+dosed volunteers built molecules with a tuned CD3 arm and an extended
+half-life, for one or two administrations, and a volunteer's B-cell
+count is the same measurement as a patient's. In oncology the target
+burden that drives cytokine release is absent in a volunteer, so a
+volunteer's fever dose says little about a tumour patient's, and no
+oncology TCE has been given to volunteers. Section 4 works through the
+translation.
 
-**How much faster.** Of the order of six months to a year against a
-conventional escalation in patients, under the assumptions in
-Section 5, which are there to be replaced with a programme's own.
+**It saves six months to a year** against a conventional escalation in
+patients, under the assumptions in Section 5, which a programme should
+replace with its own.
 
-**The Ouro question.** ❌ Unresolved. A colleague recalled a Chinese
-healthy volunteer study of a TCE later acquired by Ouro Medicines.
-Ouro's molecule is CM336, a BCMA x CD3 engager from Keymed Biosciences
-in Chengdu, licensed to Ouro in January 2025; Ouro was acquired by
-Gilead in 2026. No healthy volunteer study of CM336 or OM336 appears on
-ClinicalTrials.gov. The Chinese registries were not searched. The
-molecule that *does* have a registered volunteer study, cizutamig, is
-also a Chinese-origin BCMA x CD3 engager, from EpimAb in Shanghai by way
-of Vignette Bio and Candid Therapeutics, and the two may have been
-conflated. Section 2 has both, and the question to put back to the
-colleague is the trial identifier.
+**❌ The Ouro question is unresolved.** A colleague recalled a Chinese
+healthy volunteer study of a TCE later acquired by Ouro Medicines. No
+such study of Ouro's molecule, CM336, is on ClinicalTrials.gov, and the
+Chinese registries were not searched. Cizutamig, the molecule that does
+have a registered volunteer study, is also a Chinese-origin BCMA x CD3
+engager, and the two may have been conflated. Section 2 has both. The
+question to put back to the colleague is the trial identifier.
 
 ------------------------------------------------------------------------
 
-## 1. The idea, as posed
+## 1. The Idea
 
-Start in healthy volunteers. Give one dose, or two, per volunteer,
-climbing between cohorts, and stop at the first dose that does either
-of two things: produces a grade 1 cytokine release syndrome, which in a
-volunteer means a fever, or depletes peripheral B cells by 50%. Call
-that the active dose. Then open the patient study with a starting dose
-and a step-up regimen already anchored to it.
+Dose healthy volunteers once or twice each, climbing between cohorts,
+and stop at the first dose that either produces a grade 1 cytokine
+release syndrome (CRS), which in a volunteer means a fever, or depletes
+peripheral B cells by 50%. Call that the active dose, and open the
+patient study with a starting dose and step-up regimen anchored to it.
 
-The claim to test is about speed. A phase 1 unit recruits volunteers
-from a standing pool, doses a cohort within days of the previous
-cohort's readout, and reads a single-dose cytokine and B-cell response
-inside a week. A conventional oncology escalation waits on accrual of
-patients with the right disease at the right stage, a 28-day
-dose-limiting-toxicity window, and a cohort review. If the volunteer
-ladder climbs three times faster, the gap between the starting dose and
-the active dose is crossed before the first patient is enrolled.
+The claim to test is speed. A phase 1 unit recruits from a standing
+pool, doses the next cohort within days of the previous readout, and
+reads a single-dose cytokine and B-cell response inside a week. A
+conventional oncology escalation waits on accrual of patients with the
+right disease at the right stage, a 28-day dose-limiting toxicity (DLT)
+window, and a cohort review. If the volunteer ladder climbs three times
+faster, the gap between the starting dose and the active dose is
+crossed before the first patient is enrolled.
 
-## 2. What has been done
+## 2. Studies Found
 
-### Registered healthy volunteer studies of T-cell engagers
+### Registered Healthy Volunteer Studies of T-Cell Engagers
 
 | Study | Molecule | Target | Design | Volunteers | Start | Status | Marker |
 |:---|:---|:---|:---|:---|:---|:---|:---|
@@ -98,182 +87,182 @@ the active dose is crossed before the first patient is enrolled.
 
 : T-cell engagers with a registered healthy volunteer cohort, ClinicalTrials.gov, searched 2026-09-10 {tbl-colwidths="[11,14,12,20,17,8,12,6]"}
 
-Three things the table shows. All three studies are recent: the
-earliest started in December 2025. All three are for autoimmune
-indications, and none is an oncology TCE. All three molecules were
-engineered for the setting: a CD3 arm with reduced affinity, a long
+All three studies started in or after December 2025, all are for
+autoimmune indications, and none is an oncology TCE. All three molecules
+were engineered for the setting: a CD3 arm with reduced affinity, a long
 half-life, subcutaneous administration, and a single dose or short
 course as the intended regimen.
 
-What none of the registry records shows is the readout the idea depends
-on. The registered primary outcomes are adverse events (XmAb657,
-CND319) and absolute bioavailability (cizutamig); the secondary outcomes
-are serum concentration and anti-drug antibodies. B-cell counts and
-cytokines will have been measured and are not registered as endpoints,
-so what the volunteer cohorts *found* will have to come from a
-presentation. Xencor has said it expects to report on the XmAb657 study
-in the second half of 2026.
+**No registry record shows the readout the idea depends on.** The
+registered primary outcomes are adverse events (XmAb657, CND319) and
+absolute bioavailability (cizutamig), and the secondary outcomes are
+serum concentration and anti-drug antibodies. B-cell counts and
+cytokines will have been measured but are not registered endpoints, so
+what the volunteer cohorts found will have to come from a presentation.
+Xencor expects to report on the XmAb657 study in the second half of
+2026.
 
-### What is known about the molecules from patients
+### What Is Known About the Molecules From Patients
 
-Cizutamig had been given to 40 patients with relapsed or refractory
-multiple myeloma at weekly doses from 0.2 to 300 mg before the volunteer
-study, with cytokine release syndrome at grade 1 in 18% and grade 2 in
-8%, median onset one day, and no ICANS; and to one patient with
-refractory rheumatoid arthritis, with no cytokine release (entry 24).
-By January 2026 the sponsor reported 80 patients dosed, half with
-autoimmune disease, mild cytokine release in fewer than 20%, and no
-ICANS. So the volunteer study came *after* the dose range was known
-from patients, which is the reverse of the idea in Section 1. It was
-run to measure bioavailability, and it establishes that a volunteer can
-be dosed, not that the active dose was found that way.
+**Cizutamig was dosed in volunteers after its dose range was known from
+patients.** Before the volunteer study it had been given to 40 patients
+with relapsed or refractory multiple myeloma at weekly doses of 0.2 to
+300 mg, with CRS at grade 1 in 18% and grade 2 in 8%, median onset one
+day, and no immune effector cell-associated neurotoxicity syndrome
+(ICANS); and to one patient with refractory rheumatoid arthritis, with
+no cytokine release (entry 24). By January 2026 the sponsor reported 80
+patients dosed, half with autoimmune disease, mild cytokine release in
+fewer than 20%, and no ICANS. That order is the reverse of the idea in
+Section 1. The study measured bioavailability, and it shows that a
+volunteer can be dosed, not that the active dose was found that way.
 
-XmAb657 is the case that matches the idea: a first-in-human escalation
-whose first cohort is healthy participants. In cynomolgus monkeys a
-single dose suppressed B cells to below 5 cells/µL for at least 42 days,
-in lymph node and marrow as well as blood, with no clinical signs of
-cytokine release, and a half-life near 15 days (entry 25). Whether the
-volunteer cohort climbs to a B-cell-depleting dose, or stops at a dose
-chosen to be subactive, is not stated in the registry record and is the
-first thing to find out when the study reports.
+**XmAb657 matches the idea:** a first-in-human escalation whose first
+cohort is healthy participants. In cynomolgus monkeys a single dose
+held B cells below 5 cells/µL for at least 42 days, in lymph node and
+marrow as well as blood, with no clinical signs of cytokine release and
+a half-life near 15 days (entry 25). The registry record does not say
+whether the volunteer cohort climbs to a B-cell-depleting dose or stops
+at a dose chosen to be subactive. That is the first thing to find out
+when the study reports.
 
-### The Ouro Medicines molecule
+### The Ouro Medicines Molecule
 
-CM336, gamgertamig, is a BCMA x CD3 engager developed by Keymed
-Biosciences in Chengdu, in a phase 1/2 in multiple myeloma in China
-since 2022 and in autoimmune cytopenias, bullous disease, Sjögren's and
-several plasma cell disorders since 2025. Keymed licensed rights
-outside Greater China to Platina Medicines, a unit of Ouro Medicines, in
-January 2025; the molecule was renamed OM336; Gilead announced the
-acquisition of Ouro in March 2026 and completed it in June. The
-registered OM336 studies are in autoimmune cytopenias (United States
-and Australia), Sjögren's and myositis (New Zealand), and sensitized
-kidney transplant candidates (Austria and Germany). None enrols healthy
-volunteers, and the one CM336 record that carries the healthy-volunteer
-flag, NCT06745687, is a study in high-risk smouldering myeloma whose
-flag is a registry error.
+CM336 (gamgertamig) is a BCMA x CD3 engager developed by Keymed
+Biosciences in Chengdu. It has been in a phase 1/2 in multiple myeloma
+in China since 2022, and in autoimmune cytopenias, bullous disease,
+Sjögren's and several plasma cell disorders since 2025. Keymed licensed
+rights outside Greater China to Platina Medicines, a unit of Ouro
+Medicines, in January 2025, and the molecule became OM336. Gilead
+announced the acquisition of Ouro in March 2026 and completed it in
+June.
 
-If a Chinese healthy volunteer study of CM336 exists it would be on the
-Center for Drug Evaluation registry (chinadrugtrials.org.cn) or the
-Chinese Clinical Trial Registry, neither of which was searched. The
-question for the colleague is the trial identifier or the molecule's
-code, since the recollection may equally be of cizutamig.
+The registered OM336 studies are in autoimmune cytopenias (United
+States and Australia), Sjögren's and myositis (New Zealand), and
+sensitized kidney transplant candidates (Austria and Germany). None
+enrols healthy volunteers. The one CM336 record carrying the
+healthy-volunteer flag, NCT06745687, is a study in high-risk smouldering
+myeloma, and the flag is a registry error.
 
-### What was searched
+A Chinese healthy volunteer study of CM336, if one exists, would be on
+the Center for Drug Evaluation registry (chinadrugtrials.org.cn) or the
+Chinese Clinical Trial Registry, and neither was searched. Cizutamig is
+the other candidate for what the colleague recalled: also a
+Chinese-origin BCMA x CD3 engager, from EpimAb in Shanghai by way of
+Vignette Bio and Candid Therapeutics. Ask the colleague for the trial
+identifier or the molecule's code.
 
-ClinicalTrials.gov, by intervention terms (bispecific, trispecific,
-T-cell engager, CD3) restricted to studies accepting healthy volunteers;
-Europe PMC for published reports of a CD3-engaging bispecific in healthy
-subjects, which returned none; and press releases and meeting abstracts
-for the three molecules found. Not searched: the Chinese registries, the
-EU Clinical Trials register, the Australian register (ANZCTR), and the
-PAGE and ACoP abstract archives.
+### Search Coverage
 
-## 3. What a volunteer study can measure
+Searched: ClinicalTrials.gov, by intervention terms (bispecific,
+trispecific, T-cell engager, CD3) restricted to studies accepting
+healthy volunteers; Europe PMC for published reports of a CD3-engaging
+bispecific in healthy subjects, which returned none; and press releases
+and meeting abstracts for the three molecules found.
 
-The readouts, in the order they arrive after a single dose.
+Not searched: the Chinese registries, the EU Clinical Trials register,
+the Australian register (ANZCTR), and the PAGE and ACoP abstract
+archives.
+
+## 3. What a Volunteer Study Can Measure
+
+The readouts after a single dose, in the order they arrive:
 
 | Hours after dose | Readout | What it says |
 |:---|:---|:---|
-| 2–6 | Lymphocyte count falls (T-cell margination) | CD3 was engaged. The earliest pharmacodynamic signal, and present at doses well below the active one. |
-| 2–24 | IL-6, IFN-γ, TNF in serum | The magnitude of T-cell activation. The quantity a grade 1 CRS is the clinical shadow of. |
-| 6–48 | Fever | Grade 1 cytokine release syndrome, the first of the two stopping signals in Section 1. |
-| 24–72 | Peripheral CD19+ B cells | Depletion, the second stopping signal. Depth at nadir and, on later visits, the duration. |
-| Days to weeks | Serum concentration, anti-drug antibodies | PK, and whether a second dose is even interpretable. |
+| 2–6 | Lymphocyte count falls (T-cell margination) | CD3 was engaged. The earliest pharmacodynamic signal, present at doses well below the active one. |
+| 2–24 | IL-6, IFN-γ, TNF in serum | How strongly T cells were activated. A grade 1 CRS is the clinical sign of the same process. |
+| 6–48 | Fever | Grade 1 CRS, the first of the two stopping signals in Section 1. |
+| 24–72 | Peripheral CD19+ B cells | Depletion, the second stopping signal: depth at nadir and, on later visits, duration. |
+| Days to weeks | Serum concentration, anti-drug antibodies | PK, and whether a second dose can be interpreted. |
 
 : Single-dose readouts in a healthy volunteer, and what each one answers {tbl-colwidths="[14,32,54]"}
 
 **The two stopping signals will not arrive together.** A CD3 arm tuned
-down, which all three molecules in Section 2 have, is tuned to deplete
-without releasing cytokine. In a volunteer that means B cells may fall
-by half, or to zero, at a dose that produces no fever at all, and the
-first fever may come a log higher or never. The idea as posed treats
-either signal as "active"; the design has to say which one, because
-they name different doses. For an autoimmune programme the answer is
-depletion, since depletion is the goal and the fever is the cost, and
-the fever dose then becomes an upper bound the patient study need not
-approach.
+down, as in all three molecules in Section 2, is tuned to deplete
+without releasing cytokine. In a volunteer, B cells may fall by half or
+to zero at a dose that produces no fever, and the first fever may come
+a log higher or never. The idea as posed treats either signal as
+"active", so the design has to choose, because the two name different
+doses. For an autoimmune programme the answer is depletion, since
+depletion is the goal and fever the cost. The fever dose then becomes an
+upper bound the patient study need not approach.
 
-**One volunteer per dose, or several.** Volunteers are not scarce, so
-there is no reason to climb the ladder within one person. A cohort of
-four to six per dose level, with a sentinel pair dosed a day ahead of
-the rest, is the ordinary phase 1 shape and gives a between-subject
-estimate of the response at each dose, which one person climbing
-cannot.
+**Several volunteers per dose.** Volunteers are not scarce, so there is
+no reason for one person to climb the ladder. A cohort of four to six
+per dose level, with a sentinel pair dosed a day ahead of the rest, is
+the ordinary phase 1 shape, and it estimates the between-subject
+response at each dose, which one person climbing cannot.
 
-**A second dose in the same volunteer.** Give a priming dose, wait a
-week, give a higher dose, and compare the cytokine response with a
-cohort that received the higher dose naive. That is a direct
-measurement of the tolerance effect, a primed T-cell pool releasing
-less cytokine at the next dose, in a system with no tumour and no
-disease, and it is the measurement a step-up regimen for patients
-would be designed from. The
+**A second dose in the same volunteer measures tolerance.** Give a
+priming dose, wait a week, give a higher dose, and compare the cytokine
+response with a cohort that received the higher dose without priming.
+That measures the tolerance effect, a primed T-cell pool releasing less
+cytokine at the next dose, in a system with no tumour and no disease,
+and a step-up regimen for patients would be designed from it. The
 confound is that by the second dose the volunteer's blood B cells are
-gone, so a lower cytokine response could mean primed T cells or an
-absent target. Tissue B cells persist longer than blood B cells and
-are the majority of the pool, which is why the comparison is still
-informative, but the two explanations have to be separated by the
-B-cell measurement, not assumed away.
+gone, so a lower cytokine response could mean primed T cells or a
+missing target. Tissue B cells persist longer than blood B cells and
+make up most of the pool, so the comparison still informs, but the
+B-cell measurement has to separate the two explanations.
 
-## 4. Translation from volunteer to patient
+## 4. Translation From Volunteer to Patient
 
-The active dose found in a volunteer is useful exactly to the extent
-that the patient's response at the same dose is predictable from it.
-Three things differ.
+A volunteer's active dose is useful to the extent that a patient's
+response at the same dose can be predicted from it. Three things differ.
 
 **Target burden.** Cytokine release scales with the number of target
 cells the engager finds. A volunteer's peripheral B-cell count is in the
-ordinary range; an autoimmune patient's is usually similar, unless
-prior rituximab has emptied it, and the plasma cell compartment that a
-BCMA engager targets is larger in a patient with active humoral disease.
-A patient with a haematological malignancy carries orders of magnitude
-more target. So the fever dose in a volunteer is a lower bound for the
-fever dose in a low-burden patient and an overestimate, by an unknown
-factor, for a patient with tumour. The B-cell depletion dose translates
-better, since depletion of a normal-sized compartment is the same event
-in both.
+ordinary range, and an autoimmune patient's is usually similar unless
+prior rituximab has emptied it; the plasma cell compartment that a BCMA
+engager targets is larger in a patient with active humoral disease. A
+patient with a haematological malignancy carries orders of magnitude
+more target. The volunteer's fever dose is therefore a lower bound on
+the fever dose in a low-burden patient, and an overestimate, by an
+unknown factor, for a patient with a tumour. The B-cell depletion dose
+translates better, since depleting a normal-sized compartment is the
+same event in both.
 
 **T-cell fitness.** An autoimmune patient on glucocorticoids,
-mycophenolate or methotrexate has a suppressed T-cell response; a
+mycophenolate or methotrexate has a suppressed T-cell response and a
 volunteer does not. The volunteer dose may over-predict activity in a
-treated patient, in the direction that makes the patient study start
-too low rather than too high, which is the safe direction and the slow
-one.
+treated patient, so the patient study would start too low rather than
+too high: safe, and slow.
 
 **Duration.** A volunteer given a long-half-life engager loses
 peripheral B cells for weeks to months (42 days or more in the primate
-study, entry 25). That is the cost the volunteer bears for no benefit,
-and it is the reason the three registered studies are all for
-indications where a single administration is the intended regimen. The
-ethics review will have weighed it, and the consent form will say how,
-and neither document has been read.
+study, entry 25). The volunteer bears that cost for no benefit, which is
+why all three registered studies are for indications where a single
+administration is the intended regimen. The ethics review will have
+weighed it and the consent form will say how; neither document has been
+read.
 
-**Where the translation holds.** Autoimmune indications, B-cell or
-plasma-cell targets, engineered CD3 arms, a depletion readout rather than
-a fever readout. That is the set of conditions under which the three
-registered studies were run, and it is the set under which the idea in
-Section 1 works. Outside it, the volunteer dose is a MABEL with human
-data behind it, which is still an improvement on a MABEL without.
+**The translation holds** for autoimmune indications, B-cell or
+plasma-cell targets, engineered CD3 arms, and a depletion readout rather
+than a fever readout. Those are the conditions the three registered
+studies were run under, and the conditions under which the idea in
+Section 1 works. Outside them, the volunteer dose is a minimal
+anticipated biological effect level (MABEL) with human data behind it,
+which still improves on a MABEL without.
 
-## 5. Where it applies, and how much time it saves
+## 5. Where It Applies, and How Much Time It Saves
 
 A volunteer study replaces a prediction of the active dose from primate
-data with a measurement in humans. The residual uncertainty is the
+data with a measurement in humans. What remains uncertain is the
 volunteer-to-patient translation of Section 4, a factor of a few rather
 than of tens.
 
 - ✅ **B-cell-depleting TCE, autoimmune indication.** Run the volunteer
-  study. The patient study starts one or two steps below the volunteer
+  study. Start the patient study one or two steps below the volunteer
   depletion dose, with a step-up regimen designed from the volunteer
   cytokine data.
-- ❌ **Solid-tumour or haematological TCE.** No volunteer has been
-  dosed with an oncology TCE, the target burden argument in Section 4
-  says a volunteer readout would not translate, and the ethics of
-  depleting a healthy person's B cells for a lymphoma programme are
-  worse than for an autoimmune one.
+- ❌ **Solid-tumour or haematological TCE.** No volunteer has been dosed
+  with an oncology TCE, the target-burden argument in Section 4 says a
+  volunteer readout would not translate, and depleting a healthy
+  person's B cells for a lymphoma programme is harder to justify than
+  for an autoimmune one.
 
-**How much time.** Assumptions, not measurements, and the reader should
-change them.
+The time saving below rests on assumptions, not measurements, and each
+row is there to be replaced.
 
 | Quantity | Conventional 3+3 in patients | Volunteer single ascending dose |
 |:---|:---|:---|
@@ -285,23 +274,22 @@ change them.
 
 : The speed claim, under stated assumptions. Both columns cross the same gap; the difference is the cadence. {tbl-colwidths="[34,33,33]"}
 
-The saving is of the order of six months to a year. A saving under
-about eight weeks, one conventional cohort cycle plus its accrual,
-would sit inside the noise of ordinary trial execution; this one does
-not, if the cadence assumptions hold, and the cadence is the row to
-check first against a real unit's calendar.
+**The saving is six months to a year.** A saving under about eight
+weeks, one conventional cohort cycle plus its accrual, would sit inside
+the noise of ordinary trial execution. This one does not, if the cadence
+assumptions hold, so check the cadence row first against a real unit's
+calendar.
 
-## 6. What to do with this
+## 6. Next Steps
 
 1. Ask the colleague for the trial identifier behind the Ouro
-   recollection, and search the Chinese registries if it is not
-   forthcoming.
+   recollection, and search the Chinese registries if it does not come.
 2. Watch for the XmAb657 volunteer cohort results, expected in the
-   second half of 2026. What dose the volunteers reached, what their B
-   cells did, and whether anyone had a fever answers most of Section 3.
+   second half of 2026. The dose the volunteers reached, what their B
+   cells did, and whether anyone had a fever answer most of Section 3.
 3. Read entry 20, the EMA first-in-human guideline, for what it says
-   about healthy volunteers and immunomodulators, since that is the
-   document an ethics committee reads.
-4. Put the speed table against a real phase 1 unit's cohort calendar
-   and a real programme's escalation history, so that the assumptions
-   become two measured columns.
+   about healthy volunteers and immunomodulators, since an ethics
+   committee reads that document.
+4. Set the speed table against a real phase 1 unit's cohort calendar
+   and a real programme's escalation history, so both columns become
+   measurements.

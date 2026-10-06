@@ -9,18 +9,18 @@ toc-depth: 2
 ---
 
 ::: {.callout-important appearance="simple"}
-**Transcribed from an image of the poster, not from the poster.** Every
-number below needs checking against the source before it is cited.
-Links are on the [references page](references.qmd).
+**Transcribed from an image of the poster, not from the poster.** Check
+every number below against the source before citing it. Links are on
+the [references page](references.qmd).
 :::
 
 MCLA-117 (tepoditamab) is a CLEC12A x CD3 bispecific antibody. Its
-first-in-human phase 1 study in relapsed or refractory AML
-(NCT03038230) escalated within patients across four orders of
-magnitude, and is the precedent cited in Section 6 of
-[the specification](specification.qmd).
+first-in-human phase 1 study in relapsed or refractory acute myeloid
+leukaemia (AML; NCT03038230) escalated within patients across four
+orders of magnitude. Section 6 of [the specification](specification.qmd)
+cites it as precedent.
 
-## The Cycle 1 scheme
+## The Cycle 1 Scheme
 
 | Cohort | D1 | D3 | D5 | D8 | D11 | D15 | D22 |
 |:---|---:|---:|---:|---:|---:|---:|---:|
@@ -50,52 +50,50 @@ within-patient ladder; the dose axis is logarithmic and spans the
 25 µg first dose of cohort 1 to the 400 mg target dose of cohort
 12.](mcla117-escalation.svg){#fig-mcla117}
 
-## What it settles
+## Four Features That Bear on the Design
 
-1.  **Within-patient traversal of four orders of magnitude is
-    precedented and was executed.** The programme ran from a 25 µg
-    first dose to a 400 mg target dose, a factor of 16,000.
-    Scout-and-backfill does not need to argue that a long ladder is
-    possible.
+1.  **A within-patient ladder across four orders of magnitude has been
+    run.** The programme went from a 25 µg first dose to a 400 mg target
+    dose, a factor of 16,000, so scout-and-backfill does not need to
+    argue that a long ladder is possible.
 
 2.  **The number of within-patient steps was not capped.** Cohort 1
-    administers seven doses in 22 days and ends 27-fold above its own
-    first dose, so the specification's rejection of a rule such as
-    "maximum three escalations" describes what this trial already did.
+    received seven doses in 22 days and ended 27-fold above its own first
+    dose. The specification's rejection of a rule such as "maximum three
+    escalations" describes what this trial already did.
 
 3.  **The first dose moved slowly while the target dose moved fast.**
     Across the thirteen cohorts the D1 doses are 25, 100, 300, 600 and
-    600 µg, then 1, 1, 1, 3, 5, 5, 5 and 5 mg. The largest single
-    increase in the D1 dose is 4-fold and most are 3-fold or less,
-    while the D22 dose rises from 675 µg to 400 mg over the same
-    sequence. The constraint sits on the first dose given to a patient
-    who has had no drug, not on the ladder above it. This is the
-    observation that changes the design, and Section 6 takes it up.
+    600 µg, then 1, 1, 1, 3, 5, 5, 5 and 5 mg. The largest increase in
+    the D1 dose is 4-fold and most are 3-fold or less, while the D22
+    dose rises from 675 µg to 400 mg over the same cohorts. The
+    constraint is on the first dose to a drug-naive patient, and the
+    ladder above it is free. Section 6 of the specification builds the
+    scout-entry rule on this.
 
 4.  **From cohort 9 the step-up prefix is fixed and only the target
-    dose changes.** Cohorts 9 to 12 all give 5 mg, 15 mg and 25 mg on
-    D1, D4 and D8, and differ only in the D15/D22 target: 60, 120, 240
-    and 400 mg. That is the structure Section 7 assumes for the backfill
-    regimen, a fixed step-up prefix with an escalating target, reached
-    here empirically.
+    dose changes.** Cohorts 9 to 12 all give 5, 15 and 25 mg on D1, D4
+    and D8, and differ only in the D15 and D22 target: 60, 120, 240 and
+    400 mg. Section 7 assumes the same structure for the backfill
+    regimen, a fixed step-up prefix with an escalating target, and
+    MCLA-117 reached it empirically.
 
-Observations 2 and 4 supply real values where Sections 13 and 15 carry
-assumptions: an escalation multiplier of roughly 2 to 3-fold per step,
+Features 2 and 4 supply real values where Sections 13 and 15 carry
+assumptions: an escalation multiplier of about 2 to 3-fold per step,
 and five to seven steps inside a 28-day cycle.
 
-## Where the precedent and the simulated design differ
+## Where the Precedent and the Simulated Design Differ
 
-The step interval. Cohort 1 doses on D1, D3, D5, D8, D11, D15 and D22,
-so its first intervals are 2 and 3 days rather than 7.
-Scout-and-backfill holds the interval at one week, which makes the
-simulated ladder slower than the precedent rather than faster, and any
-acceleration it reports conservative on that axis. Whether a sub-weekly
-scout ladder is worth simulating is a later question; a 7-day interval
-is the v1 assumption because it is what the safety gate in Section 15
-and the PD turnaround in Section 11 already support.
+**The step interval.** Cohort 1 doses on D1, D3, D5, D8, D11, D15 and
+D22, so its first intervals are 2 and 3 days. Scout-and-backfill holds
+the interval at one week, so the simulated ladder is slower than the
+precedent and any acceleration it reports is conservative on that axis.
+v1 assumes 7 days because the safety gate in Section 15 and the PD
+turnaround in Section 11 already support it. A sub-weekly scout ladder
+is a later question.
 
-## The figure
+## Redrawing the Figure
 
-The escalation figure in Section 6 is drawn by
-`make_escalation_figure.py`, which carries the dose table above as its
-data. Change the table there and re-run it.
+`make_escalation_figure.py` draws the figure above and in Section 6,
+and carries the dose table as its data. Change the table there and
+re-run it.

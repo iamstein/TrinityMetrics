@@ -10,21 +10,19 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**One paper open in the first queue, a second queue entirely unread, and
-the numbers are not checked.** Five of the six entries in the first
-queue have been dispositioned and the notes under each say what came of
-it; GB261 is unread. The second queue, on intrapatient escalation in
-immunology, was assembled on 2026-08-31 from search results because no
-journal, registry or regulator host was reachable, so every entry there
-is a prediction about a paper rather than a reading of one. A third
-queue, on T-cell engagers in healthy volunteers, was added on
-2026-09-10 from a registry search and is in the same state.
-Every source below the queues still carries the marker it started
-with, and those are the ones that matter for final work: the teclistamab
-PK parameters in Section 8, the Friberg system values in Section 17, and
-the MCLA-117 dose table in Section 6 were transcribed rather than
-verified. A parameter taken from an abstract, or a table taken from an
-image of a poster, is not a number that can go into final work.
+**No number behind the specification has been checked against its
+source.** The teclistamab PK parameters in Section 8, the Friberg system
+values in Section 17 and the MCLA-117 dose table in Section 6 were
+transcribed, the last from an image of a poster. None can go into final
+work until it is checked.
+
+Reading stands as follows. The first queue has five of six entries
+answered; GB261 is unread. The second queue, on intrapatient escalation
+in immunology, was assembled on 2026-08-31 from search results because
+no journal, registry or regulator site was reachable, so every entry is
+a prediction about a paper. The third, on T-cell engagers in healthy
+volunteers, was added on 2026-09-10 from a registry search and is in the
+same state.
 :::
 
 The working document is [the specification](specification.qmd), and the
@@ -40,25 +38,25 @@ folder's other documents are on [the project index](index.qmd).
   against it.
 - ✅ **Checked.** Verified against the source.
 
-On a **reading-queue** entry, ✅ means the question posed against that
+On a **reading-queue** entry, ✅ means the question posed against the
 entry has been answered, by reading the paper or by deciding it is out
-of scope. The note on the entry says which. Five of the six are ✅ in
-the first queue and none of the fourteen in the second.
+of scope, and the note on the entry says which. Five of the six in the
+first queue are ✅, and none of the fourteen in the second or the six in
+the third.
 
-On a **source** entry below the queue, ✅ keeps its stricter meaning:
-the claim the specification draws from it has been checked against the
-source. None is ✅ yet. Change a marker when the check is done, not when
-the paper is opened.
+On a **source** entry below the queues, ✅ means the claim the
+specification draws from it has been checked against the source. None is
+✅ yet. Change a marker when the check is done, not when the paper is
+opened.
 
 ## How to read these
 
-Read against the question under each entry rather than through the paper
-front to back. The general method is on the
-[Reading Papers](../../guides/reading-papers.qmd) page: three passes, and you
-stop at the pass that answers the question. An hour is the budget for a paper
-read this way.
+Read each paper against the question under its entry, not front to back.
+The general method is on the [Reading Papers](../../guides/reading-papers.qmd)
+page: three passes, stopping at the pass that answers the question. An hour
+is the budget for a paper read this way.
 
-Simon 1997 is the one that needs the full hour.
+Simon 1997 needed the full hour, spent as follows.
 
 - Ten minutes on the abstract, the numbered definitions of designs 1 to 4,
   and the *column headers* of the simulation results tables. Which outcome
@@ -72,30 +70,27 @@ Simon 1997 is the one that needs the full hour.
   question already parameterized. Otherwise do not reconstruct the model,
   because nothing downstream of it is being reused.
 
-Watch for the answer that runs the other way. If duration is not among the
-reported outcomes, the **catch-up helps patients, not the clock**
-hypothesis in Section 26 is not settled by Simon, it stays in the
-simulation, and Simon is cited for the mechanism rather than for
-the result. The entries below are characterizations from abstracts, so each
-one is a prediction about what the paper says.
+Duration turned out not to be among the reported outcomes, so the
+**catch-up helps patients, not the clock** hypothesis in Section 26 stays in
+the simulation, and Simon is cited for the direction rather than for a
+number. Entry 5 has the result.
 
-Notes go one line per question, carrying an answer and the table or page
-number it came from, plus anything that contradicts the specification. Write
-what the paper actually said into the entry, and change its status marker when
-the check is done.
+Notes go one line per question, with an answer and the table or page it came
+from, plus anything that contradicts the specification. Until an entry has
+been read, its description comes from an abstract and is a prediction about
+what the paper says.
 
 ## Reading queue
 
-Read these before building Phase 1. They are ordered so that each makes
-the next easier to read. Entry 6 is the one still open, and it is the
-one that bears on the stopping rule.
+Read these before building Phase 1, in order; each makes the next easier
+to read. Entry 6 is still open, and it bears on the stopping rule.
 
 ### 1. Elmeliegy et al. 2024 — TCE dosing strategies and quantitative clinical pharmacology ✅
 
 *Clinical Pharmacology & Therapeutics*.
 <https://doi.org/10.1002/cpt.3361>
 
-Read the section on dose escalation.  Talks about using small cohorts (n=1), large steps (3x), and strating around MABEL dosing but didn't actually talk about intrapatient escalation. I don't think this was really done for most of the TCEs that are approved.
+Read the section on dose escalation.  Talks about using small cohorts (n=1), large steps (3x), and starting around MABEL dosing but didn't actually talk about intrapatient escalation. I don't think this was really done for most of the TCEs that are approved.
 
 ### 2. Zhou et al. 2025 — modified MABEL starting dose for a solid-tumor TCE ✅
 
@@ -103,12 +98,11 @@ Read the section on dose escalation.  Talks about using small cohorts (n=1), lar
 <https://doi.org/10.1002/cpt.3431>
 
 Reported to have justified a 10-fold higher first-in-human starting dose
-and saved at least two escalation cohorts. **This can change the
-premise.** It attacks the same gap from the other end, moving
-$D_{\rm start}$ up rather than traversing the gap faster, so a generally
-applicable version shrinks $R_{\rm predicted-gap}$ and the value of IPDE
-with it. The two strategies are not exclusive, and the simulation
-carries both, since a higher starting dose is a change to one parameter.
+and saved at least two escalation cohorts. It attacks the same gap from the
+other end, moving $D_{\rm start}$ up rather than crossing the gap faster, so
+a generally applicable version shrinks $R_{\rm predicted-gap}$ and the value
+of IPDE with it. The two strategies can be combined, and in the simulation a
+higher starting dose is a change to one parameter.
 
 **Decision not to read**
 Decided not to read.  This is a completely different topic.  Related in that
@@ -118,8 +112,8 @@ MABEL-based doses are a good approach and this IPDE can complement it.
 
 *Pharmaceutical Statistics*. <https://doi.org/10.1002/pst.2461>
 
-Places intra-patient escalation inside a continual reassessment method,
-with adaptively updated starting doses. The modern successor to
+Places intrapatient escalation inside a continual reassessment method
+(CRM), with adaptively updated starting doses: the current successor to
 accelerated titration.
 
 **Answer while reading.**
@@ -135,8 +129,8 @@ This is future work, and it now sits in Section 27b of the specification.
 [PubMed 40405047](https://pubmed.ncbi.nlm.nih.gov/40405047/).
 Journal and authors identified from a search rather than from the paper.
 
-The methodological treatment of the confound in Section 16: attributing
-an event in a patient who has already received every lower dose on the
+Treats the confound in Section 16 methodologically: how to attribute an
+event in a patient who has already received every lower dose on the
 ladder.
 
 **Answer while reading.** 
@@ -148,9 +142,9 @@ I decided to defer this till later.  I'm not trying to come up with a quantitati
 <https://doi.org/10.1093/jnci/89.15.1138>
 
 The origin of the mechanism. Designs 2 to 4 combine single-patient
-cohorts in the low-dose region with intra-patient escalation, and define
-what an efficient conventional comparator looks like. Read last of the
-five.
+cohorts in the low-dose region with intrapatient escalation, and the paper
+defines what an efficient conventional comparator looks like. Read last of
+the five.
 
 #### Methods
 
@@ -166,7 +160,7 @@ Four models
 3. Double Steps + Accelerated until AE in first cycle, then Conventional
 4. Double Steps + Accelerated until AE in any cycle,   then Conventional
 
-A. No itrapatient escalation
+A. No intrapatient escalation
 B. With intrapatient escalation.
 
 
@@ -175,12 +169,11 @@ B. With intrapatient escalation.
 Full numbers with the page each came from are in the
 [reading notes](simon97-notes.qmd). The short version:
 
-**Fewer patients is not a shorter trial.** Cohorts are tabulated
+**Fewer patients does not mean a shorter trial.** Cohorts are tabulated
 separately from patients as a duration proxy (Fig. 3, p.1143). Model 2
-removes 15 patients against model 1 and saves no cohorts at all — model
-1 needs slightly fewer, since model 2 overshoots and spends cohorts
-de-escalating (p.1142). The saving appears only with double steps
-(p.1142).
+enrols 15 fewer patients than model 1 and saves no cohorts; model 1 needs
+slightly fewer, since model 2 overshoots and spends cohorts de-escalating
+(p.1142). The saving appears only with double steps (p.1142).
 
 | Model | Patients, mean | Patients, median | Cohorts vs model 1 |
 |:--|:--|:--|:--|
@@ -191,7 +184,8 @@ de-escalating (p.1142). The saving appears only with double steps
 
 : Sample size p.1141, cohorts p.1142. Model 1 is option A, models 2 to 4 are option B {tbl-colwidths="[16,28,28,28]"}
 
-**A against B moves undertreated patients and nothing else measured.**
+**Intrapatient escalation (B against A) reduces undertreated patients and
+changes nothing else measured.**
 
 | Metric | 3A, no IPDE | 3B, with IPDE | Source |
 |:--|:--|:--|:--|
@@ -207,14 +201,13 @@ On 1A against 1B, where no acceleration is involved, intrapatient
 escalation has "no effect on the number of patients or number of
 cohorts" and moves undertreated patients from 23.3 to 19.3 (p.1143).
 
-**The qualification.** No figure or table splits A from B. On patients
-and cohorts the comparison is the phrase "little or no effect"
-(p.1143), so the **catch-up helps patients, not the clock** hypothesis
-in Section 26 is supported in direction with no published number to cite
-in place of the simulation. The numbers
-that are resolved between A and B are the toxicity grades.
+**No figure or table splits A from B.** On patients and cohorts the
+comparison is the phrase "little or no effect" (p.1143), so the **catch-up
+helps patients, not the clock** hypothesis in Section 26 is supported in
+direction, with no published number to cite in place of the simulation. The
+toxicity grades are the only numbers given for both A and B.
 
-**The comparator is 3A**, and the finding that transfers is that time is
+**The comparator is 3A.** The finding that carries over is that time is
 bought with dose step size rather than with who escalates.
 
 
@@ -229,10 +222,11 @@ CD20/CD3 Bispecific Antibody, Demonstrated a Highly Advantageous
 Safety/Efficacy Balance in an Ongoing First-in-Human Dose-Escalation
 Study in Patients with Relapsed/Refractory Non-Hodgkin Lymphoma.
 
-Read for the intra-patient stopping rule. The escalation ran accelerated
-titration followed by 3+3, across flat and step-up regimens at doses
-from 1 mg to 300 mg in 47 patients with relapsed or refractory B-NHL.
-That is the shape of the scout design, in the same target class.
+Read for the intrapatient stopping rule. The escalation ran accelerated
+titration followed by 3+3, across flat and step-up regimens at doses from
+1 mg to 300 mg in 47 patients with relapsed or refractory B-cell
+non-Hodgkin lymphoma (B-NHL): the shape of the scout design, in the same
+target class.
 
 **The question to answer from the source.** What rule ended the
 accelerated phase and started the 3+3. Whether that rule was a toxicity
@@ -242,23 +236,23 @@ patient stopped. The abstract states the two phases and the dose range
 without stating the rule, so the answer is in the poster or the
 protocol.
 
-**Second reason to read it.** CD20+ cells were undetectable 24 hours
+**A second reason to read it.** CD20+ cells were undetectable 24 hours
 after infusion across the dose range studied. Where that holds, blood
 B-cell count does not separate dose levels for this class, and a
-depletion threshold can serve as a stopping trigger without serving as a
+depletion threshold can serve as a stopping trigger but not as a
 dose-ranging endpoint. Section 10 of the specification calibrates
-$EC_{50}$ so that the threshold does separate adjacent dose levels, so
-this is a check on that assumption rather than a detail.
+$EC_{50}$ so that the threshold does separate adjacent dose levels, and
+GB261 tests that assumption.
 
 Neither host is reachable from the container these notes were written
 in, so both links need a browser.
 
 ## Reading queue: intrapatient escalation in immunology
 
-Searched 2026-08-31, oncology excluded. **Yes, it is done, and three of
-the studies found escalate on a biomarker rather than on toxicity.** The
-autoimmune cytopenias are where dose finding by intrapatient escalation
-is established practice: rilzabrutinib's phase 1--2 in immune
+Searched 2026-08-31, oncology excluded. **Immunology does escalate within
+patients, and three of the studies found escalate on a biomarker rather
+than on toxicity.** In the autoimmune cytopenias, dose finding by
+intrapatient escalation is established practice: rilzabrutinib's phase 1--2 in immune
 thrombocytopenia is an adaptive dose-finding study whose escalation
 mechanism is within-patient, and its sibling study in pemphigus
 vulgaris gates the step on target engagement. Antigen-specific
@@ -285,20 +279,18 @@ record, and those are marked where they appear.
 
 : Within-patient dose escalation in immunology, from a search of the published literature {tbl-colwidths="[22,20,28,30]"}
 
-Every biomarker-gated study in that table escalates *until the patient
-responds* and stops climbing when the marker moves the right way.
-Scout-and-backfill escalates until the marker moves and stops for the
-opposite reason: the response is the signal that the programme has found
-its dose, not that this patient is treated. The mechanism is the same
-and the sign is reversed, which makes the rilzabrutinib and PRN1008
-escalation rules the closest published relatives of the Section 13 rule
-and worth reading before it is finalized.
+Every biomarker-gated study in the table escalates *until the patient
+responds*, and stops climbing when the marker moves the right way.
+Scout-and-backfill also stops when the marker moves, but there the
+response signals that the programme has found its dose. The mechanism is
+the same with the purpose reversed, which makes the rilzabrutinib and
+PRN1008 escalation rules the closest published relatives of the
+Section 13 rule. Read them before that rule is finalized.
 
-What was not found is the combination the specification proposes: a
+The search did not find the combination the specification proposes: a
 scout whose ladder exists to nominate a dose for the programme, with a
-separate cohort confirming it. Section 6's claim that the stopping rule
-is what is new survives. Its claim that the prior art is oncology's does
-not.
+separate cohort confirming it. The stopping rule is still what is new.
+The prior art is not oncology's alone.
 
 ### Where to start
 
@@ -330,9 +322,9 @@ The nearest published relative of this project's design: an autoimmune
 disease, a dose-finding study, escalation inside the patient, and a
 blood-count threshold deciding each step.
 
-**The question.** What the escalation rule actually was. "Investigator's
+**The question.** What the escalation rule was. "Investigator's
 judgement" and a 3+3 are two different mechanisms and the paper reports
-both, so which one moved a patient up matters. Whether the
+both, so find out which one moved a patient up. Whether the
 dose-response conclusion used the within-patient data or only the
 starting doses. Whether the 28-day cycle was set by the platelet
 turnover time, which is the $W_{\rm decision}$ question in Section 15
@@ -375,7 +367,7 @@ no bleeding, and if safety is favourable. The subject then stays at the
 higher dose for the rest of the study.
 
 The rule is numeric, prespecified and published in the protocol, which
-is what Section 13's rule needs to be and is the shape to copy.
+is what Section 13's rule needs to be. Copy its shape.
 
 **The question.** Why one step rather than a ladder, and what the
 protocol says about a subject who responds at the lower dose. Also
@@ -442,19 +434,18 @@ escalation was amended mid-study to add 3 µg and 9 µg steps after a
 participant withdrew with gastrointestinal events at 30 and 60 µg.
 
 **Read this one for Section 3.** The specification's central caution is
-that a patient who arrived at a dose up a ladder is not the same as a
-patient who arrived at it directly, and this is the only study found
-that measures the size of that difference: a sixfold rise in the
+that a patient who reached a dose up a ladder differs from a patient who
+received it directly, and this is the only study found that measures the
+size of that difference: a sixfold rise in the
 tolerated dose, in an autoimmune indication, with the ladder as the only
 change. Section 14 makes the same argument for cytokine release and
 calls the net effect ambiguous.
 
 **The question.** Whether the 150 µg and 900 µg figures are tolerability
 limits in the same sense, and what the escalation bought at the doses
-both regimens reached. If a ladder raises the tolerated dose sixfold,
-the backfill non-confirmation Section 7 expects is not a modelling
-artefact and the confirmation penalty is larger than the specification
-assumes.
+both regimens reached. If a ladder raises the tolerated dose sixfold, the
+backfill non-confirmation Section 7 expects is real, and the confirmation
+penalty is larger than the specification assumes.
 
 ### 13. de Graaf et al. 2025 — FIH dose selection for TCE bispecifics ❌
 
@@ -537,9 +528,9 @@ cohort target on day 8. Deep, dose-dependent B-cell depletion is
 reported, with B cells unquantifiable in half the patients dosed at
 20 µg or above.
 
-Design A with one step-up, in the population Section 22 calls the
-immune-reset archetype, running now. This is the comparator the
-simulation argues against and it is not a straw man.
+Design A with one step-up, running now, in the population Section 22
+calls the immune-reset archetype. It is the comparator the simulation
+argues against, and a realistic one.
 
 **The question.** Three. The between-cohort review window, which is the
 largest single driver of the conventional timeline in Section 15.
@@ -554,8 +545,8 @@ two programmes now disagree with the base-case rule.
 Anti-CD3 in type 1 diabetes. Reported as 51, 103, 206 and 413 µg/m² on
 days 1 to 4, then 826 µg/m² on days 5 to 14, cumulative 9,034 µg/m².
 
-The oldest within-patient ladder in immunology, roughly 16-fold over
-four days and fixed rather than conditional. Its 2-fold daily steps sit
+The oldest within-patient ladder in immunology: about 16-fold over four
+days, fixed rather than conditional. Its 2-fold daily steps sit
 close to Simon's double steps and far below the $F_{\rm quiet}=10$ of
 Section 13.
 
@@ -613,11 +604,10 @@ design was found in an autoimmune indication. Registry search was not
 possible, so the negative covers the published literature and search
 results, not protocols.
 
-Cat-PAD is worth recording as a deliberate counterexample: the peptide
-was designed to be given at therapeutic doses from the first
-administration specifically to avoid the dose escalation that
-conventional immunotherapy requires. Where the first-dose reaction can
-be engineered out, the ladder disappears.
+Cat-PAD is a deliberate counterexample: the peptide was designed to be
+given at therapeutic doses from the first administration, to avoid the
+dose escalation conventional immunotherapy requires. Where the first-dose
+reaction can be engineered out, the ladder disappears.
 
 The methodological papers on intrapatient escalation are motivated by
 oncology or by rare disease rather than by immunology: Guo et al. 2025
@@ -681,9 +671,9 @@ rheumatoid arthritis and Sjögren's. CND319 is a CD19/CD20 x CD3
 engager. Primary outcomes safety through week 12 (SAD) or 24;
 secondary PK and anti-drug antibodies.
 
-**The question.** The same as entry 22, and in addition whether the
-patient MAD starting dose was chosen from the volunteer SAD, which
-would be the idea applied.
+**The question.** The same as entry 22, and whether the patient MAD
+starting dose was chosen from the volunteer SAD, which would be the idea
+applied.
 
 ### 24. Grieshaber-Bouyer et al., ACR Convergence 2025, abstract 2641 — cizutamig, preclinical to clinical translation ❌
 
@@ -719,10 +709,9 @@ number the volunteer starting dose was derived from.
 [PMID 16908486](https://europepmc.org/article/MED/16908486)
 
 Six healthy volunteers, a CD28 superagonist, a dose 500 times below the
-primate no-effect level, and multi-organ failure within hours. The
-reason a T-cell agonist in a healthy volunteer is the case an ethics
-committee scrutinizes hardest, and the case behind entry 20's
-guideline.
+primate no-effect level, and multi-organ failure within hours. It is why
+an ethics committee scrutinizes a T-cell agonist in healthy volunteers
+hardest, and the case behind entry 20's guideline.
 
 **The question.** What the paper and the subsequent guidance say
 distinguishes a CD28 superagonist from a target-dependent CD3 engager
@@ -776,9 +765,9 @@ where posted, appear on the registration page above.
 
 ## Related, not yet placed
 
-Relevant, but not on the critical path to building Phase 1.
+Relevant, but not needed to build Phase 1.
 
-| Status | Source | Why it may matter |
+| Status | Source | Why it may be relevant |
 |:---|:---|:---|
 | ❌ | [de Graaf et al. 2025, FIH dose selection for TCE bispecifics](https://doi.org/10.1002/cpt.3487) | An AAPS working-group position on starting dose, early development and RP2D selection. What an industry consensus currently expects of a design like this one. |
 | ❌ | [Model-informed dose priming strategy for T cell engagers](https://doi.org/10.70534/HAZS6681) | A QSP framework using early cohort data to choose step-up regimens, rather than setting them empirically as Section 6 does. |

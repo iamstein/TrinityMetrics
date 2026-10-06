@@ -1,7 +1,7 @@
 ---
 title: "Intrapatient dose escalation for first-in-human T-cell engagers"
 subtitle: "Working specification for a trial-design simulation"
-description: "Does escalating dose within a patient reach a confirmable active dose sooner, and does the time it saves outweigh the extra visits and hospital time it costs, or is it a wash? A specification for the simulation that would answer it."
+description: "Does escalating dose within a patient reach a confirmed active dose sooner, and is the time saved worth the extra visits and hospital time? A specification for the simulation that would answer it."
 categories: [trial design, simulation, pharmacometrics, oncology]
 date: last-modified
 toc: true
@@ -13,51 +13,49 @@ html-math-method: mathjax
 ---
 
 ::: {.callout-note appearance="simple"}
-This is a working document, not a finished analysis. It specifies a
-simulation that has not been built yet. Parameter values are simulation
-assumptions drawn from published models, not clinical estimates, and the
-conclusions listed in Section 26 are hypotheses to be tested rather than
-results. The [project index](index.qmd) lists the other documents in this
-folder, and [References](references.qmd) carries the sources.
+A working document. It specifies a simulation that has not been built.
+Parameter values are assumptions drawn from published models rather
+than clinical estimates, and the conclusions in Section 26 are
+hypotheses to test. The [project index](index.qmd) lists the other
+documents in this folder, and [References](references.qmd) carries the
+sources.
 :::
 
-## In brief
+## In Brief
 
-**The question.** In a first-in-human T-cell engager trial, the starting
-dose may sit orders of magnitude below the biologically active one, and
-conventional escalation crosses that gap one cohort at a time. Escalating
-*within* a patient crosses it faster. Does that actually get the trial
-to a confirmable active dose sooner, and does the time it saves outweigh
-what it costs in extra visits, doses and hospital time? It can save more
-than it costs, cost more than it saves, or come out a wash, and which of
-those it is depends on the scenario. Section 1 sets out the three axes
-the answer is reported on.
+**The question.** A first-in-human (FIH) T-cell engager (TCE) trial may
+start orders of magnitude below the biologically active dose, and
+conventional escalation crosses that gap one cohort at a time.
+Escalating within a patient crosses it faster. The simulation asks
+whether intrapatient dose escalation (IPDE) gets the trial to a
+confirmed active dose sooner, and whether the time saved outweighs the
+extra visits, doses and hospital time. Depending on the scenario it can
+save more than it costs, cost more than it saves, or come out even.
+Section 1 sets out the three axes the answer is reported on.
 
-**Why it might work.** The value of the strategy does not come from the
-size of the gap between the starting and active dose. It comes from
-uncertainty about that gap. If translational prediction is roughly
-right, conventional escalation already reaches the active range
-efficiently. The design earns its keep only when the prediction is wrong
-by a large factor, so prediction error is the primary simulation axis
-rather than a sensitivity analysis.
+**Why it might work.** The value of IPDE grows with uncertainty about
+the gap between the starting dose and the active dose. A large gap that
+was predicted well is crossed efficiently by conventional escalation,
+and IPDE helps only when the prediction is wrong by a large factor. For
+that reason prediction error is the primary simulation axis
+(Section 12).
 
 **The design.** One scout patient escalates weekly until peripheral B
-cells fall below 5 cells/uL, then stops. That patient's ladder is not an
-interpretable regimen, so it nominates a dose neighbourhood rather than
-a dose: three fresh patients then receive a conventional step-up regimen
-at the nominated target, and only those patients count toward the
-primary endpoint. The strategy is a scouting device with a
-pharmacodynamic stopping rule, not a replacement for conventional dose
-characterisation.
+cells fall below 5 cells/µL, then stops. The scout's ladder is not an
+interpretable regimen, so it nominates a dose neighbourhood: three fresh
+patients then receive a conventional step-up regimen at the nominated
+target, and only those three count toward the primary endpoint
+(Section 4).
 
-**What cannot be quantified.** Escalating weekly inside a toxicity process with a
-longer latency means a normal observation at the next dose decision is
-incomplete reassurance. For CRS this is tractable and the ladder is
-arguably protective, since the scout is better primed at any given dose.
-For ICANS it is not: no published exposure-response model supports
-simulating that risk, and the document declines to invent one. That
-limitation belongs to the strategy, not just to the simulation.
-
+**What cannot be quantified.** A scout escalating weekly can outrun a
+toxicity that takes longer than a week to appear, so a normal
+observation at the next dose decision is incomplete reassurance. For
+cytokine release syndrome (CRS) the ladder may be protective, since the
+scout arrives at each dose better primed (Section 14). For immune
+effector cell-associated neurotoxicity syndrome (ICANS) no published
+exposure-response model supports simulating the risk, and this document
+does not invent one (Section 16). That gap limits the strategy, not only
+the simulation.
 
 ```{mermaid}
 flowchart TD
@@ -68,346 +66,286 @@ flowchart TD
     E --> F["Ordinary expansion / dose optimisation"]
 ```
 
-**How to read the answer.** The simulation quantifies a benefit against
-a risk it explicitly cannot quantify, so no region of the result is a
-recommendation on its own. What it can say is where the saving is large
-enough for the safety discussion to be worth having, and where it is
-small enough that the discussion is unnecessary. A saving under about
-eight weeks, one conventional cohort cycle plus its accrual, is inside
-the noise of ordinary trial execution. Section 26b reads the map.
+**Reading the result.** The simulation weighs a benefit it can quantify
+against a risk it cannot, so no part of the result is a recommendation
+by itself. It shows where the saving is large enough for the safety
+discussion to be worth having. A saving under about eight weeks, one
+conventional cohort cycle plus its accrual, sits inside the noise of
+ordinary trial execution. Section 26b reads the map.
 
 ------------------------------------------------------------------------
 
-## 1. High-level objective
+## 1. Objective
 
-Develop a simulation and operational framework to answer:
+The simulation and operational framework answer one question:
 
 > Under what conditions does intrapatient dose escalation (IPDE)
-> materially shorten the time required in a first-in-human T-cell
-> engager study to reach and conventionally evaluate a biologically
-> active dose/regimen, or reach that point at the same time having
-> treated fewer patients at subtherapeutic exposures, and what safety
-> and operational risks accompany either?
+> materially shorten the time a first-in-human T-cell engager study
+> needs to reach and conventionally evaluate a biologically active dose
+> or regimen, or reach that point in the same time having treated fewer
+> patients at subtherapeutic exposures, and what safety and operational
+> risks come with either?
 
-**Three axes, not one.** The saving can arrive as calendar time, as
-patients, or as what the trial consumes, and a design can win on one
-without the others. Catch-up escalation is expected to be exactly that
-case: little change in $T_{3,\rm eval}$, substantially less patient-time
-at clearly subactive doses (Section 6). An objective stated on time
-alone scores that design as a failure when it is not one.
+**The saving can arrive on three axes.** It can be calendar time,
+patients, or what the trial consumes, and a design can win on one axis
+and not the others. Catch-up escalation is expected to be such a design:
+little change in $T_{3,\rm eval}$, and substantially less patient-time
+at clearly subactive doses (Section 6). Scored on time alone it would
+count as a failure.
 
-The three headline quantities are:
+The three headline quantities:
 
 -   **Time.** $T_{3,\rm eval}$, and $\Delta T$ against the conventional
     comparator (Section 4).
 -   **Patients spent reaching the answer.** The number enrolled before
     the first profound B-cell depletion, and patient-weeks with B cells
-    at or above 5 cells/uL (Section 5).
+    at or above 5 cells/µL (Section 5).
 -   **What the trial consumes.** Total patient-visits, and total
     observation and hospitalization time in patient-hours (Section 19).
 
-**Report the third axis per patient and per trial, because they point
-opposite ways.** A scout accumulates a visit, a dose, a pharmacy
+**Report the third axis per patient and per trial.** The two can point
+in opposite directions. A scout takes a visit, a dose, a pharmacy
 preparation and an observation window at every rung, where a
 conventional patient sits at one dose level for the same period, so per
-patient the ladder is heavier. Across the trial it may be lighter: the
-scouts are few and each rung costs one patient's visits, where a
-conventional escalation spreads a smaller per-patient burden across
-three patients at every rung. A single total hides that, and the two
-readings answer different questions, one about what a participant
-undergoes and one about what the trial consumes. Section 19 expects the
-per-patient size to depend on what the patients were scheduled for
-anyway: close to free for a QW oncology TCE where the visits are already
-planned, substantial for an immune-reset programme whose eventual
-treatment is one or two administrations.
+patient the ladder is heavier. Across the trial it may be lighter,
+because there are few scouts and conventional escalation puts three
+patients on every rung. The per-patient count says what a participant
+undergoes and the per-trial count says what the trial consumes.
+Section 19 expects the per-patient cost to depend on what the patients
+were already scheduled for: close to nothing for a weekly (QW) oncology
+TCE whose visits are planned anyway, and substantial for an immune-reset
+programme whose eventual treatment is one or two administrations.
 
-**There is no cost model and there should not be one yet.** Turning
-visits, doses, hospital hours and patients into a single number requires
-weights, and a sponsor, a site and a patient weigh them differently.
-Section 19 reports the components separately for that reason, and
-Section 5 keeps the list short. The three quantities above are the
-headline set because they are what a programme argues about, and a
-programme wanting a currency figure can price its own counts.
+**No cost model yet.** Combining visits, doses, hospital hours and
+patients into one number needs weights, and a sponsor, a site and a
+patient weigh them differently. Section 19 reports the components
+separately, and a programme that wants a currency figure can price its
+own counts.
 
-### What comes out of this
+### Output: A Map of the Design Space
 
-A map of the design space, not a verdict on a programme. The question is
-which conditions favour IPDE and which do not, so the deliverable is
-$\Delta T$, $\Delta N_{\rm sub}$ and the burden counts reported across
-the scenario grid in Section 21, with the regions where each is
-material named.
+The deliverable is $\Delta T$, $\Delta N_{\rm sub}$ and the burden
+counts reported across the scenario grid in Section 21, with the regions
+where each is material named. It says which conditions favour IPDE and
+does not decide for any one programme.
 
-**Report contours, not a pass or fail.** A figure such as eight weeks
-saved is a line drawn on the map for reading it, not a bar the design
-has to clear. Eight weeks is roughly one conventional cohort cycle at
-$W_{\rm cohort}=28$ days plus its accrual, so a saving smaller than that
-sits inside the noise of ordinary trial execution and is worth marking
-as such. A programme applying this work later brings its own number.
-Section 26b works through how to read the map, including the case where
-the saving is patients rather than time.
+**Read the result against contours.** An eight-week saving is a line
+drawn on the map, roughly one conventional cohort cycle at
+$W_{\rm cohort}=28$ days plus its accrual. A smaller saving sits inside
+the noise of ordinary trial execution and is marked as such. A programme
+applying this work later brings its own threshold. Section 26b covers
+reading the map, including where the saving is patients rather than
+time.
 
-**The safety side is unquantified wherever the map is read.** Section 16
-sets out why no defensible quantitative model of ICANS is available, and
-that is a limitation of the strategy rather than of the simulation. No
-region of the map is a recommendation on its own. What a region says is
+**The safety side stays unquantified.** Section 16 sets out why no
+defensible quantitative ICANS model exists. A region of the map says
 whether the benefit there is large enough for the safety discussion to
-be worth having at all.
+be worth having, and nothing more.
 
-Once this stops being an exploration and starts supporting a specific
-programme decision, that is the point to fix a threshold in advance, so
-that the team is not negotiating one against results it has already
-seen. That is a later step and not what this document is for.
+When this work starts supporting a specific programme decision, fix the
+threshold in advance, so the team is not negotiating it against results
+it has already seen. That step is outside this document.
 
 ### Scope
 
 The main use case is a **B-cell-depleting TCE**, with profound
-peripheral B-cell depletion as the rapid pharmacodynamic signal.
+peripheral B-cell depletion as the rapid pharmacodynamic (PD) signal.
 
-Raising the starting dose is out of scope. A better MABEL attacks the
-same gap from the other end, and it is complementary rather than
-competing, but this project holds $D_{\rm start}$ fixed and varies what
-happens above it.
+**Out of scope: raising the starting dose.** A better minimal
+anticipated biological effect level (MABEL) starting dose attacks the
+same gap from the other end and complements IPDE. This project holds
+$D_{\rm start}$ fixed and varies what happens above it.
 
-This is primarily a **FIH / high-dose-uncertainty strategy**. It is not
-intended as a general later-development strategy. Once the biologically
-active neighborhood is known, the rationale for traversing a large dose
-range within individual patients diminishes substantially.
+**Out of scope: later development.** IPDE is a first-in-human strategy
+for an uncertain active dose. Once the active neighbourhood is known,
+the reason to cross a large dose range within one patient mostly
+disappears.
 
-A second conceptual use case is solid-tumor TCE development. A third,
-useful "negative-control" archetype is another BCMA TCE, where prior
-class knowledge should substantially improve prediction of the active
-dose and therefore reduce the expected value of IPDE.
+Two further archetypes are a solid-tumour TCE and, as a negative
+control, another B-cell maturation antigen (BCMA) TCE, where class
+knowledge should predict the active dose well and leave IPDE little to
+gain (Section 22).
 
-### Healthy volunteer studies
+### Healthy Volunteer Studies
 
-**Recorded 2026-09-10, so that it is not lost.** A related idea: give
-one or two doses of the TCE to healthy volunteers, climbing between
-cohorts until the first grade 1 cytokine release or a 50% fall in
-peripheral B cells, and open the patient study at that dose. A phase 1
-unit climbs a ladder in weeks where a patient escalation takes months,
-and the ladder is climbed across volunteers rather than within one
-patient, so the design this document simulates may not be needed where
-volunteers can be dosed.
+Recorded 2026-09-10. A related idea: give healthy volunteers one or two
+doses, climbing between cohorts until the first grade 1 cytokine release
+or a 50% fall in peripheral B cells, and open the patient study at that
+dose. A phase 1 unit climbs a ladder in weeks where a patient escalation
+takes months, and the ladder runs across volunteers, so where volunteers
+can be dosed the design simulated here may not be needed.
 
-It has been done. Three T-cell engagers have registered healthy
-volunteer cohorts since December 2025, all for autoimmune indications
-and all with an affinity-tuned CD3 arm; no oncology TCE has been given
-to a volunteer. [T-cell engagers in healthy volunteers](tce-hv.qmd)
-carries the studies found, what a volunteer study can measure, the
-translation to patients, and a speed estimate under stated assumptions.
+Three TCEs have registered healthy volunteer cohorts since December
+2025, all for autoimmune indications and all with an affinity-tuned CD3
+arm. No oncology TCE has been given to a volunteer.
+[T-cell engagers in healthy volunteers](tce-hv.qmd) carries the studies,
+what a volunteer study can measure, the translation to patients, and a
+speed estimate.
 
-**What it does here.** The volunteer route is the raising-the-starting-
-dose strategy that the Scope above sets aside, taken to its limit with
-human data. Where it is open, in a B-cell-depleting TCE for an
-autoimmune indication, it attacks the prediction error of Section 12
-directly and is the stronger alternative to IPDE; the simulation's job
-there is to report what IPDE would have saved, as a comparator. Where it
-is closed, in oncology, the question stands as specified. The main use
-case above does not yet say which indication it is in, and that
-decision settles whether the volunteer design enters the scenario grid
-of Section 21 as a comparator or stays out of scope.
+**How it bears on this simulation.** The volunteer route is the
+higher-starting-dose strategy set aside in the Scope, with human data
+behind it. Where it is open, in a B-cell-depleting TCE for an autoimmune
+indication, it removes most of the prediction error in Section 12 and is
+the stronger alternative; the simulation then reports what IPDE would
+have saved, as a comparator. Where it is closed, in oncology, the
+question stands as specified.
+
+**Open decision.** The main use case does not yet name its indication.
+That choice settles whether the volunteer design enters the scenario
+grid of Section 21 as a comparator.
 
 ------------------------------------------------------------------------
 
-## 2. Central hypothesis
+## 2. Central Hypothesis
 
-The value of IPDE comes from rapidly traversing a dose range that is
-likely to be subtherapeutic.
-
-The key determinant is not simply $D_{\rm active}/D_{\rm start}$ but our
-uncertainty about that quantity.
-
-A useful conceptual parameter is:
+The value of IPDE comes from crossing a probably subtherapeutic dose
+range quickly. What decides it is uncertainty about
+$D_{\rm active}/D_{\rm start}$ more than the ratio itself, expressed as
+the prediction error
 
 $$
 E_{\rm pred} =
-\frac{D_{\rm true,active}}{D_{\rm predicted,active}}
+\frac{D_{\rm true,active}}{D_{\rm predicted,active}}.
 $$
 
-If translational prediction is accurate, conventional escalation may
-already reach the relevant range efficiently.
-
-If the predicted active dose is wrong by 10--30-fold or more, IPDE can
-potentially provide substantial acceleration.
-
-This makes **prediction error** one of the primary simulation design
-variables.
+If the prediction is accurate, conventional escalation may already reach
+the active range efficiently. If it is wrong by 10 to 30-fold or more,
+IPDE may accelerate the trial substantially. Prediction error is
+therefore a primary simulation axis (Section 12).
 
 ------------------------------------------------------------------------
 
-## 3. Important conceptual distinction
+## 3. Scouting Versus Confirming a Regimen
 
-IPDE is a **scouting strategy**, not the ultimate regimen-evaluation
-strategy.
+IPDE is a scouting strategy. A scout might receive
+$0.1\rightarrow0.3\rightarrow1\rightarrow3\rightarrow10$ mg and show
+profound B-cell depletion after the 10 mg dose. That does not
+characterize a conventional 10 mg regimen, because the response followed
+a sequence of earlier doses.
 
-An IPDE patient might receive:
-
-$$
-0.1\rightarrow0.3\rightarrow1\rightarrow3\rightarrow10\ {\rm mg}
-$$
-
-and achieve profound B-cell depletion following the 10-mg
-administration.
-
-That does **not** establish that a conventional 10-mg regimen has been
-adequately characterized. The response arose after a sequence of
-previous TCE exposures.
-
-Therefore:
-
-> IPDE identifies the candidate dose neighborhood. A separate
+> IPDE identifies the candidate dose neighbourhood. A separate
 > conventional backfill cohort tests an actual candidate regimen.
 
-This is essential to the study design.
+The endpoints in Section 4 and the backfill rules in Section 7 are built
+on this split.
 
 ------------------------------------------------------------------------
 
-## 4. Primary and secondary endpoints
+## 4. Primary and Secondary Endpoints
 
-### Primary endpoint
+### Primary Endpoint
 
-Define:
+$T_{3,\rm eval}$ is the calendar time from the first dose in the FIH
+study until 3 patients have been fully evaluated on a conventional
+candidate regimen whose target is the biologically active dose. These 3
+patients must not be patients who reached the target through an
+exploratory IPDE ladder.
 
-$$
-\boxed{T_{3,\rm eval}}
-$$
+For IPDE the clock runs through five events:
 
-as:
-
-> Calendar time from the first dose in the FIH study until **3 patients
-> have been fully evaluated on a conventional candidate regimen
-> terminating at the biologically active target dose**.
-
-These 3 patients must not be patients who reached the target dose
-through a large exploratory IPDE sequence.
-
-For IPDE, this means:
-
-1.  Scout patient reaches profound B-cell depletion.
-2.  Candidate target dose is nominated.
-3.  Backfill cohort opens.
+1.  The scout reaches profound B-cell depletion.
+2.  A candidate target dose is nominated.
+3.  A backfill cohort opens.
 4.  3 new patients receive a standard candidate regimen.
-5.  All 3 complete the required full safety/PD evaluation window.
+5.  All 3 complete the full safety and PD evaluation window.
 
-For conventional dose escalation, the 3 patients in the first
-conventional active-dose cohort **can themselves count**, because they
-received an interpretable regimen from the outset.
+For conventional escalation, the 3 patients in the first cohort at an
+active dose count themselves, since they received an interpretable
+regimen from the start. The comparison is therefore conservative toward
+IPDE, by design.
 
-This makes the comparison deliberately conservative with respect to
-IPDE.
+### Endpoint Rules Use Observables Only
 
-### Endpoint rules use observables only
+The trial never observes $D_{\rm true}$, so the computable definition
+is:
 
-The trial never observes $D_{\rm true}$, so $T_{3,\rm eval}$ cannot be
-defined as "3 patients evaluated at the biologically active dose". The
-computable definition is:
+> $T_{3,\rm eval}$ is the calendar time until 3 patients complete the
+> full evaluation window $W_{\rm full}$ on a conventional candidate
+> regimen **whose target dose produced profound B-cell depletion in
+> those same patients**.
 
-> $T_{3,\rm eval}$ = calendar time until 3 patients complete the full
-> evaluation window $W_{\rm full}$ on a conventional candidate regimen
-> **whose target dose produced profound B-cell depletion in those same
-> patients**.
-
-Confirmation is by observed PD in the confirming cohort, for both
-designs:
+Both designs confirm by observed PD in the confirming cohort:
 
 -   Conventional: between-patient escalation stops at the first cohort
-    whose patients reach $B<5/\mu L$; those 3 patients count.
+    whose patients reach $B<5/\mu L$, and those 3 patients count.
 -   IPDE: the backfill cohort counts only if its patients reach
     $B<5/\mu L$ on the nominated regimen. A backfill cohort that does
     not deplete triggers the re-escalation rule in Section 7, and the
     clock keeps running.
 
-The two failure directions are handled asymmetrically on purpose: a
-nomination that is too low costs calendar time inside $T_{3,\rm eval}$
-through the backfill regimen rule in Section 7, and a nomination that is
-too high does not
-extend $T_{3,\rm eval}$ but is scored by the dose-selection operating
-characteristics in Section 5.
+The two failure directions are scored differently on purpose. A
+nomination that is too low costs calendar time inside $T_{3,\rm eval}$,
+through the backfill rule in Section 7. A nomination that is too high
+does not extend $T_{3,\rm eval}$, and the dose-selection operating
+characteristics in Section 5 score it instead.
 
-### Secondary endpoint
+### Secondary Endpoint
 
-$$
-\boxed{T_{\rm BCD}}
-$$
+$T_{\rm BCD}$ is the time to the first observation of profound B-cell
+depletion, $B<5$ cells/µL. Call it time to first profound B-cell
+depletion; it does not identify the dose responsible.
 
-is the time to the first observation of profound B-cell depletion,
-$B<5\ {\rm cells/\mu L}$.
-
-Call this "time to first active-dose signal" or "time to first profound
-B-cell depletion," rather than claiming that the isolated dose
-responsible has been identified.
-
-The difference
-
-$$
-T_{3,\rm eval}-T_{\rm BCD}
-$$
-
-is the **confirmation penalty** after rapid discovery.
+The difference $T_{3,\rm eval}-T_{\rm BCD}$ is the **confirmation
+penalty**, the time spent confirming after the scout's discovery.
 
 ------------------------------------------------------------------------
 
-## 5. Operating characteristics and other outputs
+## 5. Operating Characteristics and Other Outputs
 
-Three families of operating characteristics, all computable from what
-the simulated trial observes plus the simulator's knowledge of
-$D_{\rm true}$ for after-the-fact scoring. Deterministic Phase 1 yields
-a single value for each; once enrollment stochasticity (Phase 2) and
-IIV (Phase 4) enter, report the median and 10th--90th percentile across
-simulation replicates.
+Three families, all computable from what the simulated trial observes,
+plus the simulator's knowledge of $D_{\rm true}$ for scoring after the
+fact. Deterministic Phase 1 gives a single value for each. Once
+enrollment stochasticity (Phase 2) and interindividual variability (IIV,
+Phase 4) enter, report the median and the 10th to 90th percentile across
+replicates.
 
 ### Speed
 
--   $T_{\rm BCD}$ and $T_{3,\rm eval}$ (Section 4, endpoints).
+-   $T_{\rm BCD}$ and $T_{3,\rm eval}$ (Section 4).
 -   $\Delta T = T_{3,\rm conventional} - T_{3,\rm IPDE}$, and once
     stochastic, $P(\Delta T>0)$ and $P(\Delta T>4\ {\rm weeks})$.
 -   Probability of confirming an active regimen within the
-    administrative horizon. A scout or backfill patient who never
-    depletes makes this less than 1 once IIV enters.
+    administrative horizon. Once IIV enters, a scout or backfill patient
+    who never depletes makes this less than 1.
 
-### Dose selection
+### Dose Selection
 
-The trial cannot see $D_{\rm true}$, so selection is scored after the
-fact by the simulator:
+The trial cannot see $D_{\rm true}$, so the simulator scores selection
+after the fact:
 
 -   Confirmed target dose relative to $D_{\rm true}$, in grid steps
-    (below / at / above).
+    (below, at, above).
 -   Number of nomination-confirmation cycles before a regimen confirms
-    (Section 7, backfill regimen).
+    (Section 7).
 -   Number of patients exposed above $D_{\rm true}$.
 
-Together with the endpoint rule in Section 4 this answers what "right"
-means for the design's operating characteristics: too low shows up as
-calendar time (extra confirmation cycles inside $T_{3,\rm eval}$), too
-high shows up as overshoot here and in the exposure counters below.
-Neither is hidden inside the endpoint definition.
+With the endpoint rule in Section 4, this defines "right" for the
+design: too low shows up as calendar time, in extra confirmation cycles
+inside $T_{3,\rm eval}$, and too high shows up as overshoot here and in
+the exposure counters below. Neither is hidden inside the endpoint
+definition.
 
-### Patient and operational cost
+### Patient and Operational Cost
 
-Keep these relatively simple:
-
--   Number of patients enrolled before first profound B-cell depletion.
--   Patient-weeks with B cells \>=5 cells/uL.
+-   Number of patients enrolled before the first profound B-cell
+    depletion.
+-   Patient-weeks with B cells at or above 5 cells/µL.
 -   Number of patients treated only at subactive exposures.
 -   Total doses administered.
 -   Number of safety-review decisions.
 -   Extra visits relative to conventional treatment.
--   Hospitalization/observation days.
--   Delayed/cumulative toxicity behavior in the neutropenia stress test.
+-   Hospitalization and observation time.
+-   Delayed or cumulative toxicity in the neutropenia stress test.
 
-Do **not** initially make the following major endpoints:
-
--   EC50 precision.
--   Bias in the B-cell exposure-response model.
--   Dose-response estimation efficiency.
--   Probability of correctly estimating an "active dose range."
--   Clinical efficacy.
-
-Those are valid later questions but obscure the current decision.
+**Not endpoints in v1:** EC50 precision, bias in the B-cell
+exposure-response model, dose-response estimation efficiency, the
+probability of correctly estimating an active dose range, and clinical
+efficacy. Each is a fair question for later and would distract from the
+current one.
 
 ------------------------------------------------------------------------
 
-## 6. Designs to compare
+## 6. Designs to Compare
 
 Four designs, varying two things independently: how many patients sit at
 each low dose level, and whether a patient may move up within their own
@@ -418,58 +356,53 @@ treatment.
 | **Conventional** (A) | 3 patients | None | A cohort reaches profound B-cell depletion. |
 | **Accelerated** (A2) | 1 patient, reverting to 3 once activity or toxicity appears | None | As conventional. |
 | **Catch-up** (B) | 3 patients | A patient already enrolled may move up to a dose the trial has since cleared | As conventional. |
-| **Scout-and-backfill** (C) | 1 scout | The scout leads the escalation on a weekly ladder | That scout's B cells fall below 5/uL. A fresh conventional cohort then confirms the nominated dose. |
+| **Scout-and-backfill** (C) | 1 scout | The scout leads the escalation on a weekly ladder | That scout's B cells fall below 5/µL. A fresh conventional cohort then confirms the nominated dose. |
 
 : The four designs {tbl-colwidths="[20,24,30,26]"}
 
-Three contrasts, and each isolates one mechanism:
+Each of three contrasts isolates one mechanism:
 
--   **A against A2** is the micro-cohort effect on its own. Fewer
-    patients per rung, nothing else changed.
--   **A against B** is within-patient escalation on its own, since both
-    keep 3-patient cohorts and the same escalation decisions.
+-   **A against A2** is the micro-cohort effect: fewer patients per
+    rung, nothing else changed.
+-   **A against B** is within-patient escalation, since both keep
+    3-patient cohorts and the same escalation decisions.
 -   **A2 and B against C** asks whether prospective scouting delivers
-    more than the two mechanisms separately, and what the
-    pharmacodynamic stop adds beyond either.
+    more than the two mechanisms separately, and what the PD stop adds.
 
-This is the shape of Simon's comparison, where escalation scheme and
-intra-patient escalation are varied independently rather than bundled.
-Reporting only A against C would credit scouting with a saving that a
-1-patient cohort produces by itself.
+Simon's comparison has the same shape, varying the escalation scheme and
+intrapatient escalation independently. Reporting only A against C would
+credit scouting with a saving that a 1-patient cohort produces by
+itself.
 
-The letters are kept because the figures and the rest of this document
-use them. Conventional, accelerated and catch-up escalate the *trial*;
-only scout-and-backfill escalates a *patient* toward an unknown dose,
-and only it stops on pharmacology rather than on a cohort review.
+Conventional, accelerated and catch-up escalate the trial. Only
+scout-and-backfill escalates a patient toward an unknown dose, and only
+it stops on pharmacology rather than at a cohort review.
 
-### Prior art
+### Prior Art
 
-The catch-up and scout-and-backfill designs are not new in structure,
-and the document should say so before a reviewer does. Simon and
-colleagues published accelerated titration designs in 1997 (*J Natl
-Cancer Inst* 89:1138--1147). Their designs 2, 3 and 4 combine
-single-patient cohorts in the low-dose region with intrapatient dose
-escalation for patients who neither respond nor experience toxicity.
-The catch-up design is that mechanism, and the accelerated
-single-patient cohorts in the conventional design are the same family.
-What is new here is the **stopping rule**: Simon's designs escalate
-within a patient until toxicity or lack of response over a fixed
-schedule, where scout-and-backfill escalates until a pharmacodynamic
-threshold fires and then hands off to a conventional cohort.
+Catch-up and scout-and-backfill are not new in structure. The
+accelerated titration designs of Simon and colleagues (*J Natl Cancer
+Inst* 1997;89:1138--1147) combine single-patient cohorts at low doses
+with intrapatient escalation for patients who show neither response nor
+toxicity. Catch-up is that mechanism, and Design A2 belongs to the same
+family. The new element is the **stopping rule**: Simon's patients
+escalate on a fixed schedule until toxicity or response, while a scout
+escalates until a PD threshold fires and then hands off to a
+conventional cohort.
 
-The paper has been read and checked; the [reading
-notes](simon97-notes.qmd) carry the numbers and their page citations.
-Simon's designs are numbered 1 to 4 and his intrapatient options
-lettered A and B, which are not this document's designs A, B and C.
+The paper has been read and checked, and the
+[reading notes](simon97-notes.qmd) carry its numbers with page
+citations. Simon numbers his designs 1 to 4 and letters his intrapatient
+options A and B; neither matches this document's designs.
 
-The finding that matters here is that **intrapatient escalation moves no
-clock**. Adding it changes neither the number of patients nor the number
-of cohorts, in either the standard or the accelerated design. What it
-buys is patients: those whose worst toxicity was grade 0-1 fall from
-23.3 to 19.3 in the standard design. Time is bought by dose step size
-instead. No table in the paper splits the intrapatient options apart, so
-the size of the time effect is unpublished, and a literature search
-found no other paper that quantifies it.
+**Simon's finding: intrapatient escalation moves no clock.** Adding it
+changes neither the number of patients nor the number of cohorts, in the
+standard or the accelerated design. It moves patients out of
+undertreatment: those whose worst toxicity was grade 0--1 fall from 23.3
+to 19.3 in the standard design. Time comes from dose step size. No table
+in the paper splits the intrapatient options, so the size of the time
+effect is unpublished, and a literature search found no other paper that
+quantifies it.
 
 Three consequences:
 
@@ -477,440 +410,332 @@ Three consequences:
     dose** hypothesis in Section 26 is supported in direction and
     unquantified in size. Cite Simon for the direction; the simulation
     still has to produce $\Delta T$.
-2.  The efficient conventional comparator is Simon's design 3 with option
-    A, which is now Design A2 below rather than a parameter.
-3.  The dose escalation factor in Section 13 stops being a parameter and
-    becomes the mechanism. Simon's accelerated ladder moves about 2-fold
-    per double step and about 3.3-fold at the first step; the scout
-    ladder holds roughly 3.3-fold throughout.
+2.  The efficient conventional comparator is Simon's design 3 with
+    option A, which is Design A2.
+3.  The dose escalation factor (Section 13) is the mechanism, not a
+    nuisance parameter. Simon's accelerated ladder moves about 2-fold
+    per double step and about 3.3-fold at the first step. A fixed scout
+    ladder holds about 3.3-fold throughout, and the PD-guided rule in
+    Section 13 takes 10-fold steps until the marker moves.
 
-**The prior art is not only oncology's.** Immunology finds doses by
-intrapatient escalation too, and in the autoimmune cytopenias it is
-ordinary practice. Rilzabrutinib's phase 1--2 in immune thrombocytopenia
-is an adaptive dose-finding study whose escalation mechanism is
-within-patient, stepping every 28 days on platelet response; the same
-molecule's pemphigus study gates the step on clinical response and
-Bruton tyrosine kinase occupancy, which is a target-engagement marker
-doing what B-cell count does in Section 13. A first-in-human study in
+**Immunology escalates within patients too**, and in the autoimmune
+cytopenias it is ordinary practice. Rilzabrutinib's phase 1--2 in
+immune thrombocytopenia steps each patient up every 28 days on platelet
+response. Its pemphigus study gates the step on clinical response and
+Bruton tyrosine kinase (BTK) occupancy, a target-engagement marker doing
+the job B-cell count does in Section 13. A first-in-human study in
 Graves' disease is registered as a within-subject dose-escalating
 design. The second reading queue on the
-[references page](references.qmd) carries these with the question each
-has to answer, and nothing there has been read, so this paragraph
-reports a search rather than a set of papers.
+[references page](references.qmd) carries these, unread, so this
+paragraph reports a search rather than a set of papers.
 
-Those escalations run the other way from this one. They climb until the
-patient responds and stop because the patient is treated, where a scout
-climbs until the marker moves and stops because the programme has found
-its dose. What the search did not find is a ladder whose purpose is to
-nominate a dose for a separate confirming cohort, so the stopping rule
-and the scout-and-backfill split remain what is new here.
+These immunology ladders climb until the patient responds, and stop
+because the patient is treated. A scout climbs until the marker moves,
+and stops because the programme has found its dose. The search found no
+ladder whose purpose is to nominate a dose for a separate confirming
+cohort, so the stopping rule and the scout-and-backfill split are what
+is new here.
 
-None of the accelerated titration literature bears on the rest. Those
-escalation rules stop on toxicity and seek a tolerated dose, with no
-pharmacodynamic stopping rule, no scout-and-backfill split, and no
-requirement that a separate cohort confirm an interpretable regimen, so
-none of it touches $T_{3,\rm eval}$, the confirmation penalty, or the
-prediction-error axis. What remains to be shown is the value of the
-pharmacodynamic stop and the size of the confirmation penalty.
+The accelerated titration literature stops on toxicity and seeks a
+tolerated dose. It has no PD stopping rule, no scout-and-backfill split
+and no confirming cohort, so it says nothing about $T_{3,\rm eval}$, the
+confirmation penalty or the prediction-error axis. Those, and the value
+of the PD stop, are what the simulation has to show.
 
-Model-based escalation designs (continual reassessment method, BOIN and
-variants) are out of scope. They allocate patients across dose levels
-more efficiently under a toxicity model, and the binding constraint here
-is pharmacology in a range believed to be subtherapeutic rather than
-toxicity statistics. Section 27b carries the argument for deferring them
-and what would bring them back.
+**Out of scope: model-based escalation** (the continual reassessment
+method (CRM), Bayesian optimal interval (BOIN) design and their
+variants). These allocate patients across dose levels more efficiently
+under a toxicity model, and the binding constraint here is pharmacology
+in a range believed subtherapeutic. Section 27b gives the reasons for
+deferring them and what would bring them back.
 
-### Conventional escalation --- Design A
+### Design A: Conventional Escalation
 
-Patients receive a conventional TCE regimen with a step-up dose
-followed by a target dose.
+Patients receive a conventional TCE regimen: a step-up dose, then the
+target dose.
 
-**Base case: one step-up dose.** A no-step-up comparator is unrealistic
-for modern TCE development, and a two-step regimen makes the
-conventional arm slower than it needs to be, which biases the
-comparison toward IPDE. Two step-up doses are the sensitivity analysis.
+**Base case: one step-up dose.** No step-up is unrealistic for a modern
+TCE, and two step-ups make the conventional arm slower than it needs to
+be, which favours IPDE. Two step-ups are the sensitivity analysis.
 
-The generic schedule is therefore $D1:\ SUD,\qquad D4:\ D_{\rm target}$,
-followed by QW target dosing if needed.
+The base schedule is $SUD$ on D1 and $D_{\rm target}$ on D4, then QW
+target dosing if needed. Teclistamab steps up through 0.06 and
+0.3 mg/kg before its 1.5 mg/kg target, about 4% and 20% of the target.
+With one step-up, take the higher: $SUD = 0.20D_{\rm target}$. The
+two-step sensitivity uses $SUD1 = 0.04D_{\rm target}$ and
+$SUD2 = 0.20D_{\rm target}$ on D1 and D4, with the target on D8. The
+fractions are a reference regimen, not a biological constant.
 
-Teclistamab uses 0.06 and 0.3 mg/kg before the 1.5 mg/kg target dose,
-approximately 4% and 20% of the target. With a single step-up, take the
-higher of those fractions, $SUD = 0.20D_{\rm target}$. The two-step
-sensitivity uses $SUD1 = 0.04D_{\rm target}$ and
-$SUD2 = 0.20D_{\rm target}$ on D1 and D4, with the target on D8.
-
-Do not treat those fractions as biologically universal; they are simply
-a reasonable reference regimen.
-
-After adequate safety review of dose level $D_k$, a new cohort receives
+After safety review of dose level $D_k$, a new cohort receives
 $D_{k+1}$.
 
-### Accelerated escalation --- Design A2
+### Design A2: Accelerated Escalation
 
 One patient per dose level in the low-dose region, reverting to
 3-patient cohorts once activity or toxicity appears. Everything else
-matches the conventional design: the same step-up regimen, the same
-between-cohort review, no within-patient escalation.
+matches Design A: the same step-up regimen, the same between-cohort
+review, and no within-patient escalation.
 
-This exists as a design rather than as a sensitivity analysis because it
-is the honest comparator. A conventional design requiring 3 patients at
-every extremely low dose is a straw man, published TCE experience
-includes accelerated early cohorts with small cohort sizes across very
-large dose ranges, and scout-and-backfill should beat a reasonably
-efficient conventional design rather than an intentionally inefficient
-one. Making it a design also means the micro-cohort saving is reported
-on its own instead of arriving inside the scouting result.
+A2 is a design rather than a sensitivity analysis because it is the
+comparator a clinical team will propose (Objection 3 in Section 27).
+Published TCE programmes run small early cohorts across very large dose
+ranges, so a conventional design with 3 patients at every very low dose
+would be a straw man. As its own design, A2 also reports the
+micro-cohort saving separately instead of folding it into the scouting
+result.
 
-Simon's design 3 with option A is the specific form to use: accelerated
-single-patient cohorts, double dose steps, no intrapatient escalation,
-reverting to the standard design at the first first-course DLT or the
-second first-course grade 2 event.
+Use Simon's design 3 with option A: single-patient cohorts, double dose
+steps, no intrapatient escalation, and a return to the standard design
+at the first first-course dose-limiting toxicity (DLT) or the second
+first-course grade 2 event.
 
 Two parameters:
 
--   $n_{\rm low}$ --- patients per cohort in the low-dose region. 1
-    here, 3 in the conventional design.
+-   $n_{\rm low}$: patients per cohort in the low-dose region. 1 here, 3
+    in Design A.
 -   **The rule that ends the accelerated phase.** Simon's is a toxicity
-    event. A pharmacodynamic version, ending the accelerated phase at
-    the first sign of B-cell movement, is worth running as a variant,
-    since it is the same signal scout-and-backfill stops on and it
+    event. A PD variant ends it at the first sign of B-cell movement.
+    That is the signal scout-and-backfill stops on, so running it
     separates the trigger from the escalation mechanism.
 
-### Catch-up escalation --- Design B
+### Design B: Catch-Up Escalation
 
-Between-patient escalation and opening of new dose levels are identical
-to the conventional design.
+Between-patient escalation and the opening of new dose levels follow
+Design A. In addition, a patient enrolled at a low target dose may move
+up to a higher one once the trial has cleared it.
 
-However, patients enrolled at earlier low target doses can subsequently
-increase their own target dose once the higher dose has been cleared by
-the trial.
+A patient in the 1 mg cohort receives $0.3\rightarrow1$ and under
+Design A stays at 1 mg. Under catch-up the same patient follows
+$0.3\rightarrow1\rightarrow3\rightarrow10$ as each level is cleared, one
+administration a week. The trial's between-patient escalation opens the
+higher levels, so catch-up changes which patients sit at a dose level
+and not when the level opens.
 
-Example. A patient enrolled in the 1 mg cohort receives the step-up
-dose and then the 1 mg target:
+Expected result: little or no improvement in $T_{3,\rm eval}$, and a
+substantial reduction in patient-time at clearly subactive doses. The
+design separates **patient benefit** from **programme acceleration**.
 
-$$
-0.3\rightarrow1
-$$
+### Design C: Scout-and-Backfill
 
-and under the conventional design would continue at 1 mg. Under
-catch-up the same patient moves up as each higher level is cleared:
-
-$$
-0.3\rightarrow1\rightarrow3\rightarrow10.
-$$
-
-Each arrow is one weekly administration. The higher levels are opened
-by the trial's between-patient escalation, not by this patient, so
-catch-up changes which patients sit at a dose level and not when that
-level opens.
-
-Expected result:
-
--   Little or no improvement in $T_{3,\rm eval}$.
--   Substantial reduction in patient-time at clearly subactive doses.
-
-This distinguishes **patient benefit** from **program acceleration**.
-
-### Scout-and-backfill --- Design C
-
-This is the main experimental design and the one the project exists to
-evaluate.
-
-One or more scout patients undergo prospective dose escalation.
-
-After initial priming:
+The design this project exists to evaluate. After initial priming, one
+or more scout patients escalate prospectively,
 
 $$
-D_0\rightarrow D_1\rightarrow D_2\rightarrow D_3\rightarrow...
+D_0\rightarrow D_1\rightarrow D_2\rightarrow D_3\rightarrow\dots,
 $$
 
-with escalation every 7 days. **Hold the step interval at one week for
-v1.** It matches the safety gate $W_{\rm decision}$ in Section 15 and
-the PD turnaround in Section 11, so nothing else in the engine has to
-move to support it. Shorter intervals are a later question, not a v1
-parameter.
+one step every 7 days. Escalation continues while $B\ge5/\mu L$ and the
+protocol's safety gate permits another dose, and stops when
+$B<5/\mu L$. The trial then nominates the corresponding target-dose
+neighbourhood and opens conventional backfill at once.
 
-Continue escalation when $B\ge5/\mu L$ and the protocol-defined safety
-gate permits another dose.
+**Step interval: one week in v1.** It matches the safety gate
+$W_{\rm decision}$ in Section 15 and the PD turnaround in Section 11, so
+nothing else in the engine has to change. Shorter intervals are a later
+question.
 
-Stop escalation when $B<5/\mu L$.
+#### No Cap on the Number of Steps
 
-Then nominate the corresponding target-dose neighborhood and immediately
-open conventional backfill.
+Do not cap the number of escalations at, say, three. If the scout is
+still underdosed and meets the safety criteria, continuing to escalate
+is the hypothesis under test. MCLA-117, below, gave seven
+within-patient doses in 22 days with no cap.
 
-#### No arbitrary maximum number of IPDE steps
+An uncapped number of steps is different from an unlimited dose. A real
+protocol has a maximum permitted dose or exposure, set by nonclinical
+safety, manufacturing and protocol amendment, and the simulation needs a
+technical upper dose so an inactive virtual molecule cannot escalate
+forever. Treat that bound as administrative censoring, separate from
+the scientific stopping rule.
 
-There should be **no cap such as "maximum three escalations."**
+### Precedent: The MCLA-117 Ladder
 
-If the patient remains pharmacologically underdosed and meets safety
-criteria, continuing escalation is precisely the hypothesis being
-tested.
-
-However, distinguish:
-
-> **unbounded number of escalation steps**
-
-from
-
-> **literally unlimited dose.**
-
-A real FIH protocol will always have a maximum permitted dose/exposure
-based on nonclinical safety, manufacturing, protocol amendment, etc. The
-simulation needs a technical upper dose/horizon as well so an inactive
-virtual molecule cannot escalate forever.
-
-That upper bound should be treated as **administrative censoring /
-protocol feasibility**, not as the scientific stopping rule.
-
-Published escalation schedules provide conceptual precedent: some
-cohorts and patients traverse many successive doses during Cycle 1
-rather than being limited to an arbitrary number of within-patient
-increases. Verify a specific citation before relying on this point.
-
-
-### A published within-patient escalation ladder --- MCLA-117
-
-The MCLA-117 (tepoditamab) first-in-human study in AML escalated within
-patients from a 25 µg first dose to a 400 mg target dose, a factor of
-16,000, with cohort 1 taking seven doses in 22 days. A long
-within-patient ladder is precedented and does not have to be argued for
-here.
+The MCLA-117 (tepoditamab) first-in-human study in acute myeloid
+leukaemia (AML) escalated within patients from a 25 µg first dose to a
+400 mg target, a factor of 16,000; cohort 1 took seven doses in 22 days.
 
 ![MCLA-117 Cycle 1 dose escalation. Each line is one cohort's
 within-patient ladder; the dose axis is logarithmic and spans the
 25 µg first dose of cohort 1 to the 400 mg target dose of cohort
 12.](mcla117-escalation.svg){#fig-mcla117}
 
-Three features of the scheme bear on this design, and the
+Three features bear on this design. The
 [MCLA-117 notes](mcla117-notes.qmd) carry the dose tables and the
-sourcing caveat.
+caveat that they were transcribed from an image of the poster.
 
--   The number of within-patient steps was not capped, which is what
-    the subsection above assumes.
--   The first dose moved slowly between cohorts, by 4-fold at most and
+-   The number of within-patient steps was not capped.
+-   The first dose rose slowly between cohorts, by 4-fold at most and
     mostly 3-fold or less, while the target dose rose 600-fold over the
-    same sequence. The constraint sits on the first dose in a
-    drug-naive patient, not on the ladder above it. The next subsection
-    takes this up.
+    same cohorts. The constraint falls on the first dose in a drug-naive
+    patient, which the next subsection takes up.
 -   From cohort 9 the step-up prefix is fixed at 5, 15 and 25 mg and
-    only the target changes, which is the structure Section 7 assumes
-    for the backfill regimen.
+    only the target changes. Section 7 assumes the same structure for
+    the backfill regimen.
 
-The step interval is where the precedent and this design differ. Cohort
-1 escalates at 2 to 3-day intervals; scout-and-backfill holds one week,
-so the simulated ladder is slower than the precedent and any
-acceleration it reports is conservative on that axis.
+The step interval differs. Cohort 1 escalated every 2 to 3 days, where
+the scout escalates weekly, so the simulated ladder is slower than the
+precedent and any acceleration it reports is conservative on that axis.
 
-### The scout's first dose is constrained, and a second scout re-runs the ladder
+### Scout Entry: The First-Dose Limit and a Second Scout
 
-Scout-and-backfill as specified lets a scout begin at $D_{\rm start}$ and climb
-without limit. Two constraints break that, and they interact.
+As specified so far, a scout begins at $D_{\rm start}$ and climbs
+without limit. Two constraints change that, and they interact.
 
-**The first dose in a drug-naive patient escalates slowly between
-cohorts.** It is governed by the same nonclinical safety argument that
-sets the FIH starting dose, and it moves only by a factor a safety
-committee will accept: 3-fold typically and 4-fold at most in the
-scheme above. A second scout therefore cannot begin where the first
-scout stopped.
+**The first dose in a drug-naive patient rises slowly between cohorts.**
+The nonclinical argument that sets the FIH starting dose governs it too,
+and a safety committee accepts only a modest multiplier: 3-fold
+typically and 4-fold at most in MCLA-117. A second scout therefore
+cannot begin where the first stopped.
 
-**One scout is one patient.** If the scout depletes at $D^*$, the
-nomination in Section 7 rests on a single observation of a single
-patient's B-cell trajectory. A programme that will open a backfill
-cohort on that basis may reasonably want a second scout to reproduce
-it.
+**One scout is one patient.** A nomination from a single scout rests on
+one patient's B-cell trajectory, and a programme may want a second scout
+to reproduce it before opening backfill.
 
-Together these cost calendar time only if the scouts run one after the
-other. If a second scout must start near the bottom and does so after
-the first has finished, the second ladder repeats most of the first and
-confirmation takes nearly as long as the original discovery. Running
-the scouts concurrently removes that cost, and the next subsection sets
-out how.
+Together these cost calendar time only when the scouts run in series. A
+second scout who starts near the bottom after the first has finished
+repeats most of the first ladder, and confirmation takes nearly as long
+as the discovery did. Running the scouts concurrently removes most of
+that cost, as the next subsection describes.
 
-Parameterize this explicitly:
+Parameters:
 
--   $F_{\rm start}$ --- the maximum permitted between-cohort multiplier
-    on the first dose in a drug-naive patient. Base 3; sensitivities 2
-    and 10, where 10 stands for effectively unconstrained and
-    reproduces the current specification.
--   $n_{\rm scout}$ --- the number of scout patients. Base 1;
-    sensitivities 2 and 3.
+-   $F_{\rm start}$: the maximum between-cohort multiplier on the first
+    dose in a drug-naive patient. Base 3; sensitivities 2 and 10, where
+    10 stands for effectively unconstrained.
+-   $n_{\rm scout}$: the number of scout patients. Base 1; sensitivities
+    2 and 3.
 -   **Scout entry policy**, one of: a fixed low first dose for every
-    scout; the highest dose already cleared in a previous scout; or the
+    scout; the highest dose already cleared by a previous scout; or the
     previous scout's first dose times $F_{\rm start}$.
 
-#### Rolling scout entry
+#### Rolling Scout Entry
 
-There is no reason for a second scout to wait for the first to finish.
-Once the leading scout has taken a dose and cleared it, that rung is
-cleared for anyone, so a following scout can start and climb behind.
-Scouts enter on a rolling basis, each one one or more rungs behind the
-one ahead, and the ladder carries several patients at once.
+A second scout need not wait for the first to finish. Once the leading
+scout has cleared a rung, the rung is cleared for anyone, so following
+scouts enter on a rolling basis, each one or more rungs behind the one
+ahead, and the ladder carries several patients at once.
 
-Two things constrain how tight the stagger can be, and they are what
-"as soon as it clears" has to mean in a protocol.
+Two limits on the stagger, which a protocol has to state:
 
-1.  **A follower's next dose waits on the leader's result, not on the
-    leader's dose.** The leader is dosed at rung $k$, and the PD result
-    and safety review for that rung arrive $T_{\rm PD,ready}$ plus the
-    review lag later (Section 11). A follower must not be dosed at rung
-    $k$ before that arrives, or the trial has put two patients at an
-    uncleared dose and gained nothing over dosing them together. The
-    minimum stagger is therefore the turnaround, not the escalation
-    interval.
-2.  **Sentinel rules constrain the first dose in each patient.** A
-    protocol that staggers first doses between patients applies to
+1.  **A follower's next dose waits on the leader's result.** The PD
+    result and safety review for rung $k$ arrive $T_{\rm PD,ready}$ plus
+    the review lag after the leader's dose (Section 11). Dosing a
+    follower at rung $k$ sooner puts two patients at an uncleared dose
+    and gains nothing over dosing them together. The minimum stagger is
+    the turnaround, not the escalation interval.
+2.  **Sentinel rules limit the first dose in each patient.** A protocol
+    that staggers first doses between patients applies the stagger to
     scouts too, and that gap is usually longer than the PD turnaround.
 
-Two rules complete it. A follower never enters a rung the leader has
-not cleared. And when the leading scout triggers the stop, every
-following scout climbs to that dose and stops there, so each becomes an
-observation at the nominated dose, which the declaration in Section 4
-needs anyway.
+A follower never enters a rung the leader has not cleared. When the
+leader triggers the stop, each follower climbs to that dose and stops
+there, which gives the declaration in Section 4 its observations at the
+nominated dose.
 
-**What rolling entry costs is patients inside the latency window.**
-Section 15 already establishes that a scout escalates on acute safety
-before delayed toxicity from earlier rungs is observable. One scout
-carries that risk alone. Three scouts climbing a rung apart carry it
-concurrently, so a delayed signal that appears at rung $k$ arrives when
-three patients have been dosed past it rather than one. That is the
-real price of the concurrency and it is not visible in $\Delta T$.
-Count it: report the number of patients dosed above a rung at the
-moment that rung's delayed-toxicity information becomes available, and
-carry it alongside the burden rows in Section 19.
+**Rolling entry costs patients inside the latency window.** A scout
+escalates on acute safety before delayed toxicity from earlier rungs is
+observable (Section 15). Three scouts a rung apart share that risk, so a
+delayed signal at rung $k$ arrives with three patients dosed past it
+rather than one. $\Delta T$ does not show this. Report the number of
+patients dosed above a rung when that rung's delayed-toxicity
+information arrives, beside the burden rows in Section 19.
 
 Parameterize the stagger as $\Delta_{\rm scout}$, the gap between
-successive scout entries. Base one rung; sensitivities two rungs and
-the serial case, where the next scout starts only after the previous
-one stops. The serial case is the comparator that says what the
-concurrency bought.
+successive scout entries: base one rung; sensitivities two rungs and the
+serial case, where the next scout starts only after the previous one
+stops. The serial case shows what concurrency bought.
 
-What real protocols do here is the open question, and it is the same
-question the GB261 entry on the [references page](references.qmd) asks:
-what ended the accelerated phase, and whether the patient who triggered
-it stopped alone or everyone stopped. Answer it from a protocol before
-fixing the rule.
+What real protocols do here is not known. It is the question the GB261
+entry on the [references page](references.qmd) asks: what ended the
+accelerated phase, and whether the patient who triggered it stopped
+alone or everyone stopped. Answer it from a protocol before fixing the
+rule.
 
-#### One patient stops the ladder; three declare the dose
+#### One Patient Stops the Ladder; Three Declare the Dose
 
-**The first scout to reach $B<5/\mu L$ ends the accelerated phase.** Not
-two of two, not a confirmed pattern. Act on the first value below the
-threshold and confirm afterwards for the record; a repeat sample before
-acting only delays the stop.
+**The first scout to reach $B<5/\mu L$ ends the accelerated phase.**
+Act on the first value below the threshold and confirm afterwards for
+the record; a repeat sample before acting only delays the stop.
 
-The asymmetry against the three patients required to declare the dose in
-Section 4 is deliberate, and someone will challenge it, so state the
-reason. The two errors point in opposite directions. One patient's
-depletion is a noisy observation, and an atypical subject can cross the
-threshold at a dose the population would not, but that error ends the
-accelerated phase early and costs only speed. Requiring two or three
-would keep scouts climbing past a dose already shown to be active in
-someone, which is the error that cannot be taken back. Declaring
-$D_{\rm true}$ on one patient would be the opposite mistake, an
-overclaim, which is why the declaration keeps its three. One to stop,
-three to declare.
+One patient stops the ladder and three declare the dose (Section 4).
+The asymmetry will be challenged, so the reason belongs in the protocol.
+The two errors point in opposite directions. One patient's depletion is
+a noisy observation, and an atypical patient can cross the threshold at
+a dose the population would not; that error ends the accelerated phase
+early and costs speed. Waiting for two or three would keep scouts
+climbing past a dose already shown to be active in someone, which cannot
+be undone. Declaring $D_{\rm true}$ on one patient would overclaim,
+which is why the declaration keeps three.
 
-Simon accepts the same asymmetry: the accelerated phase there ends on
-the first qualifying event in any patient rather than on a confirmed
-pattern. Reusing an escalation-slowing trigger that a protocol already
-carries also makes the ethics discussion a question of precedent rather
-than a fresh argument.
+Simon accepts the same asymmetry: his accelerated phase ends on the
+first qualifying event in any patient. Reusing a trigger that protocols
+already carry makes the ethics discussion a question of precedent.
 
-The confirmatory-sample question in Section 13 is a different rule and
-keeps its answer. That one governs $\theta_{\rm move}$, the threshold
-that slows the ladder, where a false positive costs acceleration across
-the remaining rungs. This one governs the stop, where a false positive
-costs one rung.
+The confirmatory-sample question in Section 13 is a different rule. It
+governs $\theta_{\rm move}$, the threshold that slows the ladder, where
+a false positive costs acceleration over all the remaining rungs. This
+rule governs the stop, where a false positive costs one rung.
 
-Where two scouts do deplete at different dose levels, the nomination
-rule in Section 7 assumes one $D^*$. Nominating the lower is the
-conservative choice and costs the non-confirmation cycles of Section 7
-when it is too low.
+If two scouts deplete at different dose levels, Section 7 still needs a
+single $D^*$. Nominating the lower is the conservative choice, and when
+it is too low it costs the non-confirmation cycles of Section 7.
 
 ------------------------------------------------------------------------
 
-## 7. Candidate backfill regimen after IPDE
+## 7. Candidate Backfill Regimen
 
-This needs to be defined explicitly.
+If scout depletion first follows target $D^*$, nominate the base-case
+conventional regimen $0.20D^*\rightarrow D^*$ on about D1 and D4,
+matching Design A's step-up so the two are comparable. Under the
+two-step sensitivity, nominate $0.04D^*\rightarrow0.20D^*\rightarrow D^*$
+on D1, D4 and D8. Enrol 3 fresh backfill patients on that regimen. The
+scout's full ladder is never the candidate regimen.
 
-Preferred base implementation:
+**Sensitivity: reuse the scout's preceding doses as the step-up**, one
+dose under the base case and two under the two-step sensitivity. If the
+scout's history was $1\rightarrow3\rightarrow10\rightarrow30$ and 30 mg
+produced depletion, the backfill regimen is $3\rightarrow10\rightarrow30$.
+Start with the fixed-ratio rule, because it makes comparisons cleaner.
 
-If scout depletion first occurs following target $D^*$, nominate the
-base-case conventional regimen $0.20D^*\rightarrow D^*$ on
-approximately D1/D4, matching the step-up structure of the conventional
-arm so that the two are comparable. Under the two-step sensitivity,
-nominate $0.04D^*\rightarrow0.20D^*\rightarrow D^*$ on D1/D4/D8
-instead.
+### Expect the Nomination to Sit Low
 
-Then enroll 3 fresh backfill patients on that regimen.
+The scout's stopping signal comes from the cumulative exposure and
+B-cell trajectory of the whole ladder, not from $D^*$ alone. Drug from
+earlier doses is still present when the signal fires: the retained PK
+gives an effective half-life of about 8 days ($\ln 2 \times V_{ss}/CL$)
+against a 7-day interval. B cells recover more slowly still
+($t_{1/2}\approx30$ days), so partial depletion carries over from step
+to step. $D^*$ can therefore sit one or more grid steps below the dose
+whose conventional regimen depletes a fresh patient.
 
-This is preferable to claiming that the scout's complete escalation
-sequence is itself the candidate regimen.
+The PD-guided rule in Section 13 is the main lever against this, since a
+scout that slows once the marker moves stops nearer the dose
+responsible. Backfill non-confirmation is an expected event that the
+protocol must handle.
 
-Sensitivity analysis:
-
-Use the immediately preceding IPDE dose as the step-up dose of the
-backfill regimen, or the preceding two under the two-step sensitivity.
-
-For example, if scout history was:
-
-$$
-1\rightarrow3\rightarrow10\rightarrow30
-$$
-
-and 30 mg produces depletion, test $3\rightarrow10\rightarrow30$ as the
-conventional backfill regimen.
-
-Both approaches are reasonable. Start with the fixed-ratio approach
-because it makes comparisons cleaner.
-
-### Expect the nomination to sit low
-
-The scout's stopping signal arises from the cumulative exposure and the
-cumulative B-cell trajectory of the whole ladder, not from $D^*$ in
-isolation. Drug from earlier doses is still present when the signal
-fires: the retained PK gives an effective half-life of roughly 8 days
-($\ln 2 \times V_{ss}/CL$) against a 7-day escalation interval. B-cell
-recovery ($t_{1/2}\approx30$ days) is slower still, so partial
-depletion carries forward from step to step. The nominated $D^*$ can
-therefore sit one or more grid steps below the dose whose conventional
-regimen depletes a fresh patient. The PD-guided escalation rule in
-Section 13 is the main lever against this, since a scout that
-decelerates once the marker moves stops nearer to the dose responsible
-for the depletion. That is the dynamics working as
-specified, and it means backfill non-confirmation is an expected event
-the protocol must handle, not an edge case.
-
-### Backfill confirmation and non-confirmation rules
+### Backfill Confirmation and Non-Confirmation
 
 -   **Confirmation.** The backfill regimen confirms when its patients
     reach $B<5/\mu L$ at the prespecified PD assessment time. In the
-    deterministic phases this is all-or-none in the reference patient;
-    an $x/3$ rule (e.g. at least 2 of 3) is deferred to Phase 4 with
-    IIV.
--   **Non-confirmation.** Escalate the candidate target dose one grid
-    step and enroll a new 3-patient conventional cohort at that level.
-    Repeat until a cohort confirms or the administrative dose cap is
-    reached. After a failed backfill the IPDE arm is therefore running
-    conventional escalation that starts at $D^*$ instead of
-    $D_{\rm start}$, and the calendar time this consumes stays inside
-    $T_{3,\rm eval}$.
--   Patients in a failed backfill cohort may step up to the next
-    candidate dose under the catch-up rules for their own benefit, but
-    they no longer count toward $T_{3,\rm eval}$.
+    deterministic phases this is all-or-none in the reference patient.
+    An $x/3$ rule, such as at least 2 of 3, waits for Phase 4 and IIV.
+-   **Non-confirmation.** Raise the candidate target dose one grid step
+    and enrol a new 3-patient conventional cohort at that level. Repeat
+    until a cohort confirms or the administrative dose cap is reached.
+    After a failed backfill, the IPDE arm is running conventional
+    escalation from $D^*$ instead of $D_{\rm start}$, and the time this
+    takes stays inside $T_{3,\rm eval}$.
+-   **Patients in a failed backfill cohort** may step up to the next
+    candidate dose under the catch-up rules, for their own benefit, but
+    no longer count toward $T_{3,\rm eval}$.
 
 ------------------------------------------------------------------------
 
-## 8. PK model
+## 8. PK Model
 
-Use published teclistamab PK as the reference exposure model.
-
-Published teclistamab PopPK uses:
-
--   SC first-order absorption.
--   2-compartment disposition.
--   Parallel time-independent and time-dependent clearance.
-
-Published typical estimates:
+Use published teclistamab population PK as the reference exposure
+model: subcutaneous first-order absorption, two-compartment disposition,
+and parallel time-independent and time-dependent clearance.
 
 | Parameter               | Value            |
 |:-----------------------|-----------------:|
@@ -925,46 +750,24 @@ Published typical estimates:
 
 : Published teclistamab population-PK typical estimates {tbl-colwidths="[55,45]"}
 
-For this project:
+**Omit the time-dependent clearance $CL_2$** and keep
+$CL=0.449$ L/day. Time-varying clearance is real for teclistamab but not
+central to the trial-design question. The result is a
+teclistamab-structure model simplified to time-independent disposition,
+and it should not be described as the approved teclistamab model. It
+keeps exposure persisting on about the weekly scale, which is what this
+exercise needs.
 
-$$
-\boxed{\text{omit time-dependent }CL_2}
-$$
-
-and retain $CL=0.449\ {\rm L/day}$.
-
-Rationale: time-varying clearance is real for teclistamab but is not
-central to the trial-design question and unnecessarily complicates the
-simulation.
-
-The resulting model is therefore:
-
-> A published-teclistamab-structure PK model simplified to
-> time-independent disposition.
-
-Do not claim that it reproduces the complete approved teclistamab PK
-model.
-
-The retained parameterization provides exposure persistence on
-approximately the weekly scale, which is the behavior required for this
-exercise.
-
-Use a 74-kg reference patient initially because that was approximately
-the reference body weight in the published model. Covariates are
-unnecessary in v1.
-
-PK IIV can initially be omitted or reduced to CL/Ka variability. The
-principal design conclusions should not depend on reproducing all
-teclistamab covariate relationships.
+Use a 74 kg reference patient, about the reference weight in the
+published model, and no covariates in v1. Omit PK IIV, or limit it to
+$CL$ and $k_a$. The design conclusions should not depend on reproducing
+teclistamab's covariate relationships.
 
 ------------------------------------------------------------------------
 
-## 9. B-cell pharmacodynamic model
+## 9. B-Cell Pharmacodynamic Model
 
-Use a simple indirect-response / turnover model with drug-stimulated
-B-cell loss.
-
-One convenient form is:
+A turnover (indirect-response) model with drug-stimulated B-cell loss:
 
 $$
 \frac{dB}{dt}
@@ -973,176 +776,120 @@ k_{\rm in}
 -
 k_{\rm out}B
 -
-k_{\rm kill}(C)B
-$$
-
-where
-
-$$
+k_{\rm kill}(C)B,
+\qquad
 k_{\rm kill}(C)
 =
 k_{\max}
-\frac{C^h}{EC_{50}^h+C^h}.
+\frac{C^h}{EC_{50}^h+C^h},
 $$
 
-At baseline $k_{\rm in}=k_{\rm out}B_0$.
+with $k_{\rm in}=k_{\rm out}B_0$ at baseline.
 
-This is intentionally much simpler than published TCE QSP models.
-Mechanistic mosunetuzumab models describe T-cell activation and B-cell
-killing across blood and tissues, demonstrating precedent for using
-B-cell depletion as a TCE PD output, but that level of complexity is
-unnecessary here.
+This is much simpler than published TCE quantitative systems
+pharmacology (QSP) models. Mechanistic mosunetuzumab models describe
+T-cell activation and B-cell killing across blood and tissues, which
+establishes B-cell depletion as a TCE PD output, but that detail is not
+needed here.
 
-Suggested starting values are $B_0=100\ {\rm cells/\mu L}$ and
-$t_{1/2,B}\approx30\ {\rm days}$, so $k_{\rm out}=\ln 2/30$.
+Starting values:
 
-Use approximately
+-   $B_0=100$ cells/µL.
+-   $t_{1/2,B}\approx30$ days, so $k_{\rm out}=\ln 2/30$.
+-   $k_{\max}=1\ {\rm day}^{-1}$. At saturating drug effect this gives
+    about 95% depletion in 3 days, before replenishment.
+-   $h$ between 1 and 2.
 
-$$
-k_{\max}=1\ {\rm day}^{-1}
-$$
-
-as an initial value: at saturating drug effect, this gives roughly 95%
-depletion over approximately 3 days absent replenishment.
-
-Use $h=1-2$.
-
-These are simulation assumptions, not claimed clinical estimates.
+These are simulation assumptions, not clinical estimates.
 
 ------------------------------------------------------------------------
 
-## 10. Define the "true active dose" through calibration
+## 10. Defining the True Active Dose by Calibration
 
-Do not choose an arbitrary EC50 and then discover what dose happens to
-be active.
+Choose $D_{\rm true,active}$ for each scenario and solve for $EC_{50}$,
+rather than choosing $EC_{50}$ and finding out which dose is active.
 
-Instead, define the desired scenario in terms of a **true active target
-dose**.
-
-For each scenario choose $D_{\rm true,active}$.
-
-Then numerically solve for $EC_{50}$ such that the standard candidate
-regimen ending at $D_{\rm true,active}$, which in the base case is:
-
-$$
-0.20D_{\rm true}
-\rightarrow
-D_{\rm true}
-$$
-
+Solve so that the standard candidate regimen ending at $D_{\rm true}$,
+which in the base case is $0.20D_{\rm true}\rightarrow D_{\rm true}$,
 produces $B=2.5/\mu L$ at the prespecified PD assessment time in a
-typical patient, and verify that the same regimen ending one grid step
-lower leaves $B>10/\mu L$. Calibrating to exactly $5/\mu L$ would place
-the defining scenario on the decision boundary, where solver tolerance
-and assessment timing can flip the outcome by a full grid step; the
-margin keeps the grid separation clean while preserving the definition
-below.
+typical patient. Then check that the same regimen one grid step lower
+leaves $B>10/\mu L$. Calibrating to exactly $5/\mu L$ would put the
+scenario on the decision boundary, where solver tolerance and assessment
+timing can flip the outcome by a full grid step; the margin keeps
+adjacent grid levels cleanly separated. Defining the scenario this way
+keeps the parameterization transparent and the prediction error easy to
+vary.
 
-This makes the parameterization transparent and makes prediction error
-easy to manipulate.
-
-The active dose should therefore mean:
+The active dose is defined as:
 
 > The first target-dose level on the protocol dose grid whose standard
 > step-up regimen produces profound peripheral B-cell depletion in the
 > reference patient.
 
-It does **not** mean that a single isolated administration of that dose
-necessarily does so.
+It does not mean that a single isolated dose at that level depletes B
+cells.
 
 ------------------------------------------------------------------------
 
-## 11. PD sampling and decision latency
+## 11. PD Sampling and Decision Latency
 
-Separate biology from operational availability.
+B cells can fall quickly, but a dose decision waits on the sample, the
+assay, quality control and review. Model the biology and the
+availability of the result separately.
 
-B cells may fall rapidly, but the decision requires:
-
-sample -\> assay -\> QC -\> review -\> dose decision.
-
-Use $T_{\rm PD,ready}=3\ {\rm days}$ as a reasonable initial scenario.
-
-Sensitivity analyses $2,\ 3,\ 5,\ 7\ {\rm days}$.
-
-If the actual program has a known operational turnaround, replace these
-with real values.
-
-The next weekly IPDE dose can only occur if the PD result is available.
-
-If $B<5/\mu L$ before the next scheduled dose, IPDE stops.
+-   $T_{\rm PD,ready}=3$ days in the base case; sensitivities 2, 3, 5
+    and 7 days. Replace these with a programme's real turnaround when it
+    is known.
+-   The next weekly scout dose happens only once the PD result is
+    available.
+-   If $B<5/\mu L$ before the next scheduled dose, escalation stops.
 
 ------------------------------------------------------------------------
 
-## 12. Prediction-error framework
+## 12. Prediction-Error Framework
 
-This should be a major simulation axis.
+Prediction error is a primary simulation axis. Three doses are kept
+separate:
 
-Separate three quantities:
-
--   $D_{\rm start}$ --- the FIH starting target dose.
--   $D_{\rm pred}$ --- the translationally predicted biologically active
-    target dose.
--   $D_{\rm true}$ --- the actual active target dose in the simulation.
-
-Define:
+-   $D_{\rm start}$: the FIH starting target dose.
+-   $D_{\rm pred}$: the translationally predicted active target dose.
+-   $D_{\rm true}$: the actual active target dose in the simulation.
 
 $$
 R_{\rm predicted-gap}
 =
-\frac{D_{\rm pred}}{D_{\rm start}}
-$$
-
-and
-
-$$
+\frac{D_{\rm pred}}{D_{\rm start}},
+\qquad
 E_{\rm pred}
 =
-\frac{D_{\rm true}}{D_{\rm pred}}.
-$$
-
-Therefore:
-
-$$
+\frac{D_{\rm true}}{D_{\rm pred}},
+\qquad
 \frac{D_{\rm true}}{D_{\rm start}}
 =
 R_{\rm predicted-gap}
 \times E_{\rm pred}.
 $$
 
-Suggested values:
+Suggested values are $R_{\rm predicted-gap}=10,\ 100,\ 1000$ and
+$E_{\rm pred}=1/10,\ 1/3,\ 1,\ 3,\ 10,\ 30$.
 
-$$
-R_{\rm predicted-gap}=10,\ 100,\ 1000
-$$
-
-and
-
-$$
-E_{\rm pred}=1/10,\ 1/3,\ 1,\ 3,\ 10,\ 30.
-$$
-
-That separates:
-
--   How conservative the starting dose is.
--   How accurately the pharmacology was predicted.
-
-This is particularly useful for comparing novel targets versus another
-BCMA TCE.
+The first ratio measures how conservative the starting dose is, and the
+second how accurately the pharmacology was predicted. The second is what
+separates a novel target from another BCMA TCE (Section 22).
 
 ------------------------------------------------------------------------
 
-## 13. Dose escalation factor
+## 13. Dose Escalation Factor
 
-**Set the step size from the PD signal rather than fixing it.** The
-scout is already measured before every escalation decision (Section
-11), and the measurement says which regime the ladder is in. While the
-B-cell count has not moved, the scout is far below the active dose and
-a large step costs nothing but crosses more of the gap. Once the count
-starts to move, the active dose is close and a large step overshoots
-it.
+**Set the step size from the PD signal.** The scout is measured before
+every escalation decision (Section 11), and the measurement says where
+the ladder is. While the B-cell count has not moved, the scout is far
+below the active dose, and a large step crosses more of the gap at no
+cost. Once the count starts to move, the active dose is close and a
+large step overshoots it.
 
-The rule operates on $B/B_0$, the most recent available B-cell count as
-a fraction of that scout's own baseline:
+The rule uses $B/B_0$, the most recent available B-cell count as a
+fraction of that scout's own baseline:
 
 | PD state | Condition | Next step |
 |:---|:---|:---|
@@ -1152,286 +899,218 @@ a fraction of that scout's own baseline:
 
 : The PD-guided escalation rule {tbl-colwidths="[22,40,38]"}
 
-with $\theta_{\rm move}=0.70$, a 30% decline from baseline, as the base
-case.
+The base case is $\theta_{\rm move}=0.70$, a 30% decline from baseline.
 
-The rule is one-way in practice. B cells do not recover while dosing
-continues, so the ladder decelerates once and does not re-accelerate,
-and no oscillation between the two step sizes is possible.
+The rule works one way in practice. B cells do not recover while dosing
+continues, so the ladder slows once and does not speed up again.
 
-Three parameters, and a comparator:
+Three parameters and a comparator:
 
--   $\theta_{\rm move}$ --- the fraction of baseline at which the marker
+-   $\theta_{\rm move}$: the fraction of baseline at which the marker
     counts as having moved. Base 0.70; sensitivities 0.50 and 0.85.
--   $F_{\rm quiet}$ --- the step while the marker has not moved. Base
-    10; sensitivities 3 and 30.
--   $F_{\rm move}$ --- the step after it has. Base 3; sensitivity 2.
+-   $F_{\rm quiet}$: the step while the marker has not moved. Base 10;
+    sensitivities 3 and 30.
+-   $F_{\rm move}$: the step after it has. Base 3; sensitivity 2.
 -   **Fixed multiplier**, $D_{k+1}=FD_k$ with $F$ = 2, 3 or 4
-    throughout, as the reference arm. Every claim for the PD-guided
-    rule is a difference against this.
+    throughout, as the reference arm. Every claim for the PD-guided rule
+    is a difference against this.
 
-### What the rule can get wrong
+### Two Ways the Rule Fails
 
-Both failure directions are simulatable and should be reported
-separately.
+Both are simulatable; report them separately.
 
 A **false brake** is a measurement that crosses $\theta_{\rm move}$
-through assay and biological variability rather than through drug
-effect. It drops the ladder into 3-fold steps early, and the scout then
-crawls through a range it could have crossed quickly, which is a direct
-charge against $\Delta T$. A 30% decline in an absolute B-cell count is
-not obviously outside the day-to-day variability of the measurement, so
-$\theta_{\rm move}$ may need a confirmatory second sample rather than a
-single crossing. This cannot appear before Phase 4, since Phases 1 to 3
-have no variability to generate it.
+through assay or biological variability rather than drug effect. It
+drops the ladder into 3-fold steps early, and the scout then crawls
+through a range it could have crossed quickly, which comes straight out
+of $\Delta T$. A 30% decline in an absolute B-cell count may be within
+the day-to-day variability of the measurement, so $\theta_{\rm move}$
+may need a confirmatory second sample. False brakes cannot appear before
+Phase 4, since Phases 1 to 3 have no variability to generate them.
 
 A **missed brake** is the opposite: the marker has moved but the sample
-that would have shown it is not yet available, so a 10-fold step lands
-past the active dose. The nominated $D^*$ is then too high, and Section
-5 scores it as overshoot rather than as lost time.
+that would show it is not yet available, so a 10-fold step lands past
+the active dose. The nominated $D^*$ is then too high, and Section 5
+scores it as overshoot rather than lost time.
 
-Report the number of steps spent in each regime. The interval between
-$\theta_{\rm move} B_0$ and $5/\mu L$ spans a 14-fold change in B cells
-at $B_0=100$ cells/uL, and how many 3-fold dose steps that interval
-takes under the B-cell PD model in Section 9 is what decides whether the
-brake costs
-calendar time or merely places the nomination better. That is a
-simulation output, not something to assert here.
+Report the number of steps spent in each regime. Between
+$\theta_{\rm move} B_0$ and $5/\mu L$ the B-cell count changes 14-fold
+at $B_0=100$ cells/µL. How many 3-fold dose steps that interval takes
+under the model in Section 9 decides whether the brake costs calendar
+time or only places the nomination better. The simulation answers this.
 
-### What this changes elsewhere
+### Effects Elsewhere in the Design
 
-The brake should raise the nominated $D^*$ relative to the fixed-ladder
-case, because the scout approaches the depletion threshold in smaller
-increments and stops nearer to the dose that actually caused it. If so,
-the undershoot described in Section 7 shrinks and the non-confirmation
-cycles with it. That is one of the more valuable things this rule could
-buy, and it is worth reporting separately from the change in
-$T_{3,\rm eval}$.
+The brake should raise the nominated $D^*$ compared with a fixed ladder,
+because the scout approaches the threshold in smaller increments and
+stops nearer the dose that caused the depletion. If it does, the
+undershoot in Section 7 shrinks, and the non-confirmation cycles with
+it. Report that separately from the change in $T_{3,\rm eval}$.
 
-It also separates this design further from the accelerated titration
-designs above. Their step size changes on toxicity; this one changes on
-pharmacology, using a marker measured for the purpose.
+The rule also separates this design further from accelerated titration.
+Their step size changes on toxicity; this one changes on pharmacology,
+using a marker measured for the purpose.
 
-### Precedent for the step sizes
+### Precedent for the Step Sizes
 
-The MCLA-117 scheme in Section 6 gives within-patient increments of
-1.5 to 3-fold in its early cohorts: cohort 1 runs 25, 50, 100, 200,
-300, 450 and 675 µg, decelerating from 2-fold to 1.5-fold as it climbs.
-Larger within-patient increments do appear later, with cohorts 10, 11
-and 12 stepping from 25 mg on D8 to 120, 240 and 400 mg on D15, a 4.8
-to 16-fold increase. Those larger steps go into doses already cleared
-in earlier cohorts, so they are not blind escalation. A 10-fold blind
-step in a scout has no precedent in that scheme, and $F_{\rm quiet}=10$
-should be presented as an extrapolation rather than as established
-practice.
+The MCLA-117 scheme in Section 6 steps 1.5 to 3-fold within patients in
+its early cohorts: cohort 1 runs 25, 50, 100, 200, 300, 450 and 675 µg,
+slowing from 2-fold to 1.5-fold as it climbs. Larger within-patient
+steps appear later, with cohorts 10, 11 and 12 going from 25 mg on D8 to
+120, 240 and 400 mg on D15, a 4.8 to 16-fold increase, but into doses
+already cleared by earlier cohorts. A 10-fold step into an uncleared
+dose has no precedent in that scheme, so present $F_{\rm quiet}=10$ as
+an extrapolation.
 
 ------------------------------------------------------------------------
 
-## 14. Acute safety / CRS
+## 14. Acute Safety and CRS
 
-Do not make CRS the main modeling problem.
+CRS is not the main modelling problem. Published quantitative TCE CRS
+models exist, including repeated time-to-event (RTTE) models in which
+the CRS hazard depends on longitudinal exposure and on a separate
+tolerance component representing priming. They support the assumption
+that acute TCE toxicity depends on prior dosing history as well as on
+current exposure. Importing an epcoritamab CRS model into a
+teclistamab-PK and B-cell simulation, however, would create a hybrid
+molecule with no clear quantitative meaning.
 
-Published quantitative models exist for TCE CRS, including repeated
-time-to-event approaches in which CRS hazard depends on longitudinal
-exposure and a separate inhibitory/tolerance component representing
-priming.
+**v1: acute safety is a protocol gate.**
 
-This validates the assumption that:
-
-> Acute TCE toxicity can depend strongly on both current exposure and
-> prior treatment history.
-
-However, importing an epcoritamab CRS model into a teclistamab-PK/B-cell
-simulation would create a hybrid molecule with questionable quantitative
-meaning.
-
-Therefore use one of two approaches.
-
-### v1 preferred
-
-Treat acute safety as a **protocol gate rather than an important
-simulated endpoint**:
-
--   Next IPDE dose cannot occur until the acute safety assessment is
+-   The next scout dose waits until the acute safety assessment is
     complete.
--   Assume acute clinically important toxicity is largely observable
-    within approximately 48 hours for the base-case operational
-    discussion.
+-   Acute, clinically important toxicity is assumed observable within
+    about 48 hours.
 -   No unresolved acute safety event is permitted.
--   Assume the gate is passed in the base efficiency simulations.
+-   The base efficiency simulations assume the gate is passed.
 
-Then perform simple sensitivity analyses introducing acute treatment
-holds.
+Sensitivity analyses add acute treatment holds.
 
-### Optional later extension
+**Optional later extension:** a generic exposure-dependent binary or
+RTTE acute toxicity model calibrated to plausible CRS rates, built only
+after the speed and PD simulation works.
 
-Implement a generic exposure-dependent binary/RTTE acute toxicity model
-calibrated to plausible CRS rates.
+### The Ladder Is Itself a Step-Up Schedule
 
-Do not spend much time optimizing this before the speed/PD simulation
-works.
+The rest of this document treats within-patient escalation as a risk to
+gate. For CRS there is an argument the other way. A scout arrives at
+each dose having received every lower dose on the ladder; a conventional
+patient arrives at the same target after one step-up dose. In the
+published CRS models prior exposure lowers the hazard at a given current
+exposure, so the scout is the better primed of the two at that dose.
 
-### The ladder is itself a step-up schedule
+The argument has two limits:
 
-The document elsewhere treats within-patient escalation only as a risk
-to be gated. For CRS specifically there is an argument in the other
-direction, and it should be stated rather than left for a reviewer to
-raise.
+-   It holds for CRS, where priming is established and quantified, and
+    not for ICANS (Section 16), where exposure-response is not
+    established well enough to claim that priming protects anyone.
+-   The scout reaches **higher absolute doses** than any conventional
+    patient dosed at the same time, so better priming at a given dose
+    does not mean lower total risk.
 
-An IPDE patient arrives at each dose level having already received every
-lower level on the ladder. A conventional patient arrives at the same
-target dose after a single step-up dose in the base case. On the tolerance/priming component
-of the published TCE CRS models referenced above, where prior exposure
-reduces the hazard at a given current exposure, the IPDE patient is the
-better-primed of the two at that dose. The IPDE ladder is a longer
-step-up schedule, not an unprimed jump.
-
-Two limits on how far this argument goes:
-
--   It applies to CRS, where priming is an established and quantified
-    mechanism. It does not transfer to ICANS (Section 16), where the
-    exposure-response relationship is not established well enough to
-    claim priming protects anyone.
--   The IPDE patient also reaches **higher absolute doses** than any
-    conventional patient of the same era in the trial, so better priming
-    at a given dose does not mean lower total risk.
-
-The net effect on CRS is therefore ambiguous, and that is the honest
-statement. Record it as a reason not to assume the acute-safety
-comparison runs against IPDE, and revisit it if the optional RTTE
-extension is built.
+The net effect on CRS is ambiguous. Record it as a reason not to assume
+the acute-safety comparison runs against IPDE, and revisit it if the
+RTTE extension is built.
 
 ------------------------------------------------------------------------
 
-## 15. Critical point about safety-decision windows
+## 15. Safety-Decision Windows
 
-This comparison must be fair.
+The comparison has to be fair. Letting IPDE escalate after 48 hours
+while conventional escalation waits 28 days misrepresents both designs,
+unless the protocols being compared actually do that. If conventional
+escalation also opens the next level after a short acute window, then
+both designs outrun delayed toxicity at the programme level. The concern
+specific to IPDE is that one patient accumulates successively higher
+exposures before the delayed consequences of the earlier ones are known.
 
-Do **not** allow IPDE to escalate after 48 hours while making
-conventional between-patient escalation wait 28 days unless that
-genuinely represents the protocols being compared.
+Two windows, specified separately:
 
-If conventional escalation also uses a relatively short acute safety
-window before opening the next dose level, then **both designs can
-outrun delayed toxicity information at the program level**.
+-   $W_{\rm decision}$: the minimum information needed to permit the
+    next escalation.
+-   $W_{\rm full}$: the complete safety evaluation a patient needs to
+    count toward the primary endpoint.
 
-The IPDE-specific concern is somewhat different:
+### IPDE Escalation Gate
 
-> The same individual accumulates sequential higher exposures before all
-> delayed consequences of earlier exposures may be known.
+Base case $W_{\rm decision}=7$ days. The next within-patient step uses
+all safety data from the 7 days since the previous dose, plus the PD
+result; the 48-hour acute assessment sits inside that window. Weekly
+steps are precedented: approved TCE step-up schedules escalate within
+patients at 2 to 4-day intervals (teclistamab on D1, D4 and D8), so a
+7-day step is slower than marketed products already use.
 
-Therefore specify the two windows separately:
+Sensitivity: $W_{\rm decision}=14$ days, escalation every other week,
+for a more conservative safety review committee.
 
--   $W_{\rm decision}$ --- the minimum information required to permit
-    the next escalation.
--   $W_{\rm full}$ --- the complete safety evaluation required for a
-    patient to count toward the primary endpoint.
+### Conventional Between-Cohort Review Window
 
-### IPDE escalation gate
+$W_{\rm cohort}$ is the time from the last patient in a cohort receiving
+the target dose until the next dose level may open. It is the largest
+single driver of the conventional timeline, and so of the comparison.
 
-Base case: $W_{\rm decision}=7$ days. The next intra-patient escalation
-uses all safety data accrued over the full 7-day interval since the
-previous dose, plus the PD result; the ~48-hour acute assessment sits
-inside that window rather than being the whole gate. Weekly
-within-patient increases are precedented: approved TCE step-up
-schedules escalate within patients at 2--4-day intervals (teclistamab
-doses on D1/D4/D8), so a 7-day step is a slower schedule than those
-products already use.
-
-Sensitivity: $W_{\rm decision}=14$ days (escalation every other week),
-representing a more conservative safety-review committee.
-
-### Conventional between-cohort review window
-
-Pin this explicitly; it is the largest single driver of the
-conventional timeline and therefore of the whole comparison.
-
-$W_{\rm cohort}$ = time from the last patient in a cohort receiving the
-target dose until the next dose level may open.
-
--   3-patient cohorts: base 28 days (a standard DLT-window review);
+-   3-patient cohorts: base 28 days, a standard DLT-window review;
     sensitivities 14 and 21 days.
 -   1-patient accelerated cohorts in the low-dose region: base 7 days;
-    sensitivity 14 days. The base case deliberately makes the
-    accelerated comparator fast, so IPDE is tested against an efficient
-    conventional design rather than a straw man.
+    sensitivity 14 days. The base case makes the accelerated comparator
+    fast on purpose, so IPDE is tested against an efficient conventional
+    design.
 
-### Full evaluability window
+### Full Evaluability Window
 
-For full evaluability, begin with:
-
-$$
-W_{\rm full}=28\ {\rm days}
-$$
-
-and sensitivity analyses $W_{\rm full}=14,\ 21,\ 28\ {\rm days}$.
-
-Only one primary clock, $T_{3,\rm eval}$, is needed. There is no need
-for separate $T_{48}$ and $T_{\rm full}$ endpoints.
+Base $W_{\rm full}=28$ days; sensitivities 14 and 21 days. One primary
+clock, $T_{3,\rm eval}$, is enough, and separate $T_{48}$ and
+$T_{\rm full}$ endpoints are not needed.
 
 ------------------------------------------------------------------------
 
-## 16. ICANS: critical limitation, not a fabricated model
+## 16. ICANS: A Limitation, Not Modelled
 
-This is the main unresolved safety issue.
+ICANS is the main unresolved safety issue. The literature review found
+no established quantitative exposure-ICANS model for TCEs comparable to
+the Friberg neutropenia model or the CRS models.
 
-The literature review did **not** identify an established quantitative
-TCE exposure-to-ICANS model analogous to either the Friberg neutropenia
-model or existing CRS models.
+For teclistamab, published clinical experience indicates that ICANS:
 
-For teclistamab, published clinical experience indicates:
+-   occurs in a minority of patients;
+-   has a median onset several days after the most recent dose, and is
+    not reliably confined to the first 48 hours;
+-   can first occur after later doses;
+-   can recur.
 
--   ICANS occurs in a minority of patients.
--   Median onset is several days after the most recent dose.
--   Events are not reliably confined to the first 48 hours.
--   First occurrence can happen after later doses.
--   Recurrent ICANS can occur.
+The relationship between TCE exposure and neurotoxicity is not
+established well enough for a credible general model, and that is the
+problem for a weekly ladder.
 
-A key pharmacometric limitation is that the relationship between TCE
-exposure and neurological toxicity is not sufficiently established for a
-credible general-purpose quantitative model.
+Modelling ICANS as $P(ICANS\mid D_k)$ with a dose-specific onset clock
+would not work. After $D_1\rightarrow D_2\rightarrow ICANS$ there is
+generally no way to tell whether the event would have happened without
+$D_2$, was triggered by $D_2$, reflects $D_1$, or reflects the
+cumulative immune trajectory. An arbitrary hazard such as
+$h_{\rm ICANS}=f(C_{\max},AUC)$ would look more rigorous than the
+evidence allows.
 
-That matters greatly for QW IPDE.
-
-Do **not** model ICANS as $P(ICANS\mid D_k)$ followed by a dose-specific
-onset clock.
-
-With repeated weekly exposure $D_1\rightarrow D_2\rightarrow ICANS$
-there is generally no credible way to identify whether the event would
-have occurred without $D_2$, was triggered by $D_2$, reflects $D_1$, or
-reflects the cumulative immune trajectory.
-
-Likewise, an arbitrary model such as $h_{\rm ICANS}=f(C_{\max},AUC)$
-would appear more rigorous than the available evidence supports.
-
-### Recommendation for v1
-
-**Do not quantitatively model ICANS.**
-
-State explicitly:
+**v1 does not model ICANS.** The document states instead:
 
 > IPDE may outrun delayed neurotoxicity such as ICANS, and no
 > sufficiently established quantitative exposure-ICANS model currently
-> exists to reliably simulate that risk.
+> exists to simulate that risk reliably.
 
-This is a limitation of the proposed development strategy, not merely of
-the simulation.
+This limits the development strategy as well as the simulation. The
+design reduces the uncertainty without removing it, by:
 
-The design mitigates---but does not eliminate---the uncertainty by:
-
--   Stopping escalation as soon as profound PD occurs.
--   Not seeking an MTD.
--   Transitioning immediately to conventional backfill.
--   Using appropriate ongoing safety review.
+-   stopping escalation as soon as profound PD occurs;
+-   not seeking a maximum tolerated dose (MTD);
+-   moving straight to conventional backfill;
+-   keeping ongoing safety review.
 
 ------------------------------------------------------------------------
 
-## 17. Neutropenia model
+## 17. Neutropenia Model
 
-Include this because it can illustrate the general phenomenon of a
-delayed/cumulative toxicity process.
-
-Use the established Friberg semimechanistic model:
+Included to illustrate delayed, cumulative toxicity in general. The
+Friberg semimechanistic model has a proliferating compartment, three
+maturation compartments and circulating cells:
 
 $$
 Prol
@@ -1442,13 +1121,11 @@ Transit_2
 \rightarrow
 Transit_3
 \rightarrow
-ANC.
+ANC,
 $$
 
-Equations:
-
 $$
-k_{tr}=\frac{4}{MTT}
+k_{tr}=\frac{4}{MTT},
 $$
 
 $$
@@ -1457,16 +1134,16 @@ $$
 k_{tr}Prol(1-E_{\rm drug})
 \left(\frac{ANC_0}{ANC}\right)^\gamma
 -
-k_{tr}Prol
+k_{tr}Prol,
 $$
 
 $$
 \frac{dTransit_1}{dt}
 =
-k_{tr}(Prol-Transit_1)
+k_{tr}(Prol-Transit_1),
 $$
 
-with analogous equations for subsequent transit compartments, and:
+with the same form for the later transit compartments, and
 
 $$
 \frac{dANC}{dt}
@@ -1474,92 +1151,44 @@ $$
 k_{tr}(Transit_3-ANC).
 $$
 
-The classic Friberg model uses a proliferating compartment, three
-maturation compartments and circulating cells; it is a standard
-semimechanistic framework for delayed myelosuppression.
+Generic system values are about $MTT\approx116$--$125$ h and
+$\gamma\approx0.17$. Use a concentration-driven effect
+$E_{\rm drug}=Slope\times C$, or an $E_{\max}$ form if it behaves better
+numerically.
 
-Reasonable generic system values include approximately:
+### Interpretation
 
-$$
-MTT\approx116-125\ {\rm h}
-$$
+The TCE-specific slope is not known, and published teclistamab
+exposure-response analyses have not found a clear exposure relationship
+for grade 3 or worse neutropenia. The Friberg simulation is therefore a
+generic stress test of delayed, cumulative toxicity, and not a
+validated teclistamab neutropenia prediction.
 
-and:
-
-$$
-\gamma\approx0.17.
-$$
-
-Use a concentration-driven effect $E_{\rm drug}=Slope\times C$ or an
-Emax formulation if numerical behavior is preferable.
-
-### Important interpretation
-
-The TCE-specific SLOPE is **not known**.
-
-Furthermore, published teclistamab exposure-response analyses have not
-established a simple clear exposure relationship for grade \>=3
-neutropenia.
-
-Therefore:
-
-> The Friberg simulation is a **generic quantitative stress test of
-> delayed/cumulative toxicity**, not a validated teclistamab neutropenia
-> prediction.
-
-Its purpose is to illustrate this principle:
-
-$$
-\boxed{
-\text{toxicity latency} >
-\text{escalation interval}
-}
-$$
-
-means that clinically normal observations at the next dose decision can
-coexist with a latent toxicity process already developing.
-
-Do not imply that neutropenia is a surrogate for ICANS.
+It illustrates one principle: when toxicity latency exceeds the
+escalation interval, normal observations at the next dose decision can
+coexist with a toxicity process already under way. Neutropenia is not a
+surrogate for ICANS.
 
 ------------------------------------------------------------------------
 
-## 18. Why stopping at B-cell depletion matters
+## 18. Stopping at B-Cell Depletion
 
-The proposed design is not:
+An MTD design escalates until toxicity. The scout escalates until there
+is sufficient pharmacology or toxicity, whichever comes first:
 
-> Escalate until toxicity.
+-   $B\ge5/\mu L$ and acceptable safety: another dose.
+-   $B<5/\mu L$: exploratory escalation ends at once.
 
-It is:
-
-> Escalate until sufficient pharmacology OR toxicity.
-
-Thus:
-
-$$
-B\ge5/\mu L
-\quad\&\quad
-Safety\ acceptable
-$$
-
-leads to another dose.
-
-Whereas $B<5/\mu L$ immediately terminates exploratory escalation.
-
-This is the principal protection against unnecessarily traversing far
-into the biologically active range.
-
-It also makes the scientific purpose very different from within-patient
+This stop is the main protection against climbing far into the active
+range, and it gives the scout a different purpose from within-patient
 MTD finding.
 
 ------------------------------------------------------------------------
 
-## 19. Operational model
+## 19. Operational Model
 
-Do not initially create a weighted "operational complexity score."
-
-Report the components separately.
-
-For every simulated design track:
+Report the burden components separately rather than combining them into
+a weighted complexity score.
 
 | Element                            | Metric       |
 |:-----------------------------------|:-------------|
@@ -1572,306 +1201,230 @@ For every simulated design track:
 | PD results needed before next dose | count        |
 | Observation/hospitalization        | patient-hours |
 | Patients dosed above a rung when its delayed-toxicity information arrives | count |
+| Screen failures on the baseline B-cell floor (Section 22) | count |
 | Total trial calendar time          | days         |
 
-: Patient and operational burden components, reported per simulated design track {tbl-colwidths="[70,30]"}
+: Patient and operational burden, reported for every simulated design {tbl-colwidths="[70,30]"}
 
 **Report every row twice, per patient and across the trial.** Serial
-scouts concentrate a heavy burden on very few patients; conventional
+scouts concentrate a heavy burden on very few patients, and conventional
 escalation spreads a lighter one across three patients per rung. The two
-totals can point in opposite directions, and which one a reader wants
-depends on whether they are asking what a participant undergoes or what
-the trial consumes (Section 1).
+totals can point in opposite directions (Section 1).
 
-**Record observation and hospitalization in patient-hours, not
-patient-days.** Counting in days hides the case this design creates most
-of, a short post-dose observation window repeated at every rung of the
-ladder. Eight hours after each of six escalations and one overnight
-admission are different things that round to the same number of
+**Record observation and hospitalization in patient-hours.** Counting in
+days hides the case this design creates most of, a short post-dose
+observation window repeated at every rung. Eight hours after each of six
+escalations and one overnight admission round to the same number of
 patient-days. Aggregate to days for reporting where that reads better.
 
-Two of these rows are not patient burden and should not be read as such.
-Individual dose changes and real-time dose decisions are counts of
-occasions on which a dose is calculated, prescribed, prepared and
-verified for one patient rather than issued once for a whole cohort.
-They are a proxy for protocol complexity and for the number of
-opportunities for a dosing error, neither of which the simulation
-models. Report the counts; do not convert them into a patient-facing
-cost.
+**Two rows are not patient burden.** Individual dose changes and
+real-time dose decisions count the occasions on which a dose is
+calculated, prescribed, prepared and verified for one patient rather
+than issued once for a cohort. They stand in for protocol complexity
+and for opportunities for a dosing error, neither of which the
+simulation models. Report the counts without converting them into a
+patient-facing cost.
 
-The key quantity is **incremental burden relative to what patients would
-otherwise undergo**.
+What counts is burden beyond what patients would undergo anyway. For a
+QW oncology TCE, the weekly visit, labs and observation are already
+planned, and changing the dose may add little. For an immune-reset
+programme whose eventual treatment may be one or two administrations, a
+weekly scout ladder adds several visits and doses, and the burden can
+be substantial.
 
-For a QW oncology TCE:
+### Safety Latency Is a Separate Axis
 
--   Weekly visit already planned.
--   Labs already planned.
--   Observation already planned.
--   Changing the dose may add little patient-facing burden.
-
-For an immune-reset program whose eventual treatment might involve only
-1--2 administrations:
-
--   Serial QW IPDE could add multiple visits and doses.
--   Operational and patient burden can therefore be substantial.
-
-### Safety latency is not operational burden
-
-Keep this separate.
-
-There should be two axes:
-
-1.  **Incremental operational burden.**
-2.  **Latency/uncertainty of clinically relevant safety information.**
-
-A study can be operationally easy but scientifically risky because
-delayed toxicity information is unavailable.
+Keep operational burden and the latency of safety information on two
+separate axes. A study can be easy to run and still scientifically risky
+because delayed toxicity information is not yet available.
 
 ------------------------------------------------------------------------
 
-## 20. Enrollment and trial-operation parameters
+## 20. Enrollment and Trial-Operation Parameters
 
-At minimum parameterize $\lambda_{\rm enroll}$ with scenarios such as:
+Parameterize the enrollment rate $\lambda_{\rm enroll}$ at 0.5, 1 and 2
+patients a week, plus a non-binding case of 5 a week or an unlimited
+queue.
 
--   0.5 patients/week.
--   1 patient/week.
--   2 patients/week.
--   Accrual not binding: 5 patients/week, or an unlimited queue.
+Include screening delay, patient staggering and sentinel rules, safety
+monitoring committee (SMC) review lag, PD turnaround, and cohort-opening
+delay. These can dominate calendar time. Use a simple discrete-event
+engine rather than assuming all patients appear at once.
 
-Include:
-
--   Screening delay.
--   Patient staggering/sentinel rules.
--   SMC/review lag.
--   PD-result turnaround.
--   Cohort-opening delay.
-
-These can dominate calendar time and therefore should not be omitted.
-
-A simple discrete-event engine is preferable to pretending all patients
-appear instantaneously.
-
-### Which resource is binding
+### The Binding Resource
 
 Calendar time is set by whichever is slower, waiting for patients or
 waiting for the safety review between cohorts. Which one binds changes
 what every other lever buys, and it differs by archetype.
 
-Where accrual is slow, patients and calendar time move together. A
+When accrual is slow, patients and calendar time move together. A
 3-patient cohort takes three enrolment slots to fill and the trial
 waits, so cutting to 1-patient cohorts saves both.
 
-Where accrual is fast, which is the expectation for the autoimmune and
-immune-reset archetype in Section 22, that inverts. Cohorts fill
-quickly and calendar time becomes the number of cohorts multiplied by
+When accrual is fast, as expected for the autoimmune and immune-reset
+archetype in Section 22, the relationship inverts. Cohorts fill quickly
+and calendar time becomes the number of cohorts multiplied by
 $W_{\rm cohort}$. A 1-patient cohort then saves patients at subactive
-doses and saves little time, because the review window runs regardless
-of how many patients sat in the cohort.
+doses and little time, because the review window runs regardless of how
+many patients sat in the cohort.
 
-Two things follow, both predictions to check rather than assumptions to
-build in.
+Two predictions follow, to be checked by the simulation:
 
--   The 1-versus-3 cohort size lever in Section 6 reports on the patient
-    axis and not the time axis once accrual is fast. That is the same
-    shape as the catch-up result.
--   What moves the clock under fast accrual is the number of cohorts,
-    which is set by the dose step size. This is Simon's finding in
-    Section 6, that time is bought by step size rather than by
-    escalating within a patient, arriving from the other direction. It
-    also suggests where scout-and-backfill earns its keep: not by
-    removing waiting, but because seeing PD in the same patient is what
-    makes a larger step defensible. On that reading the PD-guided rule
-    in Section 13 is the time mechanism and the ladder is what licenses
-    it. The simulation should confirm or refute this, since it is the
-    difference between a design that saves time and one that only saves
-    patients.
+-   Under fast accrual, the cohort-size lever in Section 6 moves the
+    patient axis and not the time axis, the same shape as the catch-up
+    result.
+-   Under fast accrual, the clock moves with the number of cohorts,
+    which the dose step size sets. This is Simon's finding from the
+    other direction. It suggests where scout-and-backfill earns its
+    place: seeing PD in the same patient is what makes a larger step
+    defensible. On that reading the PD-guided rule in Section 13 is the
+    time mechanism and the ladder is what licenses it. Whether that
+    holds is the difference between a design that saves time and one
+    that only saves patients.
 
-### Backfill pre-screening
+### Backfill Pre-Screening
 
-Make this an explicit design lever, because it plausibly matters more
-than PD turnaround.
-
-After the scout depletes, IPDE must enroll 3 fresh backfill patients.
-At $\lambda_{\rm enroll}=0.5$/week that is roughly 6 weeks of accrual
-before the $W_{\rm full}$ clocks even start, while the conventional arm
-has been enrolling continuously throughout. The confirmation penalty
-$T_{3,\rm eval}-T_{\rm BCD}$ is therefore an accrual quantity at low
-enrollment rates, and PD turnaround (Section 11), measured in days,
-cannot compete with it.
+An explicit design lever, and plausibly a larger one than PD turnaround.
+After the scout depletes, IPDE must enrol 3 fresh backfill patients. At
+$\lambda_{\rm enroll}=0.5$ a week that is about 6 weeks of accrual
+before the $W_{\rm full}$ clocks start, while the conventional arm has
+been enrolling throughout. At low enrollment rates the confirmation
+penalty $T_{3,\rm eval}-T_{\rm BCD}$ is an accrual quantity, and PD
+turnaround (Section 11), measured in days, cannot compete with it.
 
 Simulate two policies:
 
--   **Reactive.** Backfill screening begins when the scout depletes.
-    This is the base case.
+-   **Reactive.** Backfill screening begins when the scout depletes. The
+    base case.
 -   **Anticipatory.** A pool of $n$ patients is screened and held ready
-    during the scout escalation, so backfill dosing starts after the
-    review lag alone. Screening is speculative and some pool patients
-    are never dosed, so count them in the operational burden of
-    Section 19.
+    during the scout ladder, so backfill dosing starts after the review
+    lag alone. Some pool patients are never dosed; count them in the
+    operational burden of Section 19.
 
-The comparison bounds how much of the confirmation penalty is
-recoverable by operations rather than by pharmacology. If anticipatory
-pre-screening removes most of it, that is a cheaper program change than
-faster assays and should be reported as such.
+The comparison bounds how much of the confirmation penalty operations
+can recover. If anticipatory pre-screening removes most of it, that is a
+cheaper programme change than a faster assay, and the result should say
+so.
 
 ------------------------------------------------------------------------
 
-## 21. Important design variants / sensitivity analyses
-
-The highest-value sensitivity analyses are:
+## 21. Design Variants and Sensitivity Analyses
 
 1.  Prediction error $D_{\rm true}/D_{\rm pred}$.
-2.  Predicted starting-to-active gap.
-3.  PD-guided escalation against a fixed 2x, 3x or 4x multiplier, and
+2.  Predicted gap from starting to active dose.
+3.  PD-guided escalation against a fixed 2, 3 or 4-fold multiplier, and
     the movement threshold $\theta_{\rm move}$ = 0.50, 0.70, 0.85
-    (Section 13, dose escalation factor).
-4.  One (base) vs two standard step-up doses.
+    (Section 13).
+4.  One (base) against two standard step-up doses.
 5.  The rule that ends the accelerated phase in Design A2: toxicity, as
     in Simon, or first B-cell movement.
-6.  PD turnaround 2--7 days.
+6.  PD turnaround, 2 to 7 days.
 7.  Enrollment rate.
 8.  Safety decision window.
 9.  Full evaluability window.
-10. One vs multiple simultaneous/staggered IPDE scout patients.
-11. Delayed neutropenia strength/latency.
-12. IPDE escalation gate 7 vs 14 days.
-13. Backfill nomination offset (nominate $D^*$ vs $3D^*$) and the cost
+10. One against several simultaneous or staggered scouts.
+11. Strength and latency of delayed neutropenia.
+12. IPDE escalation gate, 7 against 14 days.
+13. Backfill nomination offset (nominate $D^*$ or $3D^*$) and the cost
     of non-confirmation cycles.
-14. Reactive vs anticipatory backfill pre-screening (Section 20).
-15. Cap on the between-cohort increase in the first dose given to a
+14. Reactive against anticipatory backfill pre-screening (Section 20).
+15. Cap on the between-cohort increase in the first dose to a
     drug-naive patient, $F_{\rm start}$ = 2, 3 or 10 (Section 6).
-16. One vs two vs three scouts, the scout entry policy, and the scout
-    stagger $\Delta_{\rm scout}$ = one rung, two rungs or serial
-    (Section 6).
+16. One, two or three scouts, the scout entry policy, and the stagger
+    $\Delta_{\rm scout}$ = one rung, two rungs or serial (Section 6).
 
-Avoid large factorial designs initially. Start with interpretable
-scenario sets.
+Start with interpretable scenario sets and avoid large factorial
+designs at first.
 
 ------------------------------------------------------------------------
 
-## 22. Suggested archetypes
+## 22. Archetypes
 
-### Patient population
+### Patient Population
 
-State the population for each archetype. It decides whether $B_0=100$
-cells/uL and the $5$ cells/uL threshold are sensible, and the two
-candidate populations differ enough to change the PD model's starting
-conditions.
+Each archetype states its population, because the population decides
+whether $B_0=100$ cells/µL and the 5 cells/µL threshold are sensible.
+The two candidate populations differ enough to change the PD model's
+starting conditions.
 
--   **Relapsed/refractory oncology**, the teclistamab-like setting.
-    Baseline B cells are disease-affected and prior therapy is common.
--   **Autoimmune / immune reset**, the setting where the eventual
-    regimen may be 1--2 administrations. Some candidates have had prior
-    B-cell-depleting therapy such as rituximab and can enter with
-    baseline counts already low or still recovering. Accrual is expected
-    to be fast here rather than rate-limiting, which changes what cohort
-    size buys (Section 20).
+-   **Relapsed or refractory oncology**, the teclistamab-like setting.
+    Baseline B cells are affected by the disease, and prior therapy is
+    common.
+-   **Autoimmune disease and immune reset**, where the eventual regimen
+    may be one or two administrations. Some candidates have had prior
+    B-cell-depleting therapy such as rituximab and enter with counts
+    already low or still recovering. Accrual is expected to be fast,
+    which changes what cohort size buys (Section 20).
 
-The second population breaks the design's central signal where a patient
-enrolls near or below the threshold, because a scout who starts at
-$B<5/\mu L$ has no escalation signal at all and a scout who starts low
-depletes early and nominates a dose far below $D_{\rm true}$. Handle it
-as an eligibility criterion rather than as a modeling problem: require a
-documented baseline B-cell count within the normal range for scout
-eligibility, and record how many screened patients that excludes.
+A low baseline breaks the design's central signal. A scout who starts
+below $5/\mu L$ has no escalation signal at all, and one who starts low
+depletes early and nominates a dose far below $D_{\rm true}$. Handle
+this as eligibility rather than modelling: require a documented baseline
+B-cell count above a floor for scout eligibility, and record how many
+screened patients the floor excludes.
 
-**Pin the floor as a number, not as "the normal range."** Reference
-intervals for CD19+ counts vary between laboratories, and a multi-site
-trial reading a site-specific range gives a stopping trigger whose
-meaning shifts by site. Choose one value and write it into the
-protocol.
+**State the floor as a number.** Reference intervals for CD19+ counts
+vary between laboratories, and a multi-site trial reading each site's
+own normal range gets a stopping trigger whose meaning shifts by site.
+Choose one value and write it into the protocol.
 
-Whether the floor also applies to the three patients declaring the dose
-in Section 4 is open. They need it for the same reason the scout does,
-since a patient entering at 30 cells/uL reaching $B<1$ is a weaker
+**Open decision: does the floor apply to the three patients declaring
+the dose** (Section 4)? They need it for the same reason the scout does,
+since a patient entering at 30 cells/µL and reaching $B<1$ is a weaker
 observation than one entering at 250. Applying it to everyone
 contributing to the depletion endpoint will cost eligibility in an
-autoimmune population with prior B-cell-directed therapy, so decide it
-before it arrives as a screening-failure review. Section 19's operational
-counters should include screen failures on this criterion.
+autoimmune population with prior B-cell-directed therapy. Decide it
+before it arrives as a screening-failure review.
 
-For v1, run Archetype 1 as oncology with $B_0=100$ cells/uL. Introduce a
-low-baseline population when IIV enters in Phase 4, where a distribution
-of $B_0$ is representable.
+For v1, run Archetype 1 as oncology with $B_0=100$ cells/µL, and
+introduce a low-baseline population when IIV enters in Phase 4, where a
+distribution of $B_0$ can be represented.
 
-### Archetype 1 --- novel B-cell-depleting TCE
+### Archetype 1: Novel B-Cell-Depleting TCE
 
-This should be the primary analysis.
+The primary analysis, and probably the strongest use case, because it
+has an immediate pharmacologic stopping signal. Assumptions:
 
-Assumptions:
-
--   FIH.
--   Substantial uncertainty in active dose.
--   QW treatment.
--   Strong priming effect.
--   Rapid acute safety information (\~48 h).
+-   FIH, with substantial uncertainty in the active dose.
+-   QW treatment, and a strong priming effect.
+-   Acute safety information within about 48 hours.
 -   Peripheral B-cell PD available within several days.
--   Profound B-cell depletion possible.
--   Target criterion \<5 cells/uL.
--   Delayed ICANS remains major unmodeled uncertainty.
+-   Profound B-cell depletion possible, with a target of
+    $B<5$ cells/µL.
+-   Delayed ICANS remains a major unmodelled uncertainty.
 
-This is likely the strongest scientific use case because there is an
-immediate pharmacologic stopping signal.
+### Archetype 2: Another BCMA TCE
 
-### Archetype 2 --- another BCMA TCE
+A low-uncertainty comparator. Class knowledge about BCMA x CD3
+pharmacology and its clinically active exposure range is extensive, so
+$E_{\rm pred}$ should usually be close to 1, and the scenarios start
+with $1/3,\ 1,\ 3$. The expected result is that IPDE adds much less
+when a class-informed prediction is about right.
 
-Use principally as a low-uncertainty comparator.
+Include $E_{\rm pred}=10$, and perhaps 30, to test the counterargument
+that the molecule might be much less potent than predicted. If the
+prediction is badly wrong, IPDE becomes useful again. That makes this
+archetype a test of the framework rather than a likely candidate for
+IPDE.
 
-There is already considerable class knowledge about BCMAxCD3
-pharmacology and clinically active exposure ranges.
+### Archetype 3: Solid-Tumour TCE
 
-Therefore $E_{\rm pred}$ should generally be closer to 1.
+Run after the B-cell model works. A solid-tumour TCE may have no
+equivalent rapid PD endpoint. Reuse the trial engine and replace B-cell
+depletion with a generic activity threshold, such as
+$C_{\rm trough}>C_{\rm active}$, or a target-engagement or activation
+biomarker if one exists.
 
-Prediction-error scenarios might initially emphasize $1/3,\ 1,\ 3$.
-
-Expected hypothesis:
-
-> If class-informed predictions are approximately correct, IPDE provides
-> much less incremental value.
-
-But deliberately include $E_{\rm pred}=10$ or perhaps 30.
-
-This tests the counterargument:
-
-> "We think we know the active range, but what if this molecule is
-> substantially less potent than predicted?"
-
-If the prediction is badly wrong, IPDE can again become useful.
-
-This makes another BCMA TCE a worthwhile team discussion, but not
-necessarily because the recommendation will be to use IPDE. It is an
-excellent test of the framework.
-
-### Archetype 3 --- solid-tumor TCE
-
-Do this after the B-cell model is functional.
-
-The challenge is that there may be no equivalent rapid binary PD
-endpoint.
-
-Reuse the trial engine but replace B-cell depletion with a generic
-pharmacologic activity threshold such as $C_{\rm trough}>C_{\rm active}$
-or a target-engagement/activation biomarker if available.
-
-This case may have:
-
--   Very low incremental operational burden because repeated therapy is
-    already planned.
--   Larger uncertainty around where biological/clinical activity starts.
--   Weaker feedback for deciding exactly when to stop IPDE.
-
-That contrast is scientifically useful.
-
-Do **not** add an arbitrary tumor-response model just to make the
-archetype work.
+This archetype may have very low incremental burden, because repeated
+therapy is already planned; more uncertainty about where activity
+starts; and weaker feedback on when to stop escalating. Do not add an
+arbitrary tumour-response model to make it work.
 
 ------------------------------------------------------------------------
 
-## 23. Recommended simulation architecture
+## 23. Simulation Architecture
 
-Keep biology and trial logic modular.
-
-Conceptually:
+Keep biology and trial logic in separate modules.
 
 ``` text
 PK model
@@ -1916,106 +1469,76 @@ calculate_patient_burden()
 calculate_operational_burden()
 ```
 
-`mrgsolve` or `rxode2` would both be natural for the ODEs. Use ordinary
-R for the discrete-event trial logic.
+`mrgsolve` or `rxode2` for the ODEs, and ordinary R for the
+discrete-event trial logic.
 
 ------------------------------------------------------------------------
 
-## 24. Recommended implementation sequence
+## 24. Implementation Sequence
 
-Do not build everything at once.
+Build in four phases, each on the last.
 
-### Phase 1 --- deterministic proof of principle
+### Phase 1: Deterministic Proof of Principle
 
-The first working prototype should answer only this:
+The first prototype answers one question:
 
 > For a QW B-cell-depleting TCE with published teclistamab-like PK, how
 > much does prospective within-patient escalation until peripheral B
-> cells fall below 5 cells/uL reduce (a) time to first profound B-cell
+> cells fall below 5 cells/µL reduce (a) time to first profound B-cell
 > depletion and (b) time until 3 fresh patients have completed
 > evaluation on the resulting conventional candidate regimen, compared
 > with efficient conventional between-patient escalation?
 
-Vary the axes in the design variants (Section 21), and build this before
-any detailed toxicity
-model. Once it works, add the Friberg neutropenia stress test of
-Section 17. Do not build a quantitative ICANS model unless a later
-literature review finds a defensible published one.
-
-No IIV.
-
-Implement:
+No IIV. Implement:
 
 -   Teclistamab-like PK.
 -   Indirect-response B cells.
 -   All four designs.
--   Enrollment/calendar engine.
--   $T_{\rm BCD}$.
--   $T_{3,\rm eval}$.
--   Prediction-error scenarios.
+-   The enrollment and calendar engine.
+-   $T_{\rm BCD}$ and $T_{3,\rm eval}$.
+-   The prediction-error scenarios.
 -   The backfill confirmation and non-confirmation rules (Section 7).
 
-This should establish the core result.
+Vary the axes in Section 21. Phase 1 outputs are timeline arithmetic:
+with no variability and the gates assumed passed, each design's
+$T_{3,\rm eval}$ is a fixed count of steps multiplied by window lengths,
+plus enrollment lags, so Figure 2 could be computed by hand. Phase 1
+verifies the engine and maps how the saving scales across the
+prediction-error axes. Distributional claims ($P(\Delta T>0)$,
+percentile bands, and the dose-selection characteristics in Section 5)
+become meaningful in Phases 2 and 4. Stochastic non-depletion, a scout
+or backfill patient who fails to deplete by chance, also arrives in
+Phase 4, and it is what exercises the backfill rules in Section 7.
 
-Phase 1 outputs are timeline arithmetic: with no variability and gates
-assumed passed, each design's $T_{3,\rm eval}$ is a fixed count of
-steps multiplied by window lengths plus enrollment lags, so Figure 2
-could in principle be computed by hand. Its role is to verify the
-engine and to map how the saving scales across the prediction-error
-axes. Distributional claims ($P(\Delta T>0)$, percentile bands, the
-dose-selection operating characteristics in Section 5) become
-meaningful in Phases 2 and 4, when enrollment stochasticity and IIV
-enter; stochastic non-depletion (a scout or backfill patient who fails
-to deplete by chance) also arrives with Phase 4 and is what exercises
-the backfill confirmation rules in Section 7.
+### Phase 2: Operational Realism
 
-### Phase 2 --- operational realism
+Add enrollment rates, staggering, review delays, PD turnaround, one
+against two step-up doses, the Design A2 accelerated-phase rule, and the
+operational counters.
 
-Add:
+### Phase 3: Safety Stress Test
 
--   Enrollment rates.
--   Staggering.
--   Review delays.
--   PD turnaround.
--   One (base) vs two step-up doses.
--   The Design A2 accelerated-phase rule.
--   Operational counters.
+Add Friberg neutropenia, treatment holds, and delayed-safety scenarios.
+ICANS stays an unquantified limitation unless a defensible model is
+found.
 
-### Phase 3 --- safety stress test
+### Phase 4: Population Variability
 
-Add:
-
--   Friberg neutropenia.
--   Treatment holds.
--   Delayed-safety scenarios.
-
-Explicitly retain ICANS as an unquantified limitation unless a
-defensible model is found.
-
-### Phase 4 --- population variability
-
-Only then consider IIV in:
-
--   PK.
--   Baseline B cells.
--   B-cell drug sensitivity.
-
-Population variability will eventually matter, particularly because a
-scout's depletion threshold may not reproduce in all backfill patients.
-But it is not necessary to answer the first-order speed question.
-
-This ordering avoids accidentally turning the project into a
-dose-selection methodology exercise.
+Add IIV in PK, baseline B cells, and B-cell drug sensitivity. The final
+answer needs it, because a scout's depletion may not reproduce in every
+backfill patient, but the first-order speed question does not. Adding it
+last keeps the project from turning into a dose-selection methodology
+exercise.
 
 ------------------------------------------------------------------------
 
-## 25. The most important figures
+## 25. Figures
 
-Target four figures.
+Four.
 
-### Figure 1 --- Patient trajectories
+### Figure 1: Patient Trajectories
 
-Show conventional vs IPDE:
+Conventional against IPDE, coloured by B-cell status:
 
 ``` text
 Conventional
@@ -2034,146 +1557,106 @@ P1:  low -> 3x -> 9x -> 27x -> B<5
                          P2 P3 P4
 ```
 
-Color by B-cell status.
+### Figure 2: Primary Result
 
-This explains the concept immediately.
+$T_{3,\rm eval}$ against $\log_{10}(D_{\rm true}/D_{\rm start})$ for
+conventional, catch-up and scout-and-backfill. Once stochastic elements
+enter, plot the median with a 10th to 90th percentile band.
 
-### Figure 2 --- Primary result
+### Figure 3: Prediction Error
 
-Plot:
+$\Delta T = T_{3,\rm conventional} - T_{3,\rm IPDE}$ against
+$D_{\rm true}/D_{\rm pred}$. This shows when class or translational
+knowledge makes IPDE unnecessary.
 
-$$
-T_{3,\rm eval}
-$$
+### Figure 4: Safety-Information Latency
 
-against $\log_{10}(D_{\rm true}/D_{\rm start})$ for conventional,
-catch-up and prospective IPDE.
+Friberg ANC trajectories alongside escalating doses, with **the
+conventional arm on the same axes**. A panel of IPDE trajectories alone
+reads as an exhibit against IPDE and misstates the finding. Section 15
+establishes that a conventional programme escalating on short
+between-cohort windows also commits to new dose levels before delayed
+toxicity from earlier levels is observable. Both arms on one figure show
+where they differ:
 
-Once stochastic elements enter, plot the median with a 10th--90th
-percentile band rather than a single line.
+-   Conventional: latency outruns the **programme**, and each patient
+    sits at one dose level.
+-   IPDE: latency outruns the programme on the same terms, and in
+    addition one patient accumulates successively higher exposures
+    inside the latency window.
 
-### Figure 3 --- Prediction error
-
-Plot:
-
-$$
-\Delta T
-=
-T_{3,\rm conventional}
--
-T_{3,\rm IPDE}
-$$
-
-versus $D_{\rm true}/D_{\rm predicted}$.
-
-This directly answers when class/translational knowledge makes IPDE
-unnecessary.
-
-### Figure 4 --- Safety-information latency
-
-Illustrate Friberg ANC trajectories alongside escalating doses.
-
-**Draw the conventional arm on the same axes.** A panel showing only
-IPDE trajectories reads as an exhibit against IPDE, which misstates the
-finding. The safety-decision windows in Section 15 establish that a
-conventional program escalating
-on short between-cohort windows also commits to new dose levels before
-delayed toxicity from earlier levels is observable. The figure should
-show both arms so the reader can see where the two differ:
-
--   Conventional: latency outruns the **program**, and each individual
-    patient sits at one dose level.
--   IPDE: latency outruns the program on the same terms, and
-    additionally the same individual accumulates sequential higher
-    exposures inside the latency window.
-
-The second row is the IPDE-specific risk, and it is visible only against
-the first.
-
-The message is not:
-
-> IPDE causes neutropenia.
-
-It is:
-
-> Absence of currently observed toxicity is incomplete reassurance when
-> the biological toxicity process has substantial latency.
+The second row is the IPDE-specific risk, and it is visible only beside
+the first. The message of the figure is that absence of observed
+toxicity is incomplete reassurance when the toxicity process has
+substantial latency. It does not show that IPDE causes neutropenia.
 
 ------------------------------------------------------------------------
 
-## 26. Main anticipated conclusions to test, not assume
+## 26. Hypotheses to Test
 
-The simulation should be capable of disproving these.
-
-Expected hypotheses are:
+Expected results, each of which the simulation should be able to
+disprove.
 
 1.  **Big gap in predicted active dose, big gain from intrapatient
-    escalation.** IPDE produces substantial acceleration when the true
+    escalation.** IPDE accelerates the trial substantially when the true
     active dose is many escalation steps above the FIH starting dose.
 2.  **Good prediction of active dose removes benefit of intrapatient
-    escalation.** The advantage decreases sharply when the active dose is
-    accurately predicted.
+    escalation.** The advantage falls sharply when the active dose is
+    predicted accurately.
 3.  **Catch-up helps patients, but not time to evaluate active dose.**
-    Catch-up IPDE primarily benefits participants rather than trial
-    calendar time. This replicates the accelerated-titration literature
-    (the prior art in Section 6) rather than establishing something new,
-    and a result
-    contradicting it is a reason to check the engine first.
-4.  **Backfill shrinks the gain.** The advantage of prospective IPDE
-    persists after requiring 3 conventional backfill patients, but is
-    smaller than the apparent gain in $T_{\rm BCD}$.
+    Catch-up escalation benefits participants rather than trial calendar
+    time. This replicates the accelerated titration literature (Prior
+    Art, Section 6), so a contradicting result is a reason to check the
+    engine first.
+4.  **Backfill shrinks the gain.** The advantage of scout-and-backfill
+    survives the requirement for 3 conventional backfill patients, but
+    is smaller than the apparent gain in $T_{\rm BCD}$.
 5.  **Fast PD turnaround raises the value.** Rapid PD turnaround
     strongly increases the value of IPDE.
 6.  **Operational burden is small** when patients are already scheduled
     for repeated early administrations.
-7.  **Escalation can outrun safety information.** When clinically
-    relevant toxicity latency exceeds the escalation interval, rapid dose
+7.  **Escalation can outrun safety information.** When the latency of
+    clinically relevant toxicity exceeds the escalation interval, rapid
     escalation outpaces what has been observed.
-8.  **ICANS stays unquantified.** The inability to model it reliably
-    remains a genuine uncertainty rather than something that should be
-    mathematically assumed away.
+8.  **ICANS stays unquantified.** It remains a real uncertainty, and is
+    not assumed away mathematically.
 9.  **Fixed-ratio backfill undershoots.** Because the scout's stopping
-    signal arises on cumulative exposure, the backfill at $D^*$
-    under-shoots in some scenarios;
-    the resulting non-confirmation cycles reduce, but do not eliminate,
-    the IPDE advantage.
+    signal arises from cumulative exposure, backfill at $D^*$ falls
+    short in some scenarios. The resulting non-confirmation cycles
+    reduce the IPDE advantage without removing it.
 10. **At slow accrual, enrollment dominates.** At low enrollment rates
-    the confirmation penalty
-    $T_{3,\rm eval}-T_{\rm BCD}$ is dominated by enrolling the 3
-    backfill patients, not by PD turnaround; if so, the **fast PD
-    turnaround** hypothesis is demoted and anticipatory pre-screening
-    (Section 20) recovers more time than a faster assay.
+    the confirmation penalty $T_{3,\rm eval}-T_{\rm BCD}$ is mostly the
+    time to enrol 3 backfill patients, not PD turnaround. If so,
+    hypothesis 5 is demoted, and anticipatory pre-screening (Section 20)
+    recovers more time than a faster assay.
 11. **Priming does not rescue acute safety.** Better priming at a given
     dose does not make the acute-safety comparison favour IPDE, because
-    IPDE patients also reach higher absolute doses (Section 14, CRS).
+    scouts also reach higher absolute doses (Section 14).
 12. **A second scout repeats the first ladder, and that only costs time
-    when the scouts run in series.** Constraining the first dose in a
+    when the scouts run in series.** Limiting the first dose in a
     drug-naive patient to a 3-fold between-cohort increase forces a
     later scout to start near the bottom. Under serial entry that
     repeats the first ladder and removes much of the scout advantage;
-    under rolling entry (Section 6) the repeat overlaps the first
-    ladder and costs patients rather than weeks.
+    under rolling entry (Section 6) the repeat overlaps the first ladder
+    and costs patients rather than weeks.
 13. **Most of the low-dose saving is the micro-cohort, not the
     ladder.** The A-to-A2 contrast accounts for a large share of the
-    patients saved at subactive doses and of any calendar-time saving in
-    the low-dose region, and the A2-to-C contrast is smaller than the
-    A-to-C contrast that bundles them. If so, the case for
-    scout-and-backfill rests on the pharmacodynamic stop and the
-    confirmation it enables rather than on speed through the
-    subtherapeutic range.
+    patients saved at subactive doses and of any time saved in the
+    low-dose region, and the A2-to-C contrast is smaller than the
+    bundled A-to-C contrast. If so, the case for scout-and-backfill rests
+    on the PD stop and the confirmation it enables, rather than on speed
+    through the subtherapeutic range.
 14. **Rolling scouts are cheap in time and expensive in exposure.**
-    Scouts entering a rung apart reach the nominated dose at close to
-    the calendar time of a single scout, and deliver the observations
-    the declaration needs without a separate backfill wait. The price
-    is that a delayed-toxicity signal at a given rung arrives with
-    $n_{\rm scout}$ patients dosed above it rather than one, so
-    rolling entry buys time with exposure rather than with visits.
+    Scouts entering a rung apart reach the nominated dose in close to
+    the time a single scout takes, and supply the observations the
+    declaration needs without a separate backfill wait. The price is
+    that a delayed-toxicity signal at a given rung arrives with
+    $n_{\rm scout}$ patients dosed above it rather than one.
 15. **PD-guided beats a fixed ladder.** PD-guided escalation reaches
-    profound depletion no later than a
-    fixed 3-fold ladder, because the large steps while the marker is
-    quiet buy back the small steps taken after it moves, and it
-    nominates a $D^*$ closer to $D_{\rm true}$, so fewer backfill
-    cohorts fail to confirm.
+    profound depletion no later than a fixed 3-fold ladder, because the
+    large steps while the marker is quiet pay for the small steps after
+    it moves. It also nominates a $D^*$ closer to $D_{\rm true}$, so
+    fewer backfill cohorts fail to confirm.
 16. **Cohort size is a patient lever, not a clock lever, when accrual is
     fast.** Cutting low-dose cohorts from three patients to one reduces
     the number treated at subactive doses without materially changing
@@ -2183,160 +1666,146 @@ Expected hypotheses are:
 
 ------------------------------------------------------------------------
 
-## 26b. What result would make IPDE not worth doing
+## 26b. Reading the Map: When IPDE Is Not Worth Doing
 
-How to read the map, once the scenarios have been run. Section 1 says
-what comes out; this section says which parts of it point away from
-IPDE.
+Section 1 says what comes out of the simulation. This section says which
+parts of it point away from IPDE.
 
-The simulation quantifies a benefit against a risk it explicitly cannot
-quantify (Section 16). No arithmetic resolves that trade, so the useful
-output is not a recommendation but a statement of where the benefit is
-large enough for the safety discussion to be worth having. The
-thresholds below are contours for reading the result. A programme
-carrying this into a real decision replaces them with its own and fixes
-them before it looks at the numbers.
+The simulation weighs a benefit it can quantify against a risk it
+cannot (Section 16), and no arithmetic settles that trade. The useful
+output is where the benefit is large enough for the safety discussion to
+be worth having. The thresholds below are contours for reading the
+result; a programme carrying this into a real decision sets its own and
+fixes them before looking at the numbers.
 
 On the time axis, with $\Delta T = T_{3,\rm conventional} -
 T_{3,\rm IPDE}$:
 
--   $\Delta T$ below $\Delta T_{\min}$: IPDE is not worth the
+-   **$\Delta T$ below $\Delta T_{\min}$.** IPDE is not worth the
     unquantified delayed-toxicity risk in that scenario. Recommend the
-    accelerated conventional design and stop. No safety argument is
-    needed, because there is no benefit to weigh against it.
--   $\Delta T$ above $\Delta T_{\min}$: the acceleration is material,
-    and the decision moves to the clinical and regulatory judgement in
-    Section 27, which the simulation informs but does not make.
+    accelerated conventional design and stop; with no benefit there is
+    nothing to weigh the risk against.
+-   **$\Delta T$ above $\Delta T_{\min}$.** The acceleration is
+    material, and the decision moves to the clinical and regulatory
+    judgement in Section 27, which the simulation informs but does not
+    make.
 
-Report $\Delta T$ against $\Delta T_{\min}$ for every scenario, and name
-the scenarios falling on each side. The expected shape of the answer is
-that IPDE clears the threshold only when prediction error is large
-(Section 12), which is the same conclusion as the **good prediction of
-active dose removes benefit of intrapatient escalation** hypothesis in
-Section 26, stated as a decision rather than as a trend.
+Report $\Delta T$ against $\Delta T_{\min}$ for every scenario and name
+the scenarios on each side. The expected shape is that IPDE clears the
+threshold only when prediction error is large (Section 12): hypothesis 2
+of Section 26, stated as a decision.
 
-### A result that saves patients but not time
+### A Result That Saves Patients but Not Time
 
 $\Delta T$ alone cannot register a design that takes the same calendar
-time and reaches the answer having exposed fewer patients to subactive
-doses. Catch-up escalation is expected to be that design, so the
-decision structure needs a second arm rather than scoring it as a
-failure.
+time and exposes fewer patients to subactive doses. Catch-up escalation
+is expected to be that design, so the decision needs a second arm.
 
 Report the pair $(\Delta T,\ \Delta N_{\rm sub})$ for every scenario,
-where $\Delta N_{\rm sub}$ is the reduction in patients treated only at
-subactive exposures against the conventional comparator. Four cases:
+where $\Delta N_{\rm sub}$ is the reduction, against the conventional
+comparator, in patients treated only at subactive exposures. Four
+cases:
 
 -   **Neither material.** Recommend the accelerated conventional design
     and stop.
--   **$\Delta T$ material.** The acceleration is real and the decision
+-   **$\Delta T$ material.** The acceleration is real, and the decision
     moves to Section 27.
 -   **$\Delta N_{\rm sub}$ material, $\Delta T$ not.** The design is a
-    patient-benefit argument rather than a programme-acceleration one,
-    and it is the weaker case for accepting an unquantified
-    delayed-toxicity risk. The patients spared subactive dosing are the
-    same patients carrying the escalation risk, where a calendar-time
-    saving spreads its benefit to the programme and to later patients
-    while the risk stays with the trial's participants. State the
-    result in those terms rather than as a saving.
+    patient-benefit argument, and a weaker case for accepting an
+    unquantified delayed-toxicity risk. The patients spared subactive
+    doses are the same patients who carry the escalation risk, whereas a
+    time saving benefits the programme and later patients while the risk
+    stays with the trial's participants. Report the result in those
+    terms.
 -   **Both material.** The strongest case available.
 
 Set $\Delta N_{\rm sub,\min}$ the way $\Delta T_{\min}$ is set, from
 programme considerations rather than from the simulation.
 
-The third axis in Section 1, what the trial consumes, stays out of this
-rule. A cheaper trial is worth having and is reported, but cost is not a
-reason to accept an unquantified delayed-toxicity risk, and a design
-that saves visits while saving neither time nor patients does not clear
-this threshold. Say so explicitly, because the argument will be made.
+**Cost is outside this rule.** The third axis in Section 1, what the
+trial consumes, is reported, but a cheaper trial is not a reason to
+accept an unquantified delayed-toxicity risk. A design that saves visits
+while saving neither time nor patients does not clear this threshold.
 
 ------------------------------------------------------------------------
 
-## 27. Critical assessment of the strategy
-
-There are three arguments a skeptical clinical team is likely to make,
-and the project should confront them directly.
+## 27. Objections a Clinical Team Will Raise
 
 ### Objection 1: "The scout regimen isn't clinically interpretable."
 
-Correct. That is why the scout never substitutes for backfill. The
-primary endpoint explicitly requires 3 patients at a conventional
-regimen.
+Correct, which is why the scout never substitutes for backfill. The
+primary endpoint requires 3 patients on a conventional regimen.
 
 ### Objection 2: "You're outrunning toxicity."
 
-Potentially correct. This is probably the strongest objection. CRS is
-relatively tractable and front-loaded, but ICANS is not sufficiently
-understood quantitatively. This uncertainty cannot currently be
-eliminated with modeling. Stopping immediately at strong PD and moving
-to conventional backfill limits exposure, but does not prove safety.
+Possibly correct, and probably the strongest objection. CRS is
+relatively tractable and front-loaded, but ICANS is not understood
+quantitatively, and modelling cannot remove that uncertainty now.
+Stopping at strong PD and moving to conventional backfill limits
+exposure without proving safety.
 
 ### Objection 3: "We can simply use accelerated conventional cohorts."
 
-Also correct, and this is why $n=1$ low-dose conventional cohorts must
-be simulated. If IPDE provides little additional acceleration against
-that comparator, the result should say so.
-
-That last comparison is particularly important. Otherwise a team can
-reasonably dismiss the work as comparing IPDE against an unnecessarily
-slow Phase 1 design.
+Also correct, and the reason Design A2 is simulated. If IPDE adds little
+acceleration against A2, the result should say so. Without that
+comparison a team can fairly dismiss the work as comparing IPDE with an
+unnecessarily slow phase 1 design.
 
 ------------------------------------------------------------------------
 
-## 27b. Future work
+## 27b. Future Work
 
-Deferred deliberately, with the reason recorded, so that a later version
-does not have to rediscover the argument. Nothing here is a v1
-dependency.
+Deferred, with the reason recorded so that a later version does not have
+to rediscover it. Nothing here is a v1 dependency.
 
 **Model-based dose finding.** Three families sit behind the exclusion in
-Section 6 and they are not the same thing. The continual reassessment
-method and Bayesian logistic regression models fit a dose-toxicity curve
-and choose the next dose from it, so they are model-based. BOIN and mTPI
-decide from the data at the current dose against precomputed
+Section 6. The CRM and Bayesian logistic regression models (BLRM) fit a
+dose-toxicity curve and choose the next dose from it, so they are
+model-based. BOIN and the modified toxicity probability interval (mTPI)
+design decide from the data at the current dose against precomputed
 boundaries, without fitting a curve, so they are model-assisted. 3+3 is
 neither.
 
-Two reasons defer all of them. The binding constraint in this project is
-pharmacology in a range believed to be subtherapeutic rather than
-toxicity statistics, so a better toxicity allocator does not address it.
-And these designs are less common in the immunology studies this project
-is aimed at than in oncology dose finding, so adopting one would add
-machinery the reader has to be sold on before the simple version has
-been shown to work.
+Two reasons defer all of them. The binding constraint here is
+pharmacology in a range believed subtherapeutic, so a better toxicity
+allocator does not address it. And these designs are less common in the
+immunology studies this project is aimed at than in oncology, so
+adopting one would add machinery the reader has to be persuaded of
+before the simple version has been shown to work.
 
 The second reason is a judgement about current practice rather than a
-documented one, and it is weakest in exactly this space. A
-B-cell-depleting TCE in autoimmune disease imports oncology dose-finding
-practice along with the modality. Treat it as a reason to defer rather
-than as a reason it will never apply, and check it before repeating it
-to a review board.
+documented fact, and it is weakest here: a B-cell-depleting TCE in
+autoimmune disease brings oncology dose-finding practice with the
+modality. Treat it as a reason to defer, and check it before repeating
+it to a review board.
 
-What would reopen the question is the $F_{\rm start}$ question in
-Section 6. Guo et al. 2025 places intra-patient escalation inside a CRM
-with an adaptively updated starting dose, which is that question treated
-formally rather than as a fixed cap. Work applying Bayesian logistic
-regression models to the same problem has not been located; when it is,
-it goes on the references page.
+What would reopen the question is $F_{\rm start}$ (Section 6). Guo et
+al. 2025 places intrapatient escalation inside a CRM with an adaptively
+updated starting dose, which treats that question formally rather than
+as a fixed cap. Work applying BLRM to the same problem has not been
+found; when it is, it goes on the references page.
 
-The nearer neighbour is not a toxicity allocator at all. This project's
+**PK/PD-guided dose finding** is the nearer neighbour. This project's
 escalation rule fires on pharmacodynamics, and the Project Optimus
-material listed under "Related, not yet placed" on the references page
-is the literature for PK/PD-guided dose finding. If anything on that
-page changes the escalation rule in Section 13, it is more likely to be
-that than a CRM.
+material under "Related, not yet placed" on the references page is the
+literature for PK/PD-guided dose finding. Anything there that changes
+the rule in Section 13 is more likely to come from that literature than
+from a CRM.
+
+**Time-to-event designs.** The TITE-CRM family shortens trials by
+letting the next patient enrol before the current one finishes the DLT
+window. That lever on $\Delta T$ is independent of the scout and is not
+in v1 ([Simon 1997 notes](simon97-notes.qmd)).
 
 ------------------------------------------------------------------------
 
 ## 28. References
 
-Every source this document draws on is on the
-[references page](references.qmd), in reading order, each carrying a
-marker recording whether it has been checked against its source. Nothing
-is marked checked yet.
+Every source is on the [references page](references.qmd), in reading
+order, with a marker recording whether it has been checked. Simon 1997
+has been checked; none of the sources behind the parameters has.
 
-Two things there need verifying before anything from this document goes
-into final work: the teclistamab PK parameters in Section 8 and the
-Friberg system values in Section 17, both transcribed rather than
-verified, and the MCLA-117 dose table in Section 6, transcribed from an
-image of the poster rather than from the poster.
+Three things need verifying before anything here goes into final work:
+the teclistamab PK parameters in Section 8 and the Friberg system values
+in Section 17, both transcribed rather than verified, and the MCLA-117
+dose table in Section 6, transcribed from an image of the poster.
