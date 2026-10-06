@@ -1,0 +1,24 @@
+---
+title: "Buddhism"
+description: >
+  Pointers to the Buddhism notes in Google Docs: a learning guide, the ten
+  oxherding pictures, and the eightfold path.
+categories: [Topic notes, wisdom]
+date: last-modified
+toc: false
+---
+
+Writing that lives in Google Docs rather than on this site. Each document is
+edited in Google Docs and nothing is copied here. Sharing is set per document,
+so a link may ask for permission.
+
+## Documents
+
+- [Buddhism Learning Guide](https://docs.google.com/document/d/14Up3OtibQZ4KHY2_qfOR8BxgXQ2qfosHIusHyQEkxaU/edit),
+  the way into the material and the document to read first.
+- [Ten Oxherding Pictures](https://docs.google.com/document/d/1qERHlZpMG5FBozOAq8dNRis74JEuVhfMfUw4_t9qFuY/edit),
+  the Chan sequence on the stages of practice, from searching for the ox to
+  returning to the world.
+- [Eightfold Path](https://docs.google.com/document/d/1xnLenURzCjYLszDHXXjXMKdYL3IBcBj82IvLzPqPNvY/edit),
+  the eight factors of the fourth noble truth, from right view to right
+  concentration.
