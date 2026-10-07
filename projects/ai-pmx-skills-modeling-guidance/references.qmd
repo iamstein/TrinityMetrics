@@ -1,12 +1,14 @@
 ---
 title: "References for Pharmacometrics Modeling Skills"
 subtitle: "What to read, in what order, and what has actually been checked"
-description: "The reading queue for the ai-pmx-skills-modeling-guidance-skills project, with a status marker on every entry recording whether it has been verified against its source."
+description: "The reading queue for the pharmacometrics modeling skills project, with a status marker on every entry recording whether it has been verified against its source."
 categories: [GenAI, pharmacometrics, references]
 date: last-modified
 toc: true
 toc-depth: 2
 toc-location: left
+aliases:
+  - ../ai-pmx-skills-modeling-guidance-skills/references.html
 ---
 
 ::: {.callout-important appearance="simple"}
@@ -15,7 +17,7 @@ on 2026-10-02 as a starting list. Authors, years and journals need confirming
 before any entry is cited in a skill.
 :::
 
-The working document is [the specification](specification.qmd), and the
+The working document is [Specification 1](specification1-make-skill-files.qmd), and the
 folder's other documents are on [the project index](index.qmd).
 
 ## Status markers
@@ -33,7 +35,7 @@ marker when the check is done, not when the source is opened.
 ## Reading queue
 
 The question under every entry is the same: which checks or recommendations
-does this source give, and which topic in Section 3 of the specification do
+does this source give, and which topic in Section 3 of Specification 1 do
 they belong to?
 
 ### 1. Byon et al. 2013 — an internal population PK analysis guidance ❌

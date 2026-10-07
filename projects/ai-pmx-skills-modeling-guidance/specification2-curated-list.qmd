@@ -1,0 +1,418 @@
+---
+title: "A Curated List of Pharmacometrics Skill Files"
+subtitle: "Specification 2: how an agent finds, scores and ranks published skill files each month"
+description: "The second working specification for the pharmacometrics modeling skills project: a monthly, agent-maintained list of public pharmacometrics skill files, in three categories, ranked by quantitative criteria that Andy sets and Claude applies."
+categories: [GenAI, Pharmacometrics methods, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+number-sections: false
+html-math-method: mathjax
+---
+
+::: {.callout-important appearance="simple"}
+**The list this page specifies is compiled and ranked by Claude, not by
+Andy.** An agent runs once a month, finds public pharmacometrics skill files,
+scores each one against the criteria in Section 4, and publishes the result.
+Andy sets the criteria and their weights in a criteria file (Section 5). He does
+not choose entries, adjust scores, or review the ranking before it is
+published. The list page carries the same statement at its top (Section 7).
+:::
+
+## 1. Goal
+
+A public list of pharmacometrics skill files, grouped into three categories and
+ranked within each by a score computed from stated criteria. An agent updates
+it every month. Every score links to the commit it was measured on and to the
+evidence behind each part of it, so a reader or a skill's author can check it.
+
+A private review on 2026-10-02 did this once, by hand. It found eleven libraries
+across twelve repositories and scored each on four judged components: people
+and provenance (35), output quality and verification (40), pharmacometrics
+relevance (15), and maintenance and usability (10). This specification keeps
+that shape and replaces each judged score with a measurement where one exists,
+or with a fixed yes-or-no rubric where it does not.
+
+The list connects to [Specification 1](specification1-make-skill-files.qmd) in
+two directions. The list is where the first skill looks for material to borrow,
+and where that skill will eventually be listed. Specification 1's test cases, in
+turn, become the quality benchmark for the model evaluation category
+(Section 4.1).
+
+### Out of Scope
+
+- **Endorsement.** A rank says how a skill scored on these criteria. It says
+  nothing about whether the skill is fit for a given analysis on real data.
+- **Software without a skill file.** MCP servers, R packages and
+  pharmacometrics software are listed only if they ship a skill file.
+- **Judging people.** The expertise score measures a publication record found
+  in OpenAlex. A low score means no record was found, not that the author lacks
+  expertise.
+
+## 2. What Is Listed
+
+### The Unit Is a Skill
+
+A skill is one skill file, the `SKILL.md` an assistant loads together with the
+reference files beside it. A library contributes one entry per skill that passes
+inclusion. To keep a library of 150 skills from filling a category, at most
+three skills per library are ranked in each category. The library's other
+skills in that category are listed under its highest-ranked entry, unscored.
+
+### Inclusion Criteria
+
+A skill is listed when all four hold:
+
+1. **Public.** It is readable at a stable URL on GitHub, GitLab or Codeberg.
+2. **Loadable.** It is a `SKILL.md` with `name` and `description` in its
+   frontmatter, or an equivalent instruction file that declares when an
+   assistant should load it.
+3. **Pharmacometric.** It names at least one tool or task from Section 3. The
+   agent finds candidates by keyword match and confirms each by reading the
+   skill.
+4. **Not a copy.** A skill whose text matches an already-listed skill by more
+   than 80%, by line-level comparison, is merged into that entry as a copy.
+
+An archived repository is listed and flagged, and its maintenance score is 0.
+
+## 3. Categories
+
+Every skill sits in exactly one category and carries tags for the tools and
+tasks it covers.
+
+| Category | A skill belongs here when | Examples of coverage |
+|:---|:---|:---|
+| **Tool skills** | Most of its instructions would be wrong or useless for a different piece of software | NONMEM, PsN, Monolix, nlmixr2 and rxode2, mrgsolve, Pumas, PKNCA, Phoenix WinNonlin, PK-Sim, Simcyp, Jinkō |
+| **Task skills** | Its instructions hold across tools, even when its code examples use one | Exploratory data analysis and dataset assembly, structural model building, covariate modeling, model evaluation and diagnostics, simulation and trial design, NCA, exposure-response, PBPK and QSP, report writing, document review |
+| **Evaluation resources** | It measures how well an assistant does pharmacometrics work rather than instructing it | Test cases with expected findings, benchmarks, judging rubrics |
+
+: The three categories {tbl-colwidths="[18,40,42]"}
+
+When the test does not decide between tool and task, the skill goes under task
+and carries the tool as a tag. The page also offers a view by tag, so a reader
+looking for everything on nlmixr2 finds both its tool skills and the task skills
+written for it.
+
+**Evaluation resources are the third category** because the quality criterion
+needs them. They are the only direct measure of whether a skill helps
+(Section 4.1), so the list tracks them as closely as the skills. The
+alternative considered was a workflow category, for libraries that chain many
+skills into an end-to-end analysis. It was rejected because a workflow is
+better described by its tags than by a category of its own.
+
+## 4. Ranking Criteria
+
+Four scores, each from 0 to 100, combined by weights from the criteria file.
+
+| Score | Measures | Measured from | Default weight |
+|:---|:---|:---|---:|
+| **Q**, quality | Whether the skill's guidance is sound, sourced and verified | Rubric, error audit, verification checks; a benchmark where one exists | 45 |
+| **E**, expertise | The authors' publication record in pharmacometrics | OpenAlex | 25 |
+| **M**, maintenance and usability | Whether the skill is kept up to date and can be installed and reused | GitHub API and repository files | 20 |
+| **A**, adoption | Whether others use it | GitHub stars and forks | 10 |
+
+: The four scores {tbl-colwidths="[22,34,30,14]"}
+
+Andy's three proposed criteria map to Q, M and E. Influence can mean who wrote a
+skill or who uses it, and those measure different things, so it is split into E
+and A. The 2026-10-02 review's relevance component is now the inclusion rule in
+Section 2, because a skill that is not pharmacometric does not belong on the
+list at any score.
+
+### 4.1 Quality
+
+Quality is the hardest of the four to measure. The only direct measure is a
+benchmark: run an assistant on test cases with known answers, with and without
+the skill, and count the difference. Benchmarks exist for almost no
+pharmacometrics task yet, so Q starts from a rubric and an error audit, and a
+benchmark joins them where one becomes available.
+
+**The rubric.** Ten yes-or-no items. A *yes* needs a quoted line from the skill
+as evidence; an item answered without a quote scores *no*. Items that do not
+apply to a skill are left out of its denominator.
+
+| # | Item | Applies to |
+|:---|:---|:---|
+| R1 | States what the skill does not do | All |
+| R2 | Cites sources: at least 5 of 10 randomly sampled recommendations name a published source or official documentation | All |
+| R3 | Says what to do when a check fails, beyond listing which checks to run | Task |
+| R4 | Qualifies numeric thresholds such as shrinkage, RSE or condition number with context, or gives none | Task |
+| R5 | Ties the depth of evaluation to the model's intended use | Task: model building and evaluation |
+| R6 | States the limitations of its own output | All |
+| R7 | Gives code examples complete enough to run | Skills with code |
+| R8 | Runs those examples in continuous integration | Skills with code |
+| R9 | Continuous integration passes on the pinned commit | Skills with code |
+| R10 | Stores outputs from a real run | Skills with code |
+
+: The quality rubric {tbl-colwidths="[8,70,22]"}
+
+R3 to R5 are the three levels of the 2026-10-02 review turned into items. A
+skill that only generates plots scores none of them. A diagnostic checklist
+scores R3. A skill that reads diagnostics the way a scientific reviewer would
+scores all three.
+
+**The error audit.** A second pass, by a different model from the one that
+scored the rubric, reads the skill adversarially and lists every statement it
+judges wrong. Each finding quotes the line, gives the reason, and cites a
+source.
+
+- A *major* error would lead an assistant to a wrong modeling decision. The
+  2026-10-02 review found two: a rule that turns an ETA shrinkage threshold into
+  a decision to fix the variance, and a population PK example whose variance
+  parameters never enter the objective function.
+- A *minor* error is wrong but would not change a decision.
+
+$$
+Q_{\rm rubric} = 100 \times \frac{\text{items met}}{\text{items applicable}},
+\qquad
+Q = \max\left(0,\ Q_{\rm rubric} - 25\,n_{\rm major} - 5\,n_{\rm minor}\right).
+$$
+
+**The benchmark, where one exists.** When an evaluation resource covers a
+skill's task with test cases that carry expected findings, run an assistant on
+those cases twice, with and without the skill, and take the share of expected
+findings each run reports:
+
+$$
+Q_{\rm bench} = 50 + 50\,(\text{recall}_{\rm with} - \text{recall}_{\rm without}),
+$$
+
+so 50 means the skill made no difference, and less than 50 means it made the
+assistant worse. Where $Q_{\rm bench}$ exists, the reported quality is the mean
+of the two: $\tfrac12 Q + \tfrac12 Q_{\rm bench}$. The first benchmark expected
+is Specification 1's test cases for model evaluation in nlmixr2.
+
+**Judging reliability.** The rubric is scored twice on the same commit, in
+independent runs. Where the two runs disagree on an item, a third run decides.
+Each month's page reports the share of items on which the first two runs
+agreed. If that share falls below 85% for an item, the item's wording is
+ambiguous, and the run reports it to Andy as a proposed change to the criteria.
+
+### 4.2 Expertise
+
+Andy proposed the total Google Scholar impact of all authors. Google Scholar has
+no public API, its terms forbid automated querying, and many pharmacometricians
+have no profile there. OpenAlex is a free, open index of scholarly works with an
+API, author records linked to ORCID identifiers, citation counts and subject
+topics, and it is the source here.
+
+Four ways to turn a publication record into a score:
+
+| Method | Computed as | Drawback |
+|:---|:---|:---|
+| Sum of h-indices | Sum over all contributors | Rewards a long author list over the person who wrote the skill |
+| Maximum h-index | The highest among contributors | Credits a senior name who may have touched one line |
+| Total citations | Sum of all contributors' citations | Dominated by one highly cited paper, often outside pharmacometrics |
+| **Share-weighted field h-index** (default) | Each contributor's h-index over their pharmacology and pharmacokinetics works, weighted by their share of the skill's lines | Needs a commit history; a skill committed by one account under an organization name scores 0 |
+
+: Ways to score expertise {tbl-colwidths="[26,38,36]"}
+
+The default proceeds in four steps.
+
+1. **Contributors and shares.** Each contributor's share is the fraction of
+   lines in the skill's files that they last changed, from the commit history.
+   Where the repository names its authors in a `CITATION.cff`, `AUTHORS` or
+   `DESCRIPTION` file, those authors share equally instead.
+2. **Identity.** A contributor is matched to an OpenAlex author only with
+   evidence: an ORCID on their GitHub profile or in `CITATION.cff`, or a name
+   and affiliation that agree between the two. The evidence is recorded. A
+   contributor without a match scores 0 and is labelled *not found*.
+3. **Field h-index.** For each matched author, $h_{\rm PMx}$ is the h-index
+   computed over their works in OpenAlex's pharmacology and pharmacokinetics
+   topics only. This keeps a highly cited author from another field from
+   scoring as a pharmacometrician.
+4. **Score.** With $s_c$ the share of contributor $c$ and a cap of 25,
+
+$$
+E = 100 \times \min\left(1,\ \frac{\sum_c s_c\, h_{{\rm PMx},c}}{25}\right).
+$$
+
+### 4.3 Maintenance and Usability
+
+$$
+M = \tfrac12\,\text{Recency} + \tfrac12\,\text{Usability}.
+$$
+
+**Recency** is $100 \times \max(0,\ 1 - d/365)$, where $d$ is the number of
+days since the last commit to the skill's own files, not to the repository. An
+archived repository has $M = 0$.
+
+**Usability** is 20 points for each of five checks:
+
+1. An open-source licence approved by the Open Source Initiative (OSI).
+2. Valid frontmatter, with `name` and `description`.
+3. Installation instructions.
+4. Dependencies stated, with versions.
+5. A version tag or release.
+
+A skill without a licence is listed with a ⚠️ flag, because it cannot legally be
+reused, whatever its other scores.
+
+### 4.4 Adoption
+
+$$
+A = 100 \times \frac{\ln(1 + \text{stars} + \text{forks})}{\ln(1 + \max_{\rm category}(\text{stars} + \text{forks}))}.
+$$
+
+Stars and forks count at repository level, so every skill in a large library
+shares that library's adoption score, and stars can be bought. The default
+weight is low for both reasons, and the criteria file can set it to 0.
+
+### 4.5 Total Score and Ties
+
+$$
+S = \frac{\sum_i w_i X_i}{\sum_i w_i}, \qquad X \in \{Q, E, M, A\}.
+$$
+
+A score that does not apply to a skill, such as the benchmark part of Q, is
+left out and the weights are renormalized. A score that applies but could not be
+measured counts as 0 and is flagged; it is never imputed.
+
+**Ties.** Skills within 5 points of each other share a rank.
+
+**Rank range.** Each skill is also ranked under two other weightings, quality
+alone and equal weights, and the page shows the range of its ranks across the
+three. A skill ranked 2nd under the defaults and 2nd to 4th across all three is
+reported as "2 (2–4)".
+
+## 5. The Criteria File
+
+`criteria.yml`, in this folder, is the only file Andy edits. The agent reads it
+at the start of every run, and the list page states which version of it each
+month's ranking used. A change takes effect from the next run.
+
+``` yaml
+version: 1
+weights:
+  quality: 45
+  expertise: 25
+  maintenance: 20
+  adoption: 10
+tie_margin: 5
+max_ranked_per_library_per_category: 3
+categories: [tool, task, evaluation]
+quality:
+  rubric: [R1, R2, R3, R4, R5, R6, R7, R8, R9, R10]
+  penalty: {major: 25, minor: 5}
+  benchmark_share: 0.5
+  min_judge_agreement: 0.85
+expertise:
+  method: share_weighted_field_h   # or sum_h, max_h, total_citations
+  h_cap: 25
+maintenance:
+  recency_horizon_days: 365
+adoption:
+  enabled: true
+```
+
+The rubric's wording lives in a second file, `rubric.md`, so an item can be
+reworded without changing its number. The agent never edits either file. It
+proposes changes in its monthly report, and Andy makes them.
+
+## 6. The Monthly Run
+
+A Claude Code routine, scheduled on the first of each month, runs these steps
+in a cloud session against this repository.
+
+1. **Known-answer checks.** Score two fixtures first: the skills with the two
+   major errors found on 2026-10-02, pinned at the commits where those errors
+   were found. If the error audit misses either error, stop and report without
+   publishing. A scorer that cannot find a known error should not be ranking
+   anything.
+2. **Discovery.** Run the fixed queries in `discovery.yml`: GitHub code search
+   for `SKILL.md` files containing the tool and task names in Section 3; GitHub
+   topics such as `agent-skills` and `claude-skills` combined with
+   pharmacometrics terms; known indexes, including the ISoP AI/ML SIG Agentic
+   Workflows repository; and links in the year's ACoP and PAGE abstracts.
+   Record each query with its number of hits, candidates and inclusions.
+3. **Snapshot.** Pin every listed skill to a commit SHA. Everything that month
+   is scored against that commit.
+4. **Scoring.** Recompute M and A for every skill every month. Recompute Q only
+   for skills whose files changed since the last run. Recompute E every three
+   months, or when the contributors change.
+5. **Changes.** Give a one-line reason for every skill that moved three or more
+   places, or whose score changed by 10 or more points.
+6. **Publishing.** Write `list/YYYY-MM.yml`, update the list page from it,
+   render the site, and open a pull request with the report as its
+   description. The pull request merges without review once the site renders
+   and the privacy check passes (decision 1).
+
+The cloud session has no access to the private name lists the commit hook
+reads, so it needs the `PRIVATE_NAMES` and `SENSITIVE_TOPICS` variables
+described in `CLAUDE.md`. OpenAlex asks API users for a contact address; set
+one in the routine's environment rather than in the code.
+
+Rubric scoring and the error audit cost model time on every new or changed
+skill. Unchanged skills keep their quality score, so after the first run the
+monthly cost follows the rate at which skills change, not the length of the
+list.
+
+## 7. The List Page
+
+`curated-list.qmd`, in this folder, renders from the latest data file through
+Quarto listings of `type: table`, one listing per category. Listings read YAML
+without running code, so the page has nothing to freeze and nothing that needs
+R on the publishing runner.
+
+| Column | Contents |
+|:---|:---|
+| Rank | Shared on ties, with the rank range in brackets |
+| Skill | Name, linked to the pinned commit |
+| Library | Repository |
+| Tags | Tools and tasks |
+| S, Q, E, M, A | The total and the four scores |
+| Flags | ⚠️ no licence · ⚠️ archived · ❌ major error found · ⚠️ authors not found in OpenAlex |
+| Evidence | Link to the skill's evidence: rubric quotes, audit findings, matched OpenAlex records with each author's field h-index, API values |
+
+: Columns of the list page {tbl-colwidths="[18,82]"}
+
+The page opens with this statement, verbatim:
+
+> This list is compiled and ranked each month by Claude, an AI model made by
+> Anthropic, running unattended. No person reviews the entries or the scores
+> before they are published. Andy Stein sets the criteria in
+> [Specification 2](specification2-curated-list.qmd) and does not adjust
+> individual scores. A score measures what the criteria measure; a high rank
+> is not an endorsement for use on real data. Authors who find an error can
+> open an issue on GitHub.
+
+Each month's data file stays in `list/`, so the page can show how a skill's
+rank has changed.
+
+## 8. Checking the Method
+
+- **Test and retest.** Score the same snapshot twice, in independent runs. The
+  rank correlation between the two runs is reported each month. Below 0.9, the
+  ranking is noise at the resolution the page displays.
+- **Known answers.** The fixtures in step 1 of Section 6.
+- **Comparison with the 2026-10-02 review.** On the first run, compare the top
+  three in each category with the hand review's ranking. Agreement is a sanity
+  check, not a target: the hand review used judged scores this method replaces.
+- **Weight sensitivity.** The rank range in Section 4.5.
+
+## 9. Decisions
+
+Andy's answers on 2026-10-07 to the questions this section first carried.
+
+1. **The monthly pull request merges without review.** Andy's veto is the
+   criteria file, not the ranking.
+2. **The page shows individual h-indices.** The evidence for each skill lists
+   every matched author with their field h-index and OpenAlex record.
+3. **The default weights stand**: quality 45, expertise 25, maintenance 20,
+   adoption 10.
+4. **Individual skills are ranked**, for now, under the per-library cap in
+   Section 2. Ranking libraries may replace this later.
+5. **Authors are not told** when their skill is listed. The agent makes no
+   contact outside this repository.
+
+## 10. First Steps
+
+1. Write `criteria.yml` and `rubric.md` with the defaults above.
+2. Build the two fixtures from the 2026-10-02 review.
+3. Run the method once in an ordinary Claude Code session, on the eleven
+   libraries from that review plus a fresh discovery pass, scoring each
+   snapshot twice to measure agreement.
+4. Build `curated-list.qmd` from the first data file, and confirm that Quarto
+   table listings read the YAML as Section 7 assumes.
+5. Schedule the monthly routine.

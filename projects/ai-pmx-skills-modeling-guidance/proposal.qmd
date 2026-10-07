@@ -5,6 +5,8 @@ description: "A one-page proposal for pmxskills: why skill files could replace s
 categories: [GenAI, Pharmacometrics methods, working document]
 date: last-modified
 toc: false
+aliases:
+  - ../ai-pmx-skills-modeling-guidance-skills/proposal.html
 ---
 
 **Goal.** Develop a model evaluation guidance in SKILL files that any human or AI assistant can refer to.

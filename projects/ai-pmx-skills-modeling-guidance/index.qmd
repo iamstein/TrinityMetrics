@@ -1,24 +1,31 @@
 ---
 title: "Pharmacometrics Modeling Skills"
 subtitle: "GenAI skills for building and evaluating pharmacometrics models"
-description: "Index of the ai-pmx-skills-modeling-guidance-skills project: folding published references and internal modeling guidance into a few AI skill files, kept on GitHub and rebuilt on a schedule."
+description: "Index of the pharmacometrics modeling skills project: writing a few AI skill files from published and internal modeling guidance, and keeping a ranked list of the skill files others have published."
 categories: [GenAI, Pharmacometrics methods, working document]
 date: last-modified
 toc: false
+aliases:
+  - ../ai-pmx-skills-modeling-guidance-skills/index.html
 ---
 
 A skill is a file of instructions an AI assistant loads before a task. This
-project proposes a few skill files for building and evaluating pharmacometrics
-models, assembled from the published guidance and from internal guidance
-documents turned into checklists that can be published. The files would live
-on GitHub, where anyone can comment or propose an edit, and be rebuilt on a
-schedule. Nothing is built yet, and the scope is still open.
+project has two parts. The first writes a few skill files for building and
+evaluating pharmacometrics models, assembled from published guidance and from
+internal guidance documents turned into checklists that can be published. The
+second keeps a ranked list of the pharmacometrics skill files others have
+published, compiled each month by an agent against criteria set here. Nothing
+is built yet.
 
 ## Documents
 
-- [Working specification](specification.qmd). The goal, the first skill on
-  model evaluation in nlmixr2 in two modes, the inputs, the yearly rebuild,
-  and the questions still to settle.
+- [Specification 1: making the skill files](specification1-make-skill-files.qmd).
+  The goal, the first skill on model evaluation in nlmixr2 in two modes, the
+  inputs, the yearly rebuild, and the questions still to settle.
+
+- [Specification 2: the curated list](specification2-curated-list.qmd). The
+  categories, the quantitative ranking criteria, and the monthly agent run
+  that finds, scores and publishes public skill files.
 
 - [Proposal](proposal.qmd). One page: why skill files could replace static
   guidance documents, and the rules for consensus, position pages, review and

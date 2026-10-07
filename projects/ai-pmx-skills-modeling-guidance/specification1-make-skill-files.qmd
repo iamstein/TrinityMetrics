@@ -1,13 +1,15 @@
 ---
 title: "Pharmacometrics Modeling Skills"
-subtitle: "Scoping a small set of AI skills for building and evaluating pharmacometrics models"
-description: "The working specification for the ai-pmx-skills-modeling-guidance-skills project: the goal, the first skill on nlmixr2 model evaluation in two modes, the inputs, the yearly rebuild, open questions and first steps."
+subtitle: "Specification 1: writing a small set of skill files for building and evaluating pharmacometrics models"
+description: "The first working specification for the pharmacometrics modeling skills project, on writing the skill files: the goal, the first skill on nlmixr2 model evaluation in two modes, the inputs, the yearly rebuild, open questions and first steps."
 categories: [GenAI, Pharmacometrics methods, working document]
 date: last-modified
 toc: true
 toc-depth: 2
 toc-location: left
 number-sections: false
+aliases:
+  - ../ai-pmx-skills-modeling-guidance-skills/specification.html
 ---
 
 ::: {.callout-note appearance="simple"}
@@ -127,7 +129,8 @@ every line added or removed, reviewed under the rules in
 Models may soon write their own skills and best practices, well enough that a
 human-curated skill adds little. Current models already explain a VPC and why
 shrinkage matters, and the 2026-10-02 search found eleven public libraries of
-pharmacometrics skills. The parts of this project differ in how exposed they
+pharmacometrics skills. [Specification 2](specification2-curated-list.qmd)
+keeps that search running as a ranked list. The parts of this project differ in how exposed they
 are.
 
 | Part | Exposure | Why |
