@@ -68,8 +68,8 @@ Time (Section 4):
 Patients (Section 5):
 
 - $N_{\rm sub}$, the number of patients treated only at subactive exposures, scored by the simulator, which knows the true active dose. $\Delta N_{\rm sub}$ is its reduction against the conventional comparator.
-- The number of patients enrolled before the first profound FLC suppression.
-- Patient-weeks with FLC at or above $\theta_{\rm stop}L_0$.
+- $N_{\rm pre}$, the number of patients enrolled before the first profound FLC suppression.
+- $N_{\rm pw}$, the number of patient-weeks with FLC at or above $\theta_{\rm stop}L_0$.
 
 Clinical workload (Section 19):
 
@@ -202,9 +202,9 @@ With the endpoint rule in Section 4, this defines "right" for the design: too lo
 
 ### Patient and Operational Cost
 
-- Number of patients enrolled before the first profound FLC suppression.
-- Patient-weeks with FLC at or above $\theta_{\rm stop}L_0$.
-- Number of patients treated only at subactive exposures.
+- $N_{\rm pre}$, the number of patients enrolled before the first profound FLC suppression.
+- $N_{\rm pw}$, patient-weeks with FLC at or above $\theta_{\rm stop}L_0$.
+- $N_{\rm sub}$, the number of patients treated only at subactive exposures.
 - Total doses administered.
 - Number of safety-review decisions.
 - Extra visits relative to conventional treatment.
