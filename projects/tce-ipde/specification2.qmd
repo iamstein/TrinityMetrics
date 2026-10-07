@@ -73,8 +73,8 @@ Patients (Section 5):
 
 Clinical workload (Section 19):
 
-- Total patient-visits.
-- Total observation and hospitalization time, in patient-hours.
+- $N_{\rm visit}$, the number of clinic visits beyond those the patient's standard schedule already requires.
+- $H_{\rm obs}$, observation and hospitalization time, in patient-hours.
 
 **Report the third axis per patient and per trial.** The two can point in opposite directions. A scout takes a visit, a dose, a pharmacy preparation and an observation window at every rung, where a conventional patient sits at one dose level for the same period, so per patient the ladder is heavier. Across the trial it may be lighter, because there are few scouts and conventional escalation puts three patients on every rung. The per-patient count says what a participant undergoes and the per-trial count says what the sites and the sponsor carry. Section 19 expects the per-patient cost to depend on what the patients were already scheduled for: close to nothing for a weekly (QW) oncology TCE whose visits are planned anyway, and substantial for an immune-reset programme whose eventual treatment is one or two administrations.
 
@@ -781,14 +781,14 @@ Report the burden components separately rather than combining them into a weight
 
 | Element | Metric |
 |:--------------------------------------------------|:--------------------|
-| Additional clinic visits | count |
+| Additional clinic visits, $N_{\rm visit}$ | count |
 | Drug administrations | count |
 | Individual dose changes | count |
 | Pharmacy preparations | count |
 | Real-time dose decisions | count |
 | Safety committee reviews | count |
 | PD results needed before next dose | count |
-| Observation/hospitalization | patient-hours |
+| Observation/hospitalization, $H_{\rm obs}$ | patient-hours |
 | Patients dosed above a rung when its delayed-toxicity information arrives | count |
 | Screen failures on the baseline FLC and eGFR criteria (Section 22) | count |
 | Total trial calendar time | days |
