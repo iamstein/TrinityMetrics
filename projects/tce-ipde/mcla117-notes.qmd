@@ -17,7 +17,7 @@ the [references page](references.qmd).
 MCLA-117 (tepoditamab) is a CLEC12A x CD3 bispecific antibody. Its
 first-in-human phase 1 study in relapsed or refractory acute myeloid
 leukaemia (AML; NCT03038230) escalated within patients across four
-orders of magnitude. Section 6 of [the specification](specification.qmd)
+orders of magnitude. Section 6 of [the working specification](specification2.qmd)
 cites it as precedent.
 
 ## The Cycle 1 Scheme

@@ -1,8 +1,8 @@
 ---
-title: "Intrapatient dose escalation for first-in-human T-cell engagers"
-subtitle: "Working specification for a trial-design simulation"
-description: "Does escalating dose within a patient reach a confirmed active dose sooner, and is the time saved worth the extra visits and hospital time? A specification for the simulation that would answer it."
-categories: [trial design, simulation, pharmacometrics, oncology]
+title: "Intrapatient dose escalation for a plasma-cell-targeting T-cell engager"
+subtitle: "Specification 2: the free light chain variant"
+description: "The intrapatient escalation simulation of Specification 1, recast for an engager that targets plasma cells, with serum free light chains as the stopping signal in place of peripheral B cells."
+categories: [trial design, simulation, pharmacometrics, immunology]
 date: last-modified
 toc: true
 toc-depth: 3
@@ -12,14 +12,12 @@ number-sections: false
 html-math-method: mathjax
 ---
 
-::: {.callout-warning}
-## Not maintained since 7 October 2026
-
-This document is frozen. Edits go in [Specification 2](specification2.qmd), which carries the same design for a plasma-cell target with serum free light chains as the stopping marker. This page stays as the record of the B-cell version, which Specification 2 refers back to for the B-cell model and the solid-tumour archetype.
-:::
-
 ::: {.callout-note appearance="simple"}
 A working document. It specifies a simulation that has not been built. Parameter values are assumptions drawn from published models rather than clinical estimates, and the conclusions in Section 26 are hypotheses to test. The [project index](index.qmd) lists the other documents in this folder, and [References](references.qmd) carries the sources.
+:::
+
+::: {.callout-tip appearance="simple"}
+**This is the maintained specification.** It was forked on 2026-10-07 from [Specification 1](specification.qmd), the B-cell version, which is frozen from that date; edits go here. The design, the endpoints' structure, the trial engine and the safety sections started as the same text. What changes is the target and the marker: the engager kills plasma cells, and the stopping signal is the serum free light chain (FLC) concentration rather than the peripheral B-cell count. The sections rewritten here are the In Brief, Scope (Section 1), the nomination (Section 7), the PD model (Section 9), calibration (Section 10), PD turnaround (Section 11) and the archetypes (Section 22). Elsewhere the marker's name and threshold were substituted, a soluble BCMA note was added to Section 8, a three-patient cohort variant to Section 6, three sensitivities to Section 21 and five hypotheses to Section 26.
 :::
 
 ## In Brief
@@ -28,7 +26,9 @@ A working document. It specifies a simulation that has not been built. Parameter
 
 **Why it might work.** The value of IPDE grows with uncertainty about the gap between the starting dose and the active dose. A large gap that was predicted well is crossed efficiently by conventional escalation, and IPDE helps only when the prediction is wrong by a large factor. For that reason prediction error is the primary simulation axis (Section 12).
 
-**The design.** One scout patient escalates weekly until peripheral B cells fall below 5 cells/µL, then stops. The scout's ladder is not an interpretable regimen, so it nominates a dose neighbourhood: three fresh patients then receive a conventional step-up regimen at the nominated target, and only those three count toward the primary endpoint (Section 4).
+**The marker.** A plasma-cell engager needs a readout of plasma-cell killing that moves within days. Serum immunoglobulin G (IgG) has a half-life of about three weeks, so a fall in IgG or in a myeloma M-protein reports a kill weeks after it happened, and a bone-marrow biopsy cannot be repeated weekly. Serum FLC are secreted by plasma cells and cleared by the kidney with a half-life of a few hours, so the serum level follows plasma-cell mass within a day of a change. A peripheral B-cell count, the marker in Specification 1, stays in the design as a second readout where the target is also on B cells (Section 22).
+
+**The design.** One scout patient escalates weekly until serum FLC falls below 10% of that patient's baseline, then stops. Where a single patient at a new dose is not acceptable, as may be the case in immunology, three scouts climb the ladder together (Section 6). The scout's ladder is not an interpretable regimen, so it nominates a dose neighbourhood: three fresh patients then receive a conventional step-up regimen at the nominated target, and only those three count toward the primary endpoint (Section 4).
 
 **What cannot be quantified.** A scout escalating weekly can outrun a toxicity that takes longer than a week to appear, so a normal observation at the next dose decision is incomplete reassurance. For cytokine release syndrome (CRS) the ladder may be protective, since the scout arrives at each dose better primed (Section 14). For immune effector cell-associated neurotoxicity syndrome (ICANS) no published exposure-response model supports simulating the risk, and this document does not invent one (Section 16). That gap limits the strategy, not only the simulation.
 
@@ -56,7 +56,7 @@ The simulation and operational framework answer one question:
 The three headline quantities:
 
 - **Time.** $T_{3,\rm eval}$, and $\Delta T$ against the conventional comparator (Section 4).
-- **Patients spent reaching the answer.** The number enrolled before the first profound B-cell depletion, and patient-weeks with B cells at or above 5 cells/µL (Section 5).
+- **Patients spent reaching the answer.** The number enrolled before the first profound FLC suppression, and patient-weeks with FLC at or above 10% of baseline (Section 5).
 - **What the trial consumes.** Total patient-visits, and total observation and hospitalization time in patient-hours (Section 19).
 
 **Report the third axis per patient and per trial.** The two can point in opposite directions. A scout takes a visit, a dose, a pharmacy preparation and an observation window at every rung, where a conventional patient sits at one dose level for the same period, so per patient the ladder is heavier. Across the trial it may be lighter, because there are few scouts and conventional escalation puts three patients on every rung. The per-patient count says what a participant undergoes and the per-trial count says what the trial consumes. Section 19 expects the per-patient cost to depend on what the patients were already scheduled for: close to nothing for a weekly (QW) oncology TCE whose visits are planned anyway, and substantial for an immune-reset programme whose eventual treatment is one or two administrations.
@@ -75,21 +75,27 @@ When this work starts supporting a specific programme decision, fix the threshol
 
 ### Scope
 
-The main use case is a **B-cell-depleting TCE**, with profound peripheral B-cell depletion as the rapid pharmacodynamic (PD) signal. For an engager that targets plasma cells, where the B-cell count says little, [Specification 2](specification2.qmd) carries the same design with serum free light chains as the signal.
+The main use case is a **plasma-cell-depleting TCE**, with profound suppression of serum FLC as the rapid pharmacodynamic (PD) signal. The targets in view are those on plasma cells: B-cell maturation antigen (BCMA), G protein-coupled receptor class C group 5 member D (GPRC5D) and Fc receptor-homolog 5 (FcRH5) in myeloma, and BCMA in autoimmune disease, where it removes the long-lived plasma cells that anti-CD20 therapy leaves behind.
+
+**Two populations, two FLC measures.** In myeloma the tumour secretes one light chain type, and the marker is the involved FLC, kappa or lambda. In autoimmune disease and in healthy volunteers the plasma cells are polyclonal, and the marker is the sum of kappa and lambda. The kappa/lambda ratio, the usual diagnostic readout, does not move when polyclonal plasma cells are depleted evenly and is not used as a signal.
+
+**The B-cell design is [Specification 1](specification.qmd).** Where the target is on both compartments, as with a CD19 x BCMA engager, Archetype 3 in Section 22 carries both markers.
 
 **Out of scope: raising the starting dose.** A better minimal anticipated biological effect level (MABEL) starting dose attacks the same gap from the other end and complements IPDE. This project holds $D_{\rm start}$ fixed and varies what happens above it.
 
 **Out of scope: later development.** IPDE is a first-in-human strategy for an uncertain active dose. Once the active neighbourhood is known, the reason to cross a large dose range within one patient mostly disappears.
 
-Two further archetypes are a solid-tumour TCE and, as a negative control, another B-cell maturation antigen (BCMA) TCE, where class knowledge should predict the active dose well and leave IPDE little to gain (Section 22).
+Two further archetypes are, as a negative control, another BCMA TCE, where class knowledge should predict the active dose well and leave IPDE little to gain, and a dual B-cell and plasma-cell target (Section 22). The solid-tumour archetype stays in Specification 1, since it has neither marker.
 
 ### Healthy Volunteer Studies
 
-Recorded 2026-09-10. A related idea: give healthy volunteers one or two doses, climbing between cohorts until the first grade 1 cytokine release or a 50% fall in peripheral B cells, and open the patient study at that dose. A phase 1 unit climbs a ladder in weeks where a patient escalation takes months, and the ladder runs across volunteers, so where volunteers can be dosed the design simulated here may not be needed.
+Recorded 2026-09-10. A related idea: give healthy volunteers one or two doses, climbing between cohorts until the first grade 1 cytokine release or a 50% fall in peripheral B cells, or for a plasma-cell target in summed FLC, and open the patient study at that dose. A phase 1 unit climbs a ladder in weeks where a patient escalation takes months, and the ladder runs across volunteers, so where volunteers can be dosed the design simulated here may not be needed.
 
 Three TCEs have registered healthy volunteer cohorts since December 2025, all for autoimmune indications and all with an affinity-tuned CD3 arm. No oncology TCE has been given to a volunteer. [T-cell engagers in healthy volunteers](tce-hv.qmd) carries the studies, what a volunteer study can measure, the translation to patients, and a speed estimate.
 
-**How it bears on this simulation.** The volunteer route is the higher-starting-dose strategy set aside in the Scope, with human data behind it. Where it is open, in a B-cell-depleting TCE for an autoimmune indication, it removes most of the prediction error in Section 12 and is the stronger alternative; the simulation then reports what IPDE would have saved, as a comparator. Where it is closed, in oncology, the question stands as specified.
+One of the three, cizutamig, is a BCMA x CD3 engager, so a plasma-cell target has already been given to volunteers. A volunteer has a normal polyclonal plasma-cell compartment and a normal FLC level, which makes summed FLC a readout a volunteer study can use, where a B-cell count says little about a BCMA engager. What cizutamig's volunteer study measured is not known; entry 21 of the references asks.
+
+**How it bears on this simulation.** The volunteer route is the higher-starting-dose strategy set aside in the Scope, with human data behind it. Where it is open, in a plasma-cell-depleting TCE for an autoimmune indication, it removes most of the prediction error in Section 12 and is the stronger alternative; the simulation then reports what IPDE would have saved, as a comparator. Where it is closed, in myeloma, the question stands as specified.
 
 **Open decision.** The main use case does not yet name its indication. That choice settles whether the volunteer design enters the scenario grid of Section 21 as a comparator.
 
@@ -110,7 +116,7 @@ If the prediction is accurate, conventional escalation may already reach the act
 
 ## 3. Scouting Versus Confirming a Regimen
 
-IPDE is a scouting strategy. A scout might receive $0.1\rightarrow0.3\rightarrow1\rightarrow3\rightarrow10$ mg and show profound B-cell depletion after the 10 mg dose. That does not characterize a conventional 10 mg regimen, because the response followed a sequence of earlier doses.
+IPDE is a scouting strategy. A scout might receive $0.1\rightarrow0.3\rightarrow1\rightarrow3\rightarrow10$ mg and show profound FLC suppression after the 10 mg dose. That does not characterize a conventional 10 mg regimen, because the response followed a sequence of earlier doses.
 
 > IPDE identifies the candidate dose neighbourhood. A separate conventional backfill cohort tests an actual candidate regimen.
 
@@ -126,7 +132,7 @@ $T_{3,\rm eval}$ is the calendar time from the first dose in the FIH study until
 
 For IPDE the clock runs through five events:
 
-1.  The scout reaches profound B-cell depletion.
+1.  The scout reaches profound FLC suppression.
 2.  A candidate target dose is nominated.
 3.  A backfill cohort opens.
 4.  3 new patients receive a standard candidate regimen.
@@ -138,20 +144,22 @@ For conventional escalation, the 3 patients in the first cohort at an active dos
 
 The trial never observes $D_{\rm true}$, so the computable definition is:
 
-> $T_{3,\rm eval}$ is the calendar time until 3 patients complete the full evaluation window $W_{\rm full}$ on a conventional candidate regimen **whose target dose produced profound B-cell depletion in those same patients**.
+> $T_{3,\rm eval}$ is the calendar time until 3 patients complete the full evaluation window $W_{\rm full}$ on a conventional candidate regimen **whose target dose produced profound FLC suppression in those same patients**.
 
 Both designs confirm by observed PD in the confirming cohort:
 
-- Conventional: between-patient escalation stops at the first cohort whose patients reach $B<5/\mu L$, and those 3 patients count.
-- IPDE: the backfill cohort counts only if its patients reach $B<5/\mu L$ on the nominated regimen. A backfill cohort that does not deplete triggers the re-escalation rule in Section 7, and the clock keeps running.
+- Conventional: between-patient escalation stops at the first cohort whose patients reach $L<\theta_{\rm stop}L_0$, and those 3 patients count.
+- IPDE: the backfill cohort counts only if its patients reach $L<\theta_{\rm stop}L_0$ on the nominated regimen. A backfill cohort that does not deplete triggers the re-escalation rule in Section 7, and the clock keeps running.
 
 The two failure directions are scored differently on purpose. A nomination that is too low costs calendar time inside $T_{3,\rm eval}$, through the backfill rule in Section 7. A nomination that is too high does not extend $T_{3,\rm eval}$, and the dose-selection operating characteristics in Section 5 score it instead.
 
 ### Secondary Endpoint
 
-$T_{\rm BCD}$ is the time to the first observation of profound B-cell depletion, $B<5$ cells/µL. Call it time to first profound B-cell depletion; it does not identify the dose responsible.
+$T_{\rm FLC}$ is the time to the first observation of profound FLC suppression, $L<\theta_{\rm stop}L_0$, where $L$ is the serum FLC concentration, $L_0$ that patient's baseline, and $\theta_{\rm stop}=0.10$ in the base case (Section 9). Call it time to first profound FLC suppression; it does not identify the dose responsible.
 
-The difference $T_{3,\rm eval}-T_{\rm BCD}$ is the **confirmation penalty**, the time spent confirming after the scout's discovery.
+The threshold is a fraction of the patient's own baseline because FLC has no population floor comparable to 5 B cells/µL: the polyclonal reference interval spans about six-fold, and a myeloma patient's involved FLC can sit anywhere above 100 mg/L. A fractional threshold also keeps the endpoint the same in both populations.
+
+The difference $T_{3,\rm eval}-T_{\rm FLC}$ is the **confirmation penalty**, the time spent confirming after the scout's discovery.
 
 ------------------------------------------------------------------------
 
@@ -161,7 +169,7 @@ Three families, all computable from what the simulated trial observes, plus the 
 
 ### Speed
 
-- $T_{\rm BCD}$ and $T_{3,\rm eval}$ (Section 4).
+- $T_{\rm FLC}$ and $T_{3,\rm eval}$ (Section 4).
 - $\Delta T = T_{3,\rm conventional} - T_{3,\rm IPDE}$, and once stochastic, $P(\Delta T>0)$ and $P(\Delta T>4\ {\rm weeks})$.
 - Probability of confirming an active regimen within the administrative horizon. Once IIV enters, a scout or backfill patient who never depletes makes this less than 1.
 
@@ -177,8 +185,8 @@ With the endpoint rule in Section 4, this defines "right" for the design: too lo
 
 ### Patient and Operational Cost
 
-- Number of patients enrolled before the first profound B-cell depletion.
-- Patient-weeks with B cells at or above 5 cells/µL.
+- Number of patients enrolled before the first profound FLC suppression.
+- Patient-weeks with FLC at or above $\theta_{\rm stop}L_0$.
 - Number of patients treated only at subactive exposures.
 - Total doses administered.
 - Number of safety-review decisions.
@@ -186,7 +194,7 @@ With the endpoint rule in Section 4, this defines "right" for the design: too lo
 - Hospitalization and observation time.
 - Delayed or cumulative toxicity in the neutropenia stress test.
 
-**Not endpoints in v1:** EC50 precision, bias in the B-cell exposure-response model, dose-response estimation efficiency, the probability of correctly estimating an active dose range, and clinical efficacy. Each is a fair question for later and would distract from the current one.
+**Not endpoints in v1:** EC50 precision, bias in the plasma-cell exposure-response model, dose-response estimation efficiency, the probability of correctly estimating an active dose range, and clinical efficacy. Each is a fair question for later and would distract from the current one.
 
 ------------------------------------------------------------------------
 
@@ -196,10 +204,10 @@ Four designs, varying two things independently: how many patients sit at each lo
 
 | Design | Low-dose cohort | Within-patient escalation | Escalation stops when |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| **Conventional** (A) | 3 patients | None | A cohort reaches profound B-cell depletion. |
+| **Conventional** (A) | 3 patients | None | A cohort reaches profound FLC suppression. |
 | **Accelerated** (A2) | 1 patient, reverting to 3 once activity or toxicity appears | None | As conventional. |
 | **Catch-up** (B) | 3 patients | A patient already enrolled may move up to a dose the trial has since cleared | As conventional. |
-| **Scout-and-backfill** (C) | 1 scout | The scout leads the escalation on a weekly ladder | That scout's B cells fall below 5/µL. A fresh conventional cohort then confirms the nominated dose. |
+| **Scout-and-backfill** (C) | 1 scout | The scout leads the escalation on a weekly ladder | That scout's FLC falls below $\theta_{\rm stop}L_0$. A fresh conventional cohort then confirms the nominated dose. |
 
 : The four designs
 
@@ -227,7 +235,7 @@ Three consequences:
 2.  The efficient conventional comparator is Simon's design 3 with option A, which is Design A2.
 3.  The dose escalation factor (Section 13) is the mechanism, not a nuisance parameter. Simon's accelerated ladder moves about 2-fold per double step and about 3.3-fold at the first step. A fixed scout ladder holds about 3.3-fold throughout, and the PD-guided rule in Section 13 takes 10-fold steps until the marker moves.
 
-**Immunology escalates within patients too**, and in the autoimmune cytopenias it is ordinary practice. Rilzabrutinib's phase 1--2 in immune thrombocytopenia steps each patient up every 28 days on platelet response. Its pemphigus study gates the step on clinical response and Bruton tyrosine kinase (BTK) occupancy, a target-engagement marker doing the job B-cell count does in Section 13. A first-in-human study in Graves' disease is registered as a within-subject dose-escalating design. The second reading queue on the [references page](references.qmd) carries these, unread, so this paragraph reports a search rather than a set of papers.
+**Immunology escalates within patients too**, and in the autoimmune cytopenias it is ordinary practice. Rilzabrutinib's phase 1--2 in immune thrombocytopenia steps each patient up every 28 days on platelet response. Its pemphigus study gates the step on clinical response and Bruton tyrosine kinase (BTK) occupancy, a target-engagement marker doing the job FLC does in Section 13. A first-in-human study in Graves' disease is registered as a within-subject dose-escalating design. The second reading queue on the [references page](references.qmd) carries these, unread, so this paragraph reports a search rather than a set of papers.
 
 These immunology ladders climb until the patient responds, and stop because the patient is treated. A scout climbs until the marker moves, and stops because the programme has found its dose. The search found no ladder whose purpose is to nominate a dose for a separate confirming cohort, so the stopping rule and the scout-and-backfill split are what is new here.
 
@@ -256,7 +264,7 @@ Use Simon's design 3 with option A: single-patient cohorts, double dose steps, n
 Two parameters:
 
 - $n_{\rm low}$: patients per cohort in the low-dose region. 1 here, 3 in Design A.
-- **The rule that ends the accelerated phase.** Simon's is a toxicity event. A PD variant ends it at the first sign of B-cell movement. That is the signal scout-and-backfill stops on, so running it separates the trigger from the escalation mechanism.
+- **The rule that ends the accelerated phase.** Simon's is a toxicity event. A PD variant ends it at the first sign of FLC movement. That is the signal scout-and-backfill stops on, so running it separates the trigger from the escalation mechanism.
 
 ### Design B: Catch-Up Escalation
 
@@ -274,7 +282,7 @@ $$
 D_0\rightarrow D_1\rightarrow D_2\rightarrow D_3\rightarrow\dots,
 $$
 
-one step every 7 days. Escalation continues while $B\ge5/\mu L$ and the protocol's safety gate permits another dose, and stops when $B<5/\mu L$. The trial then nominates the corresponding target-dose neighbourhood and opens conventional backfill at once.
+one step every 7 days. Escalation continues while $L\ge\theta_{\rm stop}L_0$ and the protocol's safety gate permits another dose, and stops when $L<\theta_{\rm stop}L_0$. The trial then nominates the corresponding target-dose neighbourhood and opens conventional backfill at once.
 
 **Step interval: one week in v1.** It matches the safety gate $W_{\rm decision}$ in Section 15 and the PD turnaround in Section 11, so nothing else in the engine has to change. Shorter intervals are a later question.
 
@@ -304,7 +312,7 @@ As specified so far, a scout begins at $D_{\rm start}$ and climbs without limit.
 
 **The first dose in a drug-naive patient rises slowly between cohorts.** The nonclinical argument that sets the FIH starting dose governs it too, and a safety committee accepts only a modest multiplier: 3-fold typically and 4-fold at most in MCLA-117. A second scout therefore cannot begin where the first stopped.
 
-**One scout is one patient.** A nomination from a single scout rests on one patient's B-cell trajectory, and a programme may want a second scout to reproduce it before opening backfill.
+**One scout is one patient.** A nomination from a single scout rests on one patient's FLC trajectory, and a programme may want a second scout to reproduce it before opening backfill.
 
 Together these cost calendar time only when the scouts run in series. A second scout who starts near the bottom after the first has finished repeats most of the first ladder, and confirmation takes nearly as long as the discovery did. Running the scouts concurrently removes most of that cost, as the next subsection describes.
 
@@ -333,7 +341,7 @@ What real protocols do here is not known. It is the question the GB261 entry on 
 
 #### One Patient Stops the Ladder; Three Declare the Dose
 
-**The first scout to reach** $B<5/\mu L$ ends the accelerated phase. Act on the first value below the threshold and confirm afterwards for the record; a repeat sample before acting only delays the stop.
+**The first scout to reach** $L<\theta_{\rm stop}L_0$ ends the accelerated phase. Act on the first value below the threshold and confirm afterwards for the record; a repeat sample before acting only delays the stop.
 
 One patient stops the ladder and three declare the dose (Section 4). The asymmetry will be challenged, so the reason belongs in the protocol. The two errors point in opposite directions. One patient's depletion is a noisy observation, and an atypical patient can cross the threshold at a dose the population would not; that error ends the accelerated phase early and costs speed. Waiting for two or three would keep scouts climbing past a dose already shown to be active in someone, which cannot be undone. Declaring $D_{\rm true}$ on one patient would overclaim, which is why the declaration keeps three.
 
@@ -342,6 +350,25 @@ Simon accepts the same asymmetry: his accelerated phase ends on the first qualif
 The confirmatory-sample question in Section 13 is a different rule. It governs $\theta_{\rm move}$, the threshold that slows the ladder, where a false positive costs acceleration over all the remaining rungs. This rule governs the stop, where a false positive costs one rung.
 
 If two scouts deplete at different dose levels, Section 7 still needs a single $D^*$. Nominating the lower is the conservative choice, and when it is too low it costs the non-confirmation cycles of Section 7.
+
+### Variant: Three-Patient Cohorts Throughout
+
+Designs A2 and C both put a single patient at a dose no one has received before. Oncology accepts that, with Simon's accelerated titration and the MCLA-117 ladder as precedent. Immunology may not, since an autoimmune patient is not out of options and a safety committee may want acute safety data from three patients before a new dose level is given again. This variant keeps the unit of escalation at 3 patients everywhere, and the indication chooses between it and the base case.
+
+Two designs change:
+
+- **A2 drops out.** With $n_{\rm low}=3$ it is Design A, so the conventional comparator is A.
+- **C becomes a three-patient scout cohort**, C3. Three scouts start together at $D_{\rm start}$ and climb the same ladder, each rung given to all three in the same week, subject to the sentinel rule for first doses (Section 20). In the notation above, $n_{\rm scout}=3$ and $\Delta_{\rm scout}=0$. The safety gate at each rung reads all three patients.
+
+The rest of the design holds. The first of the three to reach $L<\theta_{\rm stop}L_0$ stops the ladder for all three, as in the subsection above; a 2-of-3 stop is the sensitivity. The scouts' ladder is still not an interpretable regimen, so three fresh backfill patients declare the dose (Sections 4 and 7).
+
+**What the variant costs.** Three patients sit at every subactive rung instead of one, so $\Delta N_{\rm sub}$ against Design A shrinks. A delayed-toxicity signal at a rung arrives with three patients dosed above it (Section 19). The ladder cannot start until three patients are ready, which takes days under the fast accrual expected in immunology and weeks under slow accrual.
+
+**What it buys.** The nomination rests on three FLC trajectories instead of one, so an atypical scout is less likely to stop the ladder early, and the safety committee sees three patients at each rung before the next.
+
+**What it does to the comparison.** C3 against A isolates within-patient escalation and the PD stop, with no micro-cohort effect mixed in, which is a cleaner contrast than C against A. The time saving should survive, because a rung of the scout ladder costs one escalation interval whether one patient climbs it or three, while each rung of Design A costs a between-cohort review. The patient saving at subactive doses mostly does not (hypothesis 21).
+
+Parameterize as $n_{\rm unit}$, the number of patients in each escalation unit at doses not yet cleared: 1 in the base case, 3 in this variant. Run the myeloma population at 1 and the autoimmune population at 3 (Section 22), and both values in each population as a sensitivity.
 
 ------------------------------------------------------------------------
 
@@ -353,13 +380,15 @@ If scout depletion first follows target $D^*$, nominate the base-case convention
 
 ### Expect the Nomination to Sit Low
 
-The scout's stopping signal comes from the cumulative exposure and B-cell trajectory of the whole ladder, not from $D^*$ alone. Drug from earlier doses is still present when the signal fires: the retained PK gives an effective half-life of about 8 days ($\ln 2 \times V_{ss}/CL$) against a 7-day interval. B cells recover more slowly still ($t_{1/2}\approx30$ days), so partial depletion carries over from step to step. $D^*$ can therefore sit one or more grid steps below the dose whose conventional regimen depletes a fresh patient.
+The scout's stopping signal comes from the cumulative exposure and plasma-cell trajectory of the whole ladder, not from $D^*$ alone. Drug from earlier doses is still present when the signal fires: the retained PK gives an effective half-life of about 8 days ($\ln 2 \times V_{ss}/CL$) against a 7-day interval. Plasma cells recover more slowly still ($t_{1/2,P}\approx60$ days in the base case, Section 9), so partial depletion carries over from step to step. $D^*$ can therefore sit one or more grid steps below the dose whose conventional regimen suppresses FLC in a fresh patient.
+
+**The carryover is larger here than in the B-cell design.** The marker carries no memory, since FLC is cleared within hours, but the cells it reports on recover about half as fast as B cells in Specification 1. Hypothesis 18 in Section 26 states the prediction.
 
 The PD-guided rule in Section 13 is the main lever against this, since a scout that slows once the marker moves stops nearer the dose responsible. Backfill non-confirmation is an expected event that the protocol must handle.
 
 ### Backfill Confirmation and Non-Confirmation
 
-- **Confirmation.** The backfill regimen confirms when its patients reach $B<5/\mu L$ at the prespecified PD assessment time. In the deterministic phases this is all-or-none in the reference patient. An $x/3$ rule, such as at least 2 of 3, waits for Phase 4 and IIV.
+- **Confirmation.** The backfill regimen confirms when its patients reach $L<\theta_{\rm stop}L_0$ at the prespecified PD assessment time. In the deterministic phases this is all-or-none in the reference patient. An $x/3$ rule, such as at least 2 of 3, waits for Phase 4 and IIV.
 - **Non-confirmation.** Raise the candidate target dose one grid step and enrol a new 3-patient conventional cohort at that level. Repeat until a cohort confirms or the administrative dose cap is reached. After a failed backfill, the IPDE arm is running conventional escalation from $D^*$ instead of $D_{\rm start}$, and the time this takes stays inside $T_{3,\rm eval}$.
 - **Patients in a failed backfill cohort** may step up to the next candidate dose under the catch-up rules, for their own benefit, but no longer count toward $T_{3,\rm eval}$.
 
@@ -367,7 +396,7 @@ The PD-guided rule in Section 13 is the main lever against this, since a scout t
 
 ## 8. PK Model
 
-Use published teclistamab population PK as the reference exposure model: subcutaneous first-order absorption, two-compartment disposition, and parallel time-independent and time-dependent clearance.
+Use published teclistamab population PK as the reference exposure model: subcutaneous first-order absorption, two-compartment disposition, and parallel time-independent and time-dependent clearance. Teclistamab is a BCMA x CD3 engager, so in this variant the reference model belongs to the class being simulated.
 
 | Parameter             |             Value |
 |:----------------------|------------------:|
@@ -386,20 +415,24 @@ Use published teclistamab population PK as the reference exposure model: subcuta
 
 Use a 74 kg reference patient, about the reference weight in the published model, and no covariates in v1. Omit PK IIV, or limit it to $CL$ and $k_a$. The design conclusions should not depend on reproducing teclistamab's covariate relationships.
 
+**Soluble BCMA is not modelled.** Plasma cells shed BCMA into serum, and soluble BCMA (sBCMA) could bind a BCMA engager and act as a sink. Teclistamab's population PK analysis is reported not to find baseline sBCMA a significant covariate on exposure, consistent with its higher affinity for membrane BCMA. A novel BCMA engager may not share that affinity ratio, so the sink is a question for a programme's own molecule rather than for v1.
+
 ------------------------------------------------------------------------
 
-## 9. B-Cell Pharmacodynamic Model
+## 9. Plasma-Cell and Free Light Chain Model
 
-A turnover (indirect-response) model with drug-stimulated B-cell loss:
+Two compartments: plasma cells, which the drug kills, and serum FLC, which the plasma cells secrete and the kidney clears.
+
+The plasma cells follow the same turnover model as the B cells of Specification 1, in units of their own baseline ($P_0=1$):
 
 $$
-\frac{dB}{dt}
+\frac{dP}{dt}
 =
-k_{\rm in}
+k_{\rm in,P}
 -
-k_{\rm out}B
+k_{\rm out,P}P
 -
-k_{\rm kill}(C)B,
+k_{\rm kill}(C)P,
 \qquad
 k_{\rm kill}(C)
 =
@@ -407,18 +440,64 @@ k_{\max}
 \frac{C^h}{EC_{50}^h+C^h},
 $$
 
-with $k_{\rm in}=k_{\rm out}B_0$ at baseline.
+with $k_{\rm in,P}=k_{\rm out,P}P_0$ at baseline.
 
-This is much simpler than published TCE quantitative systems pharmacology (QSP) models. Mechanistic mosunetuzumab models describe T-cell activation and B-cell killing across blood and tissues, which establishes B-cell depletion as a TCE PD output, but that detail is not needed here.
+Serum FLC is produced in proportion to plasma-cell mass, plus a fraction $f_{\rm res}$ from cells the drug does not reach, and eliminated first-order:
+
+$$
+\frac{dL}{dt}
+=
+k_{\rm syn}
+\left[(1-f_{\rm res})\frac{P}{P_0}+f_{\rm res}\right]
+-
+k_{\rm el}L,
+\qquad
+k_{\rm syn}=k_{\rm el}L_0,
+\qquad
+k_{\rm el}=\frac{\ln 2}{t_{1/2,L}}.
+$$
+
+$f_{\rm res}$ stands for FLC from cells without the target: plasmablasts and plasma cells with low target expression, and B cells. Its size is not known for any target, and it sets the floor below which FLC cannot fall however much drug is given.
 
 Starting values:
 
-- $B_0=100$ cells/µL.
-- $t_{1/2,B}\approx30$ days, so $k_{\rm out}=\ln 2/30$.
-- $k_{\max}=1\ {\rm day}^{-1}$. At saturating drug effect this gives about 95% depletion in 3 days, before replenishment.
-- $h$ between 1 and 2.
+- $t_{1/2,L}=4$ h, so $k_{\rm el}\approx4.2\ {\rm day}^{-1}$. Reported serum half-lives with normal renal function are 2 to 4 h for kappa, which is cleared faster as a monomer, and 3 to 6 h for lambda, which circulates mostly as a dimer.
+- $t_{1/2,P}=60$ days, so $k_{\rm out,P}=\ln 2/60$; sensitivities 30 and 180 days. Long-lived plasma cells survive far longer than this, and the compartment in active disease is replenished from B cells. The value sets how fast FLC recovers once killing stops, and no published estimate has been found for a TCE.
+- $k_{\max}=1\ {\rm day}^{-1}$ and $h$ between 1 and 2, as for B cells.
+- $f_{\rm res}=0.02$; sensitivities 0.05 and 0.15. At 0.15 the floor sits above $\theta_{\rm stop}=0.10$ and the stop can never fire; that scenario is included to show the design's failure when the marker cannot reach the threshold.
+- $L_0=1$ in relative units for Phases 1 to 3.
 
 These are simulation assumptions, not clinical estimates.
+
+### FLC Follows Plasma-Cell Mass Within Hours
+
+$k_{\rm el}$ is about four times $k_{\max}$ and several hundred times $k_{\rm out,P}$, so $L$ reaches its steady state for the current plasma-cell mass within a day:
+
+$$
+\frac{L}{L_0}\approx(1-f_{\rm res})\frac{P}{P_0}+f_{\rm res}.
+$$
+
+Phase 1 can use this algebraic form and drop the FLC equation. Keep the equation for the renal sensitivity below, where $k_{\rm el}$ changes during the ladder.
+
+This is the reason FLC suits the design. A serum IgG or M-protein level obeys the same equation with a half-life near three weeks, so it reports a kill on the scale of the escalation interval or slower, and a scout would climb several rungs past the active dose before the marker moved. FLC also reports production by plasma cells wherever they sit, marrow and lymph node included, where a peripheral cell count reports the blood alone.
+
+### Renal Clearance Confounds the Signal
+
+FLC is cleared by glomerular filtration, and the reported half-life rises to days in severe renal impairment. A fall in $k_{\rm el}$ raises $L$ at the same plasma-cell mass, so an acute kidney injury during the ladder, from cytokine release or a nephrotoxic co-medication, hides a real fall in plasma cells. The error is a late stop, the safe direction, and it costs rungs.
+
+The opposite case arises in myeloma with light-chain cast nephropathy: as plasma cells die and the kidney recovers, $k_{\rm el}$ rises and FLC falls faster than plasma-cell mass. That error is an early stop.
+
+Two protocol measures, and one simulation:
+
+- An estimated glomerular filtration rate (eGFR) floor for scout eligibility (Section 22).
+- Serum creatinine drawn with every FLC sample, so a reviewer can see when a flat FLC coincides with a rising creatinine.
+- A sensitivity scenario in which $k_{\rm el}$ halves for 7 days after a grade 2 cytokine release event, reported as the rungs added before the stop.
+
+### Other Candidate Markers
+
+- **sBCMA** falls in patients responding to BCMA and GPRC5D engagers. It reports only plasma cells that express BCMA, and its own binding to a BCMA engager (Section 8) mixes target engagement into the signal. A secondary readout, recorded beside FLC.
+- **Serum IgG**, and in myeloma the M-protein, are the response criteria a regulator will ask about. Too slow for a dose decision, as above, and reported as later outcomes.
+- **Peripheral B cells** stay the stopping marker where the target is on B cells too (Archetype 3).
 
 ------------------------------------------------------------------------
 
@@ -426,23 +505,31 @@ These are simulation assumptions, not clinical estimates.
 
 Choose $D_{\rm true,active}$ for each scenario and solve for $EC_{50}$, rather than choosing $EC_{50}$ and finding out which dose is active.
 
-Solve so that the standard candidate regimen ending at $D_{\rm true}$, which in the base case is $0.20D_{\rm true}\rightarrow D_{\rm true}$, produces $B=2.5/\mu L$ at the prespecified PD assessment time in a typical patient. Then check that the same regimen one grid step lower leaves $B>10/\mu L$. Calibrating to exactly $5/\mu L$ would put the scenario on the decision boundary, where solver tolerance and assessment timing can flip the outcome by a full grid step; the margin keeps adjacent grid levels cleanly separated. Defining the scenario this way keeps the parameterization transparent and the prediction error easy to vary.
+Solve so that the standard candidate regimen ending at $D_{\rm true}$, which in the base case is $0.20D_{\rm true}\rightarrow D_{\rm true}$, produces $L/L_0=0.05$ at the prespecified PD assessment time in a typical patient. Then check that the same regimen one grid step lower leaves $L/L_0>0.20$. Calibrating to exactly $\theta_{\rm stop}=0.10$ would put the scenario on the decision boundary, where solver tolerance and assessment timing can flip the outcome by a full grid step; the margin keeps adjacent grid levels cleanly separated.
+
+**The calibration needs $f_{\rm res}<0.05$.** At a larger floor no dose reaches $L/L_0=0.05$, and the scenario has no active dose under this definition. Report such scenarios as ones where the FLC stop cannot be calibrated rather than dropping them.
 
 The active dose is defined as:
 
-> The first target-dose level on the protocol dose grid whose standard step-up regimen produces profound peripheral B-cell depletion in the reference patient.
+> The first target-dose level on the protocol dose grid whose standard step-up regimen produces profound FLC suppression in the reference patient.
 
-It does not mean that a single isolated dose at that level depletes B cells.
+It does not mean that a single isolated dose at that level suppresses FLC.
 
 ------------------------------------------------------------------------
 
 ## 11. PD Sampling and Decision Latency
 
-B cells can fall quickly, but a dose decision waits on the sample, the assay, quality control and review. Model the biology and the availability of the result separately.
+Plasma cells can be killed within days, but a dose decision waits on the sample, the assay, quality control and review. Model the biology and the availability of the result separately.
 
-- $T_{\rm PD,ready}=3$ days in the base case; sensitivities 2, 3, 5 and 7 days. Replace these with a programme's real turnaround when it is known.
+FLC is an immunoassay run on clinical chemistry analysers, by nephelometry or turbidimetry, where a B-cell count needs flow cytometry. A result the next working day is plausible at a hospital laboratory.
+
+- $T_{\rm PD,ready}=2$ days in the base case; sensitivities 1, 3 and 5 days. Replace these with a programme's real turnaround when it is known.
 - The next weekly scout dose happens only once the PD result is available.
-- If $B<5/\mu L$ before the next scheduled dose, escalation stops.
+- If $L<\theta_{\rm stop}L_0$ before the next scheduled dose, escalation stops.
+
+**Fix one assay and one laboratory.** The FLC assays from different manufacturers are reported to disagree on the same sample, and a ratio to baseline is only meaningful when both values come from the same method. A multi-site trial sends FLC samples to a central laboratory.
+
+**The assay's lower limit has to sit below the threshold.** A polyclonal patient whose summed FLC starts in the middle of the reference interval, around 25 mg/L, reaches the stop at about 2.5 mg/L. Check the chosen assay's lower limit of quantification against that before fixing $\theta_{\rm stop}$.
 
 ------------------------------------------------------------------------
 
@@ -477,42 +564,43 @@ The first ratio measures how conservative the starting dose is, and the second h
 
 ## 13. Dose Escalation Factor
 
-**Set the step size from the PD signal.** The scout is measured before every escalation decision (Section 11), and the measurement says where the ladder is. While the B-cell count has not moved, the scout is far below the active dose, and a large step crosses more of the gap at no cost. Once the count starts to move, the active dose is close and a large step overshoots it.
+**Set the step size from the PD signal.** The scout is measured before every escalation decision (Section 11), and the measurement says where the ladder is. While FLC has not moved, the scout is far below the active dose, and a large step crosses more of the gap at no cost. Once FLC starts to move, the active dose is close and a large step overshoots it.
 
-The rule uses $B/B_0$, the most recent available B-cell count as a fraction of that scout's own baseline:
+The rule uses $L/L_0$, the most recent available FLC concentration as a fraction of that scout's own baseline:
 
 | PD state | Condition | Next step |
 |:-----------------------|:-----------------------|:-----------------------|
-| No movement | $B \ge \theta_{\rm move} B_0$ | $F_{\rm quiet}$, base 10-fold |
-| Movement | $\theta_{\rm move} B_0 > B \ge 5/\mu L$ | $F_{\rm move}$, base 3-fold |
-| Profound depletion | $B < 5/\mu L$ | Stop; nominate (Section 7) |
+| No movement | $L \ge \theta_{\rm move} L_0$ | $F_{\rm quiet}$, base 10-fold |
+| Movement | $\theta_{\rm move} L_0 > L \ge \theta_{\rm stop} L_0$ | $F_{\rm move}$, base 3-fold |
+| Profound suppression | $L < \theta_{\rm stop} L_0$ | Stop; nominate (Section 7) |
 
 : The PD-guided escalation rule
 
 The base case is $\theta_{\rm move}=0.70$, a 30% decline from baseline.
 
-The rule works one way in practice. B cells do not recover while dosing continues, so the ladder slows once and does not speed up again.
+The rule works one way in practice. Plasma cells do not recover while dosing continues, and FLC follows them, so the ladder slows once and does not speed up again.
 
 Three parameters and a comparator:
 
 - $\theta_{\rm move}$: the fraction of baseline at which the marker counts as having moved. Base 0.70; sensitivities 0.50 and 0.85.
 - $F_{\rm quiet}$: the step while the marker has not moved. Base 10; sensitivities 3 and 30.
 - $F_{\rm move}$: the step after it has. Base 3; sensitivity 2.
+- $\theta_{\rm stop}$: the fraction of baseline that stops the ladder. Base 0.10; sensitivities 0.05 and 0.25. It must sit above $f_{\rm res}$ (Section 9).
 - **Fixed multiplier**, $D_{k+1}=FD_k$ with $F$ = 2, 3 or 4 throughout, as the reference arm. Every claim for the PD-guided rule is a difference against this.
 
 ### Two Ways the Rule Fails
 
 Both are simulatable; report them separately.
 
-A **false brake** is a measurement that crosses $\theta_{\rm move}$ through assay or biological variability rather than drug effect. It drops the ladder into 3-fold steps early, and the scout then crawls through a range it could have crossed quickly, which comes straight out of $\Delta T$. A 30% decline in an absolute B-cell count may be within the day-to-day variability of the measurement, so $\theta_{\rm move}$ may need a confirmatory second sample. False brakes cannot appear before Phase 4, since Phases 1 to 3 have no variability to generate them.
+A **false brake** is a measurement that crosses $\theta_{\rm move}$ through assay or biological variability rather than drug effect. It drops the ladder into 3-fold steps early, and the scout then crawls through a range it could have crossed quickly, which comes straight out of $\Delta T$. The within-person variability of serial FLC measurements has not been looked up. If a 30% decline is inside it, $\theta_{\rm move}$ needs a confirmatory second sample, and FLC's short half-life lets that sample be drawn a day later rather than a week. False brakes cannot appear before Phase 4, since Phases 1 to 3 have no variability to generate them.
 
-A **missed brake** is the opposite: the marker has moved but the sample that would show it is not yet available, so a 10-fold step lands past the active dose. The nominated $D^*$ is then too high, and Section 5 scores it as overshoot rather than lost time.
+A **missed brake** is the opposite: the marker has moved but the sample that would show it is not yet available, so a 10-fold step lands past the active dose. The nominated $D^*$ is then too high, and Section 5 scores it as overshoot rather than lost time. FLC makes this failure less likely than B cells do, since the marker reflects the kill within a day and the turnaround in Section 11 is shorter.
 
-Report the number of steps spent in each regime. Between $\theta_{\rm move} B_0$ and $5/\mu L$ the B-cell count changes 14-fold at $B_0=100$ cells/µL. How many 3-fold dose steps that interval takes under the model in Section 9 decides whether the brake costs calendar time or only places the nomination better. The simulation answers this.
+Report the number of steps spent in each regime. Between $\theta_{\rm move} L_0$ and $\theta_{\rm stop} L_0$ FLC changes 7-fold in the base case. How many 3-fold dose steps that interval takes under the model in Section 9 decides whether the brake costs calendar time or only places the nomination better. The simulation answers this.
 
 ### Effects Elsewhere in the Design
 
-The brake should raise the nominated $D^*$ compared with a fixed ladder, because the scout approaches the threshold in smaller increments and stops nearer the dose that caused the depletion. If it does, the undershoot in Section 7 shrinks, and the non-confirmation cycles with it. Report that separately from the change in $T_{3,\rm eval}$.
+The brake should raise the nominated $D^*$ compared with a fixed ladder, because the scout approaches the threshold in smaller increments and stops nearer the dose that caused the suppression. If it does, the undershoot in Section 7 shrinks, and the non-confirmation cycles with it. Report that separately from the change in $T_{3,\rm eval}$.
 
 The rule also separates this design further from accelerated titration. Their step size changes on toxicity; this one changes on pharmacology, using a marker measured for the purpose.
 
@@ -524,7 +612,7 @@ The MCLA-117 scheme in Section 6 steps 1.5 to 3-fold within patients in its earl
 
 ## 14. Acute Safety and CRS
 
-CRS is not the main modelling problem. Published quantitative TCE CRS models exist, including repeated time-to-event (RTTE) models in which the CRS hazard depends on longitudinal exposure and on a separate tolerance component representing priming. They support the assumption that acute TCE toxicity depends on prior dosing history as well as on current exposure. Importing an epcoritamab CRS model into a teclistamab-PK and B-cell simulation, however, would create a hybrid molecule with no clear quantitative meaning.
+CRS is not the main modelling problem. Published quantitative TCE CRS models exist, including repeated time-to-event (RTTE) models in which the CRS hazard depends on longitudinal exposure and on a separate tolerance component representing priming. They support the assumption that acute TCE toxicity depends on prior dosing history as well as on current exposure. Importing an epcoritamab CRS model into a teclistamab-PK and plasma-cell simulation, however, would create a hybrid molecule with no clear quantitative meaning.
 
 **v1: acute safety is a protocol gate.**
 
@@ -659,12 +747,12 @@ It illustrates one principle: when toxicity latency exceeds the escalation inter
 
 ------------------------------------------------------------------------
 
-## 18. Stopping at B-Cell Depletion
+## 18. Stopping at FLC Suppression
 
 An MTD design escalates until toxicity. The scout escalates until there is sufficient pharmacology or toxicity, whichever comes first:
 
-- $B\ge5/\mu L$ and acceptable safety: another dose.
-- $B<5/\mu L$: exploratory escalation ends at once.
+- $L\ge\theta_{\rm stop}L_0$ and acceptable safety: another dose.
+- $L<\theta_{\rm stop}L_0$: exploratory escalation ends at once.
 
 This stop is the main protection against climbing far into the active range, and it gives the scout a different purpose from within-patient MTD finding.
 
@@ -685,7 +773,7 @@ Report the burden components separately rather than combining them into a weight
 | PD results needed before next dose | count |
 | Observation/hospitalization | patient-hours |
 | Patients dosed above a rung when its delayed-toxicity information arrives | count |
-| Screen failures on the baseline B-cell floor (Section 22) | count |
+| Screen failures on the baseline FLC and eGFR criteria (Section 22) | count |
 | Total trial calendar time | days |
 
 : Patient and operational burden, reported for every simulated design
@@ -725,7 +813,7 @@ Two predictions follow, to be checked by the simulation:
 
 ### Backfill Pre-Screening
 
-An explicit design lever, and plausibly a larger one than PD turnaround. After the scout depletes, IPDE must enrol 3 fresh backfill patients. At $\lambda_{\rm enroll}=0.5$ a week that is about 6 weeks of accrual before the $W_{\rm full}$ clocks start, while the conventional arm has been enrolling throughout. At low enrollment rates the confirmation penalty $T_{3,\rm eval}-T_{\rm BCD}$ is an accrual quantity, and PD turnaround (Section 11), measured in days, cannot compete with it.
+An explicit design lever, and plausibly a larger one than PD turnaround. After the scout depletes, IPDE must enrol 3 fresh backfill patients. At $\lambda_{\rm enroll}=0.5$ a week that is about 6 weeks of accrual before the $W_{\rm full}$ clocks start, while the conventional arm has been enrolling throughout. At low enrollment rates the confirmation penalty $T_{3,\rm eval}-T_{\rm FLC}$ is an accrual quantity, and PD turnaround (Section 11), measured in days, cannot compete with it.
 
 Simulate two policies:
 
@@ -742,8 +830,8 @@ The comparison bounds how much of the confirmation penalty operations can recove
 2.  Predicted gap from starting to active dose.
 3.  PD-guided escalation against a fixed 2, 3 or 4-fold multiplier, and the movement threshold $\theta_{\rm move}$ = 0.50, 0.70, 0.85 (Section 13).
 4.  One (base) against two standard step-up doses.
-5.  The rule that ends the accelerated phase in Design A2: toxicity, as in Simon, or first B-cell movement.
-6.  PD turnaround, 2 to 7 days.
+5.  The rule that ends the accelerated phase in Design A2: toxicity, as in Simon, or first FLC movement.
+6.  PD turnaround, 1 to 5 days.
 7.  Enrollment rate.
 8.  Safety decision window.
 9.  Full evaluability window.
@@ -754,6 +842,9 @@ The comparison bounds how much of the confirmation penalty operations can recove
 14. Reactive against anticipatory backfill pre-screening (Section 20).
 15. Cap on the between-cohort increase in the first dose to a drug-naive patient, $F_{\rm start}$ = 2, 3 or 10 (Section 6).
 16. One, two or three scouts, the scout entry policy, and the stagger $\Delta_{\rm scout}$ = one rung, two rungs or serial (Section 6).
+17. Plasma-cell recovery half-life $t_{1/2,P}$ = 30, 60 or 180 days, and the non-depletable floor $f_{\rm res}$ = 0.02, 0.05 or 0.15 (Section 9).
+18. A transient fall in renal FLC clearance after cytokine release (Section 9).
+19. Patients per escalation unit at uncleared doses, $n_{\rm unit}$ = 1 or 3, which turns Designs A2 and C into A and C3 (Section 6).
 
 Start with interpretable scenario sets and avoid large factorial designs at first.
 
@@ -763,28 +854,34 @@ Start with interpretable scenario sets and avoid large factorial designs at firs
 
 ### Patient Population
 
-Each archetype states its population, because the population decides whether $B_0=100$ cells/µL and the 5 cells/µL threshold are sensible. The two candidate populations differ enough to change the PD model's starting conditions.
+Each archetype states its population, because the population decides which FLC is measured, what its baseline looks like, and what can push it around. The two candidate populations differ enough to change the PD model's starting conditions.
 
-- **Relapsed or refractory oncology**, the teclistamab-like setting. Baseline B cells are affected by the disease, and prior therapy is common.
-- **Autoimmune disease and immune reset**, where the eventual regimen may be one or two administrations. Some candidates have had prior B-cell-depleting therapy such as rituximab and enter with counts already low or still recovering. Accrual is expected to be fast, which changes what cohort size buys (Section 20).
+- **Relapsed or refractory myeloma**, the teclistamab setting. The marker is the involved FLC, and single-patient cohorts have precedent, so $n_{\rm unit}=1$. The tumour is a large plasma-cell compartment, prior therapy is extensive, and light-chain kidney injury is common.
+- **Autoimmune disease and immune reset**, where the eventual regimen may be one or two administrations. The marker is summed kappa and lambda, and $n_{\rm unit}=3$ (Section 6). Accrual is expected to be fast, which changes what cohort size buys (Section 20).
 
-A low baseline breaks the design's central signal. A scout who starts below $5/\mu L$ has no escalation signal at all, and one who starts low depletes early and nominates a dose far below $D_{\rm true}$. Handle this as eligibility rather than modelling: require a documented baseline B-cell count above a floor for scout eligibility, and record how many screened patients the floor excludes.
+**Prior anti-CD20 therapy does not empty this marker.** Specification 1 loses scouts whose B cells are already low after rituximab. Long-lived plasma cells do not carry CD20 and survive rituximab, so an autoimmune patient treated with it still has a plasma-cell compartment and an FLC level to suppress. Prior therapy that does reach plasma cells, an anti-CD38 antibody or an earlier BCMA-directed agent, lowers the baseline, and recent plasma exchange removes FLC for a few days.
 
-**State the floor as a number.** Reference intervals for CD19+ counts vary between laboratories, and a multi-site trial reading each site's own normal range gets a stopping trigger whose meaning shifts by site. Choose one value and write it into the protocol.
+**Eligibility, stated as numbers.**
 
-**Open decision: does the floor apply to the three patients declaring the dose** (Section 4)? They need it for the same reason the scout does, since a patient entering at 30 cells/µL and reaching $B<1$ is a weaker observation than one entering at 250. Applying it to everyone contributing to the depletion endpoint will cost eligibility in an autoimmune population with prior B-cell-directed therapy. Decide it before it arrives as a screening-failure review.
+- Myeloma: measurable disease by FLC, which the International Myeloma Working Group (IMWG) defines as an involved FLC of at least 100 mg/L with an abnormal kappa/lambda ratio. A scout whose disease is measurable only by M-protein has no FLC signal of use.
+- Autoimmune: summed FLC at or above a stated value, chosen so that a 90% fall lands above the assay's lower limit (Section 11). Polyclonal reference intervals are 3.3 to 19.4 mg/L for kappa and 5.7 to 26.3 mg/L for lambda (Katzmann 2002).
+- Both: an eGFR floor, since renal clearance sets $k_{\rm el}$ (Section 9).
 
-For v1, run Archetype 1 as oncology with $B_0=100$ cells/µL, and introduce a low-baseline population when IIV enters in Phase 4, where a distribution of $B_0$ can be represented.
+Record how many screened patients each criterion excludes (Section 19).
 
-### Archetype 1: Novel B-Cell-Depleting TCE
+**Open decision: do the criteria apply to the three patients declaring the dose** (Section 4)? They need them for the same reason the scout does. In myeloma the IMWG criterion will exclude patients who would otherwise be enrolled. Decide it before it arrives as a screening-failure review.
 
-The primary analysis, and probably the strongest use case, because it has an immediate pharmacologic stopping signal. Assumptions:
+**Phase 1 does not need the choice.** The model runs in units of each patient's own baseline and the threshold is a fraction of it, so the population enters through $f_{\rm res}$, $t_{1/2,P}$ and the renal scenario rather than through $L_0$. The choice enters from Phase 4, where baselines and renal function vary between patients.
+
+### Archetype 1: Novel Plasma-Cell-Depleting TCE
+
+The primary analysis. A new target, or a new BCMA molecule whose potency is not predicted by the class. Assumptions:
 
 - FIH, with substantial uncertainty in the active dose.
 - QW treatment, and a strong priming effect.
 - Acute safety information within about 48 hours.
-- Peripheral B-cell PD available within several days.
-- Profound B-cell depletion possible, with a target of $B<5$ cells/µL.
+- FLC available within 1 to 2 days.
+- Profound FLC suppression possible, with a target of $L<0.10L_0$.
 - Delayed ICANS remains a major unmodelled uncertainty.
 
 ### Archetype 2: Another BCMA TCE
@@ -793,11 +890,13 @@ A low-uncertainty comparator. Class knowledge about BCMA x CD3 pharmacology and 
 
 Include $E_{\rm pred}=10$, and perhaps 30, to test the counterargument that the molecule might be much less potent than predicted. If the prediction is badly wrong, IPDE becomes useful again. That makes this archetype a test of the framework rather than a likely candidate for IPDE.
 
-### Archetype 3: Solid-Tumour TCE
+This archetype sits more naturally here than in Specification 1, where its stopping marker is the B-cell count.
 
-Run after the B-cell model works. A solid-tumour TCE may have no equivalent rapid PD endpoint. Reuse the trial engine and replace B-cell depletion with a generic activity threshold, such as $C_{\rm trough}>C_{\rm active}$, or a target-engagement or activation biomarker if one exists.
+### Archetype 3: Dual B-Cell and Plasma-Cell Target
 
-This archetype may have very low incremental burden, because repeated therapy is already planned; more uncertainty about where activity starts; and weaker feedback on when to stop escalating. Do not add an arbitrary tumour-response model to make it work.
+Run after the single-marker model works. A CD19 x BCMA engager, or a trispecific, kills both compartments, and the two markers may move at different doses. Add the B-cell model of Specification 1's Section 9 beside the plasma-cell model, both driven by the same exposure, each with its own $EC_{50}$.
+
+The stopping rule has to name its marker before the simulation runs: stop on the first marker to cross its threshold, on both, or on the one tied to the indication. Each choice nominates a different $D^*$. Report all three and do not pick between them in v1.
 
 ------------------------------------------------------------------------
 
@@ -810,7 +909,7 @@ PK model
    |
    v
 exposure history
-   |----> B-cell PD
+   |----> plasma-cell and FLC PD
    |----> optional acute safety gate
    `----> Friberg neutropenia stress test
 
@@ -829,7 +928,7 @@ Suggested R functions:
 
 ``` r
 simulate_pk()
-simulate_bcells()
+simulate_plasma_flc()
 simulate_neutrophils()
 
 get_pd_status()
@@ -842,7 +941,7 @@ next_dose_ipde()
 simulate_patient()
 simulate_trial()
 
-calculate_T_BCD()
+calculate_T_FLC()
 calculate_T3_eval()
 calculate_patient_burden()
 calculate_operational_burden()
@@ -860,15 +959,15 @@ Build in four phases, each on the last.
 
 The first prototype answers one question:
 
-> For a QW B-cell-depleting TCE with published teclistamab-like PK, how much does prospective within-patient escalation until peripheral B cells fall below 5 cells/µL reduce (a) time to first profound B-cell depletion and (b) time until 3 fresh patients have completed evaluation on the resulting conventional candidate regimen, compared with efficient conventional between-patient escalation?
+> For a QW plasma-cell-depleting TCE with published teclistamab-like PK, how much does prospective within-patient escalation until serum FLC falls below 10% of baseline reduce (a) time to first profound FLC suppression and (b) time until 3 fresh patients have completed evaluation on the resulting conventional candidate regimen, compared with efficient conventional between-patient escalation?
 
 No IIV. Implement:
 
 - Teclistamab-like PK.
-- Indirect-response B cells.
+- Indirect-response plasma cells, with FLC at quasi-steady state (Section 9).
 - All four designs.
 - The enrollment and calendar engine.
-- $T_{\rm BCD}$ and $T_{3,\rm eval}$.
+- $T_{\rm FLC}$ and $T_{3,\rm eval}$.
 - The prediction-error scenarios.
 - The backfill confirmation and non-confirmation rules (Section 7).
 
@@ -884,7 +983,7 @@ Add Friberg neutropenia, treatment holds, and delayed-safety scenarios. ICANS st
 
 ### Phase 4: Population Variability
 
-Add IIV in PK, baseline B cells, and B-cell drug sensitivity. The final answer needs it, because a scout's depletion may not reproduce in every backfill patient, but the first-order speed question does not. Adding it last keeps the project from turning into a dose-selection methodology exercise.
+Add IIV in PK, baseline FLC, renal function, and plasma-cell drug sensitivity. The final answer needs it, because a scout's depletion may not reproduce in every backfill patient, but the first-order speed question does not. Adding it last keeps the project from turning into a dose-selection methodology exercise.
 
 ------------------------------------------------------------------------
 
@@ -894,7 +993,7 @@ Four.
 
 ### Figure 1: Patient Trajectories
 
-Conventional against IPDE, coloured by B-cell status:
+Conventional against IPDE, coloured by FLC status:
 
 ``` text
 Conventional
@@ -906,7 +1005,7 @@ P3:              9x
 
 IPDE
 
-P1:  low -> 3x -> 9x -> 27x -> B<5
+P1:  low -> 3x -> 9x -> 27x -> L<0.1 L0
                               |
                               v
                            BACKFILL
@@ -939,19 +1038,24 @@ Expected results, each of which the simulation should be able to disprove.
 1.  **Big gap in predicted active dose, big gain from intrapatient escalation.** IPDE accelerates the trial substantially when the true active dose is many escalation steps above the FIH starting dose.
 2.  **Good prediction of active dose removes benefit of intrapatient escalation.** The advantage falls sharply when the active dose is predicted accurately.
 3.  **Catch-up helps patients, but not time to evaluate active dose.** Catch-up escalation benefits participants rather than trial calendar time. This replicates the accelerated titration literature (Prior Art, Section 6), so a contradicting result is a reason to check the engine first.
-4.  **Backfill shrinks the gain.** The advantage of scout-and-backfill survives the requirement for 3 conventional backfill patients, but is smaller than the apparent gain in $T_{\rm BCD}$.
+4.  **Backfill shrinks the gain.** The advantage of scout-and-backfill survives the requirement for 3 conventional backfill patients, but is smaller than the apparent gain in $T_{\rm FLC}$.
 5.  **Fast PD turnaround raises the value.** Rapid PD turnaround strongly increases the value of IPDE.
 6.  **Operational burden is small** when patients are already scheduled for repeated early administrations.
 7.  **Escalation can outrun safety information.** When the latency of clinically relevant toxicity exceeds the escalation interval, rapid escalation outpaces what has been observed.
 8.  **ICANS stays unquantified.** It remains a real uncertainty, and is not assumed away mathematically.
 9.  **Fixed-ratio backfill undershoots.** Because the scout's stopping signal arises from cumulative exposure, backfill at $D^*$ falls short in some scenarios. The resulting non-confirmation cycles reduce the IPDE advantage without removing it.
-10. **At slow accrual, enrollment dominates.** At low enrollment rates the confirmation penalty $T_{3,\rm eval}-T_{\rm BCD}$ is mostly the time to enrol 3 backfill patients, not PD turnaround. If so, hypothesis 5 is demoted, and anticipatory pre-screening (Section 20) recovers more time than a faster assay.
+10. **At slow accrual, enrollment dominates.** At low enrollment rates the confirmation penalty $T_{3,\rm eval}-T_{\rm FLC}$ is mostly the time to enrol 3 backfill patients, not PD turnaround. If so, hypothesis 5 is demoted, and anticipatory pre-screening (Section 20) recovers more time than a faster assay.
 11. **Priming does not rescue acute safety.** Better priming at a given dose does not make the acute-safety comparison favour IPDE, because scouts also reach higher absolute doses (Section 14).
 12. **A second scout repeats the first ladder, and that only costs time when the scouts run in series.** Limiting the first dose in a drug-naive patient to a 3-fold between-cohort increase forces a later scout to start near the bottom. Under serial entry that repeats the first ladder and removes much of the scout advantage; under rolling entry (Section 6) the repeat overlaps the first ladder and costs patients rather than weeks.
 13. **Most of the low-dose saving is the micro-cohort, not the ladder.** The A-to-A2 contrast accounts for a large share of the patients saved at subactive doses and of any time saved in the low-dose region, and the A2-to-C contrast is smaller than the bundled A-to-C contrast. If so, the case for scout-and-backfill rests on the PD stop and the confirmation it enables, rather than on speed through the subtherapeutic range.
 14. **Rolling scouts are cheap in time and expensive in exposure.** Scouts entering a rung apart reach the nominated dose in close to the time a single scout takes, and supply the observations the declaration needs without a separate backfill wait. The price is that a delayed-toxicity signal at a given rung arrives with $n_{\rm scout}$ patients dosed above it rather than one.
 15. **PD-guided beats a fixed ladder.** PD-guided escalation reaches profound depletion no later than a fixed 3-fold ladder, because the large steps while the marker is quiet pay for the small steps after it moves. It also nominates a $D^*$ closer to $D_{\rm true}$, so fewer backfill cohorts fail to confirm.
 16. **Cohort size is a patient lever, not a clock lever, when accrual is fast.** Cutting low-dose cohorts from three patients to one reduces the number treated at subactive doses without materially changing $T_{3,\rm eval}$, because the between-cohort review window runs regardless of cohort size. Where accrual is slow the same change moves both.
+17. **FLC turnaround shrinks the PD-turnaround lever.** With a result in one to two days and a marker that follows plasma-cell mass within hours, the time between dose and decision is mostly the safety window, so hypothesis 5 moves $\Delta T$ less here than in the B-cell design.
+18. **The nomination sits lower than in the B-cell design.** Plasma cells recover more slowly than B cells, so more of the depletion seen at $D^*$ was built by earlier rungs, and backfill fails to confirm more often (Section 7).
+19. **Renal confounding delays the stop.** A transient fall in FLC clearance delays the stop by masking a real fall, and moves the nomination up; it does not stop a scout early. The exception is recovering light-chain kidney injury in myeloma, which runs the other way.
+20. **The floor decides whether the design works.** Above some value of $f_{\rm res}$ the FLC stop fires late or never, and scout-and-backfill degrades to a fixed ladder with an administrative cap. The simulation should locate that value, since the floor for a new target is unknown until patients are dosed.
+21. **Three scouts keep the time saving and lose most of the patient saving.** Against Design A, a three-patient scout cohort reaches a confirmed dose in close to the time a single scout takes, under fast accrual, and treats about as many patients at subactive doses as A does. If so, the case for IPDE in immunology rests on $\Delta T$ alone, the second of the four cases in Section 26b.
 
 ------------------------------------------------------------------------
 
@@ -1010,7 +1114,7 @@ Deferred, with the reason recorded so that a later version does not have to redi
 
 Two reasons defer all of them. The binding constraint here is pharmacology in a range believed subtherapeutic, so a better toxicity allocator does not address it. And these designs are less common in the immunology studies this project is aimed at than in oncology, so adopting one would add machinery the reader has to be persuaded of before the simple version has been shown to work.
 
-The second reason is a judgement about current practice rather than a documented fact, and it is weakest here: a B-cell-depleting TCE in autoimmune disease brings oncology dose-finding practice with the modality. Treat it as a reason to defer, and check it before repeating it to a review board.
+The second reason is a judgement about current practice rather than a documented fact, and it is weakest here: a plasma-cell-depleting TCE in autoimmune disease brings oncology dose-finding practice with the modality. Treat it as a reason to defer, and check it before repeating it to a review board.
 
 What would reopen the question is $F_{\rm start}$ (Section 6). Guo et al. 2025 places intrapatient escalation inside a CRM with an adaptively updated starting dose, which treats that question formally rather than as a fixed cap. Work applying BLRM to the same problem has not been found; when it is, it goes on the references page.
 
@@ -1025,3 +1129,5 @@ What would reopen the question is $F_{\rm start}$ (Section 6). Guo et al. 2025 p
 Every source is on the [references page](references.qmd), in reading order, with a marker recording whether it has been checked. Simon 1997 has been checked; none of the sources behind the parameters has.
 
 Three things need verifying before anything here goes into final work: the teclistamab PK parameters in Section 8 and the Friberg system values in Section 17, both transcribed rather than verified, and the MCLA-117 dose table in Section 6, transcribed from an image of the poster.
+
+This variant adds its own: the FLC half-lives in Section 9, the reference intervals and the IMWG measurable-disease criterion in Section 22, and the sBCMA claims in Sections 8 and 9. The references page lists them under Sources behind Specification 2, and none has been read at source.

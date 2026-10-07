@@ -25,7 +25,8 @@ volunteers, was added on 2026-09-10 from a registry search and is in the
 same state.
 :::
 
-The working document is [the specification](specification.qmd), and the
+The working document is [Specification 2](specification2.qmd), which
+replaced [Specification 1](specification.qmd) on 2026-10-07, and the
 folder's other documents are on [the project index](index.qmd).
 
 ## Status markers
@@ -640,8 +641,10 @@ to Vignette Bio and then Candid.
 
 **The question.** What single dose the volunteers received, relative
 to the 0.2 to 300 mg weekly range already given to myeloma patients
-(entry 24), and what their B cells and cytokines did. Neither is a
-registered outcome, so the answer is in a presentation not yet found.
+(entry 24), and what their B cells, free light chains and cytokines
+did. None is a registered outcome, so the answer is in a presentation
+not yet found. Free light chains are the readout
+[Specification 2](specification2.qmd) would use for a BCMA engager.
 
 ### 22. NCT07284797 — XmAb657 first-in-human in healthy participants and autoimmune patients ❌
 
@@ -743,6 +746,29 @@ the working document.
 | ❌ | [Teclistamab ICANS clinical experience](https://pmc.ncbi.nlm.nih.gov/articles/PMC11649460/) | Incidence and onset distribution claims | Section 16 |
 
 : Sources behind the specification's parameters {tbl-colwidths="[8,38,34,20]"}
+
+## Sources behind Specification 2
+
+The FLC numbers and claims in [Specification 2](specification2.qmd).
+Each was taken from a search result or a secondary summary on
+2026-10-07, and none has been read at source.
+
+| Status | Source | Taken from it | Used in |
+|:---|:---|:---|:---|
+| ⚠️ | [Katzmann et al. 2002, *Clin Chem*, FLC reference intervals](https://pubmed.ncbi.nlm.nih.gov/12194920/) | Kappa 3.3–19.4 mg/L, lambda 5.7–26.3 mg/L, ratio 0.26–1.65 | Sections 4, 11, 22 |
+| ⚠️ | Serum FLC half-life; primary source not located. Quoted in [a high-cutoff haemodialysis kinetics paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC12654745/) among others | Kappa 2–4 h, lambda 3–6 h, renal clearance, longer in renal failure | Section 9 |
+| ⚠️ | Kumar et al. 2016, IMWG consensus response criteria, *Lancet Oncology*; not retrieved | Measurable disease by FLC: involved FLC ≥ 100 mg/L with an abnormal ratio | Section 22 |
+| ❌ | [Teclistamab sBCMA and exposure, ASCO abstract](https://ace.asco.org/content/332865/abstract/195483) | Baseline sBCMA not a significant covariate on teclistamab exposure | Section 8 |
+| ❌ | [sBCMA during teclistamab and talquetamab, EHA 2021](https://library.ehaweb.org/eha/2021/eha2021-virtual-congress/325725/suzette.girgis.modulation.of.soluble.b-cell.maturation.antigen.levels.by.html) | sBCMA falls in responders | Section 9 |
+| ❌ | [Early FLC reduction predicts outcome in intact-immunoglobulin myeloma](https://pmc.ncbi.nlm.nih.gov/articles/PMC8733007/) | Precedent for an early FLC fall as a readout of plasma-cell kill | Section 9 |
+
+: Sources behind Specification 2 {tbl-colwidths="[8,42,32,18]"}
+
+Not yet looked for: the within-person variability of serial FLC
+measurements, which sets whether $\theta_{\rm move}$ needs a confirmatory
+sample (Section 13); the disagreement between FLC assays from different
+manufacturers (Section 11); and any estimate of plasma-cell recovery
+after a BCMA engager, which sets $t_{1/2,P}$ (Section 9).
 
 ## The MCLA-117 worked example
 

@@ -28,11 +28,16 @@ starting-dose method with human data behind it.
 
 ## Documents
 
-- [Working specification](specification.qmd). Approach 1. The design,
-  the PK and pharmacodynamic models, the endpoints, and the
-  implementation sequence for the intrapatient escalation simulation.
-  Its In Brief section summarizes the rest on one screen, and its
-  Section 1 records the open decision between approaches 1 and 2.
+- [Working specification: plasma-cell targets](specification2.qmd).
+  Approach 1. The design, the PK and pharmacodynamic models, the
+  endpoints, and the implementation sequence for the intrapatient
+  escalation simulation, for an engager that kills plasma cells, with
+  serum free light chains as the stopping marker. Its In Brief section
+  summarizes the rest on one screen, and its Section 1 records the open
+  decision between approaches 1 and 2.
+- [Specification 1: B-cell targets](specification.qmd). The same design
+  with peripheral B cells as the marker. Frozen on 2026-10-07; edits go
+  in the working specification.
 - [T-cell engagers in healthy volunteers](tce-hv.qmd). Approach 2. The
   three registered volunteer studies, all autoimmune and all since
   December 2025, what a volunteer study can measure, the translation to
