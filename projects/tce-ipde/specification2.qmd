@@ -55,7 +55,7 @@ The simulation and operational framework answer one question:
 
 ### Headline Metrics
 
-The definitions here are enough to read the rest of the document. Sections 4, 5 and 19 give the full rules.
+We define the following metrics for assessing a study design.
 
 **Profound FLC suppression** is a serum free light chain concentration $L$ below $\theta_{\rm stop}L_0$, where $L_0$ is that patient's baseline and $\theta_{\rm stop}=0.10$ in the base case (Section 9). It is the trial's observable evidence that a dose is active.
 
