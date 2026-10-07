@@ -51,7 +51,7 @@ The simulation and operational framework answer one question:
 
 > Under what conditions does intrapatient dose escalation (IPDE) materially shorten the time a first-in-human T-cell engager study needs to reach and conventionally evaluate a biologically active dose or regimen, or reach that point in the same time having treated fewer patients at subtherapeutic exposures, and what safety and operational risks come with either?
 
-**The saving can arrive on three axes.** It can be calendar time, patients, or clinical workload (visits and hours of observation or hospitalization), and a design can win on one axis and not the others. Catch-up escalation is expected to be such a design: little change in the time to an evaluated active dose, and substantially less patient-time at clearly subactive doses (Section 6). Scored on time alone it would count as a failure.
+**The saving can arrive on three axes.** It can be calendar time, patients, or clinical workload (visits and hours of observation or hospitalization), and a design can win on one axis and not the others. Catch-up escalation is expected to be such a design: little change in the time to an evaluated active dose, and substantially less patient-time at clearly subactive doses (Section 6). Scored on time to an evaluated active dose alone, it would count as a failure.
 
 ### Headline Metrics
 
