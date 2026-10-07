@@ -27,6 +27,10 @@ is built yet.
   categories, the quantitative ranking criteria, and the monthly agent run
   that finds, scores and publishes public skill files.
 
+- [PMx Skills Index](curated-list.qmd). The ranked list itself, compiled by
+  Claude from Specification 2, with the
+  [evidence behind every score](curated-list-evidence.qmd).
+
 - [Proposal](proposal.qmd). One page: why skill files could replace static
   guidance documents, and the rules for consensus, position pages, review and
   governance.

@@ -1,0 +1,216 @@
+- title: scientific-agent-skills · pkpd-modeling
+  path: https://github.com/K-Dense-AI/scientific-agent-skills/tree/92ace75ac21efe19a620434e0ca4e356081fe807/skills/pkpd-modeling
+  rank: 1 (1–2)
+  library: K-Dense-AI/scientific-agent-skills
+  tags: PK/PD modeling; NCA; population PK
+  S: 70.3
+  Q: 90.0
+  E: 0.0
+  M: 99.2
+  A: 100.0
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#kdense-pkpd)'
+- title: jinko-skills · jinko-task-ichm15-planning
+  path: https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-ichm15-planning
+  rank: 1 (1–2)
+  library: novainsilico/jinko-skills
+  tags: MIDD planning
+  S: 65.3
+  Q: 100.0
+  E: 0.0
+  M: 98.1
+  A: 6.4
+  flags: ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#jinko-ichm15)'
+- title: clinpharm-pmx-skills · review-pharmacometrics-deliverable
+  path: https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-pharmacometrics-deliverable
+  rank: 3 (2–4)
+  library: malekokour/clinpharm-pmx-skills
+  tags: document review
+  S: 64.8
+  Q: 83.3
+  E: 28.0
+  M: 92.5
+  A: 17.9
+  flags: ⚠️ author match probable
+  evidence: '[evidence](curated-list-evidence.html#okour-pmx-deliverable); also in this library: review-exposure-response-modelling, verify-nca-outputs'
+- title: clinpharm-pmx-skills · review-model-analysis-deliverable
+  path: https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-model-analysis-deliverable
+  rank: 3 (2–4)
+  library: malekokour/clinpharm-pmx-skills
+  tags: document review; model evaluation
+  S: 63.3
+  Q: 80.0
+  E: 28.0
+  M: 92.5
+  A: 17.9
+  flags: ⚠️ author match probable
+  evidence: '[evidence](curated-list-evidence.html#okour-model-deliverable)'
+- title: drug-discovery-agent-skills · pkpd-translation
+  path: https://github.com/K-Dense-AI/drug-discovery-agent-skills/tree/2bd3bdec5b724f8715a5c2ff828d82245b3a5a6a/skills/pkpd-translation
+  rank: 3 (2–3)
+  library: K-Dense-AI/drug-discovery-agent-skills
+  tags: translational PK/PD; human dose prediction
+  S: 62.0
+  Q: 88.9
+  E: 0.0
+  M: 92.9
+  A: 34.0
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#kdense-pkpd-translation)'
+- title: scientific-agents · clinical-pharmacologist
+  path: https://github.com/K-Dense-AI/scientific-agents/tree/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/clinical-pharmacologist/skills/clinical-pharmacologist
+  rank: 3 (2–4)
+  library: K-Dense-AI/scientific-agents
+  tags: clinical pharmacology
+  S: 60.3
+  Q: 83.3
+  E: 0.0
+  M: 88.9
+  A: 50.1
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#kdense-clinpharm)'
+- title: clinpharm-pmx-skills · assess-model-evaluation-diagnostics
+  path: https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/assess-model-evaluation-diagnostics
+  rank: 7 (2–7)
+  library: malekokour/clinpharm-pmx-skills
+  tags: model evaluation; document review
+  S: 57.3
+  Q: 66.7
+  E: 28.0
+  M: 92.5
+  A: 17.9
+  flags: ⚠️ author match probable
+  evidence: '[evidence](curated-list-evidence.html#okour-diagnostics)'
+- title: nlmixr2llm · reporting
+  path: https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/reporting
+  rank: 7 (2–10)
+  library: john-harrold/nlmixr2llm
+  tags: model evaluation; report writing; nlmixr2
+  S: 54.9
+  Q: 50.0
+  E: 52.0
+  M: 85.6
+  A: 22.9
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-reporting)'
+- title: scientific-agents · pharmacokineticist
+  path: https://github.com/K-Dense-AI/scientific-agents/tree/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/pharmacokineticist/skills/pharmacokineticist
+  rank: 9 (7–9)
+  library: K-Dense-AI/scientific-agents
+  tags: PK analysis
+  S: 50.6
+  Q: 61.7
+  E: 0.0
+  M: 88.9
+  A: 50.1
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#kdense-pharmacokineticist)'
+- title: aNCA · nca-scientific-change-review
+  path: https://github.com/pharmaverse/aNCA/tree/e6b468f9085e5380229d1945228d4da9bbad36c3/.github/skills/nca-scientific-change-review
+  rank: '9'
+  library: pharmaverse/aNCA
+  tags: NCA; code review
+  S: 50.6
+  Q: 60.0
+  E: 0.0
+  M: 99.0
+  A: 38.0
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#anca-nca-review)'
+- title: jinko-skills · jinko-task-paper2model
+  path: https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-paper2model
+  rank: 11 (10–11)
+  library: novainsilico/jinko-skills
+  tags: model building from literature; QSP
+  S: 42.9
+  Q: 50.0
+  E: 0.0
+  M: 98.9
+  A: 6.4
+  flags: ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#jinko-paper2model)'
+- title: inflexa · pkpd-clinical-response
+  path: https://github.com/inflexa-ai/inflexa/tree/79c79cbaf4bd81d3e862c3c1581a89c6666ba6d9/skills/pkpd-clinical-response
+  rank: 12 (11–12)
+  library: inflexa-ai/inflexa
+  tags: PK/PD; exposure-response
+  S: 29.3
+  Q: 20.0
+  E: 0.0
+  M: 84.9
+  A: 33.5
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#inflexa-pkpd)'
+- title: ai_collection · quantum-compartmental-pkpd
+  path: https://github.com/hiyenwong/ai_collection/tree/ce2d037b18f0ad37cdb6bb9ba31476f1aba221d9/collection/skills/other/quantum-compartmental-pkpd
+  rank: 12 (12–13)
+  library: hiyenwong/ai_collection
+  tags: simulation
+  S: 25.3
+  Q: 23.3
+  E: 0.0
+  M: 67.8
+  A: 12.8
+  flags: ⚠️ no licence · ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#hiyenwong-quantum)'
+- title: BiostatAgent · pharmacokinetics
+  path: https://github.com/choxos/BiostatAgent/tree/a55c0591107181cdac9ce78813dc0abac3281caa/plugins/r-tidy-modeling/skills/pharmacokinetics
+  rank: 14 (12–14)
+  library: choxos/BiostatAgent
+  tags: PK analysis; PKNCA; mrgsolve; nlmixr2
+  S: 23.8
+  Q: 20.0
+  E: 0.0
+  M: 61.8
+  A: 24.3
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#biostat-pk)'
+- title: PK_Claude · covariate-test
+  path: https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/covariate-test
+  rank: '15'
+  library: momentummetrix/PK_Claude
+  tags: covariate modeling; NONMEM
+  S: 12.2
+  Q: 16.7
+  E: 16.0
+  M: 0
+  A: 6.4
+  flags: ⚠️ no licence · ⚠️ archived · ⚠️ author match probable
+  evidence: '[evidence](curated-list-evidence.html#momentum-covariate); also in this library: model-eval, er-analysis'
+- title: PK_Claude · nca-analysis
+  path: https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/nca-analysis
+  rank: 15 (15–17)
+  library: momentummetrix/PK_Claude
+  tags: NCA
+  S: 9.6
+  Q: 11.1
+  E: 16.0
+  M: 0
+  A: 6.4
+  flags: ⚠️ no licence · ⚠️ archived · ⚠️ author match probable
+  evidence: '[evidence](curated-list-evidence.html#momentum-nca)'
+- title: PK_Claude · simulate-pk
+  path: https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/simulate-pk
+  rank: 15 (15–17)
+  library: momentummetrix/PK_Claude
+  tags: simulation
+  S: 9.6
+  Q: 11.1
+  E: 16.0
+  M: 0
+  A: 6.4
+  flags: ⚠️ no licence · ⚠️ archived · ⚠️ author match probable
+  evidence: '[evidence](curated-list-evidence.html#momentum-simulate)'
+- title: satori · scientific-clinical-pharmacology
+  path: https://github.com/nahisaho/satori/tree/20787d90a5bd957922dac1ec18d4f708d5df7551/src/.github/skills/scientific-clinical-pharmacology
+  rank: 15 (15–18)
+  library: nahisaho/satori
+  tags: clinical pharmacology; population PK
+  S: 9.2
+  Q: 0
+  E: 0.0
+  M: 37.9
+  A: 16.5
+  flags: ⚠️ no licence · ❌ major error · ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#satori-clinpharm)'

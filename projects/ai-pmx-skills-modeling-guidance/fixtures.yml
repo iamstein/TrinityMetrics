@@ -1,0 +1,25 @@
+# Known-answer checks (Specification 2, Section 6, step 1). The error audit
+# must report each of these as a major error at the pinned commit, or the
+# monthly run stops without publishing. Both errors were first found by a
+# review on 2026-10-02.
+- id: shrinkage-fixes-omega
+  repo: jaj42/nonmem-skill
+  commit: 2a32fed9390202a3d30d55d62b8faeb38d384f89
+  file: nonmem-skill/references/diagnostics-vpc.md
+  line: 30
+  error: >
+    Turns an ETA shrinkage threshold (above 50%) into a recommendation to fix
+    the between-subject variance to zero. Shrinkage measures how little the
+    data say about each individual's ETA, not whether the population
+    variance exists (Savic and Karlsson 2009).
+  found_2026_10: true
+- id: omega-outside-objective
+  repo: nahisaho/satori
+  commit: 20787d90a5bd957922dac1ec18d4f708d5df7551
+  file: src/.github/skills/scientific-clinical-pharmacology/SKILL.md
+  function: popk_estimation
+  error: >
+    Sets every ETA to zero inside the objective function while returning
+    omega estimates, so the variance parameters never enter the likelihood
+    and the "NLME" fit is a pooled fit.
+  found_2026_10: true

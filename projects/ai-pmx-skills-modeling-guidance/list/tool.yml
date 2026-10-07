@@ -1,0 +1,192 @@
+- title: nlmixr2lib · extract-literature-model
+  path: https://github.com/nlmixr2/nlmixr2lib/tree/5ddf9ae402eda988f8830bef55cbf808691536b7/.claude/skills/extract-literature-model
+  rank: '1'
+  library: nlmixr2/nlmixr2lib
+  tags: nlmixr2; model building from literature
+  S: 64.9
+  Q: 57.1
+  E: 48.0
+  M: 98.9
+  A: 73.8
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#nlmixr2lib-extract)'
+- title: nlmixr2llm · estimation
+  path: https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/estimation
+  rank: 2 (1–2)
+  library: john-harrold/nlmixr2llm
+  tags: nlmixr2; estimation
+  S: 59.6
+  Q: 52.1
+  E: 52.0
+  M: 85.6
+  A: 60.2
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-estimation)'
+- title: nlmixr2llm · simulation
+  path: https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/simulation
+  rank: 2 (2–4)
+  library: john-harrold/nlmixr2llm
+  tags: rxode2; simulation
+  S: 55.4
+  Q: 42.9
+  E: 52.0
+  M: 85.6
+  A: 60.2
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-simulation)'
+- title: nlmixr2llm · interop
+  path: https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/interop
+  rank: 4 (4–7)
+  library: john-harrold/nlmixr2llm
+  tags: nlmixr2; NONMEM; Monolix; model conversion
+  S: 49.0
+  Q: 28.6
+  E: 52.0
+  M: 85.6
+  A: 60.2
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-interop)'
+- title: nonmem.utils · r-nonmem.utils
+  path: https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/r-nonmem.utils
+  rank: 4 (4–6)
+  library: pchelle/nonmem.utils
+  tags: nonmem.utils; NONMEM
+  S: 48.3
+  Q: 42.9
+  E: 44.0
+  M: 81.5
+  A: 16.8
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#pchelle-r-nonmem-utils); also in this library: covariate-analysis, dataset-analysis'
+- title: pk-modeling-skills · easy-nonmem
+  path: https://github.com/kinginsun/pk-modeling-skills/tree/0074bddeebd6f3310d862c16cb317b37dfbb1ec1/skills/easy-nonmem
+  rank: 6 (1–7)
+  library: kinginsun/pk-modeling-skills
+  tags: NONMEM; PsN
+  S: 42.8
+  Q: 57.1
+  E: 0.0
+  M: 85.6
+  A: 0.0
+  flags: ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#kinginsun-easy-nonmem)'
+- title: nonmem.utils · gof-analysis
+  path: https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/gof-analysis
+  rank: 6 (6–7)
+  library: pchelle/nonmem.utils
+  tags: model evaluation; nonmem.utils
+  S: 40.1
+  Q: 28.6
+  E: 44.0
+  M: 72.6
+  A: 16.8
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#pchelle-gof)'
+- title: nonmem.utils · poppk-report-workflow
+  path: https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/poppk-report-workflow
+  rank: 6 (6–7)
+  library: pchelle/nonmem.utils
+  tags: report writing; nonmem.utils
+  S: 40.1
+  Q: 28.6
+  E: 44.0
+  M: 72.6
+  A: 16.8
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#pchelle-report)'
+- title: pk-modeling-skills · monolix-cli
+  path: https://github.com/kinginsun/pk-modeling-skills/tree/0074bddeebd6f3310d862c16cb317b37dfbb1ec1/skills/monolix-cli
+  rank: 9 (4–10)
+  library: kinginsun/pk-modeling-skills
+  tags: Monolix
+  S: 36.4
+  Q: 42.9
+  E: 0.0
+  M: 85.6
+  A: 0.0
+  flags: ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#kinginsun-monolix-cli)'
+- title: aNCA · pknca-compatibility
+  path: https://github.com/pharmaverse/aNCA/tree/e6b468f9085e5380229d1945228d4da9bbad36c3/.github/skills/pknca-compatibility
+  rank: 9 (4–11)
+  library: pharmaverse/aNCA
+  tags: PKNCA; aNCA; package development
+  S: 36.1
+  Q: 14.3
+  E: 0.0
+  M: 98.4
+  A: 100.0
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#anca-pknca)'
+- title: ferx.utils · r-ferx
+  path: https://github.com/pchelle/ferx.utils/tree/ec220d6630b4a802c604eeab3e8ee147b42f3f20/.claude/skills/r-ferx
+  rank: 9 (9–11)
+  library: pchelle/ferx.utils
+  tags: ferx
+  S: 32.9
+  Q: 14.3
+  E: 44.0
+  M: 77.1
+  A: 0.0
+  flags: ''
+  evidence: '[evidence](curated-list-evidence.html#pchelle-r-ferx)'
+- title: APMODE · apmode-cli
+  path: https://github.com/biostochastics/APMODE/tree/cbdcadf62f874190c126d9d3fdbe0c1560ddbb84/.claude/skills/apmode
+  rank: 12 (7–12)
+  library: biostochastics/APMODE
+  tags: APMODE; nlmixr2; Stan
+  S: 30.0
+  Q: 28.6
+  E: 8.0
+  M: 67.3
+  A: 16.8
+  flags: ⚠️ author match probable
+  evidence: '[evidence](curated-list-evidence.html#apmode)'
+- title: jinko-skills · jinko
+  path: https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko
+  rank: 12 (10–12)
+  library: novainsilico/jinko-skills
+  tags: Jinkō
+  S: 27.9
+  Q: 14.3
+  E: 0.0
+  M: 98.9
+  A: 16.8
+  flags: ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#jinko-core)'
+- title: jinko-skills · jinko-task-from-nonmem
+  path: https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-from-nonmem
+  rank: 12 (10–12)
+  library: novainsilico/jinko-skills
+  tags: Jinkō; NONMEM; model conversion
+  S: 27.7
+  Q: 14.3
+  E: 0.0
+  M: 98.1
+  A: 16.8
+  flags: ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#jinko-from-nonmem)'
+- title: nonmem-skill · nonmem
+  path: https://github.com/jaj42/nonmem-skill/tree/2a32fed9390202a3d30d55d62b8faeb38d384f89/nonmem-skill
+  rank: 15 (11–15)
+  library: jaj42/nonmem-skill
+  tags: NONMEM
+  S: 22.1
+  Q: 17.9
+  E: 4.0
+  M: 51.8
+  A: 26.6
+  flags: ❌ major error · ⚠️ author match probable
+  evidence: '[evidence](curated-list-evidence.html#jaj42-nonmem)'
+- title: pk-sim-pbpk · pk-sim-pbpk
+  path: https://github.com/gscas/pk-sim-pbpk/tree/80e514b7cfffcd28becf4481cca31c238404bd98
+  rank: '16'
+  library: gscas/pk-sim-pbpk
+  tags: PK-Sim; PBPK
+  S: 9.8
+  Q: 0
+  E: 0.0
+  M: 49.2
+  A: 0.0
+  flags: ⚠️ no licence · ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#gscas-pksim)'

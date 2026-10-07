@@ -1,0 +1,12 @@
+- title: PMxbench, ISoP AI/ML SIG Agentic Workflows
+  path: https://github.com/AIML-SIG/Agentic-workflows
+  contents: One simulated population PK study with a known answer, a submission format (one YAML file) and a leaderboard.
+  licence: MIT
+  last_commit: '2026-10-06'
+  authors: ISoP AI/ML SIG Agentic Pharmacometrics subgroup
+- title: Agent Skills vs PMxAgent NCA benchmark
+  path: https://github.com/heyiamnotacoder/pmxagent-skills-benchmark
+  contents: Eight task folders, led by the PMxAgent NCA benchmark (182 drugs, 1,820 subjects, PKanalix reference), run with and without skills; frozen skills, scoring code and raw run evidence archived on Zenodo.
+  licence: MIT (benchmark data CC BY-NC, from the PMxAgent paper)
+  last_commit: '2026-09-28'
+  authors: Dhruvik (heyiamnotacoder)

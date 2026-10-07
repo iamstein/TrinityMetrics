@@ -1,0 +1,24 @@
+# Criteria for the PMx Skills Index (Specification 2, Section 5).
+# Andy edits this file. The monthly agent reads it and never changes it;
+# it proposes changes in its monthly report instead.
+version: 1
+weights:
+  quality: 45
+  expertise: 25
+  maintenance: 20
+  adoption: 10
+tie_margin: 5
+max_ranked_per_library_per_category: 3
+categories: [tool, task, evaluation]
+quality:
+  rubric: [R1, R2, R3, R4, R5, R6, R7, R8, R9, R10]
+  penalty: {major: 25, minor: 5}
+  benchmark_share: 0.5
+  min_judge_agreement: 0.85
+expertise:
+  method: share_weighted_field_h   # or sum_h, max_h, total_citations
+  h_cap: 25
+maintenance:
+  recency_horizon_days: 365
+adoption:
+  enabled: true

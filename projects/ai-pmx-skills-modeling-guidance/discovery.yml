@@ -1,0 +1,52 @@
+# Discovery queries for the PMx Skills Index (Specification 2, Section 6, step 2).
+month: 2026-10
+code_search:
+  query: '"<term>" filename:SKILL.md'
+  hits:
+    PBPK: 94
+    PKNCA: 23
+    PsN: 3904
+    clinical pharmacology: 313
+    exposure-response: 116
+    monolix: 75
+    mrgsolve: 22
+    nlmixr2: 71
+    noncompartmental: 0
+    nonmem: 187
+    pharmacokinetic: 1556
+    pharmacometric: 56
+    pharmacometrics: 26
+    pk-sim: 106
+    population pharmacokinetic: 8
+    pumas: 43
+    rxode2: 48
+    simcyp: 66
+repository_search:
+- pharmacometrics skills
+- pharmacometric skill
+- nonmem skill
+- nonmem claude
+- monolix skill
+- nlmixr2 skill
+- nlmixr2 claude
+- pkpd skills
+- pharmacokinetics claude skills
+- clinical pharmacology skills
+- pmx skills
+- pbpk skill
+- nca skill claude
+- pharmacometrics agent
+- pharmacometrics llm
+- pharmacometrics benchmark llm
+- pumas claude
+known_indexes:
+- AIML-SIG/Agentic-workflows
+- the 2026-10-02 review
+not_searched:
+- ACoP and PAGE abstracts
+- GitLab and Codeberg
+- Agent Skills marketplaces
+result:
+  repositories_cloned: 25
+  skills_scored: 40
+  evaluation_resources: 2

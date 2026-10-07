@@ -1,0 +1,154 @@
+---
+title: "PMx Skills Index"
+subtitle: "Public pharmacometrics skill files, ranked each month by Claude"
+description: "A monthly, Claude-maintained ranking of public skill files for pharmacometrics work, in tool and task categories, scored on quality, author expertise, maintenance and adoption by criteria Andy sets."
+categories: [GenAI, Pharmacometrics methods]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+listing:
+  - id: tool-skills
+    contents: list/tool.yml
+    type: table
+    sort: false
+    sort-ui: false
+    filter-ui: false
+    fields: [rank, title, tags, S, Q, E, M, A, flags, evidence]
+    field-display-names:
+      rank: Rank
+      title: Skill
+      tags: Tags
+      flags: Flags
+      evidence: Evidence
+  - id: task-skills
+    contents: list/task.yml
+    type: table
+    sort: false
+    sort-ui: false
+    filter-ui: false
+    fields: [rank, title, tags, S, Q, E, M, A, flags, evidence]
+    field-display-names:
+      rank: Rank
+      title: Skill
+      tags: Tags
+      flags: Flags
+      evidence: Evidence
+  - id: evaluation-resources
+    contents: list/evaluation.yml
+    type: table
+    sort: false
+    sort-ui: false
+    filter-ui: false
+    fields: [title, contents, licence, last_commit, authors]
+    field-display-names:
+      title: Resource
+      contents: Contents
+      licence: Licence
+      last_commit: Last change
+      authors: Authors
+---
+
+::: {.callout-important appearance="simple"}
+This list is compiled and ranked each month by Claude, an AI model made by
+Anthropic, running unattended. No person reviews the entries or the scores
+before they are published. Andy Stein sets the criteria in
+[Specification 2](specification2-curated-list.qmd) and does not adjust
+individual scores. A score measures what the criteria measure; a high rank is
+not an endorsement for use on real data. Authors who find an error can open an
+issue on [GitHub](https://github.com/iamstein/TrinityMetrics/issues).
+:::
+
+## Reading the Scores
+
+Every score runs from 0 to 100. The full definitions are in
+[Specification 2](specification2-curated-list.qmd), Section 4.
+
+| Score | Measures | Weight |
+|:---|:---|---:|
+| **S** | The total, weighted from the four below | |
+| **Q**, quality | Share of applicable rubric items met, less 25 points per major error and 5 per minor error found by an error audit | 45 |
+| **E**, expertise | The authors' h-index over their pharmacokinetics and pharmacometrics papers in OpenAlex, weighted by their share of the skill, capped at 25 | 25 |
+| **M**, maintenance and usability | Days since the skill last changed, and five usability checks such as a licence and installation instructions | 20 |
+| **A**, adoption | Repository stars and forks, on a log scale within the category | 10 |
+
+: The scores in the tables below {tbl-colwidths="[24,64,12]"}
+
+- **Rank.** Skills within 5 points of each other share a rank. The range in
+  brackets is the skill's rank across the default weights, quality alone, and
+  equal weights.
+- **Flags.** ❌ a major error found. ⚠️ no licence, archived repository, authors
+  not found in OpenAlex, or an author matched by name alone.
+- **At most three skills per library are ranked in each category.** The
+  library's other scored skills are named in the evidence column.
+- **Evidence** links to the rubric answers, with the quoted lines behind them,
+  the error findings, each author's OpenAlex record and field h-index, and the
+  repository measurements.
+
+## Tool Skills
+
+Skills whose instructions would be wrong or useless for a different piece of
+software.
+
+::: {#tool-skills}
+:::
+
+## Task Skills
+
+Skills whose instructions hold across tools, even where their examples use one.
+
+::: {#task-skills}
+:::
+
+## Evaluation Resources
+
+Test cases and benchmarks for measuring how well an assistant does
+pharmacometrics work. Not ranked: Specification 2 does not yet define a quality
+score for them.
+
+::: {#evaluation-resources}
+:::
+
+## This Month's Run
+
+**October 2026**, run on 2026-10-07 under criteria version 1. Discovery searched
+GitHub code and repositories with the queries in [`discovery.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/discovery.yml), cloned 25
+repositories and scored 40 skills. Copies were merged into their originals: 37
+copies of K-Dense's `pkpd-modeling` alone. Exclusions and copies are listed in
+[`list/2026-10.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/list/2026-10.yml).
+
+**Both known-answer checks passed.** The error audit reported both errors in
+[`fixtures.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/fixtures.yml) as major before anything was scored.
+
+This first run departs from the specification in three ways:
+
+1. **One scoring pass.** The rubric and the error audit were each run once, by
+   the same model. The second independent pass, the judge-agreement figure and
+   the test-retest correlation were not produced, so a difference of a few
+   points between two skills is within the noise of a single judgement.
+2. **Large libraries were pre-screened.** In libraries of 30 or more skills, the
+   most pharmacometric skills were chosen by keyword before scoring, and the
+   per-library cap applied to those.
+3. **No benchmark score.** No evaluation resource yet covers a listed skill's
+   task with expected findings.
+
+## Proposed Changes to the Criteria
+
+The run proposes these for Andy to accept or reject in [`criteria.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/criteria.yml) and
+[`rubric.md`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/rubric.md). Until he does, the criteria stay as they are.
+
+1. **Add a rubric item for domain content.** A templated review skill with no
+   named diagnostic meets most of the current items, so it scores close to a
+   skill that explains how to read a VPC. An item such as "names at least five
+   specific diagnostics or methods and says how to read each" would separate
+   them.
+2. **Add a rubric item for verified output.** Some tool skills require the
+   assistant to check its result numerically before reporting it, such as a
+   converted model reproducing the original engine's predictions. The rubric
+   gives that no credit.
+3. **Define a score for evaluation resources**, from the number of test cases
+   with expected answers and the tasks they cover, so the third category can be
+   ranked.
+4. **Decide how organisations count for expertise.** Skills published under an
+   organisation or a bot account score 0 on E, however expert the team. A
+   named-author list, where the organisation publishes one, could stand in.

@@ -211,17 +211,29 @@ Four ways to turn a publication record into a score:
 The default proceeds in four steps.
 
 1. **Contributors and shares.** Each contributor's share is the fraction of
-   lines in the skill's files that they last changed, from the commit history.
-   Where the repository names its authors in a `CITATION.cff`, `AUTHORS` or
-   `DESCRIPTION` file, those authors share equally instead.
-2. **Identity.** A contributor is matched to an OpenAlex author only with
-   evidence: an ORCID on their GitHub profile or in `CITATION.cff`, or a name
-   and affiliation that agree between the two. The evidence is recorded. A
-   contributor without a match scores 0 and is labelled *not found*.
+   lines in the skill's files that they last changed, from `git blame`. Where
+   those lines come from a bot or a shared account (a publishing bot, Copilot,
+   probot), the authors named in the repository's `CITATION.cff`, `AUTHORS` or
+   `DESCRIPTION` file share equally instead, and failing those, the owner of a
+   personal repository.
+2. **Identity.** A contributor is matched to an OpenAlex author with one of
+   three kinds of evidence, recorded with the match:
+   - an ORCID, from their GitHub profile, `CITATION.cff`, or the `DESCRIPTION`
+     of a package they maintain under the same GitHub account;
+   - a name and affiliation that agree between GitHub and OpenAlex;
+   - *probable*: the name is unique among OpenAlex authors with at least three
+     field works (step 3). The page flags these matches ⚠️.
+
+   A contributor without a match scores 0 and is labelled *not found*.
 3. **Field h-index.** For each matched author, $h_{\rm PMx}$ is the h-index
-   computed over their works in OpenAlex's pharmacology and pharmacokinetics
-   topics only. This keeps a highly cited author from another field from
-   scoring as a pharmacometrician.
+   computed over their OpenAlex works whose title or abstract contains one of
+   *pharmacokinetic(s)*, *pharmacodynamic(s)*, *pharmacometric(s)*,
+   *exposure-response*, *PBPK*, *physiologically based*, *population model*,
+   *mixed effects*, *dose selection*, *dose finding*, *clinical pharmacology*
+   or *quantitative systems pharmacology*. This keeps a highly cited author from
+   another field from scoring as a pharmacometrician. OpenAlex's own subject
+   topics are not used: on the first run they filed most of a pharmacometrics
+   author's papers under medicine, mathematics or computer science.
 4. **Score.** With $s_c$ the share of contributor $c$ and a cap of 25,
 
 $$
@@ -350,8 +362,11 @@ list.
 
 ## 7. The List Page
 
-`curated-list.qmd`, in this folder, renders from the latest data file through
-Quarto listings of `type: table`, one listing per category. Listings read YAML
+The list is named the **PMx Skills Index**. `curated-list.qmd`, in this
+folder, renders from the latest data file through Quarto listings of
+`type: table`, one listing per category. `build_list.py` writes the listing
+contents in `list/` and the evidence page, `curated-list-evidence.qmd`, from the
+month's data file; the monthly run calls it, and nothing runs at render time. Listings read YAML
 without running code, so the page has nothing to freeze and nothing that needs
 R on the publishing runner.
 
@@ -408,11 +423,15 @@ Andy's answers on 2026-10-07 to the questions this section first carried.
 
 ## 10. First Steps
 
-1. Write `criteria.yml` and `rubric.md` with the defaults above.
-2. Build the two fixtures from the 2026-10-02 review.
-3. Run the method once in an ordinary Claude Code session, on the eleven
-   libraries from that review plus a fresh discovery pass, scoring each
-   snapshot twice to measure agreement.
+1. Write `criteria.yml` and `rubric.md` with the defaults above. **Done
+   2026-10-07.** `rubric.md` also records the scoring conventions the first run
+   needed: what counts as a skill with code, R9 following R8, and where R5
+   applies.
+2. Build the two fixtures from the 2026-10-02 review. **Done:** `fixtures.yml`.
+3. Run the method once on the eleven libraries from that review plus a fresh
+   discovery pass, scoring each snapshot twice to measure agreement. **Done in
+   part:** the [first run](curated-list.qmd) scored each skill once.
 4. Build `curated-list.qmd` from the first data file, and confirm that Quarto
-   table listings read the YAML as Section 7 assumes.
+   table listings read the YAML as Section 7 assumes. **Done:** they do,
+   including Markdown links inside a field.
 5. Schedule the monthly routine.
