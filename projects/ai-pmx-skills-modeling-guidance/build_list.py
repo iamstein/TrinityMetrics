@@ -1,7 +1,9 @@
 """Build the PMx Skills Index pages from the latest monthly data file.
 
 Reads list/YYYY-MM.yml (the newest one) and writes:
-  list/tool.yml, list/task.yml, list/evaluation.yml  listing contents for curated-list.qmd
+  list/tool.yml, list/task.yml          ranked skills, for curated-list.qmd
+  list/unproven.yml                     skills with no evidence of use, not ranked
+  list/evaluation.yml                   evaluation resources, not ranked
   curated-list-evidence.qmd                          the evidence behind every score
 
 The monthly run calls this after writing the data file; nothing runs at render
@@ -19,6 +21,7 @@ FLAG_ICON = {
     "major error": "❌ major error",
     "authors not found": "⚠️ authors not found",
     "author match probable": "⚠️ author match probable",
+    "no evidence of use": "no evidence of use",
 }
 ITEM_TEXT = {
     "R1": "States what the skill does not do",
@@ -55,12 +58,27 @@ def listing_rows(skills, by_id):
             "rank": rank,
             "library": s["library"],
             "tags": s["tags"],
-            "S": s["S"], "Q": s["Q"], "E": s["E"], "M": s["M"], "A": s["A"],
+            "S": s["S"], "Q": s["Q"], "E": s["E"], "M": s["M"], "U": s["U"],
             "flags": " · ".join(FLAG_ICON[f] for f in s["flags"]),
             "evidence": f"[evidence](curated-list-evidence.html#{s['id']})"
             + (f"; also in this library: {also}" if also else ""),
         })
     return rows
+
+
+def unproven_rows(skills):
+    rows = []
+    for s in skills:
+        if s["use"]["proven"]:
+            continue
+        flags = [FLAG_ICON[f] for f in s["flags"] if f != "no evidence of use"]
+        rows.append({
+            "title": title(s), "path": s["url"], "category": s["category"], "tags": s["tags"],
+            "S": s["S"], "Q": s["Q"], "E": s["E"], "M": s["M"],
+            "flags": " · ".join(flags),
+            "evidence": f"[evidence](curated-list-evidence.html#{s['id']})",
+        })
+    return sorted(rows, key=lambda r: r["S"], reverse=True)
 
 
 def title(s):
@@ -74,7 +92,9 @@ def esc(text):
 
 def evidence_section(s):
     out = [f"## {title(s)} {{#{s['id']}}}", ""]
-    if s["rank"] is None:
+    if not s["use"]["proven"]:
+        rank = "unproven: no evidence of use, so not ranked"
+    elif s["rank"] is None:
         rank = "not ranked: beyond the per-library cap"
     elif s["rank_range"] == str(s["rank"]):
         rank = f"rank {s['rank']}"
@@ -83,8 +103,8 @@ def evidence_section(s):
     out += [
         f"[{s['library']} at `{s['commit'][:7]}`]({s['url']}) · {s['category']} skill · {rank} · tags: {s['tags']}",
         "",
-        "| S | Q | E | M | A |", "|---:|---:|---:|---:|---:|",
-        f"| {s['S']} | {s['Q']} | {s['E']} | {s['M']} | {s['A']} |", "",
+        "| S | Q | E | M | U |", "|---:|---:|---:|---:|---:|",
+        f"| {s['S']} | {s['Q']} | {s['E']} | {s['M']} | {s['U']} |", "",
     ]
     q = s["quality"]
     out += [
@@ -114,9 +134,20 @@ def evidence_section(s):
         f" ({m['days_since_change']} days; recency {m['recency']}). Usability {m['usability']}: {checks}."
         + (" Repository archived, so M is 0." if s["archived"] else ""),
         "",
-        f"**Adoption.** {s['stars']} stars and {s['forks']} forks on the repository.",
-        "",
     ]
+    u = s["use"]
+    if u["people"]:
+        out += [f"**Use.** {u['points']} points from people outside the authors in the last 12 months.", "",
+                "| Person | What they did | Expert | Evidence |", "|:---|:---|:---|:---|"]
+        for p in u["people"]:
+            links = ", ".join(f"[{n + 1}]({x})" for n, x in enumerate(p["urls"]))
+            expert = f"yes: {esc(p['expert_evidence'])}" if p["expert"] else "no"
+            out.append(f"| {esc(p['name'])} (`{p['login']}`) | {esc(p['kind'])} | {expert} | {links} |")
+        out.append("")
+    else:
+        out += ["**Use.** No issue, pull request or comment from anyone outside the authors in the last 12"
+                " months, and no deliberate installation found in another project.", ""]
+    out += [f"Repository stars and forks, used only to break ties: {s['stars']} and {s['forks']}.", ""]
     if s["note"]:
         out += [f"*Note.* {s['note']}", ""]
     return out
@@ -129,6 +160,8 @@ def main():
     for cat in ("tool", "task"):
         rows = listing_rows([s for s in skills if s["category"] == cat], by_id)
         (HERE / "list" / f"{cat}.yml").write_text(yaml.safe_dump(rows, sort_keys=False, allow_unicode=True, width=1000))
+    (HERE / "list" / "unproven.yml").write_text(
+        yaml.safe_dump(unproven_rows(skills), sort_keys=False, allow_unicode=True, width=1000))
     ev = [{"title": r["name"], "path": r["url"], "contents": r["contents"], "licence": r["licence"],
            "last_commit": r["last_commit"], "authors": r["authors"]} for r in data["evaluation_resources"]]
     (HERE / "list" / "evaluation.yml").write_text(yaml.safe_dump(ev, sort_keys=False, allow_unicode=True, width=1000))

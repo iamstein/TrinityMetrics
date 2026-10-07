@@ -1,7 +1,7 @@
 ---
 title: "PMx Skills Index"
 subtitle: "Public pharmacometrics skill files, ranked each month by Claude"
-description: "A monthly, Claude-maintained ranking of public skill files for pharmacometrics work, in tool and task categories, scored on quality, author expertise, maintenance and adoption by criteria Andy sets."
+description: "A monthly, Claude-maintained ranking of public skill files for pharmacometrics work, in tool and task categories, scored on quality, author expertise, maintenance and evidence that people use them, by criteria Andy sets."
 categories: [GenAI, Pharmacometrics methods]
 date: last-modified
 toc: true
@@ -14,7 +14,7 @@ listing:
     sort: false
     sort-ui: false
     filter-ui: false
-    fields: [rank, title, tags, S, Q, E, M, A, flags, evidence]
+    fields: [rank, title, tags, S, Q, E, M, U, flags, evidence]
     field-display-names:
       rank: Rank
       title: Skill
@@ -27,10 +27,23 @@ listing:
     sort: false
     sort-ui: false
     filter-ui: false
-    fields: [rank, title, tags, S, Q, E, M, A, flags, evidence]
+    fields: [rank, title, tags, S, Q, E, M, U, flags, evidence]
     field-display-names:
       rank: Rank
       title: Skill
+      tags: Tags
+      flags: Flags
+      evidence: Evidence
+  - id: unproven
+    contents: list/unproven.yml
+    type: table
+    sort: false
+    sort-ui: false
+    filter-ui: false
+    fields: [title, category, tags, S, Q, E, M, flags, evidence]
+    field-display-names:
+      title: Skill
+      category: Category
       tags: Tags
       flags: Flags
       evidence: Evidence
@@ -69,11 +82,14 @@ Every score runs from 0 to 100. The full definitions are in
 | **S** | The total, weighted from the four below | |
 | **Q**, quality | Share of applicable rubric items met, less 25 points per major error and 5 per minor error found by an error audit | 45 |
 | **E**, expertise | The authors' h-index over their pharmacokinetics and pharmacometrics papers in OpenAlex, weighted by their share of the skill, capped at 25 | 25 |
-| **M**, maintenance and usability | Days since the skill last changed, and five usability checks such as a licence and installation instructions | 20 |
-| **A**, adoption | Repository stars and forks, on a log scale within the category | 10 |
+| **M**, maintenance and usability | Days since the skill last changed, and five usability checks such as a licence and installation instructions | 10 |
+| **U**, use | People outside the authors who used the skill in the last 12 months: issues, pull requests or comments about it, or a deliberate installation in their own project. Each person scores 1 point, or 3 with a pharmacometrics publication record; 10 points is 100 | 20 |
 
 : The scores in the tables below {tbl-colwidths="[24,64,12]"}
 
+- **Only skills with evidence of use are ranked.** Anyone, including a bot,
+  can write a skill file, so a skill that no one outside its authors has used
+  is listed under Unproven, with its other scores, until someone does.
 - **Rank.** Skills within 5 points of each other share a rank. The range in
   brackets is the skill's rank across the default weights, quality alone, and
   equal weights.
@@ -82,8 +98,9 @@ Every score runs from 0 to 100. The full definitions are in
 - **At most three skills per library are ranked in each category.** The
   library's other scored skills are named in the evidence column.
 - **Evidence** links to the rubric answers, with the quoted lines behind them,
-  the error findings, each author's OpenAlex record and field h-index, and the
-  repository measurements.
+  the error findings, each author's OpenAlex record and field h-index, the
+  people whose use counted, and the repository measurements. Stars and forks
+  only break ties.
 
 ## Tool Skills
 
@@ -100,6 +117,15 @@ Skills whose instructions hold across tools, even where their examples use one.
 ::: {#task-skills}
 :::
 
+## Unproven
+
+Skills scored on everything except use, in order of their total, with no
+evidence yet that anyone outside their authors has used them. A skill moves up
+to the ranked tables in the month that evidence appears.
+
+::: {#unproven}
+:::
+
 ## Evaluation Resources
 
 Test cases and benchmarks for measuring how well an assistant does
@@ -111,7 +137,9 @@ score for them.
 
 ## This Month's Run
 
-**October 2026**, run on 2026-10-07 under criteria version 1. Discovery searched
+**October 2026**, run on 2026-10-07, and reissued the same day under criteria
+version 2, which replaced adoption with use and ranks only skills with evidence
+of use. Five of the 40 skills have that evidence. Discovery searched
 GitHub code and repositories with the queries in [`discovery.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/discovery.yml), cloned 25
 repositories and scored 40 skills. Copies were merged into their originals: 37
 copies of K-Dense's `pkpd-modeling` alone. Exclusions and copies are listed in
@@ -120,7 +148,7 @@ copies of K-Dense's `pkpd-modeling` alone. Exclusions and copies are listed in
 **Both known-answer checks passed.** The error audit reported both errors in
 [`fixtures.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/fixtures.yml) as major before anything was scored.
 
-This first run departs from the specification in three ways:
+This first run departs from the specification in four ways:
 
 1. **One scoring pass.** The rubric and the error audit were each run once, by
    the same model. The second independent pass, the judge-agreement figure and
@@ -131,6 +159,9 @@ This first run departs from the specification in three ways:
    per-library cap applied to those.
 3. **No benchmark score.** No evaluation resource yet covers a listed skill's
    task with expected findings.
+4. **Use is measured from GitHub issues, pull requests, comments and
+   installations only.** GitHub Discussions were not searched, and no listed
+   skill ships in a package with download statistics.
 
 ## Proposed Changes to the Criteria
 

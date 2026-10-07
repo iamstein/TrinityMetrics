@@ -104,19 +104,23 @@ better described by its tags than by a category of its own.
 ## 4. Ranking Criteria
 
 Four scores, each from 0 to 100, combined by weights from the criteria file.
+**Only skills with evidence of use are ranked** (Section 4.4); the rest are
+scored and listed as Unproven.
 
 | Score | Measures | Measured from | Default weight |
 |:---|:---|:---|---:|
 | **Q**, quality | Whether the skill's guidance is sound, sourced and verified | Rubric, error audit, verification checks; a benchmark where one exists | 45 |
 | **E**, expertise | The authors' publication record in pharmacometrics | OpenAlex | 25 |
-| **M**, maintenance and usability | Whether the skill is kept up to date and can be installed and reused | GitHub API and repository files | 20 |
-| **A**, adoption | Whether others use it | GitHub stars and forks | 10 |
+| **M**, maintenance and usability | Whether the skill is kept up to date and can be installed and reused | GitHub API and repository files | 10 |
+| **U**, use | Whether people outside its authors have used it | GitHub issues, pull requests, comments and installations; downloads where a package ships the skill | 20 |
 
 : The four scores {tbl-colwidths="[22,34,30,14]"}
 
 Andy's three proposed criteria map to Q, M and E. Influence can mean who wrote a
 skill or who uses it, and those measure different things, so it is split into E
-and A. The 2026-10-02 review's relevance component is now the inclusion rule in
+and U. U replaced an adoption score built on stars and forks on 2026-10-07:
+anyone, including a bot, can write a skill file, and a star costs one click, so
+the index now asks for evidence that people used the skill. The 2026-10-02 review's relevance component is now the inclusion rule in
 Section 2, because a skill that is not pharmacometric does not belong on the
 list at any score.
 
@@ -261,20 +265,45 @@ archived repository has $M = 0$.
 A skill without a licence is listed with a ⚠️ flag, because it cannot legally be
 reused, whatever its other scores.
 
-### 4.4 Adoption
+### 4.4 Use
+
+U counts the people outside a skill's authors who used it in the last 12
+months, and it gates the ranking: a skill with no such person is listed as
+**Unproven**, with its other scores, and is not ranked.
+
+**Who counts.** One point for each person who, in the window:
+
+1. opened an issue or pull request, or commented, in the skill's repository.
+   Where the repository holds more than five skills or is a software package,
+   only items that name the skill or change its files count;
+2. installed the skill deliberately in a project of their own: a repository
+   holding a copy of the skill and no more than 25 skill files in all. Larger
+   repositories are aggregators and mirrors, which copy whole libraries and are
+   not evidence that anyone chose the skill;
+3. or, where the skill ships inside a package whose purpose is the skill
+   files, one point per tenfold of monthly downloads above 100 (100 is 1 point,
+   1,000 is 2).
+
+A person counts once per skill, whatever they did. A person who matches an
+OpenAlex author, by the evidence rules of Section 4.2, with a field h-index of
+5 or more counts 3 points instead of 1. That person is an **expert user**.
+
+**Who does not count.** The skill's contributors and the repository's owner;
+bots and accounts less than 180 days old; mirrors, awesome-lists, trending
+trackers and package-archive mirrors; and the index's maintainer, Andy, whose
+own issues on a skill would otherwise rank skills on his own index.
 
 $$
-A = 100 \times \frac{\ln(1 + \text{stars} + \text{forks})}{\ln(1 + \max_{\rm category}(\text{stars} + \text{forks}))}.
+U = 100 \times \min\left(1,\ \frac{\text{points}}{10}\right).
 $$
 
-Stars and forks count at repository level, so every skill in a large library
-shares that library's adoption score, and stars can be bought. The default
-weight is low for both reasons, and the criteria file can set it to 0.
+Stars and forks no longer score. They are recorded, and they break ties
+within a rank.
 
 ### 4.5 Total Score and Ties
 
 $$
-S = \frac{\sum_i w_i X_i}{\sum_i w_i}, \qquad X \in \{Q, E, M, A\}.
+S = \frac{\sum_i w_i X_i}{\sum_i w_i}, \qquad X \in \{Q, E, M, U\}.
 $$
 
 A score that does not apply to a skill, such as the benchmark part of Q, is
@@ -295,12 +324,12 @@ at the start of every run, and the list page states which version of it each
 month's ranking used. A change takes effect from the next run.
 
 ``` yaml
-version: 1
+version: 2
 weights:
   quality: 45
   expertise: 25
-  maintenance: 20
-  adoption: 10
+  maintenance: 10
+  use: 20
 tie_margin: 5
 max_ranked_per_library_per_category: 3
 categories: [tool, task, evaluation]
@@ -314,8 +343,15 @@ expertise:
   h_cap: 25
 maintenance:
   recency_horizon_days: 365
-adoption:
-  enabled: true
+use:
+  gate: true
+  window_months: 12
+  points_cap: 10
+  expert_points: 3
+  expert_h: 5
+  min_account_age_days: 180
+  max_skills_in_installing_repo: 25
+  excluded_accounts: [iamstein]
 ```
 
 The rubric's wording lives in a second file, `rubric.md`, so an item can be
@@ -340,7 +376,9 @@ in a cloud session against this repository.
    Record each query with its number of hits, candidates and inclusions.
 3. **Snapshot.** Pin every listed skill to a commit SHA. Everything that month
    is scored against that commit.
-4. **Scoring.** Recompute M and A for every skill every month. Recompute Q only
+4. **Scoring.** Recompute M and U for every skill every month; U needs a
+   GitHub code search for installations, and an OpenAlex lookup for each new
+   person who counts. Recompute Q only
    for skills whose files changed since the last run. Recompute E every three
    months, or when the contributors change.
 5. **Changes.** Give a one-line reason for every skill that moved three or more
@@ -376,9 +414,12 @@ R on the publishing runner.
 | Skill | Name, linked to the pinned commit |
 | Library | Repository |
 | Tags | Tools and tasks |
-| S, Q, E, M, A | The total and the four scores |
+| S, Q, E, M, U | The total and the four scores |
 | Flags | ⚠️ no licence · ⚠️ archived · ❌ major error found · ⚠️ authors not found in OpenAlex |
-| Evidence | Link to the skill's evidence: rubric quotes, audit findings, matched OpenAlex records with each author's field h-index, API values |
+| Evidence | Link to the skill's evidence: rubric quotes, audit findings, matched OpenAlex records with each author's field h-index, the people whose use counted, API values |
+
+Below the ranked tables, an **Unproven** table lists every scored skill without
+evidence of use, in order of its total.
 
 : Columns of the list page {tbl-colwidths="[18,82]"}
 
@@ -415,11 +456,17 @@ Andy's answers on 2026-10-07 to the questions this section first carried.
 2. **The page shows individual h-indices.** The evidence for each skill lists
    every matched author with their field h-index and OpenAlex record.
 3. **The default weights stand**: quality 45, expertise 25, maintenance 20,
-   adoption 10.
+   adoption 10. Superseded by decision 6.
 4. **Individual skills are ranked**, for now, under the per-library cap in
    Section 2. Ranking libraries may replace this later.
 5. **Authors are not told** when their skill is listed. The agent makes no
    contact outside this repository.
+6. **Use replaces adoption, and gates the ranking** (later on 2026-10-07).
+   Andy's reason, in his words: "it's very easy for anyone, even a bot, to
+   make a skill file. What really matters is that humans have used it and
+   found it helpful." Weights are now quality
+   45, expertise 25, maintenance 10, use 20. The ranked lists will shrink, and
+   that is accepted.
 
 ## 10. First Steps
 

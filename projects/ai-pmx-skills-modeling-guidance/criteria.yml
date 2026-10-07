@@ -1,12 +1,12 @@
 # Criteria for the PMx Skills Index (Specification 2, Section 5).
 # Andy edits this file. The monthly agent reads it and never changes it;
 # it proposes changes in its monthly report instead.
-version: 1
+version: 2
 weights:
   quality: 45
   expertise: 25
-  maintenance: 20
-  adoption: 10
+  maintenance: 10
+  use: 20
 tie_margin: 5
 max_ranked_per_library_per_category: 3
 categories: [tool, task, evaluation]
@@ -20,5 +20,12 @@ expertise:
   h_cap: 25
 maintenance:
   recency_horizon_days: 365
-adoption:
-  enabled: true
+use:
+  gate: true                   # a skill with no evidence of use is listed as Unproven, not ranked
+  window_months: 12
+  points_cap: 10               # U = 100 x min(1, points / points_cap)
+  expert_points: 3             # an outside user with a field h-index >= expert_h counts 3, others 1
+  expert_h: 5
+  min_account_age_days: 180
+  max_skills_in_installing_repo: 25
+  excluded_accounts: [iamstein]   # the index's maintainer does not count as evidence

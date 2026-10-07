@@ -17,43 +17,13 @@ toc-location: left
 
 # Tool Skills
 
-## nlmixr2lib · extract-literature-model {#nlmixr2lib-extract}
-
-[nlmixr2/nlmixr2lib at `5ddf9ae`](https://github.com/nlmixr2/nlmixr2lib/tree/5ddf9ae402eda988f8830bef55cbf808691536b7/.claude/skills/extract-literature-model) · tool skill · rank 1 · tags: nlmixr2; model building from literature
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 64.9 | 57.1 | 48.0 | 98.9 | 73.8 |
-
-**Quality.** 4 of 7 applicable rubric items met (57.1), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | ✅ yes | "Never attempt extraction from an abstract alone"; systematic reviews are skipped by default. |
-| R2 Cites sources for its recommendations | no | Recommendations point to the skill's own reference files, not to published sources. |
-| R6 States the limitations of its own output | ✅ yes | "Treat its output as a worklist, not a verdict"; the vignette must list "Assumptions and deviations". |
-| R7 Code examples complete enough to run | ✅ yes | Complete shell and R commands for each gate, e.g. the RENDER_GATE block. |
-| R8 Examples run in continuous integration | no | No workflow runs the skill's own code blocks. |
-| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
-| R10 Stores outputs from a real run | ✅ yes | The repository holds the models and validation vignettes the workflow produced (inst/modeldb, vignettes/articles). |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Bill Denney | 1.0 | 12 | [record](https://openalex.org/A5041025811) | ORCID 0000-0002-5759-428X, from nlmixr2lib DESCRIPTION |
-
-**Maintenance.** Last change to the skill's files 2026-09-29 (8 days; recency 97.8). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 14 stars and 6 forks on the repository.
-
 ## nlmixr2llm · estimation {#nlmixr2llm-estimation}
 
-[john-harrold/nlmixr2llm at `ac6b240`](https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/estimation) · tool skill · rank 2 (range 1–2) · tags: nlmixr2; estimation
+[john-harrold/nlmixr2llm at `ac6b240`](https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/estimation) · tool skill · rank 1 · tags: nlmixr2; estimation
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 59.6 | 52.1 | 52.0 | 85.6 | 60.2 |
+| 51.0 | 52.1 | 52.0 | 85.6 | 30.0 |
 
 **Quality.** 4 of 7 applicable rubric items met (57.1), less 0 major and 1 minor errors.
 
@@ -77,15 +47,21 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-05 (32 days; recency 91.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 8 stars and 3 forks on the repository.
+**Use.** 3 points from people outside the authors in the last 12 months.
+
+| Person | What they did | Expert | Evidence |
+|:---|:---|:---|:---|
+| Bill Denney (`billdenney`) | opened issues | yes: ORCID 0000-0002-5759-428X; field h-index 12 | [1](https://github.com/john-harrold/nlmixr2llm/issues/1), [2](https://github.com/john-harrold/nlmixr2llm/issues/2), [3](https://github.com/john-harrold/nlmixr2llm/issues/3) |
+
+Repository stars and forks, used only to break ties: 8 and 3.
 
 ## nlmixr2llm · simulation {#nlmixr2llm-simulation}
 
-[john-harrold/nlmixr2llm at `ac6b240`](https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/simulation) · tool skill · rank 2 (range 2–4) · tags: rxode2; simulation
+[john-harrold/nlmixr2llm at `ac6b240`](https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/simulation) · tool skill · rank 1 (range 1–2) · tags: rxode2; simulation
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 55.4 | 42.9 | 52.0 | 85.6 | 60.2 |
+| 46.9 | 42.9 | 52.0 | 85.6 | 30.0 |
 
 **Quality.** 3 of 7 applicable rubric items met (42.9), less 0 major and 0 minor errors.
 
@@ -107,15 +83,21 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-05 (32 days; recency 91.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 8 stars and 3 forks on the repository.
+**Use.** 3 points from people outside the authors in the last 12 months.
+
+| Person | What they did | Expert | Evidence |
+|:---|:---|:---|:---|
+| Bill Denney (`billdenney`) | opened issues | yes: ORCID 0000-0002-5759-428X; field h-index 12 | [1](https://github.com/john-harrold/nlmixr2llm/issues/1), [2](https://github.com/john-harrold/nlmixr2llm/issues/2), [3](https://github.com/john-harrold/nlmixr2llm/issues/3) |
+
+Repository stars and forks, used only to break ties: 8 and 3.
 
 ## nlmixr2llm · interop {#nlmixr2llm-interop}
 
-[john-harrold/nlmixr2llm at `ac6b240`](https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/interop) · tool skill · rank 4 (range 4–7) · tags: nlmixr2; NONMEM; Monolix; model conversion
+[john-harrold/nlmixr2llm at `ac6b240`](https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/interop) · tool skill · rank 3 · tags: nlmixr2; NONMEM; Monolix; model conversion
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 49.0 | 28.6 | 52.0 | 85.6 | 60.2 |
+| 40.4 | 28.6 | 52.0 | 85.6 | 30.0 |
 
 **Quality.** 2 of 7 applicable rubric items met (28.6), less 0 major and 0 minor errors.
 
@@ -137,15 +119,53 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-05 (32 days; recency 91.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 8 stars and 3 forks on the repository.
+**Use.** 3 points from people outside the authors in the last 12 months.
+
+| Person | What they did | Expert | Evidence |
+|:---|:---|:---|:---|
+| Bill Denney (`billdenney`) | opened issues | yes: ORCID 0000-0002-5759-428X; field h-index 12 | [1](https://github.com/john-harrold/nlmixr2llm/issues/1), [2](https://github.com/john-harrold/nlmixr2llm/issues/2), [3](https://github.com/john-harrold/nlmixr2llm/issues/3) |
+
+Repository stars and forks, used only to break ties: 8 and 3.
+
+## nlmixr2lib · extract-literature-model {#nlmixr2lib-extract}
+
+[nlmixr2/nlmixr2lib at `5ddf9ae`](https://github.com/nlmixr2/nlmixr2lib/tree/5ddf9ae402eda988f8830bef55cbf808691536b7/.claude/skills/extract-literature-model) · tool skill · unproven: no evidence of use, so not ranked · tags: nlmixr2; model building from literature
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 47.6 | 57.1 | 48.0 | 98.9 | 0.0 |
+
+**Quality.** 4 of 7 applicable rubric items met (57.1), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | ✅ yes | "Never attempt extraction from an abstract alone"; systematic reviews are skipped by default. |
+| R2 Cites sources for its recommendations | no | Recommendations point to the skill's own reference files, not to published sources. |
+| R6 States the limitations of its own output | ✅ yes | "Treat its output as a worklist, not a verdict"; the vignette must list "Assumptions and deviations". |
+| R7 Code examples complete enough to run | ✅ yes | Complete shell and R commands for each gate, e.g. the RENDER_GATE block. |
+| R8 Examples run in continuous integration | no | No workflow runs the skill's own code blocks. |
+| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
+| R10 Stores outputs from a real run | ✅ yes | The repository holds the models and validation vignettes the workflow produced (inst/modeldb, vignettes/articles). |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Bill Denney | 1.0 | 12 | [record](https://openalex.org/A5041025811) | ORCID 0000-0002-5759-428X, from nlmixr2lib DESCRIPTION |
+
+**Maintenance.** Last change to the skill's files 2026-09-29 (8 days; recency 97.8). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 14 and 6.
 
 ## nonmem.utils · r-nonmem.utils {#pchelle-r-nonmem-utils}
 
-[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/r-nonmem.utils) · tool skill · rank 4 (range 4–6) · tags: nonmem.utils; NONMEM
+[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/r-nonmem.utils) · tool skill · unproven: no evidence of use, so not ranked · tags: nonmem.utils; NONMEM
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 48.3 | 42.9 | 44.0 | 81.5 | 16.8 |
+| 38.5 | 42.9 | 44.0 | 81.5 | 0.0 |
 
 **Quality.** 3 of 7 applicable rubric items met (42.9), less 0 major and 0 minor errors.
 
@@ -167,15 +187,17 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-08-06 (62 days; recency 83.0). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 ## pk-modeling-skills · easy-nonmem {#kinginsun-easy-nonmem}
 
-[kinginsun/pk-modeling-skills at `0074bdd`](https://github.com/kinginsun/pk-modeling-skills/tree/0074bddeebd6f3310d862c16cb317b37dfbb1ec1/skills/easy-nonmem) · tool skill · rank 6 (range 1–7) · tags: NONMEM; PsN
+[kinginsun/pk-modeling-skills at `0074bdd`](https://github.com/kinginsun/pk-modeling-skills/tree/0074bddeebd6f3310d862c16cb317b37dfbb1ec1/skills/easy-nonmem) · tool skill · unproven: no evidence of use, so not ranked · tags: NONMEM; PsN
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 42.8 | 57.1 | 0.0 | 85.6 | 0.0 |
+| 34.3 | 57.1 | 0.0 | 85.6 | 0.0 |
 
 **Quality.** 4 of 7 applicable rubric items met (57.1), less 0 major and 0 minor errors.
 
@@ -197,15 +219,17 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-05 (32 days; recency 91.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 0 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 0 and 0.
 
 ## nonmem.utils · gof-analysis {#pchelle-gof}
 
-[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/gof-analysis) · tool skill · rank 6 (range 6–7) · tags: model evaluation; nonmem.utils
+[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/gof-analysis) · tool skill · unproven: no evidence of use, so not ranked · tags: model evaluation; nonmem.utils
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 40.1 | 28.6 | 44.0 | 72.6 | 16.8 |
+| 31.1 | 28.6 | 44.0 | 72.6 | 0.0 |
 
 **Quality.** 2 of 7 applicable rubric items met (28.6), less 0 major and 0 minor errors.
 
@@ -227,17 +251,19 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-06-02 (127 days; recency 65.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 *Note.* Copied unchanged into pchelle/ferx.utils.
 
 ## nonmem.utils · poppk-report-workflow {#pchelle-report}
 
-[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/poppk-report-workflow) · tool skill · rank 6 (range 6–7) · tags: report writing; nonmem.utils
+[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/poppk-report-workflow) · tool skill · unproven: no evidence of use, so not ranked · tags: report writing; nonmem.utils
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 40.1 | 28.6 | 44.0 | 72.6 | 16.8 |
+| 31.1 | 28.6 | 44.0 | 72.6 | 0.0 |
 
 **Quality.** 2 of 7 applicable rubric items met (28.6), less 0 major and 0 minor errors.
 
@@ -259,17 +285,19 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-06-02 (127 days; recency 65.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 *Note.* Copied unchanged into pchelle/ferx.utils.
 
 ## pk-modeling-skills · monolix-cli {#kinginsun-monolix-cli}
 
-[kinginsun/pk-modeling-skills at `0074bdd`](https://github.com/kinginsun/pk-modeling-skills/tree/0074bddeebd6f3310d862c16cb317b37dfbb1ec1/skills/monolix-cli) · tool skill · rank 9 (range 4–10) · tags: Monolix
+[kinginsun/pk-modeling-skills at `0074bdd`](https://github.com/kinginsun/pk-modeling-skills/tree/0074bddeebd6f3310d862c16cb317b37dfbb1ec1/skills/monolix-cli) · tool skill · unproven: no evidence of use, so not ranked · tags: Monolix
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 36.4 | 42.9 | 0.0 | 85.6 | 0.0 |
+| 27.9 | 42.9 | 0.0 | 85.6 | 0.0 |
 
 **Quality.** 3 of 7 applicable rubric items met (42.9), less 0 major and 0 minor errors.
 
@@ -291,47 +319,17 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-05 (32 days; recency 91.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 0 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
 
-## aNCA · pknca-compatibility {#anca-pknca}
-
-[pharmaverse/aNCA at `e6b468f`](https://github.com/pharmaverse/aNCA/tree/e6b468f9085e5380229d1945228d4da9bbad36c3/.github/skills/pknca-compatibility) · tool skill · rank 9 (range 4–11) · tags: PKNCA; aNCA; package development
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 36.1 | 14.3 | 0.0 | 98.4 | 100.0 |
-
-**Quality.** 1 of 7 applicable rubric items met (14.3), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | no | No statement of what the skill excludes. |
-| R2 Cites sources for its recommendations | ✅ yes | "Prefer source code, NEWS, tests, and linked PKNCA issues/PRs over assumptions" with the upstream repository named. |
-| R6 States the limitations of its own output | no | No statement of the limits of its output. |
-| R7 Code examples complete enough to run | no | No code. |
-| R8 Examples run in continuous integration | no | Names the package tests to add; does not run the skill. |
-| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
-| R10 Stores outputs from a real run | no | No stored outputs. |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Gerardo Jose Rodriguez | 1.0 | 0 | [record](https://openalex.org/A5120737136) | ORCID 0000-0003-1413-0060, from aNCA DESCRIPTION |
-
-**Maintenance.** Last change to the skill's files 2026-09-25 (12 days; recency 96.7). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 44 stars and 17 forks on the repository.
-
-*Note.* A developer skill for maintaining the aNCA package.
+Repository stars and forks, used only to break ties: 0 and 0.
 
 ## ferx.utils · r-ferx {#pchelle-r-ferx}
 
-[pchelle/ferx.utils at `ec220d6`](https://github.com/pchelle/ferx.utils/tree/ec220d6630b4a802c604eeab3e8ee147b42f3f20/.claude/skills/r-ferx) · tool skill · rank 9 (range 9–11) · tags: ferx
+[pchelle/ferx.utils at `ec220d6`](https://github.com/pchelle/ferx.utils/tree/ec220d6630b4a802c604eeab3e8ee147b42f3f20/.claude/skills/r-ferx) · tool skill · unproven: no evidence of use, so not ranked · tags: ferx
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 32.9 | 14.3 | 44.0 | 77.1 | 0.0 |
+| 25.1 | 14.3 | 44.0 | 77.1 | 0.0 |
 
 **Quality.** 1 of 7 applicable rubric items met (14.3), less 0 major and 0 minor errors.
 
@@ -353,15 +351,85 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-16 (21 days; recency 94.2). Usability 60: licence ✅, frontmatter ✅, install ✅, dependencies ✗, version ✗.
 
-**Adoption.** 0 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 0 and 0.
+
+## nonmem.utils · covariate-analysis {#pchelle-covariate}
+
+[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/covariate-analysis) · tool skill · unproven: no evidence of use, so not ranked · tags: covariate modeling; nonmem.utils
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 24.7 | 14.3 | 44.0 | 72.6 | 0.0 |
+
+**Quality.** 1 of 7 applicable rubric items met (14.3), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | no | No statement of what the skill excludes. |
+| R2 Cites sources for its recommendations | no | Cites none. |
+| R6 States the limitations of its own output | no | Says nothing about shrinkage or the reliability of ETA-covariate plots. |
+| R7 Code examples complete enough to run | ✅ yes | Minimal command example. |
+| R8 Examples run in continuous integration | no | CI runs the package tests, not the skill. |
+| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
+| R10 Stores outputs from a real run | no | No stored outputs. |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Pierre Chelle | 1.0 | 11 | [record](https://openalex.org/A5019099440) | ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION |
+
+**Maintenance.** Last change to the skill's files 2026-06-02 (127 days; recency 65.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
+
+*Note.* Copied unchanged into pchelle/ferx.utils.
+
+## nonmem.utils · dataset-analysis {#pchelle-dataset}
+
+[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/dataset-analysis) · tool skill · unproven: no evidence of use, so not ranked · tags: exploratory data analysis; nonmem.utils
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 24.7 | 14.3 | 44.0 | 72.6 | 0.0 |
+
+**Quality.** 1 of 7 applicable rubric items met (14.3), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | no | No statement of what the skill excludes. |
+| R2 Cites sources for its recommendations | no | Cites none. |
+| R6 States the limitations of its own output | no | No statement of the limits of its output. |
+| R7 Code examples complete enough to run | ✅ yes | Minimal command example. |
+| R8 Examples run in continuous integration | no | CI runs the package tests, not the skill. |
+| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
+| R10 Stores outputs from a real run | no | No stored outputs. |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Pierre Chelle | 1.0 | 11 | [record](https://openalex.org/A5019099440) | ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION |
+
+**Maintenance.** Last change to the skill's files 2026-06-02 (127 days; recency 65.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
+
+*Note.* Copied unchanged into pchelle/ferx.utils.
 
 ## APMODE · apmode-cli {#apmode}
 
-[biostochastics/APMODE at `cbdcadf`](https://github.com/biostochastics/APMODE/tree/cbdcadf62f874190c126d9d3fdbe0c1560ddbb84/.claude/skills/apmode) · tool skill · rank 12 (range 7–12) · tags: APMODE; nlmixr2; Stan
+[biostochastics/APMODE at `cbdcadf`](https://github.com/biostochastics/APMODE/tree/cbdcadf62f874190c126d9d3fdbe0c1560ddbb84/.claude/skills/apmode) · tool skill · unproven: no evidence of use, so not ranked · tags: APMODE; nlmixr2; Stan
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 30.0 | 28.6 | 8.0 | 67.3 | 16.8 |
+| 21.6 | 28.6 | 8.0 | 67.3 | 0.0 |
 
 **Quality.** 2 of 7 applicable rubric items met (28.6), less 0 major and 0 minor errors.
 
@@ -383,15 +451,17 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-04-24 (166 days; recency 54.5). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 ## jinko-skills · jinko {#jinko-core}
 
-[novainsilico/jinko-skills at `dd7ff2e`](https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko) · tool skill · rank 12 (range 10–12) · tags: Jinkō
+[novainsilico/jinko-skills at `dd7ff2e`](https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko) · tool skill · unproven: no evidence of use, so not ranked · tags: Jinkō
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 27.9 | 14.3 | 0.0 | 98.9 | 16.8 |
+| 16.3 | 14.3 | 0.0 | 98.9 | 0.0 |
 
 **Quality.** 1 of 7 applicable rubric items met (14.3), less 0 major and 0 minor errors.
 
@@ -413,17 +483,53 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-29 (8 days; recency 97.8). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 *Note.* A router to the other Jinkō skills.
 
+## aNCA · pknca-compatibility {#anca-pknca}
+
+[pharmaverse/aNCA at `e6b468f`](https://github.com/pharmaverse/aNCA/tree/e6b468f9085e5380229d1945228d4da9bbad36c3/.github/skills/pknca-compatibility) · tool skill · unproven: no evidence of use, so not ranked · tags: PKNCA; aNCA; package development
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 16.3 | 14.3 | 0.0 | 98.4 | 0.0 |
+
+**Quality.** 1 of 7 applicable rubric items met (14.3), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | no | No statement of what the skill excludes. |
+| R2 Cites sources for its recommendations | ✅ yes | "Prefer source code, NEWS, tests, and linked PKNCA issues/PRs over assumptions" with the upstream repository named. |
+| R6 States the limitations of its own output | no | No statement of the limits of its output. |
+| R7 Code examples complete enough to run | no | No code. |
+| R8 Examples run in continuous integration | no | Names the package tests to add; does not run the skill. |
+| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
+| R10 Stores outputs from a real run | no | No stored outputs. |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Gerardo Jose Rodriguez | 1.0 | 0 | [record](https://openalex.org/A5120737136) | ORCID 0000-0003-1413-0060, from aNCA DESCRIPTION |
+
+**Maintenance.** Last change to the skill's files 2026-09-25 (12 days; recency 96.7). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 44 and 17.
+
+*Note.* A developer skill for maintaining the aNCA package.
+
 ## jinko-skills · jinko-task-from-nonmem {#jinko-from-nonmem}
 
-[novainsilico/jinko-skills at `dd7ff2e`](https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-from-nonmem) · tool skill · rank 12 (range 10–12) · tags: Jinkō; NONMEM; model conversion
+[novainsilico/jinko-skills at `dd7ff2e`](https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-from-nonmem) · tool skill · unproven: no evidence of use, so not ranked · tags: Jinkō; NONMEM; model conversion
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 27.7 | 14.3 | 0.0 | 98.1 | 16.8 |
+| 16.2 | 14.3 | 0.0 | 98.1 | 0.0 |
 
 **Quality.** 1 of 7 applicable rubric items met (14.3), less 0 major and 0 minor errors.
 
@@ -445,17 +551,19 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-23 (14 days; recency 96.2). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 *Note.* Requires a numerical equivalence check against scipy, rxode2 or the NONMEM $TABLE, which the rubric does not reward.
 
 ## nonmem-skill · nonmem {#jaj42-nonmem}
 
-[jaj42/nonmem-skill at `2a32fed`](https://github.com/jaj42/nonmem-skill/tree/2a32fed9390202a3d30d55d62b8faeb38d384f89/nonmem-skill) · tool skill · rank 15 (range 11–15) · tags: NONMEM
+[jaj42/nonmem-skill at `2a32fed`](https://github.com/jaj42/nonmem-skill/tree/2a32fed9390202a3d30d55d62b8faeb38d384f89/nonmem-skill) · tool skill · unproven: no evidence of use, so not ranked · tags: NONMEM
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 22.1 | 17.9 | 4.0 | 51.8 | 26.6 |
+| 14.2 | 17.9 | 4.0 | 51.8 | 0.0 |
 
 **Quality.** 3 of 7 applicable rubric items met (42.9), less 1 major and 0 minor errors.
 
@@ -479,17 +587,19 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-05-27 (133 days; recency 63.6). Usability 40: licence ✅, frontmatter ✅, install ✗, dependencies ✗, version ✗.
 
-**Adoption.** 2 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 2 and 0.
 
 *Note.* Known-answer fixture 1.
 
 ## pk-sim-pbpk · pk-sim-pbpk {#gscas-pksim}
 
-[gscas/pk-sim-pbpk at `80e514b`](https://github.com/gscas/pk-sim-pbpk/tree/80e514b7cfffcd28becf4481cca31c238404bd98) · tool skill · rank 16 · tags: PK-Sim; PBPK
+[gscas/pk-sim-pbpk at `80e514b`](https://github.com/gscas/pk-sim-pbpk/tree/80e514b7cfffcd28becf4481cca31c238404bd98) · tool skill · unproven: no evidence of use, so not ranked · tags: PK-Sim; PBPK
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 9.8 | 0 | 0.0 | 49.2 | 0.0 |
+| 4.9 | 0 | 0.0 | 49.2 | 0.0 |
 
 **Quality.** 0 of 7 applicable rubric items met (0.0), less 0 major and 0 minor errors.
 
@@ -511,83 +621,21 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-05-08 (152 days; recency 58.4). Usability 40: licence ✗, frontmatter ✅, install ✗, dependencies ✅, version ✗.
 
-**Adoption.** 0 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 0 and 0.
 
 *Note.* No licence.
-
-## nonmem.utils · covariate-analysis {#pchelle-covariate}
-
-[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/covariate-analysis) · tool skill · not ranked: beyond the per-library cap · tags: covariate modeling; nonmem.utils
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 33.6 | 14.3 | 44.0 | 72.6 | 16.8 |
-
-**Quality.** 1 of 7 applicable rubric items met (14.3), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | no | No statement of what the skill excludes. |
-| R2 Cites sources for its recommendations | no | Cites none. |
-| R6 States the limitations of its own output | no | Says nothing about shrinkage or the reliability of ETA-covariate plots. |
-| R7 Code examples complete enough to run | ✅ yes | Minimal command example. |
-| R8 Examples run in continuous integration | no | CI runs the package tests, not the skill. |
-| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
-| R10 Stores outputs from a real run | no | No stored outputs. |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Pierre Chelle | 1.0 | 11 | [record](https://openalex.org/A5019099440) | ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION |
-
-**Maintenance.** Last change to the skill's files 2026-06-02 (127 days; recency 65.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
-
-**Adoption.** 1 stars and 0 forks on the repository.
-
-*Note.* Copied unchanged into pchelle/ferx.utils.
-
-## nonmem.utils · dataset-analysis {#pchelle-dataset}
-
-[pchelle/nonmem.utils at `1827ac0`](https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/dataset-analysis) · tool skill · not ranked: beyond the per-library cap · tags: exploratory data analysis; nonmem.utils
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 33.6 | 14.3 | 44.0 | 72.6 | 16.8 |
-
-**Quality.** 1 of 7 applicable rubric items met (14.3), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | no | No statement of what the skill excludes. |
-| R2 Cites sources for its recommendations | no | Cites none. |
-| R6 States the limitations of its own output | no | No statement of the limits of its output. |
-| R7 Code examples complete enough to run | ✅ yes | Minimal command example. |
-| R8 Examples run in continuous integration | no | CI runs the package tests, not the skill. |
-| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
-| R10 Stores outputs from a real run | no | No stored outputs. |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Pierre Chelle | 1.0 | 11 | [record](https://openalex.org/A5019099440) | ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION |
-
-**Maintenance.** Last change to the skill's files 2026-06-02 (127 days; recency 65.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
-
-**Adoption.** 1 stars and 0 forks on the repository.
-
-*Note.* Copied unchanged into pchelle/ferx.utils.
 
 # Task Skills
 
 ## scientific-agent-skills · pkpd-modeling {#kdense-pkpd}
 
-[K-Dense-AI/scientific-agent-skills at `92ace75`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/92ace75ac21efe19a620434e0ca4e356081fe807/skills/pkpd-modeling) · task skill · rank 1 (range 1–2) · tags: PK/PD modeling; NCA; population PK
+[K-Dense-AI/scientific-agent-skills at `92ace75`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/92ace75ac21efe19a620434e0ca4e356081fe807/skills/pkpd-modeling) · task skill · rank 1 · tags: PK/PD modeling; NCA; population PK
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 70.3 | 90.0 | 0.0 | 99.2 | 100.0 |
+| 58.4 | 90.0 | 0.0 | 99.2 | 40.0 |
 
 **Quality.** 9 of 10 applicable rubric items met (90.0), less 0 major and 0 minor errors.
 
@@ -612,202 +660,22 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-10-01 (6 days; recency 98.4). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
 
-**Adoption.** 47846 stars and 4321 forks on the repository.
+**Use.** 4 points from people outside the authors in the last 12 months.
 
-## jinko-skills · jinko-task-ichm15-planning {#jinko-ichm15}
+| Person | What they did | Expert | Evidence |
+|:---|:---|:---|:---|
+| Sricharan Samba (`ssamba1`) | pull request changing the skill | no | [1](https://github.com/K-Dense-AI/scientific-agent-skills/pull/260), [2](https://github.com/K-Dense-AI/scientific-agent-skills/issues/261) |
+| Min-Gul Kim (`kimmingul`) | installed the skill in a project holding 20 hand-picked skills | yes: name and affiliation (Jeonbuk National University) match OpenAlex A5081300522; field h-index 14 | [1](https://github.com/kimmingul/NanumCsvViewer/tree/main/NanumCsvViewer/Agent/Skills/pkpd-modeling) |
 
-[novainsilico/jinko-skills at `dd7ff2e`](https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-ichm15-planning) · task skill · rank 1 (range 1–2) · tags: MIDD planning
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 65.3 | 100.0 | 0.0 | 98.1 | 6.4 |
-
-**Quality.** 6 of 6 applicable rubric items met (100.0), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | ✅ yes | "this skill focuses specifically on the planning stage ... before model outcomes are available" |
-| R2 Cites sources for its recommendations | ✅ yes | Each element cites its ICH M15 section, e.g. "Model Influence ... (§2.1.3–2.1.6)". |
-| R3 Says what to do when a check fails | ✅ yes | "If the Question of Interest, or any one Context of Use component ... is not stated, ask one focused question" |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Ratings are low/medium/high with stated justification; no numeric thresholds. |
-| R5 Ties evaluation depth to intended use | ✅ yes | "Model Risk ... determines the required rigor of model evaluation" |
-| R6 States the limitations of its own output | ✅ yes | "list every invented or assumed element ... in an explicit 'Assumptions' block at the top of the output" |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Nova In Silico | 1.0 | 0 | none | not found: commits by a publishing bot; no authors named in the repository |
-
-**Maintenance.** Last change to the skill's files 2026-09-23 (14 days; recency 96.2). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 1 stars and 0 forks on the repository.
-
-*Note.* Does not need Jinkō access except for the optional upload.
-
-## clinpharm-pmx-skills · review-pharmacometrics-deliverable {#okour-pmx-deliverable}
-
-[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-pharmacometrics-deliverable) · task skill · rank 3 (range 2–4) · tags: document review
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 64.8 | 83.3 | 28.0 | 92.5 | 17.9 |
-
-**Quality.** 5 of 6 applicable rubric items met (83.3), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | ✅ yes | "Do not use for assessing the model itself ... or to accept, reject or sign anything." |
-| R2 Cites sources for its recommendations | no | Cites no source. |
-| R3 Says what to do when a check fails | ✅ yes | "An absent item is a finding, not a formatting note"; unsupported uses are listed. |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
-| R5 Ties evaluation depth to intended use | ✅ yes | "Phase 2 — Fitness for intended use ... For each, record what the deliverable would need to support it" |
-| R6 States the limitations of its own output | ✅ yes | "State plainly which decisions remain with the signer." |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
-
-**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 6 stars and 0 forks on the repository.
-
-## clinpharm-pmx-skills · review-model-analysis-deliverable {#okour-model-deliverable}
-
-[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-model-analysis-deliverable) · task skill · rank 3 (range 2–4) · tags: document review; model evaluation
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 63.3 | 80.0 | 28.0 | 92.5 | 17.9 |
-
-**Quality.** 8 of 10 applicable rubric items met (80.0), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | ✅ yes | "It never re-fits, re-runs or critiques model structure ... and it never decides whether a modelling choice was scientifically right." |
-| R2 Cites sources for its recommendations | ✅ yes | Rubrics anchored to ICH M15, the FDA PBPK guidance and the FDA exposure-response guidance through a guidance index. |
-| R3 Says what to do when a check fails | ✅ yes | Missing inputs disable named checks and are reported as NEEDS_INPUT. |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Criteria come from the analysis plan, not from fixed thresholds. |
-| R5 Ties evaluation depth to intended use | ✅ yes | "I3 Commissioning question and decision context — without it, 'conclusions traceable to a decision' cannot be assessed" |
-| R6 States the limitations of its own output | ✅ yes | "Population PK has no rubric in the library ... popPK-specific content is marked CANNOT_ASSESS. Do not improvise the missing rubric." |
-| R7 Code examples complete enough to run | no | The skill calls its scripts but shows no runnable command. |
-| R8 Examples run in continuous integration | ✅ yes | quality.yml runs scripts/check_all.py and the skill's script tests. |
-| R9 Continuous integration passes on the pinned commit | ✅ yes | quality.yml on f141199: success (2026-10-01). |
-| R10 Stores outputs from a real run | no | Eval cases and fixtures, but no stored outputs for this skill. |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
-
-**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 6 stars and 0 forks on the repository.
-
-## drug-discovery-agent-skills · pkpd-translation {#kdense-pkpd-translation}
-
-[K-Dense-AI/drug-discovery-agent-skills at `2bd3bde`](https://github.com/K-Dense-AI/drug-discovery-agent-skills/tree/2bd3bdec5b724f8715a5c2ff828d82245b3a5a6a/skills/pkpd-translation) · task skill · rank 3 (range 2–3) · tags: translational PK/PD; human dose prediction
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 62.0 | 88.9 | 0.0 | 92.9 | 34.0 |
-
-**Quality.** 8 of 9 applicable rubric items met (88.9), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | ✅ yes | "When to stop using these scripts: When the site of action is not plasma ..." |
-| R2 Cites sources for its recommendations | ✅ yes | Cites the FDA 2005 maximum safe starting dose guidance for its Km factors. |
-| R3 Says what to do when a check fails | ✅ yes | "above that, CL and Vz are guesses"; "The default factor of 10 should rise for steep dose–response, irreversible toxicity, or a novel target." |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | The 20% extrapolation flag and the safety factor of 10 both come with context. |
-| R6 States the limitations of its own output | ✅ yes | "it is planning arithmetic, not a regulatory submission" |
-| R7 Code examples complete enough to run | ✅ yes | Command lines with full arguments. |
-| R8 Examples run in continuous integration | ✅ yes | skill-tests.yml with tests/pkpd-translation. |
-| R9 Continuous integration passes on the pinned commit | no | The latest Skill Tests runs failed (2026-09-01 to 09-03); none on the pinned commit. |
-| R10 Stores outputs from a real run | ✅ yes | Outputs from real runs are quoted, e.g. "CL = 1.000000, Vz = 10.000000 ... exact" against an analytic case. |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Timothy Kassis | 1.0 | 0 | [record](https://openalex.org/A5007118437) | name in CITATION.cff; OpenAlex record has no field works |
-
-**Maintenance.** Last change to the skill's files 2026-08-16 (52 days; recency 85.8). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 35 stars and 4 forks on the repository.
-
-## scientific-agents · clinical-pharmacologist {#kdense-clinpharm}
-
-[K-Dense-AI/scientific-agents at `98c7fae`](https://github.com/K-Dense-AI/scientific-agents/tree/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/clinical-pharmacologist/skills/clinical-pharmacologist) · task skill · rank 3 (range 2–4) · tags: clinical pharmacology
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 60.3 | 83.3 | 0.0 | 88.9 | 50.1 |
-
-**Quality.** 5 of 6 applicable rubric items met (83.3), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | no | No statement of what the persona does not do. |
-| R2 Cites sources for its recommendations | ✅ yes | Recommendations name their guidance: ICH E14/S7B, M12, E5, E4. |
-| R3 Says what to do when a check fails | ✅ yes | "Flat exposure–response: Wrong metric (total vs unbound), narrow studied range, misaligned sampling times, or PD delay — add effect compartment or time-varying exposure." |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | "Allometry: pre-specify exponents or estimate with uncertainty"; fixed exponents are qualified. |
-| R5 Ties evaluation depth to intended use | ✅ yes | "First classify the deliverable", with analyses keyed to each. |
-| R6 States the limitations of its own output | ✅ yes | "Hedge: distinguish predicted (model) vs observed (study)" |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Timothy Kassis | 1.0 | 0 | [record](https://openalex.org/A5007118437) | name in CITATION.cff; OpenAlex record has no field works |
-
-**Maintenance.** Last change to the skill's files 2026-09-29 (8 days; recency 97.8). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
-
-**Adoption.** 200 stars and 30 forks on the repository.
-
-*Note.* A persona file with no code.
-
-## clinpharm-pmx-skills · assess-model-evaluation-diagnostics {#okour-diagnostics}
-
-[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/assess-model-evaluation-diagnostics) · task skill · rank 7 (range 2–7) · tags: model evaluation; document review
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 57.3 | 66.7 | 28.0 | 92.5 | 17.9 |
-
-**Quality.** 4 of 6 applicable rubric items met (66.7), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | ✅ yes | "Refuses: Decide the outcome of Model evaluation and diagnostics; approve or submit related documents; select or adjust a dose" |
-| R2 Cites sources for its recommendations | no | The eight checks cite no source. |
-| R3 Says what to do when a check fails | ✅ yes | "For each check, also note ... which required input unlocks the check if currently blocked"; gaps coded NEEDS_INPUT, UNKNOWN or CANNOT_ASSESS. |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
-| R5 Ties evaluation depth to intended use | no | The checks are a generic template with the task name substituted; nothing ties evaluation depth to the model's use. |
-| R6 States the limitations of its own output | ✅ yes | "Never fill gaps with confident invention." |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
-
-**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 6 stars and 0 forks on the repository.
-
-*Note.* Templated: the same eight checks appear in other skills in the library with a different task name. It names no specific diagnostic.
+Repository stars and forks, used only to break ties: 47846 and 4321.
 
 ## nlmixr2llm · reporting {#nlmixr2llm-reporting}
 
-[john-harrold/nlmixr2llm at `ac6b240`](https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/reporting) · task skill · rank 7 (range 2–10) · tags: model evaluation; report writing; nlmixr2
+[john-harrold/nlmixr2llm at `ac6b240`](https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/reporting) · task skill · rank 2 (range 1–2) · tags: model evaluation; report writing; nlmixr2
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 54.9 | 50.0 | 52.0 | 85.6 | 22.9 |
+| 50.1 | 50.0 | 52.0 | 85.6 | 30.0 |
 
 **Quality.** 5 of 10 applicable rubric items met (50.0), less 0 major and 0 minor errors.
 
@@ -832,15 +700,319 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-05 (32 days; recency 91.2). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 8 stars and 3 forks on the repository.
+**Use.** 3 points from people outside the authors in the last 12 months.
+
+| Person | What they did | Expert | Evidence |
+|:---|:---|:---|:---|
+| Bill Denney (`billdenney`) | opened issues | yes: ORCID 0000-0002-5759-428X; field h-index 12 | [1](https://github.com/john-harrold/nlmixr2llm/issues/1), [2](https://github.com/john-harrold/nlmixr2llm/issues/2), [3](https://github.com/john-harrold/nlmixr2llm/issues/3) |
+
+Repository stars and forks, used only to break ties: 8 and 3.
+
+## jinko-skills · jinko-task-ichm15-planning {#jinko-ichm15}
+
+[novainsilico/jinko-skills at `dd7ff2e`](https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-ichm15-planning) · task skill · unproven: no evidence of use, so not ranked · tags: MIDD planning
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 54.8 | 100.0 | 0.0 | 98.1 | 0.0 |
+
+**Quality.** 6 of 6 applicable rubric items met (100.0), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | ✅ yes | "this skill focuses specifically on the planning stage ... before model outcomes are available" |
+| R2 Cites sources for its recommendations | ✅ yes | Each element cites its ICH M15 section, e.g. "Model Influence ... (§2.1.3–2.1.6)". |
+| R3 Says what to do when a check fails | ✅ yes | "If the Question of Interest, or any one Context of Use component ... is not stated, ask one focused question" |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Ratings are low/medium/high with stated justification; no numeric thresholds. |
+| R5 Ties evaluation depth to intended use | ✅ yes | "Model Risk ... determines the required rigor of model evaluation" |
+| R6 States the limitations of its own output | ✅ yes | "list every invented or assumed element ... in an explicit 'Assumptions' block at the top of the output" |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Nova In Silico | 1.0 | 0 | none | not found: commits by a publishing bot; no authors named in the repository |
+
+**Maintenance.** Last change to the skill's files 2026-09-23 (14 days; recency 96.2). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
+
+*Note.* Does not need Jinkō access except for the optional upload.
+
+## clinpharm-pmx-skills · review-pharmacometrics-deliverable {#okour-pmx-deliverable}
+
+[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-pharmacometrics-deliverable) · task skill · unproven: no evidence of use, so not ranked · tags: document review
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 53.7 | 83.3 | 28.0 | 92.5 | 0.0 |
+
+**Quality.** 5 of 6 applicable rubric items met (83.3), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | ✅ yes | "Do not use for assessing the model itself ... or to accept, reject or sign anything." |
+| R2 Cites sources for its recommendations | no | Cites no source. |
+| R3 Says what to do when a check fails | ✅ yes | "An absent item is a finding, not a formatting note"; unsupported uses are listed. |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
+| R5 Ties evaluation depth to intended use | ✅ yes | "Phase 2 — Fitness for intended use ... For each, record what the deliverable would need to support it" |
+| R6 States the limitations of its own output | ✅ yes | "State plainly which decisions remain with the signer." |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
+
+**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 6 and 0.
+
+## clinpharm-pmx-skills · review-model-analysis-deliverable {#okour-model-deliverable}
+
+[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-model-analysis-deliverable) · task skill · unproven: no evidence of use, so not ranked · tags: document review; model evaluation
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 52.2 | 80.0 | 28.0 | 92.5 | 0.0 |
+
+**Quality.** 8 of 10 applicable rubric items met (80.0), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | ✅ yes | "It never re-fits, re-runs or critiques model structure ... and it never decides whether a modelling choice was scientifically right." |
+| R2 Cites sources for its recommendations | ✅ yes | Rubrics anchored to ICH M15, the FDA PBPK guidance and the FDA exposure-response guidance through a guidance index. |
+| R3 Says what to do when a check fails | ✅ yes | Missing inputs disable named checks and are reported as NEEDS_INPUT. |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Criteria come from the analysis plan, not from fixed thresholds. |
+| R5 Ties evaluation depth to intended use | ✅ yes | "I3 Commissioning question and decision context — without it, 'conclusions traceable to a decision' cannot be assessed" |
+| R6 States the limitations of its own output | ✅ yes | "Population PK has no rubric in the library ... popPK-specific content is marked CANNOT_ASSESS. Do not improvise the missing rubric." |
+| R7 Code examples complete enough to run | no | The skill calls its scripts but shows no runnable command. |
+| R8 Examples run in continuous integration | ✅ yes | quality.yml runs scripts/check_all.py and the skill's script tests. |
+| R9 Continuous integration passes on the pinned commit | ✅ yes | quality.yml on f141199: success (2026-10-01). |
+| R10 Stores outputs from a real run | no | Eval cases and fixtures, but no stored outputs for this skill. |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
+
+**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 6 and 0.
+
+## drug-discovery-agent-skills · pkpd-translation {#kdense-pkpd-translation}
+
+[K-Dense-AI/drug-discovery-agent-skills at `2bd3bde`](https://github.com/K-Dense-AI/drug-discovery-agent-skills/tree/2bd3bdec5b724f8715a5c2ff828d82245b3a5a6a/skills/pkpd-translation) · task skill · unproven: no evidence of use, so not ranked · tags: translational PK/PD; human dose prediction
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 49.3 | 88.9 | 0.0 | 92.9 | 0.0 |
+
+**Quality.** 8 of 9 applicable rubric items met (88.9), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | ✅ yes | "When to stop using these scripts: When the site of action is not plasma ..." |
+| R2 Cites sources for its recommendations | ✅ yes | Cites the FDA 2005 maximum safe starting dose guidance for its Km factors. |
+| R3 Says what to do when a check fails | ✅ yes | "above that, CL and Vz are guesses"; "The default factor of 10 should rise for steep dose–response, irreversible toxicity, or a novel target." |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | The 20% extrapolation flag and the safety factor of 10 both come with context. |
+| R6 States the limitations of its own output | ✅ yes | "it is planning arithmetic, not a regulatory submission" |
+| R7 Code examples complete enough to run | ✅ yes | Command lines with full arguments. |
+| R8 Examples run in continuous integration | ✅ yes | skill-tests.yml with tests/pkpd-translation. |
+| R9 Continuous integration passes on the pinned commit | no | The latest Skill Tests runs failed (2026-09-01 to 09-03); none on the pinned commit. |
+| R10 Stores outputs from a real run | ✅ yes | Outputs from real runs are quoted, e.g. "CL = 1.000000, Vz = 10.000000 ... exact" against an analytic case. |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Timothy Kassis | 1.0 | 0 | [record](https://openalex.org/A5007118437) | name in CITATION.cff; OpenAlex record has no field works |
+
+**Maintenance.** Last change to the skill's files 2026-08-16 (52 days; recency 85.8). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 35 and 4.
+
+## scientific-agents · clinical-pharmacologist {#kdense-clinpharm}
+
+[K-Dense-AI/scientific-agents at `98c7fae`](https://github.com/K-Dense-AI/scientific-agents/tree/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/clinical-pharmacologist/skills/clinical-pharmacologist) · task skill · unproven: no evidence of use, so not ranked · tags: clinical pharmacology
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 46.4 | 83.3 | 0.0 | 88.9 | 0.0 |
+
+**Quality.** 5 of 6 applicable rubric items met (83.3), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | no | No statement of what the persona does not do. |
+| R2 Cites sources for its recommendations | ✅ yes | Recommendations name their guidance: ICH E14/S7B, M12, E5, E4. |
+| R3 Says what to do when a check fails | ✅ yes | "Flat exposure–response: Wrong metric (total vs unbound), narrow studied range, misaligned sampling times, or PD delay — add effect compartment or time-varying exposure." |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | "Allometry: pre-specify exponents or estimate with uncertainty"; fixed exponents are qualified. |
+| R5 Ties evaluation depth to intended use | ✅ yes | "First classify the deliverable", with analyses keyed to each. |
+| R6 States the limitations of its own output | ✅ yes | "Hedge: distinguish predicted (model) vs observed (study)" |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Timothy Kassis | 1.0 | 0 | [record](https://openalex.org/A5007118437) | name in CITATION.cff; OpenAlex record has no field works |
+
+**Maintenance.** Last change to the skill's files 2026-09-29 (8 days; recency 97.8). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 200 and 30.
+
+*Note.* A persona file with no code.
+
+## clinpharm-pmx-skills · assess-model-evaluation-diagnostics {#okour-diagnostics}
+
+[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/assess-model-evaluation-diagnostics) · task skill · unproven: no evidence of use, so not ranked · tags: model evaluation; document review
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 46.3 | 66.7 | 28.0 | 92.5 | 0.0 |
+
+**Quality.** 4 of 6 applicable rubric items met (66.7), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | ✅ yes | "Refuses: Decide the outcome of Model evaluation and diagnostics; approve or submit related documents; select or adjust a dose" |
+| R2 Cites sources for its recommendations | no | The eight checks cite no source. |
+| R3 Says what to do when a check fails | ✅ yes | "For each check, also note ... which required input unlocks the check if currently blocked"; gaps coded NEEDS_INPUT, UNKNOWN or CANNOT_ASSESS. |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
+| R5 Ties evaluation depth to intended use | no | The checks are a generic template with the task name substituted; nothing ties evaluation depth to the model's use. |
+| R6 States the limitations of its own output | ✅ yes | "Never fill gaps with confident invention." |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
+
+**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 6 and 0.
+
+*Note.* Templated: the same eight checks appear in other skills in the library with a different task name. It names no specific diagnostic.
+
+## clinpharm-pmx-skills · review-exposure-response-modelling {#okour-er-modelling}
+
+[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-exposure-response-modelling) · task skill · unproven: no evidence of use, so not ranked · tags: exposure-response; document review
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 46.3 | 66.7 | 28.0 | 92.5 | 0.0 |
+
+**Quality.** 4 of 6 applicable rubric items met (66.7), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | ✅ yes | "Refuses: Decide the outcome of Exposure-response modelling ..." |
+| R2 Cites sources for its recommendations | no | The eight checks cite no source. |
+| R3 Says what to do when a check fails | ✅ yes | Coded gap handling, as in the other templated skills. |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
+| R5 Ties evaluation depth to intended use | no | Generic template; nothing ties review depth to intended use. |
+| R6 States the limitations of its own output | ✅ yes | "Never fill gaps with confident invention." |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
+
+**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 6 and 0.
+
+*Note.* Templated, as assess-model-evaluation-diagnostics.
+
+## clinpharm-pmx-skills · verify-nca-outputs {#okour-nca}
+
+[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/verify-nca-outputs) · task skill · unproven: no evidence of use, so not ranked · tags: NCA; document review
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 46.3 | 66.7 | 28.0 | 92.5 | 0.0 |
+
+**Quality.** 6 of 9 applicable rubric items met (66.7), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | ✅ yes | "Do not use when the request is ... to rerun or re-derive the analysis" |
+| R2 Cites sources for its recommendations | no | Rules come from the analysis plan; no published source cited. |
+| R3 Says what to do when a check fails | ✅ yes | "Where the plan is silent on a rule the data show was applied, that is an UNKNOWN for a human to resolve" |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Tolerances come from the plan and are named in every finding. |
+| R6 States the limitations of its own output | ✅ yes | "Report reconciliation coverage as a fraction — values checked over values present." |
+| R7 Code examples complete enough to run | no | No runnable command in the skill. |
+| R8 Examples run in continuous integration | ✅ yes | quality.yml tests the shared scripts it calls. |
+| R9 Continuous integration passes on the pinned commit | ✅ yes | quality.yml on f141199: success. |
+| R10 Stores outputs from a real run | no | examples/verify-nca-outputs holds synthetic inputs, not outputs. |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
+
+**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 6 and 0.
+
+## aNCA · nca-scientific-change-review {#anca-nca-review}
+
+[pharmaverse/aNCA at `e6b468f`](https://github.com/pharmaverse/aNCA/tree/e6b468f9085e5380229d1945228d4da9bbad36c3/.github/skills/nca-scientific-change-review) · task skill · unproven: no evidence of use, so not ranked · tags: NCA; code review
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 36.9 | 60.0 | 0.0 | 99.0 | 0.0 |
+
+**Quality.** 3 of 5 applicable rubric items met (60.0), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | no | No statement of what the skill excludes. |
+| R2 Cites sources for its recommendations | ✅ yes | "identify the applicable CDISC standard/version or metadata authority" |
+| R3 Says what to do when a check fails | ✅ yes | "Define regression evidence and manual scientific review needed"; deviations and unresolved compliance risks are recorded. |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
+| R6 States the limitations of its own output | no | No statement of the limits of its output. |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Gerardo Jose Rodriguez | 1.0 | 0 | [record](https://openalex.org/A5120737136) | ORCID 0000-0003-1413-0060, from aNCA DESCRIPTION |
+
+**Maintenance.** Last change to the skill's files 2026-09-30 (7 days; recency 98.1). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 44 and 17.
+
+*Note.* A developer skill for maintaining the aNCA package.
 
 ## scientific-agents · pharmacokineticist {#kdense-pharmacokineticist}
 
-[K-Dense-AI/scientific-agents at `98c7fae`](https://github.com/K-Dense-AI/scientific-agents/tree/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/pharmacokineticist/skills/pharmacokineticist) · task skill · rank 9 (range 7–9) · tags: PK analysis
+[K-Dense-AI/scientific-agents at `98c7fae`](https://github.com/K-Dense-AI/scientific-agents/tree/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/pharmacokineticist/skills/pharmacokineticist) · task skill · unproven: no evidence of use, so not ranked · tags: PK analysis
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 50.6 | 61.7 | 0.0 | 88.9 | 50.1 |
+| 36.7 | 61.7 | 0.0 | 88.9 | 0.0 |
 
 **Quality.** 4 of 6 applicable rubric items met (66.7), less 0 major and 1 minor errors.
 
@@ -863,47 +1035,19 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-29 (8 days; recency 97.8). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✗.
 
-**Adoption.** 200 stars and 30 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 200 and 30.
 
 *Note.* A persona file with no code.
 
-## aNCA · nca-scientific-change-review {#anca-nca-review}
-
-[pharmaverse/aNCA at `e6b468f`](https://github.com/pharmaverse/aNCA/tree/e6b468f9085e5380229d1945228d4da9bbad36c3/.github/skills/nca-scientific-change-review) · task skill · rank 9 · tags: NCA; code review
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 50.6 | 60.0 | 0.0 | 99.0 | 38.0 |
-
-**Quality.** 3 of 5 applicable rubric items met (60.0), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | no | No statement of what the skill excludes. |
-| R2 Cites sources for its recommendations | ✅ yes | "identify the applicable CDISC standard/version or metadata authority" |
-| R3 Says what to do when a check fails | ✅ yes | "Define regression evidence and manual scientific review needed"; deviations and unresolved compliance risks are recorded. |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
-| R6 States the limitations of its own output | no | No statement of the limits of its output. |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Gerardo Jose Rodriguez | 1.0 | 0 | [record](https://openalex.org/A5120737136) | ORCID 0000-0003-1413-0060, from aNCA DESCRIPTION |
-
-**Maintenance.** Last change to the skill's files 2026-09-30 (7 days; recency 98.1). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 44 stars and 17 forks on the repository.
-
-*Note.* A developer skill for maintaining the aNCA package.
-
 ## jinko-skills · jinko-task-paper2model {#jinko-paper2model}
 
-[novainsilico/jinko-skills at `dd7ff2e`](https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-paper2model) · task skill · rank 11 (range 10–11) · tags: model building from literature; QSP
+[novainsilico/jinko-skills at `dd7ff2e`](https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-paper2model) · task skill · unproven: no evidence of use, so not ranked · tags: model building from literature; QSP
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 42.9 | 50.0 | 0.0 | 98.9 | 6.4 |
+| 32.4 | 50.0 | 0.0 | 98.9 | 0.0 |
 
 **Quality.** 5 of 10 applicable rubric items met (50.0), less 0 major and 0 minor errors.
 
@@ -928,15 +1072,17 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-09-29 (8 days; recency 97.8). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 ## inflexa · pkpd-clinical-response {#inflexa-pkpd}
 
-[inflexa-ai/inflexa at `79c79cb`](https://github.com/inflexa-ai/inflexa/tree/79c79cbaf4bd81d3e862c3c1581a89c6666ba6d9/skills/pkpd-clinical-response) · task skill · rank 12 (range 11–12) · tags: PK/PD; exposure-response
+[inflexa-ai/inflexa at `79c79cb`](https://github.com/inflexa-ai/inflexa/tree/79c79cbaf4bd81d3e862c3c1581a89c6666ba6d9/skills/pkpd-clinical-response) · task skill · unproven: no evidence of use, so not ranked · tags: PK/PD; exposure-response
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 29.3 | 20.0 | 0.0 | 84.9 | 33.5 |
+| 17.5 | 20.0 | 0.0 | 84.9 | 0.0 |
 
 **Quality.** 2 of 10 applicable rubric items met (20.0), less 0 major and 0 minor errors.
 
@@ -962,15 +1108,17 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-08-31 (37 days; recency 89.9). Usability 80: licence ✅, frontmatter ✅, install ✅, dependencies ✗, version ✅.
 
-**Adoption.** 33 stars and 4 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 33 and 4.
 
 ## ai_collection · quantum-compartmental-pkpd {#hiyenwong-quantum}
 
-[hiyenwong/ai_collection at `ce2d037`](https://github.com/hiyenwong/ai_collection/tree/ce2d037b18f0ad37cdb6bb9ba31476f1aba221d9/collection/skills/other/quantum-compartmental-pkpd) · task skill · rank 12 (range 12–13) · tags: simulation
+[hiyenwong/ai_collection at `ce2d037`](https://github.com/hiyenwong/ai_collection/tree/ce2d037b18f0ad37cdb6bb9ba31476f1aba221d9/collection/skills/other/quantum-compartmental-pkpd) · task skill · unproven: no evidence of use, so not ranked · tags: simulation
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 25.3 | 23.3 | 0.0 | 67.8 | 12.8 |
+| 17.3 | 23.3 | 0.0 | 67.8 | 0.0 |
 
 **Quality.** 3 of 9 applicable rubric items met (33.3), less 0 major and 2 minor errors.
 
@@ -997,17 +1145,19 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-07-10 (89 days; recency 75.6). Usability 60: licence ✗, frontmatter ✅, install ✅, dependencies ✗, version ✅.
 
-**Adoption.** 3 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 3 and 0.
 
 *Note.* Auto-generated from an arXiv paper; three near-identical copies in the same collection.
 
 ## BiostatAgent · pharmacokinetics {#biostat-pk}
 
-[choxos/BiostatAgent at `a55c059`](https://github.com/choxos/BiostatAgent/tree/a55c0591107181cdac9ce78813dc0abac3281caa/plugins/r-tidy-modeling/skills/pharmacokinetics) · task skill · rank 14 (range 12–14) · tags: PK analysis; PKNCA; mrgsolve; nlmixr2
+[choxos/BiostatAgent at `a55c059`](https://github.com/choxos/BiostatAgent/tree/a55c0591107181cdac9ce78813dc0abac3281caa/plugins/r-tidy-modeling/skills/pharmacokinetics) · task skill · unproven: no evidence of use, so not ranked · tags: PK analysis; PKNCA; mrgsolve; nlmixr2
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 23.8 | 20.0 | 0.0 | 61.8 | 24.3 |
+| 15.2 | 20.0 | 0.0 | 61.8 | 0.0 |
 
 **Quality.** 2 of 10 applicable rubric items met (20.0), less 0 major and 0 minor errors.
 
@@ -1032,17 +1182,19 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-05-27 (133 days; recency 63.6). Usability 60: licence ✅, frontmatter ✅, install ✅, dependencies ✗, version ✗.
 
-**Adoption.** 12 stars and 1 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 12 and 1.
 
 *Note.* Same skill as choxos/TidyRModelling (merged as a copy).
 
 ## PK_Claude · covariate-test {#momentum-covariate}
 
-[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/covariate-test) · task skill · rank 15 · tags: covariate modeling; NONMEM
+[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/covariate-test) · task skill · unproven: no evidence of use, so not ranked · tags: covariate modeling; NONMEM
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 12.2 | 16.7 | 16.0 | 0 | 6.4 |
+| 11.5 | 16.7 | 16.0 | 0 | 0.0 |
 
 **Quality.** 1 of 6 applicable rubric items met (16.7), less 0 major and 0 minor errors.
 
@@ -1063,17 +1215,19 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-02-16 (233 days; recency 36.2). Usability 40: licence ✗, frontmatter ✅, install ✅, dependencies ✗, version ✗. Repository archived, so M is 0.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 *Note.* Repository archived.
 
 ## PK_Claude · nca-analysis {#momentum-nca}
 
-[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/nca-analysis) · task skill · rank 15 (range 15–17) · tags: NCA
+[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/nca-analysis) · task skill · unproven: no evidence of use, so not ranked · tags: NCA
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 9.6 | 11.1 | 16.0 | 0 | 6.4 |
+| 9.0 | 11.1 | 16.0 | 0 | 0.0 |
 
 **Quality.** 1 of 9 applicable rubric items met (11.1), less 0 major and 0 minor errors.
 
@@ -1097,17 +1251,19 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-02-17 (232 days; recency 36.4). Usability 40: licence ✗, frontmatter ✅, install ✅, dependencies ✗, version ✗. Repository archived, so M is 0.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 *Note.* Repository archived.
 
 ## PK_Claude · simulate-pk {#momentum-simulate}
 
-[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/simulate-pk) · task skill · rank 15 (range 15–17) · tags: simulation
+[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/simulate-pk) · task skill · unproven: no evidence of use, so not ranked · tags: simulation
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 9.6 | 11.1 | 16.0 | 0 | 6.4 |
+| 9.0 | 11.1 | 16.0 | 0 | 0.0 |
 
 **Quality.** 1 of 9 applicable rubric items met (11.1), less 0 major and 0 minor errors.
 
@@ -1131,17 +1287,93 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-02-17 (232 days; recency 36.4). Usability 40: licence ✗, frontmatter ✅, install ✅, dependencies ✗, version ✗. Repository archived, so M is 0.
 
-**Adoption.** 1 stars and 0 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
 
 *Note.* Repository archived.
 
+## PK_Claude · model-eval {#momentum-model-eval}
+
+[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/model-eval) · task skill · unproven: no evidence of use, so not ranked · tags: model evaluation; NONMEM
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 8.5 | 10.0 | 16.0 | 0 | 0.0 |
+
+**Quality.** 1 of 10 applicable rubric items met (10.0), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | no | No statement of what the skill excludes. |
+| R2 Cites sources for its recommendations | no | Cites none. |
+| R3 Says what to do when a check fails | no | "If convergence OR covariance failed, report immediately and flag" stops at flagging. |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | "high RSE, high shrinkage" with no numeric cut-offs. |
+| R5 Ties evaluation depth to intended use | no | Nothing ties evaluation to intended use. |
+| R6 States the limitations of its own output | no | No statement of the limits of its output. |
+| R7 Code examples complete enough to run | no | Depends on library(aipharma), an internal package that is not public. |
+| R8 Examples run in continuous integration | no | No continuous integration. |
+| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
+| R10 Stores outputs from a real run | no | No stored outputs. |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Justus Bingham | 1.0 | 4 | [record](https://openalex.org/A5087848914) | probable: the only OpenAlex author of that name with 3 or more field works |
+
+**Maintenance.** Last change to the skill's files 2026-02-16 (233 days; recency 36.2). Usability 40: licence ✗, frontmatter ✅, install ✅, dependencies ✗, version ✗. Repository archived, so M is 0.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
+
+*Note.* Repository archived.
+
+## PK_Claude · er-analysis {#momentum-er}
+
+[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/er-analysis) · task skill · unproven: no evidence of use, so not ranked · tags: exposure-response
+
+| S | Q | E | M | U |
+|---:|---:|---:|---:|---:|
+| 8.5 | 10.0 | 16.0 | 0 | 0.0 |
+
+**Quality.** 1 of 10 applicable rubric items met (10.0), less 0 major and 0 minor errors.
+
+| Item | | Evidence |
+|:---|:---|:---|
+| R1 States what the skill does not do | no | No statement of what the skill excludes. |
+| R2 Cites sources for its recommendations | no | Cites none. |
+| R3 Says what to do when a check fails | no | No guidance when a check fails. |
+| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
+| R5 Ties evaluation depth to intended use | no | Nothing ties the analysis to intended use. |
+| R6 States the limitations of its own output | no | No statement of the limits of its output. |
+| R7 Code examples complete enough to run | no | Fragments such as glm(..., family = binomial) only. |
+| R8 Examples run in continuous integration | no | No continuous integration. |
+| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
+| R10 Stores outputs from a real run | no | No stored outputs. |
+
+**Expertise.**
+
+| Author | Share | Field h-index | OpenAlex | Match |
+|:---|---:|---:|:---|:---|
+| Justus Bingham | 1.0 | 4 | [record](https://openalex.org/A5087848914) | probable: the only OpenAlex author of that name with 3 or more field works |
+
+**Maintenance.** Last change to the skill's files 2026-02-17 (232 days; recency 36.4). Usability 40: licence ✗, frontmatter ✅, install ✅, dependencies ✗, version ✗. Repository archived, so M is 0.
+
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 1 and 0.
+
+*Note.* Repository archived. Silent on confounding between exposure and prognosis.
+
 ## satori · scientific-clinical-pharmacology {#satori-clinpharm}
 
-[nahisaho/satori at `20787d9`](https://github.com/nahisaho/satori/tree/20787d90a5bd957922dac1ec18d4f708d5df7551/src/.github/skills/scientific-clinical-pharmacology) · task skill · rank 15 (range 15–18) · tags: clinical pharmacology; population PK
+[nahisaho/satori at `20787d9`](https://github.com/nahisaho/satori/tree/20787d90a5bd957922dac1ec18d4f708d5df7551/src/.github/skills/scientific-clinical-pharmacology) · task skill · unproven: no evidence of use, so not ranked · tags: clinical pharmacology; population PK
 
-| S | Q | E | M | A |
+| S | Q | E | M | U |
 |---:|---:|---:|---:|---:|
-| 9.2 | 0 | 0.0 | 37.9 | 16.5 |
+| 3.8 | 0 | 0.0 | 37.9 | 0.0 |
 
 **Quality.** 2 of 10 applicable rubric items met (20.0), less 1 major and 1 minor errors.
 
@@ -1169,139 +1401,8 @@ toc-location: left
 
 **Maintenance.** Last change to the skill's files 2026-02-15 (234 days; recency 35.9). Usability 40: licence ✗, frontmatter ✅, install ✅, dependencies ✗, version ✗.
 
-**Adoption.** 3 stars and 2 forks on the repository.
+**Use.** No issue, pull request or comment from anyone outside the authors in the last 12 months, and no deliberate installation found in another project.
+
+Repository stars and forks, used only to break ties: 3 and 2.
 
 *Note.* Known-answer fixture 2. Skill text is in Japanese.
-
-## clinpharm-pmx-skills · review-exposure-response-modelling {#okour-er-modelling}
-
-[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-exposure-response-modelling) · task skill · not ranked: beyond the per-library cap · tags: exposure-response; document review
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 57.3 | 66.7 | 28.0 | 92.5 | 17.9 |
-
-**Quality.** 4 of 6 applicable rubric items met (66.7), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | ✅ yes | "Refuses: Decide the outcome of Exposure-response modelling ..." |
-| R2 Cites sources for its recommendations | no | The eight checks cite no source. |
-| R3 Says what to do when a check fails | ✅ yes | Coded gap handling, as in the other templated skills. |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
-| R5 Ties evaluation depth to intended use | no | Generic template; nothing ties review depth to intended use. |
-| R6 States the limitations of its own output | ✅ yes | "Never fill gaps with confident invention." |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
-
-**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 6 stars and 0 forks on the repository.
-
-*Note.* Templated, as assess-model-evaluation-diagnostics.
-
-## clinpharm-pmx-skills · verify-nca-outputs {#okour-nca}
-
-[malekokour/clinpharm-pmx-skills at `cefc4ea`](https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/verify-nca-outputs) · task skill · not ranked: beyond the per-library cap · tags: NCA; document review
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 57.3 | 66.7 | 28.0 | 92.5 | 17.9 |
-
-**Quality.** 6 of 9 applicable rubric items met (66.7), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | ✅ yes | "Do not use when the request is ... to rerun or re-derive the analysis" |
-| R2 Cites sources for its recommendations | no | Rules come from the analysis plan; no published source cited. |
-| R3 Says what to do when a check fails | ✅ yes | "Where the plan is silent on a rule the data show was applied, that is an UNKNOWN for a human to resolve" |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Tolerances come from the plan and are named in every finding. |
-| R6 States the limitations of its own output | ✅ yes | "Report reconciliation coverage as a fraction — values checked over values present." |
-| R7 Code examples complete enough to run | no | No runnable command in the skill. |
-| R8 Examples run in continuous integration | ✅ yes | quality.yml tests the shared scripts it calls. |
-| R9 Continuous integration passes on the pinned commit | ✅ yes | quality.yml on f141199: success. |
-| R10 Stores outputs from a real run | no | examples/verify-nca-outputs holds synthetic inputs, not outputs. |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Malek Okour | 1.0 | 7 | [record](https://openalex.org/A5062796971) | probable: the only OpenAlex author of that name with 3 or more field works |
-
-**Maintenance.** Last change to the skill's files 2026-08-13 (55 days; recency 84.9). Usability 100: licence ✅, frontmatter ✅, install ✅, dependencies ✅, version ✅.
-
-**Adoption.** 6 stars and 0 forks on the repository.
-
-## PK_Claude · model-eval {#momentum-model-eval}
-
-[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/model-eval) · task skill · not ranked: beyond the per-library cap · tags: model evaluation; NONMEM
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 9.1 | 10.0 | 16.0 | 0 | 6.4 |
-
-**Quality.** 1 of 10 applicable rubric items met (10.0), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | no | No statement of what the skill excludes. |
-| R2 Cites sources for its recommendations | no | Cites none. |
-| R3 Says what to do when a check fails | no | "If convergence OR covariance failed, report immediately and flag" stops at flagging. |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | "high RSE, high shrinkage" with no numeric cut-offs. |
-| R5 Ties evaluation depth to intended use | no | Nothing ties evaluation to intended use. |
-| R6 States the limitations of its own output | no | No statement of the limits of its output. |
-| R7 Code examples complete enough to run | no | Depends on library(aipharma), an internal package that is not public. |
-| R8 Examples run in continuous integration | no | No continuous integration. |
-| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
-| R10 Stores outputs from a real run | no | No stored outputs. |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Justus Bingham | 1.0 | 4 | [record](https://openalex.org/A5087848914) | probable: the only OpenAlex author of that name with 3 or more field works |
-
-**Maintenance.** Last change to the skill's files 2026-02-16 (233 days; recency 36.2). Usability 40: licence ✗, frontmatter ✅, install ✅, dependencies ✗, version ✗. Repository archived, so M is 0.
-
-**Adoption.** 1 stars and 0 forks on the repository.
-
-*Note.* Repository archived.
-
-## PK_Claude · er-analysis {#momentum-er}
-
-[momentummetrix/PK_Claude at `c245ed3`](https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/er-analysis) · task skill · not ranked: beyond the per-library cap · tags: exposure-response
-
-| S | Q | E | M | A |
-|---:|---:|---:|---:|---:|
-| 9.1 | 10.0 | 16.0 | 0 | 6.4 |
-
-**Quality.** 1 of 10 applicable rubric items met (10.0), less 0 major and 0 minor errors.
-
-| Item | | Evidence |
-|:---|:---|:---|
-| R1 States what the skill does not do | no | No statement of what the skill excludes. |
-| R2 Cites sources for its recommendations | no | Cites none. |
-| R3 Says what to do when a check fails | no | No guidance when a check fails. |
-| R4 Qualifies numeric thresholds, or gives none | ✅ yes | Gives no numeric thresholds. |
-| R5 Ties evaluation depth to intended use | no | Nothing ties the analysis to intended use. |
-| R6 States the limitations of its own output | no | No statement of the limits of its output. |
-| R7 Code examples complete enough to run | no | Fragments such as glm(..., family = binomial) only. |
-| R8 Examples run in continuous integration | no | No continuous integration. |
-| R9 Continuous integration passes on the pinned commit | no | Follows R8. |
-| R10 Stores outputs from a real run | no | No stored outputs. |
-
-**Expertise.**
-
-| Author | Share | Field h-index | OpenAlex | Match |
-|:---|---:|---:|:---|:---|
-| Justus Bingham | 1.0 | 4 | [record](https://openalex.org/A5087848914) | probable: the only OpenAlex author of that name with 3 or more field works |
-
-**Maintenance.** Last change to the skill's files 2026-02-17 (232 days; recency 36.4). Usability 40: licence ✗, frontmatter ✅, install ✅, dependencies ✗, version ✗. Repository archived, so M is 0.
-
-**Adoption.** 1 stars and 0 forks on the repository.
-
-*Note.* Repository archived. Silent on confounding between exposure and prognosis.
