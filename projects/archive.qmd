@@ -35,13 +35,8 @@ listing:
 toc: false
 ---
 
-Two kinds of project end up here. Some are finished, and the conclusion in them
-still stands. Some were overtaken, because the question they asked got answered
-somewhere else or stopped being a question. These cards no longer sit on the
+Two kinds of project end up here. Some are finished and some were overtaken, because the question they asked got answered somewhere else or the question stopped being relevant. These cards no longer sit on the
 [Projects page](index.qmd).
-
-The sections match the ones there, so a project keeps its heading when it moves.
-Each card's subtitle says how that project ended.
 
 ## GenAI
 
