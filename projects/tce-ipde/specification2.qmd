@@ -51,15 +51,32 @@ The simulation and operational framework answer one question:
 
 > Under what conditions does intrapatient dose escalation (IPDE) materially shorten the time a first-in-human T-cell engager study needs to reach and conventionally evaluate a biologically active dose or regimen, or reach that point in the same time having treated fewer patients at subtherapeutic exposures, and what safety and operational risks come with either?
 
-**The saving can arrive on three axes.** It can be calendar time, patients, or what the trial consumes, and a design can win on one axis and not the others. Catch-up escalation is expected to be such a design: little change in $T_{3,\rm eval}$, and substantially less patient-time at clearly subactive doses (Section 6). Scored on time alone it would count as a failure.
+**The saving can arrive on three axes.** It can be calendar time, patients, or clinical workload (visits and hours of observation or hospitalization), and a design can win on one axis and not the others. Catch-up escalation is expected to be such a design: little change in the time to an evaluated active dose, and substantially less patient-time at clearly subactive doses (Section 6). Scored on time alone it would count as a failure.
 
-The three headline quantities:
+### Headline Metrics
 
-- **Time.** $T_{3,\rm eval}$, and $\Delta T$ against the conventional comparator (Section 4).
-- **Patients spent reaching the answer.** The number enrolled before the first profound FLC suppression, and patient-weeks with FLC at or above 10% of baseline (Section 5).
-- **What the trial consumes.** Total patient-visits, and total observation and hospitalization time in patient-hours (Section 19).
+The definitions here are enough to read the rest of the document. Sections 4, 5 and 19 give the full rules.
 
-**Report the third axis per patient and per trial.** The two can point in opposite directions. A scout takes a visit, a dose, a pharmacy preparation and an observation window at every rung, where a conventional patient sits at one dose level for the same period, so per patient the ladder is heavier. Across the trial it may be lighter, because there are few scouts and conventional escalation puts three patients on every rung. The per-patient count says what a participant undergoes and the per-trial count says what the trial consumes. Section 19 expects the per-patient cost to depend on what the patients were already scheduled for: close to nothing for a weekly (QW) oncology TCE whose visits are planned anyway, and substantial for an immune-reset programme whose eventual treatment is one or two administrations.
+**Profound FLC suppression** is a serum free light chain concentration $L$ below $\theta_{\rm stop}L_0$, where $L_0$ is that patient's baseline and $\theta_{\rm stop}=0.10$ in the base case (Section 9). It is the trial's observable evidence that a dose is active.
+
+Time (Section 4):
+
+- $T_{3,\rm eval}$, the primary endpoint: calendar time from the first dose in the study until 3 patients have completed the full evaluation window $W_{\rm full}$ on a conventional regimen whose target dose produced profound FLC suppression in those patients. Patients who reached the target dose through an IPDE ladder do not count.
+- $T_{\rm FLC}$, the secondary endpoint: calendar time from the first dose to the first observation of profound FLC suppression in any patient.
+- $\Delta T = T_{3,\rm conventional} - T_{3,\rm IPDE}$, the time IPDE saves. A positive value favours IPDE.
+
+Patients (Section 5):
+
+- $N_{\rm sub}$, the number of patients treated only at subactive exposures, scored by the simulator, which knows the true active dose. $\Delta N_{\rm sub}$ is its reduction against the conventional comparator.
+- The number of patients enrolled before the first profound FLC suppression.
+- Patient-weeks with FLC at or above $\theta_{\rm stop}L_0$.
+
+Clinical workload (Section 19):
+
+- Total patient-visits.
+- Total observation and hospitalization time, in patient-hours.
+
+**Report the third axis per patient and per trial.** The two can point in opposite directions. A scout takes a visit, a dose, a pharmacy preparation and an observation window at every rung, where a conventional patient sits at one dose level for the same period, so per patient the ladder is heavier. Across the trial it may be lighter, because there are few scouts and conventional escalation puts three patients on every rung. The per-patient count says what a participant undergoes and the per-trial count says what the sites and the sponsor carry. Section 19 expects the per-patient cost to depend on what the patients were already scheduled for: close to nothing for a weekly (QW) oncology TCE whose visits are planned anyway, and substantial for an immune-reset programme whose eventual treatment is one or two administrations.
 
 **No cost model yet.** Combining visits, doses, hospital hours and patients into one number needs weights, and a sponsor, a site and a patient weigh them differently. Section 19 reports the components separately, and a programme that wants a currency figure can price its own counts.
 
@@ -67,7 +84,7 @@ The three headline quantities:
 
 The deliverable is $\Delta T$, $\Delta N_{\rm sub}$ and the burden counts reported across the scenario grid in Section 21, with the regions where each is material named. It says which conditions favour IPDE and does not decide for any one programme.
 
-**Read the result against contours.** An eight-week saving is a line drawn on the map, roughly one conventional cohort cycle at $W_{\rm cohort}=28$ days plus its accrual. A smaller saving sits inside the noise of ordinary trial execution and is marked as such. A programme applying this work later brings its own threshold. Section 26b covers reading the map, including where the saving is patients rather than time.
+**Read the result against contours.** An eight-week saving is a line drawn on the map, roughly one conventional cohort cycle plus its accrual, where the cycle is the base-case 28 days $W_{\rm cohort}$ between the last patient in a cohort receiving the target dose and the next dose level opening (Section 15). A smaller saving sits inside the noise of ordinary trial execution and is marked as such. A programme applying this work later brings its own threshold. Section 26b covers reading the map, including where the saving is patients rather than time.
 
 **The safety side stays unquantified.** Section 16 sets out why no defensible quantitative ICANS model exists. A region of the map says whether the benefit there is large enough for the safety discussion to be worth having, and nothing more.
 
@@ -1086,7 +1103,7 @@ Report the pair $(\Delta T,\ \Delta N_{\rm sub})$ for every scenario, where $\De
 
 Set $\Delta N_{\rm sub,\min}$ the way $\Delta T_{\min}$ is set, from programme considerations rather than from the simulation.
 
-**Cost is outside this rule.** The third axis in Section 1, what the trial consumes, is reported, but a cheaper trial is not a reason to accept an unquantified delayed-toxicity risk. A design that saves visits while saving neither time nor patients does not clear this threshold.
+**Cost is outside this rule.** The third axis in Section 1, clinical workload, is reported, but a cheaper trial is not a reason to accept an unquantified delayed-toxicity risk. A design that saves visits while saving neither time nor patients does not clear this threshold.
 
 ------------------------------------------------------------------------
 
