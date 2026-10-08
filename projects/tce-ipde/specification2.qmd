@@ -61,9 +61,9 @@ We define the following metrics for assessing a study design.
 
 Time (Section 4):
 
-- $T_{3,\rm eval}$, the primary endpoint: calendar time from the first dose in the study until 3 patients have completed the full evaluation window $W_{\rm full}$ on a conventional regimen whose target dose produced profound FLC suppression in those patients. Patients who reached the target dose through an IPDE ladder do not count.
+- $T_{3,\rm eval}$, the primary endpoint: calendar time from the first dose in the study until 3 patients have completed the full evaluation window $W_{\rm full}$, 28 days in the base case (Section 15), on a conventional regimen whose target dose produced profound FLC suppression in those patients. Patients who reached the target dose through an IPDE ladder do not count.
 - $T_{\rm FLC}$, the secondary endpoint: calendar time from the first dose to the first observation of profound FLC suppression in any patient.
-- $\Delta T = T_{3,\rm conventional} - T_{3,\rm IPDE}$, the time IPDE saves. A positive value favours IPDE.
+- $\Delta T = T_{3,\rm conventional} - T_{3,\rm IPDE}$, the time IPDE saves, where $T_{3,\rm conventional}$ and $T_{3,\rm IPDE}$ are $T_{3,\rm eval}$ under the conventional comparator and under the IPDE design. A positive value favours IPDE.
 
 Patients (Section 5):
 
@@ -98,7 +98,7 @@ The main use case is a **plasma-cell-depleting TCE**, with profound suppression 
 
 **The B-cell design is [Specification 1](specification.qmd).** Where the target is on both compartments, as with a CD19 x BCMA engager, Archetype 3 in Section 22 carries both markers.
 
-**Out of scope: raising the starting dose.** A better minimal anticipated biological effect level (MABEL) starting dose attacks the same gap from the other end and complements IPDE. This project holds $D_{\rm start}$ fixed and varies what happens above it.
+**Out of scope: raising the starting dose.** A better minimal anticipated biological effect level (MABEL) starting dose attacks the same gap from the other end and complements IPDE. This project holds the FIH starting dose $D_{\rm start}$ fixed and varies what happens above it.
 
 **Out of scope: later development.** IPDE is a first-in-human strategy for an uncertain active dose. Once the active neighbourhood is known, the reason to cross a large dose range within one patient mostly disappears.
 
@@ -106,25 +106,29 @@ Two further archetypes are, as a negative control, another BCMA TCE, where class
 
 ### Healthy Volunteer Studies
 
-Recorded 2026-09-10. A related idea: give healthy volunteers one or two doses, climbing between cohorts until the first grade 1 cytokine release or a 50% fall in peripheral B cells, or for a plasma-cell target in summed FLC, and open the patient study at that dose. A phase 1 unit climbs a ladder in weeks where a patient escalation takes months, and the ladder runs across volunteers, so where volunteers can be dosed the design simulated here may not be needed.
+A related idea: give healthy volunteers one or two doses, climbing between cohorts until the first grade 1 cytokine release or a 50% fall in peripheral B cells, or for a plasma-cell target in summed FLC, and open the patient study at that dose. A phase 1 unit climbs a ladder in weeks where a patient escalation takes months, and the ladder runs across volunteers, so where volunteers can be dosed the design simulated here may not be needed.
 
 Three TCEs have registered healthy volunteer cohorts since December 2025, all for autoimmune indications and all with an affinity-tuned CD3 arm. No oncology TCE has been given to a volunteer. [T-cell engagers in healthy volunteers](tce-hv.qmd) carries the studies, what a volunteer study can measure, the translation to patients, and a speed estimate.
 
-One of the three, cizutamig, is a BCMA x CD3 engager, so a plasma-cell target has already been given to volunteers. A volunteer has a normal polyclonal plasma-cell compartment and a normal FLC level, which makes summed FLC a readout a volunteer study can use, where a B-cell count says little about a BCMA engager. What cizutamig's volunteer study measured is not known; entry 21 of the references asks.
+One of the three, cizutamig, is a BCMA x CD3 engager, so a plasma-cell target has already been given to volunteers. A volunteer has a normal polyclonal plasma-cell compartment and a normal FLC level, which makes summed FLC a readout a volunteer study can use, where a B-cell count says little about a BCMA engager. What cizutamig's volunteer study measured is not known.
 
-**How it bears on this simulation.** The volunteer route is the higher-starting-dose strategy set aside in the Scope, with human data behind it. Where it is open, in a plasma-cell-depleting TCE for an autoimmune indication, it removes most of the prediction error in Section 12 and is the stronger alternative; the simulation then reports what IPDE would have saved, as a comparator. Where it is closed, in myeloma, the question stands as specified.
-
-**Open decision.** The main use case does not yet name its indication. That choice settles whether the volunteer design enters the scenario grid of Section 21 as a comparator.
+The Healthy Volunteer approach is not considered further in this document.
 
 ------------------------------------------------------------------------
 
 ## 2. Central Hypothesis
 
-The value of IPDE comes from crossing a probably subtherapeutic dose range quickly. What decides it is uncertainty about $D_{\rm active}/D_{\rm start}$ more than the ratio itself, expressed as the prediction error
+Three doses are kept separate:
+
+- $D_{\rm start}$: the FIH starting target dose.
+- $D_{\rm pred}$: the translationally predicted active target dose.
+- $D_{\rm true}$: the actual active target dose, which the simulator knows and the trial does not (Section 10).
+
+The value of IPDE comes from crossing a subtherapeutic dose range quickly, and it depends more on how uncertain the ratio $D_{\rm true}/D_{\rm start}$ is than on the ratio itself. The uncertainty is expressed as the prediction error
 
 $$
 E_{\rm pred} =
-\frac{D_{\rm true,active}}{D_{\rm predicted,active}}.
+\frac{D_{\rm true}}{D_{\rm pred}}.
 $$
 
 If the prediction is accurate, conventional escalation may already reach the active range efficiently. If it is wrong by 10 to 30-fold or more, IPDE may accelerate the trial substantially. Prediction error is therefore a primary simulation axis (Section 12).
@@ -266,7 +270,7 @@ Patients receive a conventional TCE regimen: a step-up dose, then the target dos
 
 **Base case: one step-up dose.** No step-up is unrealistic for a modern TCE, and two step-ups make the conventional arm slower than it needs to be, which favours IPDE. Two step-ups are the sensitivity analysis.
 
-The base schedule is $SUD$ on D1 and $D_{\rm target}$ on D4, then QW target dosing if needed. Teclistamab steps up through 0.06 and 0.3 mg/kg before its 1.5 mg/kg target, about 4% and 20% of the target. With one step-up, take the higher: $SUD = 0.20D_{\rm target}$. The two-step sensitivity uses $SUD1 = 0.04D_{\rm target}$ and $SUD2 = 0.20D_{\rm target}$ on D1 and D4, with the target on D8. The fractions are a reference regimen, not a biological constant.
+The base schedule is a step-up dose $SUD$ on day 1 (D1) and the target dose $D_{\rm target}$ on D4, then QW target dosing if needed. Teclistamab steps up through 0.06 and 0.3 mg/kg before its 1.5 mg/kg target, about 4% and 20% of the target. With one step-up, take the higher: $SUD = 0.20D_{\rm target}$. The two-step sensitivity uses $SUD1 = 0.04D_{\rm target}$ and $SUD2 = 0.20D_{\rm target}$ on D1 and D4, with the target on D8. The fractions are a reference regimen, not a biological constant.
 
 After safety review of dose level $D_k$, a new cohort receives $D_{k+1}$.
 
@@ -301,7 +305,7 @@ $$
 
 one step every 7 days. Escalation continues while $L\ge\theta_{\rm stop}L_0$ and the protocol's safety gate permits another dose, and stops when $L<\theta_{\rm stop}L_0$. The trial then nominates the corresponding target-dose neighbourhood and opens conventional backfill at once.
 
-**Step interval: one week in v1.** It matches the safety gate $W_{\rm decision}$ in Section 15 and the PD turnaround in Section 11, so nothing else in the engine has to change. Shorter intervals are a later question.
+**Step interval: one week in v1.** It matches the safety gate in Section 15, $W_{\rm decision}$, the minimum information needed before the next escalation, and the PD turnaround in Section 11, so nothing else in the engine has to change. Shorter intervals are a later question.
 
 #### No Cap on the Number of Steps
 
@@ -345,7 +349,7 @@ A second scout need not wait for the first to finish. Once the leading scout has
 
 Two limits on the stagger, which a protocol has to state:
 
-1.  **A follower's next dose waits on the leader's result.** The PD result and safety review for rung $k$ arrive $T_{\rm PD,ready}$ plus the review lag after the leader's dose (Section 11). Dosing a follower at rung $k$ sooner puts two patients at an uncleared dose and gains nothing over dosing them together. The minimum stagger is the turnaround, not the escalation interval.
+1.  **A follower's next dose waits on the leader's result.** The PD result and safety review for rung $k$ arrive $T_{\rm PD,ready}$, the time from a dose to its FLC result (Section 11), plus the review lag after the leader's dose. Dosing a follower at rung $k$ sooner puts two patients at an uncleared dose and gains nothing over dosing them together. The minimum stagger is the turnaround, not the escalation interval.
 2.  **Sentinel rules limit the first dose in each patient.** A protocol that staggers first doses between patients applies the stagger to scouts too, and that gap is usually longer than the PD turnaround.
 
 A follower never enters a rung the leader has not cleared. When the leader triggers the stop, each follower climbs to that dose and stops there, which gives the declaration in Section 4 its observations at the nominated dose.
@@ -366,7 +370,7 @@ Simon accepts the same asymmetry: his accelerated phase ends on the first qualif
 
 The confirmatory-sample question in Section 13 is a different rule. It governs $\theta_{\rm move}$, the threshold that slows the ladder, where a false positive costs acceleration over all the remaining rungs. This rule governs the stop, where a false positive costs one rung.
 
-If two scouts deplete at different dose levels, Section 7 still needs a single $D^*$. Nominating the lower is the conservative choice, and when it is too low it costs the non-confirmation cycles of Section 7.
+If two scouts deplete at different dose levels, Section 7 still needs a single nominated target dose $D^*$. Nominating the lower is the conservative choice, and when it is too low it costs the non-confirmation cycles of Section 7.
 
 ### Variant: Three-Patient Cohorts Throughout
 
@@ -397,7 +401,7 @@ If scout depletion first follows target $D^*$, nominate the base-case convention
 
 ### Expect the Nomination to Sit Low
 
-The scout's stopping signal comes from the cumulative exposure and plasma-cell trajectory of the whole ladder, not from $D^*$ alone. Drug from earlier doses is still present when the signal fires: the retained PK gives an effective half-life of about 8 days ($\ln 2 \times V_{ss}/CL$) against a 7-day interval. Plasma cells recover more slowly still ($t_{1/2,P}\approx60$ days in the base case, Section 9), so partial depletion carries over from step to step. $D^*$ can therefore sit one or more grid steps below the dose whose conventional regimen suppresses FLC in a fresh patient.
+The scout's stopping signal comes from the cumulative exposure and plasma-cell trajectory of the whole ladder, not from $D^*$ alone. Drug from earlier doses is still present when the signal fires: the retained PK gives an effective half-life of about 8 days ($\ln 2 \times V_{ss}/CL$, with $V_{ss}=V_c+V_p$ and $CL$ the clearance, all from Section 8) against a 7-day interval. Plasma cells recover more slowly still (plasma-cell half-life $t_{1/2,P}\approx60$ days in the base case, Section 9), so partial depletion carries over from step to step. $D^*$ can therefore sit one or more grid steps below the dose whose conventional regimen suppresses FLC in a fresh patient.
 
 **The carryover is larger here than in the B-cell design.** The marker carries no memory, since FLC is cleared within hours, but the cells it reports on recover about half as fast as B cells in Specification 1. Hypothesis 18 in Section 26 states the prediction.
 
@@ -415,16 +419,16 @@ The PD-guided rule in Section 13 is the main lever against this, since a scout t
 
 Use published teclistamab population PK as the reference exposure model: subcutaneous first-order absorption, two-compartment disposition, and parallel time-independent and time-dependent clearance. Teclistamab is a BCMA x CD3 engager, so in this variant the reference model belongs to the class being simulated.
 
-| Parameter             |             Value |
-|:----------------------|------------------:|
-| $CL_1$                |       0.449 L/day |
-| $V_c$                 |            4.13 L |
-| $Q$                   |      0.0390 L/day |
-| $V_p$                 |            1.34 L |
-| $k_a$                 |  0.133 day$^{-1}$ |
-| $F$                   |             0.718 |
-| time-dependent $CL_2$ |       0.547 L/day |
-| $k_{\rm DES}$         | 0.0292 day$^{-1}$ |
+| Parameter             | Meaning                                      |             Value |
+|:----------------------|:---------------------------------------------|------------------:|
+| $CL_1$                | Time-independent clearance                   |       0.449 L/day |
+| $V_c$                 | Central volume                               |            4.13 L |
+| $Q$                   | Intercompartmental clearance                 |      0.0390 L/day |
+| $V_p$                 | Peripheral volume                            |            1.34 L |
+| $k_a$                 | Subcutaneous absorption rate constant        |  0.133 day$^{-1}$ |
+| $F$                   | Subcutaneous bioavailability                 |             0.718 |
+| time-dependent $CL_2$ | Clearance that decays over time              |       0.547 L/day |
+| $k_{\rm DES}$         | Rate constant for the decay of $CL_2$        | 0.0292 day$^{-1}$ |
 
 : Published teclistamab population-PK typical estimates
 
@@ -457,9 +461,9 @@ k_{\max}
 \frac{C^h}{EC_{50}^h+C^h},
 $$
 
-with $k_{\rm in,P}=k_{\rm out,P}P_0$ at baseline.
+where $P$ is plasma-cell mass, $C$ the drug concentration from Section 8, $k_{\rm in,P}$ and $k_{\rm out,P}$ the plasma-cell production and loss rate constants, $k_{\max}$ the maximum kill rate, $EC_{50}$ the concentration giving half of it, and $h$ the Hill coefficient. At baseline $k_{\rm in,P}=k_{\rm out,P}P_0$.
 
-Serum FLC is produced in proportion to plasma-cell mass, plus a fraction $f_{\rm res}$ from cells the drug does not reach, and eliminated first-order:
+Serum FLC is produced in proportion to plasma-cell mass, plus a fraction $f_{\rm res}$ from cells the drug does not reach, and eliminated first-order with rate constant $k_{\rm el}$ and half-life $t_{1/2,L}$; $k_{\rm syn}$ is the baseline synthesis rate:
 
 $$
 \frac{dL}{dt}
@@ -520,11 +524,11 @@ Two protocol measures, and one simulation:
 
 ## 10. Defining the True Active Dose by Calibration
 
-Choose $D_{\rm true,active}$ for each scenario and solve for $EC_{50}$, rather than choosing $EC_{50}$ and finding out which dose is active.
+Choose $D_{\rm true}$ for each scenario and solve for $EC_{50}$, rather than choosing $EC_{50}$ and finding out which dose is active.
 
 Solve so that the standard candidate regimen ending at $D_{\rm true}$, which in the base case is $0.20D_{\rm true}\rightarrow D_{\rm true}$, produces $L/L_0=0.05$ at the prespecified PD assessment time in a typical patient. Then check that the same regimen one grid step lower leaves $L/L_0>0.20$. Calibrating to exactly $\theta_{\rm stop}=0.10$ would put the scenario on the decision boundary, where solver tolerance and assessment timing can flip the outcome by a full grid step; the margin keeps adjacent grid levels cleanly separated.
 
-**The calibration needs $f_{\rm res}<0.05$.** At a larger floor no dose reaches $L/L_0=0.05$, and the scenario has no active dose under this definition. Report such scenarios as ones where the FLC stop cannot be calibrated rather than dropping them.
+**The calibration needs** $f_{\rm res}<0.05$. At a larger floor no dose reaches $L/L_0=0.05$, and the scenario has no active dose under this definition. Report such scenarios as ones where the FLC stop cannot be calibrated rather than dropping them.
 
 The active dose is defined as:
 
@@ -552,11 +556,7 @@ FLC is an immunoassay run on clinical chemistry analysers, by nephelometry or tu
 
 ## 12. Prediction-Error Framework
 
-Prediction error is a primary simulation axis. Three doses are kept separate:
-
-- $D_{\rm start}$: the FIH starting target dose.
-- $D_{\rm pred}$: the translationally predicted active target dose.
-- $D_{\rm true}$: the actual active target dose in the simulation.
+Prediction error is a primary simulation axis. With the three doses of Section 2, the gap between the starting dose and the active dose splits into two ratios:
 
 $$
 R_{\rm predicted-gap}
@@ -713,7 +713,7 @@ This limits the development strategy as well as the simulation. The design reduc
 
 ## 17. Neutropenia Model
 
-Included to illustrate delayed, cumulative toxicity in general. The Friberg semimechanistic model has a proliferating compartment, three maturation compartments and circulating cells:
+Included to illustrate delayed, cumulative toxicity in general. The Friberg semimechanistic model has a proliferating compartment $Prol$, three maturation compartments $Transit_1$ to $Transit_3$ and circulating cells, the absolute neutrophil count $ANC$ with baseline $ANC_0$. Cells pass through at rate constant $k_{tr}$, set by the mean transit time $MTT$; $\gamma$ is the strength of the feedback from $ANC$ to proliferation, and $E_{\rm drug}$ the drug's inhibition of proliferation:
 
 $$
 Prol
@@ -780,7 +780,7 @@ This stop is the main protection against climbing far into the active range, and
 Report the burden components separately rather than combining them into a weighted complexity score.
 
 | Element | Metric |
-|:--------------------------------------------------|:--------------------|
+|:-------------------------------------------------|:---------------------|
 | Additional clinic visits, $N_{\rm visit}$ | count |
 | Drug administrations | count |
 | Individual dose changes | count |
@@ -1083,7 +1083,7 @@ Section 1 says what comes out of the simulation. This section says which parts o
 The simulation weighs a benefit it can quantify against a risk it cannot (Section 16), and no arithmetic settles that trade. The useful output is where the benefit is large enough for the safety discussion to be worth having. The thresholds below are contours for reading the result; a programme carrying this into a real decision sets its own and fixes them before looking at the numbers.
 
 On the time axis, with $\Delta T = T_{3,\rm conventional} -
-T_{3,\rm IPDE}$:
+T_{3,\rm IPDE}$ and $\Delta T_{\min}$ the smallest saving that counts as material, such as the eight-week contour of Section 1:
 
 - $\Delta T$ below $\Delta T_{\min}$. IPDE is not worth the unquantified delayed-toxicity risk in that scenario. Recommend the accelerated conventional design and stop; with no benefit there is nothing to weigh the risk against.
 - $\Delta T$ above $\Delta T_{\min}$. The acceleration is material, and the decision moves to the clinical and regulatory judgement in Section 27, which the simulation informs but does not make.
