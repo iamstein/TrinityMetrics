@@ -1,0 +1,9 @@
+---
+title: "ACoP 2026"
+description: >
+  Notes on posters and talks at ACoP 2026, one page per poster or talk.
+draft: true
+toc: false
+---
+
+Notes in Google Docs, one document per conference day.

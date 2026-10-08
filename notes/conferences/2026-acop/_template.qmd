@@ -1,0 +1,17 @@
+---
+title: ""
+subtitle: "Poster T-000 · First author et al."
+description: >
+  One line on what the poster shows.
+categories: [ACoP 2026]
+date: 2026-10-00
+draft: true
+---
+
+[Poster](https://) · [Abstract](https://)
+
+## What they did
+
+## What I think
+
+## Follow up
