@@ -1,0 +1,56 @@
+---
+title: "The Black Swan"
+subtitle: "Nassim Nicholas Taleb"
+description: >
+  Notes on Taleb's The Black Swan: the simple explanations people reach for
+  after the fact, and why prediction fails in a world of fat tails.
+categories: [Book notes, uncertainty]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1BqTbyF6o4fsfQozOh6Cdvmqu9yqn6cWWIXKYyNkU_nU/edit)
+in Google Docs.
+
+**The ideas are good and the book is a hard read.** Taleb insults nearly
+everyone, often in parenthetical jabs, and wraps a one-sentence idea in the
+story of when it came to him. The notes keep the ideas and drop the
+commentary.
+
+## Simple Explanations Mislead
+
+People make serious mistakes explaining the world because they lean toward
+simple, elegant explanations.
+
+- **Narrative.** People look for a story where none exists. Nobody knows what
+  is going on during an election or a war, but a story is easier to remember
+  than a string of events, so history is told as more of a story than it was.
+- **Induction.** A chicken fed by the farmer for 1,000 days expects food on
+  day 1,001, and is killed for dinner.
+- **Confirmation bias.** Told that (2, 4, 6) belongs to a set and asked to find
+  the rule, most people test sequences that fit "even and increasing" and never
+  try one that would fail. The rule was "increasing".
+- **Silent evidence.** Diagoras, shown portraits of worshippers who prayed and
+  survived a shipwreck, asked where the portraits were of those who prayed and
+  drowned. Biographies are written about the people who succeeded, and a
+  survivor looks for reasons where luck would do.
+- **Fat tails.** Height and weight are close to normal. Artists' and athletes'
+  incomes and business outcomes have tails where the outliers dominate, which
+  makes rare events both the most important and the hardest to characterize.
+- **Probability models.** When the probabilities, the payoffs and their
+  variance are all unknown, a model can be wrong by a large amount.
+
+## Prediction Is Hard
+
+- **Changing systems.** Experts beat laypeople in fields that stay put and
+  allow repeated trials, such as chess, watch repair and brain surgery. In
+  politics, economics and national security the system changes too fast, and
+  experts often do no better.
+- **Errors scale.** A human lifetime has an upper bound. A project predicted to
+  take six months can take years or never finish, and so can a war.
+- **No error bars.** Predictions rarely come with an error estimate.
+- **Future technology.** Predicting the future requires predicting
+  technology, which cannot be done.
+
+Kurtosis, how heavy a distribution's tails are, is very hard to estimate from
+data, which is a formal way of saying that we don't know what we don't know.

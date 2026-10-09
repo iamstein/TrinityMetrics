@@ -27,6 +27,11 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Books
 
+- [How to Be an Adult](books/how-to-be-an-adult.qmd).
+- [The Seven Principles for Making Marriage Work](books/seven-principles-for-making-marriage-work.qmd).
+  John Gottman and Nan Silver.
+- [The Black Swan](books/black-swan.qmd). Taleb on the simple explanations
+  people reach for after the fact, and why prediction fails when tails are fat.
 - [Designing Your Life](books/designing-your-life.qmd). Burnett and Evans on
   treating a career as a design problem rather than a search for one right
   answer.
@@ -68,6 +73,15 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
   point.
 - [Five Practical Tips to Parenting, from a Quantitative Drug Developer](blog-posts/five-practical-tips-to-parenting.qmd).
   Andy Stein on uncertainty, variability and biomarkers in raising children.
+
+## Podcasts
+
+- [Ben Sasse on Faith, Family, and Facing Death](podcasts/ben-sasse-on-faith-family-and-facing-death.qmd).
+  Sasse with Russ Roberts on EconTalk, six months into a terminal diagnosis:
+  concerts and football as worship, and Dylan Thomas read at the close.
+- [Addiction, Faith, and the Limits of Willpower](podcasts/addiction-faith-and-the-limits-of-willpower.qmd).
+  Meghan O'Gieblyn on EconTalk, starting from Simone Weil: faults are cured by
+  attention, not by will.
 
 ## Movies
 

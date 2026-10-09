@@ -34,4 +34,10 @@ so a link may ask for permission.
 - [Acceptance and Commitment Therapy](../concepts/acceptance-and-commitment-therapy.qmd).
   Workability rather than truth as the test applied to a thought, and the six
   processes of psychological flexibility.
+- [Addiction, Faith, and the Limits of Willpower](../podcasts/addiction-faith-and-the-limits-of-willpower.qmd).
+  Meghan O'Gieblyn on EconTalk, starting from Simone Weil: faults are cured by
+  attention, not by will.
+- [Ben Sasse on Faith, Family, and Facing Death](../podcasts/ben-sasse-on-faith-family-and-facing-death.qmd).
+  Sasse with Russ Roberts on EconTalk, six months into a terminal diagnosis:
+  concerts and football as worship, and Dylan Thomas read at the close.
 - [Parenting](parenting.qmd).
