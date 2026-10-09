@@ -1,0 +1,28 @@
+---
+title: "How to Best Harness Your Willpower"
+subtitle: "Brett McKay with Kelly McGonigal on The Art of Manliness"
+description: >
+  Notes on the Art of Manliness episode with Kelly McGonigal: sleep, exercise
+  and meditation as the habits that support willpower.
+categories: [Podcast notes, attention, habits]
+date: last-modified
+toc: false
+---
+
+[Podcast #531: How to Best Harness Your Willpower](https://www.artofmanliness.com/podcast/podcast-531-how-to-best-harness-your-willpower/),
+The Art of Manliness, 5 August 2019.
+[Notes](https://docs.google.com/document/d/10TPSkKjjjc8L3XmV6pJWrgYinIFSpxGzZxRT2Yj_VSI/edit)
+in Google Docs.
+
+Kelly McGonigal, a psychologist at Stanford, talks with Brett McKay about her
+book *The Willpower Instinct*.
+
+**Sleep, exercise and meditation do the most to support willpower.** McGonigal
+calls better sleep "probably the number one" change, since sleep deprivation
+"basically derails all of the neurological processes that make it easier to
+have willpower". A few minutes of exercise or of meditation a day also helps.
+All three raise awareness as much as they raise willpower.
+
+The [O'Gieblyn episode on EconTalk](addiction-faith-and-the-limits-of-willpower.qmd)
+takes the other side, with Simone Weil's line that faults are cured by
+attention rather than by will.

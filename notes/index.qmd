@@ -94,6 +94,9 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Podcasts
 
+- [How to Best Harness Your Willpower](podcasts/how-to-best-harness-your-willpower.qmd).
+  Kelly McGonigal on The Art of Manliness: sleep, exercise and meditation as
+  what supports willpower.
 - [Ben Sasse on Faith, Family, and Facing Death](podcasts/ben-sasse-on-faith-family-and-facing-death.qmd).
   Sasse with Russ Roberts on EconTalk, six months into a terminal diagnosis:
   concerts and football as worship, and Dylan Thomas read at the close.
