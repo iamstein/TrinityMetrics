@@ -27,6 +27,8 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Books
 
+- [21 Lessons for the 21st Century](books/21-lessons-for-the-21st-century.qmd).
+  Yuval Noah Harari.
 - [Fair Play](books/fair-play.qmd). Eve Rodsky.
 - [The Bad Food Bible](books/bad-food-bible.qmd). Aaron E. Carroll.
 - [Difficult Conversations](books/difficult-conversations.qmd). Stone, Patton

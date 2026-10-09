@@ -1,0 +1,10 @@
+---
+title: "21 Lessons for the 21st Century"
+subtitle: "Yuval Noah Harari"
+categories: [Book notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1rY6_z11puj4K1VIFl865-ri5-fAOanWukyFLBfHdGJ0/edit)
+in Google Docs.
