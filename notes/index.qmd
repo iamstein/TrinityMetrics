@@ -24,6 +24,7 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
   note tagged exercise.
 - [Buddhism](topics/buddhism.qmd). The learning guide, the ten oxherding
   pictures and the eightfold path, in Google Docs.
+- [Shinto](topics/shinto.qmd). The Shinto notes in Google Docs.
 
 ## Books
 

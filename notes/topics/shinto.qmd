@@ -1,0 +1,19 @@
+---
+title: "Shinto"
+description: >
+  A pointer to the Shinto notes in Google Docs, and to the spiral line from a
+  shrine statue quoted in a podcast note.
+categories: [Topic notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Notes](https://docs.google.com/document/d/1Db5QzvgvAUzyE0bY5QXZE0vtTZYR5M-463clS7tgTUQ/edit)
+in Google Docs, where the material is kept. Sharing is set per document, so
+the link may ask for permission.
+
+## Other Notes
+
+- [Addiction, Faith, and the Limits of Willpower](../podcasts/addiction-faith-and-the-limits-of-willpower.qmd).
+  Meghan O'Gieblyn on inner transformation as circular, beside a line from a
+  shrine statue on growth following the spiral form.
