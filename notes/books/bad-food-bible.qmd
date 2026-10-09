@@ -1,0 +1,10 @@
+---
+title: "The Bad Food Bible"
+subtitle: "Aaron E. Carroll"
+categories: [Book notes, nutrition]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1ks2_BA24sF7LDk-IUVOATUNysUU8yRTeypYu--K475U/edit)
+in Google Docs.
