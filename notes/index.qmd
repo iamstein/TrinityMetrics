@@ -27,6 +27,7 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Books
 
+- [How to Know a Person](books/how-to-know-a-person.qmd). David Brooks.
 - [Now Comes Good Sailing](books/now-comes-good-sailing.qmd). Essays by
   other writers on Henry David Thoreau, edited by Andrew Blauner.
 - [How to Be an Adult](books/how-to-be-an-adult.qmd).
