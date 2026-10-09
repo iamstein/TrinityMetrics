@@ -1,0 +1,6 @@
+# Notes are reachable by URL but not publicized: no navbar entry, no site
+# search, no search-engine indexing. The publish workflow also drops them from
+# sitemap.xml, which Quarto has no per-page option for.
+search: false
+include-in-header:
+  text: '<meta name="robots" content="noindex">'

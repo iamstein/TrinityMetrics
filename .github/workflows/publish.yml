@@ -42,6 +42,11 @@ jobs:
       - name: Render site
         uses: quarto-dev/quarto-actions/render@v2
 
+      - name: Keep the notes out of the sitemap
+        run: >
+          python3 -c "import re; p='docs/sitemap.xml'; s=open(p).read();
+          open(p,'w').write(re.sub(r'\s*<url>\s*<loc>[^<]*/notes/.*?</url>', '', s, flags=re.S))"
+
       - name: Export the Google Docs as PDFs
         run: _scripts/export-google-docs.sh docs/files
 
