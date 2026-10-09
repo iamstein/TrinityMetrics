@@ -27,6 +27,8 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Books
 
+- [Now Comes Good Sailing](books/now-comes-good-sailing.qmd). Essays by
+  other writers on Henry David Thoreau, edited by Andrew Blauner.
 - [How to Be an Adult](books/how-to-be-an-adult.qmd).
 - [The Seven Principles for Making Marriage Work](books/seven-principles-for-making-marriage-work.qmd).
   John Gottman and Nan Silver.
