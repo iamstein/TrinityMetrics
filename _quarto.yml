@@ -45,8 +45,8 @@ website:
             text: About
           - href: now.qmd
             text: Now
-          - text: CV
-            href: "https://docs.google.com/document/d/1gl52JUJqrf8wL0irCn-mFp_pw0Z5w0ZalvLnKw9GSyc/edit"
+          - href: cv.qmd
+            text: CV
     right:
       - icon: github
         href: "https://github.com/iamstein/TrinityMetrics"

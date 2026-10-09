@@ -1,0 +1,12 @@
+---
+title: "CV"
+description: "Andy Stein's curriculum vitae, as a PDF or a Google Doc."
+date: last-modified
+toc: false
+---
+
+- [PDF](files/stein-cv.pdf)
+- [Google Doc](https://docs.google.com/document/d/1gl52JUJqrf8wL0irCn-mFp_pw0Z5w0ZalvLnKw9GSyc/edit)
+
+The PDF is exported from the Google Doc on every build of this site, so the two
+match.
