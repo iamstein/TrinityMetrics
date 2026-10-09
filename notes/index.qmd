@@ -27,6 +27,8 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Books
 
+- [The Elephant in the Brain](books/elephant-in-the-brain.qmd). Kevin Simler
+  and Robin Hanson.
 - [How to Know a Person](books/how-to-know-a-person.qmd). David Brooks.
 - [Now Comes Good Sailing](books/now-comes-good-sailing.qmd). Essays by
   other writers on Henry David Thoreau, edited by Andrew Blauner.

@@ -1,0 +1,10 @@
+---
+title: "The Elephant in the Brain"
+subtitle: "Kevin Simler and Robin Hanson"
+categories: [Book notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1Q5gIDmzWWdFTFnUYYWag5XJrVThzZ7OBdFo70yQwxw8/edit)
+in Google Docs.
