@@ -27,6 +27,7 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Books
 
+- [Fair Play](books/fair-play.qmd). Eve Rodsky.
 - [The Bad Food Bible](books/bad-food-bible.qmd). Aaron E. Carroll.
 - [Difficult Conversations](books/difficult-conversations.qmd). Stone, Patton
   and Heen on the three conversations inside every hard one, and contribution
