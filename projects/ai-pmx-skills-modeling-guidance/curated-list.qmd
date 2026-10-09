@@ -145,6 +145,15 @@ repositories and scored 40 skills. Copies were merged into their originals: 37
 copies of K-Dense's `pkpd-modeling` alone. Exclusions and copies are listed in
 [`list/2026-10.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/list/2026-10.yml).
 
+**Four skills were added on 2026-10-09, outside the run, at Andy's request.**
+Discovery missed [nlmixr2/AI-assisted-MIDD](https://github.com/nlmixr2/AI-assisted-MIDD),
+an NCA, popPK and simulation project template created six days before the run.
+Its three analysis skills and its data-validation skill were scored by the same
+criteria, in the same single pass. The other 14 skills in the repository are
+the database, logging, report and QC steps around those four, and were not
+scored. The four have no evidence of use yet, so they are listed under
+Unproven.
+
 **Both known-answer checks passed.** The error audit reported both errors in
 [`fixtures.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/fixtures.yml) as major before anything was scored.
 

@@ -128,6 +128,26 @@
   M: 85.6
   flags: ⚠️ authors not found
   evidence: '[evidence](curated-list-evidence.html#kinginsun-easy-nonmem)'
+- title: AI-assisted-MIDD · pk-data-validation
+  path: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/pk-data-validation
+  category: task
+  tags: dataset assembly; NCA; nlmixr2
+  S: 33.9
+  Q: 44.4
+  E: 24.0
+  M: 78.9
+  flags: ⚠️ no licence
+  evidence: '[evidence](curated-list-evidence.html#midd-data-validation)'
+- title: AI-assisted-MIDD · poppk-simulation
+  path: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/poppk-simulation
+  category: tool
+  tags: rxode2; simulation
+  S: 33.2
+  Q: 42.9
+  E: 24.0
+  M: 78.9
+  flags: ⚠️ no licence
+  evidence: '[evidence](curated-list-evidence.html#midd-poppk-simulation)'
 - title: jinko-skills · jinko-task-paper2model
   path: https://github.com/novainsilico/jinko-skills/tree/dd7ff2e6f62b0f913764a42c17e40e890955aba3/skills/jinko-task-paper2model
   category: task
@@ -158,6 +178,26 @@
   M: 72.6
   flags: ''
   evidence: '[evidence](curated-list-evidence.html#pchelle-report)'
+- title: AI-assisted-MIDD · poppk-estimation
+  path: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/poppk-estimation
+  category: tool
+  tags: nlmixr2; estimation; model building
+  S: 30.9
+  Q: 37.9
+  E: 24.0
+  M: 78.9
+  flags: ⚠️ no licence
+  evidence: '[evidence](curated-list-evidence.html#midd-poppk-estimation)'
+- title: AI-assisted-MIDD · pk-nca
+  path: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/pk-nca
+  category: tool
+  tags: PKNCA; NCA
+  S: 30.9
+  Q: 37.9
+  E: 24.0
+  M: 78.9
+  flags: ⚠️ no licence
+  evidence: '[evidence](curated-list-evidence.html#midd-pk-nca)'
 - title: pk-modeling-skills · monolix-cli
   path: https://github.com/kinginsun/pk-modeling-skills/tree/0074bddeebd6f3310d862c16cb317b37dfbb1ec1/skills/monolix-cli
   category: tool

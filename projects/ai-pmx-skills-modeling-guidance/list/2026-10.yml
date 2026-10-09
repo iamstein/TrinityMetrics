@@ -1554,6 +1554,233 @@ skills:
     points: 0
     proven: false
     people: []
+- id: midd-poppk-estimation
+  name: poppk-estimation
+  category: tool
+  rank: null
+  rank_range: null
+  S: 30.9
+  Q: 37.9
+  E: 24.0
+  M: 78.9
+  library: nlmixr2/AI-assisted-MIDD
+  url: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/poppk-estimation
+  commit: 3f071288275f9dab3e2f889da7fb19bba4642bab
+  tags: nlmixr2; estimation; model building
+  licence: none
+  last_commit: '2026-10-01'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 0
+    minor_errors: 1
+    items:
+      R1:
+        answer: y
+        evidence: '"When NOT to use": NCA goes to pk-nca, and "NONMEM/Monolix/PKNCA backends via babelmixr2
+          are not covered by these skills."'
+      R2:
+        answer: n
+        evidence: nlmixr2 vignettes listed at the end; the authoring rules and acceptance thresholds cite
+          none.
+      R3: &id001
+        answer: na
+        evidence: ''
+      R4: *id001
+      R5: *id001
+      R6:
+        answer: y
+        evidence: '"warn must be recorded as a caveat in the spec (diagnostics.caveats)"'
+      R7:
+        answer: y
+        evidence: Complete Core Process from data to fits, with templates/analysis-poppk.R scaffolded
+          by new_version("poppk").
+      R8: &id002
+        answer: n
+        evidence: The repository has no continuous integration.
+      R9: &id003
+        answer: n
+        evidence: Follows R8.
+      R10: &id004
+        answer: n
+        evidence: The README describes worked examples under examples/abc-111 and examples/gs-12345 with
+          outputs passing QC, but neither folder is in the repository.
+    errors:
+    - severity: minor
+      quote: '"BSV% near 0 or > 100% | ETA unsupported by data; remove it"'
+      reason: 'Carried over from nlmixr2llm estimation, where the same finding was made: between-subject
+        variability above 100% CV is common for some parameters (absorption, for example) and is not evidence
+        that the data fail to support the ETA.'
+  expertise:
+    authors: &id005
+    - name: Mutaz M. Jaber
+      share: 1.0
+      openalex: https://openalex.org/A5076482060
+      evidence: ORCID 0000-0002-7536-8753, from the DESCRIPTION of Mutaz94/mypkg; sole committer
+      h_field: 6
+  maintenance: &id006
+    recency: 97.8
+    days_since_change: 8
+    usability: 60
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: 'Adapted from nlmixr2llm estimation; 16% of its lines match that skill, below the 80% copy threshold.
+    Added 2026-10-09, outside the monthly run, at Andy''s request; discovery had missed the repository,
+    created 2026-10-01. Four of its 18 skills were scored. The other 14 are the project, database, logging,
+    run-spec, table, figure, report and QC plumbing around these four, and were not scored: pk-nca-database,
+    pk-nca-figures, pk-nca-logging, pk-nca-qc-tests, pk-nca-report, pk-nca-run-spec, pk-nca-tables, poppk-database,
+    poppk-qc-tests, poppk-report, poppk-run-spec, poppk-tables, pk-project, manage-skills.'
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: midd-pk-nca
+  name: pk-nca
+  category: tool
+  rank: null
+  rank_range: null
+  S: 30.9
+  Q: 37.9
+  E: 24.0
+  M: 78.9
+  library: nlmixr2/AI-assisted-MIDD
+  url: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/pk-nca
+  commit: 3f071288275f9dab3e2f889da7fb19bba4642bab
+  tags: PKNCA; NCA
+  licence: none
+  last_commit: '2026-10-01'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 0
+    minor_errors: 1
+    items:
+      R1:
+        answer: y
+        evidence: '"Do not use this package for compartmental models or for fitting nonlinear mixed-effects
+          models"'
+      R2:
+        answer: n
+        evidence: PKNCA vignettes are listed by topic in references/pknca-resources.md; the NCA rules
+          in SKILL.md cite none.
+      R3: *id001
+      R4: *id001
+      R5: *id001
+      R6:
+        answer: y
+        evidence: '"Half-life comes from λz regression on the terminal phase; check adj.r.squared / span.ratio
+          per subject before trusting it."'
+      R7:
+        answer: y
+        evidence: templates/analysis-nca.R, the scaffolded pipeline from data file to pk.nca().
+      R8: *id002
+      R9: *id003
+      R10: *id004
+    errors:
+    - severity: minor
+      quote: '"Set route = \"extravascular\" (or \"intravascular\") and dur = NA_real_ in the dose data
+        frame; PKNCA picks these up by column name."'
+      reason: PKNCAdose() picks up a column named route, but looks for duration, not dur, and otherwise
+        sets duration to 0 (PKNCA source, setDuration.PKNCAdose). An infusion duration entered in dur
+        is silently ignored.
+  expertise:
+    authors: *id005
+  maintenance: *id006
+  note: 'Added 2026-10-09, outside the monthly run, at Andy''s request; discovery had missed the repository,
+    created 2026-10-01. Four of its 18 skills were scored. The other 14 are the project, database, logging,
+    run-spec, table, figure, report and QC plumbing around these four, and were not scored: pk-nca-database,
+    pk-nca-figures, pk-nca-logging, pk-nca-qc-tests, pk-nca-report, pk-nca-run-spec, pk-nca-tables, poppk-database,
+    poppk-qc-tests, poppk-report, poppk-run-spec, poppk-tables, pk-project, manage-skills.'
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: midd-poppk-simulation
+  name: poppk-simulation
+  category: tool
+  rank: null
+  rank_range: null
+  S: 33.2
+  Q: 42.9
+  E: 24.0
+  M: 78.9
+  library: nlmixr2/AI-assisted-MIDD
+  url: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/poppk-simulation
+  commit: 3f071288275f9dab3e2f889da7fb19bba4642bab
+  tags: rxode2; simulation
+  licence: none
+  last_commit: '2026-10-01'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Don''t refit, or edit a fitted model''s estimates, inside a simulation."'
+      R2:
+        answer: n
+        evidence: rxode2 vignettes listed at the end; the authoring rules cite none.
+      R3: *id001
+      R4: *id001
+      R5: *id001
+      R6:
+        answer: y
+        evidence: '"Source caveats (unapproved source QC, model-file parameter origin) stated with the
+          results."'
+      R7:
+        answer: y
+        evidence: Complete Core Process and event-table cheatsheet, with templates/analysis-sim.R scaffolded
+          by new_version("poppk-sim").
+      R8: *id002
+      R9: *id003
+      R10: *id004
+    errors: []
+  expertise:
+    authors: *id005
+  maintenance: *id006
+  note: 'Adapted from nlmixr2llm simulation. Added 2026-10-09, outside the monthly run, at Andy''s request;
+    discovery had missed the repository, created 2026-10-01. Four of its 18 skills were scored. The other
+    14 are the project, database, logging, run-spec, table, figure, report and QC plumbing around these
+    four, and were not scored: pk-nca-database, pk-nca-figures, pk-nca-logging, pk-nca-qc-tests, pk-nca-report,
+    pk-nca-run-spec, pk-nca-tables, poppk-database, poppk-qc-tests, poppk-report, poppk-run-spec, poppk-tables,
+    pk-project, manage-skills.'
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
 - id: kdense-pkpd
   name: pkpd-modeling
   category: task
@@ -3457,6 +3684,96 @@ skills:
       dependencies: false
       version: false
   note: Known-answer fixture 2. Skill text is in Japanese.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: midd-data-validation
+  name: pk-data-validation
+  category: task
+  rank: null
+  rank_range: null
+  S: 33.9
+  Q: 44.4
+  E: 24.0
+  M: 78.9
+  library: nlmixr2/AI-assisted-MIDD
+  url: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/pk-data-validation
+  commit: 3f071288275f9dab3e2f889da7fb19bba4642bab
+  tags: dataset assembly; NCA; nlmixr2
+  licence: none
+  last_commit: '2026-10-01'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 9
+    Q_rubric: 44.4
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Mapping the validated columns to PKNCA objects is covered by pk-nca (references/pipeline.md);
+          to an nlmixr2 model by poppk-estimation."'
+      R2:
+        answer: n
+        evidence: No recommendation names a source.
+      R3:
+        answer: y
+        evidence: '"If a check fails, fix the mapping, or tell the user what is wrong in the data. Never
+          drop, loosen or skip a check to get a pass without the user''s agreement"'
+      R4:
+        answer: y
+        evidence: 'Gives no thresholds of its own: "Never add a limit the user or protocol did not give."'
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: Lists what each check catches, but not what a passing validation leaves unchecked.
+      R7:
+        answer: y
+        evidence: describe_pk_data() and validate_pk_data() calls, with scripts/pk_data_checks.R.
+      R8:
+        answer: n
+        evidence: The repository has no continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: The README describes worked examples under examples/abc-111 and examples/gs-12345 with
+          outputs passing QC, but neither folder is in the repository.
+    errors: []
+  expertise:
+    authors:
+    - name: Mutaz M. Jaber
+      share: 1.0
+      openalex: https://openalex.org/A5076482060
+      evidence: ORCID 0000-0002-7536-8753, from the DESCRIPTION of Mutaz94/mypkg; sole committer
+      h_field: 6
+  maintenance:
+    recency: 97.8
+    days_since_change: 8
+    usability: 60
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: 'Added 2026-10-09, outside the monthly run, at Andy''s request; discovery had missed the repository,
+    created 2026-10-01. Four of its 18 skills were scored. The other 14 are the project, database, logging,
+    run-spec, table, figure, report and QC plumbing around these four, and were not scored: pk-nca-database,
+    pk-nca-figures, pk-nca-logging, pk-nca-qc-tests, pk-nca-report, pk-nca-run-spec, pk-nca-tables, poppk-database,
+    poppk-qc-tests, poppk-report, poppk-run-spec, poppk-tables, pk-project, manage-skills.'
   U: 0.0
   use:
     points: 0
