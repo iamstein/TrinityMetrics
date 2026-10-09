@@ -1,0 +1,10 @@
+---
+title: "Wild Problems"
+subtitle: "Russ Roberts"
+categories: [Book notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1AXiDZvwCCoWg5FqdGdfSe-XFSEVW4RWrJoCi2PUIv_I/edit)
+in Google Docs.

@@ -27,6 +27,7 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Books
 
+- [Wild Problems](books/wild-problems.qmd). Russ Roberts.
 - [Atomic Habits](books/atomic-habits.qmd). James Clear.
 - [The World's Religions](books/worlds-religions.qmd). Huston Smith.
 - [The Elephant in the Brain](books/elephant-in-the-brain.qmd). Kevin Simler
