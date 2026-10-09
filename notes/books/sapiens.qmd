@@ -1,0 +1,10 @@
+---
+title: "Sapiens"
+subtitle: "Yuval Noah Harari"
+categories: [Book notes, history]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1Eez0UJVX0vAHtSAaFBGuhGYIrCZa-pT_yNfwK1Qm1vA/edit)
+in Google Docs.

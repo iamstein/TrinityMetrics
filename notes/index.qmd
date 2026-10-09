@@ -27,6 +27,7 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Books
 
+- [Sapiens](books/sapiens.qmd). Yuval Noah Harari.
 - [21 Lessons for the 21st Century](books/21-lessons-for-the-21st-century.qmd).
   Yuval Noah Harari.
 - [Fair Play](books/fair-play.qmd). Eve Rodsky.
