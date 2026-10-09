@@ -27,6 +27,9 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Books
 
+- [Difficult Conversations](books/difficult-conversations.qmd). Stone, Patton
+  and Heen on the three conversations inside every hard one, and contribution
+  in place of blame.
 - [Wild Problems](books/wild-problems.qmd). Russ Roberts.
 - [Atomic Habits](books/atomic-habits.qmd). James Clear.
 - [The World's Religions](books/worlds-religions.qmd). Huston Smith.

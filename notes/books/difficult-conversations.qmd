@@ -1,0 +1,82 @@
+---
+title: "Difficult Conversations"
+subtitle: "Douglas Stone, Bruce Patton and Sheila Heen"
+description: >
+  Notes on Difficult Conversations: the three conversations inside every hard
+  one, contribution in place of blame, and how to prepare, open, listen and
+  solve the problem together.
+categories: [Book notes, communication]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/17dkVrUmnIrTyOhdXIQF5yCFjOimI3Lm3IyacJyv6_cY/edit)
+in Google Docs.
+
+**The aim of a difficult conversation is understanding, not agreement.** Learn
+their story, express your own views and feelings, and solve the problem
+together. That means moving from certainty to curiosity, from debate to
+exploration, and from "either/or" to "and".
+
+## Every Hard Conversation Is Three Conversations
+
+1. **What happened.** The facts, each side's intentions, and who is to blame.
+2. **Feelings.**
+3. **Identity.** What the conversation says about you: am I competent, am I a
+   good person, am I worthy of love?
+
+## Contribution, Not Blame
+
+**Ask how each person contributed to the situation and how to change it, rather
+than who is at fault.** Blame looks backward, at who caused the problem,
+judgement of that person and punishment, and it gets in the way of learning
+what caused the problem. When things go wrong between people, everyone has
+usually contributed, and each person sees their own part least.
+
+- **Common contributions.** Avoiding the problem, not being approachable,
+  holding different world views, and settling into roles that are
+  problematic but comfortable.
+- **Spotting your own.** Reverse roles, or look at it as a disinterested
+  observer.
+- **Hard to admit.** I make mistakes; my intentions are mixed; I contributed.
+
+Many disagreements have no right side. One person wants the window open and the
+other wants it closed. The useful question is how the other person sees the
+world such that their view makes sense.
+
+## Before the Conversation
+
+- **Prepare.** Sort out the three conversations, your assumptions, their
+  intention against its impact on you, and each side's contribution.
+- **Decide whether to have it.** Not when the real conflict is inside you, when
+  an action would do better than words, or when the purpose is to change the
+  other person or tell them off.
+- **Let go of what you cannot control.** It is not your job to make things
+  better, only to do your best. The other person has limits too, and the
+  conflict is not who you are.
+
+## In the Conversation
+
+1. **Begin with the third story,** what a neutral observer would see. State
+   your purpose and invite them in as a partner.
+2. **Listen.** Be curious even when you feel attacked. Paraphrase to check
+   understanding and to show you heard, and acknowledge feelings before trying
+   to fix anything.
+3. **Express yourself.** Say the heart of the matter directly, without easing
+   in. Share the reasoning behind your conclusions rather than presenting them
+   as truth, and include all the important feelings.
+4. **Reframe.** The other person must feel understood before the conversation
+   can move. Turn truth into different stories, accusation into intention and
+   impact, blame into contribution, judgement into feelings, and "what's wrong
+   with you" into "what's going on with them".
+5. **Solve the problem.** Say what would persuade you and ask what would
+   persuade them, agree on the standards that apply, and invent new options.
+
+Sentences that help: "My reactions have a lot to do with…", "This is hard for
+me because…", "If I were you, I'd feel…", "I don't know if you intended this,
+but I feel…", "There are some things I've done to make this harder."
+
+## Email
+
+Spell out your intentions and reasoning, ask rather than assume, ask for
+reactions, and stop emailing if it escalates.
