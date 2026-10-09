@@ -1,0 +1,10 @@
+---
+title: "Atomic Habits"
+subtitle: "James Clear"
+categories: [Book notes, habits]
+date: last-modified
+toc: false
+---
+
+[Reading notes](https://docs.google.com/document/d/1Af_O_UtiqcQ7MHxh-Y-edZNBpIPixYBswklXJ0Ccc2k/edit)
+in Google Docs.
