@@ -65,54 +65,38 @@ listing:
 ::: {.callout-important appearance="simple"}
 This list is compiled and ranked each month by Claude, an AI model made by
 Anthropic, running unattended. No person reviews the entries or the scores
-before they are published. Andy Stein sets the criteria in
+before they are published. Criteria was set in.
 [Specification 2](specification2-curated-list.qmd) and does not adjust
-individual scores. A score measures what the criteria measure; a high rank is
-not an endorsement for use on real data. Authors who find an error can open an
-issue on [GitHub](https://github.com/iamstein/TrinityMetrics/issues).
+individual scores.
 :::
-
-## Reading the Scores
 
 Every score runs from 0 to 100. The full definitions are in
 [Specification 2](specification2-curated-list.qmd), Section 4.
+The scores capture:
 
-| Score | Measures | Weight |
-|:---|:---|---:|
-| **S** | The total, weighted from the four below | |
-| **Q**, quality | Share of applicable rubric items met, less 25 points per major error and 5 per minor error found by an error audit | 45 |
-| **E**, expertise | The authors' h-index over their pharmacokinetics and pharmacometrics papers in OpenAlex, weighted by their share of the skill, capped at 25 | 25 |
-| **M**, maintenance and usability | Days since the skill last changed, and five usability checks such as a licence and installation instructions | 10 |
-| **U**, use | People outside the authors who used the skill in the last 12 months: issues, pull requests or comments about it, or a deliberate installation in their own project. Each person scores 1 point, or 3 with a pharmacometrics publication record; 10 points is 100 | 20 |
+- **S** The total of the other scores.
+- **Q** Quality
+- **E** Expertise
+- **M** Maintenance and usability 
+- **U** Usage 
 
-: The scores in the tables below {tbl-colwidths="[24,64,12]"}
+Grouping:
 
-- **Only skills with evidence of use are ranked.** Anyone, including a bot,
-  can write a skill file, so a skill that no one outside its authors has used
-  is listed under Unproven, with its other scores, until someone does.
-- **Rank.** Skills within 5 points of each other share a rank. The range in
-  brackets is the skill's rank across the default weights, quality alone, and
-  equal weights.
+- Only skills with evidence of use are ranked.
 - **Flags.** ❌ a major error found. ⚠️ no licence, archived repository, authors
   not found in OpenAlex, or an author matched by name alone.
-- **At most three skills per library are ranked in each category.** The
-  library's other scored skills are named in the evidence column.
-- **Evidence** links to the rubric answers, with the quoted lines behind them,
-  the error findings, each author's OpenAlex record and field h-index, the
-  people whose use counted, and the repository measurements. Stars and forks
-  only break ties.
+- **At most three skills per library are ranked in each category.** 
 
 ## Tool Skills
 
-Skills whose instructions would be wrong or useless for a different piece of
-software.
+Skills for particular software tools (e.g. NONMEM, Monolix, nlimxr2)
 
 ::: {#tool-skills}
 :::
 
 ## Task Skills
 
-Skills whose instructions hold across tools, even where their examples use one.
+Skills whose instructions hold across tools (e.g. Model Evaluation)
 
 ::: {#task-skills}
 :::
