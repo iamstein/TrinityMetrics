@@ -65,7 +65,7 @@ listing:
 ::: {.callout-important appearance="simple"}
 This list is compiled and ranked each month by Claude, an AI model made by
 Anthropic, running unattended. No person reviews the entries or the scores
-before they are published. Criteria was set in.
+before they are published. Andy Stein sets the criteria in
 [Specification 2](specification2-curated-list.qmd) and does not adjust
 individual scores.
 :::
@@ -89,7 +89,7 @@ Grouping:
 
 ## Tool Skills
 
-Skills for particular software tools (e.g. NONMEM, Monolix, nlimxr2)
+Skills for particular software tools (e.g. NONMEM, Monolix, nlmixr2)
 
 ::: {#tool-skills}
 :::
