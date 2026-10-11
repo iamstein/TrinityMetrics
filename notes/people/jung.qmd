@@ -2,7 +2,7 @@
 title: "Carl Jung"
 description: >
   A pointer to the Jung notes in Google Docs, the notes on books by Jungian
-  writers, and Jung as a builder of narrative.
+  writers, Jung as a builder of narrative, and his question about religion.
 categories: [People notes, wisdom]
 date: last-modified
 toc: false
@@ -14,6 +14,10 @@ in Google Docs.
 Jung, like [Freud](freud.qmd), is about constructing narratives and telling
 stories. The [Stories](../concepts/stories.qmd) note collects the other sources
 on that idea.
+
+On religion, Jung asks what psychological truths belief might express, where
+Freud asks what needs produce it. The [Freud](freud.qmd#religion) note has the
+contrast, with Ivan and Alyosha Karamazov as the illustration.
 
 ## Books by Jungian Writers
 

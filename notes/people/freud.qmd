@@ -1,7 +1,8 @@
 ---
 title: "Sigmund Freud"
 description: >
-  Freud as a builder of narrative, alongside Jung.
+  Freud as a builder of narrative, alongside Jung, and where the two part on
+  religion, with Ivan and Alyosha Karamazov as the illustration.
 categories: [People notes, wisdom]
 date: last-modified
 toc: false
@@ -10,3 +11,17 @@ toc: false
 Freud, like [Jung](jung.qmd), is about constructing narratives and telling
 stories. The [Stories](../concepts/stories.qmd) note collects the other sources
 on that idea.
+
+## Religion
+
+Freud and Jung divide on religion, and the divide comes down to the question
+each one asks of it.
+
+- Freud asks what psychological needs produce religious belief.
+- Jung asks what psychological truths religious belief might express.
+
+*The Brothers Karamazov* has a parallel. Ivan challenges belief
+intellectually, above all through the suffering of innocent children. Alyosha
+comes to faith through love, through his relationships and through how he
+lives. Calling Ivan a Freudian and Alyosha a Jungian would be too simple, but
+the pair shows the divide.
