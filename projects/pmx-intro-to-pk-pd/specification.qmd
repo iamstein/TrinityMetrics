@@ -1,0 +1,44 @@
+---
+title: "Create Videos for Intro to PK and PD slides"
+subtitle: "Working specification"
+description: "The two fundamental-concepts tutorial decks, the errors to correct in each, and the steps from correction to published video."
+categories: [Pharmacometrics methods]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+## 1. Goal
+
+Each of the two tutorial decks gets its known errors corrected and a recorded
+video, linked from the [Talks page](../../talks.qmd#fundamental-concepts-of-pkpd)
+beside its PDF and Google Slides links.
+
+Out of scope: new material. The decks keep their content and order; only the
+errors change.
+
+## 2. The Decks
+
+| Deck | Slides | PDF | Working copy |
+|---|---|---|---|
+| Introduction to Fundamental PK Concepts | 45 | [`files/2019-08-01-fundamental-pk.pdf`](../../files/2019-08-01-fundamental-pk.pdf) | [Google Slides](https://docs.google.com/presentation/d/1_0wrRgCmRGN3TEFx87I0en6TiSckjbOp/edit) |
+| Introduction to Fundamental PD Concepts | 117 | [`files/2019-08-01-fundamental-pd.pdf`](../../files/2019-08-01-fundamental-pd.pdf) | [Google Slides](https://docs.google.com/presentation/d/1IjaNyPhachTDWn2TO9YuVegsCTOSpiCp/edit) |
+
+## 3. Errors to Correct
+
+The errors a colleague found, one row each. A row is done when the working
+copy is fixed.
+
+| # | Deck | Slide | Error | Correction | Fixed |
+|---|---|---|---|---|---|
+| | | | *To be filled in from the colleague's list.* | | |
+
+## 4. Steps
+
+1. Fill in Section 3 from the colleague's list.
+2. Correct each error in the working copy and mark its row.
+3. Export each corrected deck to PDF and replace the file under `files/`,
+   keeping the filename so existing links still work.
+4. Record a video for each deck.
+5. Add a video link beside each deck on the Talks page.

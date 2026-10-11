@@ -169,6 +169,15 @@
   categories: [Pharmacometrics methods, Draft]
   path: pmx-logistic-regression/index.qmd
 
+- title: "Create Videos for Intro to PK and PD slides"
+  subtitle: "Working document"
+  description: >
+    Correcting the errors a colleague found in the Introduction to
+    Fundamental PK Concepts and PD Concepts tutorial decks, then recording a
+    video to go with each.
+  categories: [Pharmacometrics methods, Draft]
+  path: pmx-intro-to-pk-pd/index.qmd
+
 - title: "Immune biomarkers and infection risk"
   subtitle: "Working document"
   description: >

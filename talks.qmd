@@ -9,9 +9,6 @@ toc: true
 toc-depth: 2
 ---
 
-Each talk is linked twice: a **PDF** hosted here, which opens anywhere, and the
-**Google** original, which is the editable copy.
-
 ## Tutorials
 
 ### Fundamental Concepts of PKPD

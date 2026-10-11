@@ -1,0 +1,20 @@
+---
+title: "Create Videos for Intro to PK and PD slides"
+subtitle: "Correcting the two tutorial decks and recording them"
+description: "Index of the documents in the pmx-intro-to-pk-pd project: correcting the errors in the Introduction to Fundamental PK Concepts and PD Concepts slides, then recording a video for each."
+categories: [Pharmacometrics methods]
+date: last-modified
+toc: false
+---
+
+The two tutorial decks on the [Talks page](../../talks.qmd#fundamental-concepts-of-pkpd),
+Introduction to Fundamental PK Concepts and Introduction to Fundamental PD
+Concepts, were written for the 2018–2019 Novartis Academia-Industry
+Quantitative Hackathon. A colleague later found errors in them. This project
+corrects those errors in the working copies, republishes the PDFs, and records
+a video to go with each deck.
+
+## Documents
+
+- [Working specification](specification.qmd). The decks, the error list, and
+  the steps from correction to published video.
