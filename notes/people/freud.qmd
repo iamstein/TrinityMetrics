@@ -1,0 +1,12 @@
+---
+title: "Sigmund Freud"
+description: >
+  Freud as a builder of narrative, alongside Jung.
+categories: [People notes, wisdom]
+date: last-modified
+toc: false
+---
+
+Freud, like [Jung](jung.qmd), is about constructing narratives and telling
+stories. The [Stories](../concepts/stories.qmd) note collects the other sources
+on that idea.

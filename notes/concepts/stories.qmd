@@ -1,0 +1,42 @@
+---
+title: "Stories"
+subtitle: "The few plots people tell, and what telling them does"
+description: >
+  Notes on stories: the seven basic plots, the hero's journey, Campbell and
+  Moyers on myth, Freud and Jung as builders of narrative, and Cowen on the
+  danger of a good story.
+categories: [Concept notes, wisdom]
+date: last-modified
+toc: false
+---
+
+People explain a life, or the world, by fitting it to one of a small number of
+stories. The sources below each describe that from a different side.
+
+## Sources
+
+- **The Seven Basic Plots.** Christopher Booker's book, which sorts stories
+  into seven plots: overcoming the monster, rags to riches, the quest, voyage
+  and return, comedy, tragedy and rebirth.
+- **The hero's journey.** Joseph Campbell's pattern from *The Hero with a
+  Thousand Faces*: a hero leaves the ordinary world, is tested, and comes home
+  changed.
+- **The Power of Myth.** Bill Moyers's interviews with Joseph Campbell,
+  broadcast on PBS in 1988.
+- **[Be suspicious of simple stories](https://www.ted.com/talks/tyler_cowen_be_suspicious_of_stories).**
+  Tyler Cowen at TEDxMidAtlantic, November 2009, on the power of stories and
+  their danger. A story is a filter that keeps some information and leaves the
+  rest out, and Cowen is most suspicious of the stories he finds most
+  inspiring. He cites Booker's seven plots.
+
+## Freud and Jung
+
+Both [Freud](../people/freud.qmd) and [Jung](../people/jung.qmd) are about
+constructing narratives and telling stories. The observation came while
+listening to Andrew Scull, a historian of psychiatry, on the
+[Lex Fridman Podcast, episode 502](https://open.spotify.com/episode/082a1V6nazH9ZZqskV1vfz).
+
+## Related Notes
+
+- [The Black Swan](../books/black-swan.qmd). Taleb on narrative: people look
+  for a story where none exists.

@@ -1,0 +1,24 @@
+---
+title: "Carl Jung"
+description: >
+  A pointer to the Jung notes in Google Docs, the notes on books by Jungian
+  writers, and Jung as a builder of narrative.
+categories: [People notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Notes](https://docs.google.com/document/d/1AvjX5mvHd_OlzAWSIZ96AWAqbevXwI6koWyGBnOOdi4/edit)
+in Google Docs.
+
+Jung, like [Freud](freud.qmd), is about constructing narratives and telling
+stories. The [Stories](../concepts/stories.qmd) note collects the other sources
+on that idea.
+
+## Books by Jungian Writers
+
+- [Ego and Archetype](../books/ego-and-archetype.qmd). Edward F. Edinger.
+- [The Problem of the Puer Aeternus](../books/puer-aeternus.qmd). Marie-Louise
+  von Franz, a Jungian analyst and a collaborator of Jung.
+- [Finding Meaning in the Second Half of Life](../books/second-half-of-life.qmd).
+  James Hollis, a Jungian analyst.

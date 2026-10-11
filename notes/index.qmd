@@ -74,6 +74,14 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
   outcome, how to prevent and repair it, and the cost of inaction.
 - [Boundaries](concepts/boundaries.qmd).
 - [Negotiation](concepts/negotiation.qmd).
+- [Stories](concepts/stories.qmd). The seven basic plots, the hero's journey,
+  and Cowen on the danger of a good story.
+
+## People
+
+- [Carl Jung](people/jung.qmd). The Jung notes in Google Docs, and the notes on
+  books by Jungian writers.
+- [Sigmund Freud](people/freud.qmd). Freud and Jung as builders of narrative.
 
 ## Blog Posts
 
