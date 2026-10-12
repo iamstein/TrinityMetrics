@@ -1,0 +1,22 @@
+---
+title: "Validating Code Produced by GenAI"
+subtitle: "What validation means when an AI agent writes all the code"
+description: "Index of the ai-validation project: working out how to validate analysis code that an AI agent wrote, starting from the existing validation checklist."
+categories: [GenAI, working document]
+date: last-modified
+toc: false
+---
+
+The [validation checklist](https://trinitymetrics.com/references/Validation_Checklist.pdf)
+written with Oliver Sander covers planning, risk assessment, and checks on
+importing data, modifying data and results. It was written for code a person
+wrote and a second person reviews. When an AI agent writes all the code, some
+of those checks still apply as written and some rest on assumptions that no
+longer hold. This project works out which is which and what has to be added.
+Nothing is settled yet.
+
+## Documents
+
+- [Working specification](specification.qmd). The goal, what the existing
+  checklist covers, the questions that change when an agent writes the code,
+  and the first steps.

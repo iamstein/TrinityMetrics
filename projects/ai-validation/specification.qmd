@@ -1,0 +1,80 @@
+---
+title: "Validating Code Produced by GenAI"
+subtitle: "Working specification"
+description: "The working specification for the ai-validation project: the goal, the existing validation checklist, the open questions when an AI agent writes the code, and the first steps."
+categories: [GenAI, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+number-sections: false
+---
+
+::: {.callout-note appearance="simple"}
+**Started 2026-10-12.** Nothing is decided. Section 4 lists the questions to
+work through before any of this becomes a procedure.
+:::
+
+## 1. Goal
+
+Work out a validation approach for data analysis code written entirely by an
+AI agent, so that a result built on that code can be trusted to the same
+standard as one built on code a person wrote and a colleague reviewed.
+
+## 2. Out of Scope
+
+- **Not validation of the AI model itself.** The question is whether a given
+  analysis is correct, not whether the agent is good in general.
+- **Not scoping the project.** Writing the specification before the agent
+  builds is covered by
+  [Scoping a project using Agentic Engineering Framework](../ai-agentic-engineering-analysis/index.qmd).
+  This project starts once there is code to validate.
+
+## 3. The Existing Checklist
+
+The [validation checklist](https://trinitymetrics.com/references/Validation_Checklist.pdf)
+(Sander and Stein) has two parts.
+
+- **Planning.** The intended use of the results, the scripts, inputs and
+  outputs to validate, a risk assessment (consequences and likelihood of
+  mistakes, and where errors are expected), and a validation approach chosen
+  to match the risk: unit tests, spot checks, review of code and outputs,
+  re-running step by step, or independent reproduction of key results.
+- **Checklist.** Reproducibility and readability overall; reading the right
+  file and version, handling missing values and column types on import;
+  hard-coded constants on modifying data; and on results, a clean run,
+  sensible numbers, cross-checks against other outputs, and no stale outputs
+  lying around.
+
+## 4. Open Questions
+
+Each question asks whether a step of the checklist still works when the agent
+is the author.
+
+1. **Who is the author and who is the reviewer?** The checklist assumes two
+   people. If the agent writes the code and Andy reviews it, Andy is the
+   only human who has read it. Is a second agent a reviewer, and what does it
+   catch that the first missed?
+2. **Where are errors most likely?** The risk assessment asks the authors
+   where they expect mistakes. An agent makes different mistakes from a
+   person: plausible code that runs cleanly and computes the wrong quantity,
+   or a silent change to data handling. Which items on the checklist target
+   those?
+3. **Is code review still the main check?** An agent produces more code than
+   can be read line by line. Does the weight move from reading code to
+   independent reproduction of key results and checks on outputs?
+4. **Can the agent write its own tests?** Tests written by the same agent
+   that wrote the code may share its misunderstanding. What has to come from
+   the specification or from a person?
+5. **What record shows validation happened?** The checklist produces a
+   reviewed set of scripts. With an agent, the prompts, the specification and
+   the session may also need keeping.
+
+## 5. First Steps
+
+1. Go through the checklist item by item and mark each as unchanged, changed,
+   or no longer applicable when an agent writes the code.
+2. Collect published guidance on validating AI-generated code, in
+   pharmacometrics and in software engineering generally, and start a
+   `references.qmd` once there are sources to track.
+3. Try the result on one analysis in this repository that an agent wrote.

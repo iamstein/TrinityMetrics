@@ -1,5 +1,5 @@
 ---
-title: "Agentic engineering for data analysis tools"
+title: "Scoping a project using Agentic Engineering Framework"
 subtitle: "Working specification, and the template for new projects here"
 description: "How to specify analysis work before an agent builds it: what is already in place in this repository, how the initial spec gets written, how the work divides between Andy and the agent, and what verification is available."
 categories: [GenAI, working document]

@@ -103,7 +103,7 @@
   categories: [Immunology and T-cell engagers, Draft]
   path: imm-bcell-indresp-est/index.qmd
 
-- title: "Agentic engineering for data analysis tools"
+- title: "Scoping a project using Agentic Engineering Framework"
   subtitle: "Working document"
   description: >
     Writing the requirements and the checks before commissioning an agent to
@@ -112,6 +112,15 @@
     published planning tools, Superpowers and Spec Kit.
   categories: [GenAI, Draft]
   path: ai-agentic-engineering-analysis/index.qmd
+
+- title: "Validating code produced by GenAI"
+  subtitle: "Working document"
+  description: >
+    What validating analysis code means once an AI agent writes all of it:
+    which parts of the existing validation checklist still apply, which
+    assume a human author, and what has to be added.
+  categories: [GenAI, Draft]
+  path: ai-validation/index.qmd
 
 - title: "Second Brain"
   subtitle: "Working document"
