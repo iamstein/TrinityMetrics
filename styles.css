@@ -17,62 +17,169 @@
   margin-bottom: 1rem;
 }
 
-/* The three legs on the home page. Three columns of prose do not fit a phone,
-   so below the Bootstrap sm breakpoint each row becomes a stacked block: the
-   leg, what it holds, then where it lives. Scoped to this table, because the
-   long tables in projects/ need to keep their columns. */
-@media (max-width: 575.98px) {
-  .legs-table table,
-  .legs-table tbody,
-  .legs-table tr,
-  .legs-table td {
-    display: block;
-    width: 100%;
-  }
-
-  .legs-table thead {
-    display: none;
-  }
-
-  .legs-table tr {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--bs-border-color, #dee2e6);
-  }
-
-  .legs-table tr:last-child {
-    border-bottom: none;
-  }
-
-  .legs-table td {
-    border: none;
-    padding: 0.1rem 0;
-  }
-
-  .legs-table td:first-child {
-    font-size: 1.1rem;
-  }
-
-  .legs-table td:last-child {
-    font-size: 0.9rem;
-    padding-top: 0.25rem;
-  }
+/* The home page. The logo's three loops are the site's three categories, so
+   each card below carries its loop's icon and colour: green for
+   pharmacometrics, blue for education, violet for GenAI. The page runs
+   full-width for the navbar's sake, and .home caps the reading width so the
+   intro is not a 180-character line on a laptop. */
+.home {
+  --leg-pmx: #5aa832;
+  --leg-pmx-ink: #2f6f1a;
+  --leg-edu: #1e9ad6;
+  --leg-edu-ink: #145f97;
+  --leg-genai: #6b63e0;
+  --leg-genai-ink: #4a3fb8;
+  max-width: 64rem;
+  margin: 0 auto;
 }
 
-/* The legs table carries no column headings. Pandoc still needs a header row
-   for the block to parse as a table, so the row exists and is hidden. */
-.legs-table thead {
-  display: none;
+/* Logo beside the intro on a laptop, above it on a phone. */
+.home-hero {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin: 1rem 0 2.5rem;
 }
 
-/* The home-page logo. A fixed pixel width put the "trinity metrics" wordmark
-   below the fold on a laptop, so the height is capped against the viewport as
-   well: 400px where there is room, less where there is not, and the whole mark
-   is visible either way. */
-.home-logo img {
-  width: 400px;
-  max-width: 100%;
+.home-hero > p:first-child {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.home-hero-logo {
+  width: 220px;
   height: auto;
-  max-height: 50vh;
+}
+
+.home-hero > p:last-child {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 767.98px) {
+  .home-hero {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .home-hero-logo {
+    width: 180px;
+  }
+
+  .home-hero > p:last-child {
+    font-size: 1.05rem;
+  }
+}
+
+/* Three cards across, stacking on a phone. */
+.home-legs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 767.98px) {
+  .home-legs {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.home-leg {
+  --accent: var(--leg-pmx);
+  --accent-ink: var(--leg-pmx-ink);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.5rem 1.25rem;
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-top: 4px solid var(--accent);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--accent) 5%, white);
+}
+
+.home-leg.leg-edu {
+  --accent: var(--leg-edu);
+  --accent-ink: var(--leg-edu-ink);
+}
+
+.home-leg.leg-genai {
+  --accent: var(--leg-genai);
+  --accent-ink: var(--leg-genai-ink);
+}
+
+.home-leg > p:first-child {
+  margin: 0 0 0.75rem;
+}
+
+.home-leg .leg-icon {
+  width: 72px;
+  height: 72px;
+}
+
+/* Quarto wraps each heading and what follows it in a <section> and copies the
+   heading's class onto it, so the title is styled through h2, and the section
+   is made the flex column that pushes the links to the bottom. */
+.home-leg > section {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.home-leg h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  border: none;
+  padding: 0;
+  color: var(--accent-ink);
+}
+
+/* The links sit at the bottom of the card as pills, so the cards line up
+   however long each description runs. */
+.home-leg ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: auto 0 0;
+  padding: 0.75rem 0 0;
+}
+
+.home-leg li {
+  margin: 0;
+}
+
+.home-leg li a {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, white);
+  background: white;
+  color: var(--accent-ink);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.home-leg li a:hover,
+.home-leg li a:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+@media (max-width: 767.98px) {
+  .home-leg {
+    padding: 1.25rem;
+  }
+
+  .home-leg .leg-icon {
+    width: 52px;
+    height: 52px;
+  }
 }
 
 /* The About page headshot. Small enough to sit beside the opening paragraph
