@@ -3,9 +3,8 @@ title: "Learning Guides"
 toc: false
 ---
 
-How to learn a subject, how to read what you find, and how to move between
-careers. Practices that come up often enough to be written down once, as
-opposed to methods or code.
+How to learn a subject and how to read what you find. Practices that come up
+often enough to be written down once, as opposed to methods or code.
 
 Checklists and cheat sheets for the modelling work itself are on the
 [Pharmacometrics Tools](../pmx-tools.qmd) page.
@@ -16,5 +15,3 @@ Checklists and cheat sheets for the modelling work itself are on the
 - [Effective Learning](effective-learning.qmd). A checklist for learning a new
   skill or discipline: aspiration, broad overview, consulting experts,
   deconstruction, routine, feedback and growth.
-- [Career Advice](career-advice.qmd). A career transition checklist for leaving
-  academia, the mindsets that help, and where pharmacometrics jobs are posted.

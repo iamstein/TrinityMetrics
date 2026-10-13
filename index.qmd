@@ -37,6 +37,7 @@ Tools, guides, checklists and talks I've developed and contributed to, that supp
 Guides for learning and career development.
 
 - [Learning Guides](guides/index.qmd)
+- [Career Advice](guides/career-advice.qmd)
 - [Tutorials](talks.qmd#tutorials)
 
 ::::
