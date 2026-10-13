@@ -1,0 +1,45 @@
+---
+title: "The Bitter Lesson for Pharmacometricians"
+date: 2026-10-13
+description: "If AI soon builds models and writes reports without our guidance, where can pharmacometricians add the most long-term value?"
+categories:
+  - pharmacometrics
+  - ai
+toc: false
+---
+
+## The Bitter Lesson
+
+Ethan Mollick's recent post on [The Bitter Lesson](https://www.oneusefulthing.org/p/the-dot-and-the-swarm) highlights that across many domains (e.g. chess, language translation, computer vision, protein folding), algorithms built entirely by AI without human-expert guidance far outperform algorithms that humans helped design. Claude created a [music video](https://youtu.be/OAwat51S_Sk) that describes the lesson well.
+
+In considering where we, as pharmacometricians, focus our efforts in the coming years, it's worth keeping The Bitter Lesson in mind. I've been attracted to the idea of creating skill files and agentic work flows for model building and evaluation, but if other fields serve as a guide, then it could very well be in a year or two, AI can efficiently build a model and write a report without any guidance from us. Mollick admits he fell prey to the Bitter Lesson, and I think I did too: in [March](../2026-03-28-ai-can-assist-humans-must-own-decisions/index.qmd) I listed templates and skill files as a place to focus. But if they'll soon become obsolete, then where can we add the most long-term value?
+
+I posit that the following items may survive depreciation, because they sit at the transition as activities are handed by humans to the AI, and then back.
+
+1. **Scoping before handoff.** What has to be decided, written down and checked before work goes to an AI. Thinking carefully about this is the difference between agentic engineering and vibe coding.
+2. **Validation after delivery.** How to validate and take responsibility for AI-generated deliverables (e.g. code, modeling report, or decision recommendation).
+3. **A human-curated list of the best references.** The sources a person has read and vouches for as high quality, as opposed to whatever a search returns.
+
+## Scoping
+
+Agents already help with scoping in software development. The brainstorming step in [Superpowers](https://github.com/obra/superpowers) interviews you one question at a time and writes the design for you, and GitHub's [Spec Kit](https://github.com/github/spec-kit) has you define what is to be built and why before deciding how. AI may already be better at helping us scope than we are at scoping alone, though it may be worth tailoring tools like those above to drug development activities.
+
+## Validation
+
+Validation isn't only asking whether the model is right. It's asking whether the model, and the conclusions that come from the analysis, lead to a good decision.
+
+AI will get better at checking work, and a second agent reviewing the first will become routine. But AI can be misaligned, and that problem is far from being solved. Even when an AI recommends a decision, a person has to sign off on it. In drug development, where a model can inform the dose a patient receives and put a patient's life at risk, that responsibility can't be handed off.
+
+Validation can be supported by a checklist, such as [this one for R code](../../../references/Validation_Checklist.pdf), and further thought as to how to validate AI deliverables is warranted.
+
+## References
+
+An agent can find and rank sources, and eventually it may judge the literature better than we do. But curating a short list of the best references doesn't take long. It narrows what a general AI needs to read, and it records that a person read and evaluated each source. The best way to build and maintain such a list is likely together with an agent.
+
+## Deskilling and Apprenticeship
+
+Validation only works if the validator can tell a flawed model from a good one. If AI does most of the model building, that ability may fade. And if new pharmacometricians only ever review AI-built models, and never build their own, they may never develop a strong intuition. Furthermore, if AI eventually judges models better than we do, human judgment becomes a weaker check over time. Maintaining human expertise may be one of the big challenges we face going forward.
+
+## Where This Is Heading
+
+AI tools are improving quickly, and the more AI can do, the more our value as pharmacometricians lies in deciding what the work is for and in taking responsibility for the decisions it supports.
