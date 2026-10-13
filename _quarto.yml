@@ -37,6 +37,8 @@ website:
         text: Talks
       - href: projects/index.qmd
         text: Projects
+      - href: blog/index.qmd
+        text: Blog
       - text: About
         menu:
           - href: about.qmd
