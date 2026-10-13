@@ -1,0 +1,29 @@
+---
+title: "Publishing the 3 RECIST Lesion Model"
+subtitle: "Turning a 2011 ASCO poster into a citable preprint"
+description: "Index of the documents in the pmx-afinitor-3-lesion-types project: writing up the RECORD-1 everolimus model of target, nontarget and new lesions as a preprint on bioRxiv, medRxiv or Zenodo."
+categories: [Pharmacometrics methods]
+date: last-modified
+toc: false
+---
+
+At ASCO 2011, Stein, Carter, Hollaender, Motzer and Sarr presented a model of
+the RECORD-1 phase 3 trial of everolimus (Afinitor) in metastatic renal cell
+carcinoma that describes all three RECIST lesion types: the sum of target
+lesion diameters, the progression of nontarget lesions, and the appearance of
+new lesions. The three predictions combine into a progression-free survival
+prediction for each patient. The model exists only as a poster
+([PDF](https://github.com/iamstein/Publications/blob/main/Posters/Stein11_ASCOposter_RAD_3lesions.pdf)).
+This project writes it up as a preprint with a DOI, so it can be cited.
+
+## Documents
+
+- [Working specification](specification.qmd). What the poster holds, the
+  choice of server, what the manuscript needs that the poster lacks, and the
+  steps to posting.
+- [Tumor Models of Nontarget and New Lesions](literature-review.qmd). A
+  review of the published models that describe nontarget or new lesions, and
+  where the poster sits among them.
+- [References](references.qmd). The poster, the trial papers, the companion
+  abstracts, and a marker on each recording whether the claim drawn from it
+  has been checked.

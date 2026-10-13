@@ -178,6 +178,16 @@
   categories: [Pharmacometrics methods, Draft]
   path: pmx-logistic-regression/index.qmd
 
+- title: "Publishing the 3 RECIST Lesion Model"
+  subtitle: "Working document"
+  description: >
+    Writing up a 2011 ASCO poster as a citable preprint: a model of the
+    RECORD-1 everolimus trial in renal cell carcinoma that describes target,
+    nontarget and new lesions together and predicts progression-free
+    survival from them.
+  categories: [Pharmacometrics methods, Draft]
+  path: pmx-afinitor-3-lesion-types/index.qmd
+
 - title: "Create Videos for Intro to PK and PD slides"
   subtitle: "Working document"
   description: >

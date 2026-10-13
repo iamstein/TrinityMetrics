@@ -1,0 +1,354 @@
+---
+title: "Tumor Models of Nontarget and New Lesions"
+subtitle: "A literature review for the 3 RECIST Lesion Model"
+description: "Which published tumor dynamic models describe nontarget lesion progression and new lesion appearance, how each one does it, and where the RECORD-1 three-lesion model sits among them."
+categories: [Pharmacometrics methods, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Verdict: models of nontarget and new lesions are rare, and models that keep
+the two apart are rarer.** Of about 40 tumor modeling papers screened on
+2026-10-13, six give new lesions a submodel of their own, two treat new and
+nontarget lesions as separate processes, and neither of those two is a
+journal paper: one is the 2011 RECORD-1 poster this project is publishing, and the
+other is a 2022 conference abstract. No published model found here gives
+nontarget lesions a size, latent or otherwise, and none other than the poster
+uses a detection probability for new lesions.
+:::
+
+Out of scope: models of a single primary tumor, preclinical models, and
+models of target lesions alone, except where Section 6 lists the lesion-level
+ones to say what they leave out.
+
+The project's other documents are on [the project index](index.qmd), and the
+sources below are also listed in [the references](references.qmd).
+
+## 1. Question and Search
+
+The question is which models of clinical tumor data describe RECIST
+nontarget lesion progression or new lesion appearance as something that
+changes over time, with or without a drug effect on it.
+
+RECIST 1.1 calls progression on any of three findings: a 20% and 5 mm rise in
+the sum of target lesion diameters over its nadir, unequivocal progression of
+nontarget lesions, or one new lesion. Nontarget lesions are recorded as
+present, absent or unequivocally progressed, with no size. New lesions are
+recorded as present or absent. Progression-free survival (PFS) therefore
+depends on two binary series that a model of the sum of diameters (SLD) does
+not describe.
+
+The search used:
+
+- Europe PMC queries on abstracts and on open-access full text, combining
+  *new lesion*, *nontarget*, *non-target progression* and *appearance of new
+  lesions* with *tumor growth inhibition*, *NONMEM*, *mixed effects*, *joint
+  model* and *time-to-event*.
+- Forward citations, from Europe PMC, of the five papers closest to the
+  question: Zecchin 2016, Yu 2020, Krishnan 2021, and the two RECORD-1 papers
+  (Stein 2012, Stein 2013).
+- Web searches for conference abstracts (PAGE), quantitative systems
+  pharmacology (QSP) models, and metastasis models from mathematical
+  oncology.
+
+Section 11 lists what the search did not cover.
+
+## 2. Summary Table
+
+The table puts every model found in one row, ordered by how much of the
+nontarget and new lesion process it represents.
+
+| # | Paper | Nontarget lesions | New lesions | Drug effect on them | Linked to |
+|---|---|---|---|---|---|
+| 3.1 | Stein 2011, everolimus, RCC | ✅ Latent size, Hill function to probability | ✅ Latent size from 0.1 cm, detection probability | ✅ Same growth equation as targets, shared 5 and 10 mg effect | PFS |
+| 3.2 | Krishnan 2022 (PAGE), afatinib and nintedanib, NSCLC and ovarian | ✅ Logistic or time-to-event | ✅ Logistic or time-to-event | ⚠️ Not stated in the abstract | PFS, ORR, DoR |
+| 3.3 | Zecchin 2016, carboplatin ± gemcitabine, ovarian | ❌ | ✅ Weibull time-to-event | Through week-12 tumor size ratio | OS |
+| 3.4 | Krishnan 2021, docetaxel, breast | ❌ | ✅ Logistic per scan | Through largest lesion time course | OS |
+| 3.5 | Bonate 2013, pazopanib, RCC | ❌ | ✅ Logistic, once per patient | Through fitted shrinkage and regrowth rates | None |
+| 3.6 | Król 2016, colorectal | ❌ | ✅ Recurrent events | Treatment arm on the event rate | OS |
+| 4.1 | Yu 2020, ovarian | Lumped | Lumped | Through dSLD/dt | PFS |
+| 4.2 | Baaz 2023, FOLFOX ± panitumumab, colorectal | Lumped | Lumped | Through dSLD/dt | PFS |
+| 4.3 | Kumar 2021 (QSP), pembrolizumab ± ipilimumab, melanoma | Lumped | Lumped | Through target tumor burden | RECIST response |
+| 4.4 | Qi 2023 (QSP), pembrolizumab, NSCLC | Lumped | Lumped | Kumar's model, refit | PFS |
+| 4.5 | Cerou 2024, amcenestrant, breast | In the PFS hazard | In the PFS hazard | Through target size slope | PFS |
+| 4.6 | Chigutsa 2026, abemaciclib, breast | In the PFS hazard | In the PFS hazard | A direct drug effect on the hazard | PFS |
+| 5.1 | Vera-Yunca 2022, cetuximab, colorectal | ❌ | Observed covariate | ❌ | OS |
+| 5.2 | Krishnan 2021 multistate, docetaxel, breast | ❌ | Inside a progression state | ❌ | OS |
+
+: Models that represent nontarget or new lesions. ✅ modeled as its own process; ⚠️ unclear; ❌ absent {tbl-colwidths="[6,26,18,18,18,14]"}
+
+## 3. Separate Submodels for Nontarget or New Lesions
+
+Each entry gives the data, what is modeled for nontarget and for new lesions,
+how the drug enters, what it is linked to, and what it was read from.
+
+### 3.1 Stein 2011: Everolimus in Renal Cell Carcinoma
+
+- **Data.** RECORD-1, everolimus 10 or 5 mg against placebo, 407 patients
+  with a baseline assessment.
+- **Nontarget lesions.** A latent percentage change in size grows by the
+  target lesion equation and maps to a probability of progression,
+  $(100\% + \Delta y\%)^8 / \big((150\%)^8 + (100\% + \Delta y\%)^8\big)$.
+- **New lesions.** A latent lesion starts at 0.1 cm, grows by the same
+  equation, and is detected with probability $y^3/\big((0.5\,\text{cm})^3 +
+  y^3\big)$.
+- **Drug effect.** Separate 5 and 10 mg effects on target lesions; one shared
+  effect on nontarget and new lesions, since the data did not support two.
+  Placebo growth rates correlated across the three lesion types.
+- **Linked to.** PFS, by applying the RECIST rules to the three predictions.
+- **Read from.** The poster. The companion paper (Stein 2012, *BMC Cancer*)
+  models target lesions only, and cites the poster as its reference 22 for
+  the nontarget and new lesion work.
+
+### 3.2 Krishnan 2022: Sub-Endpoints for PFS
+
+- **Data.** Three phase 3 trials: afatinib against chemotherapy in non-small
+  cell lung cancer (NSCLC), nintedanib with docetaxel in NSCLC, and nintedanib
+  with carboplatin and paclitaxel in ovarian cancer.
+- **Nontarget lesions.** Nontarget progression at each scan, by logistic
+  regression, or by a time-to-event model where the logistic fit had
+  estimation problems.
+- **New lesions.** The same, as a separate model.
+- **Drug effect.** The abstract does not say whether drug exposure or SLD
+  enters the nontarget and new lesion models.
+- **Linked to.** PFS, objective response rate (ORR), duration of response
+  (DoR) and best overall response, simulated from the sub-endpoint events.
+- **Read from.** The PAGE 2022 abstract (number 10071). Krishnan, Friberg,
+  Nyberg, Sarr, Niebecker, Wang and Perez Pitarch, Pharmetheus and Boehringer
+  Ingelheim. No journal version was found. Céline Sarr is an author here and
+  on the 2011 poster.
+
+### 3.3 Zecchin 2016: Carboplatin in Ovarian Cancer
+
+- **Data.** One phase 3 trial, carboplatin against carboplatin plus
+  gemcitabine, 336 patients.
+- **Nontarget lesions.** Not modeled; the authors list them as future work.
+- **New lesions.** Time to first observed new lesion, with a Weibull hazard
+  $h(t) = \lambda \gamma t^{\gamma-1} \exp(0.545\,\text{LIVER} + 0.767\,\text{TSR})$,
+  where LIVER marks liver metastasis at enrollment and TSR is the model's
+  tumor size ratio, held at its week-12 value after week 12.
+- **Drug effect.** Indirect, through TSR.
+- **Linked to.** Overall survival (OS), with new lesion appearance as a
+  time-varying covariate raising the hazard of death 3.4-fold.
+- **Read from.** The full text, through a summarizing fetch; the coefficient
+  values are ⚠️ until checked against Table 3 of the paper.
+
+### 3.4 Krishnan 2021: Docetaxel in Breast Cancer
+
+- **Data.** The docetaxel arm of AVADO, 183 HER2-negative patients, 586
+  target lesions in seven organs. New lesions appeared in 121 patients.
+- **Nontarget lesions.** Not modeled.
+- **New lesions.** Probability of a new lesion at each scan,
+  $P = e^{\text{DR}} / (1 + e^{\text{DR}})$, with the linear predictor DR
+  driven by the predicted time course of the largest baseline lesion, three or
+  more liver lesions, and time since enrollment.
+- **Drug effect.** Indirect, through the lesion-level docetaxel model.
+- **Linked to.** OS and dropout.
+- **Read from.** The full text, through a summarizing fetch. That summary
+  flagged hazard ratios in the text that do not match the Table 3
+  coefficients; check before citing a number.
+
+### 3.5 Bonate 2013: Pazopanib in Renal Cell Carcinoma
+
+- **Data.** Phase 2 (220 patients) and phase 3 (423 patients) trials of
+  pazopanib against placebo.
+- **Nontarget lesions.** Not modeled.
+- **New lesions.** Logistic regression of whether a patient ever had a new
+  lesion, on individual tumor model parameters and covariates. Prior
+  radiotherapy, baseline tumor size, shrinkage rate, regrowth rate, study and
+  treatment were significant; placebo patients were about twice as likely to
+  have a new lesion.
+- **Drug effect.** Treatment arm as a covariate, and indirectly through the
+  shrinkage rate.
+- **Linked to.** Nothing downstream; the model has no time course for new
+  lesions.
+- **Read from.** The abstract. The one other RCC paper here besides the
+  poster.
+
+### 3.6 Król 2016: A Statistical Joint Model in Colorectal Cancer
+
+- **Data.** FFCD 2000-05, a phase 3 trial of sequential against combination
+  chemotherapy, 410 patients.
+- **Nontarget lesions.** Not modeled.
+- **New lesions.** A recurrent-event process, jointly with left-censored SLD
+  and death, linked by shared random effects.
+- **Drug effect.** Treatment arm on each of the three processes, to ask which
+  component the treatment acts on.
+- **Linked to.** OS.
+- **Read from.** The abstract. This is the biostatistics joint-model
+  literature rather than pharmacometrics, and it does not cite the
+  pharmacometric papers.
+
+## 4. Nontarget and New Lesions Lumped Into One Hazard
+
+These models give PFS a second route besides target progression, and the
+second route stands for nontarget progression, new lesions and, in some,
+death, without separating them. This is now the common pharmacometric
+approach to PFS.
+
+### 4.1 Yu 2020
+
+Pooled platinum-resistant ovarian cancer data, four treatments. The
+nontarget hazard is tied to the rate of change of target tumor size, and PFS
+is the earlier of target progression, derived from the predicted SLD by the
+RECIST rule, and nontarget progression. Read from the abstract; Baaz 2023
+reports the hazard form as $h(t) = \max(\alpha \, dS\!L\!D/dt + \beta, 0)$.
+
+### 4.2 Baaz 2023
+
+Yu's model fitted to PRIME, FOLFOX with or without panitumumab in RAS
+wild-type colorectal cancer, with ASPECCT as external validation:
+$\alpha = 0.0041$ per mm and $\beta = 0.035$ per month. "Nontarget
+progression" here covers new lesions, unequivocal nontarget progression and
+death. Read from the full text, through a summarizing fetch.
+
+### 4.3 Kumar 2021
+
+A QSP model of pembrolizumab and ipilimumab in melanoma, with several target
+lesions per virtual patient and a probabilistic model for progression from
+"nontarget growth or appearance of metastases", evaluated every 12 weeks and
+dependent on the sum of target diameters. Calibrated to RECIST response
+categories. The paper's stated finding is that nontarget growth and new
+lesions drove much of the progression in patients whose target lesions
+shrank, and it says few QSP or clinical models address them. Read from the
+full text.
+
+### 4.4 Qi 2023
+
+Kumar's nontarget model refitted to pembrolizumab in NSCLC, inside a
+lesion-level virtual trial used to ask who benefits from treatment beyond
+progression. Read from the full text.
+
+### 4.5 Cerou 2024
+
+Amcenestrant in breast cancer. The authors tried Yu's approach and rejected
+it on the visual predictive check, and instead linked a single PFS hazard to
+the slope of target tumor size. Nontarget and new lesions enter only as part
+of the observed PFS events. Read from the full text.
+
+### 4.6 Chigutsa 2026
+
+Abemaciclib in breast cancer. The PFS hazard depends on change in target
+size plus a second drug effect "outside that mediated through" target
+lesions, justified by nontarget and new lesion progression in 36% of
+patients with measurable disease. Read from the full text.
+
+## 5. New Lesions as an Observed Covariate
+
+- **Vera-Yunca 2022.** Cetuximab with chemotherapy in colorectal cancer, four
+  trials, 1716 patients. Early appearance of a new lesion predicts OS
+  (HR 4.14), entered as observed data, not modeled.
+- **Krishnan 2021, multistate.** The same AVADO data as 3.4, with states for
+  stable disease, response, progression, second-line treatment and death.
+  Progression is one state, whatever its cause.
+
+## 6. Lesion-Level Models of Target Lesions
+
+A growing set of papers model each target lesion separately, by organ.
+They describe within-patient heterogeneity, which is one reason nontarget
+and new lesions behave differently from the SLD, but none of them models
+nontarget or new lesions. Kerioui 2022 says so directly, listing new lesions
+and nontarget dynamics as information the models leave out.
+
+- Terranova 2018, CICIL clustering of lesion trajectories.
+- Kerioui 2022 (*ESMO Open*) and 2023 (*Biometrics*), atezolizumab in
+  urothelial cancer.
+- Chen 2024, organ-specific growth rates across six colorectal trials.
+- Liu 2026, AI-measured lesions from CROWN (lorlatinib), linked to PFS.
+- Dilley 2026, 55,220 lesions from 20 trials. The preprint version models
+  new-lesion progression with Cox regression, according to a search summary
+  not checked against the paper.
+
+The most cited tumor growth inhibition and OS frameworks (Claret 2009,
+Chan 2021, Struemper 2025) use target lesions only.
+
+## 7. Evidence That Each Component Carries Information
+
+These are statistical analyses without a dynamic model. They are the case for
+modeling nontarget and new lesions at all.
+
+- **Litière 2014** (RECIST Working Group). 13 trials, 3758 patients with
+  breast, lung or colorectal cancer. New lesions and nontarget progression
+  were each independently associated with OS, and a search summary reports
+  that they made up 36% and 28% of progression events. The year is given as
+  2014 in one source and 2015 in another.
+- **Stein 2013** (RECORD-1). In 246 everolimus patients, nontarget growth and
+  new lesions at weeks 2–14 each predicted OS (p < 0.001, univariate).
+- **Twelves 2015.** Two eribulin trials in breast cancer. Progression by new
+  metastases carried worse OS than growth of existing lesions.
+- **Osorio 2019 and Topp 2021.** Lesion-level progression under PD-1
+  blockade. Mixed progression, with some lesions shrinking while others grow,
+  was common.
+- **Coy 2019** (*Radiology*). Components of RECIST progression in clear cell
+  RCC. Not read here; listed because it is the indication.
+
+## 8. Metastasis Models From Mathematical Oncology
+
+A separate literature models how metastases seed and grow, using the
+Iwata–Kawasaki–Shigesada size-structured equation (2000) and its successors
+from Benzekry's group, including brain metastases in NSCLC (Bilous 2019) and
+relapse in early breast cancer (Nicolò 2020). These models predict the number
+and size of new metastases from seeding and growth rates, which is the
+mechanism the poster's new lesion submodel approximates with one latent
+lesion. They are fitted to untreated or post-surgical data, not to RECIST
+time courses under treatment, and none was found applied to a drug trial's
+new lesion data.
+
+## 9. Where the Poster Sits
+
+Three features of the 2011 poster are not in any published model found here:
+
+1. **Nontarget lesions with a size.** Every other model treats nontarget
+   progression as an event with a hazard or a probability; the poster gives
+   it a latent size that grows and shrinks with the target lesion equation.
+2. **A detection probability for new lesions.** The poster's latent lesion
+   starts below imaging resolution and becomes visible with a probability set
+   by its size. Bilous 2019 models brain metastases too small to see on
+   imaging, but outside a drug trial.
+3. **A drug effect estimated separately on each lesion type.** That is what
+   found 5 mg weaker than 10 mg on target lesions but not distinguishable on
+   the other two. The lumped models in Section 4 cannot ask this question.
+
+For the preprint, this section is the case for novelty, and Sections 3 and 4
+are the related work. It should cite Krishnan 2022 as the closest later
+approach, and Yu 2020 as the approach most later work adopted.
+
+## 10. Where to Start Reading
+
+In order, with the question each one answers.
+
+1. **Yu 2020.** The lumped nontarget hazard that most later PFS models
+   extend. Read the hazard definition and the simulation algorithm.
+2. **Zecchin 2016.** The fullest published new lesion model, and its effect
+   on OS. Read the time-to-event section and Table 3.
+3. **Krishnan 2022 (PAGE abstract and poster PDF).** The closest approach to
+   the 2011 poster, from a group that includes one of its authors. Read for
+   whether drug or SLD enters the nontarget and new lesion models.
+4. **Kumar 2021.** The QSP version, and the argument that nontarget and new
+   lesions drive progression under immunotherapy.
+5. **Litière 2014.** The evidence that each component predicts survival
+   independently, for the preprint's introduction.
+6. **Bonate 2013.** The other RCC paper, for comparison in the discussion.
+7. **Liu H 2025 review** (Liu, Ibrahim, Centanni, Sarr, Venkatakrishnan,
+   Friberg; *Adv Drug Deliv Rev*). A review of integrated oncology models;
+   check its reference list for anything Sections 3 and 4 missed.
+
+## 11. Search Coverage and Gaps
+
+- Europe PMC indexes PubMed and open-access full text. Embase, Scopus and Web
+  of Science were not searched, and paywalled full text was searched only
+  where a web search reached it.
+- PAGE abstracts were reached through web search, not by searching the PAGE
+  archive directly. ACoP, ASCO and AACR abstracts were not searched
+  systematically. Conference work is where this topic seems to live, so this
+  is the likeliest gap.
+- PIONEER (Naguib 2026, arXiv 2607.17908) adds a hazard channel for
+  progression the SLD does not explain, according to a search summary; the
+  abstract does not say, and the full text was not read.
+- Industry QSP platforms that simulate RECIST may model new lesions without
+  publishing it.
+- Details marked "through a summarizing fetch" were read by an automated
+  summary of the full text, and every number from them is unverified.

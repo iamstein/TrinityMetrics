@@ -1,0 +1,170 @@
+---
+title: "Publishing the 3 RECIST Lesion Model"
+subtitle: "Working specification"
+description: "What the 2011 ASCO poster on the RECORD-1 three-lesion tumor model holds, the choice of preprint server, what a manuscript needs beyond the poster, and the steps to posting."
+categories: [Pharmacometrics methods]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+## 1. Goal
+
+A preprint with a DOI describing the RECORD-1 three-lesion tumor model, written
+from the 2011 ASCO poster (abstract 4602), with the five poster authors or
+their stated consent.
+
+Out of scope: refitting the model or any new analysis of RECORD-1 data. The
+preprint reports what the 2011 analysis found. Section 5 records the decision
+this rests on.
+
+## 2. The Poster
+
+Stein AM, Carter A, Hollaender N, Motzer R, Sarr C. Quantifying the effect of
+everolimus on both tumor growth and new metastases in metastatic renal cell
+carcinoma (RCC): a dynamic tumor model of the RECORD-1 phase III trial. J Clin
+Oncol 29, 2011 (suppl; abstr 4602). ASCO Annual Meeting, Chicago, 3–7 June
+2011. [PDF](https://github.com/iamstein/Publications/blob/main/Posters/Stein11_ASCOposter_RAD_3lesions.pdf).
+
+Everything in this section was transcribed on 2026-10-13 from text extracted
+from the PDF, whose multi-column layout scrambles the order. Each item is ⚠️
+until checked against the poster image.
+
+### 2.1 Data
+
+RECORD-1 (NCT00410124) randomized patients with metastatic RCC who had
+progressed on sunitinib or sorafenib to everolimus 10 mg daily or placebo.
+Dose reduction to 5 mg daily was allowed for toxicity. The analysis used local
+radiology for the 407 patients with a baseline tumor assessment: the sum of
+longest target lesion diameters (SLD), nontarget lesion progression status,
+and new lesion appearance.
+
+### 2.2 Model
+
+Target lesions follow, by nonlinear mixed effects,
+
+$$
+\frac{dy}{dt} = (r - E_\text{dose})\,y
+$$
+
+where $y$ is SLD, $r$ the placebo growth rate and $E_\text{dose}$ the
+dose-dependent everolimus effect. The extracted text reads `dy/dt = r – Edosey`,
+so the bracketing is a guess to check against the image.
+
+Nontarget and new lesions carry no measured size, so the model assumes each
+grows by the same equation and maps the latent size to a probability of
+progression.
+
+- **Nontarget lesions.** With $\Delta y\%$ the percentage change from baseline,
+  $$
+  f(\Delta y\%) = \frac{(100\% + \Delta y\%)^8}{(150\%)^8 + (100\% + \Delta y\%)^8}
+  $$
+  A 50% increase gives a probability of 0.5 and a 100% increase gives 0.91.
+- **New lesions.** With $y$ the longest diameter of the new lesion, starting
+  undetectable at 0.1 cm,
+  $$
+  f(y) = \frac{y^3}{(0.5\ \text{cm})^3 + y^3}
+  $$
+  A lesion at the 0.5 cm imaging resolution is detected with probability 0.5,
+  and one at 2 cm with probability 0.984.
+
+The 5 mg and 10 mg effects were fitted as separate parameters for target
+lesions. For nontarget and new lesions the data did not support two, and one
+effect was shared. Correlating the placebo growth rates $r$ across the three
+lesion types improved the fit (P < .001). The three lesion predictions were
+combined by the RECIST rules into a predicted time to progression for each
+patient.
+
+### 2.3 Results
+
+| Quantity | Placebo | 5 mg | 10 mg |
+|---|---|---|---|
+| Change in SLD after 1 year, average patient | +142.1% ± 98.3% | +22.4% ± 17.2% | −15.7% ± 11.5% |
+| Nontarget progression after 1 year (90% CI) | 95.0% (81.8, 99.5) | 64.3% (33.2, 90.0), 5 and 10 mg pooled | |
+| New lesion progression after 1 year (90% CI) | 90.1% (76.1, 96.8) | 52.6% (20.5, 82.4), 5 and 10 mg pooled | |
+
+: Poster results, transcribed ⚠️ {tbl-colwidths="[40,20,20,20]"}
+
+Both doses slowed all three lesion types against placebo (P < .0001), and
+10 mg slowed target lesions more than 5 mg (P < .0001). Predicted
+progression-free survival matched observed in both arms (Figure 4 of the
+poster), with everolimus patients simulated on their actual dosing history,
+placebo patients simulated without crossover, and deaths from causes other
+than progression excluded.
+
+### 2.4 Figures
+
+| # | Shows |
+|---|---|
+| 1 | Six patients, A–F: SLD, nontarget progression probability and new lesion probability over time, with dose |
+| 2 | Simulated SLD over 1 year in the average patient, by dose |
+| 3 | Probability of nontarget (A) and new lesion (B) progression over 1 year |
+| 4 | Predicted against observed progression-free survival, everolimus (A) and placebo (B) |
+
+## 3. Choice of Server
+
+| Server | Takes this? | DOI | Notes |
+|---|---|---|---|
+| bioRxiv | ⚠️ Probably not | Yes | Directs clinical trial analyses to medRxiv |
+| medRxiv | ⚠️ Probably | Yes | Screens submissions; asks for trial registration, ethics, funding and competing-interest statements, and an author declaration that all authors agree |
+| Zenodo | ✅ Yes | Yes | No screening; posts anything, including the poster PDF itself |
+
+: Candidate servers. The bioRxiv and medRxiv rows are from memory, not checked against either site's current policy {tbl-colwidths="[15,20,10,55]"}
+
+Recommendation: medRxiv, with Zenodo as the fallback if medRxiv screening
+turns it away on the grounds that it reports a 2011 analysis that cannot be
+reproduced. Posting the poster PDF itself to Zenodo now is a separate,
+cheaper step that gives it a DOI the day it is done, and does not preclude
+either.
+
+## 4. What the Manuscript Needs Beyond the Poster
+
+1. Methods detailed enough to reimplement: the estimation software, the
+   random effects and their covariance, the residual error models, how the
+   nontarget and new lesion probabilities entered the likelihood, how the dose
+   history entered $E_\text{dose}$, and parameter estimates with standard
+   errors. None of these are on the poster. They exist only in the 2011
+   analysis files, if anywhere.
+2. A statement on the prior publications from the same analysis, Stein 2012
+   and Stein 2013 (Section 6), saying what this one adds, and a related work
+   section drawn from Sections 3, 4 and 9 of the
+   [literature review](literature-review.qmd).
+3. Author consent from all five, and Novartis clearance. RECORD-1 is a
+   Novartis trial, and three authors were Novartis employees.
+4. Trial registration, ethics and funding statements, carried over from the
+   RECORD-1 primary publication.
+5. A data availability statement. The individual data are Novartis's.
+
+## 5. Decision: Write Up or Refit
+
+| Option | Needs | Gives |
+|---|---|---|
+| A. Write up the 2011 analysis as it stands | The poster, and the 2011 analysis files for item 1 of Section 4 | A preprint in weeks |
+| B. Refit on RECORD-1 data | Data access from Novartis, possibly through a data-sharing platform | A reproducible analysis, and months |
+
+Recommendation: A. Option B is a new project, and nothing in Section 1
+requires it. If the 2011 parameter estimates cannot be found, A shrinks to a
+methods-and-figures note on Zenodo.
+
+## 6. Open Questions
+
+1. ✅ Answered 2026-10-13: the three-lesion model has not appeared in a full
+   paper. Stein 2012 (*BMC Cancer* 12:311) publishes the target lesion model
+   alone and cites the poster as its reference 22 for the nontarget and new
+   lesion work. Stein 2013 (*Eur Urol* 64:994) is a Cox analysis of overall
+   survival with no dynamic model. The [literature review](literature-review.qmd)
+   found no later model that does what the poster does (its Section 9).
+2. Where are the 2011 model files, the control stream and the parameter
+   table?
+3. Are the four co-authors reachable, and who at Novartis clears it?
+
+## 7. Steps
+
+1. ✅ Answer open question 1 (done 2026-10-13).
+2. Post the poster PDF to Zenodo for a DOI.
+3. Contact the co-authors and Novartis (open question 3).
+4. Find the analysis files (open question 2).
+5. Check every ⚠️ in Section 2 against the poster image.
+6. Draft the manuscript from Sections 2 and 4.
+7. Submit to medRxiv, or Zenodo per Section 3.

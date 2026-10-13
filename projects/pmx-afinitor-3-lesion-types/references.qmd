@@ -1,0 +1,139 @@
+---
+title: "References for the 3 RECIST Lesion Model"
+subtitle: "What to read, in what order, and what has actually been checked"
+description: "The reading queue and source list for publishing the RECORD-1 three-lesion tumor model, with a status marker on every entry recording whether the claim drawn from it has been verified against the source."
+categories: [Pharmacometrics methods, references]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+::: {.callout-important appearance="simple"}
+**Nothing has been checked by Andy.** Section 2 of the specification was
+transcribed on 2026-10-13 from text extracted from the poster PDF. The
+literature review was assembled the same day from abstracts, open-access full
+text, and automated summaries of full text; its "read from" line on each
+entry says which.
+:::
+
+The working document is [the specification](specification.qmd), the
+literature review is [Tumor Models of Nontarget and New Lesions](literature-review.qmd),
+and the folder's documents are on [the project index](index.qmd).
+
+## Status markers
+
+- ❌ **Not checked.** No claim in the project has been verified against this
+  source.
+- ⚠️ **Transcribed, unverified.** A number, equation or table in the project
+  came from this source but has not been checked against it.
+- ✅ **Checked.** Verified against the source.
+
+On a reading-queue entry, ✅ means the question under the entry has been
+answered. Change a marker when the check is done, not when the paper is
+opened.
+
+## Reading Queue
+
+The first two entries answered open question 1 of the specification. The
+rest are the ranked reading list from Section 10 of the literature review.
+
+1. ✅ **Stein A, Wang W, Carter AA, Chiparus O, Hollaender N, Kim H, Motzer
+   RJ, Sarr C.** Dynamic tumor modeling of the dose-response relationship for
+   everolimus in metastatic renal cell carcinoma using data from the phase 3
+   RECORD-1 trial. *BMC Cancer* 2012;12:311. PMC3495014.
+   *Question:* Does it include nontarget and new lesions?
+   *Answer:* No. Target lesions only; its reference 22 is the poster, cited
+   for the nontarget and new lesion work.
+2. ✅ **Stein A, Bellmunt J, Escudier B, Kim D, Stergiopoulos SG, Mietlowski
+   W, Motzer R, et al.** Survival prediction in everolimus-treated patients
+   with metastatic renal cell carcinoma incorporating tumor burden response
+   in the RECORD-1 trial. *Eur Urol* 2013;64:994–1002. PMID 23219086.
+   *Question:* Does it include the three-lesion model?
+   *Answer:* No. A Cox analysis of overall survival in 246 everolimus
+   patients; nontarget growth and new lesions are univariate predictors.
+3. ❌ **Yu J, Wang N, Kågedal M.** A new method to model and predict
+   progression free survival based on tumor growth dynamics. *CPT
+   Pharmacometrics Syst Pharmacol* 2020;9:177–184. PMC7080535.
+   *Question:* The hazard definition and simulation algorithm.
+4. ⚠️ **Zecchin C, Gueorguieva I, Enas NH, Friberg LE.** Models for change in
+   tumour size, appearance of new lesions and survival probability in
+   patients with advanced epithelial ovarian cancer. *Br J Clin Pharmacol*
+   2016;82:717–727. PMC5338128.
+   *Question:* Check the Weibull coefficients quoted in review Section 3.3
+   against Table 3.
+5. ❌ **Krishnan SM, Friberg LE, Nyberg J, Sarr C, Niebecker R, Wang S, Perez
+   Pitarch A.** A framework for prediction of progression free survival based
+   on modelling of sub-endpoints. PAGE 30 (2022), abstract 10071.
+   *Question:* Does drug exposure or SLD enter the nontarget and new lesion
+   models? Is there a journal version?
+6. ❌ **Kumar R, Thiagarajan K, Jagannathan L, et al.** Beyond the single
+   average tumor: understanding IO combinations using a clinical QSP model
+   that incorporates heterogeneity in patient response. *CPT Pharmacometrics
+   Syst Pharmacol* 2021;10:684–695. PMC8302246.
+   *Question:* The form of the nontarget progression probability.
+7. ❌ **Litière S, et al.** The components of progression as explanatory
+   variables for overall survival in the RECIST 1.1 database. *Eur J Cancer*
+   2014 or 2015; the sources disagree on the year.
+   *Question:* The share of progression events from each component, and the
+   year.
+8. ❌ **Bonate PL, Suttle AB.** Modeling tumor growth kinetics after treatment
+   with pazopanib or placebo in patients with renal cell carcinoma. *Cancer
+   Chemother Pharmacol* 2013;72:231–240. PMID 23715625.
+9. ❌ **Liu H, Ibrahim EIK, Centanni M, Sarr C, Venkatakrishnan K, Friberg
+   LE.** Integrated modeling of biomarkers, survival and safety in clinical
+   oncology drug development. *Adv Drug Deliv Rev* 2025;216:115476. PMID
+   39577694.
+   *Question:* Does its reference list hold a nontarget or new lesion model
+   the review missed?
+
+## Sources Behind the Specification
+
+10. ⚠️ **Stein AM, Carter A, Hollaender N, Motzer R, Sarr C.** Quantifying the
+    effect of everolimus on both tumor growth and new metastases in metastatic
+    renal cell carcinoma (RCC): a dynamic tumor model of the RECORD-1 phase
+    III trial. *J Clin Oncol* 29, 2011 (suppl; abstr 4602). ASCO poster.
+    [PDF](https://github.com/iamstein/Publications/blob/main/Posters/Stein11_ASCOposter_RAD_3lesions.pdf).
+    Everything in Section 2 of the specification.
+11. ❌ **Kim D, Stein A, Wang W, et al.** Dynamic tumor modeling of the
+    RECORD-1 phase III trial of everolimus quantifies relationship between
+    dose and tumor growth in metastatic renal cell carcinoma. 26th EAU Annual
+    Congress, Vienna, March 2011, abstract 728. The target lesion model,
+    presumably the conference version of entry 1.
+12. ❌ **Motzer RJ, Escudier B, Oudard S, et al.** Efficacy of everolimus in
+    advanced renal cell carcinoma: a double-blind, randomised,
+    placebo-controlled phase III trial. *Lancet* 2008;372:449–456. The trial
+    design, for Section 2.1.
+13. ❌ **Motzer RJ, Escudier B, Oudard S, et al.** Phase 3 trial of everolimus
+    for metastatic renal cell carcinoma: final results and analysis of
+    prognostic factors. *Cancer* 2010;116:4256–4265. The final trial results.
+
+## Sources Behind the Literature Review
+
+Each is cited by its section in [the review](literature-review.qmd). All ❌
+unless listed above.
+
+| Review section | Source | Identifier |
+|---|---|---|
+| 3.4 | Krishnan SM, Laarif SS, Bender BC, Quartino AL, Friberg LE. *CPT Pharmacometrics Syst Pharmacol* 2021;10:511–521 | PMC8129720 |
+| 3.6 | Król A, Ferrer L, Pignon JP, et al. *Biometrics* 2016 | PMID 26890381 |
+| 4.2 | Baaz M, Cardilin T, Jirstrand M. *CPT Pharmacometrics Syst Pharmacol* 2023;12:1227–1237 | PMC10508530 |
+| 4.4 | Qi T, Cao Y. *CPT Pharmacometrics Syst Pharmacol* 2023 | PMC9931430 |
+| 4.5 | Cerou M, Thai HT, Deyme L, et al. *CPT Pharmacometrics Syst Pharmacol* 2024 | PMC11179707 |
+| 4.6 | Chigutsa E, Chapman SC, Turner PK. *Clin Pharmacol Ther* 2026 | PMC12997494 |
+| 5 | Vera-Yunca D, Parra-Guillen ZP, Girard P, et al. *Br J Clin Pharmacol* 2022 | PMID 34087010 |
+| 5 | Krishnan SM, Friberg LE, Bruno R, et al. *CPT Pharmacometrics Syst Pharmacol* 2021;10:1255–1266 | PMC8520749 |
+| 6 | Terranova N, Girard P, Ioannou K, et al. *CPT Pharmacometrics Syst Pharmacol* 2018 | PMC5915614 |
+| 6 | Kerioui M, Desmée S, Mercier F, et al. *ESMO Open* 2022 | PMC8718952 |
+| 6 | Kerioui M, Beaulieu M, Desmée S, et al. *Biometrics* 2023 | PMID 37498050 |
+| 6 | Chen C, Feng YS, Wang Z, et al. *Eur J Cancer* 2024 | PMID 38834016 |
+| 6 | Liu A, Duan C, Maresca K, et al. *CPT Pharmacometrics Syst Pharmacol* 2026 | PMC13274679 |
+| 6 | Dilley I, Zhou J, Li Q, Cao Y. *Clin Pharmacol Ther* 2026 | PMC13058829 |
+| 7 | Twelves C, Cortes J, Kaufman PA, et al. *Breast Cancer Res* 2015 | PMC4674925 |
+| 7 | Osorio JC, Arbour KC, Le DT, et al. *J Clin Oncol* 2019 | PMC7194449 |
+| 7 | Topp BG, Thiagarajan K, De Alwis DP, et al. *Ann Oncol* 2021 | doi 10.1016/j.annonc.2021.09.006 |
+| 7 | Coy HJ, Douek ML, Ruchalski K, et al. *Radiology* 2019 | PMID 31084479 |
+| 8 | Bilous M, et al. Quantitative mathematical modeling of clinical brain metastasis dynamics in non-small cell lung cancer. *Sci Rep* 2019 | bioRxiv 448282 |
+| 11 | Naguib K, Berché R, Li L, et al. PIONEER. arXiv 2026 | arXiv 2607.17908 |
+
+: Sources behind the literature review {tbl-colwidths="[12,68,20]"}
