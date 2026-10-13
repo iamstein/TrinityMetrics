@@ -1,0 +1,154 @@
+---
+title: "PMX internships in the age of AI and agentic coding"
+subtitle: "Working specification"
+description: "What a pharmacometrics internship should look like when the intern works with AI assistants and coding agents: the question, what has changed since 2020, where mentor time goes, expectations for mentor and intern, and how to tell whether it worked."
+categories: [GenAI, Pharmacometrics methods]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+## 1. Goal
+
+Two deliverables:
+
+1. A one-page expectations document that the mentor and the intern both read
+   in the first week, saying what each owns, how AI tools are used, and when
+   they meet.
+2. A plan for the next PMX internship built on it, with a record kept during
+   the internship of mentor hours and what the intern delivered, so the plan
+   can be judged at the end.
+
+Out of scope: recruiting and selecting interns, and company policy on which
+AI tools may see which data. The policy is a constraint the plan works
+inside, stated in Section 5, not something this project sets.
+
+## 2. The Question
+
+**Can an intern working with AI tools need less mentorship than a 2020
+intern and still be a multiplier for the team?** A multiplier here means the
+team gets more done with the intern than without, after counting the
+mentor's hours.
+
+Three answers are possible, and the plan should be able to tell them apart.
+
+| # | Hypothesis | What it predicts |
+|---|---|---|
+| H1 | **Substitution.** The assistant does what the intern would have done, so the intern adds little the mentor could not get by prompting directly. | Mentor hours stay the same or rise; output is no more than the mentor plus an assistant would produce. |
+| H2 | **Multiplication.** The intern with an assistant does more than a 2020 intern, and needs less of the mentor's time to do it. | Mentor hours fall; output rises. |
+| H3 | **Shift.** Mentor hours stay about the same but move: less on how to write the code, more on choosing the question and judging the answer. | Same hours, different meetings; output rises. |
+
+: Three answers to the question {tbl-colwidths="[6,54,40]"}
+
+H3 is the working guess. Nothing here tests it yet.
+
+## 3. What Has Changed Since 2020
+
+Each row is a task a 2020 intern did, and who now does the first draft of it.
+The 2026 column is a hypothesis to check against the next internship.
+
+| Task | 2020 | 2026 |
+|---|---|---|
+| Write model code (NONMEM, nlmixr2, Stan) | Intern, slowly, with mentor help on syntax | Assistant drafts; intern runs and checks |
+| Debug a failed run | Intern and mentor together | Assistant suggests; intern decides |
+| Plots and diagnostics | Intern, from templates | Assistant |
+| Literature search and summary | Intern | Assistant drafts; intern checks against the papers |
+| Report draft | Intern; mentor rewrites | Assistant drafts; intern edits; mentor reviews |
+| Choose the question to answer | Mentor | Mentor, with the intern learning to |
+| Judge whether the model is right for the decision | Mentor | Mentor, with the intern learning to |
+| Know what the team needs and who will use the answer | Mentor | Mentor |
+
+: Who does the first draft of each internship task {tbl-colwidths="[40,30,30]"}
+
+The rows the assistant took over were the rows where most 2020 mentor time
+went. The rows it has not taken over are the ones that make an analysis
+useful to a team, and they are the ones an intern most needs to learn.
+
+## 4. Where the Mentor's Time Goes
+
+The mentor's influence concentrates at a few points. Listing them is the
+first step to deciding which ones can be lighter.
+
+| # | Touchpoint | When | 2020 weight | 2026 guess |
+|---|---|---|---|---|
+| 1 | Choosing and scoping the project | Before day one | High | Higher. A well-scoped project is what lets the intern run with an assistant |
+| 2 | Kickoff: the written specification | Week 1 | Medium | Higher. The specification is the instruction set for the intern and the agent both |
+| 3 | First review of the intern's output | Week 2 or 3 | Medium | High. Where to catch work that runs, looks right, and answers the wrong question |
+| 4 | Weekly meeting | Weekly | High, mostly code help | Lower, and about decisions rather than code |
+| 5 | Ad hoc questions | Any time | High | Lower; the assistant answers most |
+| 6 | Midpoint review against the specification | Midway | Medium | Medium |
+| 7 | Final presentation to the team | End | Medium | Medium. The intern defends the work without the assistant in the room |
+
+: Mentor touchpoints and where their weight moves {tbl-colwidths="[5,30,15,15,35]"}
+
+The guess, if right, moves mentor time to the front of the internship
+(touchpoints 1 to 3) and out of the middle (4 and 5). This is the same move
+as writing the specification before commissioning an agent, described in
+[Scoping a project using Agentic Engineering Framework](../ai-agentic-engineering-analysis/index.qmd).
+
+## 5. Expectations
+
+### 5.1 The Intern
+
+1. Uses AI assistants and coding agents for code, plots, searches and
+   drafts, within the company's rules on which tools may see which data.
+   Clinical data does not go into a tool the rules exclude.
+2. Can explain every line of code and every number in the final report
+   without the assistant. The final presentation checks this.
+3. Checks every claim drawn from a paper against the paper, not against the
+   assistant's summary of it.
+4. Writes down what the assistant got wrong. These notes are a deliverable;
+   they are what the next intern and the mentor learn from.
+5. Brings decisions to the weekly meeting, not code problems.
+6. Owns the specification after week 1, and proposes changes to it in
+   writing.
+
+### 5.2 The Mentor
+
+1. Scopes the project before the intern arrives, to a question the team
+   needs answered, with a named person who will use the answer.
+2. Writes the first specification with the intern in week 1.
+3. Reviews the first real output closely, in week 2 or 3, for whether it
+   answers the question rather than whether it runs.
+4. Keeps the weekly meeting to decisions, and says so.
+5. Records hours spent on the internship each week, for Section 6.
+6. Does not rewrite the intern's work. Comments go back to the intern, who
+   may use the assistant to act on them.
+
+## 6. How to Tell Whether It Worked
+
+At the end of the internship, compare against Section 2's hypotheses with:
+
+- **Mentor hours**, total and by touchpoint, from the weekly record.
+- **Output**: what the intern delivered, against the specification.
+- **Use**: whether the named person used the answer, checked three months
+  after the internship.
+- **Learning**: whether the intern can explain the analysis and defend its
+  choices without the assistant, judged at the final presentation.
+
+One internship cannot separate H2 from H3 with confidence. It can rule out
+H1 if the output clearly exceeds what the mentor would have produced with an
+assistant in the same hours.
+
+## 7. Open Questions
+
+1. Does an intern who leans on the assistant learn pharmacometrics, or learn
+   to prompt? Section 5.1 item 2 is the safeguard; is it enough?
+2. Should an internship project be one the mentor could do alone in a week
+   with an assistant? If so, the intern's value is in work the mentor would
+   not otherwise get to, and the project choice should reflect that.
+3. What is the right project size now? A 2020 summer project may be a
+   two-week project in 2026, which leaves room for a second project or a
+   larger one.
+4. Is there published experience of internships or graduate supervision with
+   AI tools, in pharmacometrics or adjacent fields? Not yet searched. If this
+   project starts reading sources, it needs a `references.qmd`.
+
+## 8. Steps
+
+1. Draft the one-page expectations document from Section 5.
+2. Scope the next internship project against Section 5.2 item 1.
+3. Set up the weekly record of mentor hours by touchpoint.
+4. Run the internship.
+5. Review against Section 6 and revise Sections 3 to 5.

@@ -142,6 +142,16 @@
   categories: [GenAI, Pharmacometrics methods, Draft]
   path: ai-pmx-skills-modeling-guidance/index.qmd
 
+- title: "PMX internships in the age of AI and agentic coding"
+  subtitle: "Working document"
+  description: >
+    An intern with an AI assistant can do more than a 2020 intern, and so
+    can the mentor alone. What the mentor and the intern should each expect,
+    where the mentor's time still changes the outcome, and whether an intern
+    can need less mentorship and still multiply the team.
+  categories: [GenAI, Pharmacometrics methods, Draft]
+  path: pmx-internship/index.qmd
+
 - title: "Exposure metric guide"
   subtitle: "Working document"
   description: >
