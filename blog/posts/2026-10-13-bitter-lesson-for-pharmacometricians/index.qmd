@@ -10,13 +10,21 @@ toc: false
 
 ## The Bitter Lesson
 
-Ethan Mollick's recent post on [The Bitter Lesson](https://www.oneusefulthing.org/p/the-dot-and-the-swarm) highlights that across many domains (e.g. chess, language translation, computer vision, protein folding), algorithms built entirely by AI without human-expert guidance far outperform algorithms that humans helped design. Claude created a [music video](https://youtu.be/OAwat51S_Sk) that describes the lesson well.
+Ethan Mollick's recent post on [The Bitter Lesson](https://www.oneusefulthing.org/p/the-dot-and-the-swarm) recounts Rich Sutton's [observation](http://www.incompleteideas.net/IncIdeas/BitterLesson.html) that across many domains (e.g. chess, language translation, computer vision, protein folding), general methods that learn from data and scale with computation have repeatedly overtaken methods built on handcrafted expert knowledge. Claude created a [music video](https://youtu.be/OAwat51S_Sk) that describes the lesson well.
 
 {{< video https://youtu.be/OAwat51S_Sk title="The Bitter Lesson music video" >}}
 
-In considering where we, as pharmacometricians, focus our efforts in the coming years, it's worth keeping The Bitter Lesson in mind. I've been attracted to the idea of creating skill files and agentic work flows for model building and evaluation, but if other fields serve as a guide, then it could very well be in a year or two, AI can efficiently build a model and write a report without any guidance from us. Mollick admits he fell prey to the Bitter Lesson, and I think I did too: in [March](../2026-03-28-ai-can-assist-humans-must-own-decisions/index.qmd) I listed templates and skill files as a place to focus. But if they'll soon become obsolete, then where can we add the most long-term value?
+That doesn't make human design obsolete. Stockfish, the strongest chess engine, replaced its hand-written evaluation of a position with a neural network trained on engine games, but it still chooses moves with a search algorithm that people designed and tuned over decades. What Stockfish retired was the handcrafted chess knowledge.
 
-I posit that the following items may survive depreciation, because they sit at the transition as activities are handed by humans to the AI, and then back.
+In considering where we, as pharmacometricians, focus our efforts in the coming years, it's worth keeping The Bitter Lesson in mind. I've been attracted to the idea of creating skill files and agentic work flows for model building and evaluation, but if other fields serve as a guide, then it could very well be in a year or two, AI can efficiently build a model and write a report without any guidance from us. Mollick admits he fell prey to the Bitter Lesson, and I think I did too: in [March](../2026-03-28-ai-can-assist-humans-must-own-decisions/index.qmd) I listed templates and skill files as a place to focus. Whether that effort pays off depends on three separate questions:
+
+1. Can AI do the task without expert guidance? Increasingly, yes.
+2. Does expert guidance still improve the result? Possibly, even when the AI can work alone.
+3. Is the improvement worth the cost of writing and maintaining the guidance?
+
+The third question is the practical one, and its answer can change with each model release. One way to answer it is to give the same model-building tasks to Claude working alone, Claude with a curated skill file, and Claude working with an experienced pharmacometrician, then compare model quality, diagnostic coverage, time and cost. My guess is that guidance still helps on hard, ambiguous problems today, and that the advantage shrinks as models improve. If so, where can we add the most long-term value?
+
+I posit that the following items will hold their value, because they sit where work passes from people to an AI and back. I don't assume we will stay better than AI at any of them, and AI may already scope better than we do. What the three share is that a person stays accountable at each handoff: for what the work is meant to answer, and for the decision it supports.
 
 1. **Scoping before handoff.** What has to be decided, written down and checked before work goes to an AI. Thinking carefully about this is the difference between agentic engineering and vibe coding.
 2. **Validation after delivery.** How to validate and take responsibility for AI-generated deliverables (e.g. code, modeling report, or decision recommendation).
