@@ -12,6 +12,8 @@ toc: false
 
 Ethan Mollick's recent post on [The Bitter Lesson](https://www.oneusefulthing.org/p/the-dot-and-the-swarm) highlights that across many domains (e.g. chess, language translation, computer vision, protein folding), algorithms built entirely by AI without human-expert guidance far outperform algorithms that humans helped design. Claude created a [music video](https://youtu.be/OAwat51S_Sk) that describes the lesson well.
 
+{{< video https://youtu.be/OAwat51S_Sk title="The Bitter Lesson music video" >}}
+
 In considering where we, as pharmacometricians, focus our efforts in the coming years, it's worth keeping The Bitter Lesson in mind. I've been attracted to the idea of creating skill files and agentic work flows for model building and evaluation, but if other fields serve as a guide, then it could very well be in a year or two, AI can efficiently build a model and write a report without any guidance from us. Mollick admits he fell prey to the Bitter Lesson, and I think I did too: in [March](../2026-03-28-ai-can-assist-humans-must-own-decisions/index.qmd) I listed templates and skill files as a place to focus. But if they'll soon become obsolete, then where can we add the most long-term value?
 
 I posit that the following items may survive depreciation, because they sit at the transition as activities are handed by humans to the AI, and then back.
