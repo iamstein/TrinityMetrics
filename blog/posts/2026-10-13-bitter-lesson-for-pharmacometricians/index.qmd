@@ -40,7 +40,7 @@ Validation isn't only asking whether the model is right. It's asking whether the
 
 AI will get better at checking work, and a second agent reviewing the first will become routine. But AI can be misaligned, and that problem is far from being solved. Even when an AI recommends a decision, a person has to sign off on it. In drug development, where a model can inform the dose a patient receives and put a patient's life at risk, that responsibility can't be handed off.
 
-Validation can be supported by checklists, such as [this one for R code](../../../references/Validation_Checklist.pdf) and our [checklist for model uncertainty assessment](https://zenodo.org/records/4409236), which assesses the uncertainty in a model's predictions in a structured way. The uncertainty checklist is meant to be used twice: during scoping, to put effort on the parts of the model that drive the decision, and again at the end, to check that the model is fit to inform it. Further thought as to how to validate AI deliverables is warranted.
+Validation can be supported by checklists, such as [this one for R code](../../../references/Validation_Checklist.pdf) and our [cheat sheet and checklist for model uncertainty assessment](https://zenodo.org/records/4409236), which assesses the uncertainty in a model's predictions in a structured way. The uncertainty cheat sheet is meant to be used twice: during scoping, to put effort on the parts of the model that drive the decision, and again at the end, to check that the model is fit to inform it. Further thought as to how to validate AI deliverables is warranted.
 
 ## References
 
