@@ -32,7 +32,7 @@ I posit that the following items will hold their value, because they sit where w
 
 ## Scoping
 
-Agents already help with scoping in software development. The brainstorming step in [Superpowers](https://github.com/obra/superpowers) interviews you one question at a time and writes the design for you, and GitHub's [Spec Kit](https://github.com/github/spec-kit) has you define what is to be built and why before deciding how. AI may already be better at helping us scope than we are at scoping alone, though it may be worth tailoring tools like those above to drug development activities.
+Agents already help with scoping in software development. The brainstorming step in [Superpowers](https://github.com/obra/superpowers) interviews you one question at a time and writes the design for you, and GitHub's [Spec Kit](https://github.com/github/spec-kit) has you define what is to be built and why before deciding how. AI may already be better at helping us scope than we are at scoping alone, though it may be worth tailoring tools like those above to drug development activities. For a modeling analysis, a good starting point is the [Context of Use table](../../../references/ContextOfUse_Table_1page.pdf) I adapted from the FDA's credibility assessment framework (Kuemmel et al. 2019). It records the question the model addresses, how much the decision depends on the model, the risk that the model leads to a wrong decision, and the consequence if it does.
 
 ## Validation
 
@@ -40,7 +40,7 @@ Validation isn't only asking whether the model is right. It's asking whether the
 
 AI will get better at checking work, and a second agent reviewing the first will become routine. But AI can be misaligned, and that problem is far from being solved. Even when an AI recommends a decision, a person has to sign off on it. In drug development, where a model can inform the dose a patient receives and put a patient's life at risk, that responsibility can't be handed off.
 
-Validation can be supported by a checklist, such as [this one for R code](../../../references/Validation_Checklist.pdf), and further thought as to how to validate AI deliverables is warranted.
+Validation can be supported by checklists, such as [this one for R code](../../../references/Validation_Checklist.pdf) and our [checklist for model uncertainty assessment](https://zenodo.org/records/4409236), which assesses the uncertainty in a model's predictions in a structured way. The uncertainty checklist is meant to be used twice: during scoping, to put effort on the parts of the model that drive the decision, and again at the end, to check that the model is fit to inform it. Further thought as to how to validate AI deliverables is warranted.
 
 ## References
 
