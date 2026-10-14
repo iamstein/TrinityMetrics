@@ -1,0 +1,132 @@
+---
+title: "The half-life of facts in immunology"
+subtitle: "Working specification"
+description: "Whether AI can estimate the half-life of facts in immunology, or the variance in what immunologists believe, starting from how B cell subsets are defined by their markers."
+categories: [immunology, B cells, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+## 1. Goal
+
+Find out whether an AI reading the literature can measure one of two things
+in immunology:
+
+1. **The half-life of facts.** The time until half of the claims in an area
+   are superseded or shown to be untrue.
+2. **The variance in belief.** How far immunologists disagree about the same
+   process or definition at one point in time.
+
+Either number would say how much structural uncertainty a QSP model of that
+area carries before any data are fit. The first test is B cell
+immunophenotypes (Section 3).
+
+**Out of scope.** Building or fitting a QSP model, and judging which B cell
+definition is correct. The project measures agreement and change, not truth.
+
+## 2. Background
+
+**The half-life of facts.** The term is from Samuel Arbesman's book *The
+Half-Life of Facts* (2012). The one published estimate in medicine that the
+Google Doc cites is about 45 years for hepatitis and cirrhosis. That figure is
+presumably Poynard and colleagues, "Truth survival in clinical research"
+(*Annals of Internal Medicine*, 2002), in which experts reread conclusions
+from papers going back decades and judged which still held. ⚠️ Not checked
+against the paper.
+
+**The 2024 survey idea.** The
+[Google Doc](https://docs.google.com/document/d/1cC56NsD-lwQEeJK78XGLqNEyyO51PZ0MZx6NLKl2G4U/edit)
+proposed a 5 to 10 minute survey of immunologists, run by a team of five or
+fewer modelers and posted to Zenodo, asking which areas of immuno-oncology are
+understood well enough to model. Its reasons not to do it still apply:
+
+- Modelers who work with immunologists already accept that much of the immune
+  system is poorly understood.
+- A survey takes a lot of work, and its answers change with time.
+- It is hard to stay motivated unless the answer is needed for one's own
+  work. The doc names B cell subsets and depth of response in autoimmune
+  disease as work that would need it.
+
+**What AI changes.** Asking an AI to extract the same claim from hundreds of
+papers, with the year of each, is much cheaper than a survey. It covers every
+published author rather than the people who answer, and the publication year
+gives the time axis that a one-off survey lacks.
+
+## 3. Starting Point: B Cell Immunophenotypes
+
+B cell subsets in blood are identified by flow cytometry from a few surface
+markers. The markers most used are CD19 and CD20 (B cell lineage), CD27
+(memory), IgD (naive and unswitched), CD38 and CD24 (transitional and
+plasmablast), and CD21, CD11c, T-bet and CXCR5 (atypical subsets). The table
+is a common scheme, written from memory; papers differ, and measuring how they
+differ is this project. ⚠️ Not checked against a source.
+
+| Subset | A common definition |
+|---|---|
+| Transitional | CD19+ CD24hi CD38hi |
+| Naive | CD19+ IgD+ CD27− |
+| Unswitched memory | IgD+ CD27+ |
+| Switched memory | IgD− CD27+ |
+| Double negative (DN) | IgD− CD27−, split into DN1 (CD21+ CD11c−), DN2 (CD21− CD11c+) and DN3 (CD21− CD11c−) |
+| Atypical or age-associated B cells | CD21lo CD11c+ T-bet+, overlapping DN2 |
+| Plasmablasts | CD27hi CD38hi, CD20− |
+
+: B cell subsets and a common marker definition {tbl-colwidths="[30,70]"}
+
+The B cell area suits a first test for three reasons:
+
+- **The definitions are written down.** A gating strategy is a short, explicit
+  list of markers, so it can be extracted and compared without judgment.
+- **The definitions have moved.** The double-negative subsets and the
+  atypical or age-associated B cells were named in the last 15 years, and the
+  same cells carry several names.
+- **The work needs it.** The [B cell reset](../imm-bcell-reset/index.qmd)
+  project depends on which subsets are measured and how they are defined.
+
+## 4. How AI Would Measure It
+
+**Variance in belief.** For each paper reporting B cell subsets in human
+blood, extract each subset's name and marker definition, with the year,
+disease area and lab. Then count, for each subset name, how many distinct
+definitions are in use, and for each marker combination, how many names it
+goes by.
+
+**Half-life.** Follow the same extraction across publication years. A
+definition's life runs from its first appearance to the year its share of
+papers drops below half its peak. Some definitions are refined rather than
+dropped, such as DN splitting into DN1 to DN3, and those need their own
+category.
+
+**Checks on the AI.**
+
+- A person checks a random sample of extractions against the papers'
+  methods sections, and the error rate is reported.
+- The search and extraction prompts are saved, so a second run can be
+  compared with the first.
+
+## 5. Open Questions
+
+1. Which number to aim for first: the half-life needs many years of papers,
+   and the variance needs only a cross-section. Variance looks easier.
+2. Is a change of definition a fact being superseded, or a refinement? The
+   half-life of a definition may not be the half-life of a fact.
+3. Does a literature extraction replace the survey, or prepare it? A short
+   survey asking immunologists which definitions they use could test what the
+   extraction finds.
+4. Which immuno-oncology questions from the 2024 survey draft come next, such
+   as T cell differentiation markers or cytokine effects on each cell type?
+5. The project has not read any sources yet. When it does, it needs a
+   `references.qmd`, starting with Arbesman and Poynard.
+
+## 6. Steps
+
+1. Fold in the remaining thoughts from the Google Doc.
+2. Check the Poynard estimate and its method.
+3. Search for published reviews of B cell gating strategies and
+   standardization efforts, so the extraction starts from what is already
+   known.
+4. Run a pilot extraction on 50 papers reporting B cell subsets and check it
+   by hand.
+5. Decide from the pilot whether to scale the variance measure up.

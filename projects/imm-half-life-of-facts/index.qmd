@@ -1,0 +1,27 @@
+---
+title: "The half-life of facts in immunology"
+subtitle: "Using AI to measure how fast immunology changes its mind, and how much immunologists disagree"
+description: "Index of the documents in the imm-half-life-of-facts project: using AI to estimate how long a claim in immunology survives, or how widely immunologists disagree, starting with the marker definitions of B cell subsets."
+categories: [immunology, B cells, Draft]
+date: last-modified
+toc: false
+---
+
+The half-life of facts is the time it takes for half of what a field holds to
+be superseded or shown to be untrue. A quantitative systems pharmacology (QSP)
+model of the immune system can be no more certain than the biology written
+into it, so the half-life of immunology facts, or the spread in what
+immunologists believe, bounds how far such a model can be trusted. This
+project asks whether AI can measure either one, starting with how B cell
+subsets are defined by their surface markers.
+
+## Documents
+
+- [Working specification](specification.qmd). The question, the B cell
+  immunophenotype starting point, how AI could do the measuring, and the
+  steps.
+- [Toward a survey of immunologists to support QSP model development](https://docs.google.com/document/d/1cC56NsD-lwQEeJK78XGLqNEyyO51PZ0MZx6NLKl2G4U/edit)
+  (Google Doc, from 2024). The earlier idea: a short survey of immunologists
+  on immuno-oncology biology, the reasons for and against doing it, and a
+  draft of the survey questions. Thoughts from it are still to be folded in
+  here.

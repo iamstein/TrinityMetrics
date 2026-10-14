@@ -207,6 +207,15 @@
   categories: [Pharmacometrics methods, Draft]
   path: pmx-intro-to-pk-pd/index.qmd
 
+- title: "The half-life of facts in immunology"
+  subtitle: "Working document"
+  description: >
+    Can AI estimate how long a fact in immunology survives, or how far
+    immunologists disagree? A first test on how B cell subsets are defined by
+    their markers, building on a 2024 idea for a survey of immunologists.
+  categories: [Immunology and T-cell engagers, GenAI, Draft]
+  path: imm-half-life-of-facts/index.qmd
+
 - title: "Immune biomarkers and infection risk"
   subtitle: "Working document"
   description: >
