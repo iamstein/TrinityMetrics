@@ -14,7 +14,7 @@ Ethan Mollick's recent post on [The Bitter Lesson](https://www.oneusefulthing.or
 
 {{< video https://youtu.be/OAwat51S_Sk title="The Bitter Lesson music video" >}}
 
-That doesn't make human design obsolete. Stockfish, the strongest chess engine, replaced its hand-written evaluation of a position with a neural network trained on engine games, but it still chooses moves with a search algorithm that people designed and tuned over decades. What Stockfish retired was the handcrafted chess knowledge.
+Stockfish, the strongest chess engine, replaced its human-designed evaluation of a position with a neural network evaluation that was trained on positions from games that chess programs played against themselves. It still uses a search algorithm that humans designed and tuned.
 
 In considering where we, as pharmacometricians, focus our efforts in the coming years, it's worth keeping The Bitter Lesson in mind. I've been attracted to the idea of creating skill files and agentic work flows for model building and evaluation, but if other fields serve as a guide, then it could very well be in a year or two, AI can efficiently build a model and write a report without any guidance from us. Mollick admits he fell prey to the Bitter Lesson, and I think I did too: in [March](../2026-03-28-ai-can-assist-humans-must-own-decisions/index.qmd) I listed templates and skill files as a place to focus. Whether that effort pays off depends on three separate questions:
 
