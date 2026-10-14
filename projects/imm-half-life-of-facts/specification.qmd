@@ -1,7 +1,7 @@
 ---
 title: "The half-life of facts in immunology"
 subtitle: "Working specification"
-description: "Whether AI can estimate the half-life of facts in immunology, or the variance in what immunologists believe, starting from how B cell subsets are defined by their markers."
+description: "Whether AI can measure how far immunologists agree on a claim now, and later how long agreement lasts, starting from how B cell subsets are defined by their markers."
 categories: [immunology, B cells, working document]
 date: last-modified
 toc: true
@@ -11,22 +11,81 @@ toc-location: left
 
 ## 1. Goal
 
-Find out whether an AI reading the literature can measure one of two things
-in immunology:
+Find out whether an AI reading the immunology literature can measure
+**heterogeneity of knowledge**: how far sources agree on the answer to a
+question, at one point in time. The first test is B cell immunophenotypes
+(Section 5).
 
-1. **The half-life of facts.** The time until half of the claims in an area
-   are superseded or shown to be untrue.
-2. **The variance in belief.** How far immunologists disagree about the same
-   process or definition at one point in time.
+The **half-life of facts** is the second aim, for later. It is the same
+measure followed across years, so the tool built for the first aim answers
+the second when run on older papers.
 
-Either number would say how much structural uncertainty a QSP model of that
-area carries before any data are fit. The first test is B cell
-immunophenotypes (Section 3).
+Heterogeneity comes first because one recent snapshot answers it, and
+because it is what a quantitative systems pharmacology (QSP) modeler needs
+now: whether the biology a model is built on is agreed on today. How often
+biology changed in the past bears on that only indirectly.
 
-**Out of scope.** Building or fitting a QSP model, and judging which B cell
-definition is correct. The project measures agreement and change, not truth.
+**Out of scope.** Building or fitting a QSP model, and judging which answer
+is correct. The project measures agreement, not truth.
 
-## 2. Background
+## 2. Definitions
+
+**Question.** Something sources can take a position on, with a set of
+possible answers. "Which markers define a DN2 B cell?"
+
+**Claim.** One answer to a question, as a source states it. "DN2 B cells are
+IgD− CD27− CD21− CD11c+."
+
+**Source.** A paper, or a person answering a survey.
+
+**Agreement on a claim.** At a given time, the share of sources giving that
+answer, out of the sources that take a position on the question. Sources that
+do not address the question are left out of the denominator.
+
+**Unknown.** An answer in its own right: the source says the question is not
+settled. A field that agrees the answer is unknown has low heterogeneity and
+high uncertainty, and the measure must not read that as a settled fact.
+"What stops T cell expansion?" may be such a question.
+
+**Fact.** A claim whose agreement is above a threshold, provisionally 90%.
+Being a fact is a status a claim holds at a time, not a property of the claim.
+This puts a fact at the far end of the heterogeneity scale: a question almost
+every source answers the same way.
+
+**Heterogeneity.** How spread the answers to one question are at one time.
+The measure proposed is the chance that two sources picked at random give the
+same answer, the sum of the squared shares of each answer. If 60% of papers
+use one definition, 30% a second and 10% a third, the chance is
+0.36 + 0.09 + 0.01 = 0.46. A value near 1 means the field agrees. With *k*
+answers in use, the lowest possible value is 1/*k*, when they are evenly split.
+Ecologists call this the Simpson index.
+
+**Half-life of facts.** Take the claims that were facts at one time. The
+half-life is how long it takes for half of them to fall below the threshold.
+
+## 3. Kinds of Claim
+
+Questions differ in what agreement on them means, and are kept apart in
+every analysis.
+
+| Kind | What disagreement means | Can it be wrong? | Example |
+|---|---|---|---|
+| Definition | Different names, or different markers, for the same thing | No; only agreed on or not | Which markers define a DN2 cell |
+| Empirical | Different findings | Yes | Whether DN2 cells are expanded in lupus |
+| Mechanism | Competing explanations | Yes, though often slow to settle | Whether T cells go naive → effector → memory or naive → memory → effector |
+
+: Three kinds of claim {tbl-colwidths="[14,30,18,38]"}
+
+A half-life of facts applies to empirical claims and mechanisms. Definitions
+change by convention, and a refined definition, such as double-negative cells
+split into DN1 to DN3, has not been shown untrue.
+
+Agreement is probably highest on definitions and lowest on mechanisms, while
+mechanisms are what decide a QSP model's structure. B cell immunophenotypes
+are a place to build and test the method; the answer most useful for
+models is likely to be in the mechanisms.
+
+## 4. Background
 
 **The half-life of facts.** The term is from Samuel Arbesman's book *The
 Half-Life of Facts* (2012). The one published estimate in medicine that the
@@ -49,12 +108,16 @@ understood well enough to model. Its reasons not to do it still apply:
   work. The doc names B cell subsets and depth of response in autoimmune
   disease as work that would need it.
 
-**What AI changes.** Asking an AI to extract the same claim from hundreds of
-papers, with the year of each, is much cheaper than a survey. It covers every
-published author rather than the people who answer, and the publication year
-gives the time axis that a one-off survey lacks.
+**What AI changes.** Asking an AI to extract the answer to the same question
+from hundreds of papers is much cheaper than a survey, and it covers every
+published author rather than the people who reply.
 
-## 3. Starting Point: B Cell Immunophenotypes
+**Papers are not beliefs.** Papers lag behind what their authors now think,
+and they rarely state what their authors take for granted. A survey measures
+belief directly but reaches fewer people. Running both on the same questions
+shows how far published agreement differs from what immunologists believe.
+
+## 5. Starting Point: B Cell Immunophenotypes
 
 B cell subsets in blood are identified by flow cytometry from a few surface
 markers. The markers most used are CD19 and CD20 (B cell lineage), CD27
@@ -75,58 +138,68 @@ differ is this project. ⚠️ Not checked against a source.
 
 : B cell subsets and a common marker definition {tbl-colwidths="[30,70]"}
 
-The B cell area suits a first test for three reasons:
+The B cell area suits a first test because a gating strategy is a short,
+explicit list of markers that can be extracted and compared without judgment,
+because the double-negative and atypical subsets were named in the last 15
+years and the same cells carry several names, and because the
+[B cell reset](../imm-bcell-reset/index.qmd) project depends on which subsets
+are measured and how they are defined.
 
-- **The definitions are written down.** A gating strategy is a short, explicit
-  list of markers, so it can be extracted and compared without judgment.
-- **The definitions have moved.** The double-negative subsets and the
-  atypical or age-associated B cells were named in the last 15 years, and the
-  same cells carry several names.
-- **The work needs it.** The [B cell reset](../imm-bcell-reset/index.qmd)
-  project depends on which subsets are measured and how they are defined.
+Candidate questions, by kind:
 
-## 4. How AI Would Measure It
+| Kind | Question |
+|---|---|
+| Definition | Which markers define naive, memory, DN1, DN2 and DN3 B cells? |
+| Definition | Is a CD21lo CD11c+ B cell called DN2, atypical memory, or age-associated? |
+| Empirical | Are DN2 cells expanded in lupus, and in which other autoimmune diseases? |
+| Empirical | Which subsets return first after B cell depletion? |
+| Mechanism | Do DN2 cells come from naive cells outside germinal centres, or from memory cells? |
+| Mechanism | Does a shift toward naive B cells after depletion cause lasting remission, or only accompany it? |
 
-**Variance in belief.** For each paper reporting B cell subsets in human
-blood, extract each subset's name and marker definition, with the year,
-disease area and lab. Then count, for each subset name, how many distinct
-definitions are in use, and for each marker combination, how many names it
-goes by.
+: Candidate B cell questions {tbl-colwidths="[18,82]"}
 
-**Half-life.** Follow the same extraction across publication years. A
-definition's life runs from its first appearance to the year its share of
-papers drops below half its peak. Some definitions are refined rather than
-dropped, such as DN splitting into DN1 to DN3, and those need their own
-category.
+## 6. How AI Would Measure It
+
+**Heterogeneity.** For each question, gather papers from a recent window,
+2024 to 2026 to start. From each paper, extract its answer, which may be
+"unknown", or record that it takes no position. Keep the passage the answer
+rests on, with the year, disease area and lab. Compute agreement on each answer and the heterogeneity of each question,
+leaving "no position" out. For definition questions, also count how many names
+each marker combination goes by.
+
+**Half-life, later.** Run the same extraction on earlier windows, such as
+five-year blocks back to 2000. Take the claims above the fact threshold in an
+early window, and follow each one's agreement forward.
 
 **Checks on the AI.**
 
-- A person checks a random sample of extractions against the papers'
-  methods sections, and the error rate is reported.
+- A person checks a random sample of extractions against the papers, and the
+  error rate is reported.
 - The search and extraction prompts are saved, so a second run can be
   compared with the first.
+- A short survey of immunologists on a few of the same questions shows how
+  far the papers differ from what people believe (Section 4).
 
-## 5. Open Questions
+## 7. Open Questions
 
-1. Which number to aim for first: the half-life needs many years of papers,
-   and the variance needs only a cross-section. Variance looks easier.
-2. Is a change of definition a fact being superseded, or a refinement? The
-   half-life of a definition may not be the half-life of a fact.
-3. Does a literature extraction replace the survey, or prepare it? A short
-   survey asking immunologists which definitions they use could test what the
-   extraction finds.
+1. Is 90% the right threshold for a fact, and does it differ by kind of
+   claim?
+2. Should a source count once, or be weighted, for example so that one lab's
+   ten papers do not count ten times?
+3. Is the Simpson index the right measure for mechanism questions, where
+   answers are not cleanly separate options?
 4. Which immuno-oncology questions from the 2024 survey draft come next, such
    as T cell differentiation markers or cytokine effects on each cell type?
 5. The project has not read any sources yet. When it does, it needs a
    `references.qmd`, starting with Arbesman and Poynard.
 
-## 6. Steps
+## 8. Steps
 
 1. Fold in the remaining thoughts from the Google Doc.
-2. Check the Poynard estimate and its method.
-3. Search for published reviews of B cell gating strategies and
+2. Search for published reviews of B cell gating strategies and
    standardization efforts, so the extraction starts from what is already
    known.
-4. Run a pilot extraction on 50 papers reporting B cell subsets and check it
-   by hand.
-5. Decide from the pilot whether to scale the variance measure up.
+3. Settle the B cell question list and the answer options for each.
+4. Run a pilot extraction on 50 recent papers and check it by hand.
+5. Decide from the pilot whether to scale up, and whether to add the survey.
+6. Check the Poynard estimate and its method before starting on half-life.

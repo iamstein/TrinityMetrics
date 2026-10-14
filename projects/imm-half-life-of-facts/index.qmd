@@ -17,8 +17,9 @@ subsets are defined by their surface markers.
 
 ## Documents
 
-- [Working specification](specification.qmd). The question, the B cell
-  immunophenotype starting point, how AI could do the measuring, and the
+- [Working specification](specification.qmd). Definitions of agreement,
+  fact, heterogeneity and half-life; three kinds of claim; the B cell
+  immunophenotype starting point; how AI could do the measuring; and the
   steps.
 - [Toward a survey of immunologists to support QSP model development](https://docs.google.com/document/d/1cC56NsD-lwQEeJK78XGLqNEyyO51PZ0MZx6NLKl2G4U/edit)
   (Google Doc, from 2024). The earlier idea: a short survey of immunologists
