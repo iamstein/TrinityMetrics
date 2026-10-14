@@ -2,7 +2,7 @@
 title: "Publishing the 3 RECIST Lesion Model"
 subtitle: "Working specification"
 description: "What the 2011 ASCO poster on the RECORD-1 three-lesion tumor model holds, the choice of preprint server, what a manuscript needs beyond the poster, and the steps to posting."
-categories: [Pharmacometrics methods]
+categories: [Pharmacometrics]
 date: last-modified
 toc: true
 toc-depth: 2

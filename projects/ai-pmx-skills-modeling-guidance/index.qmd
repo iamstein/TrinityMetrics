@@ -2,7 +2,7 @@
 title: "Pharmacometrics Modeling Skills"
 subtitle: "GenAI skills for building and evaluating pharmacometrics models"
 description: "Index of the pharmacometrics modeling skills project: writing a few AI skill files from published and internal modeling guidance, and keeping a ranked list of the skill files others have published."
-categories: [GenAI, Pharmacometrics methods, working document]
+categories: [GenAI, Pharmacometrics, working document]
 date: last-modified
 toc: false
 aliases:

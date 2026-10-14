@@ -2,7 +2,7 @@
 title: "Create Videos for Intro to PK and PD slides"
 subtitle: "Working specification"
 description: "The two fundamental-concepts tutorial decks, the errors to correct in each, and the steps from correction to published video."
-categories: [Pharmacometrics methods]
+categories: [Pharmacometrics]
 date: last-modified
 toc: true
 toc-depth: 2

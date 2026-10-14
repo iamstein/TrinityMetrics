@@ -24,7 +24,7 @@ listing:
   - id: pmx-methods
     contents: projects.yml
     include:
-      categories: "Pharmacometrics methods"
+      categories: "Pharmacometrics"
     type: grid
     grid-columns: 2
     sort: false
@@ -56,7 +56,7 @@ Projects in progress, including open-source tools and working documents.
 ::: {#genai-projects}
 :::
 
-## Pharmacometrics methods
+## Pharmacometrics
 
 ::: {#pmx-methods}
 :::

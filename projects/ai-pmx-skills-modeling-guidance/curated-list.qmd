@@ -2,7 +2,7 @@
 title: "PMx Skills Index"
 subtitle: "Public pharmacometrics skill files, ranked each month by Claude"
 description: "A monthly, Claude-maintained ranking of public skill files for pharmacometrics work, in tool and task categories, scored on quality, author expertise, maintenance and evidence that people use them, by criteria Andy sets."
-categories: [GenAI, Pharmacometrics methods]
+categories: [GenAI, Pharmacometrics]
 date: last-modified
 toc: true
 toc-depth: 2

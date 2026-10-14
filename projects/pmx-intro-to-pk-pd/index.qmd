@@ -2,7 +2,7 @@
 title: "Create Videos for Intro to PK and PD slides"
 subtitle: "Correcting the two tutorial decks and recording them"
 description: "Index of the documents in the pmx-intro-to-pk-pd project: correcting the errors in the Introduction to Fundamental PK Concepts and PD Concepts slides, then recording a video for each."
-categories: [Pharmacometrics methods]
+categories: [Pharmacometrics]
 date: last-modified
 toc: false
 ---

@@ -2,7 +2,7 @@
 title: "PMX internships in the age of AI and agentic coding"
 subtitle: "Setting expectations for the mentor and the intern"
 description: "Index of the documents in the pmx-internship project: what a pharmacometrics internship should look like now that interns work with AI assistants and coding agents, and what the mentor and the intern should each expect."
-categories: [GenAI, Pharmacometrics methods]
+categories: [GenAI, Pharmacometrics]
 date: last-modified
 toc: false
 ---
@@ -19,5 +19,5 @@ internship starts.
 
 - [Working specification](specification.qmd). The question, what has changed
   since 2020, where the mentor's time goes, the expectations on each side,
-  how to tell whether a lighter-touch internship worked, and the open
-  questions.
+  how the intern's work is validated, how to tell whether a lighter-touch
+  internship worked, and the open questions.

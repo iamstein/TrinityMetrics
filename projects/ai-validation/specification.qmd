@@ -1,8 +1,8 @@
 ---
-title: "Validating Code Produced by GenAI"
+title: "Validation Tools Taxonomy"
 subtitle: "Working specification"
-description: "The working specification for the ai-validation project: the goal, the existing validation checklist, the open questions when an AI agent writes the code, and the first steps."
-categories: [GenAI, working document]
+description: "The working specification for the Validation Tools Taxonomy project: what gets validated in a pharmacometrics activity, the tools that already exist for each kind, the gaps, and a validation plan that applies to an agent, an intern or a senior associate alike."
+categories: [GenAI, Pharmacometrics, working document]
 date: last-modified
 toc: true
 toc-depth: 2
@@ -11,70 +11,398 @@ number-sections: false
 ---
 
 ::: {.callout-note appearance="simple"}
-**Started 2026-10-12.** Nothing is decided. Section 4 lists the questions to
-work through before any of this becomes a procedure.
+**Started 2026-10-14.** The taxonomy in Section 3 is a first list, written
+from the tools on the [Pharmacometrics Tools](../../pmx-tools.qmd) page and
+not yet checked against published frameworks. The project's earlier
+question, validating code an agent wrote, is now
+[one document](agent-written-code.qmd) under this one.
 :::
 
 ## 1. Goal
 
-Work out a validation approach for data analysis code written entirely by an
-AI agent, so that a result built on that code can be trusted to the same
-standard as one built on code a person wrote and a colleague reviewed.
+Two deliverables:
 
-## 2. Out of Scope
+1. A taxonomy of what gets validated in a pharmacometrics (PMX) activity,
+   with the tools that already exist for each kind and the gaps where none
+   does.
+2. A validation plan template: for any activity, which kinds of validation
+   apply, which tool checks each, how deep the check goes given the risk,
+   and who does it.
 
-- **Not validation of the AI model itself.** The question is whether a given
-  analysis is correct, not whether the agent is good in general.
-- **Not scoping the project.** Writing the specification before the agent
-  builds is covered by
-  [Scoping a project using Agentic Engineering Framework](../ai-agentic-engineering-analysis/index.qmd).
-  This project starts once there is code to validate.
+Both are meant for work done by anyone: a coding agent, an intern, a
+postdoc, a junior or a senior associate.
 
-## 3. The Existing Checklist
+Out of scope:
 
-The [validation checklist](https://trinitymetrics.com/references/Validation_Checklist.pdf)
-(Sander and Stein) has two parts.
+- **Evaluating an AI model in general**, such as benchmarks. The question is
+  whether one analysis is right.
+- **Computerized system validation** in the regulatory sense, such as 21 CFR
+  Part 11 for software that handles clinical records.
+- **Writing the missing tools.** This project finds the gaps and ranks them.
+  Filling one becomes its own project.
 
-- **Planning.** The intended use of the results, the scripts, inputs and
-  outputs to validate, a risk assessment (consequences and likelihood of
-  mistakes, and where errors are expected), and a validation approach chosen
-  to match the risk: unit tests, spot checks, review of code and outputs,
-  re-running step by step, or independent reproduction of key results.
-- **Checklist.** Reproducibility and readability overall; reading the right
-  file and version, handling missing values and column types on import;
-  hard-coded constants on modifying data; and on results, a clean run,
-  sensible numbers, cross-checks against other outputs, and no stale outputs
-  lying around.
+## 2. One Plan for Any Author
 
-## 4. Open Questions
+The validation an analysis needs is set by the analysis and by the cost of
+getting it wrong, and the same questions apply whoever did the work. What
+changes with the author is where errors are expected, and so which checks
+carry the most weight. The rows below are a working guess.
 
-Each question asks whether a step of the checklist still works when the agent
-is the author.
+| Author | Errors to expect | Where the weight goes |
+|---|---|---|
+| Coding agent | Code that runs cleanly and computes the wrong quantity; a silent change to data handling; a fluent summary of a paper it misread | Independent reproduction of the main results; checks on outputs; claims against sources |
+| Intern or new hire | Not knowing what a plausible parameter value looks like; unfamiliar data conventions; not asking | The model's plausibility; the data; whether the result answers the question |
+| Experienced modeler | Template code reused where it does not fit; assumed data conventions; the question drifting during the work | The question; the data |
 
-1. **Who is the author and who is the reviewer?** The checklist assumes two
-   people. If the agent writes the code and Andy reviews it, Andy is the
-   only human who has read it. Is a second agent a reviewer, and what does it
-   catch that the first missed?
-2. **Where are errors most likely?** The risk assessment asks the authors
-   where they expect mistakes. An agent makes different mistakes from a
-   person: plausible code that runs cleanly and computes the wrong quantity,
-   or a silent change to data handling. Which items on the checklist target
-   those?
-3. **Is code review still the main check?** An agent produces more code than
-   can be read line by line. Does the weight move from reading code to
-   independent reproduction of key results and checks on outputs?
-4. **Can the agent write its own tests?** Tests written by the same agent
-   that wrote the code may share its misunderstanding. What has to come from
-   the specification or from a person?
-5. **What record shows validation happened?** The checklist produces a
-   reviewed set of scripts. With an agent, the prompts, the specification and
-   the session may also need keeping.
+: Where errors are expected, by author {tbl-colwidths="[20,45,35]"}
 
-## 5. First Steps
+Working with a person and working with an agent share the same steps. Each
+needs background, instructions, checking and correction, and the steps
+differ in where the result is kept.
 
-1. Go through the checklist item by item and mark each as unchanged, changed,
-   or no longer applicable when an agent writes the code.
-2. Collect published guidance on validating AI-generated code, in
-   pharmacometrics and in software engineering generally, and start a
-   `references.qmd` once there are sources to track.
-3. Try the result on one analysis in this repository that an agent wrote.
+| Step | A person | An agent |
+|---|---|---|
+| Background | Onboarding, a reading list, the team's conventions | Skill files and instruction files such as `CLAUDE.md` |
+| Instructions | The specification | The same specification |
+| Checking | The validation plan | The same validation plan |
+| Correction | Feedback, which the person carries forward | A change to the skill or instruction file; anything not written down is gone next session |
+| Explaining the work later | Can be asked, and the final presentation of an internship tests it | Only what is in the record |
+
+: The steps of working with a person and with an agent {tbl-colwidths="[20,40,40]"}
+
+The checking row is what this project is about. An intern who directs an
+agent is also the agent's first reviewer, which makes the validation plan
+part of what an intern learns. The
+[PMX internship specification](../pmx-internship/specification.qmd) uses
+this.
+
+## 3. The Taxonomy
+
+Eleven kinds of validation, in the order an analysis meets them. The table is
+the summary; each kind has a subsection below with the same three parts.
+
+| # | Kind | Asks | Existing tools | Gap |
+|---|---|---|---|---|
+| 1 | Question | Is this the right question for the decision? | Context of Use table, Dose Finding Framework | No check after the work |
+| 2 | Causal assumptions | What causes what, and could a confounder explain the relationship the model estimates? | Causality checklist, causal diagrams talk | Not yet a step in any plan |
+| 3 | Sources | Does each claim say what the source says? | Status markers in `references.qmd`, Reading Papers guide | Not a portable tool |
+| 4 | Data | Is the analysis dataset the right one, built correctly? | Validation checklist (import, modify), xGx | No dataset assembly checklist |
+| 5 | Code | Does the code compute what it claims? | R coding checklist, Validation checklist | Agent-written code |
+| 6 | Model | Does the model describe the data, with plausible parameters? | ggPMX, xgxr, See-Value | No model evaluation checklist |
+| 7 | Predictions | Is the uncertainty in a prediction stated, and does the model predict better than a simple benchmark? | Uncertainty cheat sheet and checklist, pedigree table, Stein and Looby 2018 | No benchmarking procedure |
+| 8 | Conclusions | Does the conclusion follow from the result? | Causality checklist, and the diagram from kind 2 | To assess |
+| 9 | Communication | Do the figures and slides show what was found, without overstating it? | Graphics principles cheat sheet, Presentation checklist, evaluation form | Written reports |
+| 10 | Reproducibility | Can someone else rerun it and get the same numbers, and is there a record of what was checked? | Validation checklist | Record of an agent session |
+| 11 | Use | Was the answer used for the decision it was meant for? | None | No follow-up practice |
+
+: Eleven kinds of validation and the tools for each {tbl-colwidths="[4,14,30,32,20]"}
+
+Kinds 5, 6 and 7 are the three the project started from: the R coding
+checklist, the diagnostic plots, and the uncertainty checklist. The other
+eight are added here, and Section 6 question 4 asks whether eleven is
+complete.
+
+### 3.1 Question
+
+**Asks.** Is this the right question for the decision, with a named person
+who will use the answer, and is the analysis sized to it?
+
+**Existing tools.**
+
+- [Context of Use table](../../references/ContextOfUse_Table_1page.pdf),
+  for scoping a modeling activity.
+- [Dose Finding Framework](https://ascpt.onlinelibrary.wiley.com/doi/epdf/10.1002/psp4.12701).
+- The [Annual Planning](../strat-planning/index.qmd) project, at the level
+  of a year's decisions.
+
+**Gap.** All three are used before the work. Nothing checks at the end that
+the answer still answers the question asked at the start.
+
+### 3.2 Causal Assumptions
+
+**Asks.** What causes what in the system the analysis describes, and could
+a variable that affects both the exposure and the response explain the
+relationship the model estimates? Such a variable is a confounder. In an
+exposure-response analysis of a monoclonal antibody, sicker patients often
+clear the drug faster, so they have lower exposure and worse outcomes, and
+the analysis sees exposure predicting response where disease severity is
+driving both.
+
+The check is to draw a causal diagram for the question before the data are
+analyzed, with an arrow from each cause to each effect, and to look in it for
+paths from exposure to response that do not go through the drug's effect.
+Each such path is a confounder to adjust for, or a reason the analysis
+cannot answer the causal question as asked.
+
+**Existing tools.**
+
+- Causality Checklist and Guidance for PMX:
+  [PDF](../../files/causality-checklist.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1Hc3RoTJXS-PQCUm-rG_RCuEa3ykRj5FiAtqRwgSiX6M/edit).
+- [Causal diagrams for understanding when correlation doesn't imply causation](../../files/2021-10-12-causal-diagrams.pdf),
+  a 2021 talk.
+
+**Gap.** The tools exist and are not a step in any plan. The proposal here
+is that every validation plan carries this row, and that the row holds
+either a causal diagram or a sentence saying why the question needs none,
+such as a randomized dose comparison where dose is the only exposure. Kind 7
+asks how uncertain an analysis's assumptions are; this kind asks whether the
+causal structure behind them is right. Whether every model needs a diagram is
+Section 6 question 6.
+
+### 3.3 Sources
+
+**Asks.** Does each claim drawn from a paper, a label or a regulatory review
+say what the source says?
+
+**Existing tools.**
+
+- The status markers this site's projects put on every entry of a
+  `references.qmd` (❌ not checked, ⚠️ transcribed and unverified, ✅
+  checked), shaped as in
+  [the TCE-IPDE references](../tce-ipde/references.qmd).
+- The [Reading Papers](../../guides/reading-papers.qmd) guide.
+
+**Gap.** The markers are a convention of this repository, not a tool someone
+else can pick up. There is no procedure for checking an agent's summary of a
+paper, which is where this check is most often skipped.
+
+### 3.4 Data
+
+**Asks.** Is the analysis dataset built from the right files and versions,
+are doses, times, missing values and values below the limit of
+quantification handled as intended, and do derived variables and exclusions
+match the plan?
+
+**Existing tools.**
+
+- The [Validation Checklist](../../references/Validation_Checklist.pdf),
+  sections on importing and modifying data.
+- [xGx](http://opensource.nibr.com/xgx) exploratory graphics, which show the
+  data before any model sees it.
+
+**Gap.** No checklist for assembling a PMX analysis dataset against its data
+specification: dosing records, event types, time since first dose, covariate
+merges. Errors here run cleanly through every later step.
+
+### 3.5 Code
+
+**Asks.** Does the code compute what it claims to, can someone else read it,
+and does it run cleanly from the start?
+
+**Existing tools.**
+
+- R Coding Checklist:
+  [PDF](../../files/r-coding-checklist.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/17ec8YaARWZ6wppv3AfZCdaHfPwvOFUABXyXmENgHnpE/edit).
+- The [Validation Checklist](../../references/Validation_Checklist.pdf),
+  whose planning section chooses the depth of review from the risk: unit
+  tests, spot checks, code review, rerunning step by step, or independent
+  reproduction.
+
+**Gap.** Both assume a person wrote the code and a second person reviews it.
+[Validating Code Written by an AI Agent](agent-written-code.qmd) works out
+what changes when an agent is the author.
+
+### 3.6 Model
+
+**Asks.** Does the model describe the data, and are its parameters plausible?
+The usual diagnostics: goodness-of-fit plots, residuals (conditional
+weighted residuals, normalized prediction distribution errors), visual
+predictive checks, parameter precision, shrinkage, and parameter values
+against physiology and published models.
+
+**Existing tools.**
+
+- [ggPMX](https://cran.r-project.org/package=ggPMX) for diagnostic plots, and
+  [xgxr](https://cran.r-project.org/package=xgxr).
+- [See-Value](https://www.see-value.com), for lineups: the real data's plot
+  hidden among plots simulated from the model, to see whether a viewer can
+  pick it out.
+- The model evaluation skill planned in
+  [Pharmacometrics modeling skills](../ai-pmx-skills-modeling-guidance/index.qmd).
+
+**Gap.** No written model evaluation checklist. The skills project is
+writing one for an agent, and the same text could serve a person. Plausibility
+against prior knowledge is the part least covered by any plot.
+
+### 3.7 Predictions
+
+**Asks.** Two questions. Is the uncertainty in a prediction stated,
+including the uncertainty from assumptions and not only from parameter
+estimates, and is the prediction inside the range the data support? And
+does the model predict better than a simple one would? A complex model, such
+as a quantitative systems pharmacology (QSP) model, is checked by fitting a
+simple model to the same data and comparing how well each predicts data
+neither was fitted to: a later cohort, a new dose, another study. If the
+simple model predicts as well, the complex model's extra structure is not
+what the prediction rests on.
+
+**Existing tools.**
+
+- [Uncertainty Cheat Sheet and Checklist](https://zenodo.org/records/4409236).
+- [Uncertainty Assessment Pedigree Table](../../references/Uncertainty_Assessment_Pedigree_Table.pdf),
+  which grades each input by the strength of the evidence behind it.
+- [Presentation on Managing Uncertainty](../../references/Uncertainty_Assessment_Presentation.pdf).
+- Stein and Looby (2018),
+  [Benchmarking QSP models against simple models: a path to improved comprehension and predictive performance](https://pubmed.ncbi.nlm.nih.gov/?term=Benchmarking+QSP+models+against+simple+models),
+  *CPT: Pharmacometrics & Systems Pharmacology* 7:487–489. The citation is
+  taken from a later paper's reference list and has not been checked against
+  the journal.
+
+**Gap.** The paper is an argument for benchmarking, not a procedure: which
+simple model to pick, which data to hold out, and what difference in
+predictive performance counts. Writing that down is the gap. The
+uncertainty checklist also needs checking for extrapolation, to doses,
+populations or durations outside the data.
+
+### 3.8 Conclusions
+
+**Asks.** Does the conclusion follow from the result? A model can be right
+and the claim drawn from it wrong, most often a causal claim from
+observational exposure-response data. Kind 2 sets up the causal diagram at
+the start; this kind checks the final claims against it.
+
+**Existing tools.**
+
+- The causal diagram from kind 2, which a causal claim is checked against,
+  and the Causality Checklist that goes with it (3.2).
+
+**Gap.** To assess. Multiple comparisons and selective reporting are not
+obviously covered by anything listed here.
+
+### 3.9 Communication
+
+**Asks.** Do the figures, slides and report show what the analysis found,
+with the uncertainty, and without overstating it?
+
+**Existing tools.**
+
+- [Graphics Principles Cheat Sheet](../../references/Graphics_Principles_Cheat_Sheet_v1.1.pdf).
+- [Presentation Checklist](../../references/Presentation_Checklist_v2.03.pdf)
+  and the Presentation Evaluation Feedback Form:
+  [PDF](../../files/presentation-evaluation-form.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1K_lcsG6sClLQcd5sm_ezcvtD9ccmm0uM/edit).
+
+**Gap.** Nothing for a written report. This repository's writing guide does
+part of the job for an agent's drafts, and is not written for a reviewer.
+
+### 3.10 Reproducibility
+
+**Asks.** Can someone else rerun the analysis from its inputs and get the
+same numbers, and is there a record of what was checked, by whom?
+
+**Existing tools.**
+
+- The [Validation Checklist](../../references/Validation_Checklist.pdf),
+  overall section.
+- Version control, and on this site the frozen computation cache, which
+  replays a page's results exactly.
+
+**Gap.** When an agent did the work, the prompts, the specification and the
+session may be part of the record. Question 5 of
+[the agent-written code document](agent-written-code.qmd) asks which.
+
+### 3.11 Use
+
+**Asks.** Was the answer used for the decision it was meant to inform, and
+did the decision go the way the analysis said it should?
+
+**Existing tools.** None. The
+[PMX internship specification](../pmx-internship/specification.qmd)
+checks use three months after an internship, for one project.
+
+**Gap.** No practice of following an analysis to its decision. Without it,
+nothing tells whether the validation upstream was at the right depth.
+
+## 4. The Validation Plan
+
+A validation plan is written at the start of an activity, next to its
+specification, and filled in as the checks are done. One plan per activity:
+a model fit, a simulation, a literature review, a dose recommendation.
+
+The header records:
+
+- **Activity** and the **decision** it informs.
+- **Consequence of a wrong answer**, and how likely one is, as in the
+  Validation Checklist's risk assessment.
+- **Author**: the person or agent doing the work, and who directs the agent
+  if there is one.
+
+Then one row per kind from Section 3:
+
+| # | Kind | Applies? | Tool | Depth | Checked by | Done |
+|---|---|---|---|---|---|---|
+| 1 | Question | | | | | |
+| 2 | Causal assumptions | | | | | |
+| 3 | Sources | | | | | |
+| ... | | | | | | |
+| 11 | Use | | | | | |
+
+: Validation plan, one row per kind {tbl-colwidths="[4,16,10,22,20,18,10]"}
+
+**Depth** takes one of the Validation Checklist's levels: spot check,
+review, rerun step by step, or independent reproduction. Every row is kept,
+and a kind that does not apply says so with a reason, so that two plans can
+be compared and an empty row is not read as a check that passed.
+
+## 5. Gaps, Ranked
+
+Ranked by how often the gap is likely to let a wrong answer through, which
+is a judgment until Section 7 step 2 gives evidence.
+
+1. **Data assembly checklist** (3.4). Data errors pass every later check.
+2. **Model evaluation checklist** (3.6). Shared with the skills project.
+3. **A causal diagram as a standing step** (3.2). The checklist exists;
+   the gap is that no plan asks for it, so confounding is considered only
+   when someone thinks of it.
+4. **A benchmarking procedure** (3.7): which simple model, which held-out
+   data, what difference counts.
+5. **Checking claims against sources** (3.3), as a tool someone outside this
+   repository can use, including on an agent's summaries.
+6. **Code written by an agent** (3.5), already under way in
+   [its own document](agent-written-code.qmd).
+7. **The question after the work, and its use** (3.1, 3.11).
+8. **Written reports** (3.9).
+
+## 6. Open Questions
+
+1. **Is "validation" the right word for all eleven kinds?** Regulatory and
+   engineering usage separates verification (was it built right: kinds 4, 5
+   and 10) from validation (is it the right thing: kinds 1, 2, 6 and 11). The
+   taxonomy may read better in those terms.
+2. **Does depth scale with the author?** For people it does: a senior
+   associate's model gets a lighter review than an intern's. For an agent
+   there is no track record per kind of task yet. The validation plans
+   themselves, once kept, would build one.
+3. **Can an agent do some of the checking?** A second agent reviewing the
+   first may share its blind spots. Question 1 of
+   [the agent-written code document](agent-written-code.qmd) asks the same
+   for code; the question is wider here.
+4. **Are eleven kinds the right number?** Missing candidates include safety and
+   regulatory consistency (does the analysis agree with the label and with
+   earlier submissions), and the author's understanding, which the
+   internship's final presentation checks for a person.
+5. **What prior art covers this?** The ASME V&V 40 standard sets the depth
+   of credibility evidence for a computational model by its risk, the same
+   move as the Validation Checklist's planning section, and the ICH M15
+   guideline on model-informed drug development is reported to use a
+   similar framework for PMX models. Neither has been read here.
+6. **Does every model need a causal diagram?** A diagram for a
+   population PK model, where the question is not causal, may be wasted
+   time; a diagram for an exposure-response model usually is not. The
+   lighter rule is that every plan considers one and says why when it
+   skips it. Step 2 will show which rule holds up.
+
+## 7. Steps
+
+1. Read ASME V&V 40 and ICH M15 against Section 3 and start a
+   `references.qmd`, shaped as the
+   [TCE-IPDE references](../tce-ipde/references.qmd).
+2. Fill in a validation plan for one past activity, the
+   [Model Based TDP worked comparison](../pmx-model-based-tdp/index.qmd),
+   and one for the next internship project. Record what each check caught.
+3. Re-rank Section 5 from what step 2 found, and open a project for the gap
+   at the top.
+4. Once the template has been used twice, add it to the Validation section
+   of the [Pharmacometrics Tools](../../pmx-tools.qmd) page.

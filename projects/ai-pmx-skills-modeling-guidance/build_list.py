@@ -171,7 +171,7 @@ def main():
         f'title: "PMx Skills Index: evidence, {month}"',
         'subtitle: "What every score in the index rests on"',
         'description: "The rubric answers with quotes, error-audit findings, matched OpenAlex records with field h-indices, and repository measurements behind each skill in the PMx Skills Index."',
-        "categories: [GenAI, Pharmacometrics methods]",
+        "categories: [GenAI, Pharmacometrics]",
         "date: last-modified",
         "toc: true",
         "toc-depth: 2",

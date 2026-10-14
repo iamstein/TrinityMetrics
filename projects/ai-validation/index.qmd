@@ -1,22 +1,28 @@
 ---
-title: "Validating Code Produced by GenAI"
-subtitle: "What validation means when an AI agent writes all the code"
-description: "Index of the ai-validation project: working out how to validate analysis code that an AI agent wrote, starting from the existing validation checklist."
-categories: [GenAI, working document]
+title: "Validation Tools Taxonomy"
+subtitle: "What needs validating in a pharmacometrics activity, and the tools for each"
+description: "Index of the ai-validation project: a taxonomy of the kinds of validation a pharmacometrics activity needs, the checklists and tools that exist for each, the gaps, and a validation plan that applies whether an agent or a person did the work."
+categories: [GenAI, Pharmacometrics, working document]
 date: last-modified
 toc: false
 ---
 
-The [validation checklist](https://trinitymetrics.com/references/Validation_Checklist.pdf)
-written with Oliver Sander covers planning, risk assessment, and checks on
-importing data, modifying data and results. It was written for code a person
-wrote and a second person reviews. When an AI agent writes all the code, some
-of those checks still apply as written and some rest on assumptions that no
-longer hold. This project works out which is which and what has to be added.
-Nothing is settled yet.
+A pharmacometrics analysis can go wrong at the question, its causal
+assumptions, the sources, the data, the code, the model, the predictions,
+the conclusions or the way it is presented. Checklists exist for several of these, among them the
+[validation checklist](../../references/Validation_Checklist.pdf) written
+with Oliver Sander, the R coding checklist, and the uncertainty checklist.
+This project lists every kind of validation an activity needs, maps the
+existing tools onto them, and ranks the gaps. The same validation plan is
+meant to apply whether the work was done by a coding agent, an intern or a
+senior associate. Nothing is settled yet.
 
 ## Documents
 
-- [Working specification](specification.qmd). The goal, what the existing
-  checklist covers, the questions that change when an agent writes the code,
-  and the first steps.
+- [Working specification](specification.qmd). The taxonomy of eleven kinds of
+  validation, the tools and gaps for each, a validation plan template, the
+  gaps ranked, and the open questions.
+- [Validating code written by an AI agent](agent-written-code.qmd). The
+  project's first specification, now one entry of the taxonomy: which parts
+  of the existing validation checklist still apply when an agent writes all
+  the code.

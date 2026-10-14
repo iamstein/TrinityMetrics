@@ -2,7 +2,7 @@
 title: "Publishing the 3 RECIST Lesion Model"
 subtitle: "Turning a 2011 ASCO poster into a citable preprint"
 description: "Index of the documents in the pmx-afinitor-3-lesion-types project: writing up the RECORD-1 everolimus model of target, nontarget and new lesions as a preprint on bioRxiv, medRxiv or Zenodo."
-categories: [Pharmacometrics methods]
+categories: [Pharmacometrics]
 date: last-modified
 toc: false
 ---

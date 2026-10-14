@@ -2,7 +2,7 @@
 title: "References for the 3 RECIST Lesion Model"
 subtitle: "What to read, in what order, and what has actually been checked"
 description: "The reading queue and source list for publishing the RECORD-1 three-lesion tumor model, with a status marker on every entry recording whether the claim drawn from it has been verified against the source."
-categories: [Pharmacometrics methods, references]
+categories: [Pharmacometrics, references]
 date: last-modified
 toc: true
 toc-depth: 2

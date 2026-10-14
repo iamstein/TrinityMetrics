@@ -2,7 +2,7 @@
 title: "Pharmacometrics Modeling Skills: A Proposal"
 subtitle: "Transforming modeling guidance into a SKILL file that a human or AI assistant can use"
 description: "A one-page proposal for pmxskills: why skill files could replace static modeling guidance, and the rules for consensus, position pages, review and governance that keep the work from stalling."
-categories: [GenAI, Pharmacometrics methods, working document]
+categories: [GenAI, Pharmacometrics, working document]
 date: last-modified
 toc: false
 aliases:

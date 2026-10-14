@@ -2,7 +2,7 @@
 title: "Tumor Models of Nontarget and New Lesions"
 subtitle: "A literature review for the 3 RECIST Lesion Model"
 description: "Which published tumor dynamic models describe nontarget lesion progression and new lesion appearance, how each one does it, and where the RECORD-1 three-lesion model sits among them."
-categories: [Pharmacometrics methods, references]
+categories: [Pharmacometrics, references]
 date: last-modified
 toc: true
 toc-depth: 2
