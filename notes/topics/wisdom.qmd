@@ -43,4 +43,9 @@ so a link may ask for permission.
 - [Calling Things by Their Right Names](../quotes/confucius-names.qmd).
   Confucius on names, and Ted Gioia quoting him against calling art
   "content".
+- [The Only Courage Required of Us](../quotes/rilke-courage.qmd).
+  Rilke, in Joanna Macy and Anita Barrows's translation.
+- [Looking for Anything at All](../quotes/zero-effect-looking.qmd).
+  Daryl Zero in *Zero Effect* on why a search for one specific thing usually
+  fails.
 - [Parenting](parenting.qmd).

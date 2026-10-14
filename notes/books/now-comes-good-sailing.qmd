@@ -8,3 +8,6 @@ toc: false
 
 [Reading notes](https://docs.google.com/document/d/12pEAW2hLWGqJIf3jaaaE5j2zJMJBcEF3GMQUBwS7Gzs/edit)
 in Google Docs.
+
+The [Thoreau](../people/thoreau.qmd) note has two passages on Thoreau and
+birds.

@@ -1,0 +1,40 @@
+---
+title: "Henry David Thoreau"
+description: >
+  Two passages on Thoreau and birds, one his own from Walden and one by
+  Louisa May Alcott, and a pointer to the notes on Now Comes Good Sailing.
+categories: [People notes, wisdom]
+date: last-modified
+toc: false
+---
+
+Thoreau (1817–1862) counted the attention of a bird as an honour, and treated
+the return of a bird in spring as news.
+
+## Quotes
+
+> I once had a sparrow alight upon my shoulder for a moment while I was hoeing
+> in a village garden, and I felt that I was more distinguished by that
+> circumstance than I should have been by any epaulet I could have worn.
+>
+> — Thoreau, *Walden*, "Winter Animals"
+
+An epaulet is the ornamental shoulder piece on a military uniform, so the
+sparrow on the shoulder stands in for a rank or a medal.
+
+> [He] used to come to his neighbors, to announce that the bluebirds had
+> arrived, with as much interest in the fact as other men take in messages by
+> the Atlantic cable.
+>
+> — Louisa May Alcott, on Thoreau
+
+Alcott grew up in Concord and knew Thoreau. The transatlantic telegraph cable
+was the news technology of the day: it cut the time for a message between
+America and Europe from about two weeks by ship to minutes. The passage is
+attributed to Alcott writing in *Merry's Museum*, March 1869; that attribution
+comes from secondary sources and has not been checked against the magazine.
+
+## Related Notes
+
+- [Now Comes Good Sailing](../books/now-comes-good-sailing.qmd). Essays by
+  other writers on Thoreau, edited by Andrew Blauner.

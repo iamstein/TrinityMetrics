@@ -1,0 +1,32 @@
+---
+title: "Looking for Anything at All"
+subtitle: "Daryl Zero, in Zero Effect"
+description: >
+  Daryl Zero's rule of investigation from the 1998 film Zero Effect: a search
+  for one specific thing usually fails, and a search for anything at all
+  usually succeeds.
+categories: [Quote notes, wisdom]
+date: last-modified
+toc: false
+---
+
+> If you go looking for something specific, your chances of finding it are
+> very bad. Because of all the things in the universe, you're only looking for
+> one of them. If you go looking for anything at all, your chances of finding
+> it are very good. Because of all the things in the world, you're bound to
+> find some of them.
+>
+> — Daryl Zero, *Zero Effect*
+
+## Source
+
+*Zero Effect* (1998), written and directed by Jake Kasdan. Bill Pullman plays
+Daryl Zero, a private detective modelled loosely on Sherlock Holmes, and the
+line is one of the principles of investigation Zero recites through the film.
+Transcriptions differ slightly: some open with "When you go looking" and some
+end "sure to find some of them".
+
+## Related Notes
+
+- [The Only Courage Required of Us](rilke-courage.qmd). Rilke on living the
+  questions rather than digging for answers that cannot be given yet.

@@ -83,6 +83,8 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
   books by Jungian writers.
 - [Sigmund Freud](people/freud.qmd). Freud and Jung as builders of narrative,
   and the questions each asks of religion.
+- [Henry David Thoreau](people/thoreau.qmd). A sparrow on his shoulder as
+  an honour, and the bluebirds' arrival as news.
 
 ## Blog Posts
 
@@ -118,6 +120,11 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [Calling Things by Their Right Names](quotes/confucius-names.qmd).
   Confucius on names, and Ted Gioia quoting him against calling art
   "content".
+- [The Only Courage Required of Us](quotes/rilke-courage.qmd). Rilke,
+  in Joanna Macy and Anita Barrows's translation, on the courage to meet what
+  is strangest and most awesome, and on living the questions.
+- [Looking for Anything at All](quotes/zero-effect-looking.qmd). Daryl Zero
+  in *Zero Effect* on why a search for one specific thing usually fails.
 
 ## Movies
 
