@@ -53,3 +53,9 @@ Validation only works if the validator can tell a flawed model from a good one. 
 ## Where This Is Heading
 
 AI tools are improving quickly, and the more AI can do, the more our value as pharmacometricians lies in deciding what the work is for and in taking responsibility for the decisions it supports.
+
+## Addendum: Datasets for Benchmarking
+
+The International Society of Pharmacometrics (ISoP) AI/ML Special Interest Group discussion on 14 October 2026 raised something I left out: development of a database of curated, realistic datasets for evaluating and benchmarking different approaches.
+
+Building that database may be a challenge, but the SIG has started one in its [PMX benchmarks repository](https://github.com/AIML-SIG/pmx_benchmarks).
