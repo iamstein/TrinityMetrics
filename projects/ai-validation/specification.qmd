@@ -102,6 +102,16 @@ checklist, the diagnostic plots, and the uncertainty checklist. The other
 eight are added here, and Section 6 question 4 asks whether eleven is
 complete.
 
+The names are what make the plan in Section 4 work. Once a kind of
+validation has a name, a plan can ask of it whether the question at hand
+needs it, and record the answer. A kind with no name is never asked about,
+so it gets skipped without anyone deciding to skip it. The first version of
+this list left out causal assumptions, although the Causality Checklist
+already existed, and the gap was found by reading down the names. This is
+the line attributed to Confucius,
+["The beginning of wisdom is calling things by their right names"](../../notes/quotes/confucius-names.qmd),
+applied to validation.
+
 ### 3.1 Question
 
 **Asks.** Is this the right question for the decision, with a named person
