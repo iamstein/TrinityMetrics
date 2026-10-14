@@ -40,4 +40,7 @@ so a link may ask for permission.
 - [Ben Sasse on Faith, Family, and Facing Death](../podcasts/ben-sasse-on-faith-family-and-facing-death.qmd).
   Sasse with Russ Roberts on EconTalk, six months into a terminal diagnosis:
   concerts and football as worship, and Dylan Thomas read at the close.
+- [Calling Things by Their Right Names](../quotes/confucius-names.qmd).
+  Confucius on names, and Ted Gioia quoting him against calling art
+  "content".
 - [Parenting](parenting.qmd).

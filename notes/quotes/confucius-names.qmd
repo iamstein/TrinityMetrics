@@ -1,0 +1,37 @@
+---
+title: "Calling Things by Their Right Names"
+subtitle: "Confucius on names"
+description: >
+  The line attributed to Confucius, "The beginning of wisdom is calling things
+  by their right names", where it comes from in the Analects, and Ted Gioia
+  quoting it against corporate language about art.
+categories: [Quote notes, wisdom]
+date: last-modified
+toc: false
+---
+
+> The beginning of wisdom is calling things by their right names.
+>
+> — attributed to Confucius
+
+Names can be important. A thing called by the wrong name gets handled as the
+wrong thing.
+
+## Source
+
+The line is a paraphrase. The idea is the rectification of names
+(*zhengming*) in the *Analects*, book 13, chapter 3. A disciple asks what
+Confucius would do first if he were given the government of the state of Wei,
+and Confucius answers that he would correct the names. In James Legge's
+translation: "If names be not correct, language is not in accordance with the
+truth of things. If language be not in accordance with the truth of things,
+affairs cannot be carried on to success."
+
+## Ted Gioia
+
+[Don't Trust People Who Talk Like This](https://www.honest-broker.com/p/dont-trust-people-who-talk-like-this),
+by Ted Gioia on *The Honest Broker*, 14 October 2026, quotes the line. Gioia
+collects the words media executives use for creative work: films and music as
+"content", a studio "positioned to win in every single vertical", AI as a way
+to "eliminate lower-value human capital". He reads that vocabulary as a sign of
+how the speakers treat artists, and asks for plain, accurate language instead.
