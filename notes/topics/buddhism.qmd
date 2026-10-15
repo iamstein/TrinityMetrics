@@ -22,3 +22,8 @@ so a link may ask for permission.
 - [Eightfold Path](https://docs.google.com/document/d/1xnLenURzCjYLszDHXXjXMKdYL3IBcBj82IvLzPqPNvY/edit),
   the eight factors of the fourth noble truth, from right view to right
   concentration.
+
+## Other Notes
+
+- [I Believed the Hype and Did Mindfulness Meditation for Dumb Reasons](../blog-posts/mindfulness-meditation-for-dumb-reasons.qmd).
+  Holly Elmore on the harm intensive meditation did to her attention.

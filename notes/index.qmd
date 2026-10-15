@@ -88,6 +88,9 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Blog Posts
 
+- [I Believed the Hype and Did Mindfulness Meditation for Dumb Reasons](blog-posts/mindfulness-meditation-for-dumb-reasons.qmd).
+  Elmore on how intensive meditation reshaped her attention, and on undoing
+  the damage.
 - [Two Hours a Week](blog-posts/two-hours-a-week.qmd). Pallone on strength
   training and cardio: both help, and 60 to 90 minutes a week of resistance
   training could be enough.

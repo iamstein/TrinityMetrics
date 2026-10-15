@@ -1,0 +1,46 @@
+---
+title: "I Believed the Hype and Did Mindfulness Meditation for Dumb Reasons"
+subtitle: "Holly Elmore on the damage intensive meditation did to her attention"
+description: >
+  Notes on Holly Elmore's Substack post: years of intensive mindfulness
+  practice reshaped how she attends to the world, and she is now trying to
+  undo it.
+categories: [Blog post notes, buddhism, attention]
+date: last-modified
+toc: false
+---
+
+[I believed the hype and did mindfulness meditation for dumb reasons -- now I'm trying to reverse the damage](https://hollyelmore.substack.com/p/i-believed-the-hype-and-did-mindfulness-meditation-for-dumb-reasons-now-im-trying-to-reverse-the-damage),
+by Holly Elmore on Substack, 23 July 2021.
+
+**Intensive mindfulness meditation can harm some people, because it reshapes
+attention rather than only sharpening it.** Elmore took up serious practice
+hoping it would show her truths about consciousness and enlightenment, and
+assumed it could do no harm. In her words, "I kind of broke my mind with
+mindfulness." She presents what follows as hunches from her own experience and
+from conversations, not as research findings.
+
+- **Lost concepts.** Training herself to take in every detail weakened the
+  habit of grouping detail into concepts. Thinking became slower and foggier,
+  and simplified models of the world felt like they were leaving something out.
+- **Vigilance.** Teachings that treated constant attention as a duty became a
+  compulsion for someone prone to scrupulosity, an obsessive worry about doing
+  wrong. Relaxing began to trigger panic.
+- **Hypersensitivity.** She reacted more strongly to sensations, and reports
+  physical effects, including worse visual snow, a persistent static across
+  the visual field.
+- **Reversal.** She stopped meditating on purpose, and now practises noticing
+  less, telling her own stories about her experience, and attending to meaning
+  rather than raw sensation.
+
+She adds that casual meditators need not worry, but people with her
+temperament should think twice.
+
+## Goodhart's Law
+
+Goodhart's law says that when a measure becomes a target, it stops being a good
+measure. Elmore's practice reads to me like a case of it. Attention is one
+part of Buddhist practice, and she pursued it on its own, leaving out the
+compassion and equanimity that the practice pairs it with. This is my reading
+rather than hers: the post places the harm in attention training and in
+particular teachings, and does not discuss compassion or equanimity.
