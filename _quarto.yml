@@ -42,11 +42,13 @@ website:
       - text: About
         menu:
           - href: about.qmd
-            text: About
+            text: Bio
           - href: now.qmd
             text: Now
           - href: cv.qmd
             text: CV
+          - href: favorites.qmd
+            text: Favorites
     right:
       - icon: github
         href: "https://github.com/iamstein/TrinityMetrics"
