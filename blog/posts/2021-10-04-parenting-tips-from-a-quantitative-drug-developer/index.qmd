@@ -1,0 +1,29 @@
+---
+title: "Five Practical Tips to Parenting, from a Quantitative Drug Developer"
+date: 2021-10-04
+description: "Uncertainty, variability and biomarkers, applied to raising children."
+categories:
+  - parenting
+listing: false
+toc: false
+---
+
+**1. Uncertainty + Lack of control:** There is so much that is unknown; so much you can't predict; and so much that's determined by genetics or environmental factors outside your control. The best you can do is to be present and happy with your kids and love and listen to them. They will probably turn out to be like their genetic parents [1–2].
+
+**2. Variability: Every child is different:** There is so much variability between children. Even if a study suggests what is right for the "average child," no child is average in every single respect [3]. So just try things, see what works and what doesn't work, and go from there.
+
+**3. Biomarkers:** There are so many rules and opinions about everything and so much variability that who knows what is right for each child. The essential knowledge is around how to know if things are really bad and need to be addressed. So find a biomarker for those things, and then react as needed. For example, as long as your baby's weight is within reasonable bounds, they're almost certainly well nourished.
+
+**4. Childhood wounding is necessary:** Here, I'm not talking about physical or emotional abuse — that is abhorrent and to be avoided. I'm talking about the emotional wounds a child experiences from their parents being unable to meet every single want and need. Inevitably, you will fail and it will hurt. Even if you are able to parent perfectly, not every child can receive the love perfectly. There are always childhood wounds — it's a part of growing up and part of the human condition. Even if you over-protect in an attempt to prevent all wounds, the overprotection creates its own wound and dysfunction.
+
+**5. Memories are one thing parents can influence.** While there are so many things parents can't control, one thing they can control (to some extent) is how their kids remember and appreciate them. Childhood memories largely depend on how loving, communicative, and conflict prone the family was [1].
+
+## References
+
+1. *Selfish Reasons to Have More Kids* by Bryan Caplan (book)
+2. *Cribsheet* by Emily Oster (book)
+3. [The Flaw of Averages](https://www.thestar.com/news/insight/2016/01/16/when-us-air-force-discovered-the-flaw-of-averages.html)
+
+---
+
+*Originally published on [Medium](https://medium.com/@andy.stein/five-practical-tips-to-parenting-from-a-quantitative-drug-developer-bda0cc794142), October 4, 2021.*

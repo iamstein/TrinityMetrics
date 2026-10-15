@@ -9,8 +9,8 @@ date: last-modified
 toc: false
 ---
 
-[Thinking of God as the Vanishing Point at Infinity](https://medium.com/@andy.stein/thinking-of-god-as-the-vanishing-point-at-infinity-11f4dc866fa7),
-by Andy Stein on Medium, 1 January 2022.
+[Thinking of God as the Vanishing Point at Infinity](../../blog/posts/2022-01-01-god-as-the-vanishing-point/index.qmd),
+by Andy Stein, first published on Medium 1 January 2022.
 
 **Searching for meaning and connection in anything bigger than oneself is a
 search for God.** The post starts from years of treating God as about as

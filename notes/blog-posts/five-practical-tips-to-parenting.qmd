@@ -9,8 +9,8 @@ date: last-modified
 toc: false
 ---
 
-[Five Practical Tips to Parenting, from a Quantitative Drug Developer](https://medium.com/@andy.stein/five-practical-tips-to-parenting-from-a-quantitative-drug-developer-bda0cc794142),
-by Andy Stein on Medium, 4 October 2021.
+[Five Practical Tips to Parenting, from a Quantitative Drug Developer](../../blog/posts/2021-10-04-parenting-tips-from-a-quantitative-drug-developer/index.qmd),
+by Andy Stein, first published on Medium 4 October 2021.
 
 **Much of how a child turns out is outside a parent's control, so the post
 recommends being present, trying things and watching a few signals.** It draws

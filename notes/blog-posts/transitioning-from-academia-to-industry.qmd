@@ -9,12 +9,12 @@ date: last-modified
 toc: false
 ---
 
-[Transitioning from Academia to Industry](https://medium.com/@andy.stein/transitioning-from-academia-to-industry-57500b0fca74),
-by Andy Stein on Medium, 13 February 2022.
+[Transitioning from Academia to Industry](../../blog/posts/2022-02-13-transitioning-from-academia-to-industry/index.qmd),
+by Andy Stein, first published on Medium 13 February 2022.
 
 **Most of the advice for moving from academia to industry is also advice for
 living.** The post introduces a
-[career guide](https://sites.google.com/site/andrewsteinphd/career-advice)
+[career guide](../../guides/career-advice.qmd)
 written as a pre-read for PhD students and postdocs who ask for advice, and
 notes that the topics friends and colleagues suggested adding were mostly life
 lessons.

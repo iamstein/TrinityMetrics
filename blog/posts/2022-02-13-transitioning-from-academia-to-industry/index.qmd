@@ -1,0 +1,23 @@
+---
+title: "Transitioning from Academia to Industry"
+date: 2022-02-13
+description: "Most of the career advice friends and colleagues suggested turned out to be life advice too."
+categories:
+  - career
+listing: false
+toc: false
+---
+
+Every so often, a PhD student or post-doc asks me for advice on transitioning from academia to industry. All conversations have had some topics in common, so I've created a [short career guide](../../../guides/career-advice.qmd), to serve as a pre-read.
+
+After getting feedback from friends and colleagues on additional topics to cover, I was struck by how most suggestions were not only career lessons, but also life lessons. For example, both inside and outside your career, the following mindsets are helpful:
+
+- **Curiosity:** to stay open to learning, feedback, and wonder.
+- **Collaboration:** we all have blindspots and working with others is a great way to fill them
+- **Mindfulness:** in difficult times, it is so important to pause and try to approach our search for the right words and right action from a place of equanimity.
+
+The close overlap between career skills and life skills relates to my post on [Thinking of God as the Vanishing Point at Infinity](../2022-01-01-god-as-the-vanishing-point/index.qmd). Any path toward growth, discovery, and self-improvement will be helpful in all aspects of our life. When I first started therapy, it was to help me through some personal challenges, but it also helped me considerably in my career. From therapy, I've learned how to be mindful of my reactions to challenging situations, explore the reason behind those reactions, and then choose how best to act in order to achieve the desired outcome. These steps aren't easy, and they require practice. A coach or a therapist can be a great help in developing a practice. And it's rewarding to see how practicing these skills in one domain carries over to everything.
+
+---
+
+*Originally published on [Medium](https://medium.com/@andy.stein/transitioning-from-academia-to-industry-57500b0fca74), February 13, 2022.*
