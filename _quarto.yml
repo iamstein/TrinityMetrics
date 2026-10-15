@@ -21,6 +21,7 @@ project:
 website:
   title: "TrinityMetrics"
   site-url: "https://trinitymetrics.com"
+  favicon: favicon.png
   repo-url: "https://github.com/iamstein/TrinityMetrics"
   repo-actions: [source, issue]
   page-navigation: true
