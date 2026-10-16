@@ -1,0 +1,17 @@
+---
+title: "What Is the Value of Presenting Work That Can Never Be Published?"
+date: 2026-10-16
+description: "A question after the ACoP survey: what does the audience gain from a talk on a model whose equations and parameters will never be public?"
+categories:
+  - pharmacometrics
+  - communication
+toc: false
+---
+
+I just filled in the ACoP survey, which asks what you'd like to see more of and less of next year. I had a great time at ACoP, and what I'd most like to see more of is modeling work I can truly learn from. That requires the details of the model to be made publicly available: the equations, the assumptions and the parameters. That way, I can build my own understanding and even try the model myself.
+
+I've seen many posters and talks on quantitative systems pharmacology (QSP) models of T-cell engagers, used to justify a first-in-human dose or a step-up dosing schedule. This is important work. I'd love to understand these models and see whether they could help with the projects I support. But for most of these talks and posters, the model, its assumptions and its parameters will never be published, so I will never be able to truly learn from this work.
+
+So I'm curious: what value does a presentation of work that will never be published have for the audience? It shows that a company or a consultancy is capable of doing this work, and that is useful to know, but is that it? I'm interested to hear from people who present work in this way, as well as from those who attend these talks.
+
+What if, at future ACoP meetings, giving an oral presentation required that the presenter make the model equations and parameter values public? It wouldn't have to be a manuscript; a public Git repository would be enough. Would that make the ACoP experience better or worse?
