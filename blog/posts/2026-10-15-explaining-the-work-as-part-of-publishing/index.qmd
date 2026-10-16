@@ -11,26 +11,26 @@ toc: false
 
 ## The Proposal
 
-I propose that ISoP's journal, [Quantitative Medicine](https://www.isop.org/quantitativemedicinejournal/quantitativemedicinejournal), ask every author to submit a 5 to 15 minute tutorial video explaining the main results alongside the manuscript. Reviewers would watch it, say whether they could follow it, and offer any feedback. An analysis that is correct but that reviewers cannot understand from the authors' own explanation would go back for revision.
+I propose that ISoP's journal, [Quantitative Medicine](https://www.isop.org/quantitativemedicinejournal/quantitativemedicinejournal), ask every author to submit a 5- to 15-minute tutorial video explaining the main results alongside the manuscript. Reviewers would watch it, say whether they could follow it, and offer any feedback. An analysis that is correct but that reviewers cannot understand from the authors' own explanation would go back for revision.
 
 ## Where the Idea Comes From
 
 Terence Tao's essay [Mathematics in the Age of AI](https://arxiv.org/abs/2608.16753), based on his public lecture at the 2026 International Congress of Mathematicians, asks what mathematicians should do once AI can produce research-level proofs. He expects proofs to arrive faster than people can check, write up and referee them, and he argues that a correct proof does not become part of mathematics until people understand it. His rule of thumb for publication is that if the authors cannot convincingly show they can give a clear, expert-level talk on their results, the results should not be published. In his words, "A proof that no human can properly explain should be viewed as incomplete, even if it has been formally verified."
 
-The same argument holds for a pharmacometric analysis. A complex but correct model is of little use to a clinical team that cannot understand and have confidence in the results. AI will soon build models and  identify new analytical insights, and the number of models and manuscript submissions may grow faster than the number of reviewers.
+The same argument holds for a pharmacometric analysis. A complex but correct model is of little use to a clinical team that cannot understand and have confidence in the results. AI will soon build models and identify new analytical insights, and the number of models and manuscript submissions may grow faster than the number of reviewers.
 
 ISoP already treats communication as a skill to practice. The ACoP annual meeting regularly runs a communication challenge. Building the same practice into the journal could carry that practice into every paper.
 
 ## How It Would Work
 
-1. **Submission.** A coauthor records a 5 to 15 minute explanation of the question, the method, the main results and their limits. Slides with a voice-over are enough; nobody has to appear on camera.
+1. **Submission.** A coauthor records a 5- to 15-minute explanation of the question, the method, the main results and their limits. Slides with a voice-over are enough; nobody has to appear on camera.
 2. **Review.** Reviewers watch the explanation before reading the manuscript. The review form adds two questions: could you follow the explanation, and what was unclear?
 3. **Response.** Authors answer comments on the explanation the same way they answer comments on the manuscript, and re-record it if a reviewer could not follow it.
 4. **Publication.** The final explanation is published with the article, captioned, on the journal's open-access platform.
 
 ## What It Would Gain
 
-Reviewers would understand the work better, and faster, and may be more likely to accept a review invitation if they can first watch a 15 minute explanation and see that the subject looked interesting and important.
+Reviewers would understand the work better, and faster, and may be more likely to accept a review invitation if they can first watch a 15-minute explanation and see that the subject is interesting and important.
 
 Readers would understand the work better too. Many readers of a methods paper never get past the abstract, and a short explanation from the authors reaches more of them than the manuscript does.
 
@@ -38,7 +38,7 @@ The explanation would also be a check on AI-generated work. AI can write a manus
 
 ## Costs and Open Questions
 
-- **Author time.** A good 15 minute explanation takes hours to prepare. Much of that preparation is the same work as a conference talk on the paper, which most authors give anyway.
+- **Author time.** A good 15-minute explanation takes hours to prepare. Much of that preparation is the same work as a conference talk on the paper, which most authors give anyway.
 - **Reviewer time.** Watching adds up to 15 minutes per review, though it may shorten the reading that follows.
 - **Fairness.** Authors presenting in a second language, or uncomfortable on a recording, should not be marked down for delivery. The question for reviewers is whether the explanation was clear, and slides with captions or a voice-over generated from the authors' own script should both be acceptable.
 - **Length.** Five minutes may suit a short communication and fifteen a full methods paper. The journal could set the limit by article type.
