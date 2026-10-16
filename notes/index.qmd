@@ -117,6 +117,9 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [Addiction, Faith, and the Limits of Willpower](podcasts/addiction-faith-and-the-limits-of-willpower.qmd).
   Meghan O'Gieblyn on EconTalk, starting from Simone Weil: faults are cured by
   attention, not by will.
+- [There's Never Been a Better Time to Go into Math](podcasts/never-been-a-better-time-to-go-into-math.qmd).
+  Grant Sanderson on 3Blue1Brown: even if AI gets very good at proofs, there
+  is still room to build theory.
 
 ## Quotes
 

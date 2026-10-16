@@ -1,0 +1,33 @@
+---
+title: "There's Never Been a Better Time to Go into Math"
+subtitle: "Grant Sanderson on 3Blue1Brown"
+description: >
+  Notes on Grant Sanderson's video on the future of mathematics: even if AI
+  gets very good at proofs, there is still room for people to build theory.
+categories: [Podcast notes, ai, mathematics]
+date: last-modified
+toc: false
+---
+
+[There's never been a better time to go into math](https://www.youtube.com/watch?v=LKrwhjOI8Nc),
+3Blue1Brown, 16 October 2026, 41 minutes.
+
+Grant Sanderson talks on his own, without a guest, about where mathematics goes
+once AI can do research-level work. The video works through three kinds of
+machine in turn: a proof machine, a conjecture machine and a theory machine.
+It then asks what is left if AI is better at all of them, and closes on why now
+is a good time to start in mathematics.
+
+**Even if AI gets very good at proofs, there are large opportunities in theory
+building.** That is the idea I liked most.
+
+**The same holds in my own modelling work.** I am already thinking about
+theories for the T-cell engager (TCE) models and the pharmacokinetic (PK) and
+B-cell models: understanding these models better, such as the sources of
+variability in how parameters affect response.
+
+Terence Tao makes a related argument in
+[Mathematics in the age of AI](https://arxiv.org/abs/2608.16753), that a
+result is not part of mathematics until people understand it. The
+[post on publishing explanations](../../blog/posts/2026-10-15-explaining-the-work-as-part-of-publishing/index.qmd)
+carries that argument over to pharmacometrics.
