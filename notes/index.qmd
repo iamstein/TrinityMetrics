@@ -106,6 +106,12 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [Five Practical Tips to Parenting, from a Quantitative Drug Developer](blog-posts/five-practical-tips-to-parenting.qmd).
   Andy Stein on uncertainty, variability and biomarkers in raising children.
 
+## Articles
+
+- [Borrowing Strength](articles/borrowing-strength.qmd). Alex Kesin in Arena
+  Magazine on Barr Rosenberg, the economist whose idea of borrowing strength
+  from a population became NONMEM and population pharmacokinetics.
+
 ## Podcasts
 
 - [How to Best Harness Your Willpower](podcasts/how-to-best-harness-your-willpower.qmd).

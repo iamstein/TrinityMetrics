@@ -1,0 +1,39 @@
+---
+title: "Borrowing Strength"
+subtitle: "Alex Kesin on Barr Rosenberg and the origins of pharmacometrics"
+description: >
+  Notes on Alex Kesin's Arena article: how a financial risk forecaster's idea of
+  borrowing strength from a population became NONMEM and population PK.
+categories: [Article notes, pharmacometrics, history]
+date: last-modified
+toc: false
+---
+
+[Borrowing Strength](https://arenamag.com/articles/borrowing-strength), by Alex
+Kesin in Arena Magazine, October 2026.
+
+**Population pharmacokinetics began with an economist's idea: estimate each
+patient and the population together, so that one patient's sparse data borrows
+strength from everyone else's.** Barr Rosenberg, a Harvard economist known for
+forecasting financial risk, came to the problem while his mother was being
+harmed by a miscalculated digoxin dose that kept rising as her health worsened.
+He saw no real difference between the stock market and human metabolism: both
+are hidden systems that have to be inferred from sparse, noisy data.
+
+- **Borrowing strength.** A new patient starts on a dose drawn from the
+  population, and the estimate moves toward that patient as their own blood
+  levels come in. This is the mixed-effects model behind every population PK
+  analysis.
+- **Sheiner and NONMEM.** Rosenberg sketched the idea at a seminar at the
+  University of California, San Francisco (UCSF) around 1969 to 1970. Lewis
+  Sheiner and Stuart Beal built it into NONMEM there in the late 1970s, and
+  the first version shipped in April 1980. Alison Boeckmann later added NM-TRAN
+  and PREDPP.
+- **Regulation.** Carl Peck carried the methods into the FDA. The article
+  links them to Section 115a of the 1997 FDA Modernization Act, which lets
+  one adequate, well-controlled trial plus confirmatory evidence, including
+  pharmacokinetic data, establish that a drug works.
+- **Rosenberg's two careers.** His financial career was celebrated, and it ended in
+  a lifetime ban from the industry, after he concealed a coding error in his
+  firm's risk model. His role in founding pharmacometrics is largely
+  forgotten.
