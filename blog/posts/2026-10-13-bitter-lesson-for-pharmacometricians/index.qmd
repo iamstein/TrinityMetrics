@@ -59,3 +59,13 @@ AI tools are improving quickly, and the more AI can do, the more our value as ph
 The International Society of Pharmacometrics (ISoP) AI/ML Special Interest Group discussion on 14 October 2026 raised something I left out: development of a database of curated, realistic datasets for evaluating and benchmarking different approaches.
 
 Building that database may be a challenge, but the SIG has started one in its [PMX benchmarks repository](https://github.com/AIML-SIG/pmx_benchmarks).
+
+## Addendum: Theory-Crafting
+
+*20 October 2026.*
+
+Grant Sanderson's [video on the future of mathematics](https://www.youtube.com/watch?v=LKrwhjOI8Nc) and Terence Tao's essay [Mathematics in the Age of AI](https://arxiv.org/abs/2608.16753) suggest another place to add value: theory-crafting, which supports validation. Sanderson makes the case that even if AI gets very good at proofs, there are large opportunities in building theory, and Tao argues that a proof no human can properly explain should be viewed as incomplete.
+
+Similarly, even after a pharmacometrician has a good model that characterizes the data well and can simulate to inform predictions, there is often more that can be done. A model may contain additional insight. For instance, a mathematical analysis of the model may indicate the most relevant parameters (e.g. how clearance is generally the most important parameter for characterizing average concentration).
+
+With AI to derive and simulate, math is now much cheaper and easier to do, and so the development of further pharmacometrics theory is well within reach. It would also help with validation, since a person who understands why a model behaves as it does is better placed to tell a flawed model from a good one and to understand and explain the results.
