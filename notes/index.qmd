@@ -126,6 +126,9 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [There's Never Been a Better Time to Go into Math](podcasts/never-been-a-better-time-to-go-into-math.qmd).
   Grant Sanderson on 3Blue1Brown: even if AI gets very good at proofs, there
   is still room to build theory.
+- [AI Is Smarter Than Ever. So Where's the Revolution?](podcasts/ai-is-smarter-than-ever-so-wheres-the-revolution.qmd).
+  Ethan Mollick with Derek Thompson on Plain English: three kinds of gym, for
+  the body, for social life and for learning.
 
 ## Quotes
 

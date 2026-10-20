@@ -1,0 +1,34 @@
+---
+title: "AI Is Smarter Than Ever. So Where's the Revolution?"
+subtitle: "Derek Thompson with Ethan Mollick on Plain English"
+description: >
+  Notes on the Plain English episode with Ethan Mollick: three kinds of gym we
+  now need, for the body, for social life and for learning.
+categories: [Podcast notes, ai, learning]
+date: last-modified
+toc: false
+---
+
+[AI Is Smarter Than Ever. So Where's the Revolution?](https://open.spotify.com/episode/2hKWPn8scqBy45xWWvIDWR),
+Plain English with Derek Thompson, 20 October 2026.
+
+Ethan Mollick, whose new book *Co-Existence* is about how AI is changing the
+way we learn and work, talks with Derek Thompson. They discuss how AI makes
+experts more powerful while automating the junior work that trains them, why
+students perform better with AI but learn less, and whether some friction
+should be kept.
+
+**We may now need three kinds of gym.** Each one deliberately puts back a
+struggle that modern life has taken away.
+
+1. **A physical gym.** We are no longer hunter-gatherers, so the body no longer
+   gets its exercise from daily life.
+2. **A social gym.** A practice of going out into the world and being with
+   people, so we don't spend all our time on TikTok and social media.
+3. **A learning gym.** AI can do nearly everything, and we still need to
+   struggle with things in order to learn them.
+
+The learning gym is the same problem as the deskilling section of
+[The Bitter Lesson for Pharmacometricians](../../blog/posts/2026-10-13-bitter-lesson-for-pharmacometricians/index.qmd):
+if new pharmacometricians only review AI-built models, they may never build
+the intuition that validation depends on.
