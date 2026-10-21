@@ -29,6 +29,23 @@ back a struggle that modern life has taken away.
 3. **A learning gym.** AI can do nearly everything, and we still need to
    struggle with things in order to learn them.
 
+**Later, Thompson asks Mollick about four kinds of human knowledge: deep
+knowledge, broad knowledge, taste and agency.** An AI can have all four, but a
+person who has them gets more out of the AI.
+
+1. **Deep knowledge.** Knowing an area well enough to evaluate the AI's output:
+   whether it is at the forefront or making mistakes.
+2. **Broad knowledge.** Knowing enough range to ask for more. Someone who knows
+   a hundred writing styles can point the AI at different authors, artists and
+   styles.
+3. **Taste.** Choosing what to ask the AI for, and recognizing whether what
+   comes back is slop or something real, since the AI will produce a great
+   deal of material either way.
+4. **Agency.** Exploring things on your own initiative.
+
+Thompson also asks which of the four is most important. I still need to listen to
+that part.
+
 The learning gym is the same problem as the deskilling section of
 [The Bitter Lesson for Pharmacometricians](../../blog/posts/2026-10-13-bitter-lesson-for-pharmacometricians/index.qmd):
 if new pharmacometricians only review AI-built models, they may never build
