@@ -141,26 +141,28 @@ part of what the internship teaches, and an intern who goes on to direct
 agents will keep using it.
 
 The rows below are a first assignment for a typical internship project,
-using the taxonomy's eleven kinds. The plan written in week 1 replaces it.
+using the taxonomy's thirteen kinds. The plan written in week 1 replaces it.
 
 | # | Kind | Checked by | When |
 |---|---|---|---|
 | 1 | Question | Mentor | Before day one, and again at the final presentation |
-| 2 | Causal assumptions | Intern draws the causal diagram, or says why none is needed; mentor reviews | Week 1, with the specification |
-| 3 | Sources | Intern, against the paper; mentor spot-checks | As each source is used |
-| 4 | Data | Intern, with the Validation Checklist; mentor reviews | Touchpoint 3, the first review |
-| 5 | Code | Intern, with the R coding checklist; code the assistant wrote counts as agent-written | Throughout |
-| 6 | Model | Intern runs the diagnostics; mentor judges plausibility | Touchpoint 3 and the midpoint review |
-| 7 | Predictions | Intern, with the uncertainty checklist, and against a simple benchmark model where the main model is complex | Before the final presentation |
-| 8 | Conclusions | Mentor | Before the final presentation |
-| 9 | Communication | Intern, with the presentation checklist; team gives feedback on the form | Final presentation |
-| 10 | Reproducibility | Mentor reruns the analysis from its inputs | End of internship |
-| 11 | Use | Mentor | Three months after |
+| 2 | Study design | Mentor, when choosing the study the project will use | Before day one |
+| 3 | Causal assumptions | Intern draws the causal diagram, or says why none is needed; mentor reviews | Week 1, with the specification |
+| 4 | Assay | Intern finds out what each assay measures and how values below the limit of quantification are reported; mentor reviews | Week 1 |
+| 5 | Analysis dataset | Intern, with the Validation Checklist; mentor reviews | Touchpoint 3, the first review |
+| 6 | Sources and prior knowledge | Intern, against the paper; mentor spot-checks | As each source is used |
+| 7 | Code | Intern, with the R coding checklist; code the assistant wrote counts as agent-written | Throughout |
+| 8 | Model | Intern runs the diagnostics; mentor judges plausibility | Touchpoint 3 and the midpoint review |
+| 9 | Predictions | Intern, with the uncertainty checklist, and against a simple benchmark model where the main model is complex | Before the final presentation |
+| 10 | Conclusions | Mentor | Before the final presentation |
+| 11 | Communication | Intern, with the presentation checklist; team gives feedback on the form | Final presentation |
+| 12 | Reproducibility | Mentor reruns the analysis from its inputs | End of internship |
+| 13 | Use | Mentor | Three months after |
 
 : First assignment of validation checks for an internship project {tbl-colwidths="[4,16,50,30]"}
 
 The checks map onto the mentor touchpoints in Section 4. The first review
-at week 2 or 3 is where kinds 4 and 6 are checked, which is one reason the
+at week 2 or 3 is where kinds 5 and 8 are checked, which is one reason the
 2026 guess gives it a high weight.
 
 ## 7. How to Tell Whether It Worked

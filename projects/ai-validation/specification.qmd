@@ -11,9 +11,10 @@ number-sections: false
 ---
 
 ::: {.callout-note appearance="simple"}
-**Started 2026-10-14.** The taxonomy in Section 3 is a first list, written
-from the tools on the [Pharmacometrics Tools](../../pmx-tools.qmd) page and
-not yet checked against published frameworks. The project's earlier
+**Started 2026-10-14.** The taxonomy in Section 3 began as eleven kinds,
+written from the tools on the [Pharmacometrics Tools](../../pmx-tools.qmd)
+page. On 2026-10-21 it became thirteen, adding study design and assay, after
+the search recorded in the [validation taxonomy](validation-taxonomy.qmd). The project's earlier
 question, validating code an agent wrote, is now
 [one document](agent-written-code.qmd) under this one.
 :::
@@ -78,29 +79,36 @@ this.
 
 ## 3. The Taxonomy
 
-Eleven kinds of validation, in the order an analysis meets them. The table is
-the summary; each kind has a subsection below with the same three parts.
+Thirteen kinds of validation, in the order an analysis meets them. The table
+is the summary; each kind has a subsection below with the same three parts.
+The [validation taxonomy](validation-taxonomy.qmd) uses the same numbers and
+lists the published guidances, papers, checklists and tools for each kind;
+the subsections here keep to the tools on this site and the main outside
+ones.
 
 | # | Kind | Asks | Existing tools | Gap |
 |---|---|---|---|---|
 | 1 | Question | Is this the right question for the decision? | Context of Use table, Dose Finding Framework | No check after the work |
-| 2 | Causal assumptions | What causes what, and could a confounder explain the relationship the model estimates? | Causality checklist, causal diagrams talk | Not yet a step in any plan |
-| 3 | Sources | Does each claim say what the source says? | Status markers in `references.qmd`, Reading Papers guide | Not a portable tool |
-| 4 | Data | Is the analysis dataset the right one, built correctly? | Validation checklist (import, modify), xGx | No dataset assembly checklist |
-| 5 | Code | Does the code compute what it claims? | R coding checklist, Validation checklist | Agent-written code |
-| 6 | Model | Does the model describe the data, with plausible parameters? | ggPMX, xgxr, See-Value | No model evaluation checklist |
-| 7 | Predictions | Is the uncertainty in a prediction stated, and does the model predict better than a simple benchmark? | Uncertainty cheat sheet and checklist, pedigree table, Stein and Looby 2018 | No benchmarking procedure |
-| 8 | Conclusions | Does the conclusion follow from the result? | Causality checklist, and the diagram from kind 2 | To assess |
-| 9 | Communication | Do the figures and slides show what was found, without overstating it? | Graphics principles cheat sheet, Presentation checklist, evaluation form | Written reports |
-| 10 | Reproducibility | Can someone else rerun it and get the same numbers, and is there a record of what was checked? | Validation checklist | Record of an agent session |
-| 11 | Use | Was the answer used for the decision it was meant for? | None | No follow-up practice |
+| 2 | Study design | Can this nonclinical or clinical study answer the question? | Sizing Studies project, PopED | No check that an existing study supports the model |
+| 3 | Causal assumptions | What causes what, and could a confounder explain the relationship the model estimates? | Causality checklist, causal diagrams talk | Not yet a step in any plan |
+| 4 | Assay | Does the assay measure what the model assumes, accurately enough? | ICH M10, FDA immunogenicity assay guidance | Assays are validated for the laboratory, not for the model |
+| 5 | Analysis dataset | Is the analysis dataset the right one, built correctly? | Validation checklist (import, modify), xGx | No dataset assembly checklist |
+| 6 | Sources and prior knowledge | Does each claim and prior say what its source says? | Status markers in `references.qmd`, Reading Papers guide | Not a portable tool |
+| 7 | Code | Do the model, plotting and simulation code compute what they claim? | R coding checklist, Validation checklist | Agent-written code |
+| 8 | Model | Does the model describe the data, with plausible parameters? | ggPMX, xgxr, See-Value | No model evaluation checklist |
+| 9 | Predictions | Is the uncertainty in a prediction stated, and does the model predict better than a simple benchmark? | Uncertainty cheat sheet and checklist, pedigree table, Stein and Looby 2018 | No benchmarking procedure |
+| 10 | Conclusions | Does the conclusion follow from the result? | Causality checklist, and the diagram from kind 3 | To assess |
+| 11 | Communication | Do the figures and slides show what was found, without overstating it? | Graphics principles cheat sheet, Presentation checklist, evaluation form | Written reports |
+| 12 | Reproducibility | Can someone else rerun it and get the same numbers, and is there a record of what was checked? | Validation checklist | Record of an agent session |
+| 13 | Use | Was the answer used for the decision it was meant for? | None | No follow-up practice |
 
-: Eleven kinds of validation and the tools for each {tbl-colwidths="[4,14,30,32,20]"}
+: Thirteen kinds of validation and the tools for each {tbl-colwidths="[4,14,30,32,20]"}
 
-Kinds 5, 6 and 7 are the three the project started from: the R coding
-checklist, the diagnostic plots, and the uncertainty checklist. The other
-eight are added here, and Section 6 question 4 asks whether eleven is
-complete.
+Kinds 7, 8 and 9 are the three the project started from: the R coding
+checklist, the diagnostic plots, and the uncertainty checklist. Kinds 1, 3,
+5, 6 and 10 to 13 were added in the first version of this list, and study
+design (2) and assay (4) were added after the search in the validation
+taxonomy. Section 6 question 4 asks whether thirteen is complete.
 
 The names are what make the plan in Section 4 work. Once a kind of
 validation has a name, a plan can ask of it whether the question at hand
@@ -128,7 +136,31 @@ who will use the answer, and is the analysis sized to it?
 **Gap.** All three are used before the work. Nothing checks at the end that
 the answer still answers the question asked at the start.
 
-### 3.2 Causal Assumptions
+### 3.2 Study Design
+
+**Asks.** Can the nonclinical or clinical study answer the question the
+analysis will put to it? For a model this means doses spread widely enough to
+estimate a dose-response, samples taken when the drug and the response are
+changing, enough subjects, and a population that matches the one the
+prediction is for.
+
+**Existing tools.**
+
+- The [Sizing Studies](../pmx-sizing-studies/index.qmd) project.
+- [PopED](https://cran.r-project.org/package=PopED), which computes how well
+  a proposed design would estimate a model's parameters before the study
+  runs.
+- ICH E8(R1) and E9(R1) for clinical studies, and the ARRIVE 2.0 guidelines
+  for reporting animal studies, listed in the
+  [taxonomy](validation-taxonomy.qmd#study-design).
+
+**Gap.** The design literature optimizes a study before it runs, or says how
+to report it. Nothing asks, before an analysis starts, whether a study
+already done can support the model about to be fitted: whether its dose
+range, sampling and sample size are enough for the parameters the decision
+rests on. PopED could answer that, and is rarely run on a study already done.
+
+### 3.3 Causal Assumptions
 
 **Asks.** What causes what in the system the analysis describes, and could
 a variable that affects both the exposure and the response explain the
@@ -155,29 +187,35 @@ cannot answer the causal question as asked.
 **Gap.** The tools exist and are not a step in any plan. The proposal here
 is that every validation plan carries this row, and that the row holds
 either a causal diagram or a sentence saying why the question needs none,
-such as a randomized dose comparison where dose is the only exposure. Kind 7
+such as a randomized dose comparison where dose is the only exposure. Kind 9
 asks how uncertain an analysis's assumptions are; this kind asks whether the
 causal structure behind them is right. Whether every model needs a diagram is
 Section 6 question 6.
 
-### 3.3 Sources
+### 3.4 Assay
 
-**Asks.** Does each claim drawn from a paper, a label or a regulatory review
-say what the source says?
+**Asks.** Does the assay measure what the model assumes it measures, such as
+free or total drug, or free or total target, and is it accurate and precise
+enough across the range the analysis uses? How are values below the limit of
+quantification and anti-drug antibodies handled?
 
 **Existing tools.**
 
-- The status markers this site's projects put on every entry of a
-  `references.qmd` (❌ not checked, ⚠️ transcribed and unverified, ✅
-  checked), shaped as in
-  [the TCE-IPDE references](../tce-ipde/references.qmd).
-- The [Reading Papers](../../guides/reading-papers.qmd) guide.
+- ICH M10, on bioanalytical method validation for drug concentrations.
+- The FDA guidance on immunogenicity testing, for anti-drug antibody assays.
+- Beal (2001) on fitting a model when some data are below the limit of
+  quantification.
 
-**Gap.** The markers are a convention of this repository, not a tool someone
-else can pick up. There is no procedure for checking an agent's summary of a
-paper, which is where this check is most often skipped.
+All three are in the [taxonomy](validation-taxonomy.qmd#assay), with the
+guidance on biomarker assays.
 
-### 3.4 Data
+**Gap.** Assay validation is written for the laboratory. Nothing is written
+for a modeler checking that the measured quantity is the one in the model:
+free against total drug in a target-mediated drug disposition model, or
+whether an anti-drug antibody assay's drug tolerance hides the patients whose
+clearance the model attributes to antibodies.
+
+### 3.5 Analysis Dataset
 
 **Asks.** Is the analysis dataset built from the right files and versions,
 are doses, times, missing values and values below the limit of
@@ -195,7 +233,25 @@ match the plan?
 specification: dosing records, event types, time since first dose, covariate
 merges. Errors here run cleanly through every later step.
 
-### 3.5 Code
+### 3.6 Sources and Prior Knowledge
+
+**Asks.** Does each claim drawn from a paper, a label or a regulatory review
+say what the source says, and does each parameter value or prior taken from
+the literature match its source and apply to this population?
+
+**Existing tools.**
+
+- The status markers this site's projects put on every entry of a
+  `references.qmd` (❌ not checked, ⚠️ transcribed and unverified, ✅
+  checked), shaped as in
+  [the TCE-IPDE references](../tce-ipde/references.qmd).
+- The [Reading Papers](../../guides/reading-papers.qmd) guide.
+
+**Gap.** The markers are a convention of this repository, not a tool someone
+else can pick up. There is no procedure for checking an agent's summary of a
+paper, which is where this check is most often skipped.
+
+### 3.7 Code
 
 **Asks.** Does the code compute what it claims to, can someone else read it,
 and does it run cleanly from the start?
@@ -214,7 +270,7 @@ and does it run cleanly from the start?
 [Validating Code Written by an AI Agent](agent-written-code.qmd) works out
 what changes when an agent is the author.
 
-### 3.6 Model
+### 3.8 Model
 
 **Asks.** Does the model describe the data, and are its parameters plausible?
 The usual diagnostics: goodness-of-fit plots, residuals (conditional
@@ -236,7 +292,7 @@ against physiology and published models.
 writing one for an agent, and the same text could serve a person. Plausibility
 against prior knowledge is the part least covered by any plot.
 
-### 3.7 Predictions
+### 3.9 Predictions
 
 **Asks.** Two questions. Is the uncertainty in a prediction stated,
 including the uncertainty from assumptions and not only from parameter
@@ -266,22 +322,22 @@ predictive performance counts. Writing that down is the gap. The
 uncertainty checklist also needs checking for extrapolation, to doses,
 populations or durations outside the data.
 
-### 3.8 Conclusions
+### 3.10 Conclusions
 
 **Asks.** Does the conclusion follow from the result? A model can be right
 and the claim drawn from it wrong, most often a causal claim from
-observational exposure-response data. Kind 2 sets up the causal diagram at
+observational exposure-response data. Kind 3 sets up the causal diagram at
 the start; this kind checks the final claims against it.
 
 **Existing tools.**
 
-- The causal diagram from kind 2, which a causal claim is checked against,
-  and the Causality Checklist that goes with it (3.2).
+- The causal diagram from kind 3, which a causal claim is checked against,
+  and the Causality Checklist that goes with it (3.3).
 
 **Gap.** To assess. Multiple comparisons and selective reporting are not
 obviously covered by anything listed here.
 
-### 3.9 Communication
+### 3.11 Communication
 
 **Asks.** Do the figures, slides and report show what the analysis found,
 with the uncertainty, and without overstating it?
@@ -297,7 +353,7 @@ with the uncertainty, and without overstating it?
 **Gap.** Nothing for a written report. This repository's writing guide does
 part of the job for an agent's drafts, and is not written for a reviewer.
 
-### 3.10 Reproducibility
+### 3.12 Reproducibility
 
 **Asks.** Can someone else rerun the analysis from its inputs and get the
 same numbers, and is there a record of what was checked, by whom?
@@ -313,7 +369,7 @@ same numbers, and is there a record of what was checked, by whom?
 session may be part of the record. Question 5 of
 [the agent-written code document](agent-written-code.qmd) asks which.
 
-### 3.11 Use
+### 3.13 Use
 
 **Asks.** Was the answer used for the decision it was meant to inform, and
 did the decision go the way the analysis said it should?
@@ -344,10 +400,10 @@ Then one row per kind from Section 3:
 | # | Kind | Applies? | Tool | Depth | Checked by | Done |
 |---|---|---|---|---|---|---|
 | 1 | Question | | | | | |
-| 2 | Causal assumptions | | | | | |
-| 3 | Sources | | | | | |
+| 2 | Study design | | | | | |
+| 3 | Causal assumptions | | | | | |
 | ... | | | | | | |
-| 11 | Use | | | | | |
+| 13 | Use | | | | | |
 
 : Validation plan, one row per kind {tbl-colwidths="[4,16,10,22,20,18,10]"}
 
@@ -361,26 +417,31 @@ be compared and an empty row is not read as a check that passed.
 Ranked by how often the gap is likely to let a wrong answer through, which
 is a judgment until Section 7 step 2 gives evidence.
 
-1. **Data assembly checklist** (3.4). Data errors pass every later check.
-2. **Model evaluation checklist** (3.6). Shared with the skills project.
-3. **A causal diagram as a standing step** (3.2). The checklist exists;
+1. **Data assembly checklist** (3.5). Data errors pass every later check.
+2. **Model evaluation checklist** (3.8). Shared with the skills project.
+3. **Whether a study already done can support the model** (3.2).
+4. **Whether the assay measures the model's quantity** (3.4).
+5. **A causal diagram as a standing step** (3.3). The checklist exists;
    the gap is that no plan asks for it, so confounding is considered only
    when someone thinks of it.
-4. **A benchmarking procedure** (3.7): which simple model, which held-out
+6. **A benchmarking procedure** (3.9): which simple model, which held-out
    data, what difference counts.
-5. **Checking claims against sources** (3.3), as a tool someone outside this
+7. **Work done by an agent** (3.7), already under way for code in
+   [its own document](agent-written-code.qmd). The taxonomy found studies
+   measuring how often AI-written PMX code fails, and no review procedure.
+8. **Checking claims against sources** (3.6), as a tool someone outside this
    repository can use, including on an agent's summaries.
-6. **Code written by an agent** (3.5), already under way in
-   [its own document](agent-written-code.qmd).
-7. **The question after the work, and its use** (3.1, 3.11).
-8. **Written reports** (3.9).
+9. **The question after the work, and its use** (3.1, 3.13).
+10. **Written reports** (3.11).
 
 ## 6. Open Questions
 
-1. **Is "validation" the right word for all eleven kinds?** Regulatory and
-   engineering usage separates verification (was it built right: kinds 4, 5
-   and 10) from validation (is it the right thing: kinds 1, 2, 6 and 11). The
-   taxonomy may read better in those terms.
+1. **Is "validation" the right word for all thirteen kinds?** Regulatory and
+   engineering usage separates verification (was it built right) from
+   validation (is it the right thing). The
+   [taxonomy](validation-taxonomy.qmd#the-taxonomy) marks kinds 5, 6, 7 and
+   12 as verification, assay (4) as both, and the rest as validation. Whether
+   the plan should use those terms is still open.
 2. **Does depth scale with the author?** For people it does: a senior
    associate's model gets a lighter review than an intern's. For an agent
    there is no track record per kind of task yet. The validation plans
@@ -389,15 +450,18 @@ is a judgment until Section 7 step 2 gives evidence.
    first may share its blind spots. Question 1 of
    [the agent-written code document](agent-written-code.qmd) asks the same
    for code; the question is wider here.
-4. **Are eleven kinds the right number?** Missing candidates include safety and
+4. **Are thirteen kinds the right number?** Study design and assay were added
+   on 2026-10-21. Missing candidates include safety and
    regulatory consistency (does the analysis agree with the label and with
    earlier submissions), and the author's understanding, which the
    internship's final presentation checks for a person.
-5. **What prior art covers this?** The ASME V&V 40 standard sets the depth
-   of credibility evidence for a computational model by its risk, the same
-   move as the Validation Checklist's planning section, and the ICH M15
-   guideline on model-informed drug development is reported to use a
-   similar framework for PMX models. Neither has been read here.
+5. **What prior art covers this?** The
+   [taxonomy](validation-taxonomy.qmd) lists it. The ASME V&V 40 standard
+   sets the depth of credibility evidence for a computational model by its
+   risk, the same move as the Validation Checklist's planning section, and
+   the ICH M15 guideline on model-informed drug development, final in
+   January 2026, uses a similar framework for PMX models. Neither has been
+   read here.
 6. **Does every model need a causal diagram?** A diagram for a
    population PK model, where the question is not causal, may be wasted
    time; a diagram for an exposure-response model usually is not. The
@@ -406,9 +470,9 @@ is a judgment until Section 7 step 2 gives evidence.
 
 ## 7. Steps
 
-1. Read ASME V&V 40 and ICH M15 against Section 3 and start a
-   `references.qmd`, shaped as the
-   [TCE-IPDE references](../tce-ipde/references.qmd).
+1. Read ASME V&V 40 and ICH M15 against Section 3, and mark them in the
+   [validation taxonomy](validation-taxonomy.qmd), which serves as this
+   project's reference list.
 2. Fill in a validation plan for one past activity, the
    [Model Based TDP worked comparison](../pmx-model-based-tdp/index.qmd),
    and one for the next internship project. Record what each check caught.

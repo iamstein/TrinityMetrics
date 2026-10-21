@@ -19,9 +19,13 @@ senior associate. Nothing is settled yet.
 
 ## Documents
 
-- [Working specification](specification.qmd). The taxonomy of eleven kinds of
+- [Working specification](specification.qmd). The taxonomy of thirteen kinds of
   validation, the tools and gaps for each, a validation plan template, the
   gaps ranked, and the open questions.
+- [Validation taxonomy](validation-taxonomy.qmd). Thirteen kinds of
+  validation, from study design and assays to the use of the answer, with the
+  guidances, papers, checklists and tools for each, and the software and
+  other fields PMX can borrow from.
 - [Validating code written by an AI agent](agent-written-code.qmd). The
   project's first specification, now one entry of the taxonomy: which parts
   of the existing validation checklist still apply when an agent writes all

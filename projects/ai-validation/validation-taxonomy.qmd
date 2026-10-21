@@ -1,0 +1,755 @@
+---
+title: "Validation Taxonomy"
+subtitle: "The kinds of validation a pharmacometrics activity needs, with the guidances, papers, checklists and tools for each"
+description: "A reference list for the ai-validation project: thirteen kinds of validation, from whether a study can answer the question to whether the answer was used, each with the pharmacometrics literature that covers it, plus the software and other fields PMX can borrow from."
+categories: [Pharmacometrics, references, working document]
+date: last-modified
+toc: true
+toc-depth: 2
+toc-location: left
+number-sections: false
+---
+
+::: {.callout-important appearance="simple"}
+**Started 2026-10-21. No claim on this page has been checked against its
+source.** Every entry is ❌. The one-line description on each comes from an
+abstract or a search result. Bibliographic details for entries carrying a
+link were confirmed by search on 2026-10-21; entries marked *citation not
+confirmed* are written from memory and need their details checked before they
+are cited anywhere else.
+:::
+
+This page is the reference list behind the
+[working specification](specification.qmd), and uses its thirteen kinds of
+validation and their numbers. Under each kind it lists what already exists.
+Pharmacometrics (PMX) is covered in depth. Software engineering is covered at
+the level of ideas to borrow. Medical devices, health
+economics, clinical prediction models and Bayesian statistics each have
+frameworks that PMX can learn from, and they get their own section.
+
+**Out of scope:** evaluating an AI model in general, such as benchmarks;
+computerized system validation in the regulatory sense, such as 21 CFR Part
+11; and the laboratory side of assay validation beyond what a modeler needs
+to know to trust the numbers.
+
+## Status Markers
+
+- ❌ **Not checked.** No claim drawn from this source has been verified
+  against it.
+- ⚠️ **Transcribed, unverified.** A number or a structure on this page came
+  from the source and has not been checked against it.
+- ✅ **Checked.** The description on this page has been verified against the
+  source.
+
+Change a marker when the check is done, not when the paper is opened.
+
+## Where to Start
+
+Seven sources, in reading order. The first three set the frame; the rest
+cover the kinds most often done badly.
+
+1. **ICH M15 (2026).** The harmonized framework for planning and assessing
+   model-informed drug development (MIDD) evidence, from question of interest
+   to model risk. It is the vocabulary regulators will now use.
+2. **Marshall et al. 2016, the MID3 good practices paper.** The industry
+   consensus on how MIDD work is planned, done and documented.
+3. **Musuamba et al. 2021.** How EMA regulators judge the credibility of a
+   mechanistic model, with a credibility matrix applied to three cases.
+4. **Nguyen et al. 2017.** The ISoP tutorial on model diagnostics for
+   continuous data, with each plot shown for a correct and a misspecified
+   model.
+5. **Bonate et al. 2012.** The one PMX paper on quality control of the data,
+   control streams and outputs, which is where checking the code and the
+   dataset is written down.
+6. **Overgaard et al. 2015**, read with **Dai et al. 2020.** Good practice for
+   exposure-response analysis, and the confounding that makes it hard for
+   monoclonal antibodies.
+7. **FDA draft guidance on AI for regulatory decision-making (2025).** A
+   seven-step credibility framework for AI models, the nearest thing to
+   guidance on validating work an AI produced.
+
+## The Taxonomy
+
+Thirteen kinds, grouped by what is being asked about. Validation and
+verification are used here in the engineering sense that ASME V&V 40 and the
+ISPOR-SMDM task force share: **verification** asks whether something was
+built right, and **validation** asks whether it is the right thing.
+
+| # | Kind | Asks | V or V |
+|---|---|---|---|
+| | **The question and the study** | | |
+| 1 | Question | Is this the right question for the decision? | Validation |
+| 2 | Study design | Can this nonclinical or clinical study answer the question? | Validation |
+| 3 | Causal assumptions | Could a confounder explain the relationship? | Validation |
+| | **The data** | | |
+| 4 | Assay | Does the assay measure what the model assumes, accurately enough? | Both |
+| 5 | Analysis dataset | Was the dataset built correctly from the right sources? | Verification |
+| 6 | Sources and prior knowledge | Does each claim and prior say what its source says? | Verification |
+| | **The analysis** | | |
+| 7 | Code | Do the model, plotting and simulation code compute what they claim? | Verification |
+| 8 | Model | Does the model describe the data, with plausible parameters? | Validation |
+| 9 | Predictions | Is the uncertainty stated, and does the model predict better than a simple one? | Validation |
+| | **The claims** | | |
+| 10 | Conclusions | Does the conclusion follow from the result? | Validation |
+| 11 | Communication | Do the figures and report show what was found, without overstating it? | Validation |
+| | **Afterwards** | | |
+| 12 | Reproducibility | Can someone else rerun it and get the same numbers? | Verification |
+| 13 | Use | Was the answer used for the decision it was meant for? | Validation |
+
+: Thirteen kinds of validation {tbl-colwidths="[4,20,60,16]"}
+
+A framework that spans all thirteen comes first, then one section per kind,
+each with the same three parts: what the kind asks, what exists, and the gap.
+
+## Credibility Frameworks That Span Every Kind
+
+These set how much validation an activity needs from the risk of the
+decision it informs. The move is the same in all of them: name the question
+and the context of use, judge how much the decision rests on the model and
+what a wrong answer costs, and scale the evidence to that.
+
+- ❌ **ICH M15, General principles for model-informed drug development.**
+  Step 4 on 29 January 2026; FDA guidance June 2026; in effect in the EU from
+  23 July 2026. Six elements: question of interest, context of use, model
+  influence, consequence of a wrong decision, model risk and model impact.
+  [EMA copy](https://www.ema.europa.eu/en/documents/scientific-guideline/ich-m15-guideline-general-principles-model-informed-drug-development-step-5_en.pdf).
+- ❌ **ASME V&V 40-2018**, Assessing credibility of computational modeling
+  through verification and validation: application to medical devices. The
+  origin of the risk-informed credibility framework the drug guidances
+  borrowed.
+- ❌ **Kuemmel et al. 2020**, Consideration of a credibility assessment
+  framework in model-informed drug development: potential application to
+  physiologically-based pharmacokinetic modeling and simulation. *CPT:
+  Pharmacometrics & Systems Pharmacology* 9:21–28.
+  [doi:10.1002/psp4.12479](https://doi.org/10.1002/psp4.12479). The FDA paper
+  that carried V&V 40 into drug development. It is the source of the
+  [Context of Use table](../../references/ContextOfUse_Table_1page.pdf).
+- ❌ **Musuamba et al. 2021**, Scientific and regulatory evaluation of
+  mechanistic in silico drug and disease models in drug development: building
+  model credibility. *CPT: PSP* 10:804–825.
+  [PMC8376137](https://pmc.ncbi.nlm.nih.gov/articles/PMC8376137/). EMA
+  Modelling and Simulation Working Party authors; a credibility matrix tried
+  on three cases.
+- ❌ **Marshall et al. 2016**, Good practices in model-informed drug discovery
+  and development: practice, application, and documentation. *CPT: PSP*
+  5:93–122. [doi:10.1002/psp4.12049](https://doi.org/10.1002/psp4.12049). The
+  EFPIA MID3 workgroup's white paper. A 2019 follow-up by Marshall et al.
+  surveyed industry, FDA and EMA staff on how well it matches practice.
+- ❌ **Erdemir et al. 2020**, Credible practice of modeling and simulation in
+  healthcare: ten rules from a multidisciplinary perspective. *J Transl Med*
+  18:369. [PMC7526418](https://pmc.ncbi.nlm.nih.gov/articles/PMC7526418/).
+  From the NIH Interagency Modeling and Analysis Group's committee; argues
+  that verification and validation alone are not credible practice.
+- ❌ **FDA draft guidance, January 2025**, Considerations for the use of
+  artificial intelligence to support regulatory decision-making for drug and
+  biological products.
+  [FDA page](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/considerations-use-artificial-intelligence-support-regulatory-decision-making-drug-and-biological).
+  Seven steps: question of interest, context of use, model risk, credibility
+  plan, execution, documentation, adequacy. Still a draft when last searched.
+  It is written for an AI model that produces evidence, not for an AI agent
+  doing the analyst's work, which is the case this project cares about.
+- ❌ **EMA reflection paper on the use of artificial intelligence in the
+  medicinal product lifecycle** (2024). *Citation not confirmed.*
+
+**Gap.** All of these scale the depth of evidence to the risk. None says
+which checks to run inside an analysis, which is what the sections below
+collect.
+
+## 1. Question
+
+**Asks.** Is this the right question for the decision, with a named person
+who will use the answer, and is the analysis sized to it?
+
+- ❌ [Context of Use table](../../references/ContextOfUse_Table_1page.pdf),
+  adapted from Kuemmel et al. 2020.
+- ❌ [Dose Finding Framework](https://ascpt.onlinelibrary.wiley.com/doi/epdf/10.1002/psp4.12701),
+  *CPT: PSP*.
+- ❌ ICH M15, the question of interest and context of use (above).
+- ❌ Gadkar et al. 2016 (under 8, Model), whose first two stages are project
+  needs and scope.
+
+**Gap.** Everything here is used before the work. Nothing checks at the end
+that the answer still answers the question asked at the start.
+
+## 2. Study Design
+
+**Asks.** Can the nonclinical or clinical study answer the question the
+analysis will put to it? For a model this means: are the doses spread widely
+enough to estimate a dose-response, are samples taken when the drug and the
+response are changing, are there enough subjects, and is the population the
+one the prediction is for?
+
+**Clinical study design.**
+
+- ❌ **ICH E8(R1)**, General considerations for clinical studies (2021),
+  which introduced quality by design and critical-to-quality factors.
+  *Citation not confirmed.*
+- ❌ **ICH E9** and **E9(R1)**, statistical principles for clinical trials
+  and the estimand framework (addendum 2019). E9(R1) asks what quantity a
+  trial is meant to estimate, which is the same question as the context of
+  use. *Citation not confirmed.*
+- ❌ **SPIRIT statement**, the checklist for clinical trial protocols (2013,
+  updated 2025). *Citation not confirmed.*
+- ❌ **FDA guidance, August 2024**, Optimizing the dosage of human prescription
+  drugs and biological products for the treatment of oncologic diseases
+  (Project Optimus).
+  [FDA page](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/optimizing-dosage-human-prescription-drugs-and-biological-products-treatment-oncologic-diseases).
+  Expects randomized comparison of more than one dose before registration.
+- ❌ **FDA guidance, April 2003**, Exposure-response relationships: study
+  design, data analysis, and regulatory applications.
+  [PDF](https://fda.gov/media/71277/download). Has a chapter on designing
+  a study so that exposure-response can be estimated. No revision was found.
+- ❌ **EMA guideline, 2017**, Strategies to identify and mitigate risks for
+  first-in-human and early clinical trials with investigational medicinal
+  products (EMEA/CHMP/SWP/28367/07 Rev. 1). Starting dose, escalation,
+  maximum dose and stopping rules.
+  [EMA news item](https://www.ema.europa.eu/el/news/revised-guideline-first-human-clinical-trials).
+
+**Nonclinical study design.**
+
+- ❌ **Percie du Sert et al. 2020**, The ARRIVE guidelines 2.0: updated
+  guidelines for reporting animal research. *PLoS Biol* 18:e3000410.
+  [PMC7360023](https://pmc.ncbi.nlm.nih.gov/articles/PMC7360023). The
+  "Essential 10" covers randomization, blinding and sample size, which decide
+  whether an animal PK/PD study can be modeled at all.
+- ❌ **ICH M3(R2)**, **S6(R1)** and **S9**, the nonclinical safety guidelines
+  for small molecules, biotechnology products and anticancer drugs, which set
+  what nonclinical studies exist to model. *Citation not confirmed.*
+
+**Design for modeling.**
+
+- ❌ **Nyberg et al. 2012**, PopED, the optimal design tool for nonlinear
+  mixed-effects models. *Comput Methods Programs Biomed*.
+  [doi:10.1016/j.cmpb.2012.05.005](https://doi.org/10.1016/j.cmpb.2012.05.005).
+  [CRAN](https://cran.r-project.org/package=PopED). Computes how well a
+  proposed design would estimate the model's parameters before the study runs.
+- ❌ **Holford et al. 2000**, Simulation of clinical trials. *Annu Rev
+  Pharmacol Toxicol* 40:209–234. *Citation not confirmed beyond a search
+  listing.*
+- ❌ This site's [Sizing Studies](../pmx-sizing-studies/index.qmd) project.
+
+**Gap.** The design literature optimizes a study or reports it. No PMX
+checklist asks, before an analysis starts, whether an existing study can
+support the model the analysis intends to fit: whether the dose range,
+sampling and sample size are enough for the parameters the decision rests on.
+PopED answers that quantitatively for a planned design, and is rarely run
+backwards on a study already done.
+
+## 3. Causal Assumptions
+
+**Asks.** What causes what in the system, and could a variable that affects
+both exposure and response explain the relationship the model estimates?
+
+- ❌ Causality Checklist and Guidance for PMX:
+  [PDF](../../files/causality-checklist.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1Hc3RoTJXS-PQCUm-rG_RCuEa3ykRj5FiAtqRwgSiX6M/edit).
+- ❌ [Causal diagrams for understanding when correlation doesn't imply causation](../../files/2021-10-12-causal-diagrams.pdf),
+  a 2021 talk.
+- ❌ **Rogers, Maas and Pérez Pitarch 2023**, An introduction to causal
+  inference for pharmacometricians. *CPT: PSP* 12:27–40.
+  [doi:10.1002/psp4.12894](https://doi.org/10.1002/psp4.12894). Potential
+  outcomes, the g-formula and directed acyclic graphs, with an example of
+  correlated covariates in a population PK model.
+- ❌ **Dai, Vugmeyster and Mangal 2020**, Characterizing exposure-response
+  relationship for therapeutic monoclonal antibodies in immuno-oncology and
+  beyond: challenges, perspectives, and prospects. *Clin Pharmacol Ther*
+  108:1156–1170.
+  [PMC7689749](https://pmc.ncbi.nlm.nih.gov/articles/PMC7689749/). Splits an
+  apparent exposure-response relationship into exposure-driven,
+  baseline-driven and response-driven parts, and reviews designs and analyses
+  that separate them.
+- ❌ **Sanghavi et al. 2024**, Covariate modeling in pharmacometrics: general
+  points for consideration. *CPT: PSP* 13:710–728.
+  [PMC11098153](https://pmc.ncbi.nlm.nih.gov/articles/PMC11098153). The ISoP
+  Standards & Best Practices Committee; states that a covariate-parameter
+  association does not by itself imply a causal relationship.
+- ❌ **Hernán and Robins**, *Causal Inference: What If* (2020), and their
+  target trial emulation paper (*Am J Epidemiol* 2016). From epidemiology.
+  *Citation not confirmed.*
+
+**Gap.** The tools exist and are not a step in any PMX plan. The
+specification's proposal stands: every validation plan carries a causal
+diagram or a sentence saying why the question needs none.
+
+## 4. Assay
+
+**Asks.** Does the assay measure what the model assumes it measures, such as
+free or total drug, active or total target, and is it accurate and precise
+enough across the range the analysis uses? How are values below the limit of
+quantification (BLQ) and anti-drug antibodies handled?
+
+**Drug concentration assays.**
+
+- ❌ **ICH M10**, Bioanalytical method validation and study sample analysis
+  (Step 4 May 2022; FDA copy updated January 2025).
+  [FDA copy](https://www.hhs.gov/guidance/sites/default/files/hhs-guidance-documents/FDA/50093493fnl_M10-Bioanalytical-Method-Validation-and-Study-Sample-Analysis_Jan-2025-update.pdf).
+  Chromatographic methods and ligand binding assays; excludes biomarkers and
+  immunogenicity. Replaced the 2011 EMA bioanalytical guideline.
+- ❌ **Beal 2001**, Ways to fit a PK model with some data below the
+  quantification limit. *J Pharmacokinet Pharmacodyn* 28:481–504.
+  [doi:10.1023/A:1012299115260](https://doi.org/10.1023/A:1012299115260).
+  The M1 to M7 methods; discarding or substituting BLQ values biases the fit,
+  and M3 treats them as censored.
+- ❌ **Ahn et al. 2008**, Likelihood based approaches to handling data below
+  the quantification limit using NONMEM VI. *J Pharmacokinet Pharmacodyn*.
+  *Citation not confirmed.*
+
+**Biomarker assays.**
+
+- ❌ **FDA guidance, January 2025**, Bioanalytical method validation for
+  biomarkers. [PDF](https://fda.gov/media/185276/download). Under three pages;
+  points to M10 as the starting point and asks for a fit-for-purpose
+  approach scaled to the context of use.
+- ❌ **Lee et al. 2006**, Fit-for-purpose method development and validation
+  for successful biomarker measurement. *Pharm Res* 23:312–328.
+  [doi:10.1007/s11095-005-9045-3](https://doi.org/10.1007/s11095-005-9045-3).
+  The founding paper for validating a biomarker assay to the rigor its use
+  needs.
+- ❌ **CLSI H62**, Validation of assays performed by flow cytometry (2021).
+  Relevant for cell counts such as B cells and T cells. *Citation not
+  confirmed.*
+
+**Immunogenicity assays.**
+
+- ❌ **FDA guidance, February 2019**, Immunogenicity testing of therapeutic
+  protein products: developing and validating assays for anti-drug antibody
+  detection.
+  [FDA page](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/immunogenicity-testing-therapeutic-protein-products-developing-and-validating-assays-anti-drug).
+  Screening, confirmatory, titer and neutralizing assays; drug tolerance,
+  which decides whether a patient with high drug levels can test ADA-positive
+  at all.
+- ❌ **Shankar et al. 2008**, recommendations for the validation of
+  immunoassays used for detection of host antibodies against biotechnology
+  products. *J Pharm Biomed Anal*. *Citation not confirmed.*
+
+**Gap.** The assay literature validates the measurement for the laboratory.
+None of it is written for a modeler checking that the measured quantity is
+the one in the model: free against total drug for a target-mediated drug
+disposition model, or whether an ADA assay's drug tolerance hides the
+patients whose clearance the model attributes to antibodies.
+
+## 5. Analysis Dataset
+
+**Asks.** Is the analysis dataset built from the right files and versions,
+are doses, times, missing values and BLQ values handled as intended, and do
+derived variables and exclusions match the plan?
+
+- ❌ **Bonate et al. 2012**, Guidelines for the quality control of population
+  pharmacokinetic-pharmacodynamic analyses: an industry perspective. *AAPS J*
+  14:749–758.
+  [PMC3475847](https://pmc.ncbi.nlm.nih.gov/articles/PMC3475847). Data
+  preparation, control streams, output, post-processing and report review;
+  notes that published papers rarely state any quality assurance.
+- ❌ **CDISC ADaM Population PK Implementation Guide (ADPPK) v1.0** (2023).
+  The standard structure for a population PK analysis dataset, with time
+  variables defined. Needs a free CDISC account.
+  [ISoP standards page](https://www.isop.org/resources/standards).
+- ❌ **ISoP PMx Data Programming Special Interest Group.**
+  [Page](https://www.isop.org/special-interest-groups/pmxsig).
+- ❌ **Cognigen posters on data assembly** (PAGE and ACoP, 2008 to 2010),
+  which found dose records the most common source of dataset errors and built
+  specification forms from that.
+  [2009 poster](https://www.simulations-plus.com/wp-content/uploads/201_poster81_page_poster_2009jun10.pdf) ·
+  [2010 forensic checks poster](https://www.simulations-plus.com/assets/213_poster92_PAGE_forensic_pmetrics_part1_2010jun08.pdf).
+- ❌ [NMdata](https://cran.r-project.org/package=NMdata), an R package that
+  checks a NONMEM dataset for consistency and traceability.
+- ❌ [admiral](https://pharmaverse.github.io/admiral/), the pharmaverse
+  package for building ADaM datasets, including the PK templates.
+- ❌ The [Validation Checklist](../../references/Validation_Checklist.pdf),
+  sections on importing and modifying data, and [xGx](http://opensource.nibr.com/xgx)
+  exploratory graphics, which show the data before any model sees it.
+
+**Gap.** Confirmed by the search. Bonate et al. and a set of posters are the
+PMX literature on checking a dataset. No published checklist checks an
+assembled dataset against its specification: dose records, event types, time
+since first dose, covariate merges.
+
+## 6. Sources and Prior Knowledge
+
+**Asks.** Does each claim drawn from a paper, a label or a regulatory review
+say what the source says, and is each prior or fixed parameter value traced
+to where it came from?
+
+- ❌ The status markers on this site's `references.qmd` pages, shaped as in
+  [the TCE-IPDE references](../tce-ipde/references.qmd), and the
+  [Reading Papers](../../guides/reading-papers.qmd) guide.
+- ❌ The [Uncertainty Assessment Pedigree Table](../../references/Uncertainty_Assessment_Pedigree_Table.pdf),
+  which grades each model input by the evidence behind it.
+- ❌ **PRISMA 2020**, the reporting guideline for systematic reviews (Page et
+  al., *BMJ* 2021), for a literature search that feeds a model-based
+  meta-analysis. *Citation not confirmed.*
+
+**Gap.** No PMX procedure for checking an agent's summary of a paper, or for
+tracing every fixed parameter in a QSP model to its source.
+
+## 7. Code
+
+**Asks.** Do the model code, the data-handling scripts, the plotting code and
+the simulation code compute what they claim to, and does the code run cleanly
+from the start?
+
+**Pharmacometrics.**
+
+- ❌ Validation Checklist for R code:
+  [PDF](../../references/Validation_Checklist.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1rXf7mfFpjg1EWafuMaT_Dw29pa-onqr--n2LRULrS1Q/edit),
+  written with Oliver Sander. Its planning section chooses the depth of review
+  from the risk: unit tests, spot checks, code review, rerunning step by
+  step, or independent reproduction.
+- ❌ R Coding Checklist:
+  [PDF](../../files/r-coding-checklist.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/17ec8YaARWZ6wppv3AfZCdaHfPwvOFUABXyXmENgHnpE/edit).
+- ❌ Bonate et al. 2012 (under 5), for control streams and output listings.
+- ❌ **Keizer, Karlsson and Hooker 2013**, Modeling and simulation workbench
+  for NONMEM: tutorial on Pirana, PsN, and Xpose. *CPT: PSP*. *Citation not
+  confirmed.*
+- ❌ **R Validation Hub**, A risk-based approach for assessing R package
+  accuracy within a validated infrastructure (white paper), and the
+  [riskmetric](https://pharmaverse.github.io/riskmetric/) package that came
+  from it. For whether the packages an analysis depends on can be trusted.
+  The white paper's author list differs between sources.
+- ❌ **PHUSE Good Programming Practice guidance**, and the practice of
+  independent double programming from clinical statistical programming:
+  a second programmer reproduces each output from the specification, and the
+  two are compared. Industry papers now argue for scaling it to risk.
+  [PHUSE GPP](https://advance.phuse.global/x/IAMF).
+
+**Code written by AI.**
+
+- ❌ A 2024 *J Pharmacokinet Pharmacodyn* study of ChatGPT and Gemini writing
+  NONMEM control streams: structural and syntax errors, and output that was
+  not reproducible between runs.
+  [doi:10.1007/s10928-024-09921-y](https://doi.org/10.1007/s10928-024-09921-y).
+- ❌ **PKGPT** (*Pharmaceutics* 18:501, 2026), an agent that runs NONMEM and
+  revises the control stream. Models converged on three public datasets but
+  missed established covariates and gave an implausible peripheral volume.
+  [MDPI](https://www.mdpi.com/1999-4923/18/4/501).
+- ❌ A 2026 medRxiv preprint on language-model-generated propofol PK
+  simulation code: accurate in most runs, silently wrong in a minority, and
+  so needing validation against a reference implementation.
+  [medRxiv](https://www.medrxiv.org/content/10.64898/2026.04.27.26351582v1.full.pdf).
+- ❌ [Validating Code Written by an AI Agent](agent-written-code.qmd), this
+  project's own document.
+
+**Gap.** Every PMX source assumes a person wrote the code and a second person
+reviews it. The three AI studies measure failure rates; none proposes a
+review procedure.
+
+## 8. Model
+
+**Asks.** Does the model describe the data, and are its parameters plausible?
+What counts as evidence depends on the kind of model, so the sources are
+grouped by kind.
+
+**Population PK and PK/PD models.**
+
+- ❌ **FDA guidance, February 2022**, Population pharmacokinetics.
+  [FDA page](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/population-pharmacokinetics).
+  Model evaluation and the content of a population PK report.
+- ❌ **EMA guideline, 2007**, Reporting the results of population
+  pharmacokinetic analyses.
+  [EMA page](https://www.ema.europa.eu/en/reporting-results-population-pharmacokinetic-analyses).
+- ❌ **Nguyen et al. 2017**, Model evaluation of continuous data
+  pharmacometric models: metrics and graphics. *CPT: PSP* 6:87–109.
+  [PMC5321813](https://pmc.ncbi.nlm.nih.gov/articles/PMC5321813). The ISoP
+  Model Evaluation Group's tutorial; each diagnostic shown for a correctly
+  specified and a misspecified model.
+- ❌ **Byon et al. 2013**, Establishing best practices and guidance in
+  population modeling: an experience with an internal population
+  pharmacokinetic analysis guidance. *CPT: PSP* 2:e51.
+  [PMC6483270](https://pmc.ncbi.nlm.nih.gov/articles/PMC6483270). Pfizer's
+  internal guidance and model-building workflow.
+- ❌ **Karlsson and Savic 2007**, Diagnosing model diagnostics. *Clin
+  Pharmacol Ther* 82:17–20. *Citation not confirmed.*
+- ❌ Residual and simulation diagnostics, each the founding paper for its
+  method. *Citations not confirmed.*
+  - Conditional weighted residuals (CWRES): Hooker, Staatz and Karlsson 2007,
+    *Pharm Res*.
+  - Normalized prediction distribution errors (NPDE): Brendel et al. 2006,
+    *Pharm Res*; the npde package, Comets et al. 2008.
+  - Prediction-corrected visual predictive checks (pcVPC): Bergstrand et al.
+    2011, *AAPS J*.
+  - Posterior predictive checks: Yano, Beal and Sheiner 2001, *J
+    Pharmacokinet Pharmacodyn*.
+  - Shrinkage, and when individual estimates mislead diagnostics: Savic and
+    Karlsson 2009, *AAPS J*.
+- ❌ **Sanghavi et al. 2024** (under 3), and **Hutmacher and Kowalski
+  2015**, Covariate selection in pharmacometric analyses: a review of
+  methods. *Br J Clin Pharmacol* 79:132–147.
+  [PMC4294083](https://pmc.ncbi.nlm.nih.gov/articles/PMC4294083). The
+  problems with stepwise selection; Ribbing and Jonsson 2004 (*J
+  Pharmacokinet Pharmacodyn*) on selection bias in covariate effects
+  (*citation not confirmed*).
+- ❌ Tools: [ggPMX](https://cran.r-project.org/package=ggPMX),
+  [xgxr](https://cran.r-project.org/package=xgxr), PsN and Xpose, and
+  [See-Value](https://www.see-value.com) for lineups, which hide the real
+  data's plot among plots simulated from the model.
+
+**Exposure-response models.**
+
+- ❌ **Overgaard, Ingwersen and Tornøe 2015**, Establishing good practices for
+  exposure-response analysis of clinical endpoints in drug development. *CPT:
+  PSP* 4:565–575.
+  [PMC4625861](https://pmc.ncbi.nlm.nih.gov/articles/PMC4625861). Planning,
+  conducting and showing an exposure-response analysis, tied to the question
+  each step answers.
+- ❌ FDA 2003 exposure-response guidance (under 2), and Dai et al. 2020
+  (under 3).
+
+**Quantitative systems pharmacology (QSP) models.**
+
+- ❌ **Gadkar et al. 2016**, A six-stage workflow for robust application of
+  systems pharmacology. *CPT: PSP* 5:235–249.
+  [PMC4879472](https://pmc.ncbi.nlm.nih.gov/articles/PMC4879472). Needs and
+  goals, scope, biology, behaviors, knowledge gaps and variability, design.
+- ❌ **Friedrich 2016**, A model qualification method for mechanistic
+  physiological QSP models to support model-informed drug development. *CPT:
+  PSP* 5:43–53.
+  [PMC4761232](https://pmc.ncbi.nlm.nih.gov/articles/PMC4761232). Argues that
+  the validation used for PK/PD models does not fit QSP models, and covers
+  scope, uncertainty, variability and comparison to data.
+- ❌ **Cucurull-Sanchez et al. 2019**, Best practices to maximize the use and
+  reuse of quantitative and systems pharmacology models: recommendations from
+  the United Kingdom quantitative and systems pharmacology network. *CPT: PSP*
+  8:259–272. [PMC6533407](https://pmc.ncbi.nlm.nih.gov/articles/PMC6533407/).
+- ❌ **Braakman, Pathmanathan and Moore 2022**, Evaluation framework for
+  systems models. *CPT: PSP* 11:264–289.
+  [PMC8923730](https://pmc.ncbi.nlm.nih.gov/articles/PMC8923730).
+  Sensitivity, identifiability, validation and uncertainty quantification,
+  with examples of the misleading results a poor choice of analysis gives.
+- ❌ **Sher et al. 2022**, A quantitative systems pharmacology perspective on
+  the importance of parameter identifiability. *Bull Math Biol* 84:39.
+  [PMC8821410](https://pmc.ncbi.nlm.nih.gov/articles/PMC8821410).
+- ❌ **Stein and Looby 2018**, Benchmarking QSP models against simple models:
+  a path to improved comprehension and predictive performance. *CPT: PSP*
+  7:487–489. [doi:10.1002/psp4.12311](https://doi.org/10.1002/psp4.12311).
+- ❌ **Stein, Kearns, Kim and Margolskee 2021**,
+  [Cheat sheet for model uncertainty assessment](https://zenodo.org/records/4409236),
+  version 1.2, Zenodo. Written with QSP models in mind; used at scoping and
+  again at the end of an activity.
+- ❌ Musuamba et al. 2021 (under the credibility frameworks).
+
+**Physiologically based PK (PBPK) models.**
+
+- ❌ **Shebley et al. 2018**, Physiologically based pharmacokinetic model
+  qualification and reporting procedures for regulatory submissions: a
+  consortium perspective. *Clin Pharmacol Ther* 104:88–110.
+  [PMC6032820](https://pmc.ncbi.nlm.nih.gov/articles/PMC6032820). Qualifying
+  the platform and the model, from the Simcyp Consortium.
+- ❌ **EMA guideline**, Reporting of physiologically based pharmacokinetic
+  (PBPK) modelling and simulation (2018).
+  [EMA page](https://www.ema.europa.eu/en/qualification-reporting-physiologically-based-pharmacokinetic-pbpk-modelling-simulation).
+  Covers platform qualification as well as reporting.
+- ❌ **FDA guidance, 2018**, Physiologically based pharmacokinetic analyses:
+  format and content. *Citation not confirmed.*
+- ❌ Kuemmel et al. 2020 (under the credibility frameworks).
+
+**Machine learning models.** See TRIPOD+AI and PROBAST under Other Fields.
+No PMX-specific evaluation standard was found.
+
+**Gap.** No written model evaluation checklist for population models; Nguyen
+et al. is the nearest, and it is a tutorial on plots. Plausibility against
+physiology and against published values is in every guideline's prose and in
+no checklist. The QSP literature has four frameworks and no agreement among
+them.
+
+## 9. Predictions
+
+**Asks.** Is the uncertainty in a prediction stated, including the
+uncertainty from assumptions and not only from parameter estimates? Is the
+prediction inside the range the data support? Does the model predict better
+than a simple one would?
+
+- ❌ [Cheat sheet for model uncertainty assessment](https://zenodo.org/records/4409236)
+  (under 8), with the
+  [Uncertainty Assessment Pedigree Table](../../references/Uncertainty_Assessment_Pedigree_Table.pdf)
+  and the
+  [Presentation on Managing Uncertainty](../../references/Uncertainty_Assessment_Presentation.pdf).
+- ❌ Stein and Looby 2018 (under 8), on benchmarking against a simple model.
+- ❌ **Dosne, Bergstrand, Harling and Karlsson 2016**, Improving the
+  estimation of parameter uncertainty distributions in nonlinear mixed
+  effects models using sampling importance resampling. *J Pharmacokinet
+  Pharmacodyn* 43:583–596.
+  [PMC5110709](https://pmc.ncbi.nlm.nih.gov/articles/PMC5110709/). Parameter
+  uncertainty where the covariance matrix and the bootstrap fail: small
+  datasets and nonlinear models.
+- ❌ **Holford et al. 1999**, Simulation in drug development: good practices,
+  a report from the Center for Drug Development Science. Cited widely; the
+  original web page may no longer resolve. *Citation not confirmed.*
+- ❌ **Gneiting and Raftery 2007**, Strictly proper scoring rules,
+  prediction, and estimation. *J Am Stat Assoc*. From statistics: how to
+  score a probabilistic prediction against what happened. *Citation not
+  confirmed.*
+
+**Gap.** Stein and Looby argue for benchmarking and do not give a procedure:
+which simple model, which held-out data, what difference in predictive
+performance counts. No PMX source covers checking an extrapolation to doses,
+populations or durations outside the data.
+
+## 10. Conclusions
+
+**Asks.** Does the conclusion follow from the result? A model can be right
+and the claim drawn from it wrong, most often a causal claim from
+observational exposure-response data, or a covariate effect read as a
+mechanism.
+
+- ❌ The causal sources under 3, used now to check the final claims against
+  the diagram drawn at the start.
+- ❌ Sanghavi et al. 2024 (under 3), on interpreting covariate effects.
+- ❌ ICH E9(R1) (under 2): a conclusion has to be about the estimand the study
+  was designed for.
+
+**Gap.** Multiple comparisons and selective reporting across models tried are
+not covered by any PMX source found.
+
+## 11. Communication
+
+**Asks.** Do the figures, slides and report show what the analysis found,
+with its uncertainty, and without overstating it?
+
+- ❌ [Graphics Principles Cheat Sheet](../../references/Graphics_Principles_Cheat_Sheet_v1.1.pdf)
+  and the
+  [Effective Visual Communication tutorial](https://ascpt.onlinelibrary.wiley.com/doi/full/10.1002/psp4.12455)
+  (*CPT: PSP*).
+- ❌ [Presentation Checklist](../../references/Presentation_Checklist_v2.03.pdf)
+  and the Presentation Evaluation Feedback Form:
+  [PDF](../../files/presentation-evaluation-form.pdf) ·
+  [Google Doc](https://docs.google.com/document/d/1K_lcsG6sClLQcd5sm_ezcvtD9ccmm0uM/edit).
+- ❌ **Dykstra et al. 2015**, Reporting guidelines for population
+  pharmacokinetic analyses. *J Pharmacokinet Pharmacodyn* 42:301–314.
+  [PMC4432104](https://pmc.ncbi.nlm.nih.gov/articles/PMC4432104/). Also
+  published in *J Clin Pharmacol*. Industry, consulting and FDA authors; the
+  report's two jobs are stating the findings and their effect on decisions,
+  and documenting the methods well enough for review and reuse.
+- ❌ EMA 2007 population PK reporting guideline and Marshall et al. 2016
+  (documentation), above.
+
+**Gap.** Reporting guidance exists for population PK. Nothing checks whether a
+slide or a summary overstates what the analysis found, which is the step an
+AI-written summary is most likely to get wrong.
+
+## 12. Reproducibility
+
+**Asks.** Can someone else rerun the analysis from its inputs and get the same
+numbers, and is there a record of what was checked and by whom?
+
+- ❌ The [Validation Checklist](../../references/Validation_Checklist.pdf),
+  overall section.
+- ❌ Cucurull-Sanchez et al. 2019 (under 8), on model reuse.
+- ❌ **Sandve et al. 2013**, Ten simple rules for reproducible computational
+  research. *PLoS Comput Biol*. *Citation not confirmed.*
+- ❌ **Wilkinson et al. 2016**, The FAIR guiding principles for scientific
+  data management and stewardship. *Sci Data*. *Citation not confirmed.*
+
+**Gap.** When an agent did the work, the prompts and the session may belong
+in the record. No source addresses that.
+
+## 13. Use
+
+**Asks.** Was the answer used for the decision it was meant to inform, and
+did the decision turn out the way the analysis said it would?
+
+- ❌ ICH M15's "model impact" element (above), which asks the question
+  prospectively.
+- ❌ The Marshall et al. 2019 follow-up to the MID3 paper, on how practice
+  matches the standard.
+
+**Gap.** No practice of following an analysis to its decision and back. The
+[PMX internship specification](../pmx-internship/specification.qmd) checks
+use three months after an internship, for one project.
+
+## Software Engineering
+
+Covered for ideas, not exhaustively. Each line is a practice PMX could borrow.
+
+- **Verification and validation as a discipline.** IEEE 1012, the standard
+  for system, software and hardware verification and validation; Oberkampf
+  and Roy, *Verification and Validation in Scientific Computing* (Cambridge,
+  2010), which separates code verification, solution verification and
+  validation against experiment. *Citations not confirmed.*
+- **Testing.** Unit tests for each function, regression tests that compare
+  output with a stored reference, and property-based tests that check a rule
+  holds over many generated inputs (concentrations never negative, mass
+  balanced). The propofol preprint above is an argument for reference tests.
+- **Code review.** A second person reads every change before it is merged,
+  as in the [Google engineering practices](https://google.github.io/eng-practices/)
+  guide. The PMX equivalent is the reviewer in the Validation Checklist.
+- **Independent reimplementation.** Double programming, above, and N-version
+  programming in safety-critical software: two teams build the same thing and
+  the outputs are compared.
+- **Continuous integration.** Every change runs the tests automatically, so a
+  broken check is found when it breaks.
+- **Pinned environments.** `renv`, containers and lock files, so a rerun uses
+  the same package versions. This site's frozen computation does the same job
+  for its pages.
+- **Good practice papers for scientists.** Wilson et al. 2014, Best practices
+  for scientific computing (*PLoS Biol*), and Wilson et al. 2017, Good enough
+  practices in scientific computing (*PLoS Comput Biol*). *Citations not
+  confirmed.*
+
+## Other Fields
+
+Frameworks from fields that validate models for decisions, each with what PMX
+could take from it.
+
+- **Medical devices.** ❌ ASME V&V 40-2018 (above), and ❌ the FDA guidance
+  Assessing the credibility of computational modeling and simulation in
+  medical device submissions (2023, *citation not confirmed*). The most
+  developed risk-based credibility framework; the drug frameworks are
+  adaptations of it.
+- **Health economics.** ❌ **Eddy et al. 2012**, Model transparency and
+  validation: a report of the ISPOR-SMDM Modeling Good Research Practices Task
+  Force-7. *Value Health* 15:843–850, also in *Med Decis Making*.
+  [ISPOR page](https://www.ispor.org/heor-resources/good-practices/article/model-transparency-and-validation).
+  Five kinds of validation: face validity, verification, cross validity,
+  external validity and predictive validity, the last two the strongest. A
+  ready-made taxonomy for kinds 7 to 9 here.
+- **Clinical prediction models.** ❌ **TRIPOD+AI** (Collins et al., *BMJ*
+  2024), the reporting guideline for prediction models including machine
+  learning, and ❌ **PROBAST** (Wolff et al., *Ann Intern Med* 2019), a tool
+  for judging the risk of bias in a prediction model study. The nearest
+  standards for an ML model in PMX. *Citations not confirmed.*
+- **Bayesian statistics.** ❌ **Gelman et al. 2020**, Bayesian workflow
+  (arXiv), and ❌ **Talts et al. 2018**, Validating Bayesian inference
+  algorithms with simulation-based calibration (arXiv). Prior predictive
+  checks, fake-data simulation to check that a fit recovers known parameters,
+  and posterior predictive checks. Fitting simulated data with known
+  parameters is a check for kind 7 that PMX rarely runs. *Citations not
+  confirmed.*
+- **Machine learning documentation.** ❌ Model cards (Mitchell et al. 2019)
+  and ❌ datasheets for datasets (Gebru et al. 2021): a standard one-page
+  record of what a model or dataset is for and where it fails. A model card
+  for a PMX model would be a short form of the Context of Use table plus the
+  validation plan. *Citations not confirmed.*
+- **Epidemiology.** Target trial emulation (under 3).
+- **Systematic reviews.** PRISMA 2020 (under 6).
+
+## Gaps Found
+
+The [specification's ranked gaps](specification.qmd#gaps-ranked) are built
+from this list. The search confirmed the specification's earlier gaps and added
+three.
+
+1. **Dataset assembly checklist** (5). Confirmed: one paper and some posters.
+2. **Model evaluation checklist** (8). Confirmed: a tutorial on plots, and
+   guideline prose.
+3. **Study fitness for the model** (2). New. Nothing asks whether an existing
+   study can support the model about to be fitted.
+4. **Assay fitness for the model** (4). New. Assays are validated for the
+   laboratory, not for whether they measure the model's quantity.
+5. **A causal diagram as a standing step** (3). The tools exist and no plan
+   asks for them.
+6. **A benchmarking procedure** (9).
+7. **Reviewing AI-written work** (7, 11). New in scope. Three studies measure
+   how often AI-written PMX code fails; the FDA AI draft covers AI models
+   that produce evidence; nothing covers an AI doing the analyst's work.
+8. **Checking claims against sources** (6), as a portable tool.
+
+## What Was Searched and Not Found
+
+- A revision of the 2003 FDA exposure-response guidance.
+- A final version of the January 2025 FDA AI draft guidance.
+- A second ISoP Model Evaluation Group tutorial, for discrete data.
+- Upreti and Venkatakrishnan's model-based meta-analysis (MBMA) paper (2019),
+  which was expected to cover MBMA good practice. MBMA has no section here
+  until a source is found.
