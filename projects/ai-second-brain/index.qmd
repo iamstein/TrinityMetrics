@@ -7,6 +7,12 @@ date: last-modified
 toc: false
 ---
 
+::: {.callout-important appearance="simple"}
+**Archived, 2026-10-22.** The second brain is set up, so this project is
+finished. The scope below is kept as it stood. The project is on the
+[archive page](../archive.qmd) rather than the [Projects page](../index.qmd).
+:::
+
 A second brain is a single store of notes, documents and code that an AI
 assistant can search and answer questions from, so that work already done is
 found again instead of redone. The first two sources to feed into it are the

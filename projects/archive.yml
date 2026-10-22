@@ -1,3 +1,12 @@
+- title: "Second Brain"
+  subtitle: "Finished"
+  description: >
+    Scoping an AI-searchable store of past work, fed first from Google Drive
+    and this site: which sources go in, which tool, and what questions it
+    should answer. The second brain is now set up.
+  categories: [GenAI]
+  path: ai-second-brain/index.qmd
+
 - title: "AI exposition"
   subtitle: "Set aside while the models move"
   description: >

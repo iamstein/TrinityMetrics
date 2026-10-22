@@ -123,15 +123,6 @@
   categories: [GenAI, Pharmacometrics, Draft]
   path: ai-validation/index.qmd
 
-- title: "Second Brain"
-  subtitle: "Working document"
-  description: >
-    A reminder to set up an AI-searchable store of past work, fed first from
-    Google Drive and this site, with the purpose still to scope: which
-    sources go in, which tool, and what questions it should answer.
-  categories: [GenAI, Draft]
-  path: ai-second-brain/index.qmd
-
 - title: "Pharmacometrics modeling skills"
   subtitle: "Working document"
   description: >
