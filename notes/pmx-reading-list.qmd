@@ -1,0 +1,48 @@
+---
+title: "Pharmacometrics Reading List"
+description: >
+  Papers in pharmacometrics to read, grouped by topic.
+categories: [Reading list, pharmacometrics]
+date: last-modified
+toc: true
+---
+
+Papers in pharmacometrics (PMX) to read, grouped by topic, each with a line on
+what it covers.
+
+## T-Cell Engagers
+
+- Chevalier, Zhang, Tolsma and Zager (2026).
+  [Synapse-based bispecific immune cell engager model predicts invariance in synapse behavior across different effector-to-tumor cell ratios](https://www.biorxiv.org/content/10.64898/2026.06.24.733437v1).
+  bioRxiv preprint, posted 29 June 2026, from Pfizer. An ordinary
+  differential equation model of trimer formation (CD3, bispecific antibody
+  and tumor antigen) within single synapses of one T cell and one target
+  cell, with binding in two dimensions. For a given free drug concentration,
+  the number of trimers per synapse does not change with the
+  effector-to-target (E:T) ratio, which well-mixed models such as the Betts
+  trimer model do not capture. The synapse model is then coupled to a tumor
+  growth inhibition model, with a threshold of trimers per synapse for
+  killing.
+- Irby, Hibma, Elmeliegy, Wang, Vandendries, Poels, Shtylla and Williams
+  (2025).
+  [A novel two-part mixture model for the incidence and time course of cytokine release syndrome after elranatamab dosing in multiple myeloma patients](https://doi.org/10.1002/cpt.3533).
+  *Clinical Pharmacology & Therapeutics* 117:1687–1695. Elranatamab is a
+  bispecific antibody against CD3 and B-cell maturation antigen (BCMA). The
+  first part of the model links the maximum concentration at the time of the first cytokine release syndrome
+  (CRS) event to the probability of having CRS at all. The second part is a
+  two-state Markov model (CRS or no CRS) for its time course, in which higher
+  exposure on day 1 raises the probability of CRS and premedication with
+  corticosteroids or IL-6 pathway inhibitors lowers it. The model explains the
+  differences between priming regimens.
+- Li, Tredennick, Polhamus and others (2026).
+  [Epcoritamab step-up dosing regimen selection and optimization using repeated time-to-event modeling for cytokine release syndrome risk mitigation](https://doi.org/10.1002/cpt.70362).
+  *Clinical Pharmacology & Therapeutics* 120:542–551. Epcoritamab is a
+  CD3 × CD20 bispecific antibody. Repeated time-to-event models of Grade ≥2
+  CRS, fitted to 600 patients with non-Hodgkin lymphoma from EPCORE NHL-1 and
+  NHL-3. Prior CAR T-cell therapy lowers the maximum effect of epcoritamab on
+  the CRS hazard, and intravenous fluids and dexamethasone in cycle 1 raise
+  the concentration needed for half that effect. Simulations support the
+  approved two step-up doses for large B-cell lymphoma and three for
+  follicular lymphoma. This site's
+  [TCE CRS tolerance](../projects/tce-crs-tolerance/index.qmd) project starts
+  from this model.

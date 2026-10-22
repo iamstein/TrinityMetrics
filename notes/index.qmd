@@ -106,6 +106,11 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [Five Practical Tips to Parenting, from a Quantitative Drug Developer](blog-posts/five-practical-tips-to-parenting.qmd).
   Andy Stein on uncertainty, variability and biomarkers in raising children.
 
+## Reading Lists
+
+- [Pharmacometrics Reading List](pmx-reading-list.qmd). Papers to read,
+  grouped by topic, starting with T-cell engagers.
+
 ## Articles
 
 - [Borrowing Strength](articles/borrowing-strength.qmd). Alex Kesin in Arena
