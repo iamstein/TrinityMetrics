@@ -46,3 +46,7 @@ power, with the Eastern ones, which ask for detachment. I am not sure I agree:
 Hinduism, for one, seems to be about living your dharma. But the pairing is
 interesting, and so is what surrender and detachment have in common and where
 they differ.
+
+Perhaps the difference is something like this:
+[Buddhism](../topics/buddhism.qmd) largely teaches relief from your own mind,
+where the Western religions teach a connection to something greater.
