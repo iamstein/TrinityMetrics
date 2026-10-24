@@ -61,6 +61,9 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
   basic goodness, and on bravery as facing yourself without deception.
 - [Way of the Peaceful Warrior](books/way-of-the-peaceful-warrior.qmd). Millman
   on training as a way of living, and on there being no ordinary moments.
+- [Will and Attention](books/will-and-attention.qmd). Meghan O'Gieblyn on
+  addiction as a desire to escape and a refusal to engage with life on its own
+  terms.
 
 ## Concepts
 

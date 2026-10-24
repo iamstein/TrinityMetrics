@@ -1,0 +1,18 @@
+---
+title: "Will and Attention"
+subtitle: "Meghan O'Gieblyn"
+description: >
+  Notes on O'Gieblyn's memoir of drinking, recovery and religion: addiction as
+  a desire to escape and a refusal to engage with life on its own terms.
+categories: [Book notes, attention, wisdom]
+date: last-modified
+toc: false
+---
+
+O'Gieblyn discusses the book with Russ Roberts in the
+[EconTalk episode](../podcasts/addiction-faith-and-the-limits-of-willpower.qmd).
+
+## Chapter 6
+
+Addiction comes with a desire to escape and a refusal to engage with life on
+its own terms.

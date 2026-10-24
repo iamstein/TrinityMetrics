@@ -18,10 +18,10 @@ EconTalk, 5 October 2026
 > --- Simone Weil
 
 Meghan O'Gieblyn takes the line from Weil as the starting point of her memoir
-*Will and Attention*, which she discusses with Russ Roberts. The book follows
-her drinking, her recovery and her loss of faith, and draws on Weil, William
-James and Iris Murdoch, who argue that the will is powerless over the things a
-person most wants to change.
+[*Will and Attention*](../books/will-and-attention.qmd), which she discusses
+with Russ Roberts. The book follows her drinking, her recovery and her loss of
+faith, and draws on Weil, William James and Iris Murdoch, who argue that the
+will is powerless over the things a person most wants to change.
 
 - **Attention as directed receptivity.** O'Gieblyn describes attention as
   observing without grasping, rather than as rigid focus.
