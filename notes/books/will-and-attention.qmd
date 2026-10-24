@@ -39,7 +39,7 @@ supreme act of self-assertion. In *The World as Will and Representation*
 (§69) he argues that it is no denial of the will: the person still wills life,
 and rejects only the conditions it has come with.
 
-## Surrender and Detachment
+### Surrender and Detachment
 
 O'Gieblyn contrasts the Western religions, which ask for surrender to a higher
 power, with the Eastern ones, which ask for detachment. I am not sure I agree:
@@ -50,3 +50,12 @@ they differ.
 Perhaps the difference is something like this:
 [Buddhism](../topics/buddhism.qmd) largely teaches relief from your own mind,
 where the Western religions teach a connection to something greater.
+
+The [Bhagavad Gita](worlds-religions.qmd) holds both halves. Krishna tells
+Arjuna to do his duty, his dharma, without attachment to its results, and also
+to surrender to Krishna. You follow your dharma and are not attached to the
+outcome.
+
+That raises the question of what you are detaching from, and how far. Is it
+being okay with any outcome? You could still want one outcome and be okay with
+any of them.
