@@ -1,0 +1,19 @@
+---
+title: "Books to Read"
+description: >
+  Books to read, each with a line on where it came from.
+categories: [Reading list]
+date: last-modified
+toc: false
+---
+
+Books to read, each with a line on where it came from.
+
+- Iris Murdoch, *The Sovereignty of Good* (1970). Moral philosophy built on
+  Weil's idea of attention, and on the Good as a transcendent ideal sensed but
+  hard to define. Came up in chapter 15 of
+  [Will and Attention](books/will-and-attention.qmd).
+- Meghan O'Gieblyn, *Interior States* (2018). Essays on faith, doubt and
+  leaving an evangelical upbringing.
+- Meghan O'Gieblyn, *God, Human, Animal, Machine* (2021). Technology, the
+  mind and meaning, read through the theology she grew up with.

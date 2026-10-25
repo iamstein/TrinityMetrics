@@ -111,6 +111,8 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 
 ## Reading Lists
 
+- [Books to Read](books-to-read.qmd). Books to read, starting with Iris
+  Murdoch and Meghan O'Gieblyn.
 - [Pharmacometrics Reading List](pmx-reading-list.qmd). Papers to read,
   grouped by topic, starting with T-cell engagers.
 
