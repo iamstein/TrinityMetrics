@@ -1,0 +1,70 @@
+---
+title: "The Three Boxes"
+subtitle: "Angela Duckworth's model of behaviour, extended to five boxes"
+description: >
+  Notes on Angela Duckworth's three boxes of situation, thought and response,
+  split here into five boxes, any one of which can be changed instead of
+  reacted to.
+categories: [Tool notes, wisdom]
+date: last-modified
+toc: false
+---
+
+Angela Duckworth describes the three boxes in her book *Situated* and in the
+interviews about it:
+
+- [Angela Duckworth: The Gritty Road to Growth](https://guykawasaki.com/angela-duckworth-the-gritty-road-to-growth/),
+  Remarkable People with Guy Kawasaki.
+- [Intrinsic Motivation Fuels Sustained High Performance](https://open.spotify.com/podcast-chapter/1hcPxbbBvxEFbCHwSoqMRN),
+  a chapter on Spotify.
+- [Get Situated for Success](https://www.radicalcandor.com/podcast/angela-duckworth-8-23),
+  Radical Candor, 1 September 2026.
+
+Duckworth draws all of human behaviour as three boxes joined by two arrows. Box
+one is the situation: the objective circumstances you are in, physical and
+social. Box two is what you think about the situation. Box three is the
+response, meaning what you feel and what you do. The arrows run left to right,
+so the situation shapes the thoughts and the thoughts shape the response.
+
+Duckworth argues in *Situated* that the situation box does the most work and is
+the one most often left alone. Willpower tries to force box three directly.
+Cognitive behavioural therapy (CBT) works on box two, by examining a thought and
+replacing it. Changing box one, by putting yourself in situations where the
+thoughts you want arrive without effort, is often easier than either. Her short
+form is "Change your situation, change your life."
+
+## The Five Boxes
+
+Splitting Duckworth's third box into emotion and action, and adding the
+response that comes back from the world, gives five boxes.
+
+1. **Situation.** The objective circumstances, described as a camera would
+   record them. The first question to ask of it is whether you want it to
+   change.
+2. **Thought.** The story you tell about the situation: what it means, whose
+   fault it is, and what it says about you.
+3. **Emotion.** What the thought produces: anger, shame, fear, relief or calm.
+4. **Action.** What you do, including what you say and what you decide not to
+   do.
+5. **Response.** What the action produces in the world, including how other
+   people respond to it. The response becomes part of the next situation, so
+   the five boxes close into a loop.
+
+## Changing Any of the Five Boxes
+
+Any of the five boxes can be changed on purpose. Reacting means letting each
+box follow from the one before it without stepping in.
+
+- **Situation.** Leave, change who is in the room, remove the trigger, or set up
+  the next situation in advance. This is the box Duckworth recommends changing
+  first.
+- **Thought.** Tell a different story about the same facts. This is where
+  changing the story happens, and it is the box that CBT and the defusion step
+  of [Acceptance and Commitment Therapy](../concepts/acceptance-and-commitment-therapy.qmd)
+  work on.
+- **Emotion.** Work on the feeling directly, with a slow breath, a walk, sleep,
+  or waiting before acting on it.
+- **Action.** Choose an action the emotion does not call for, such as asking a
+  question in place of defending yourself.
+- **Response.** Ask for the response you need, choose whose response to seek,
+  or decide how much weight to give the one that comes back.

@@ -80,6 +80,14 @@ are on the [Pharmacometrics Tools](../pmx-tools.qmd) page.
 - [Stories](concepts/stories.qmd). The seven basic plots, the hero's journey,
   and Cowen on the danger of a good story.
 
+## Tools
+
+- [Lessons from Pathways](tools/pathways-lessons.qmd). The running list of
+  lessons and ideas learned in Pathways, in Google Docs.
+- [The Three Boxes](tools/three-boxes.qmd). Angela Duckworth's situation,
+  thought and response, split into five boxes, any of which can be changed
+  instead of reacted to.
+
 ## People
 
 - [Carl Jung](people/jung.qmd). The Jung notes in Google Docs, and the notes on

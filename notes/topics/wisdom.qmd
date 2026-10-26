@@ -17,7 +17,8 @@ so a link may ask for permission.
 
 - [Meaning](https://docs.google.com/document/d/1obCwUCVge446D9lFzWqNcnzfZHodsHNpo4oeLJUwAzY/edit).
 - [Life Tools](https://docs.google.com/document/d/1AlO-yNI7kMpmUimRWsj_A7OtLqInG0NaHsCbxny2Izs/edit),
-  learned in Pathways.
+  learned in Pathways. Its page on this site is
+  [Lessons from Pathways](../tools/pathways-lessons.qmd).
 
 ## Book Notes
 
@@ -49,3 +50,6 @@ so a link may ask for permission.
   Daryl Zero in *Zero Effect* on why a search for one specific thing usually
   fails.
 - [Parenting](parenting.qmd).
+- [The Three Boxes](../tools/three-boxes.qmd). Angela Duckworth's situation,
+  thought and response, split into five boxes, any of which can be changed
+  instead of reacted to.

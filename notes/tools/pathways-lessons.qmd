@@ -1,0 +1,18 @@
+---
+title: "Lessons from Pathways"
+subtitle: "The lessons and ideas learned in Pathways, gathered in one list"
+description: >
+  A pointer to the Google Doc holding every lesson and idea learned in
+  Pathways, in one running list.
+categories: [Tool notes, wisdom]
+date: last-modified
+toc: false
+---
+
+[Life Tools](https://docs.google.com/document/d/1AlO-yNI7kMpmUimRWsj_A7OtLqInG0NaHsCbxny2Izs/edit)
+in Google Docs.
+
+The document is one running list of the lessons and ideas learned in Pathways.
+It is edited in Google Docs and nothing is copied here. A tool that needs more
+than a line, such as [The Three Boxes](three-boxes.qmd), gets its own page in
+this folder.
