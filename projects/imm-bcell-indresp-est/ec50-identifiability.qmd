@@ -116,7 +116,7 @@ The published values are in [references.qmd](references.qmd), entries 5 to 8,
 transcribed and not verified.
 
 ```{r setup}
-library(ggplot2); library(dplyr); library(tidyr); library(xgxr)
+library(ggplot2); library(dplyr); library(tidyr); library(xgxr); library(rxode2)
 set.seed(20260909); xgx_theme_set()
 knitr::opts_chunk$set(fig.height = 4, fig.width = 6.5)
 # Palette: the first three categorical slots of the reference palette in the
@@ -126,21 +126,30 @@ ramp5 <- c("#c6dbef", "#9ecae1", "#6baed6", "#3182bd", "#08519c")
 
 Emax <- 150; EC50 <- 1; kout <- 0.02; B0 <- 200; V <- 3; CL <- 0.2
 
-sim_B <- function(dose, Emax, EC50, kout, B0 = 200, times, dt = 0.1,
-                  form = "emax", S = NA, Cref = NA) {
-  ke <- CL / V
-  Cfun <- function(t) dose / V * exp(-ke * t)
-  eff <- if (form == "emax") function(C) Emax * C / (EC50 + C) else function(C) S * log1p(C / Cref)
-  # Exponential integrator: within each step the concentration is held at its
-  # midpoint value, so dB/dt = a - b B has the exact solution below. It is
-  # stable for any b * dt, which RK4 is not when Emax is in the thousands.
-  tgrid <- seq(0, max(times), by = dt); res <- numeric(length(tgrid)); B <- B0; res[1] <- B
-  a <- kout * B0
-  for (i in 2:length(tgrid)) {
-    b <- kout * (1 + eff(Cfun(tgrid[i - 1] + dt / 2)))
-    B <- a / b + (B - a / b) * exp(-b * dt); res[i] <- B
+# The model: one-compartment PK after an IV bolus into A, and B cells made at
+# kout * B0 and lost at kout * (1 + E(C)). slope = 1 swaps the Emax drug effect
+# for the log-linear slope form used in Section 8.
+bcell <- rxode2({
+  C <- A / V
+  if (slope == 1) {
+    E <- S * log(1 + C / Cref)
+  } else {
+    E <- Emax * C / (EC50 + C)
   }
-  approx(tgrid, res, xout = times)$y
+  d/dt(A) <- -CL / V * A
+  B(0) <- B0
+  d/dt(B) <- kout * B0 - kout * (1 + E) * B
+})
+
+# B-cell count at the requested times after a single dose. Tight tolerances,
+# because Sections 4 and 5 take finite differences of the output.
+sim_B <- function(dose, Emax, EC50, kout, B0 = 200, times,
+                  form = "emax", S = 0, Cref = 1) {
+  ev <- et(amt = dose, cmt = "A") %>% et(times)
+  p <- c(Emax = Emax, EC50 = EC50, kout = kout, B0 = B0, V = V, CL = CL,
+         slope = as.numeric(form == "slope"), S = S, Cref = Cref)
+  out <- rxSolve(bcell, p, ev, atol = 1e-12, rtol = 1e-10, returnType = "data.frame")
+  out$B[match(times, out$time)]
 }
 ```
 
@@ -417,7 +426,7 @@ on $k_{\rm out}$. Fitting the slope model and the $E_{\max}$ model to the same
 sparse data and predicting the duration across the studied dose range:
 
 ```{r trep, fig.cap="Time to repopulate to 20% of baseline against dose, from the true Emax model and from a log-linear slope model with its slope matched to the true initial slope. Inside the studied range the two agree; they part only below the lowest dose, where the slope model has no data to be wrong about."}
-trep <- function(dose, form = "emax", S = NA, Cref = NA) {
+trep <- function(dose, form = "emax", S = 0, Cref = 1) {
   tt <- seq(0, 500, by = 1)
   B <- sim_B(dose, Emax, EC50, kout, B0, times = tt, form = form, S = S, Cref = Cref)
   i <- which.min(B); j <- which(B[i:length(B)] >= 0.2 * B0)[1]; if (is.na(j)) NA else tt[i + j - 1]
