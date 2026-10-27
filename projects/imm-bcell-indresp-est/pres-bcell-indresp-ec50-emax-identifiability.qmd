@@ -1,0 +1,659 @@
+---
+title: "Why EC50 is hard to estimate for a B-cell depleting agent"
+subtitle: "Emax and EC50 identifiability in an indirect-response model"
+author: "Andy Stein"
+date: last-modified
+date-format: long
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    transition: none
+    incremental: false
+    smaller: true
+    scrollable: true
+    html-math-method: mathjax
+execute:
+  freeze: auto
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(ggplot2); library(dplyr); library(tidyr); library(xgxr); library(rxode2)
+library(patchwork)
+set.seed(20260909); xgx_theme_set()
+knitr::opts_chunk$set(fig.height = 4.5, fig.width = 9, fig.align = "center")
+pal3 <- c("#2a78d6", "#eb6834", "#1baf7a")
+ramp5 <- c("#c6dbef", "#9ecae1", "#6baed6", "#3182bd", "#08519c")
+
+# Same model, values and solver settings as ec50-identifiability.qmd
+Emax <- 150; EC50 <- 1; kout <- 0.02; B0 <- 200; V <- 3; CL <- 0.2
+ke <- CL / V; S0 <- Emax / EC50; f_loq <- 0.05
+
+bcell <- rxode2({
+  C <- A / V
+  if (slope == 1) {
+    E <- S * log(1 + C / Cref)
+  } else {
+    E <- Emax * C / (EC50 + C)
+  }
+  d/dt(A) <- -CL / V * A
+  B(0) <- B0
+  d/dt(B) <- kout * B0 - kout * (1 + E) * B
+})
+
+sim_B <- function(dose, Emax, EC50, kout, B0 = 200, times,
+                  form = "emax", S = 0, Cref = 1) {
+  ev <- et(amt = dose, cmt = "A") %>% et(times)
+  p <- c(Emax = Emax, EC50 = EC50, kout = kout, B0 = B0, V = V, CL = CL,
+         slope = as.numeric(form == "slope"), S = S, Cref = Cref)
+  out <- rxSolve(bcell, p, ev, atol = 1e-12, rtol = 1e-10, returnType = "data.frame")
+  out$B[match(times, out$time)]
+}
+
+panels <- c("First 3 days", "Days 0 to 300")
+pf <- function(x) factor(x, levels = panels)
+d_short <- seq(0, 3, by = 0.01); d_long <- seq(0, 300, by = 1)
+two_views <- function(dose, Emax, EC50) bind_rows(
+  data.frame(panel = panels[1], day = d_short, B = sim_B(dose, Emax, EC50, kout, B0, times = d_short)),
+  data.frame(panel = panels[2], day = d_long,  B = sim_B(dose, Emax, EC50, kout, B0, times = d_long))) %>%
+  mutate(panel = pf(panel))
+```
+
+## The question
+
+- Monoclonal antibodies that deplete B cells are modelled with an indirect
+  response: the drug raises the B-cell loss rate through
+  $E_{\max} C / (EC_{50} + C)$.
+- Published fits report $E_{\max}$ near 150, and then do one of three things
+  with $EC_{50}$:
+  - report it with a wide interval (paediatric rituximab: 13-fold CI)
+  - fix it from in vitro binding (ofatumumab's $K_D$, rituximab in
+    membranous nephropathy)
+  - give up on it and fit a slope (inebilizumab: "less than the assay lower
+    limit of quantitation")
+
+**Is $EC_{50}$ estimable at all, and if so, from what?**
+
+## The answer
+
+⚠️ **$EC_{50}$ is estimable only through $E_{\max}$, and $E_{\max}$ only from
+the first days of depletion, or from a cohort held in a narrow concentration
+band far below $EC_{50}$.**
+
+- Each part of the B-cell curve carries one parameter or one combination:
+  - the **tail** carries $k_{\rm out}$
+  - the **fall** carries $k_{\rm out}(1 + E_{\max})$
+  - the **climb back** carries the ratio $S_0 = E_{\max}/EC_{50}$
+- With a first sample at a week and doses that deplete below the limit, the
+  fall is gone, and $E_{\max}$ and $EC_{50}$ are identified only as their ratio.
+- **Fit the slope $S_0$** unless a study samples the first days.
+
+## Out of scope
+
+- ❌ **Target-mediated drug disposition.** The PK here is linear.
+- ❌ **Tissue B cells.** Only the circulating count is modelled, because only
+  it is measured.
+- ❌ **A dose recommendation for any named drug.** The published compounds are
+  sources of parameter values and of what happened when the model was fit.
+
+# The model
+
+## Indirect response, drug stimulates loss
+
+:::: {.columns}
+::: {.column width="45%"}
+
+$$
+\frac{dB}{dt} = k_{\rm out} B_0 - k_{\rm out}\big(1 + E(C)\big) B
+$$
+
+$$
+E(C) = \frac{E_{\max} C}{EC_{50} + C}
+$$
+
+$$
+C(t) = \frac{D}{V} e^{-k_e t}
+$$
+
+- Jusko's type IV indirect response (Dayneka, Garg and Jusko 1993)
+- One-compartment PK, intravenous bolus
+- Only $C/EC_{50}$ enters, so dose and $EC_{50}$ scale together
+
+:::
+::: {.column width="55%"}
+
+```{r model-diagram, fig.width=5, fig.height=4}
+ggplot() +
+  annotate("rect", xmin = c(0.7, 2.7), xmax = c(1.3, 3.3), ymin = 1.7, ymax = 2.3, fill = "grey88", colour = "grey40") +
+  annotate("text", x = c(1, 3), y = 2, label = c("C", "B"), size = 7) +
+  annotate("segment", x = c(1, 1, 3, 3), xend = c(1, 1, 3, 3), y = c(3, 1.7, 3, 1.7), yend = c(2.3, 1, 2.3, 1),
+           arrow = arrow(length = unit(2, "mm"))) +
+  annotate("text", x = c(1.08, 0.92, 3.08, 3.08), y = c(2.65, 1.35, 2.65, 1.35), hjust = c(0, 1, 0, 0),
+           size = 4, parse = TRUE, label = c("Dose", "k[e] == CL/V", "k[out]*B[0]", "k[out]*(1 + E(C))")) +
+  annotate("curve", x = 1.3, y = 1.85, xend = 2.95, yend = 1.3, linetype = 2, curvature = 0.25,
+           arrow = arrow(length = unit(2, "mm")), colour = "grey40") +
+  annotate("text", x = 1.9, y = 0.8, parse = TRUE, size = 4, label = "E(C) == frac(E[max]*C, EC[50] + C)") +
+  coord_cartesian(xlim = c(0, 4.6), ylim = c(0.5, 3.1)) + theme_void()
+```
+
+:::
+::::
+
+## Parameter values
+
+| Symbol | What it is | Value | Why |
+|:---|:---|:---|:---|
+| $B_0$ | Baseline B-cell count | 200 cells/µL | Ofatumumab model 194, inebilizumab 135 |
+| $k_{\rm out}$ | B-cell loss rate | 0.02 per day | Half-life 35 d; ofatumumab 0.0124/d |
+| $E_{\max}$ | Maximum fold-increase in loss | 150 | Ofatumumab 159, paediatric rituximab 155 |
+| $EC_{50}$ | Concentration for half of $E_{\max}$ | 1 mg/L | Arbitrary scale |
+| $V$, $CL$ | Volume, clearance | 3 L, 0.2 L/day | Half-life 10.4 d, an IgG1 |
+| LOQ | Flow-cytometry limit | 5 or 10 cells/µL | 2.5% or 5% of baseline |
+| $\sigma$ | Proportional residual error | 30% | Inebilizumab model 61% |
+
+Published values are transcribed from the papers and not yet checked by eye.
+
+# Which part of the curve carries which parameter
+
+## Five parts of the curve
+
+```{r five-parts}
+t_half_fall <- log(2) / (kout * (1 + Emax)); B_floor <- B0 / (1 + Emax)
+t_f <- log(f_loq * S0 * 100 / (1 - f_loq)) / ke
+cur <- two_views(300, Emax, EC50)
+labB <- data.frame(panel = pf(panels[c(1, 1, 1, 2, 2)]),
+  day = c(0.12, t_half_fall + 0.12, 1.2, t_f + 8, 190), B = c(230, 100, B_floor * 0.7, 7, 120),
+  lab = c('"1  baseline:"~B[0]', '"2  fall: rate"~k[out]*(1+E[max])', '"3  floor:"~B[0]/(1+E[max])',
+          '"4  climb back:"~E[max]/EC[50]', '"5  tail: rate"~k[out]'))
+ggplot(cur, aes(day, B)) +
+  geom_hline(yintercept = f_loq * B0, linetype = 2, colour = "grey50") +
+  geom_hline(data = data.frame(panel = pf(panels[1])), aes(yintercept = B_floor), linetype = 3, colour = "grey50") +
+  geom_line(linewidth = 0.9, colour = pal3[1]) +
+  geom_point(data = data.frame(panel = pf(panels), day = c(t_half_fall, t_f), B = c(B0 / 2, f_loq * B0)),
+             size = 2.8, colour = pal3[2]) +
+  geom_text(data = labB, aes(label = lab), parse = TRUE, hjust = 0, size = 3.6) +
+  scale_y_log10(breaks = c(1, 10, 100), limits = c(0.8, 300)) +
+  facet_wrap(~ panel, scales = "free_x") +
+  labs(x = "Day", y = "B cells per µL, log scale")
+```
+
+Single dose with $C_{\max} = 100 \times EC_{50}$. Dashed line: limit of
+quantification at 5% of baseline.
+
+## Two rates decide the shape
+
+$$
+\frac{d \ln B}{dt} = k_{\rm out} \left( \frac{B_0}{B} - 1 - E(C) \right)
+$$
+
+- $B$ is pulled toward $B_{\rm qss} = B_0 / (1 + E(C))$ at rate
+  $k_{\rm out}(1 + E(C))$.
+- The drug falls at rate $k_e$.
+
+| | $k_{\rm out}(1+E)$ | Compared with $k_e = 0.067$/day | So $B$ |
+|:---|:---|:---|:---|
+| Start, $E = E_{\max}$ | 3.0 per day | 45 times faster | follows the drug |
+| End, $E = 0$ | 0.02 per day | 0.3 times as fast | lags, returns at its own pace |
+
+**The curve starts fast and ends slow, so its parts separate.**
+
+## The fall carries $k_{\rm out}(1 + E_{\max})$
+
+For $t \ll 1/k_e$ the concentration is still near $C_{\max}$, so the equation
+is linear with constant coefficient:
+
+$$
+B(t) = B_{\rm ss} + (B_0 - B_{\rm ss})\, e^{-k_f t},
+\qquad k_f = k_{\rm out}\big(1 + E(C_{\max})\big)
+$$
+
+$$
+t_{1/2,\rm fall} \approx \frac{\ln 2}{k_{\rm out}(1 + E_{\max})}
+\quad \text{for } C_{\max} \gg EC_{50}
+$$
+
+- Here: 0.23 days, five and a half hours. Over by day 1.5.
+- $EC_{50}$ enters only through $E(C_{\max}) = E_{\max}/(1 + EC_{50}/C_{\max})$,
+  a 1% correction at $C_{\max} = 100 \times EC_{50}$.
+- **This is the only place $E_{\max}$ appears without $EC_{50}$ beside it**,
+  and it is over before a weekly sample arrives.
+
+## The floor carries $E_{\max}$, below the limit
+
+After the fall, $B$ tracks the quasi-steady state:
+
+$$
+B(t) \approx \frac{B_0}{1 + E\big(C(t)\big)} \approx \frac{B_0}{1 + E_{\max}}
+\quad \text{while } C \gg EC_{50}
+$$
+
+- Here: 1.3 cells/µL.
+- Above a limit at fraction $f$ of baseline only if $E_{\max} < 1/f - 1$:
+  below 19 for a 5% limit, below 39 for 2.5%.
+- **The two published models that estimate $E_{\max}$ put it near 155**, so
+  the floor is censored.
+
+## The climb back carries $E_{\max}/EC_{50}$
+
+The count crosses $f B_0$ when $E(C) = (1 - f)/f$. With
+$C = C_{\max} e^{-k_e t}$:
+
+$$
+t_f = \underbrace{\frac{1}{k_e} \ln \frac{f\, S_0\, C_{\max}}{1 - f}}_{S_0 \text{ only}}
++ \underbrace{\frac{1}{k_e} \ln\left(1 - \frac{1 - f}{f E_{\max}}\right)}_{E_{\max} \text{ alone}}
+$$
+
+- The second term is all the separate information on $E_{\max}$ that the
+  recovery holds.
+- At $f = 0.05$: $-2.0$ days for $E_{\max} = 150$, $-7.2$ days for 50, $-0.6$
+  days for 450.
+- **A few days on a crossing near day 100**, read through 30% error from
+  monthly samples.
+
+## Across doses: Levy's dose-duration line
+
+```{r climb-back}
+t_climb <- function(dose, Emax, EC50) {
+  tt <- seq(0, 600, by = 0.5); B <- sim_B(dose, Emax, EC50, kout, B0, times = tt)
+  i <- which.min(B); if (B[i] >= f_loq * B0) return(NA)
+  tt[i - 1 + which(B[i:length(B)] >= f_loq * B0)[1]]
+}
+sets <- data.frame(Emax = c(50, 150, 450, 150), EC50 = c(1/3, 1, 3, 10))
+sets$set <- sprintf("Emax %g, EC50 %.2g", sets$Emax, sets$EC50)
+sets$S0 <- sprintf("Emax/EC50 = %g", sets$Emax / sets$EC50)
+cc <- 10^seq(-0.5, 3, by = 0.25)
+climb <- bind_rows(lapply(seq_len(nrow(sets)), function(k)
+  data.frame(sets[k, ], cmax = cc, t = sapply(cc * V, t_climb, Emax = sets$Emax[k], EC50 = sets$EC50[k]))))
+climb$set <- factor(climb$set, levels = sets$set)
+lines_C <- bind_rows(lapply(unique(sets$Emax / sets$EC50), function(s0)
+  data.frame(S0 = sprintf("Emax/EC50 = %g", s0), cmax = cc, t = log(f_loq * s0 * cc / (1 - f_loq)) / ke))) %>%
+  filter(t > 0)
+ggplot(climb, aes(cmax, t, colour = S0)) +
+  geom_line(data = lines_C, linewidth = 0.9) +
+  geom_point(aes(shape = set), size = 2.5) +
+  scale_colour_manual(values = pal3[1:2], name = NULL) +
+  scale_shape_manual(values = c(1, 16, 2, 15), name = NULL) +
+  scale_x_log10() +
+  labs(x = "Cmax, mg/L, log scale", y = "Day the count climbs above 5%")
+```
+
+- Slope $1/k_e$: each ten-fold dose adds $\ln 10/k_e = 34.5$ days, 3.3 PK
+  half-lives, whatever $E_{\max}$ and $EC_{50}$ are.
+- **Three sets with the same ratio fall on one line.** Levy (1966) gave this
+  line for direct effects; the quasi-steady state makes it hold here.
+
+## The tail carries $k_{\rm out}$; low doses carry $S_0$
+
+**Tail.** Once $S_0 C \ll 1$, the model is $dB/dt = k_{\rm out}(B_0 - B)$:
+
+$$
+B_0 - B(t) \propto e^{-k_{\rm out} t} \qquad \text{(needs } k_{\rm out} < k_e\text{)}
+$$
+
+**Doses that stay below $EC_{50}$.** $E(C) \approx S_0 C$ for the whole curve,
+so the model holds $E_{\max}$ and $EC_{50}$ only as their ratio. For shallow
+depletion:
+
+$$
+\varepsilon_{\max} = 1 - \frac{B_{\min}}{B_0} = S_0 C_{\max} \left(\frac{k_{\rm out}}{k_e}\right)^{k_e/(k_e - k_{\rm out})}
+$$
+
+- **A low-dose cohort informs the slope, not its two factors.**
+
+## Each formula against the ODE solution
+
+```{r feature-check}
+set.seed(2)
+n_chk <- 40
+ps <- data.frame(Emax = exp(runif(n_chk, log(30), log(1000))), EC50 = exp(runif(n_chk, log(0.1), log(10))),
+                 kout = exp(runif(n_chk, log(0.005), log(0.04))), r = exp(runif(n_chk, log(30), log(1000))),
+                 r_low = exp(runif(n_chk, log(0.003), log(0.1))))
+chk <- bind_rows(lapply(seq_len(n_chk), function(i) with(ps[i, ], {
+  s0 <- Emax / EC50; cmax <- r * EC50
+  tf <- seq(0, 10, by = 0.002); Bf <- sim_B(cmax * V, Emax, EC50, kout, B0, times = tf)
+  tt <- seq(0, 1500, by = 0.25); B <- sim_B(cmax * V, Emax, EC50, kout, B0, times = tt)
+  i0 <- which.min(B)
+  t1 <- log(s0 * cmax / 1e-3) / ke; w <- tt >= t1 & tt <= t1 + 60
+  c_low <- r_low / s0; B_low <- sim_B(c_low * V, Emax, EC50, kout, B0, times = seq(0, 600, by = 0.25))
+  data.frame(feature = c("Fall, days", "Floor, cells/µL", "Climb back, day", "Tail rate, per day", "Low-dose nadir depth"),
+    ode = c(tf[which(Bf <= B0 / 2)[1]], min(B), tt[i0 - 1 + which(B[i0:length(B)] >= f_loq * B0)[1]],
+            -unname(coef(lm(log(B0 - B[w]) ~ tt[w]))[2]), 1 - min(B_low) / B0),
+    formula = c(log(2) / (kout * (1 + Emax)), B0 / (1 + Emax), log(f_loq * s0 * cmax / (1 - f_loq)) / ke,
+                kout, s0 * c_low * (kout / ke)^(ke / (ke - kout))))
+})))
+chk$feature <- factor(chk$feature, levels = unique(chk$feature))
+ggplot(chk, aes(formula, ode)) +
+  geom_abline(colour = "grey60") +
+  geom_point(colour = pal3[1], size = 1.8) +
+  scale_x_log10() + scale_y_log10() +
+  facet_wrap(~ feature, scales = "free", nrow = 2) +
+  labs(x = "Formula", y = "Measured on the ODE")
+```
+
+Forty random parameter sets: $E_{\max}$ 30 to 1000, $EC_{50}$ 0.1 to 10,
+$k_{\rm out}$ 0.005 to 0.04 per day. Largest misses are where $C_{\max}$ is
+only 30 × $EC_{50}$ or $k_{\rm out}$ is small.
+
+## What is identifiable and what is not
+
+| Part of the curve | Carries | Observed when | Usual B-cell study |
+|:---|:---|:---|:---|
+| Baseline | $B_0$ | always | ✅ |
+| Fall | $k_{\rm out}(1 + E_{\max})$ | samples in the first one to two days | ❌ first sample at a week |
+| Floor | $E_{\max}$ | $E_{\max} < 1/f - 1$ | ❌ below the limit |
+| Climb back | $S_0$, plus a few-day $E_{\max}$ term | samples through recovery, PK known | ✅ |
+| Tail | $k_{\rm out}$ | samples until repopulation | ✅ |
+| Low-dose cohort | $S_0$, $k_{\rm out}$ | $C_{\max} \ll EC_{50}$ | ✅ but adds no $E_{\max}$ |
+
+- ✅ **Always:** $B_0$, $k_{\rm out}$, $S_0 = E_{\max}/EC_{50}$
+- ⚠️ **$E_{\max}$:** only from the fall, or a floor above the limit
+- ❌ **$EC_{50}$ alone:** from no part of the curve; identified exactly when
+  $E_{\max}$ is
+
+The model is structurally identifiable. **The loss is practical**, caused by
+the quantification limit and the sampling schedule.
+
+## Same ratio, same curve above the limit
+
+```{r same-slope}
+same <- bind_rows(lapply(1:3, function(k)
+  two_views(300, sets$Emax[k], sets$EC50[k]) %>% mutate(set = sets$set[k])))
+same$set <- factor(same$set, levels = sets$set[1:3])
+ggplot(same, aes(day, B, colour = set)) +
+  geom_hline(yintercept = f_loq * B0, linetype = 2, colour = "grey50") +
+  geom_line(linewidth = 0.9) +
+  scale_colour_manual(values = pal3, name = NULL) +
+  scale_y_log10(breaks = c(1, 10, 100), limits = c(0.3, 300)) +
+  facet_wrap(~ panel, scales = "free_x") +
+  labs(x = "Day", y = "B cells per µL, log scale") +
+  theme(legend.position = "bottom")
+```
+
+Three-fold differences in $E_{\max}$ and $EC_{50}$ at fixed ratio. **Above the
+limit the curves differ in the first two days and nowhere else.**
+
+# Why a large Emax makes it worse
+
+## Half-maximal depletion is far below EC50
+
+:::: {.columns}
+::: {.column width="40%"}
+
+$$
+\frac{B_{ss}}{B_0} = \frac{1}{1 + E(C)}
+$$
+
+Half of baseline needs $E = 1$:
+
+$$
+C_{1/2} = \frac{EC_{50}}{E_{\max} - 1}
+$$
+
+- $E_{\max} = 150$: $C_{1/2} = EC_{50}/149$
+- At $C = EC_{50}$ the count is already 1.3% of baseline
+- **The quantifiable band is about $EC_{50}/1500$ to $EC_{50}/15$**, below
+  every therapeutic dose
+
+:::
+::: {.column width="60%"}
+
+```{r depletion-curve, fig.width=5.5, fig.height=4.2}
+cc2 <- 10^seq(-4, 2, length.out = 300)
+dep <- bind_rows(lapply(c(1, 10, 150), function(em)
+  data.frame(Emax = em, C = cc2, frac = 1 / (1 + em * cc2 / (1 + cc2)))))
+dep$Emax <- factor(paste("Emax =", dep$Emax), levels = paste("Emax =", c(1, 10, 150)))
+ggplot(dep, aes(C, 100 * frac, colour = Emax)) +
+  geom_vline(xintercept = 1, linetype = 2, colour = "grey50") +
+  geom_hline(yintercept = 5, linetype = 3, colour = "grey50") +
+  geom_line(linewidth = 0.9) +
+  scale_colour_manual(values = pal3, name = NULL) +
+  scale_x_log10(breaks = 10^(-4:2), labels = c("0.0001", "0.001", "0.01", "0.1", "1", "10", "100")) +
+  annotate("text", x = 1, y = 95, label = "EC50", hjust = -0.1, size = 3.5, colour = "grey40") +
+  annotate("text", x = 1e-4, y = 5, label = "5% LOQ", hjust = 0, vjust = -0.4, size = 3.5, colour = "grey40") +
+  labs(x = "Concentration / EC50, log scale", y = "Steady-state B cells, % of baseline") +
+  theme(legend.position = "bottom")
+```
+
+:::
+::::
+
+# What a study sees
+
+## Five single doses a ten-fold apart
+
+```{r profiles}
+tt <- seq(0, 336, by = 2)
+doses <- c(0.03, 0.3, 3, 30, 300)
+prof <- bind_rows(lapply(doses, function(d)
+  data.frame(dose = d, cmax = d / V, day = tt, B = sim_B(d, Emax, EC50, kout, B0, times = tt))))
+prof$label <- factor(sprintf("%g", prof$cmax), levels = sprintf("%g", doses / V))
+ggplot(prof, aes(day, B, colour = label)) +
+  geom_hline(yintercept = 10, linetype = 2, colour = "grey50") +
+  geom_line(linewidth = 0.9) +
+  scale_colour_manual(values = ramp5, name = "Cmax / EC50") +
+  scale_y_log10(breaks = c(1, 10, 100), limits = c(0.5, 300)) +
+  labs(x = "Day", y = "B cells per µL, log scale") +
+  theme(legend.position = "right")
+```
+
+- From 1 to 100 × $EC_{50}$: same fall, same floor, all below the limit for
+  two months. **Only the start of recovery differs**, by 34.5 days per
+  ten-fold.
+- The only curve quantifiable throughout is at 0.01 × $EC_{50}$, in the
+  linear range, where it carries $S_0$.
+
+## Where the information lives: sensitivities
+
+```{r sens}
+tt <- seq(0, 336, by = 1); h <- 1e-4
+f0 <- sim_B(300, Emax, EC50, kout, B0, times = tt)
+sens <- data.frame(day = tt,
+  Emax = (log(sim_B(300, Emax * exp(h), EC50, kout, B0, times = tt)) - log(f0)) / h,
+  EC50 = (log(sim_B(300, Emax, EC50 * exp(h), kout, B0, times = tt)) - log(f0)) / h,
+  kout = (log(sim_B(300, Emax, EC50, kout * exp(h), B0, times = tt)) - log(f0)) / h,
+  B = f0)
+blq <- range(sens$day[sens$B < 0.05 * B0])
+sl <- pivot_longer(sens, c(Emax, EC50, kout), names_to = "parameter", values_to = "s")
+sl$parameter <- factor(sl$parameter, levels = c("Emax", "EC50", "kout"))
+ggplot(sl, aes(day, s, colour = parameter)) +
+  annotate("rect", xmin = blq[1], xmax = blq[2], ymin = -Inf, ymax = Inf, alpha = 0.08, fill = "grey30") +
+  geom_hline(yintercept = 0, colour = "grey60") +
+  geom_line(linewidth = 0.9) +
+  scale_colour_manual(values = pal3, name = NULL) +
+  labs(x = "Day", y = "d log B / d log parameter") +
+  theme(legend.position = "right")
+```
+
+- **Days 0 to 3:** $E_{\max}$ and $k_{\rm out}$ equal, $EC_{50}$ near zero.
+- **Days 4 to 80** (shaded): below the limit, no information.
+- **Days 80 to 200:** $E_{\max}$ and $EC_{50}$ equal and opposite: only the
+  ratio. $k_{\rm out}$ is last standing in the tail.
+
+## Expected precision by design
+
+```{r fim}
+t_dense  <- c(0, 1, 3, 7, 14, 28, 56, 84, 112, 140, 168, 224, 280, 336)
+t_sparse <- c(0, 7, 14, 28, 56, 84, 112, 140, 168, 224, 280, 336)
+fim_design <- function(doses_n, loq, sigma = 0.3, times) {
+  th <- log(c(Emax, EC50, kout, B0)); J <- NULL
+  for (k in seq_along(doses_n$dose)) {
+    d <- doses_n$dose[k]; n <- doses_n$n[k]
+    f0 <- sim_B(d, Emax, EC50, kout, B0, times = times); keep <- f0 >= loq
+    Jd <- sapply(1:4, function(j) { h <- 1e-4; th2 <- th; th2[j] <- th2[j] + h; p <- exp(th2)
+      (log(sim_B(d, p[1], p[2], p[3], p[4], times = times)) - log(f0)) / h })
+    J <- rbind(J, sqrt(n) * Jd[keep, , drop = FALSE])
+  }
+  Vm <- tryCatch(solve(t(J) %*% J / sigma^2), error = function(e) matrix(NA, 4, 4))
+  se <- sqrt(diag(Vm))
+  data.frame(rse_Emax = 100 * se[1], rse_EC50 = 100 * se[2],
+             corr = Vm[1, 2] / sqrt(Vm[1, 1] * Vm[2, 2]),
+             rse_slope = 100 * sqrt(Vm[1, 1] + Vm[2, 2] - 2 * Vm[1, 2]),
+             rse_kout = 100 * se[3])
+}
+designs <- list(
+  "A: 300 mg, 6 patients"                    = data.frame(dose = 300, n = 6),
+  "B: 30, 100, 300 mg; 4 each"               = data.frame(dose = c(30, 100, 300), n = 4),
+  "C: 3 to 300 mg, five levels; 4 each"      = data.frame(dose = c(3, 10, 30, 100, 300), n = 4),
+  "D: C with 0.03, 0.3 mg for 10, 100"       = data.frame(dose = c(0.03, 0.3, 3, 30, 300), n = 4))
+grid <- expand.grid(design = names(designs), sampling = c("Day 1", "Day 7"), stringsAsFactors = FALSE)
+res <- bind_rows(lapply(seq_len(nrow(grid)), function(i) {
+  tt <- if (grid$sampling[i] == "Day 1") t_dense else t_sparse
+  cbind(grid[i, ], fim_design(designs[[grid$design[i]]], loq = 5, times = tt))
+}))
+knitr::kable(res, digits = c(0, 0, 0, 0, 2, 0, 0),
+  col.names = c("Design", "First sample", "RSE Emax %", "RSE EC50 %", "corr(Emax, EC50)", "RSE Emax/EC50 %", "RSE k_out %"))
+```
+
+Fisher information, LOQ 5 cells/µL, 30% proportional error, observations below
+the limit dropped.
+
+- **The slope and $k_{\rm out}$ are estimated in every design.**
+- **$E_{\max}$ and $EC_{50}$ need days 1 and 3.** Without them, correlation
+  1.00 in every design, including D with its low-dose cohorts.
+
+## The likelihood ridge
+
+```{r ridge, fig.height=4.2}
+sse_grid <- function(times, loq = 5, n = 6, seed = 7) {
+  set.seed(seed)
+  obs <- do.call(rbind, lapply(1:n, function(i) {
+    f0 <- sim_B(300, Emax, EC50, kout, B0, times = times)
+    y <- f0 * exp(rnorm(length(f0), 0, 0.3)); data.frame(t = times, y = y)[y >= loq & f0 >= loq, ]
+  }))
+  em <- 10^seq(0.5, 3.5, length.out = 41); ec <- 10^seq(-2, 2, length.out = 41)
+  g <- expand.grid(Emax = em, EC50 = ec)
+  g$sse <- sapply(seq_len(nrow(g)), function(i) {
+    pred <- sim_B(300, g$Emax[i], g$EC50[i], kout, B0, times = times)
+    sum((log(obs$y) - log(pred[match(obs$t, times)]))^2)
+  })
+  g
+}
+g1 <- sse_grid(t_sparse); g1$panel <- "First sample day 7"
+g2 <- sse_grid(t_dense);  g2$panel <- "Days 1 and 3 sampled"
+gg <- bind_rows(g1, g2) %>% group_by(panel) %>% mutate(d = sse - min(sse)) %>% ungroup()
+gg$panel <- factor(gg$panel, levels = c("First sample day 7", "Days 1 and 3 sampled"))
+ggplot(gg, aes(EC50, Emax)) +
+  geom_raster(aes(fill = pmin(d, 40))) +
+  geom_contour(aes(z = d), breaks = c(2, 6, 12), colour = "white", linewidth = 0.4) +
+  annotate("point", x = EC50, y = Emax, shape = 4, size = 3, colour = "black") +
+  scale_fill_gradient(low = "#08519c", high = "#f0f4fa", name = "SSE above\nminimum") +
+  scale_x_log10() + scale_y_log10() +
+  facet_wrap(~ panel) +
+  labs(x = "EC50, mg/L, log scale", y = "Emax, log scale")
+```
+
+- **Left:** a ridge along $E_{\max}/EC_{50}$ = constant. Any point on it fits
+  equally well.
+- **Right:** the fall closes it to a basin around the truth (cross).
+- Dutta, Matsumoto and Ebling (1996): good fit, precise descriptors inside the
+  data, wrong $E_{\max}$ and $EC_{50}$.
+
+# The published record
+
+## Five published B-cell depletion models
+
+| Drug | Data | What happened to $EC_{50}$ |
+|:---|:---|:---|
+| Ofatumumab | 1,486 patients, 3 to 700 mg, partial-depletion arms at 3 and 10 mg SC | ✅ Estimated, RSE 8.5%; $E_{\max}$ 159 |
+| Rituximab, paediatric | 63 patients, full dose, 52% of counts below limit | ⚠️ $ED_{50}$ RSE 61%, CI 0.18 to 2.26 mg |
+| Inebilizumab | 213 subjects, 100-fold dose range | ❌ Abandoned for a log-linear slope |
+| Rituximab, membranous nephropathy | 41 patients | ❌ None; TMDD binding constant at 60% RSE |
+| Ianalumab | Phase 2 and RA data | ❌ Not reported; receptor-occupancy model added |
+
+- **Ofatumumab had cohorts in the band** and subcutaneous absorption that
+  slowed the fall into the sampling window.
+- **Paediatric rituximab is the ridge.** Inebilizumab is the ridge recognized.
+
+Values transcribed from the papers by a fetch tool, not yet checked by eye.
+
+# What to do
+
+## Fit the slope
+
+Schoemaker, van Gerven and Cohen (1998): when the data do not approach
+$E_{\max}$, report $S_0 = E_{\max}/EC_{50}$.
+
+```{r trep, fig.height=3.6}
+trep <- function(dose, form = "emax", S = 0, Cref = 1) {
+  tt <- seq(0, 500, by = 1)
+  B <- sim_B(dose, Emax, EC50, kout, B0, times = tt, form = form, S = S, Cref = Cref)
+  i <- which.min(B); j <- which(B[i:length(B)] >= 0.2 * B0)[1]; if (is.na(j)) NA else tt[i + j - 1]
+}
+Cref <- 0.1; S_match <- Emax / EC50 * Cref
+dd <- 10^seq(-1.5, 2.5, length.out = 17)
+tr <- bind_rows(
+  data.frame(model = "Emax, EC50 (true)", dose = dd, trep = sapply(dd, trep)),
+  data.frame(model = "Log-linear slope",  dose = dd, trep = sapply(dd, trep, form = "slope", S = S_match, Cref = Cref)))
+ggplot(tr, aes(dose, trep, colour = model)) +
+  annotate("rect", xmin = 3, xmax = 300, ymin = -Inf, ymax = Inf, alpha = 0.08, fill = "grey30") +
+  geom_line(linewidth = 0.9) + geom_point(size = 2) +
+  scale_colour_manual(values = pal3[1:2], name = NULL) +
+  scale_x_log10() +
+  annotate("text", x = 30, y = 20, label = "studied dose range", size = 3.5, colour = "grey40") +
+  labs(x = "Dose, mg, log scale", y = "Days to 20% of baseline") +
+  theme(legend.position = "right")
+```
+
+**The duration of depletion depends on $S_0$ and $k_{\rm out}$**, so a slope
+model loses nothing inside the studied dose range.
+
+## What a study needs if it wants EC50
+
+In the order they would be dropped from a protocol:
+
+1. **B-cell samples on days 1 and 3 after the first dose.** The only
+   observation that separates $E_{\max}$ from $EC_{50}$ at a therapeutic dose.
+2. **B cells monthly until repopulation.** The tail gives $k_{\rm out}$, and
+   without it the fall gives nothing.
+3. **A PK assay below $EC_{50}/E_{\max}$**, or an explicit extrapolation of
+   the PK tail.
+4. **A cohort whose nadir is quantifiable and sits in the band**, if the
+   design can afford one. Below the band informs the slope only.
+5. **Failing 1 and 4, fit the slope**, report $S_0$ with its interval, and
+   fix one factor from in vitro binding if the factors are needed.
+
+## For the ITP project
+
+- The ITP dose escalation: three to six patients per level, first B-cell
+  sample at a week.
+- **That design identifies the slope and $k_{\rm out}$**, and neither
+  $E_{\max}$ nor $EC_{50}$.
+- Parameterizing by the slope is right.
+- **Adding days 1 and 3** makes the $E_{\max}$ form fittable at about 10% RSE
+  across five cohorts, for two extra blood draws.
+
+## Open questions
+
+- **Sigmoidicity.** A Hill coefficient above 1 sharpens the band. Is it
+  identifiable alongside the slope?
+- **Subcutaneous dosing.** Absorption slows the fall into the first week,
+  which may be how the ofatumumab model saw it.
+- **Censoring.** A likelihood with censored terms would recover some
+  information at the floor.
+- **Between-patient variability.** The precision numbers are for fixed
+  parameters and are optimistic.
+
+## References
+
+- Dayneka, Garg, Jusko 1993. *J Pharmacokinet Biopharm* 21:457. The four
+  indirect-response models.
+- Levy 1966. *Clin Pharmacol Ther* 7:362. Duration of effect linear in log
+  dose.
+- Sharma, Jusko 1996. *J Pharmacokinet Biopharm* 24:611. Dose and $EC_{50}$
+  scale together.
+- Krzyzanski, Jusko 1997. *J Pharmacokinet Biopharm* 25:107. Mathematical
+  properties of the four models.
+- Peletier, Gabrielsson, Haag 2005. *J Pharmacokinet Pharmacodyn* 32:607.
+  Dynamical systems analysis of the indirect response model.
+- Dutta, Matsumoto, Ebling 1996. *J Pharm Sci* 85:232. $E_{\max}$ from
+  truncated data.
+- Schoemaker, van Gerven, Cohen 1998. *J Pharmacokinet Biopharm* 26:581.
+  Potency without the maximum: the slope $S_0$.
+- Janzén et al. 2016. *Front Physiol* 7:590. Structural identifiability of
+  pharmacodynamic models.
+
+Full list with status markers: [references](references.qmd). Working
+document: [EC50 identifiability](ec50-identifiability.qmd).
