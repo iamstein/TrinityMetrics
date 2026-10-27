@@ -11,8 +11,9 @@ toc-location: left
 
 ::: {.callout-important appearance="simple"}
 **Nothing here has been read in full.** Entries 5 to 8 were extracted from
-the full papers by a fetch tool on 2026-09-09 and carry ⚠️: the numbers came
-from the paper, and the transcription has not been checked by eye. Every
+the full papers by a fetch tool on 2026-09-09, and entry 16 on 2026-10-27,
+and carry ⚠️: the numbers came from the paper, and the transcription has not
+been checked by eye. Every
 other entry is from an abstract or a search summary and carries ❌. The
 simulations in the working document do not depend on any of them; the
 parameter values were chosen to resemble entries 5 to 7 and the document says
@@ -32,16 +33,22 @@ and the folder's other documents are on [the project index](index.qmd).
 
 ## Where to start
 
-- **Entry 1 first.** It is the working document's Section 8 in its original
+- **Entry 1 first.** It is the working document's Section 9 in its original
   form, twenty-eight years earlier: when the data do not reach $E_{\max}$,
   report $E_{\max}/EC_{50}$. Half an hour.
 - **Entry 2 next**, for the simulation evidence that a fit can be good while
-  $E_{\max}$ and $EC_{50}$ are both wrong, which is Section 6.
+  $E_{\max}$ and $EC_{50}$ are both wrong, which is Section 7.
 - **Entries 5 and 7 together**, as the two ends of the published record: the
   design that identified $EC_{50}$ and the design that gave it up. An hour
   for both, on the parameter tables and the design descriptions.
 - **Entry 4 for the indirect-response model itself**, if the four Jusko
   types are not already familiar.
+- **Entries 13 and 15 for the mathematics of Section 2**, the large-dose
+  behaviour of the curve derived formally. Neither has been retrieved, and
+  each is the most likely published source for one or more of the formulas
+  there.
+- **Entry 11 for the dose-duration line** of Section 2.5, the oldest result
+  on the page.
 
 ## Theory
 
@@ -73,7 +80,7 @@ high coefficients of variation and pronounced bias, while the fit to the data
 was good and descriptors within the data range were estimated precisely.
 
 **The question.** The size of the simulation and the bias direction, to
-compare with Section 6's ridge.
+compare with Section 7's ridge.
 
 ### 3. Dayneka, Garg and Jusko 1993 — four basic indirect response models ❌
 
@@ -88,11 +95,97 @@ fourth of the four. Not yet retrieved.
 
 The properties of the four models: time of maximal response, dependence on
 dose, and the relationship between the response nadir and $E_{\max}$. The
-steady-state relation in Section 3 is in here. Not yet retrieved.
+steady-state relation in Section 4 is in here. Not yet retrieved in full;
+the open-access text, read through a fetch tool, discusses the initial slope
+of the response against time as a quantity to estimate from, and states that
+the area between baseline and effect curve and the time of maximal response
+"continue increasing in proportion to log dose". Its large-dose equations are
+images the tool could not read.
+
+### 11. Levy 1966 — kinetics of pharmacologic effects ❌
+
+*Clin Pharmacol Ther* 1966;7:362-372.
+[doi:10.1002/cpt196673362](https://doi.org/10.1002/cpt196673362)
+
+**What it says**, from secondary sources: the duration of a drug effect is
+linear in the logarithm of the dose, the slope of that line gives the
+elimination half-life, and its intercept gives the threshold dose. Section
+2.5 derives the same line for the climb back of the B-cell count, with slope
+$1/k_e$ and intercept at $C_{\max} = (1 - f)/(f S_0)$.
+
+**The question.** Levy's derivation is for a direct effect with a threshold.
+Whether he or a later paper extends it to indirect responses, which Section
+2.5 does through the quasi-steady state.
+
+### 12. Sharma and Jusko 1996 — characterization of four basic models of indirect pharmacodynamic responses ❌
+
+*J Pharmacokinet Biopharm* 1996;24:611-635.
+[doi:10.1007/BF02353483](https://doi.org/10.1007/BF02353483)
+
+**What it says**, from the abstract: the maximum response and its timing
+depend on dose, $S_{\max}$ and $SC_{50}$ in all four models, and scaling the
+dose and $SC_{50}$ by the same factor gives superimposable response curves.
+That is the $C/EC_{50}$ statement in Section 1's parameter table and Section
+2.1, found by simulation.
+
+### 13. Krzyzanski and Jusko 1997 — mathematical formalism for the properties of four basic models of indirect pharmacodynamic responses ❌
+
+*J Pharmacokinet Biopharm* 1997;25:107-123.
+[doi:10.1023/A:1025723927981](https://doi.org/10.1023/A:1025723927981)
+
+**What it says**, from the abstract: partially integrated solutions of the
+four models, used to characterize the shape of the response curve, its
+maximum or minimum, and how these change with dose, $S_{\max}$, $SC_{50}$
+and $k_{\rm out}$.
+
+**The question.** Whether its large-dose limits match Sections 2.3 and 2.4,
+the fall rate $k_{\rm out}(1 + S_{\max})$ and the floor
+$R_0/(1 + S_{\max})$. If they do, Section 2 should cite it for them rather
+than present them as derived here.
+
+### 14. Krzyzanski and Jusko 1998 — integrated functions for four basic models of indirect pharmacodynamic response ❌
+
+*J Pharm Sci* 1998;87:67-72.
+[doi:10.1021/js970168r](https://doi.org/10.1021/js970168r)
+
+The area between the baseline and the response curve as a function of the
+model parameters. Not used yet. The area is a sixth feature of the curve, and
+the question is whether for a depleting dose it carries $S_0$ only, as the
+climb back does.
+
+### 15. Peletier, Gabrielsson and Haag 2005 — a dynamical systems analysis of the indirect response model ❌
+
+*J Pharmacokinet Pharmacodyn* 2005;32:607-654.
+[doi:10.1007/s10928-005-0047-x](https://doi.org/10.1007/s10928-005-0047-x)
+
+**What it says**, from the abstract: a mathematical analysis of the four
+indirect-response models after a bolus dose, with emphasis on the time of
+peak response and how it depends on dose, $E_{\max}$, $EC_{50}$ and the
+ratio of $k_{\rm out}$ to the drug's elimination rate constant. That ratio is
+the one Section 2.1 says decides the shape of the curve.
+
+**The question.** Whether it treats the large-dose regime, where the
+quasi-steady state of Section 2.4 holds, and gives asymptotic forms for the
+floor and the return.
+
+### 16. Janzén et al. 2016 — parameter identifiability of fundamental pharmacodynamic models ⚠️
+
+*Front Physiol* 2016;7:590.
+[doi:10.3389/fphys.2016.00590](https://doi.org/10.3389/fphys.2016.00590)
+
+**Transcribed.** Structural identifiability of sixteen pharmacodynamic models
+built from an effect compartment or not, steady-state or dynamic receptor
+binding, and direct, sigmoid or turnover transduction. All were structurally
+globally identifiable once one of two parameters was fixed. In the case study
+with a saturating operational model, "fitting all parameters ... led to high
+uncertainty and correlation" between the two parameters of the saturating
+function, resolved by estimating their ratio. The models are written in
+receptor-theory parameters, not $E_{\max}$ and $EC_{50}$, so the mapping to
+Section 2.9 is by analogy.
 
 ## Published B-cell depletion models
 
-The table in Section 7 of the working document summarizes these; the entries
+The table in Section 8 of the working document summarizes these; the entries
 below carry the numbers and the questions.
 
 ### 5. Yu et al. 2022 — ofatumumab population PK-B cell model in relapsing MS ⚠️
@@ -113,7 +206,7 @@ appear to achieve a similar level of depletion as the 20-mg dose until after
 
 **The question.** The B-cell sampling schedule in MIRROR during the first
 week, and the depletion profiles of the 3 mg arm: whether they sit in the band
-of Section 3, and whether the fall was sampled.
+of Section 4, and whether the fall was sampled.
 
 ### 6. Rituximab CD19+ suppression, population PD in paediatric patients ⚠️
 
@@ -131,7 +224,7 @@ efficacious doses may have contributed to hampering a precise estimation."
 
 **The question.** Why the linear form fit worse if the ridge argument holds.
 The likely answer is the early samples: a linear effect at high amount gives
-an implausibly fast fall. That would be Section 4's first region doing its
+an implausibly fast fall. That would be Section 5's first region doing its
 work, and their sampling times would show it.
 
 ### 7. Yan et al. 2022 — inebilizumab PD modelling in NMOSD ⚠️
@@ -183,7 +276,7 @@ would be found.
 
 - **Raue et al. 2009**, structural and practical identifiability by the
   profile likelihood, *Bioinformatics* 25:1923. The general method for the
-  ridge in Section 6, applied to ODE models.
+  ridge in Section 7, applied to ODE models.
 - **Kirby et al. 2011**, fitting $E_{\max}$ models to clinical trial
   dose-response data, *Pharm Stat* 10:143. The dose-response rather than
   concentration-response version of entries 1 and 2.

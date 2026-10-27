@@ -17,14 +17,17 @@ on every render.
 
 ## Documents
 
-- [EC50 identifiability](ec50-identifiability.qmd). The model, the arithmetic
-  of a large $E_{\max}$, where the information lives, expected precision by
+- [EC50 identifiability](ec50-identifiability.qmd). The model, which part
+  of the B-cell curve carries which parameter with each formula derived and
+  checked, the arithmetic of a large $E_{\max}$, where the information lives,
+  expected precision by
   design from the Fisher information, the likelihood ridge, the published
   record, the slope parameterization, and what a study needs if it wants
   $EC_{50}$. Its **In brief** section is one screen and says what the rest
   argues.
 - [References](references.qmd). The two classic papers on $E_{\max}$
-  estimation from truncated data, the indirect-response model sources, and the
+  estimation from truncated data, the indirect-response model sources and
+  their mathematical analyses, Levy's dose-duration relation, and the
   five published B-cell depletion models, each with a marker recording whether
   the claim drawn from it has been checked.
 
