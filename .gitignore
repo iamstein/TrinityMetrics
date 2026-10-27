@@ -62,3 +62,6 @@ blog/drafts/*_files/
 
 # Private notes kept out of the repository
 projects/ai-pmx-skills-modeling-guidance/2026-10-02-pharmacometrics-skill-libraries-review.md
+
+# Copyrighted papers kept locally for reading, never published
+refs_copyright/

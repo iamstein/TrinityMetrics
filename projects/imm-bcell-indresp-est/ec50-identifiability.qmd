@@ -270,10 +270,15 @@ day at the start, 45 times $k_e = 0.067$ per day, and $k_{\rm out} = 0.02$ per
 day at the end, 0.3 times $k_e$. The curve begins fast and ends slow, and that
 ordering is why its parts separate.
 
-The formal analysis of these regimes for all four indirect-response models is
-in Krzyzanski and Jusko 1997 and in Peletier, Gabrielsson and Haag 2005
-(references, entries 13 and 15). The derivations below were done for this
-page and have not yet been checked against either.
+Peletier, Gabrielsson and Haag (references, entry 15) put the same point in
+dimensionless form: with time scaled by $1/k_e$ and the count by $B_0$, the
+whole curve is fixed by three numbers, $\kappa = k_{\rm out}/k_e$,
+$E_{\max}$, and $C_{\max}/EC_{50}$. The two rates above are $\kappa$ and
+$\kappa(1 + E_{\max})$ in those units. Krzyzanski and Jusko (entry 17) show
+the same competition for an infusion: the response approaches its steady
+state at the slower of $k_e$ and $k_{\rm out}(1 + E)$. Sections 2.3 to 2.8
+note where each result below is already in these papers. Krzyzanski and Jusko
+1997 (entry 13), the bolus paper the others build on, has not been read.
 
 The model also depends on concentration only through $C/EC_{50}$, so scaling
 the dose and $EC_{50}$ by the same factor leaves the curve unchanged. Sharma
@@ -312,6 +317,18 @@ correction at $C_{\max} = 100 \times EC_{50}$. With the values here,
 $t_{1/2,\rm fall}$ is 0.23 days, five and a half hours, and the fall is 99%
 complete by day 1.5.
 
+Both pieces are published. Sharma and Jusko 1996 (entry 12, their Eq. 26)
+give the large-dose initial slope as $-k_{\rm out} B_0 S_{\max}$, the slope
+above in absolute units. Peletier et al. (entry 15, their Eq. 32) prove that
+for every dose
+
+$$
+B(t) > \frac{B_0}{1 + E_{\max}} \left(1 + E_{\max}\, e^{-k_{\rm out}(1 + E_{\max}) t}\right)
+$$
+
+and that the curve converges to this bound as the dose grows. The bound is the
+fall formula above with $E(C_{\max})$ replaced by $E_{\max}$.
+
 ### 2.4 The floor
 
 After the fall, $k_f \gg k_e$ and $B$ tracks the quasi-steady state:
@@ -321,8 +338,9 @@ B(t) \approx \frac{B_0}{1 + E\big(C(t)\big)} \approx \frac{B_0}{1 + E_{\max}}
 \quad \text{while } C(t) \gg EC_{50}
 $$
 
-**The floor carries $E_{\max}$**, given $B_0$. With $E_{\max} = 150$ it is
-1.3 cells/µL. A floor is quantifiable only if it sits above the limit
+**The floor carries $E_{\max}$**, given $B_0$, and is the large-dose limit of
+the nadir in Sharma and Jusko 1996 (entry 12, their Eq. 14). With
+$E_{\max} = 150$ it is 1.3 cells/µL. A floor is quantifiable only if it sits above the limit
 $f B_0$, which needs $E_{\max} < 1/f - 1$: below 19 for a limit at 5% of
 baseline, below 39 for one at 2.5%.
 
@@ -372,6 +390,13 @@ Panel C of the figure shows the line and the points falling on it, with the
 lowest doses bending away where the count never reaches the quasi-steady
 state.
 
+Peletier et al. (entry 15, their Eqs. 42 to 44) prove the general form of
+this. As the dose grows, the recovery part of the curve converges to a fixed
+shape that translates in time by $\ln(C_{\max}/EC_{50})/k_e$, a travelling
+wave. The crossing time $t_f$ is where that shape crosses $f$, worked out
+under the quasi-steady state; the shape itself depends on $E_{\max}$ and
+$\kappa$, which is where the correction term above comes from.
+
 ### 2.6 The tail
 
 Once $S_0 C \ll 1$, the drug effect is negligible and the model is
@@ -411,9 +436,53 @@ $$
 
 at $t = \ln(k_e/k_{\rm out})/(k_e - k_{\rm out})$, day 26 here. The nadir
 depth is proportional to $S_0 C_{\max}$, with a factor of 0.18 set by the two
-rates.
+rates. The same solution and nadir time are Eqs. 34 and 35 of Peletier et al.
+(entry 15), for the linear drug effect.
 
-### 2.8 Checking the formulas against the ODE solution
+### 2.8 The area between baseline and curve
+
+The area between the baseline and the B-cell curve, $\int_0^\infty (B_0 - B)\,dt$,
+is the summary Sharma and Jusko (entry 12, their Eq. 22) and Peletier et al.
+(entry 15, their Eq. 49) give for large doses:
+
+$$
+\text{area} \sim \frac{B_0}{k_e} \frac{E_{\max}}{1 + E_{\max}} \ln\left(1 + \frac{C_{\max}}{EC_{50}}\right)
+\quad \text{as } C_{\max} \to \infty
+$$
+
+Peletier et al. note that $E_{\max}$ can be read from the slope of the area
+against log dose. **For a B-cell depleting agent the slope carries almost no
+$E_{\max}$:** the factor $E_{\max}/(1 + E_{\max})$ is 0.98 at
+$E_{\max} = 50$ and 0.993 at 150. The formula is also a leading-order
+statement, and at practical doses the omitted constant is larger than the
+term kept. The table compares it with the area measured on the ODE solution
+for the three parameter sets of panel C that share $S_0 = 150$.
+
+```{r area}
+area_ode <- function(dose, Emax, EC50) {
+  tt <- seq(0, 3000, by = 0.5); sum(B0 - sim_B(dose, Emax, EC50, kout, B0, times = tt)) * 0.5
+}
+area <- expand.grid(k = 1:3, cmax = c(1, 10, 100, 1000)) %>%
+  mutate(Emax = sets$Emax[k], EC50 = sets$EC50[k],
+         ode = mapply(function(c, e, ec) area_ode(c * V, e, ec), cmax, Emax, EC50),
+         formula = B0 / ke * Emax / (1 + Emax) * log(1 + cmax / EC50)) %>%
+  select(cmax, Emax, EC50, ode, formula)
+knitr::kable(area, digits = c(0, 0, 2, 0, 0),
+  col.names = c("Cmax, mg/L", "Emax", "EC50, mg/L", "Area on the ODE, cells·day/µL", "Large-dose formula"),
+  caption = "Area between baseline and B-cell curve, from the ODE solution and from the large-dose formula, for three parameter sets with Emax/EC50 = 150")
+```
+
+The measured area moves by $B_0 \ln 10 / k_e$ per ten-fold dose, as the
+formula's slope says, and at a given dose it is nearly the same for all three
+sets: like the climb back, it follows $S_0$. The formula's level is low by a
+factor that shrinks only logarithmically with dose. The omitted constant is
+of order $(B_0/k_e)\ln E_{\max} + B_0/k_{\rm out}$, the extra time for the
+drug to fall from $EC_{50}$ to $EC_{50}/E_{\max}$ plus the lag of the
+recovery, and with $E_{\max} = 150$ and slow turnover both are large. The
+area is computed over the whole curve, including the part below the limit,
+so it is not an observable a B-cell study can use directly in any case.
+
+### 2.9 Checking the formulas against the ODE solution
 
 Each formula above is an approximation, and each can be checked by solving
 the model and measuring the feature it predicts. Forty parameter sets drawn
@@ -465,7 +534,7 @@ $C_{\max}$. The climb-back formula errs by days where $k_{\rm out}/f$ is not
 much larger than $k_e$, the lag of Section 2.5. The tail and low-dose
 formulas are close to exact.
 
-### 2.9 What is identifiable and what is not
+### 2.10 What is identifiable and what is not
 
 **Structurally, the model is identifiable**: with noise-free observations at
 every time, the floor gives $E_{\max}$ and the fall gives it again, and
@@ -477,6 +546,15 @@ uncertainty and correlation, and the ratio is estimated well. **The loss of
 identifiability here is practical**, made by the quantification limit and
 the sampling schedule, and the parts of Section 2.2 to 2.7 say exactly which
 samples remove which parameter.
+
+The identification chain itself is in Sharma and Jusko 1998 (entry 4, their
+Table 1), as a graphical recipe: read the baseline, the initial slope and the
+large-dose nadir; the nadir gives $S_{\max}$, the slope with $S_{\max}$ gives
+$k_{\rm in}$ and so $k_{\rm out}$, and the concentration at the time of the
+nadir gives $SC_{50}$. The design they say it needs is two or more bolus
+doses, one high enough for full stimulation, and the baseline. For B cells the
+first two readings are the ones a study loses: the nadir sits below the limit,
+and the initial slope is over before a weekly sample.
 
 | Part of the curve | Carries | Observed when | Usual B-cell study |
 |:---|:---|:---|:---|
@@ -590,6 +668,9 @@ limit whatever $C$ is. In between, the count is quantifiable and its level
 depends on $E_{\max}$ and $EC_{50}$ separately. That band, roughly
 $EC_{50}/1500$ to $EC_{50}/15$ here, is where a cohort would have to sit for
 the nadir to identify the two parameters, and no therapeutic dose sits there.
+Krzyzanski and Jusko made the same point for infusions in 1998 (references,
+entry 17): two steady states give $E_{\max}$ and $EC_{50}$ only if their
+concentrations are not both well above $EC_{50}$.
 
 ## 5. Where the information lives
 

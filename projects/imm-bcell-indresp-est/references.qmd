@@ -10,11 +10,12 @@ toc-location: left
 ---
 
 ::: {.callout-important appearance="simple"}
-**Nothing here has been read in full.** Entries 5 to 8 were extracted from
-the full papers by a fetch tool on 2026-09-09, and entry 16 on 2026-10-27,
-and carry ⚠️: the numbers came from the paper, and the transcription has not
-been checked by eye. Every
-other entry is from an abstract or a search summary and carries ❌. The
+**Nothing here has been read in full by eye.** Entries 5 to 8 were
+extracted from the full papers by a fetch tool on 2026-09-09. Entries 4, 12,
+15, 16 and 17 were read in full by Claude on 2026-10-27, from copies kept
+locally and out of the repository. All of these carry ⚠️: the claims came from
+the paper, and the transcription has not been checked by eye. Every other
+entry is from an abstract or a search summary and carries ❌. The
 simulations in the working document do not depend on any of them; the
 parameter values were chosen to resemble entries 5 to 7 and the document says
 so where it uses them.
@@ -43,10 +44,11 @@ and the folder's other documents are on [the project index](index.qmd).
   for both, on the parameter tables and the design descriptions.
 - **Entry 4 for the indirect-response model itself**, if the four Jusko
   types are not already familiar.
-- **Entries 13 and 15 for the mathematics of Section 2**, the large-dose
-  behaviour of the curve derived formally. Neither has been retrieved, and
-  each is the most likely published source for one or more of the formulas
-  there.
+- **Entry 15 for the mathematics of Section 2.** Most of the large-dose and
+  small-dose formulas there are proved in it, and its travelling-wave result
+  is the general form of the climb back. The appendices can be skipped.
+- **Entry 4, Table 1, for the identification chain** of Section 2.10 as a
+  graphical recipe, with the design it needs.
 - **Entry 11 for the dose-duration line** of Section 2.5, the oldest result
   on the page.
 
@@ -89,18 +91,21 @@ compare with Section 7's ridge.
 The origin of the model in Section 1. Stimulation of $k_{\rm out}$ is the
 fourth of the four. Not yet retrieved.
 
-### 4. Sharma and Jusko 1998 — characteristics of indirect pharmacodynamic models ❌
+### 4. Sharma and Jusko 1998 — characteristics of indirect pharmacodynamic models ⚠️
 
 *Br J Clin Pharmacol* 1998;45:229-239.
+[doi:10.1046/j.1365-2125.1998.00676.x](https://doi.org/10.1046/j.1365-2125.1998.00676.x) ·
+[PMC1873365](https://pmc.ncbi.nlm.nih.gov/articles/PMC1873365/)
 
-The properties of the four models: time of maximal response, dependence on
-dose, and the relationship between the response nadir and $E_{\max}$. The
-steady-state relation in Section 4 is in here. Not yet retrieved in full;
-the open-access text, read through a fetch tool, discusses the initial slope
-of the response against time as a quantity to estimate from, and states that
-the area between baseline and effect curve and the time of maximal response
-"continue increasing in proportion to log dose". Its large-dose equations are
-images the tool could not read.
+**Transcribed.** A review of the four models. The nadir of Model IV at large
+doses is $R_0/(1 + S_{\max})$, Section 2.4's floor. Table 1 gives a
+graphical route to the parameters: baseline, initial slope and large-dose
+nadir give $S_{\max}$, then $k_{\rm in}$ and $k_{\rm out}$; the
+concentration at the time of the nadir gives $SC_{50}$. The design needed is
+"two or more bolus i.v. doses", one "sufficiently high to produce either full
+inhibition or stimulation", and the baseline. "When one dose level is fitted
+alone, there may be inadequate discrimination of the model parameters."
+Section 2.10 is this chain with the two readings a B-cell study loses marked.
 
 ### 11. Levy 1966 — kinetics of pharmacologic effects ❌
 
@@ -117,16 +122,25 @@ $1/k_e$ and intercept at $C_{\max} = (1 - f)/(f S_0)$.
 Whether he or a later paper extends it to indirect responses, which Section
 2.5 does through the quasi-steady state.
 
-### 12. Sharma and Jusko 1996 — characterization of four basic models of indirect pharmacodynamic responses ❌
+### 12. Sharma and Jusko 1996 — characterization of four basic models of indirect pharmacodynamic responses ⚠️
 
 *J Pharmacokinet Biopharm* 1996;24:611-635.
 [doi:10.1007/BF02353483](https://doi.org/10.1007/BF02353483)
 
-**What it says**, from the abstract: the maximum response and its timing
-depend on dose, $S_{\max}$ and $SC_{50}$ in all four models, and scaling the
-dose and $SC_{50}$ by the same factor gives superimposable response curves.
-That is the $C/EC_{50}$ statement in Section 1's parameter table and Section
-2.1, found by simulation.
+**Transcribed.** Simulations of the four models varying dose, $S_{\max}$ and
+$SC_{50}$, with the limiting relations from Krzyzanski and Jusko 1997 (entry
+13). For Model IV: nadir $R_0/(1 + S_{\max})$ at large dose (Eq. 14); initial
+slope $-k_{\rm out} R_0 S_{\max}$ at large dose (Eq. 26); area between
+baseline and curve
+$R_0 S_{\max} \ln(1 + D/V/SC_{50}) / \{k_{el}(1 + S_{\max})\}$ at large
+dose (Eq. 22). Dose and $SC_{50}$ scaled by the same factor give
+superimposable curves. The time of the nadir and the area grow nearly in
+proportion to log dose. Sections 2.1, 2.3, 2.4 and 2.8 use these.
+
+**The question.** Eq. 22 is a leading-order statement. Section 2.8 finds it
+low by a factor of 2 or more for $E_{\max} = 150$ even at
+$C_{\max} = 1000 \times EC_{50}$, and whether the paper's own simulations,
+with $S_{\max} \le 1.5$, would have shown that.
 
 ### 13. Krzyzanski and Jusko 1997 — mathematical formalism for the properties of four basic models of indirect pharmacodynamic responses ❌
 
@@ -138,10 +152,9 @@ four models, used to characterize the shape of the response curve, its
 maximum or minimum, and how these change with dose, $S_{\max}$, $SC_{50}$
 and $k_{\rm out}$.
 
-**The question.** Whether its large-dose limits match Sections 2.3 and 2.4,
-the fall rate $k_{\rm out}(1 + S_{\max})$ and the floor
-$R_0/(1 + S_{\max})$. If they do, Section 2 should cite it for them rather
-than present them as derived here.
+**The question.** Entries 12 and 15 cite it as the source of the large-dose
+limits Section 2 uses, so it is the primary reference for them. Not yet
+obtained; the copy in the local folder is the 1998 infusion paper, entry 17.
 
 ### 14. Krzyzanski and Jusko 1998 — integrated functions for four basic models of indirect pharmacodynamic response ❌
 
@@ -153,35 +166,70 @@ model parameters. Not used yet. The area is a sixth feature of the curve, and
 the question is whether for a depleting dose it carries $S_0$ only, as the
 climb back does.
 
-### 15. Peletier, Gabrielsson and Haag 2005 — a dynamical systems analysis of the indirect response model ❌
+### 15. Peletier, Gabrielsson and Haag 2005 — a dynamical systems analysis of the indirect response model ⚠️
 
 *J Pharmacokinet Pharmacodyn* 2005;32:607-654.
 [doi:10.1007/s10928-005-0047-x](https://doi.org/10.1007/s10928-005-0047-x)
 
-**What it says**, from the abstract: a mathematical analysis of the four
-indirect-response models after a bolus dose, with emphasis on the time of
-peak response and how it depends on dose, $E_{\max}$, $EC_{50}$ and the
-ratio of $k_{\rm out}$ to the drug's elimination rate constant. That ratio is
-the one Section 2.1 says decides the shape of the curve.
+**Transcribed.** A qualitative and asymptotic analysis of the four models
+after a bolus. In dimensionless form the dynamics depend on three numbers:
+$\kappa = k_{\rm out}/k$, $\alpha = E_{\max}$ and $D/EC_{50}$ (Eqs. 11 to
+15). For Model IV:
 
-**The question.** Whether it treats the large-dose regime, where the
-quasi-steady state of Section 2.4 holds, and gives asymptotic forms for the
-floor and the return.
+- A dose-independent lower bound,
+  $R(t) > \frac{1}{1+\alpha}\{1 + \alpha e^{-(1+\alpha)\kappa t}\}$ in scaled
+  units (Eq. 32), which the response converges to as the dose grows. This is
+  Section 2.3's fall and Section 2.4's floor.
+- A travelling wave at large doses: with $s = t - \log D$, the recovery
+  converges to a fixed shape $\Phi(s)$ (Eqs. 42 to 44, 48). Section 2.5's
+  climb back is the quasi-steady-state reading of where $\Phi$ crosses $f$.
+- The nadir time grows like $\log D / \{1 + \kappa(1 + \alpha)\}$ (Eq. 64).
+- The area between baseline and curve grows like
+  $\frac{\alpha}{1+\alpha}\log D$ (Eq. 49), and the authors note that
+  $\alpha$ can be read from that slope. Section 2.8 shows why that fails at
+  $E_{\max} = 150$.
+- For a linear drug effect, the response and its peak time
+  $\log\kappa/(\kappa - 1)$ in closed form (Eqs. 34, 35), which is Section
+  2.7.
+
+The paper is about the shift of peak time with dose as a diagnostic for model
+choice, and does not discuss estimation.
 
 ### 16. Janzén et al. 2016 — parameter identifiability of fundamental pharmacodynamic models ⚠️
 
 *Front Physiol* 2016;7:590.
 [doi:10.3389/fphys.2016.00590](https://doi.org/10.3389/fphys.2016.00590)
 
-**Transcribed.** Structural identifiability of sixteen pharmacodynamic models
-built from an effect compartment or not, steady-state or dynamic receptor
-binding, and direct, sigmoid or turnover transduction. All were structurally
-globally identifiable once one of two parameters was fixed. In the case study
-with a saturating operational model, "fitting all parameters ... led to high
-uncertainty and correlation" between the two parameters of the saturating
-function, resolved by estimating their ratio. The models are written in
-receptor-theory parameters, not $E_{\max}$ and $EC_{50}$, so the mapping to
-Section 2.9 is by analogy.
+**Transcribed.** Structural identifiability, by the input-output approach, of
+sixteen pharmacodynamic models built from an effect compartment or not,
+steady-state or dynamic receptor binding, and direct, sigmoid or turnover
+transduction, in fixed-effects and mixed-effects versions. All were
+structurally globally identifiable once one of two parameters was fixed.
+Structural identifiability is "a prerequisite, but not a guarantee" of
+practical identifiability, and "reasonably 'good' standard errors may
+sometimes mask unidentifiability issues". In the case study with a saturating
+operational model, the two parameters of the saturating function were
+estimated with high uncertainty and correlation, resolved by estimating their
+ratio. The models are written in receptor-theory parameters, not $E_{\max}$
+and $EC_{50}$, so the mapping to Section 2.10 is by analogy.
+
+### 17. Krzyzanski and Jusko 1998 — the four indirect response models for drug infusions ⚠️
+
+*J Pharmacokinet Biopharm* 1998;26:385-408.
+[doi:10.1023/A:1021060000789](https://doi.org/10.1023/A:1021060000789)
+
+**Transcribed.** The 1997 formalism extended to constant-rate and
+limited-time infusions. During an infusion the response approaches its
+steady state at the slower of $k_{el}$ and $k_{\rm out}(1 + H)$, the
+competition of Section 2.1. Two infusions at different rates give $S_{\max}$
+and $SC_{50}$ from the two steady states, and this "work[s] best if the
+steady-state concentrations differ appreciably" and are "not both ≫ SC50":
+the band of Section 4, stated as a design condition. Most equations did not
+survive text extraction; the statements here are from the prose.
+
+**The question.** Rituximab and the other antibodies are given as infusions
+over hours, which is the same order as the fall here (Section 2.3). Whether
+an infusion changes what the first day of samples can carry.
 
 ## Published B-cell depletion models
 

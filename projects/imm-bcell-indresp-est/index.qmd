@@ -25,7 +25,7 @@ on every render.
   record, the slope parameterization, and what a study needs if it wants
   $EC_{50}$. Its **In brief** section is one screen and says what the rest
   argues.
-- [Presentation](pres-bcell-indresp-ec50-emax-identifiability.qmd). The
+- [Presentation](pres-bcell-indresp-identifiability.qmd). The
   slide deck, in revealjs: the same argument with the figures recomputed, one
   idea per slide.
 - [References](references.qmd). The two classic papers on $E_{\max}$

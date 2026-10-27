@@ -220,6 +220,9 @@ $$
   a 1% correction at $C_{\max} = 100 \times EC_{50}$.
 - **This is the only place $E_{\max}$ appears without $EC_{50}$ beside it**,
   and it is over before a weekly sample arrives.
+- Published: the large-dose initial slope $-k_{\rm out} B_0 E_{\max}$
+  (Sharma and Jusko 1996), and the fall curve as a lower bound at every dose
+  that the response converges to (Peletier, Gabrielsson and Haag 2005).
 
 ## The floor carries $E_{\max}$, below the limit
 
@@ -230,7 +233,7 @@ B(t) \approx \frac{B_0}{1 + E\big(C(t)\big)} \approx \frac{B_0}{1 + E_{\max}}
 \quad \text{while } C \gg EC_{50}
 $$
 
-- Here: 1.3 cells/µL.
+- Here: 1.3 cells/µL. The large-dose nadir of Sharma and Jusko 1996.
 - Above a limit at fraction $f$ of baseline only if $E_{\max} < 1/f - 1$:
   below 19 for a 5% limit, below 39 for 2.5%.
 - **The two published models that estimate $E_{\max}$ put it near 155**, so
@@ -284,6 +287,8 @@ ggplot(climb, aes(cmax, t, colour = S0)) +
   half-lives, whatever $E_{\max}$ and $EC_{50}$ are.
 - **Three sets with the same ratio fall on one line.** Levy (1966) gave this
   line for direct effects; the quasi-steady state makes it hold here.
+- Peletier et al. (2005) prove the general form: at large doses the recovery
+  is a fixed shape travelling by $\ln(C_{\max}/EC_{50})/k_e$.
 
 ## The tail carries $k_{\rm out}$; low doses carry $S_0$
 
@@ -302,6 +307,32 @@ $$
 $$
 
 - **A low-dose cohort informs the slope, not its two factors.**
+
+## The area between curves follows $S_0$ too
+
+$$
+\text{area} = \int_0^\infty (B_0 - B)\,dt \;\sim\; \frac{B_0}{k_e} \frac{E_{\max}}{1 + E_{\max}} \ln\left(1 + \frac{C_{\max}}{EC_{50}}\right)
+\quad \text{(large dose)}
+$$
+
+```{r area}
+area_ode <- function(dose, Emax, EC50) {
+  tt <- seq(0, 3000, by = 0.5); sum(B0 - sim_B(dose, Emax, EC50, kout, B0, times = tt)) * 0.5
+}
+area <- expand.grid(k = 1:3, cmax = c(1, 100)) %>%
+  mutate(Emax = sets$Emax[k], EC50 = sets$EC50[k],
+         ode = mapply(function(c, e, ec) area_ode(c * V, e, ec), cmax, Emax, EC50),
+         formula = B0 / ke * Emax / (1 + Emax) * log(1 + cmax / EC50)) %>%
+  select(cmax, Emax, EC50, ode, formula)
+knitr::kable(area, digits = c(0, 0, 2, 0, 0),
+  col.names = c("Cmax", "Emax", "EC50", "Area, ODE", "Large-dose formula"))
+```
+
+- Sharma and Jusko (1996) and Peletier et al. (2005): read $E_{\max}$ from
+  the slope of area against log dose. **At $E_{\max} = 150$ the slope factor
+  is 0.993**, so the slope carries almost nothing.
+- At a given dose the area is the same for all three sets: it follows $S_0$.
+  The formula's level is low because its omitted constant is large here.
 
 ## Each formula against the ODE solution
 
@@ -356,6 +387,23 @@ only 30 × $EC_{50}$ or $k_{\rm out}$ is small.
 The model is structurally identifiable. **The loss is practical**, caused by
 the quantification limit and the sampling schedule.
 
+## The textbook recipe needs the two readings a study loses
+
+Sharma and Jusko (1998), Table 1, recover the parameters graphically:
+
+1. **Baseline** → $B_0$
+2. **Large-dose nadir** → $E_{\max} = B_0/B_{\min} - 1$
+3. **Initial slope** with $E_{\max}$ → $k_{\rm in}$, then $k_{\rm out} = k_{\rm in}/B_0$
+4. **Concentration at the time of the nadir** → $EC_{50}$
+
+Design: two or more bolus doses, one high enough for full effect, and the
+baseline.
+
+- ❌ **Step 2:** the nadir is 1.3 cells/µL, below the limit.
+- ❌ **Step 3:** the initial slope is over in a day, before a weekly sample.
+- What is left is the tail, for $k_{\rm out}$, and the climb back, for
+  $E_{\max}/EC_{50}$.
+
 ## Same ratio, same curve above the limit
 
 ```{r same-slope}
@@ -396,6 +444,8 @@ $$
 - At $C = EC_{50}$ the count is already 1.3% of baseline
 - **The quantifiable band is about $EC_{50}/1500$ to $EC_{50}/15$**, below
   every therapeutic dose
+- Krzyzanski and Jusko (1998): two infusion rates give $E_{\max}$ and
+  $EC_{50}$ only if both concentrations are not well above $EC_{50}$
 
 :::
 ::: {.column width="60%"}
@@ -648,6 +698,10 @@ In the order they would be dropped from a protocol:
   properties of the four models.
 - Peletier, Gabrielsson, Haag 2005. *J Pharmacokinet Pharmacodyn* 32:607.
   Dynamical systems analysis of the indirect response model.
+- Sharma, Jusko 1998. *Br J Clin Pharmacol* 45:229. Review; Table 1 is
+  the graphical identification recipe.
+- Krzyzanski, Jusko 1998. *J Pharmacokinet Biopharm* 26:385. The four
+  models under infusion.
 - Dutta, Matsumoto, Ebling 1996. *J Pharm Sci* 85:232. $E_{\max}$ from
   truncated data.
 - Schoemaker, van Gerven, Cohen 1998. *J Pharmacokinet Biopharm* 26:581.
