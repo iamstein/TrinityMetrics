@@ -277,8 +277,10 @@ $E_{\max}$, and $C_{\max}/EC_{50}$. The two rates above are $\kappa$ and
 $\kappa(1 + E_{\max})$ in those units. Krzyzanski and Jusko (entry 17) show
 the same competition for an infusion: the response approaches its steady
 state at the slower of $k_e$ and $k_{\rm out}(1 + E)$. Sections 2.3 to 2.8
-note where each result below is already in these papers. Krzyzanski and Jusko
-1997 (entry 13), the bolus paper the others build on, has not been read.
+note where each result below is already in these papers. Several of them
+originate in Krzyzanski and Jusko 1997 (entry 13), the bolus paper the others
+build on. That paper has not been obtained, so it is cited here as given in
+Sharma and Jusko 1996.
 
 The model also depends on concentration only through $C/EC_{50}$, so scaling
 the dose and $EC_{50}$ by the same factor leaves the curve unchanged. Sharma
@@ -317,8 +319,8 @@ correction at $C_{\max} = 100 \times EC_{50}$. With the values here,
 $t_{1/2,\rm fall}$ is 0.23 days, five and a half hours, and the fall is 99%
 complete by day 1.5.
 
-Both pieces are published. Sharma and Jusko 1996 (entry 12, their Eq. 26)
-give the large-dose initial slope as $-k_{\rm out} B_0 S_{\max}$, the slope
+Both pieces are published. Sharma and Jusko 1996 (entry 12, their Eq. 26,
+taken from Krzyzanski and Jusko 1997) give the large-dose initial slope as $-k_{\rm out} B_0 S_{\max}$, the slope
 above in absolute units. Peletier et al. (entry 15, their Eq. 32) prove that
 for every dose
 
@@ -339,7 +341,8 @@ B(t) \approx \frac{B_0}{1 + E\big(C(t)\big)} \approx \frac{B_0}{1 + E_{\max}}
 $$
 
 **The floor carries $E_{\max}$**, given $B_0$, and is the large-dose limit of
-the nadir in Sharma and Jusko 1996 (entry 12, their Eq. 14). With
+the nadir in Sharma and Jusko 1996 (entry 12, their Eq. 14, taken from
+Krzyzanski and Jusko 1997). With
 $E_{\max} = 150$ it is 1.3 cells/µL. A floor is quantifiable only if it sits above the limit
 $f B_0$, which needs $E_{\max} < 1/f - 1$: below 19 for a limit at 5% of
 baseline, below 39 for one at 2.5%.
@@ -379,12 +382,13 @@ must be below $EC_{50}$, which holds whenever $f E_{\max} \gg 1$.
 
 Across a dose escalation, $\partial t_f / \partial \ln C_{\max} = 1/k_e$, so
 each ten-fold step in dose delays the climb by $\ln 10 / k_e = 34.5$ days,
-3.3 PK half-lives, whatever $E_{\max}$ and $EC_{50}$ are. This is Levy's
-dose-duration relation from 1966 (references, entry 11): the duration of an
-effect is linear in log dose, the slope gives the elimination rate, and the
-line extrapolates to zero duration at a threshold dose, here
-$C_{\max} = (1 - f)/(f S_0)$. Levy derived it for a direct effect with a
-threshold. The indirect-response model gives the same line because the count
+3.3 PK half-lives, whatever $E_{\max}$ and $EC_{50}$ are. This is the
+dose-duration relation usually attributed to Levy in 1966 (references, entry
+11; the paper has not been obtained, and the attribution rests on secondary
+sources): the duration of an effect is linear in log dose, the slope gives
+the elimination rate, and the line extrapolates to zero duration at a
+threshold dose, here $C_{\max} = (1 - f)/(f S_0)$. As those sources describe
+it, Levy's relation is for a direct effect with a threshold. The indirect-response model gives the same line because the count
 follows the quasi-steady state, which is a direct function of concentration.
 Panel C of the figure shows the line and the points falling on it, with the
 lowest doses bending away where the count never reaches the quasi-steady

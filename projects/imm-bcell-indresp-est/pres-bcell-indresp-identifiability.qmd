@@ -285,8 +285,9 @@ ggplot(climb, aes(cmax, t, colour = S0)) +
 
 - Slope $1/k_e$: each ten-fold dose adds $\ln 10/k_e = 34.5$ days, 3.3 PK
   half-lives, whatever $E_{\max}$ and $EC_{50}$ are.
-- **Three sets with the same ratio fall on one line.** Levy (1966) gave this
-  line for direct effects; the quasi-steady state makes it hold here.
+- **Three sets with the same ratio fall on one line.** Levy (1966, as cited
+  in secondary sources) gave this line for direct effects; the quasi-steady
+  state makes it hold here.
 - Peletier et al. (2005) prove the general form: at large doses the recovery
   is a fixed shape travelling by $\ln(C_{\max}/EC_{50})/k_e$.
 
@@ -691,11 +692,12 @@ In the order they would be dropped from a protocol:
 - Dayneka, Garg, Jusko 1993. *J Pharmacokinet Biopharm* 21:457. The four
   indirect-response models.
 - Levy 1966. *Clin Pharmacol Ther* 7:362. Duration of effect linear in log
-  dose.
+  dose. Not obtained; cited from secondary sources.
 - Sharma, Jusko 1996. *J Pharmacokinet Biopharm* 24:611. Dose and $EC_{50}$
   scale together.
 - Krzyzanski, Jusko 1997. *J Pharmacokinet Biopharm* 25:107. Mathematical
-  properties of the four models.
+  properties of the four models. Not obtained; its large-dose limits are cited
+  as given in Sharma and Jusko 1996.
 - Peletier, Gabrielsson, Haag 2005. *J Pharmacokinet Pharmacodyn* 32:607.
   Dynamical systems analysis of the indirect response model.
 - Sharma, Jusko 1998. *Br J Clin Pharmacol* 45:229. Review; Table 1 is

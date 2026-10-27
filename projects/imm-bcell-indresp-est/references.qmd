@@ -118,6 +118,11 @@ elimination half-life, and its intercept gives the threshold dose. Section
 2.5 derives the same line for the climb back of the B-cell count, with slope
 $1/k_e$ and intercept at $C_{\max} = (1 - f)/(f S_0)$.
 
+**Not obtained.** None of the papers read for this project cites it for the
+dose-duration line, so the attribution rests on the secondary sources above.
+Section 2.5 does not depend on it: the line is derived there from the model
+and checked against the ODE solution in panel C of its figure.
+
 **The question.** Levy's derivation is for a direct effect with a threshold.
 Whether he or a later paper extends it to indirect responses, which Section
 2.5 does through the quasi-steady state.
@@ -152,9 +157,11 @@ four models, used to characterize the shape of the response curve, its
 maximum or minimum, and how these change with dose, $S_{\max}$, $SC_{50}$
 and $k_{\rm out}$.
 
-**The question.** Entries 12 and 15 cite it as the source of the large-dose
-limits Section 2 uses, so it is the primary reference for them. Not yet
-obtained; the copy in the local folder is the 1998 infusion paper, entry 17.
+**Not obtained.** Entry 12 states the large-dose limits Section 2 uses, the
+nadir $R_0/(1 + S_{\max})$ and initial slope $-k_{\rm out} R_0 S_{\max}$
+(its Eqs. 14 and 26), and credits them to this paper; entry 15 proves the same
+limits independently. The working document cites this paper through entry 12.
+The copy in the local folder is the 1998 infusion paper, entry 17.
 
 ### 14. Krzyzanski and Jusko 1998 — integrated functions for four basic models of indirect pharmacodynamic response ❌
 
