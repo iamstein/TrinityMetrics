@@ -371,14 +371,16 @@ only 30 × $EC_{50}$ or $k_{\rm out}$ is small.
 
 ## What is identifiable and what is not
 
-| Part of the curve | Carries | Observed when | Usual B-cell study |
+| Part | Carries | Needs | Usual study |
 |:---|:---|:---|:---|
-| Baseline | $B_0$ | always | ✅ |
-| Fall | $k_{\rm out}(1 + E_{\max})$ | samples in the first one to two days | ❌ first sample at a week |
+| Baseline | $B_0$ | nothing | ✅ |
+| Fall | $k_{\rm out}(1 + E_{\max})$ | samples on days 0 to 2 | ❌ first at day 7 |
 | Floor | $E_{\max}$ | $E_{\max} < 1/f - 1$ | ❌ below the limit |
-| Climb back | $S_0$, plus a few-day $E_{\max}$ term | samples through recovery, PK known | ✅ |
-| Tail | $k_{\rm out}$ | samples until repopulation | ✅ |
-| Low-dose cohort | $S_0$, $k_{\rm out}$ | $C_{\max} \ll EC_{50}$ | ✅ but adds no $E_{\max}$ |
+| Climb back | $S_0$ | recovery samples, known PK | ✅ |
+| Tail | $k_{\rm out}$ | samples to repopulation | ✅ |
+| Low dose | $S_0$, $k_{\rm out}$ | $C_{\max} \ll EC_{50}$ | ✅ no $E_{\max}$ |
+
+## What a usual B-cell study identifies
 
 - ✅ **Always:** $B_0$, $k_{\rm out}$, $S_0 = E_{\max}/EC_{50}$
 - ⚠️ **$E_{\max}$:** only from the fall, or a floor above the limit
