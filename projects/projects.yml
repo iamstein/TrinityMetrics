@@ -48,13 +48,13 @@
   categories: [Immunology and T-cell engagers, Draft]
   path: tce-crs-tolerance/index.qmd
 
-- title: "One-page TCE dose-finding strategy"
+- title: "TCE dose-finding strategy"
   subtitle: "Working document"
   description: >
     A T-cell engager program owes twenty-one dose and regimen decisions and
-    has nowhere that holds the list. One landscape page that does: where each
-    decision stands, when it is due, what will answer it, whether the team
-    agrees, and who decides. Narrowed from the Sander 2021 framework.
+    has nowhere that holds the list. A three-slide deck that does: where each
+    decision stands and on what evidence, which milestone needs it, and
+    whether the team agrees. Narrowed from the Sander 2021 framework.
   categories: [Immunology and T-cell engagers, Draft]
   path: tce-dose-finding-strategy/index.qmd
 

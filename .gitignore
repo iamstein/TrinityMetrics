@@ -65,3 +65,6 @@ projects/ai-pmx-skills-modeling-guidance/2026-10-02-pharmacometrics-skill-librar
 
 # Copyrighted papers kept locally for reading, never published
 refs_copyright/
+
+# Office lock files written while a document is open
+~$*

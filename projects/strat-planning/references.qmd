@@ -34,7 +34,7 @@ view and places to contribute through modeling or critical thinking.
 
 **✅ Specification and specimen read.**
 [Working specification](../tce-dose-finding-strategy/specification.qmd)
-and [specimen page](../tce-dose-finding-strategy/one-page-strategy.qmd).
+and [specimen deck](../tce-dose-finding-strategy/dose-finding-strategy.pptx).
 
 The annual template adopts the separation of decision and evidence dates,
 the current working position, an accountable decision owner and the distinction

@@ -21,7 +21,7 @@ is read.
 :::
 
 The working document is [the specification](specification.qmd), the artifact
-itself is [the specimen page](one-page-strategy.qmd), and the folder's other
+itself is [the specimen deck](dose-finding-strategy.pptx), and the folder's other
 documents are on [the project index](index.qmd).
 
 ## Status markers

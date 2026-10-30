@@ -1,7 +1,7 @@
 ---
-title: "A one-page dose-finding strategy for a T-cell engager"
-subtitle: "Which dose decisions are open, when each is due, and whether the team agrees"
-description: "Index of the documents in the TCE dose-finding strategy project: the working specification for the artifact, the filled specimen page, and the references."
+title: "A dose-finding strategy for a T-cell engager"
+subtitle: "Which dose decisions are open, when each is needed, and whether the team agrees"
+description: "Index of the documents in the TCE dose-finding strategy project: the working specification for the artifact, the filled specimen deck, and the references."
 categories: [trial design, dose finding, immunology, working document]
 date: last-modified
 toc: false
@@ -13,27 +13,28 @@ times by different functions, and no single document holds the list, so a
 decision taken as provisional in year one is found in year four to have
 committed the program.
 
-This project builds one landscape page that holds the list. For each decision:
-where it stands, when it is due, what evidence will answer it, whether the team
-agrees, and who decides. The page is revisited at each milestone rather than
-written once.
+This project builds a three-slide deck that holds the list. For each decision:
+where it stands and on what evidence, which milestone needs it, and whether the
+team agrees. The deck is revisited at each milestone rather than written once.
 
 The starting point is the dose and regimen framework Sander et al. published in
 2021, which runs to two pages and is written for any drug. This narrows it to
-one page and to the decisions a TCE actually faces, the step-up schedule first.
+the decisions a TCE actually faces, the step-up schedule first.
 
 Nothing here has been used on a program, and the source paper has not been read
 in full.
 
 ## Documents
 
-- [Working specification](specification.qmd). What the page holds, the seven
+- [Working specification](specification.qmd). What the deck holds, the five
   columns and why each earns its width, the two status axes, the TCE decision
-  inventory, the gates, and the departures from the initial notes with a
+  inventory, the milestones, and the departures from the initial notes with a
   reason for each. Its **In brief** section is one screen and says what the
   rest argues.
-- [Specimen page](one-page-strategy.qmd). The artifact itself, filled in for an
-  invented program, with the blank template underneath it to copy.
+- [Specimen deck](dose-finding-strategy.pptx). The artifact itself, filled in
+  for an invented program, in PowerPoint: dose decisions, regimen decisions,
+  then the Phase 2b doses, the escalation rules and the milestones. To start a
+  real one, copy the deck and replace the rows.
 - [References](references.qmd). What to read and in what order, and a marker on
   every source recording whether the claim drawn from it has been checked.
   Every marker is currently ❌.

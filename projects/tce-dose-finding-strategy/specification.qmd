@@ -1,7 +1,7 @@
 ---
-title: "A one-page dose-finding strategy for a T-cell engager"
+title: "A dose-finding strategy for a T-cell engager"
 subtitle: "Working specification for the artifact, its columns, and its vocabulary"
-description: "Specifies a single landscape page that holds every open dose and regimen decision in a T-cell engager program: the seven columns, the two status axes, the TCE decision inventory, the gates, and how a row retires so the page stays one page."
+description: "Specifies a three-slide deck that holds every open dose and regimen decision in a T-cell engager program: the five columns, the two status axes, the TCE decision inventory, the milestones, and how a row retires so the deck stays short."
 categories: [trial design, dose finding, immunology, working document]
 date: last-modified
 toc: true
@@ -23,73 +23,74 @@ markers, all of which are ❌.
 
 ## In brief
 
-**The artifact.** One landscape page, revised at every program milestone, that
-holds each dose and regimen decision a T-cell engager (TCE) program still
-owes: where it stands, when it is due, what evidence will answer it, whether
-the team agrees, and who decides.
+**The artifact.** A three-slide PowerPoint deck, revised at every program
+milestone, that holds each dose and regimen decision a T-cell engager (TCE)
+program still owes: where it stands and on what evidence, which milestone
+needs it, and whether the team agrees.
 
 **What it is for.** A program has no single place where an open dose question
 is visible as open. The rationale lives in modelling reports, the commitments
-live in protocols, and the disagreements live in people's heads. The page
+live in protocols, and the disagreements live in people's heads. The deck
 makes all three visible at once, in front of the team that has to act on them.
 
 **Where it comes from.** Sander et al. 2021 published a two-page dose and
 regimen framework for clinical development. Page 1 collects what is known
 about the project and the drug; page 2 condenses the critical items, evaluates
 design options, and summarizes the strategy. This specification narrows that
-to one page, drops the knowledge-collection half, and replaces the
+to three slides, drops the knowledge-collection half, and replaces the
 drug-agnostic decision list with the decisions a TCE faces.
 
 **What it adds to Sander.**
 
-1. *Decide by* and *evidence lands* are separate columns, and a row where the
-   evidence lands after the decision is due carries a ⏰ marker. That gap is
-   what the page exists to expose.
+1. Each row names the milestone that needs the decision separately from the
+   evidence that will answer it, and a row whose evidence arrives after that
+   milestone carries a ⏰ marker. That gap is what the deck exists to expose.
 2. Decision maturity and team alignment are separate columns. A decision can
    be committed with a function still objecting, or agreed by everyone with no
    evidence behind it, and those two failures look nothing alike.
 3. A settled row leaves the table for a one-line strip at the bottom. The
-   page stays one page because rows retire.
+   deck stays at three slides because rows retire.
 
 **How a reader uses it.** Scan the State column for ○, then the Team column
-for ⚠️, then the Evidence column for ⏰. Those three passes find every decision
-that is not on track, and everything else on the page is context for them.
+for ⚠️, then the Position and evidence column for ⏰. Those three passes find
+every decision that is not on track, and everything else in the deck is
+context for them.
 
 **Out of scope, stated once.**
 
 - ❌ **The dose rationale.** No pharmacokinetic (PK) or pharmacodynamic (PD)
   models, no exposure-response, no simulation output, no target-occupancy
-  argument. The page cites the document that carries each and reproduces none
+  argument. The deck cites the document that carries each and reproduces none
   of it.
-- ❌ **A protocol or a statistical design.** The escalation logic on the page
+- ❌ **A protocol or a statistical design.** The escalation logic in the deck
   is strategy. Where it differs from the protocol's decision rules, from the
   Bayesian logistic regression model, or from the dose-escalation committee's
-  charter, the protocol wins and the page is wrong.
-- ❌ **Governance.** The page records who decides. It does not create the
-  authority, and naming an owner on it does not make that person the owner.
+  charter, the protocol wins and the deck is wrong.
+- ❌ **Governance.** The deck names no owner. The program team owns every
+  row, and who has authority over a decision is settled outside the deck.
 - ⚠️ **A knowledge-collection checklist.** Sander's page 1 is a checklist of
   trigger topics used to build shared understanding of the drug and the
   disease. It is a different exercise, done once, and this specification does
-  not replace it. It is not on this page.
+  not replace it. It is not in the deck.
 
 ## 1. The Decision Table
 
-The table is the page. Everything else on the page is either a header above it
-or a strip below it.
+The table is most of the deck. It runs over two slides, dose decisions and
+regimen decisions, with the program header and the phase objectives above the
+first and the Settled strip below the second. The third slide carries the
+Phase 2b doses, the escalation rules and the milestones.
 
 ### Columns
 
 | Column | What goes in the cell | Why it earns the width |
 |:---|:---|:---|
 | Decision | The question, in four words or fewer | The reader has to find a row by scanning, so the cell is a label and not a sentence |
-| Current position | What the program would do if it had to act today | A row with no position is the finding, and the cell says `none` rather than sitting empty |
-| State | ○ Open, ◐ Working, ● Locked | How committed the position is |
+| Position and evidence | First line, what the program would do if it had to act today. Second line, in italics, the study, cohort or analysis that answers it and when it reads out | A position and the evidence behind it are read together, so they share the widest column. A row with no position is the finding, and the first line says `none` rather than sitting empty |
+| State | ○ Open, ◐ Provisional, ● Locked | How committed the position is |
 | Team | ✅ Agreed, ⚠️ Split, – Not asked | Whether the people who have to live with it have said so |
-| Decide by | The milestone at which the decision must exist | The program calendar drives it, and the evidence may or may not have arrived |
-| Evidence | The study, cohort or analysis that answers it, and the criterion | One cell, because on one page the study and the criterion are the same thought |
-| Owner | One name, with the function in parentheses | A list of contributing functions is a list of people who are not accountable |
+| Needed for | The milestone that needs the decision, with its date: Phase 1, Phase 1 expansion, Phase 2b protocol, Phase 3 protocol or submission | A program makes the same dose decision for Phase 2b, again for Phase 3 and again for the submitted regimen, so a date alone does not say which decision a row means |
 
-: The seven columns {tbl-colwidths="[14,24,10,10,14,18,10]"}
+: The five columns {tbl-colwidths="[16,34,50]"}
 
 ### The Two Status Axes
 
@@ -100,7 +101,7 @@ a single vocabulary hides the two failure modes below.
 
 - ○ **Open.** No position. Nothing has been proposed, or what was proposed was
   rejected and not replaced.
-- ◐ **Working.** A position exists and is expected to change. It is what a
+- ◐ **Provisional.** A position exists and is expected to change. It is what a
   slide would say this month and what a simulation would assume.
 - ● **Locked.** The position is committed in a protocol, a filing, a supply
   plan or a governance decision. Changing it now costs money or time, and the
@@ -113,7 +114,7 @@ so.
   with a record.
 - ⚠️ **Split.** A named function disagrees, and the cell names it. The
   disagreement is a property of the program, not a failure of the meeting, and
-  it stays on the page until it resolves.
+  it stays in the deck until it resolves.
 - – **Not asked.** The position has not been put to the team. Common and
   benign early, and a defect by the time the state is ● Locked.
 
@@ -128,18 +129,19 @@ Two of the nine combinations are why the axes are separate.
   and usually discovered when the function that was not asked is handed the
   consequence.
 
-An open question is an acceptable state for the page to record. The page
+An open question is an acceptable state for the deck to record. The deck
 exists to make the open question and its resolution plan explicit, not to
 force a position.
 
-### The Decide-By Gap
+### The Needed-For Gap
 
-*Decide by* is a milestone in the program calendar. *Evidence* names what will
-answer the question and when it reads out. When the readout falls after the
-milestone, the Evidence cell carries ⏰ and the row is on the critical path
-whether or not anyone has said so.
+*Needed for* is a milestone in the program calendar. The evidence line of the
+*Position and evidence* cell names what will answer the question and when it
+reads out. When the readout falls after the milestone, the evidence line
+carries ⏰, the cell is shaded red, and the row is on the critical path whether
+or not anyone has said so.
 
-A ⏰ row has three resolutions, and the page should say which one the program
+A ⏰ row has three resolutions, and the deck should say which one the program
 has chosen.
 
 1. **Move the decision later.** Often possible and rarely free, because
@@ -149,7 +151,7 @@ has chosen.
    one.
 3. **Decide on prior information and say so.** A decision taken on model
    prediction, on class precedent, or on a competitor's label is a legitimate
-   decision, and the Evidence cell names that prior information rather than a
+   decision, and the evidence line names that prior information rather than a
    study.
 
 Every TCE program has at least one ⏰ row, because the step-up schedule for the
@@ -158,28 +160,28 @@ data from the current one has matured.
 
 ### How a Row Retires
 
-The full inventory in Section 2 runs to twenty-one rows and will not fit on a
-page with seven columns. The page holds the live subset.
+The full inventory in Section 2 runs to twenty-one rows and will not fit on two
+slides at a size a room can read. The deck holds the live subset.
 
 A row leaves the table when it reaches ● Locked and ✅ Agreed together. It
-moves to a single **Settled** strip at the foot of the page, as decision name,
+moves to a single **Settled** strip at the foot of the regimen slide, as decision name,
 position, and the date and forum that locked it, one row per line, no other
-columns. In practice this leaves eight to twelve rows in the table at any one
-time, which is what fits.
+columns. At 14 pt the two table slides hold about ten rows between them, four
+to six on each.
 
 A settled row comes back to the table if either axis changes. New safety data,
 a changed indication or a regulatory question can all reopen a locked
 decision, and a row that returns keeps its original decision date in the
-Evidence cell so the reader can see it was settled once.
+evidence line so the reader can see it was settled once.
 
 ## 2. The TCE Decision Inventory
 
 The inventory is the full list of decisions a TCE program owes. It is not the
-page. Three blocks, in the order a program meets them.
+deck. Three blocks, in the order a program meets them.
 
 ### Block A --- Reaching the Therapeutic Dose
 
-This block is what makes the page TCE-specific. A conventional
+This block is what makes the deck TCE-specific. A conventional
 small-molecule framework has one starting-dose row where a TCE has nine, and
 they interact: the number of steps follows from the gap between the starting
 dose and the active dose, the interval follows from the CRS observation window,
@@ -207,9 +209,9 @@ and the monitoring requirement follows from both.
 | B2 | Escalation rule | What evidence permits the next dose level | Section 4 |
 | B3 | Stop-escalation rule | What evidence says higher is not worth exploring | Section 4. The harder of the two, because it has to be written before the plateau is visible |
 | B4 | Expansion rule | What makes a dose worth characterizing in more patients | Section 4 |
-| B5 | Doses to expand | Which levels get a backfill or an expansion cohort | The doses expanded constrain the doses that can be carried forward, so B5 and B7 are one decision made twice, months apart |
-| B6 | Number of doses carried forward | One, two, three, or to be determined | Section 3 |
-| B7 | Which doses carried forward | The levels and their approximate exposures | Section 3 |
+| B5 | Doses to expand | Which levels get a backfill or an expansion cohort | The doses expanded constrain the doses Phase 2b can compare, so B5 and B7 are one decision made twice, months apart. The specimen deck holds B4 and B5 in one row, Expansion criteria, whose position names the doses that qualify |
+| B6 | Number of Phase 2b doses | How many full doses the randomized Phase 2b comparison carries: one, two, three, or to be determined | Section 3 |
+| B7 | Which Phase 2b doses | The levels and their approximate exposures | Section 3 |
 
 : Block B, finding the therapeutic dose {tbl-colwidths="[5,20,33,42]"}
 
@@ -223,19 +225,21 @@ after the attention has moved to the registrational study.
 | C1 | Full-dose interval | Weekly, every two weeks, every three weeks | Usually inherited from the escalation schedule rather than chosen |
 | C2 | Fixed duration or continuous | Whether treatment stops at a planned point | Decided on efficacy and on tolerability, and increasingly on what the patient will accept |
 | C3 | Maintenance required | Whether a lower-intensity phase follows the initial one | Frequently the first question a payer asks and the last one the program answers |
-| C4 | Maintenance dose, interval and duration | The regimen of that phase, if there is one | Rarely studied at more than one level, which makes it the weakest-evidence decision on the page |
+| C4 | Maintenance dose, interval and duration | The regimen of that phase, if there is one | Rarely studied at more than one level, which makes it the weakest-evidence decision in the deck |
 | C5 | Individual dose modification | What a clinician does to the dose of one patient with an adverse event | Written into the protocol early, propagated to the label almost unchanged, and seldom revisited |
 
 : Block C, the longer-term regimen {tbl-colwidths="[5,22,33,40]"}
 
-## 3. The Carry-Forward Block
+## 3. The Phase 2b Doses
 
-This sits directly under the table and is the second thing on the page a
-reader should be able to find without looking for it.
+This block opens the third slide, beside the escalation rules. It is the
+second thing in the deck a reader should be able to find without looking for
+it.
 
 It answers two questions and justifies the answer in one sentence.
 
-**How many doses or regimens carry forward?** 1 / 2 / 3 / TBD.
+**How many doses go into the randomized Phase 2b comparison?** 1 / 2 / 3 /
+TBD.
 
 **Which ones?** Low / Mid / High, or a combination.
 
@@ -245,7 +249,7 @@ It answers two questions and justifies the answer in one sentence.
 | Mid | | Intermediate benefit-risk |
 | High | | Characterizes incremental benefit and the upper range |
 
-: The carry-forward candidates {tbl-colwidths="[20,30,50]"}
+: The Phase 2b candidates {tbl-colwidths="[20,30,50]"}
 
 The block then states why this number and this spread are enough for the next
 stage. Two sentences that do the job:
@@ -265,14 +269,14 @@ a decision row, because the program does not get to choose it. The FDA's
 Project Optimus expects a dosage to be justified by more than the maximum
 tolerated dose, which in practice means comparing more than one dose in a
 randomized setting before the registrational study. A program planning to
-carry one dose forward is planning an argument with a regulator, and the page
+carry one dose forward is planning an argument with a regulator, and the deck
 should say so where the plan is visible.
 
 ## 4. Escalate, Expand, Stop
 
-Three rules, one line each on the page, expanded here. They are strategic
+Three rules, one line each on the third slide, expanded here. They are strategic
 criteria and not algorithms, unless the protocol has defined them as
-algorithms, in which case the protocol's version goes on the page verbatim.
+algorithms, in which case the protocol's version goes in the deck verbatim.
 
 ### Escalate When
 
@@ -283,7 +287,7 @@ What evidence permits moving up.
   incidence and grade are manageable with the current mitigation.
 - Exposure is still below the target range.
 - The pharmacodynamic effect is not saturated. For a TCE this is target-cell
-  depletion, target occupancy, or a cytokine response, and the page should
+  depletion, target occupancy, or a cytokine response, and the deck should
   name which one the program is reading.
 - There is a plausible mechanism by which more exposure produces more benefit.
 
@@ -303,7 +307,7 @@ What makes a dose worth characterizing in more patients.
 What evidence says a higher dose will not improve benefit-risk.
 
 - Toxicity at the current level is unacceptable, by the protocol's definition.
-- Target modulation is saturated, and the page names the measurement that says
+- Target modulation is saturated, and the deck names the measurement that says
   so.
 - Exposure-response has plateaued on the endpoint that will support
   registration.
@@ -316,60 +320,65 @@ The last two are the ones a program finds hardest to act on, because both
 require saying that a dose which could be given will not be. Writing them down
 before escalation starts is most of their value.
 
-## 5. Gates and the Decision Calendar
+## 5. Milestones and the Decision Calendar
 
-The foot of the page carries the calendar: the program's stages, and which
-gate each block of decisions belongs to.
+The foot of the third slide carries the calendar: the program's milestones,
+which are the values the *Needed for* column takes, and which decisions each
+one needs.
 
 ```{mermaid}
 flowchart LR
-    P["Protocol<br/>Gate 0"] --> E["Escalation<br/>Gate 1"]
-    E --> X["Expansion / Ph1b<br/>Gate 2"]
-    X --> C["Carry forward<br/>Gate 3"]
-    C --> O["Ph2b optimization<br/>Gate 4"]
-    O --> R["Registrational<br/>dose and regimen"]
+    P["Protocol"] --> E["Escalation<br/>per cohort"]
+    E --> X["Phase 1<br/>expansion"]
+    X --> T["Phase 2b<br/>protocol"]
+    T --> H["Phase 3<br/>protocol"]
+    H --> S["Submission<br/>regimen"]
     P -.- PA["A1 to A8"]
     E -.- EA["B1 to B3, A2 to A6 revised"]
-    X -.- XA["B4, B5, C1"]
-    C -.- CA["B6, B7"]
-    O -.- OA["C2 to C5"]
+    X -.- XA["B4, B5"]
+    T -.- TA["B6, B7, C1, A9"]
+    H -.- HA["C2 to C5"]
 ```
 
-**Gate 0, Start.** Can the first patient be dosed on this schedule? Block A is
-committed here, before any human data exists, which makes it the gate with the
-worst ratio of decisions made to evidence available. Most of a TCE program's
-⏰ rows are created at Gate 0.
+**Protocol.** Can the first patient be dosed on this schedule? Block A is
+committed here, before any human data exists, which makes it the milestone
+with the worst ratio of decisions made to evidence available. Most of a TCE
+program's ⏰ rows are created at the protocol.
 
-**Gate 1, Escalate.** Can the program safely and sensibly explore higher
-exposure? Asked once per dose level.
+**Escalation.** Can the program safely and sensibly explore higher exposure?
+Asked once per dose level.
 
-**Gate 2, Expand or stop escalating.** Has the program reached doses worth
-characterizing in more patients?
+**Phase 1 expansion.** Has the program reached doses that need characterizing in
+more patients, and should escalation stop?
 
-**Gate 3, Carry forward.** How many doses and regimens move into the next
-stage, and which ones?
+**Phase 2b protocol.** How many doses go into the randomized comparison, which
+ones, and on what step-up and full-dose regimen?
 
-**Gate 4, Optimize.** Which dose or regimen has the preferred benefit-risk?
+**Phase 3 protocol.** Which dose and regimen has the preferred benefit-risk,
+and does the regimen include maintenance?
 
-The table is ordered by decision rather than by gate, because the same
-decision is revisited at several gates. A1 is committed at Gate 0 and revised
-at Gate 1 when the first exposures read out.
+**Submission.** The dose and regimen that go into the label, which every row
+in Block A and Block C has to reach.
+
+The table is ordered by decision rather than by milestone, because the same
+decision is revisited at several milestones. A1 is committed at the protocol
+and revised during escalation when the first exposures read out.
 
 ## 6. Ownership and the Handoff
 
-Each row names one owner, with the function in parentheses. An organization
-on its own cannot be asked a question.
+The deck names no owner. The program team owns every row, which is how the
+team works now, and an owner column would record an accountability the team
+has not assigned.
 
-The functions that appear are Early Clinical Development, Late Clinical
-Development, Clinical Pharmacology and Pharmacometrics, Translational
-Medicine, Safety, the disease-area team, and program governance.
+The functions that appear in the Team column are Early Clinical Development,
+Late Clinical Development, Clinical Pharmacology and Pharmacometrics,
+Translational Medicine, Safety, the disease-area team, and program governance.
 
-Mark the rows where ownership changes hands between organizations. Block B's
-late rows, B5 to B7, are generated by a study that
-Early Development runs and consumed by a study that Late Development runs, and
-the evidence is usually still maturing when the handoff happens. Mark those
-rows with the handing and receiving functions both named, and put the handoff
-date in the Decide by cell.
+Mark the rows where the work changes hands between organizations. Block B's
+late rows, B5 to B7, are generated by a study that Early Development runs and
+consumed by a study that Late Development runs, and the evidence is usually
+still maturing when the handoff happens. Name both functions in the Team cell
+of those rows.
 
 ## 7. Departures from the Initial Notes
 
@@ -380,29 +389,33 @@ and a different column set. What changed and why.
 |:---|:---|
 | One status column became two, State and Team | The proposed vocabulary of Aligned / Working hypothesis / Open / Unresolved mixed how settled a decision is with whether the team agrees. Those are independent, and the combinations the merged vocabulary cannot express are the two most damaging ones. Section 1 |
 | `When answered?` became `Decide by` plus a readout date inside Evidence | The question conflated when the decision is due with when the data arrives. The gap between the two is the risk, and a single column hides it |
+| `Decide by` became `Needed for`, naming the milestone | A program makes the same dose decision for Phase 2b, for Phase 3 and for the submitted regimen, and a date alone did not say which of the three a row meant |
+| `Current position` and `Evidence` merged into one wide column | A position and its evidence are read together, and the merge freed a column. The ⏰ marker and the red shading moved into the merged cell |
 | `Study / Cohort` and `Evidence / Criteria` merged into one Evidence column | Two columns would not fit beside the new ones, and on one page the study and the criterion are written as one thought |
-| `Owner / Org` became a single named owner | An organization cannot be asked a question. The function goes in parentheses after the name |
-| Thirteen decision rows became a twenty-one-row inventory and an eight to twelve-row page | The proposed list was missing the mitigation regimen, the monitoring requirement, route and scaling, re-priming after an interruption, and individual dose modification. All five are decided on every TCE program, and four of them are in the label. The page fits because rows retire |
-| Project Optimus added as a constraint line under carry-forward | The number of doses carried forward is not a free choice, and the notes read as though it were |
-| The escalate / expand / stop logic moved off the page to one line each | Five bullets times three rules is a page on its own |
+| `Owner / Org` became a single named owner, and then the column was removed | The program team owns every row. Section 6 |
+| ◐ Working became ◐ Provisional | Working read as "under discussion", which overlaps ⚠️ Split. A provisional position may not have been put to anyone yet, and the Team column records that separately |
+| `Number carried forward` and `Which carried forward` became `Number of Phase 2b doses` and `Which Phase 2b doses` | "Carried forward" did not say into what. Both rows decide the randomized Phase 2b comparison |
+| One landscape page became three slides, at 14 pt and larger | Ten rows on one page needed 10 pt type, which a room cannot read. The first concern below proposed the split |
+| The specimen moved from a Quarto page to a PowerPoint deck | A program team edits slides in a meeting. Section 8, item 4 |
+| Thirteen decision rows became a twenty-one-row inventory and a deck of about ten live rows | The proposed list was missing the mitigation regimen, the monitoring requirement, route and scaling, re-priming after an interruption, and individual dose modification. All five are decided on every TCE program, and four of them are in the label. The deck fits because rows retire |
+| Project Optimus added as a constraint line under the Phase 2b doses | The number of doses carried forward is not a free choice, and the notes read as though it were |
+| The escalate / expand / stop logic moved off the table to one line each on the third slide | Five bullets times three rules is a slide on its own |
 
 : What changed from the initial notes {tbl-colwidths="[38,62]"}
 
 Two concerns with the concept itself, which the specification does not resolve.
 
-**One page is a constraint on the artifact, not on the problem.** Twenty-one
-decisions, seven columns and a carry-forward block do not fit, and every
-mechanism above for making them fit costs something. Retiring settled rows
-costs the reader the history, and merging the evidence columns costs the
-criterion its detail. If the page turns out to be unreadable at the font size
-it requires, the fix is two pages, with the table on one and the carry-forward
-block and calendar on the other.
+**The one-page limit was given up.** Twenty-one decisions, seven columns and
+a carry-forward block did not fit on one page at a size a room can read. The
+table now runs over two slides at 14 pt, with the Phase 2b doses and the
+calendar on a third. Retiring settled rows still costs the reader the history,
+and merging the evidence columns still costs the criterion its detail.
 
-**The page needs a named owner and a cadence, written in its header beside the
-date.** Without them it goes stale and is worse than nothing, because a stale
-page reads as a current one. The cadence that matches the gates is a revision
-before each gate meeting and a review at each program team meeting. Whether
-that survives contact with a real program is the first thing to find out.
+**The deck needs a cadence, written in its header beside the date.** Without
+one it goes stale and is worse than nothing, because a stale deck reads as a
+current one. The header carries *Revised* and *Next revision* for this. The
+cadence that matches the milestones is a revision before each milestone
+meeting and a review at each program team meeting. Whether that survives contact with a real program is the first thing to find out.
 
 ## 8. Order of Work
 
@@ -412,15 +425,14 @@ that survives contact with a real program is the first thing to find out.
    of it. What to keep from page 1, which this specification drops entirely,
    is the question to answer while reading. [References](references.qmd),
    entry 1.
-2. **Fill the specimen page for a real program.** The
-   [specimen](one-page-strategy.qmd) is filled for an invented one, which
+2. **Fill the specimen deck for a real program.** The
+   [specimen](dose-finding-strategy.pptx) is filled for an invented one, which
    proves the layout and nothing else. The first real fill is what shows
    whether the columns are the right columns.
 3. **Check Block A against approved TCE labels.** Every row in Block A appears
    in the dosing section of an approved label, which makes the labels a free
    test of whether the inventory is complete. [References](references.qmd),
    entry 4.
-4. **Decide the artifact's final form.** A Quarto page, a slide, or a
-   spreadsheet the team edits. The specimen is a page because that is what
-   this repository renders. A program will want the one it can edit in a
-   meeting.
+4. **Decide the artifact's final form.** Decided 2026-10-30: a PowerPoint
+   deck, because a program team edits slides in a meeting. A spreadsheet is
+   the fallback if the live rows outgrow two slides.
