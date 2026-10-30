@@ -16,7 +16,7 @@ one out far enough to say where it applies and what it saves.
 
 | Approach | What it changes | Where it applies | Status here |
 |:---|:---|:---|:---|
-| 1. Intrapatient dose escalation, with single-patient cohorts | Climbs the ladder within one patient rather than one cohort per rung | Any indication; the value rises with uncertainty about the active dose | Specified as a simulation, not built |
+| 1. Intrapatient dose escalation, with single-patient cohorts | Climbs the ladder within one patient rather than one cohort per rung | Any indication; the value rises with uncertainty about the active dose | Phase 1 of the simulation built and assessed |
 | 2. Healthy volunteer escalation | Finds the active dose in volunteers before the first patient is enrolled | Autoimmune indications with a B-cell or plasma-cell target; closed in oncology | Registry search done, three studies found, none reported |
 | 3. MABEL starting dose | Starts higher, on a better prediction of the active dose | Any indication | Out of scope, since it is widely practised; entry 2 of the references is the pointer |
 
@@ -35,6 +35,10 @@ starting-dose method with human data behind it.
   serum free light chains as the stopping marker. Its In Brief section
   summarizes the rest on one screen, and its Section 1 records the open
   decision between approaches 1 and 2.
+- [Phase 1 assessment](ipde-assessment.qmd). Approach 1. The deterministic
+  Phase 1 simulation of the working specification, built in R with rxode2,
+  with its results, the places the specification needed a decision it did not
+  make, and a recommendation on what to settle before Phase 2.
 - [Specification 1: B-cell targets](specification.qmd). The same design
   with peripheral B cells as the marker. Frozen on 2026-10-07; edits go
   in the working specification.
