@@ -1,0 +1,4999 @@
+# PMx Skills Index, November 2026. Written by the monthly run; see Specification 2.
+month: 2026-11
+run_date: '2026-11-01'
+criteria_version: 2
+run:
+  kind: scheduled monthly run, unattended, in a Claude Code cloud session (Claude Opus 5.5), on 2026-11-01
+  judge_agreement:
+    scope: the 18 skills rescored this month (9 whose files changed, 9 new); unchanged skills keep October's
+      single-pass answers
+    items_compared: 174
+    items_agreed: 153
+    share_agreed: 0.879
+    by_item:
+      R1: 0.667
+      R2: 0.944
+      R3: 1.0
+      R4: 0.944
+      R5: 0.944
+      R6: 0.889
+      R7: 0.778
+      R8: 0.833
+      R9: 0.917
+      R10: 0.889
+    below_threshold:
+    - R1
+    - R7
+    - R8
+    note: An item counts as disagreed when the two answers differ, including n against na. A third independent
+      subagent decided all 21 disagreements.
+  deviations:
+  - api.openalex.org was unreachable from the session (the environment's network policy refused it). Expertise
+    could not be measured for contributors added since October or for the nine new skills. Under Section
+    4.5 those contributors score 0 and carry the authors-not-found flag. John Harrold's field h-index
+    of 13 is October's OpenAlex record. The new outside user of K-Dense pkpd-modeling could not be checked
+    for expert status and counts 1 point.
+  - The rubric's first pass for the ten skills whose files changed was scored in the main session. For
+    the eight new skills outside nlmixr2llm it ran in a forked subagent that shared the session's context.
+    The second pass, the tie-break and the error audit were fresh subagents. All of them ran on the same
+    model. Section 4.1 asks for the audit to use a different model.
+  - Judge A and the two tie-break judges were given one reading of R1, under which handing named work
+    to another skill counts and a statement of what the underlying software cannot do does not. Judge
+    B was not given it.
+  - The audit's finding on nlmixr2lib-extract's multiplicative sex effect was dropped because the text
+    it quoted is correct. Every other audit finding was kept as reported.
+  - Unchanged skills keep October's rubric answers and audit, which came from one pass. This month's audits
+    of two rescored skills (nlmixr2llm estimation and nlmixr2lib extract-literature-model) found major
+    errors that were already in their October files.
+  - The test-retest rank correlation (Section 8) was not produced.
+  - No benchmark score. Two evaluation resources now cover listed skills with expected answers, the nlmixr2llm
+    vitals evaluation and the RConsortium admiral-adpc benchmark (issue 224). Running them needs model
+    API access and R, which the run did not have.
+  - GitHub code search was available with authentication. Each query returns at most 1,000 results, and
+    the reported total varied between pages of the same query; discovery.yml records the first page's
+    figure. The term nonmem also matches words such as nonmember, which accounts for most of its new hits.
+  - The skill-to-category rule left the new nlmixr2llm design skill (PopED through babelmixr2) as a tool
+    skill.
+  - Use was measured for 2025-11-01 to 2026-11-01. The repository API is not open to this session, so
+    use came from issue and pull-request search. The author of each item counts; commenters were not read
+    individually. Account ages were checked with a user search on creation date. GitHub Discussions were
+    not searched. No skill ships in a package with download statistics.
+  - Bill Denney's three issues of 2026-05-25 still count for the four nlmixr2llm skills that existed then,
+    as in October, although nlmixr2llm is an R package. They do not count for the design skill, which
+    was added on 2026-10-23.
+  - Installations were searched with one code search per skill on a phrase from its description, excluding
+    the skill's own repository, known copies and repositories holding more than 25 skill files. Fifteen
+    queries returned no hits, which may reflect gaps in the code-search index.
+  - Large libraries found by discovery (aira 216 skills, X-Science 101, codex-science 460, LifeSciences
+    61) were not read skill by skill. Only the skills that discovery's terms matched were considered.
+  - Licences. simbiology-build-model's frontmatter points to a MathWorks licence page, while the repository's
+    LICENSE.md is BSD-3-Clause text; the run took the repository licence. nvqsp is under a proprietary
+    NVIDIA licence, so its licence check fails, but it is not flagged as unlicensed.
+  - jinko-core's R7 to R10 changed from n to not applicable, following rubric.md's convention for skills
+    without code. That convention was applied the same way to every skill rescored this month.
+  - The jinko-skills commits come from a publishing bot and no authors are named in the repository, so
+    E stays 0, as in October.
+fixtures:
+  passed: true
+  detail: 'Both known errors were reported as major by the error audit, each run blind by a subagent told
+    only to read the skill adversarially: the shrinkage rule that fixes omega (jaj42/nonmem-skill at 2a32fed)
+    and the popk_estimation objective that leaves the omegas out of the likelihood (nahisaho/satori at
+    20787d9). The satori auditor was told to check whether each estimation function estimates what it
+    claims.'
+skills:
+- id: nlmixr2llm-interop
+  name: interop
+  category: tool
+  rank: 1
+  rank_range: '1'
+  S: 58.2
+  Q: 71.4
+  E: 44.7
+  M: 88.8
+  library: nlmixr2/nlmixr2llm
+  url: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/inst/skills/interop
+  commit: 50f236acea6de31ced5780abbb4c27a26c2f88cc
+  tags: nlmixr2; NONMEM; Monolix; model conversion
+  licence: BSD-3-Clause
+  last_commit: '2026-10-23'
+  stars: 8
+  forks: 3
+  archived: false
+  flags:
+  - authors not found
+  also_in_library: []
+  quality:
+    rubric_yes: 5
+    rubric_applicable: 7
+    Q_rubric: 71.4
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Also babelmixr2''s in-R backends (optimal design with PopED is the `design` skill)."
+          and "hand off to the `simulation` or `reporting` skill" (SKILL.md)'
+      R2:
+        answer: n
+        evidence: 3 of 10 sampled recommendations name a source (rxode2 validate article, babelmixr2 issue
+          212, read-rounding article).
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"A translation is only trustworthy once rxode2 reproduces the engine''s own PRED/IPRED."
+          (SKILL.md)'
+      R7:
+        answer: y
+        evidence: '"mod <- nonmem2rx(resFile, validate = TRUE, save = FALSE)" on a bundled nonmem2rx example
+          (references/nonmem.md)'
+      R8:
+        answer: y
+        evidence: 'skill-examples.yaml runs 3 of the 7 R blocks (nonmem.md #2 and #3, monolix.md #2);
+          both SKILL.md blocks are skipped as needing NONMEM, Monolix or user paths.'
+      R9:
+        answer: y
+        evidence: 'skill-examples.yaml scheduled run on main at 50f236a (2026-10-26): success.'
+      R10:
+        answer: n
+        evidence: No stored outputs from a real run.
+    errors: []
+  expertise:
+    authors:
+    - name: John Harrold
+      openalex: https://openalex.org/A5021106673
+      evidence: ORCID 0000-0003-2052-4373, from the DESCRIPTION of john-harrold/ruminate (OpenAlex record
+        from 2026-10-07)
+      h_field: 13
+      share: 0.86
+    - name: Matthew Fidler
+      share: 0.14
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 97.5
+    days_since_change: 9
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: The repository moved from john-harrold/nlmixr2llm to nlmixr2/nlmixr2llm.
+  U: 30.0
+  use:
+    points: 3
+    proven: true
+    people:
+    - login: billdenney
+      name: Bill Denney
+      kind: opened issues
+      urls:
+      - https://github.com/nlmixr2/nlmixr2llm/issues/1
+      - https://github.com/nlmixr2/nlmixr2llm/issues/2
+      - https://github.com/nlmixr2/nlmixr2llm/issues/3
+      expert: true
+      expert_evidence: ORCID 0000-0002-5759-428X; field h-index 12
+- id: nlmixr2llm-simulation
+  name: simulation
+  category: tool
+  rank: 2
+  rank_range: '2'
+  S: 48.1
+  Q: 57.1
+  E: 30.2
+  M: 88.8
+  library: nlmixr2/nlmixr2llm
+  url: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/inst/skills/simulation
+  commit: 50f236acea6de31ced5780abbb4c27a26c2f88cc
+  tags: rxode2; simulation
+  licence: BSD-3-Clause
+  last_commit: '2026-10-23'
+  stars: 8
+  forks: 3
+  archived: false
+  flags:
+  - authors not found
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 7
+    Q_rubric: 57.1
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill does not cover.
+      R2:
+        answer: n
+        evidence: 3 of 10 sampled recommendations name a source (rxode2 issues 1389 and 1388, the rxode2
+          syntax table).
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"`confint()` prints a note and draws only the median / prediction interval when fewer
+          than 2500 simulated subjects ... are available" (SKILL.md)'
+      R7:
+        answer: y
+        evidence: '"sim <- rxSolve(mod, ev)" with the model and event table defined (SKILL.md)'
+      R8:
+        answer: y
+        evidence: skill-examples.yaml runs the fenced R blocks in inst/skills/**.
+      R9:
+        answer: y
+        evidence: 'skill-examples.yaml scheduled run on main at 50f236a (2026-10-26): success.'
+      R10:
+        answer: n
+        evidence: No stored outputs from a real run.
+    errors: []
+  expertise:
+    authors:
+    - name: John Harrold
+      openalex: https://openalex.org/A5021106673
+      evidence: ORCID 0000-0003-2052-4373, from the DESCRIPTION of john-harrold/ruminate (OpenAlex record
+        from 2026-10-07)
+      h_field: 13
+      share: 0.58
+    - name: Matthew Fidler
+      share: 0.42
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 97.5
+    days_since_change: 9
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: The repository moved from john-harrold/nlmixr2llm to nlmixr2/nlmixr2llm.
+  U: 30.0
+  use:
+    points: 3
+    proven: true
+    people:
+    - login: billdenney
+      name: Bill Denney
+      kind: opened issues
+      urls:
+      - https://github.com/nlmixr2/nlmixr2llm/issues/1
+      - https://github.com/nlmixr2/nlmixr2llm/issues/2
+      - https://github.com/nlmixr2/nlmixr2llm/issues/3
+      expert: true
+      expert_evidence: ORCID 0000-0002-5759-428X; field h-index 12
+- id: nlmixr2llm-estimation
+  name: estimation
+  category: tool
+  rank: 3
+  rank_range: '3'
+  S: 27.8
+  Q: 21.4
+  E: 13.0
+  M: 88.8
+  library: nlmixr2/nlmixr2llm
+  url: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/inst/skills/estimation
+  commit: 50f236acea6de31ced5780abbb4c27a26c2f88cc
+  tags: nlmixr2; estimation
+  licence: BSD-3-Clause
+  last_commit: '2026-10-23'
+  stars: 8
+  forks: 3
+  archived: false
+  flags:
+  - major error
+  - authors not found
+  also_in_library: []
+  quality:
+    rubric_yes: 5
+    rubric_applicable: 7
+    Q_rubric: 71.4
+    major_errors: 2
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"`nonmem`, `monolix`, `pknca`, `nlmer`, `saemix` | babelmixr2 — see the `interop` skill."
+          (SKILL.md methods table) hands those backends to another skill.'
+      R2:
+        answer: n
+        evidence: 4 of 10 sampled recommendations name a source (AgentODE, censoring vignette, nlmixr2nn
+          vignette and issue); the log scale, the 3.84 drop in OFV and the shrinkage cut-off cite none.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"Report estimates with their precision and any caveats (shrinkage, bounds, non-convergence)."
+          (SKILL.md)'
+      R7:
+        answer: y
+        evidence: 'Complete theophylline example: "fit <- nlmixr2(one.compartment, theo_sd, est = \"saem\",
+          saemControl(print = 0))" (SKILL.md)'
+      R8:
+        answer: y
+        evidence: 'skill-examples.yaml: "Runs the fenced R code blocks shipped in inst/agents and inst/skills";
+          the estimation blocks are not in example_skips except two reference fragments.'
+      R9:
+        answer: y
+        evidence: 'skill-examples.yaml scheduled run on main at 50f236a (2026-10-26): success.'
+      R10:
+        answer: n
+        evidence: No stored outputs; the vitals evaluation writes to evals/logs/, which is git-ignored.
+    errors:
+    - severity: major
+      quote: '"| BSV% near 0 or > 100% | ETA unsupported by data; remove it |" (SKILL.md; repeated in
+        references/model-building.md)'
+      reason: Between-subject variability above 100% CV is common for absorption, lag time or bioavailability
+        and is not evidence that the data fail to support the ETA; removing it pushes real variability
+        into other parameters and the residual error (Savic and Karlsson 2009; Mould and Upton 2013).
+    - severity: major
+      quote: '"ETA shrinkage > ~30% means individual ETAs (and EBE-based diagnostics) are unreliable for
+        that parameter; consider removing it or note the caveat." (references/model-building.md)'
+      reason: Shrinkage measures how little the design says about each individual, not whether the population
+        variance exists; it is a reason to distrust EBE-based diagnostics, not to remove the ETA (Savic
+        and Karlsson 2009). The same class of error as known-answer fixture 1.
+  expertise:
+    authors:
+    - name: John Harrold
+      openalex: https://openalex.org/A5021106673
+      evidence: ORCID 0000-0003-2052-4373, from the DESCRIPTION of john-harrold/ruminate (OpenAlex record
+        from 2026-10-07)
+      h_field: 13
+      share: 0.25
+    - name: Matthew Fidler
+      share: 0.75
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 97.5
+    days_since_change: 9
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: The repository moved from john-harrold/nlmixr2llm to nlmixr2/nlmixr2llm. Both major errors were
+    in the files at the October commit; October's single audit rated the BSV rule minor and missed the
+    shrinkage rule.
+  U: 30.0
+  use:
+    points: 3
+    proven: true
+    people:
+    - login: billdenney
+      name: Bill Denney
+      kind: opened issues
+      urls:
+      - https://github.com/nlmixr2/nlmixr2llm/issues/1
+      - https://github.com/nlmixr2/nlmixr2llm/issues/2
+      - https://github.com/nlmixr2/nlmixr2llm/issues/3
+      expert: true
+      expert_evidence: ORCID 0000-0002-5759-428X; field h-index 12
+- id: nlmixr2llm-design
+  name: design
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 41.0
+  Q: 71.4
+  E: 0.0
+  M: 88.8
+  library: nlmixr2/nlmixr2llm
+  url: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/inst/skills/design
+  commit: 50f236acea6de31ced5780abbb4c27a26c2f88cc
+  tags: PopED; babelmixr2; optimal design
+  licence: BSD-3-Clause
+  last_commit: '2026-10-23'
+  stars: 8
+  forks: 3
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 5
+    rubric_applicable: 7
+    Q_rubric: 71.4
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: 'Only software limits ("Not supported yet: inter-occasion variability (IOV)"; opt_samps
+          "not implemented in R PopED"), which the run did not count.'
+      R2:
+        answer: y
+        evidence: '5 of 10: each recipe in references/poped-recipes.md names its official PopED example,
+          e.g. "Ds-optimal ... (`ex.2.e.warfarin.Ds`)". Borderline.'
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"The model''s values are the design assumptions. ... A design is only optimal *for*
+          those values." (SKILL.md)'
+      R7:
+        answer: y
+        evidence: Full warfarin model, "db <- nlmixr2(warf, e, \"poped\", popedControl(...))", "res <-
+          evaluate_design(db)" (SKILL.md)
+      R8:
+        answer: y
+        evidence: skill-examples.yaml runs SKILL.md block 1; the optimisation block and three recipes
+          are skipped as minutes-long.
+      R9:
+        answer: y
+        evidence: 'skill-examples.yaml scheduled run on main at 50f236a (2026-10-26): success.'
+      R10:
+        answer: n
+        evidence: No stored outputs from a real run.
+    errors: []
+  expertise:
+    authors:
+    - name: Matthew Fidler
+      share: 1.0
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 97.5
+    days_since_change: 9
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: Added to the repository on 2026-10-23. The issues that count as use for the other nlmixr2llm skills
+    predate it.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: pchelle-r-nonmem-utils
+  name: r-nonmem.utils
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 38.1
+  Q: 42.9
+  E: 44.0
+  M: 78.1
+  library: pchelle/nonmem.utils
+  url: https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/r-nonmem.utils
+  commit: 1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3
+  tags: nonmem.utils; NONMEM
+  licence: Apache-2.0
+  last_commit: '2026-08-06'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Distinct from the task-oriented gof-analysis / covariate-analysis / dataset-analysis
+          skills"'
+      R2:
+        answer: y
+        evidence: '"Read references/API.md before writing code."'
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: n
+        evidence: Function signatures only; no complete example.
+      R8:
+        answer: n
+        evidence: CI runs the package tests, not the skill.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: y
+        evidence: evals/iteration-1 holds outputs of with-skill and without-skill runs (benchmark.json).
+    errors: []
+  expertise:
+    authors:
+    - name: Pierre Chelle
+      share: 1.0
+      openalex: https://openalex.org/A5019099440
+      evidence: ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION
+      h_field: 11
+  maintenance:
+    recency: 76.2
+    days_since_change: 87
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: namlink-pbpk-apriori
+  name: pbpk-apriori
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 35.7
+  Q: 57.1
+  E: 0.0
+  M: 99.8
+  library: namlink-org/PBPK_mAb_NAM_Tutorial
+  url: https://github.com/namlink-org/PBPK_mAb_NAM_Tutorial/tree/4010c6cfe455e8a357d0af5312b379f4290bcc27/skills/pbpk-apriori
+  commit: 4010c6cfe455e8a357d0af5312b379f4290bcc27
+  tags: PK-Sim; ospsuite; PBPK; monoclonal antibodies
+  licence: MIT
+  last_commit: '2026-10-30'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 7
+    Q_rubric: 57.1
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"## 21. What this skill does not cover" (SKILL.md), listing model editing, other molecules
+          and ospsuite 13.'
+      R2:
+        answer: n
+        evidence: About 1 of 10 sampled recommendations names a source.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"Always state that results are conditional on the Golimumab and Nivolumab truth models
+          ... not a universal design standard." (SKILL.md)'
+      R7:
+        answer: y
+        evidence: '"docker run --rm --platform linux/amd64 -v \"${PWD}:/work\" pbpk-mab-nam <command>"
+          with the command list (SKILL.md)'
+      R8:
+        answer: n
+        evidence: The repository has no .github/workflows.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: y
+        evidence: '"Results are pre-computed and committed" (SKILL.md); the simulation output tables are
+          in the repository.'
+    errors: []
+  expertise:
+    authors:
+    - name: Akshat Shah
+      share: 1.0
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 99.5
+    days_since_change: 2
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: Runs and explains one tutorial repository's PBPK workflow.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: kinginsun-easy-nonmem
+  name: easy-nonmem
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 33.9
+  Q: 57.1
+  E: 0.0
+  M: 82.2
+  library: kinginsun/pk-modeling-skills
+  url: https://github.com/kinginsun/pk-modeling-skills/tree/0074bddeebd6f3310d862c16cb317b37dfbb1ec1/skills/easy-nonmem
+  commit: 0074bddeebd6f3310d862c16cb317b37dfbb1ec1
+  tags: NONMEM; PsN
+  licence: MIT
+  last_commit: '2026-09-05'
+  stars: 0
+  forks: 0
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 7
+    Q_rubric: 57.1
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"use additional PsN tools (vpc, bootstrap, etc.) only when the user asks—keep the default
+          loop to execute + tables + R plots"'
+      R2:
+        answer: y
+        evidence: '"Always read the relevant reference file before inventing options"; references/ holds
+          the NONMEM 7.6 documentation.'
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: y
+        evidence: '"execute run1.mod -directory=run1_execute" with runnable projects under examples/.'
+      R8:
+        answer: n
+        evidence: No continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: y
+        evidence: examples/nonmem-pop-pk carries reference .lst and .ext files.
+    errors: []
+  expertise:
+    authors:
+    - name: Yufeng Zhang (kinginsun)
+      share: 1.0
+      openalex: null
+      evidence: 'not found: commits by a bot; repository owner Yufeng Zhang, CUHK; 310 OpenAlex authors
+        share the name'
+      h_field: 0
+  maintenance:
+    recency: 84.4
+    days_since_change: 57
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: midd-poppk-simulation
+  name: poppk-simulation
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 32.9
+  Q: 42.9
+  E: 24.0
+  M: 75.8
+  library: nlmixr2/AI-assisted-MIDD
+  url: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/poppk-simulation
+  commit: 3f071288275f9dab3e2f889da7fb19bba4642bab
+  tags: rxode2; simulation
+  licence: none
+  last_commit: '2026-10-01'
+  stars: 2
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Don''t refit, or edit a fitted model''s estimates, inside a simulation."'
+      R2:
+        answer: n
+        evidence: rxode2 vignettes listed at the end; the authoring rules cite none.
+      R3: &id001
+        answer: na
+        evidence: ''
+      R4: *id001
+      R5: *id001
+      R6:
+        answer: y
+        evidence: '"Source caveats (unapproved source QC, model-file parameter origin) stated with the
+          results."'
+      R7:
+        answer: y
+        evidence: Complete Core Process and event-table cheatsheet, with templates/analysis-sim.R scaffolded
+          by new_version("poppk-sim").
+      R8:
+        answer: n
+        evidence: The repository has no continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: The README describes worked examples under examples/abc-111 and examples/gs-12345 with
+          outputs passing QC, but neither folder is in the repository.
+    errors: []
+  expertise:
+    authors:
+    - name: Mutaz M. Jaber
+      share: 1.0
+      openalex: https://openalex.org/A5076482060
+      evidence: ORCID 0000-0002-7536-8753, from the DESCRIPTION of Mutaz94/mypkg; sole committer
+      h_field: 6
+  maintenance:
+    recency: 91.5
+    days_since_change: 31
+    usability: 60
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: 'Adapted from nlmixr2llm simulation. Added 2026-10-09, outside the monthly run, at Andy''s request;
+    discovery had missed the repository, created 2026-10-01. Four of its 18 skills were scored. The other
+    14 are the project, database, logging, run-spec, table, figure, report and QC plumbing around these
+    four, and were not scored: pk-nca-database, pk-nca-figures, pk-nca-logging, pk-nca-qc-tests, pk-nca-report,
+    pk-nca-run-spec, pk-nca-tables, poppk-database, poppk-qc-tests, poppk-report, poppk-run-spec, poppk-tables,
+    pk-project, manage-skills.'
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: pchelle-gof
+  name: gof-analysis
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 30.8
+  Q: 28.6
+  E: 44.0
+  M: 69.2
+  library: pchelle/nonmem.utils
+  url: https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/gof-analysis
+  commit: 1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3
+  tags: model evaluation; nonmem.utils
+  licence: Apache-2.0
+  last_commit: '2026-06-02'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 2
+    rubric_applicable: 7
+    Q_rubric: 28.6
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"Sparse or filtered data causing unstable diagnostics: warn and continue."'
+      R7:
+        answer: y
+        evidence: Minimal command example reads the table and draws the plots.
+      R8:
+        answer: n
+        evidence: CI runs the package tests, not the skill.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Pierre Chelle
+      share: 1.0
+      openalex: https://openalex.org/A5019099440
+      evidence: ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION
+      h_field: 11
+  maintenance:
+    recency: 58.4
+    days_since_change: 152
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: Copied unchanged into pchelle/ferx.utils.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: pchelle-report
+  name: poppk-report-workflow
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 30.8
+  Q: 28.6
+  E: 44.0
+  M: 69.2
+  library: pchelle/nonmem.utils
+  url: https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/poppk-report-workflow
+  commit: 1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3
+  tags: report writing; nonmem.utils
+  licence: Apache-2.0
+  last_commit: '2026-06-02'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 2
+    rubric_applicable: 7
+    Q_rubric: 28.6
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"Use graceful degradation for optional diagnostics ... and clearly label skipped sections."'
+      R7:
+        answer: y
+        evidence: Report function calls with file arguments.
+      R8:
+        answer: n
+        evidence: CI runs the package tests, not the skill.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Pierre Chelle
+      share: 1.0
+      openalex: https://openalex.org/A5019099440
+      evidence: ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION
+      h_field: 11
+  maintenance:
+    recency: 58.4
+    days_since_change: 152
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: Copied unchanged into pchelle/ferx.utils.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: midd-poppk-estimation
+  name: poppk-estimation
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 30.6
+  Q: 37.9
+  E: 24.0
+  M: 75.8
+  library: nlmixr2/AI-assisted-MIDD
+  url: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/poppk-estimation
+  commit: 3f071288275f9dab3e2f889da7fb19bba4642bab
+  tags: nlmixr2; estimation; model building
+  licence: none
+  last_commit: '2026-10-01'
+  stars: 2
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 0
+    minor_errors: 1
+    items:
+      R1:
+        answer: y
+        evidence: '"When NOT to use": NCA goes to pk-nca, and "NONMEM/Monolix/PKNCA backends via babelmixr2
+          are not covered by these skills."'
+      R2:
+        answer: n
+        evidence: nlmixr2 vignettes listed at the end; the authoring rules and acceptance thresholds cite
+          none.
+      R3: &id002
+        answer: na
+        evidence: ''
+      R4: *id002
+      R5: *id002
+      R6:
+        answer: y
+        evidence: '"warn must be recorded as a caveat in the spec (diagnostics.caveats)"'
+      R7:
+        answer: y
+        evidence: Complete Core Process from data to fits, with templates/analysis-poppk.R scaffolded
+          by new_version("poppk").
+      R8:
+        answer: n
+        evidence: The repository has no continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: The README describes worked examples under examples/abc-111 and examples/gs-12345 with
+          outputs passing QC, but neither folder is in the repository.
+    errors:
+    - severity: minor
+      quote: '"BSV% near 0 or > 100% | ETA unsupported by data; remove it"'
+      reason: 'Carried over from nlmixr2llm estimation, where the same finding was made: between-subject
+        variability above 100% CV is common for some parameters (absorption, for example) and is not evidence
+        that the data fail to support the ETA.'
+  expertise:
+    authors:
+    - name: Mutaz M. Jaber
+      share: 1.0
+      openalex: https://openalex.org/A5076482060
+      evidence: ORCID 0000-0002-7536-8753, from the DESCRIPTION of Mutaz94/mypkg; sole committer
+      h_field: 6
+  maintenance:
+    recency: 91.5
+    days_since_change: 31
+    usability: 60
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: 'Adapted from nlmixr2llm estimation; 16% of its lines match that skill, below the 80% copy threshold.
+    Added 2026-10-09, outside the monthly run, at Andy''s request; discovery had missed the repository,
+    created 2026-10-01. Four of its 18 skills were scored. The other 14 are the project, database, logging,
+    run-spec, table, figure, report and QC plumbing around these four, and were not scored: pk-nca-database,
+    pk-nca-figures, pk-nca-logging, pk-nca-qc-tests, pk-nca-report, pk-nca-run-spec, pk-nca-tables, poppk-database,
+    poppk-qc-tests, poppk-report, poppk-run-spec, poppk-tables, pk-project, manage-skills.'
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: midd-pk-nca
+  name: pk-nca
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 30.6
+  Q: 37.9
+  E: 24.0
+  M: 75.8
+  library: nlmixr2/AI-assisted-MIDD
+  url: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/pk-nca
+  commit: 3f071288275f9dab3e2f889da7fb19bba4642bab
+  tags: PKNCA; NCA
+  licence: none
+  last_commit: '2026-10-01'
+  stars: 2
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 0
+    minor_errors: 1
+    items:
+      R1:
+        answer: y
+        evidence: '"Do not use this package for compartmental models or for fitting nonlinear mixed-effects
+          models"'
+      R2:
+        answer: n
+        evidence: PKNCA vignettes are listed by topic in references/pknca-resources.md; the NCA rules
+          in SKILL.md cite none.
+      R3: &id003
+        answer: na
+        evidence: ''
+      R4: *id003
+      R5: *id003
+      R6:
+        answer: y
+        evidence: '"Half-life comes from λz regression on the terminal phase; check adj.r.squared / span.ratio
+          per subject before trusting it."'
+      R7:
+        answer: y
+        evidence: templates/analysis-nca.R, the scaffolded pipeline from data file to pk.nca().
+      R8:
+        answer: n
+        evidence: The repository has no continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: The README describes worked examples under examples/abc-111 and examples/gs-12345 with
+          outputs passing QC, but neither folder is in the repository.
+    errors:
+    - severity: minor
+      quote: '"Set route = \"extravascular\" (or \"intravascular\") and dur = NA_real_ in the dose data
+        frame; PKNCA picks these up by column name."'
+      reason: PKNCAdose() picks up a column named route, but looks for duration, not dur, and otherwise
+        sets duration to 0 (PKNCA source, setDuration.PKNCAdose). An infusion duration entered in dur
+        is silently ignored.
+  expertise:
+    authors:
+    - name: Mutaz M. Jaber
+      share: 1.0
+      openalex: https://openalex.org/A5076482060
+      evidence: ORCID 0000-0002-7536-8753, from the DESCRIPTION of Mutaz94/mypkg; sole committer
+      h_field: 6
+  maintenance:
+    recency: 91.5
+    days_since_change: 31
+    usability: 60
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: 'Added 2026-10-09, outside the monthly run, at Andy''s request; discovery had missed the repository,
+    created 2026-10-01. Four of its 18 skills were scored. The other 14 are the project, database, logging,
+    run-spec, table, figure, report and QC plumbing around these four, and were not scored: pk-nca-database,
+    pk-nca-figures, pk-nca-logging, pk-nca-qc-tests, pk-nca-report, pk-nca-run-spec, pk-nca-tables, poppk-database,
+    poppk-qc-tests, poppk-report, poppk-run-spec, poppk-tables, pk-project, manage-skills.'
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: kinginsun-monolix-cli
+  name: monolix-cli
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 27.5
+  Q: 42.9
+  E: 0.0
+  M: 82.2
+  library: kinginsun/pk-modeling-skills
+  url: https://github.com/kinginsun/pk-modeling-skills/tree/0074bddeebd6f3310d862c16cb317b37dfbb1ec1/skills/monolix-cli
+  commit: 0074bddeebd6f3310d862c16cb317b37dfbb1ec1
+  tags: Monolix
+  licence: MIT
+  last_commit: '2026-09-05'
+  stars: 0
+  forks: 0
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"monolix-cli does not plot"'
+      R2:
+        answer: n
+        evidence: Options are described as tested, not tied to a cited document.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: y
+        evidence: Complete monolix.sh and lixoftConnectors calls.
+      R8:
+        answer: n
+        evidence: No continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: y
+        evidence: examples/monolix-theophylline holds a result folder from a real run.
+    errors: []
+  expertise:
+    authors:
+    - name: Yufeng Zhang (kinginsun)
+      share: 1.0
+      openalex: null
+      evidence: 'not found: commits by a bot; repository owner Yufeng Zhang, CUHK; 310 OpenAlex authors
+        share the name'
+      h_field: 0
+  maintenance:
+    recency: 84.4
+    days_since_change: 57
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: pchelle-r-ferx
+  name: r-ferx
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 24.8
+  Q: 14.3
+  E: 44.0
+  M: 73.7
+  library: pchelle/ferx.utils
+  url: https://github.com/pchelle/ferx.utils/tree/ec220d6630b4a802c604eeab3e8ee147b42f3f20/.claude/skills/r-ferx
+  commit: ec220d6630b4a802c604eeab3e8ee147b42f3f20
+  tags: ferx
+  licence: Apache-2.0
+  last_commit: '2026-09-16'
+  stars: 0
+  forks: 0
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 7
+    Q_rubric: 14.3
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Points to references/API.md, which the skill folder does not contain.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: y
+        evidence: '"fit <- ferx_fit(ex$model, ex$data, method = \"focei\", covariance = TRUE)" on a bundled
+          example.'
+      R8:
+        answer: n
+        evidence: No workflow runs the skill.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Pierre Chelle
+      share: 1.0
+      openalex: https://openalex.org/A5019099440
+      evidence: ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION
+      h_field: 11
+  maintenance:
+    recency: 87.4
+    days_since_change: 46
+    usability: 60
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: jinko-core
+  name: jinko
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 24.7
+  Q: 33.3
+  E: 0.0
+  M: 97.2
+  library: novainsilico/jinko-skills
+  url: https://github.com/novainsilico/jinko-skills/tree/6a96d645aec8cbb10357db9752af68b718bb45a7/skills/jinko
+  commit: 6a96d645aec8cbb10357db9752af68b718bb45a7
+  tags: Jinkō
+  licence: MIT
+  last_commit: '2026-10-12'
+  stars: 4
+  forks: 0
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 3
+    Q_rubric: 33.3
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"This skill does not make scientific decisions, plan workflows, execute SDK calls,
+          or decide that a task step is complete." (SKILL.md)'
+      R2:
+        answer: n
+        evidence: '0 of 10: the routing rules name no published source or official documentation.'
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: Nothing on the limits of its own routing output.
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors: []
+  expertise:
+    authors:
+    - name: Nova In Silico
+      share: 1.0
+      openalex: null
+      evidence: 'not found: commits by a publishing bot; no authors named in the repository'
+      h_field: 0
+  maintenance:
+    recency: 94.5
+    days_since_change: 20
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: A router to the other Jinkō skills.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: pchelle-covariate
+  name: covariate-analysis
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 24.4
+  Q: 14.3
+  E: 44.0
+  M: 69.2
+  library: pchelle/nonmem.utils
+  url: https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/covariate-analysis
+  commit: 1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3
+  tags: covariate modeling; nonmem.utils
+  licence: Apache-2.0
+  last_commit: '2026-06-02'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 7
+    Q_rubric: 14.3
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: Says nothing about shrinkage or the reliability of ETA-covariate plots.
+      R7:
+        answer: y
+        evidence: Minimal command example.
+      R8:
+        answer: n
+        evidence: CI runs the package tests, not the skill.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Pierre Chelle
+      share: 1.0
+      openalex: https://openalex.org/A5019099440
+      evidence: ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION
+      h_field: 11
+  maintenance:
+    recency: 58.4
+    days_since_change: 152
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: Copied unchanged into pchelle/ferx.utils.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: pchelle-dataset
+  name: dataset-analysis
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 24.4
+  Q: 14.3
+  E: 44.0
+  M: 69.2
+  library: pchelle/nonmem.utils
+  url: https://github.com/pchelle/nonmem.utils/tree/1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3/.claude/skills/dataset-analysis
+  commit: 1827ac034e6c89b4c49c5b8e5ee196ff710e9ec3
+  tags: exploratory data analysis; nonmem.utils
+  licence: Apache-2.0
+  last_commit: '2026-06-02'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 7
+    Q_rubric: 14.3
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: y
+        evidence: Minimal command example.
+      R8:
+        answer: n
+        evidence: CI runs the package tests, not the skill.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Pierre Chelle
+      share: 1.0
+      openalex: https://openalex.org/A5019099440
+      evidence: ORCID 0000-0002-0167-4774, from nonmem.utils DESCRIPTION
+      h_field: 11
+  maintenance:
+    recency: 58.4
+    days_since_change: 152
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: Copied unchanged into pchelle/ferx.utils.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: nlmixr2lib-extract
+  name: extract-literature-model
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 21.9
+  Q: 0
+  E: 48.0
+  M: 98.9
+  library: nlmixr2/nlmixr2lib
+  url: https://github.com/nlmixr2/nlmixr2lib/tree/fcfe7a8d18a312b8797ce2e493fc83f68a6c0c80/.claude/skills/extract-literature-model
+  commit: fcfe7a8d18a312b8797ce2e493fc83f68a6c0c80
+  tags: nlmixr2; model building from literature
+  licence: GPL-2.0-or-later
+  last_commit: '2026-10-24'
+  stars: 16
+  forks: 6
+  archived: false
+  flags:
+  - major error
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 6
+    rubric_applicable: 7
+    Q_rubric: 85.7
+    major_errors: 4
+    minor_errors: 6
+    items:
+      R1:
+        answer: y
+        evidence: '"This skill **only adds** new models. Retrofitting existing vignettes ... is a future
+          separate skill." (SKILL.md)'
+      R2:
+        answer: n
+        evidence: 4 of 10 sampled recommendations name a source (air docs, WHO weight-for-age curves,
+          nlmixr2libingest, PKNCA vignette).
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"**Assumptions and deviations** — explicit list of what you had to assume because the
+          paper didn''t say" (SKILL.md)'
+      R7:
+        answer: y
+        evidence: 'Full render gate: "timeout 300 Rscript --vanilla -e \"pkgload::load_all(...); rmarkdown::render(...)\""
+          (SKILL.md)'
+      R8:
+        answer: y
+        evidence: 'pkgdown.yaml "run: Rscript .github/scripts/pkgdown-parallel-build.R" renders every
+          article the skill produces; R-CMD-check runs the model tests.'
+      R9:
+        answer: y
+        evidence: 'pkgdown.yaml run on main at fcfe7a8 (2026-10-24): success.'
+      R10:
+        answer: y
+        evidence: The repository holds the models and rendered validation vignettes the workflow produced
+          (inst/modeldb, vignettes/articles, gh-pages).
+    errors:
+    - severity: major
+      quote: '"| `Y = LOG(F) + EPS(1)` (log-transform-both-sides) | `Cc ~ prop(propSd)` (NONMEM \"additive
+        on log scale\" ≡ proportional in linear space)" (references/nonmem-translation.md; repeated in
+        SKILL.md and verification-checklist.md)'
+      reason: Additive error on the log scale is a log-normal error model; proportional error matches
+        it only approximately for small sigma, so the translation changes the likelihood and the simulated
+        spread. lnorm() is the exact translation (nlmixr2 residual-error documentation).
+    - severity: major
+      quote: '"`S1 = V/1000` (or similar) is a NONMEM unit-rescaling shorthand: dose in mg, volume in
+        L, concentration in mg/L is the canonical case." (references/nonmem-translation.md)'
+      reason: With dose in mg and V in L, S1 = V/1000 gives predictions in ug/L (ng/mL), not mg/L; dropping
+        S1 and declaring mg/L makes Cc 1000-fold smaller than the data (NONMEM Users Guide VI, scale parameters).
+    - severity: major
+      quote: '"`lktr` — log first-order transit rate constant (= n_transit / MTT for a chain of length
+        n)." (references/parameter-names.md)'
+      reason: In the transit-compartment model ktr = (n+1)/MTT; n/MTT shortens the absorption delay, most
+        when n is small (Savic et al. 2007, J Pharmacokinet Pharmacodyn 34:711).
+    - severity: major
+      quote: '"# Replicates Figure 4 of <Author Year>: VPC of Cc vs. time by dose group." (references/vignette-template.md)'
+      reason: Cc from rxSolve carries no residual error, so its percentiles are too narrow to compare
+        with a published VPC, and the spread check against the paper can give the wrong conclusion (Bergstrand
+        et al. 2011).
+    - severity: minor
+      quote: '"`expSd` (used with `~ lnorm(...)`; ... the SD applies on the exponentiated scale)" (references/parameter-names.md)'
+      reason: In nlmixr2, lnorm(sd) puts the SD on the log scale.
+    - severity: minor
+      quote: '"etalcl ~ 0.186   # ... = 0.186 (43.1% CV)" (SKILL.md)'
+      reason: 43.1% is sqrt(0.186); under the skill's own omega^2 = log(CV^2+1) rule the CV is 45.2%.
+    - severity: minor
+      quote: '"The `A(1) = ...` initialization in `$DES` translates to `<state>(0) <- ...`" (references/nonmem-translation.md)'
+      reason: NONMEM sets initial amounts through A_0 in $PK; A(n) is read-only in $DES (NONMEM Users
+        Guide VIII).
+    - severity: minor
+      quote: '"The PKNCA formula **must include a treatment grouping variable** (`conc ~ time | id/treatment`)"
+        (SKILL.md)'
+      reason: In PKNCA the term after "/" is the analyte, so this makes treatment an analyte; it also
+        contradicts the skill's own pknca-recipes.md (PKNCA documentation).
+    - severity: minor
+      quote: '"The trajectory should monotonically approach the reported baseline (assuming a single stable
+        attractor ...)" (references/endogenous-validation.md)'
+      reason: A stable attractor can be approached with overshoot or oscillation, as in Friberg-type models,
+        so the check would flag a correct model.
+    - severity: minor
+      quote: '"With large IIV on a non-linear response, the median of the transform sits above the transform
+        of the median." (references/known-vignette-failure-patterns.md)'
+      reason: The median is unchanged by a monotonic transform; a gap needs a non-monotonic response or
+        several random effects, and its direction is not fixed.
+  expertise:
+    authors:
+    - name: Bill Denney
+      share: 1.0
+      openalex: https://openalex.org/A5041025811
+      evidence: ORCID 0000-0002-5759-428X, from nlmixr2lib DESCRIPTION
+      h_field: 12
+  maintenance:
+    recency: 97.8
+    days_since_change: 8
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: 'The four major errors were in the files at the October commit, which October''s single audit
+    did not report. A fifth finding, on translating a multiplicative sex effect, was dropped: the text
+    is correct and the finding described a possible misreading.'
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: apmode
+  name: apmode-cli
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 21.3
+  Q: 28.6
+  E: 8.0
+  M: 63.9
+  library: biostochastics/APMODE
+  url: https://github.com/biostochastics/APMODE/tree/cbdcadf62f874190c126d9d3fdbe0c1560ddbb84/.claude/skills/apmode
+  commit: cbdcadf62f874190c126d9d3fdbe0c1560ddbb84
+  tags: APMODE; nlmixr2; Stan
+  licence: GPL-2.0
+  last_commit: '2026-04-24'
+  stars: 1
+  forks: 0
+  archived: false
+  flags:
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 2
+    rubric_applicable: 7
+    Q_rubric: 28.6
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: Section "When APMODE is the wrong tool".
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: Notes a data-exposure caveat for the agentic backend, not the limits of the analysis.
+      R7:
+        answer: y
+        evidence: Complete "uv run apmode ..." commands.
+      R8:
+        answer: n
+        evidence: CI runs the package tests, not the skill's commands.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Sergey A. Kornilov
+      share: 1.0
+      openalex: https://openalex.org/A5086494262
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 2
+  maintenance:
+    recency: 47.7
+    days_since_change: 191
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: anca-pknca
+  name: pknca-compatibility
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 15.9
+  Q: 14.3
+  E: 0.0
+  M: 95.0
+  library: pharmaverse/aNCA
+  url: https://github.com/pharmaverse/aNCA/tree/1da57b789a7c004cb2a220589fc035169cfbd4c9/.github/skills/pknca-compatibility
+  commit: 1da57b789a7c004cb2a220589fc035169cfbd4c9
+  tags: PKNCA; aNCA; package development
+  licence: Apache-2.0
+  last_commit: '2026-09-25'
+  stars: 45
+  forks: 18
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 7
+    Q_rubric: 14.3
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: y
+        evidence: '"Prefer source code, NEWS, tests, and linked PKNCA issues/PRs over assumptions" with
+          the upstream repository named.'
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: n
+        evidence: No code.
+      R8:
+        answer: n
+        evidence: Names the package tests to add; does not run the skill.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Gerardo Jose Rodriguez
+      share: 1.0
+      openalex: https://openalex.org/A5120737136
+      evidence: ORCID 0000-0003-1413-0060, from aNCA DESCRIPTION
+      h_field: 0
+  maintenance:
+    recency: 89.9
+    days_since_change: 37
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: A developer skill for maintaining the aNCA package.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: jaj42-nonmem
+  name: nonmem
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 13.9
+  Q: 17.9
+  E: 4.0
+  M: 48.4
+  library: jaj42/nonmem-skill
+  url: https://github.com/jaj42/nonmem-skill/tree/2a32fed9390202a3d30d55d62b8faeb38d384f89/nonmem-skill
+  commit: 2a32fed9390202a3d30d55d62b8faeb38d384f89
+  tags: NONMEM
+  licence: ISC
+  last_commit: '2026-05-27'
+  stars: 2
+  forks: 0
+  archived: false
+  flags:
+  - major error
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 1
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: y
+        evidence: Cites Hooker 2007 for CWRES, Bergstrand 2011 for pcVPC, Bauer 2019 and the NONMEM user
+          guides.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: No statement of the limits of its own output.
+      R7:
+        answer: y
+        evidence: A complete two-compartment control stream skeleton.
+      R8:
+        answer: n
+        evidence: No continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: y
+        evidence: example/theophylline.res, a saved NONMEM listing from a run of the example.
+    errors:
+    - severity: major
+      quote: 'references/diagnostics-vpc.md line 30: "> 50%: severe; the data don''t support estimating
+        IIV on that parameter. Consider fixing the omega to 0 or to a literature value."'
+      reason: High ETA shrinkage means the individual estimates carry little information; it does not
+        show that the population variance is absent. Savic and Karlsson 2009 (AAPS J 11:558). Fixing omega
+        to 0 on this rule removes real variability from the model.
+  expertise:
+    authors:
+    - name: Jona Joachim
+      share: 1.0
+      openalex: https://openalex.org/A5055533105
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 1
+  maintenance:
+    recency: 56.7
+    days_since_change: 158
+    usability: 40
+    checks:
+      licence: true
+      frontmatter: true
+      install: false
+      dependencies: false
+      version: false
+  note: Known-answer fixture 1.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: jinko-from-nonmem
+  name: jinko-task-from-nonmem
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 13.4
+  Q: 7.9
+  E: 0.0
+  M: 98.8
+  library: novainsilico/jinko-skills
+  url: https://github.com/novainsilico/jinko-skills/tree/6a96d645aec8cbb10357db9752af68b718bb45a7/skills/jinko-task-from-nonmem
+  commit: 6a96d645aec8cbb10357db9752af68b718bb45a7
+  tags: Jinkō; NONMEM; model conversion
+  licence: MIT
+  last_commit: '2026-10-23'
+  stars: 4
+  forks: 0
+  archived: false
+  flags:
+  - major error
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 1
+    minor_errors: 2
+    items:
+      R1:
+        answer: y
+        evidence: '"**Refused, with the record named:** steady-state (`SS`) dosing, `$MIX`, nested random
+          effects" (SKILL.md)'
+      R2:
+        answer: n
+        evidence: 0 of 10 sampled recommendations name a source.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"It describes structural-model evidence only; do not call it population equivalence
+          without a separate measured population comparison." (references/workflow.md)'
+      R7:
+        answer: y
+        evidence: '"python skills/jinko-task-from-nonmem/scripts/convert_trial.py run1.mod --ext run1.ext
+          --phi run1.phi --data data.csv --drug Warfarin ... --apply --run" (references/workflow.md)'
+      R8:
+        answer: n
+        evidence: The repository has no .github/workflows.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No committed outputs from a real run; evals/ holds prompts.
+    errors:
+    - severity: major
+      quote: '"`nonmem` needs no licence, only the output file: point `--nonmem-table` at a `$TABLE` and
+        it compares against NONMEM''s own PRED or IPRED for one subject," (references/validation.md)'
+      reason: A subject's PRED uses that subject's covariates and doses, and IPRED adds its post-hoc ETAs,
+        while the Jinko solve uses the model defaults, so agreement or disagreement says little about
+        the conversion (NONMEM Users Guide).
+    - severity: minor
+      quote: '"A population is degenerate at the moment of dosing, so those rows are dropped" (references/reporting.md)'
+      reason: After an IV bolus the concentration is Dose/V, which varies between patients.
+    - severity: minor
+      quote: '"The clones sample the residual distribution, so the count sets how well the envelope is
+        resolved, not how wide it is." (references/residual-error.md)'
+      reason: A min/max envelope widens with the number of clones; only a fixed-percentile band does not.
+  expertise:
+    authors:
+    - name: Nova In Silico
+      share: 1.0
+      openalex: null
+      evidence: 'not found: commits by a publishing bot; no authors named in the repository'
+      h_field: 0
+  maintenance:
+    recency: 97.5
+    days_since_change: 9
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: Requires a numerical equivalence check against scipy, rxode2 or the NONMEM $TABLE, which the rubric
+    does not reward. The major error concerns how that check compares one subject with a typical-value
+    solve.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: matlab-simbiology-build
+  name: simbiology-build-model
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 13.3
+  Q: 8.6
+  E: 0.0
+  M: 94.8
+  library: matlab/matlab-agentic-toolkit
+  url: https://github.com/matlab/matlab-agentic-toolkit/tree/032b4b605999b1f4adecaac1efa1c9faad41adf6/skills-catalog/computational-biology/simbiology-build-model
+  commit: 032b4b605999b1f4adecaac1efa1c9faad41adf6
+  tags: SimBiology; QSP; PK
+  licence: BSD-3-Clause (repository LICENSE.md)
+  last_commit: '2026-09-24'
+  stars: 1237
+  forks: 145
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 2
+    rubric_applicable: 7
+    Q_rubric: 28.6
+    major_errors: 0
+    minor_errors: 4
+    items:
+      R1:
+        answer: y
+        evidence: '"## When NOT to Use - Simulation and analysis (use `simbiology-simulate-model`) - Parameter
+          fitting, population modeling, NCA (use `simbiology-fit-model`)" (SKILL.md)'
+      R2:
+        answer: n
+        evidence: 0 of 10 sampled recommendations name a source.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: Nothing on the limits of the model it builds; the 400-block layout limit is a limit
+          of the helpers.
+      R7:
+        answer: y
+        evidence: '"model = sbiomodel(\"MyModel\"); comp = addcompartment(model, \"Central\", 1); addspecies(comp,
+          \"Drug\", 100); ..." (SKILL.md)'
+      R8:
+        answer: n
+        evidence: The repository has no workflows; .github holds issue templates only.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs from a real run.
+    errors:
+    - severity: minor
+      quote: '"- Species: `Dose_Central`, `Drug_Central`" (references/pk-library-guidance.md, bolus model)'
+      reason: A bolus dose goes straight into Drug_Central; only first-order dosing creates the Dose_Central
+        depot (SimBiology PKModelDesign documentation).
+    - severity: minor
+      quote: '"- Parameters: `ka_Central`, `Cl_Central`, `ke_Central`" (references/pk-library-guidance.md,
+        bolus model)'
+      reason: ka_Central exists only with first-order dosing.
+    - severity: minor
+      quote: '"- Reactions: `Dose_Central -> Drug_Central` (MassAction), `Drug_Central -> null` (MassAction)"
+        (references/pk-library-guidance.md, bolus model)'
+      reason: A bolus model has no absorption reaction.
+    - severity: minor
+      quote: '"- Species: `Dose_Peripheral`, `Drug_Peripheral`" (references/pk-library-guidance.md)'
+      reason: addCompartment('Peripheral') without a dosing type creates no dose species.
+  expertise:
+    authors:
+    - name: Rikin Mehta
+      share: 0.5
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+    - name: Philip Clarke
+      share: 0.5
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 89.6
+    days_since_change: 38
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: The skill's frontmatter points to a MathWorks licence page; the repository's LICENSE.md is BSD-3-Clause
+    text, which the run took as the licence. Helper scripts ship as compiled P-code.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: nvidia-nvqsp
+  name: nvqsp
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 9.1
+  Q: 2.9
+  E: 0.0
+  M: 78.0
+  library: NVIDIA-BioNeMo/nvQSP
+  url: https://github.com/NVIDIA-BioNeMo/nvQSP/tree/6d26ee3cd6ea0cc2565ac5eb86b5b4d19f341867/skills/nvqsp
+  commit: 6d26ee3cd6ea0cc2565ac5eb86b5b4d19f341867
+  tags: nvQSP; QSP; PBPK; simulation
+  licence: NVIDIA Software License Agreement (not OSI)
+  last_commit: '2026-08-05'
+  stars: 19
+  forks: 1
+  archived: false
+  flags:
+  - major error
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 7
+    Q_rubric: 42.9
+    major_errors: 1
+    minor_errors: 3
+    items:
+      R1:
+        answer: y
+        evidence: '"It does **NOT** cover, and you must stop and tell the user, if the model needs: Michaelis–Menten
+          elimination, Hill-function PD, TMDD ..." (SKILL.md)'
+      R2:
+        answer: n
+        evidence: 0 of 10 sampled recommendations name a published source.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"by **central finite differences** - so unlike the sparse path, accuracy depends on
+          the step size." (SKILL.md)'
+      R7:
+        answer: y
+        evidence: Self-contained minimal example, two compartments and 100 patients, through "result =
+          sparse.solve(...)" (SKILL.md)
+      R8:
+        answer: n
+        evidence: The repository has no .github/workflows.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs from a real run.
+    errors:
+    - severity: major
+      quote: '"A1_val_batch[:, cl_index] = -cl                          # vary the CL entry" (SKILL.md)'
+      reason: A1 entries are first-order rate constants, so the elimination entry must be -CL/V (and include
+        any outflow); putting a clearance there treats CL as k with V = 1 (Gabrielsson and Weiner).
+    - severity: minor
+      quote: '"dA1[cl_index, 0] = -1.0              # d(A1_val[cl_index]) / d(CL)" (SKILL.md)'
+      reason: The derivative of -CL/V with respect to CL is -1/V, so the sensitivities are scaled wrongly
+        unless V = 1.
+    - severity: minor
+      quote: '"... indirect-response (turnover) models, or any DAE system. These are not" (SKILL.md)'
+      reason: A turnover model with a linear drug effect is bilinear and fits the solver's form; only
+        Emax or Imax drug functions fall outside it (Dayneka, Garg and Jusko 1993).
+    - severity: minor
+      quote: '"A1 = csr_matrix([[-0.3, 0.1], [0.3, -0.1]])" (SKILL.md)'
+      reason: Each column sums to zero, so the labelled two-compartment model has no elimination.
+  expertise:
+    authors:
+    - name: currentsurge
+      share: 0.5
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+    - name: Eva Xue
+      share: 0.5
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 75.9
+    days_since_change: 88
+    usability: 80
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: Proprietary licence, so the licence check fails; it is not flagged as unlicensed. Shares split
+    equally between the two committers; blame was not run on a shallow clone.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: gscas-pksim
+  name: pk-sim-pbpk
+  category: tool
+  rank: null
+  rank_range: ''
+  S: 4.6
+  Q: 0
+  E: 0.0
+  M: 45.8
+  library: gscas/pk-sim-pbpk
+  url: https://github.com/gscas/pk-sim-pbpk/tree/80e514b7cfffcd28becf4481cca31c238404bd98
+  commit: 80e514b7cfffcd28becf4481cca31c238404bd98
+  tags: PK-Sim; PBPK
+  licence: null
+  last_commit: '2026-05-08'
+  stars: 0
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 0
+    rubric_applicable: 7
+    Q_rubric: 0.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: na
+        evidence: ''
+      R4:
+        answer: na
+        evidence: ''
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: n
+        evidence: Fragments only, e.g. "sim = ospsuite.Simulation(...)".
+      R8:
+        answer: n
+        evidence: No continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: gscas
+      share: 1.0
+      openalex: null
+      evidence: 'not found: no name on the GitHub profile'
+      h_field: 0
+  maintenance:
+    recency: 51.5
+    days_since_change: 177
+    usability: 40
+    checks:
+      licence: false
+      frontmatter: true
+      install: false
+      dependencies: true
+      version: false
+  note: No licence.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: kdense-pkpd
+  name: pkpd-modeling
+  category: task
+  rank: 1
+  rank_range: '1'
+  S: 60.1
+  Q: 90.0
+  E: 0.0
+  M: 95.8
+  library: K-Dense-AI/scientific-agent-skills
+  url: https://github.com/K-Dense-AI/scientific-agent-skills/tree/5f2bc0341354fd5590aef76a533ada1e1e5b4e62/skills/pkpd-modeling
+  commit: 5f2bc0341354fd5590aef76a533ada1e1e5b4e62
+  tags: PK/PD modeling; NCA; population PK
+  licence: MIT
+  last_commit: '2026-10-01'
+  stars: 55606
+  forks: 4897
+  archived: false
+  flags: []
+  also_in_library: []
+  quality:
+    rubric_yes: 9
+    rubric_applicable: 10
+    Q_rubric: 90.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"it does not establish clinical safety, recommend a patient dose, or certify a regulatory
+          submission"'
+      R2:
+        answer: y
+        evidence: Cites ICH M12, ICH E14, FDA's May 2026 BE guidance, ICH M13B and M15, with a source
+          ledger in references/.
+      R3:
+        answer: y
+        evidence: '"Prefer residual inspection, physiological plausibility, sensitivity/profile checks
+          and suitable bootstrap or simulation-based comparisons."'
+      R4:
+        answer: y
+        evidence: '"The 20% extrapolation, 0.8 adjusted R² and two-half-life flags are screening conventions,
+          not universal acceptance rules."'
+      R5:
+        answer: y
+        evidence: '"Match validation to intended use."'
+      R6:
+        answer: y
+        evidence: '"This skill computes exploratory quantities and documents assumptions"'
+      R7:
+        answer: y
+        evidence: Command lines for each script, e.g. "python3 nca.py -i profile.csv --dose 100 --route
+          extravascular"
+      R8:
+        answer: y
+        evidence: skill-tests.yml runs tests/pkpd-modeling/test_scripts.py on every change to skills/.
+      R9:
+        answer: y
+        evidence: 'Skill Tests run on 526ebce, the last commit touching the skill: success (2026-10-01).'
+      R10:
+        answer: n
+        evidence: Tests use synthetic fixtures; no stored outputs from a real run.
+    errors: []
+  expertise:
+    authors:
+    - name: Timothy Kassis
+      share: 1.0
+      openalex: https://openalex.org/A5007118437
+      evidence: name in CITATION.cff; OpenAlex record has no field works
+      h_field: 0
+  maintenance:
+    recency: 91.5
+    days_since_change: 31
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: ''
+  U: 50.0
+  use:
+    points: 5
+    proven: true
+    people:
+    - login: ssamba1
+      name: Sricharan Samba
+      kind: pull request changing the skill
+      urls:
+      - https://github.com/K-Dense-AI/scientific-agent-skills/pull/260
+      - https://github.com/K-Dense-AI/scientific-agent-skills/issues/261
+      expert: false
+      expert_evidence: no field works in OpenAlex
+    - login: kimmingul
+      name: Min-Gul Kim
+      kind: installed the skill in a project holding 20 hand-picked skills
+      urls:
+      - https://github.com/kimmingul/NanumCsvViewer/tree/main/NanumCsvViewer/Agent/Skills/pkpd-modeling
+      expert: true
+      expert_evidence: name and affiliation (Jeonbuk National University) match OpenAlex A5081300522;
+        field h-index 14
+    - login: Divyansh151005
+      name: Divyansh Barodiya
+      kind: issue and pull request on the skill
+      urls:
+      - https://github.com/K-Dense-AI/scientific-agent-skills/issues/330
+      - https://github.com/K-Dense-AI/scientific-agent-skills/pull/331
+      expert: false
+      expert_evidence: 'not looked up: api.openalex.org unreachable from this run; counted as 1 point'
+- id: nlmixr2llm-reporting
+  name: reporting
+  category: task
+  rank: 2
+  rank_range: 1–2
+  S: 54.8
+  Q: 60.0
+  E: 51.5
+  M: 88.8
+  library: nlmixr2/nlmixr2llm
+  url: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/inst/skills/reporting
+  commit: 50f236acea6de31ced5780abbb4c27a26c2f88cc
+  tags: model evaluation; report writing; nlmixr2
+  licence: BSD-3-Clause
+  last_commit: '2026-10-23'
+  stars: 8
+  forks: 3
+  archived: false
+  flags:
+  - authors not found
+  also_in_library: []
+  quality:
+    rubric_yes: 6
+    rubric_applicable: 10
+    Q_rubric: 60.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No scope exclusion; "The input is always an nlmixr2 fit object" and a pointer to interop
+          for imports.
+      R2:
+        answer: n
+        evidence: 1 of 10 sampled recommendations names a source; the vignettes are listed once at the
+          end.
+      R3:
+        answer: y
+        evidence: '"report shrinkage (`fit$shrink`) and treat ETA-based conclusions as weak where shrinkage
+          > ~30%" (SKILL.md)'
+      R4:
+        answer: y
+        evidence: 'The shrinkage threshold is approximate and tied to what it affects: "treat ETA-based
+          conclusions as weak where shrinkage > ~30%"; CWRES is hedged ("mostly < 3"); RSE carries no
+          number.'
+      R5:
+        answer: n
+        evidence: The checklist applies uniformly "before declaring a model adequate"; nothing ties evaluation
+          depth to intended use.
+      R6:
+        answer: y
+        evidence: '"Summarise in words: model structure, key estimates with precision, what the diagnostics
+          show, and caveats." (SKILL.md)'
+      R7:
+        answer: y
+        evidence: '"vpcPlot(fit, n = 500, pred_corr = TRUE, stratify = \"DOSE\")" against a fixture fit
+          (SKILL.md)'
+      R8:
+        answer: y
+        evidence: skill-examples.yaml runs the fenced R blocks against a fixture fit.
+      R9:
+        answer: y
+        evidence: 'skill-examples.yaml scheduled run on main at 50f236a (2026-10-26): success.'
+      R10:
+        answer: n
+        evidence: No stored outputs from a real run.
+    errors: []
+  expertise:
+    authors:
+    - name: John Harrold
+      openalex: https://openalex.org/A5021106673
+      evidence: ORCID 0000-0003-2052-4373, from the DESCRIPTION of john-harrold/ruminate (OpenAlex record
+        from 2026-10-07)
+      h_field: 13
+      share: 0.99
+    - name: Matthew Fidler
+      share: 0.01
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 97.5
+    days_since_change: 9
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: The repository moved from john-harrold/nlmixr2llm to nlmixr2/nlmixr2llm.
+  U: 30.0
+  use:
+    points: 3
+    proven: true
+    people:
+    - login: billdenney
+      name: Bill Denney
+      kind: opened issues
+      urls:
+      - https://github.com/nlmixr2/nlmixr2llm/issues/1
+      - https://github.com/nlmixr2/nlmixr2llm/issues/2
+      - https://github.com/nlmixr2/nlmixr2llm/issues/3
+      expert: true
+      expert_evidence: ORCID 0000-0002-5759-428X; field h-index 12
+- id: okour-pmx-deliverable
+  name: review-pharmacometrics-deliverable
+  category: task
+  rank: null
+  rank_range: ''
+  S: 53.4
+  Q: 83.3
+  E: 28.0
+  M: 89.0
+  library: malekokour/clinpharm-pmx-skills
+  url: https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-pharmacometrics-deliverable
+  commit: cefc4eac87782bbb61065a39df927cd92ff76c99
+  tags: document review
+  licence: MIT
+  last_commit: '2026-08-13'
+  stars: 6
+  forks: 0
+  archived: false
+  flags:
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 5
+    rubric_applicable: 6
+    Q_rubric: 83.3
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Do not use for assessing the model itself ... or to accept, reject or sign anything."'
+      R2:
+        answer: n
+        evidence: Cites no source.
+      R3:
+        answer: y
+        evidence: '"An absent item is a finding, not a formatting note"; unsupported uses are listed.'
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds.
+      R5:
+        answer: y
+        evidence: '"Phase 2 — Fitness for intended use ... For each, record what the deliverable would
+          need to support it"'
+      R6:
+        answer: y
+        evidence: '"State plainly which decisions remain with the signer."'
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors: []
+  expertise:
+    authors:
+    - name: Malek Okour
+      share: 1.0
+      openalex: https://openalex.org/A5062796971
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 7
+  maintenance:
+    recency: 78.1
+    days_since_change: 80
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: okour-model-deliverable
+  name: review-model-analysis-deliverable
+  category: task
+  rank: null
+  rank_range: ''
+  S: 51.9
+  Q: 80.0
+  E: 28.0
+  M: 89.0
+  library: malekokour/clinpharm-pmx-skills
+  url: https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-model-analysis-deliverable
+  commit: cefc4eac87782bbb61065a39df927cd92ff76c99
+  tags: document review; model evaluation
+  licence: MIT
+  last_commit: '2026-08-13'
+  stars: 6
+  forks: 0
+  archived: false
+  flags:
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 8
+    rubric_applicable: 10
+    Q_rubric: 80.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"It never re-fits, re-runs or critiques model structure ... and it never decides whether
+          a modelling choice was scientifically right."'
+      R2:
+        answer: y
+        evidence: Rubrics anchored to ICH M15, the FDA PBPK guidance and the FDA exposure-response guidance
+          through a guidance index.
+      R3:
+        answer: y
+        evidence: Missing inputs disable named checks and are reported as NEEDS_INPUT.
+      R4:
+        answer: y
+        evidence: Criteria come from the analysis plan, not from fixed thresholds.
+      R5:
+        answer: y
+        evidence: '"I3 Commissioning question and decision context — without it, ''conclusions traceable
+          to a decision'' cannot be assessed"'
+      R6:
+        answer: y
+        evidence: '"Population PK has no rubric in the library ... popPK-specific content is marked CANNOT_ASSESS.
+          Do not improvise the missing rubric."'
+      R7:
+        answer: n
+        evidence: The skill calls its scripts but shows no runnable command.
+      R8:
+        answer: y
+        evidence: quality.yml runs scripts/check_all.py and the skill's script tests.
+      R9:
+        answer: y
+        evidence: 'quality.yml on f141199: success (2026-10-01).'
+      R10:
+        answer: n
+        evidence: Eval cases and fixtures, but no stored outputs for this skill.
+    errors: []
+  expertise:
+    authors:
+    - name: Malek Okour
+      share: 1.0
+      openalex: https://openalex.org/A5062796971
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 7
+  maintenance:
+    recency: 78.1
+    days_since_change: 80
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: jinko-ichm15
+  name: jinko-task-ichm15-planning
+  category: task
+  rank: null
+  rank_range: ''
+  S: 50.4
+  Q: 90.0
+  E: 0.0
+  M: 98.8
+  library: novainsilico/jinko-skills
+  url: https://github.com/novainsilico/jinko-skills/tree/6a96d645aec8cbb10357db9752af68b718bb45a7/skills/jinko-task-ichm15-planning
+  commit: 6a96d645aec8cbb10357db9752af68b718bb45a7
+  tags: MIDD planning
+  licence: MIT
+  last_commit: '2026-10-23'
+  stars: 4
+  forks: 0
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 6
+    rubric_applicable: 6
+    Q_rubric: 100.0
+    major_errors: 0
+    minor_errors: 2
+    items:
+      R1:
+        answer: y
+        evidence: '"this skill focuses specifically on the planning stage ... It leaves out the submission
+          stage." (SKILL.md)'
+      R2:
+        answer: y
+        evidence: 7 of 10 cite ICH M15 sections, e.g. "Model Influence, Consequence of Wrong Decision,
+          Model Risk, and Model Impact (§2.1.3–2.1.6)" (SKILL.md)
+      R3:
+        answer: y
+        evidence: '"If the Question of Interest, or any one Context of Use component ... is not stated,
+          ask one focused question" (SKILL.md)'
+      R4:
+        answer: y
+        evidence: 'Gives no numeric thresholds: "pick per endpoint, don''t apply the full menu blindly"
+          (references/map.md)'
+      R5:
+        answer: y
+        evidence: '"Model Risk ... determines the required rigor of model evaluation" (SKILL.md)'
+      R6:
+        answer: y
+        evidence: '"list every invented or assumed element ... in an explicit \"Assumptions\" block at
+          the top of the output" (SKILL.md)'
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors:
+    - severity: minor
+      quote: '"as described in the final ICHM15 recommendations (ICHM15 step 5, June 2026)." (SKILL.md)'
+      reason: An ICH guideline is final at Step 4; Step 5 is regional implementation (ICH formal procedure).
+    - severity: minor
+      quote: '"an off-diagonal pair moves one step toward the higher rating." (references/terms.md)'
+      reason: The matrix just above it rates low influence with medium consequence as low, so the prose
+        and the matrix disagree.
+  expertise:
+    authors:
+    - name: Nova In Silico
+      share: 1.0
+      openalex: null
+      evidence: 'not found: commits by a publishing bot; no authors named in the repository'
+      h_field: 0
+  maintenance:
+    recency: 97.5
+    days_since_change: 9
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: Does not need Jinkō access except for the optional upload.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: kdense-pkpd-translation
+  name: pkpd-translation
+  category: task
+  rank: null
+  rank_range: ''
+  S: 49.0
+  Q: 88.9
+  E: 0.0
+  M: 89.5
+  library: K-Dense-AI/drug-discovery-agent-skills
+  url: https://github.com/K-Dense-AI/drug-discovery-agent-skills/tree/d5d44a381ceb348b62149bbdec2d3043b2b41092/skills/pkpd-translation
+  commit: d5d44a381ceb348b62149bbdec2d3043b2b41092
+  tags: translational PK/PD; human dose prediction
+  licence: MIT
+  last_commit: '2026-08-16'
+  stars: 50
+  forks: 5
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 8
+    rubric_applicable: 9
+    Q_rubric: 88.9
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"When to stop using these scripts: When the site of action is not plasma ..."'
+      R2:
+        answer: y
+        evidence: Cites the FDA 2005 maximum safe starting dose guidance for its Km factors.
+      R3:
+        answer: y
+        evidence: '"above that, CL and Vz are guesses"; "The default factor of 10 should rise for steep
+          dose–response, irreversible toxicity, or a novel target."'
+      R4:
+        answer: y
+        evidence: The 20% extrapolation flag and the safety factor of 10 both come with context.
+      R5:
+        answer: na
+        evidence: A dose-projection skill, not model building or evaluation.
+      R6:
+        answer: y
+        evidence: '"it is planning arithmetic, not a regulatory submission"'
+      R7:
+        answer: y
+        evidence: Command lines with full arguments.
+      R8:
+        answer: y
+        evidence: skill-tests.yml with tests/pkpd-translation.
+      R9:
+        answer: n
+        evidence: The latest Skill Tests runs failed (2026-09-01 to 09-03); none on the pinned commit.
+      R10:
+        answer: y
+        evidence: Outputs from real runs are quoted, e.g. "CL = 1.000000, Vz = 10.000000 ... exact" against
+          an analytic case.
+    errors: []
+  expertise:
+    authors:
+    - name: Timothy Kassis
+      share: 1.0
+      openalex: https://openalex.org/A5007118437
+      evidence: name in CITATION.cff; OpenAlex record has no field works
+      h_field: 0
+  maintenance:
+    recency: 78.9
+    days_since_change: 77
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: kdense-clinpharm
+  name: clinical-pharmacologist
+  category: task
+  rank: null
+  rank_range: ''
+  S: 46.0
+  Q: 83.3
+  E: 0.0
+  M: 85.5
+  library: K-Dense-AI/scientific-agents
+  url: https://github.com/K-Dense-AI/scientific-agents/tree/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/clinical-pharmacologist/skills/clinical-pharmacologist
+  commit: 98c7fae46648724e1a43a1f2b207b0c82fcc462e
+  tags: clinical pharmacology
+  licence: MIT
+  last_commit: '2026-09-29'
+  stars: 233
+  forks: 38
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 5
+    rubric_applicable: 6
+    Q_rubric: 83.3
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the persona does not do.
+      R2:
+        answer: y
+        evidence: 'Recommendations name their guidance: ICH E14/S7B, M12, E5, E4.'
+      R3:
+        answer: y
+        evidence: '"Flat exposure–response: Wrong metric (total vs unbound), narrow studied range, misaligned
+          sampling times, or PD delay — add effect compartment or time-varying exposure."'
+      R4:
+        answer: y
+        evidence: '"Allometry: pre-specify exponents or estimate with uncertainty"; fixed exponents are
+          qualified.'
+      R5:
+        answer: y
+        evidence: '"First classify the deliverable", with analyses keyed to each.'
+      R6:
+        answer: y
+        evidence: '"Hedge: distinguish predicted (model) vs observed (study)"'
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors: []
+  expertise:
+    authors:
+    - name: Timothy Kassis
+      share: 1.0
+      openalex: https://openalex.org/A5007118437
+      evidence: name in CITATION.cff; OpenAlex record has no field works
+      h_field: 0
+  maintenance:
+    recency: 91.0
+    days_since_change: 33
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: A persona file with no code.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: okour-diagnostics
+  name: assess-model-evaluation-diagnostics
+  category: task
+  rank: null
+  rank_range: ''
+  S: 45.9
+  Q: 66.7
+  E: 28.0
+  M: 89.0
+  library: malekokour/clinpharm-pmx-skills
+  url: https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/assess-model-evaluation-diagnostics
+  commit: cefc4eac87782bbb61065a39df927cd92ff76c99
+  tags: model evaluation; document review
+  licence: MIT
+  last_commit: '2026-08-13'
+  stars: 6
+  forks: 0
+  archived: false
+  flags:
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 6
+    Q_rubric: 66.7
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Refuses: Decide the outcome of Model evaluation and diagnostics; approve or submit
+          related documents; select or adjust a dose"'
+      R2:
+        answer: n
+        evidence: The eight checks cite no source.
+      R3:
+        answer: y
+        evidence: '"For each check, also note ... which required input unlocks the check if currently
+          blocked"; gaps coded NEEDS_INPUT, UNKNOWN or CANNOT_ASSESS.'
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds.
+      R5:
+        answer: n
+        evidence: The checks are a generic template with the task name substituted; nothing ties evaluation
+          depth to the model's use.
+      R6:
+        answer: y
+        evidence: '"Never fill gaps with confident invention."'
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors: []
+  expertise:
+    authors:
+    - name: Malek Okour
+      share: 1.0
+      openalex: https://openalex.org/A5062796971
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 7
+  maintenance:
+    recency: 78.1
+    days_since_change: 80
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: 'Templated: the same eight checks appear in other skills in the library with a different task
+    name. It names no specific diagnostic.'
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: okour-er-modelling
+  name: review-exposure-response-modelling
+  category: task
+  rank: null
+  rank_range: ''
+  S: 45.9
+  Q: 66.7
+  E: 28.0
+  M: 89.0
+  library: malekokour/clinpharm-pmx-skills
+  url: https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/review-exposure-response-modelling
+  commit: cefc4eac87782bbb61065a39df927cd92ff76c99
+  tags: exposure-response; document review
+  licence: MIT
+  last_commit: '2026-08-13'
+  stars: 6
+  forks: 0
+  archived: false
+  flags:
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 6
+    Q_rubric: 66.7
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Refuses: Decide the outcome of Exposure-response modelling ..."'
+      R2:
+        answer: n
+        evidence: The eight checks cite no source.
+      R3:
+        answer: y
+        evidence: Coded gap handling, as in the other templated skills.
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds.
+      R5:
+        answer: n
+        evidence: Generic template; nothing ties review depth to intended use.
+      R6:
+        answer: y
+        evidence: '"Never fill gaps with confident invention."'
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors: []
+  expertise:
+    authors:
+    - name: Malek Okour
+      share: 1.0
+      openalex: https://openalex.org/A5062796971
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 7
+  maintenance:
+    recency: 78.1
+    days_since_change: 80
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: Templated, as assess-model-evaluation-diagnostics.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: okour-nca
+  name: verify-nca-outputs
+  category: task
+  rank: null
+  rank_range: ''
+  S: 45.9
+  Q: 66.7
+  E: 28.0
+  M: 89.0
+  library: malekokour/clinpharm-pmx-skills
+  url: https://github.com/malekokour/clinpharm-pmx-skills/tree/cefc4eac87782bbb61065a39df927cd92ff76c99/skills/verify-nca-outputs
+  commit: cefc4eac87782bbb61065a39df927cd92ff76c99
+  tags: NCA; document review
+  licence: MIT
+  last_commit: '2026-08-13'
+  stars: 6
+  forks: 0
+  archived: false
+  flags:
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 6
+    rubric_applicable: 9
+    Q_rubric: 66.7
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Do not use when the request is ... to rerun or re-derive the analysis"'
+      R2:
+        answer: n
+        evidence: Rules come from the analysis plan; no published source cited.
+      R3:
+        answer: y
+        evidence: '"Where the plan is silent on a rule the data show was applied, that is an UNKNOWN for
+          a human to resolve"'
+      R4:
+        answer: y
+        evidence: Tolerances come from the plan and are named in every finding.
+      R5:
+        answer: na
+        evidence: Output verification, not model building or evaluation.
+      R6:
+        answer: y
+        evidence: '"Report reconciliation coverage as a fraction — values checked over values present."'
+      R7:
+        answer: n
+        evidence: No runnable command in the skill.
+      R8:
+        answer: y
+        evidence: quality.yml tests the shared scripts it calls.
+      R9:
+        answer: y
+        evidence: 'quality.yml on f141199: success.'
+      R10:
+        answer: n
+        evidence: examples/verify-nca-outputs holds synthetic inputs, not outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Malek Okour
+      share: 1.0
+      openalex: https://openalex.org/A5062796971
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 7
+  maintenance:
+    recency: 78.1
+    days_since_change: 80
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: xscience-dmpk-adme
+  name: dmpk-adme-strategy
+  category: task
+  rank: null
+  rank_range: ''
+  S: 38.7
+  Q: 66.7
+  E: 0.0
+  M: 87.2
+  library: Victor-Xu-1/X-Science
+  url: https://github.com/Victor-Xu-1/X-Science/tree/1eab9b0d755c54b24b7d404f4abac20ed12057e1/skills/x-science/dmpk-adme-strategy
+  commit: 1eab9b0d755c54b24b7d404f4abac20ed12057e1
+  tags: DMPK; exposure-response; TDM
+  licence: Apache-2.0 (commercial option)
+  last_commit: '2026-10-12'
+  stars: 41
+  forks: 1
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 6
+    Q_rubric: 66.7
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Do not invent dose-adjustment percentages, therapeutic windows, sampling schedules,
+          or special-population rules." (SKILL.md)'
+      R2:
+        answer: n
+        evidence: About 2 of 10 sampled recommendations name a source (ICH M10, ICH M12).
+      R3:
+        answer: y
+        evidence: '"If the exact number lacks a source locator and supporting excerpt, remove it from
+          the recommendation, describe the decision method, and leave the value unresolved." (SKILL.md)'
+      R4:
+        answer: y
+        evidence: '"Do not generalize a threshold across populations, indications, matrices, assays ...
+          without evidence and an explicit uncertainty statement." (SKILL.md)'
+      R5:
+        answer: n
+        evidence: '"Choose the analysis depth from the available data" ties depth to data, not to intended
+          use.'
+      R6:
+        answer: y
+        evidence: '"Do not present a model-derived dose as clinically acceptable without multidisciplinary
+          review." (SKILL.md)'
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors: []
+  expertise:
+    authors:
+    - name: Victor Xu
+      share: 1.0
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 94.5
+    days_since_change: 20
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: A planning checklist with no code. One of 101 skills in the library.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: jinko-paper2model
+  name: jinko-task-paper2model
+  category: task
+  rank: null
+  rank_range: ''
+  S: 36.9
+  Q: 60.0
+  E: 0.0
+  M: 98.8
+  library: novainsilico/jinko-skills
+  url: https://github.com/novainsilico/jinko-skills/tree/6a96d645aec8cbb10357db9752af68b718bb45a7/skills/jinko-task-paper2model
+  commit: 6a96d645aec8cbb10357db9752af68b718bb45a7
+  tags: model building from literature; QSP
+  licence: MIT
+  last_commit: '2026-10-23'
+  stars: 4
+  forks: 0
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 6
+    rubric_applicable: 10
+    Q_rubric: 60.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Use jinko-task-from-nonmem when NONMEM is the primary implementation source." (SKILL.md
+          description)'
+      R2:
+        answer: n
+        evidence: 0 of 10 sampled recommendations name a source.
+      R3:
+        answer: y
+        evidence: 'Gate table, "If it fails" column: "Report `blocked_evidence`; do not mutate Jinkō"
+          (references/workflow.md)'
+      R4:
+        answer: y
+        evidence: 'Gives none; tolerances are declared by the user: "Freeze targets, comparison metrics,
+          tolerances ... before comparing simulations." (SKILL.md)'
+      R5:
+        answer: y
+        evidence: '"whether the task is structural implementation, numerical reproduction, or both" sets
+          the depth of checks (SKILL.md). Borderline.'
+      R6:
+        answer: y
+        evidence: '"Fidelity to one paper scenario does not establish general biological validity." (SKILL.md)'
+      R7:
+        answer: y
+        evidence: '"python scripts/paper2model_report.py validate --spec reproduction-spec.json" (SKILL.md)'
+      R8:
+        answer: n
+        evidence: The repository has no .github/workflows.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No committed outputs from a real reproduction.
+    errors: []
+  expertise:
+    authors:
+    - name: Nova In Silico
+      share: 1.0
+      openalex: null
+      evidence: 'not found: commits by a publishing bot; no authors named in the repository'
+      h_field: 0
+  maintenance:
+    recency: 97.5
+    days_since_change: 9
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: anca-nca-review
+  name: nca-scientific-change-review
+  category: task
+  rank: null
+  rank_range: ''
+  S: 36.6
+  Q: 60.0
+  E: 0.0
+  M: 95.6
+  library: pharmaverse/aNCA
+  url: https://github.com/pharmaverse/aNCA/tree/1da57b789a7c004cb2a220589fc035169cfbd4c9/.github/skills/nca-scientific-change-review
+  commit: 1da57b789a7c004cb2a220589fc035169cfbd4c9
+  tags: NCA; code review
+  licence: Apache-2.0
+  last_commit: '2026-09-30'
+  stars: 45
+  forks: 18
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 5
+    Q_rubric: 60.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: y
+        evidence: '"identify the applicable CDISC standard/version or metadata authority"'
+      R3:
+        answer: y
+        evidence: '"Define regression evidence and manual scientific review needed"; deviations and unresolved
+          compliance risks are recorded.'
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds.
+      R5:
+        answer: na
+        evidence: Code review of NCA changes.
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors: []
+  expertise:
+    authors:
+    - name: Gerardo Jose Rodriguez
+      share: 1.0
+      openalex: https://openalex.org/A5120737136
+      evidence: ORCID 0000-0003-1413-0060, from aNCA DESCRIPTION
+      h_field: 0
+  maintenance:
+    recency: 91.2
+    days_since_change: 32
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: A developer skill for maintaining the aNCA package.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: kdense-pharmacokineticist
+  name: pharmacokineticist
+  category: task
+  rank: null
+  rank_range: ''
+  S: 36.3
+  Q: 61.7
+  E: 0.0
+  M: 85.5
+  library: K-Dense-AI/scientific-agents
+  url: https://github.com/K-Dense-AI/scientific-agents/tree/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/pharmacokineticist/skills/pharmacokineticist
+  commit: 98c7fae46648724e1a43a1f2b207b0c82fcc462e
+  tags: PK analysis
+  licence: MIT
+  last_commit: '2026-09-29'
+  stars: 233
+  forks: 38
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 6
+    Q_rubric: 66.7
+    major_errors: 0
+    minor_errors: 1
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the persona does not do.
+      R2:
+        answer: n
+        evidence: Names guidance documents in a list; few recommendations carry a source.
+      R3:
+        answer: y
+        evidence: '"If VPC fails, stratify by dose, occasion, or covariate; check lag time, absorption
+          model..."'
+      R4:
+        answer: y
+        evidence: Gives no bare thresholds; extrapolated AUC above 20% comes with an action.
+      R5:
+        answer: y
+        evidence: '"Ask what decision the analysis must support."'
+      R6:
+        answer: y
+        evidence: '"Hedge mechanistic claims: ''consistent with renal elimination'' vs. ''proves renal
+          pathway''"'
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors:
+    - severity: minor
+      quote: '"Use Monolix, Simcyp, or GastroPlus for PBPK and DDI simulation"'
+      reason: Monolix is a population modelling tool, not a PBPK platform.
+  expertise:
+    authors:
+    - name: Timothy Kassis
+      share: 1.0
+      openalex: https://openalex.org/A5007118437
+      evidence: name in CITATION.cff; OpenAlex record has no field works
+      h_field: 0
+  maintenance:
+    recency: 91.0
+    days_since_change: 33
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: A persona file with no code.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: rconsortium-adpc
+  name: admiral-adpc
+  category: task
+  rank: null
+  rank_range: ''
+  S: 34.9
+  Q: 55.6
+  E: 0.0
+  M: 98.8
+  library: RConsortium/pharma-skills
+  url: https://github.com/RConsortium/pharma-skills/tree/e5db96d54ef5a79cbfd06e2339a3351e4583f8da/admiral/admiral-adpc
+  commit: e5db96d54ef5a79cbfd06e2339a3351e4583f8da
+  tags: admiral; PKNCA; dataset assembly
+  licence: MIT
+  last_commit: '2026-10-23'
+  stars: 130
+  forks: 33
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 5
+    rubric_applicable: 9
+    Q_rubric: 55.6
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"This skill builds ADPC only. Computing NCA parameters (Cmax, AUC, half-life) and building
+          ADPP is the job of {PKNCA} or {aNCA}" (SKILL.md)'
+      R2:
+        answer: n
+        evidence: About 4 of 10 sampled recommendations name a source (admiral template and vignette,
+          CDISC conventions).
+      R3:
+        answer: y
+        evidence: '"If PC or EX is absent, stop and request it. Do not substitute synthetic concentration
+          or dosing data." (SKILL.md)'
+      R4:
+        answer: y
+        evidence: '"BLQ values with missing PCSTRESN are imputed as LLOQ/2 ... Confirm the BLQ rule with
+          the SAP and pharmacokineticist." (SKILL.md)'
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"Missing times are imputed to 00:00:00, so actual relative times (AFRLT, ARRLT) are
+          approximate." (SKILL.md)'
+      R7:
+        answer: y
+        evidence: '"pc   <- pharmaversesdtm::pc   |> convert_blanks_to_na() |> select(-DOMAIN)" and the
+          rest of a full pipeline on package data (SKILL.md)'
+      R8:
+        answer: n
+        evidence: 'validate-skills.yml checks frontmatter only; the benchmark workflow is disabled ("if:
+          false").'
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No committed ADPC output from a real run.
+    errors: []
+  expertise:
+    authors:
+    - name: Jeff Dickinson
+      share: 1.0
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 97.5
+    days_since_change: 9
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: MIT licence in the skill folder; the repository has none at its root. The repository benchmarks
+    this skill with and without it (issue 224); the run did not use that benchmark.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: midd-data-validation
+  name: pk-data-validation
+  category: task
+  rank: null
+  rank_range: ''
+  S: 33.6
+  Q: 44.4
+  E: 24.0
+  M: 75.8
+  library: nlmixr2/AI-assisted-MIDD
+  url: https://github.com/nlmixr2/AI-assisted-MIDD/tree/3f071288275f9dab3e2f889da7fb19bba4642bab/.claude/skills/pk-data-validation
+  commit: 3f071288275f9dab3e2f889da7fb19bba4642bab
+  tags: dataset assembly; NCA; nlmixr2
+  licence: none
+  last_commit: '2026-10-01'
+  stars: 2
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 9
+    Q_rubric: 44.4
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: y
+        evidence: '"Mapping the validated columns to PKNCA objects is covered by pk-nca (references/pipeline.md);
+          to an nlmixr2 model by poppk-estimation."'
+      R2:
+        answer: n
+        evidence: No recommendation names a source.
+      R3:
+        answer: y
+        evidence: '"If a check fails, fix the mapping, or tell the user what is wrong in the data. Never
+          drop, loosen or skip a check to get a pass without the user''s agreement"'
+      R4:
+        answer: y
+        evidence: 'Gives no thresholds of its own: "Never add a limit the user or protocol did not give."'
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: n
+        evidence: Lists what each check catches, but not what a passing validation leaves unchecked.
+      R7:
+        answer: y
+        evidence: describe_pk_data() and validate_pk_data() calls, with scripts/pk_data_checks.R.
+      R8:
+        answer: n
+        evidence: The repository has no continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: The README describes worked examples under examples/abc-111 and examples/gs-12345 with
+          outputs passing QC, but neither folder is in the repository.
+    errors: []
+  expertise:
+    authors:
+    - name: Mutaz M. Jaber
+      share: 1.0
+      openalex: https://openalex.org/A5076482060
+      evidence: ORCID 0000-0002-7536-8753, from the DESCRIPTION of Mutaz94/mypkg; sole committer
+      h_field: 6
+  maintenance:
+    recency: 91.5
+    days_since_change: 31
+    usability: 60
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: false
+  note: 'Added 2026-10-09, outside the monthly run, at Andy''s request; discovery had missed the repository,
+    created 2026-10-01. Four of its 18 skills were scored. The other 14 are the project, database, logging,
+    run-spec, table, figure, report and QC plumbing around these four, and were not scored: pk-nca-database,
+    pk-nca-figures, pk-nca-logging, pk-nca-qc-tests, pk-nca-report, pk-nca-run-spec, pk-nca-tables, poppk-database,
+    poppk-qc-tests, poppk-report, poppk-run-spec, poppk-tables, pk-project, manage-skills.'
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: tamir-pk
+  name: pharmacokinetic-modeling
+  category: task
+  rank: null
+  rank_range: ''
+  S: 28.0
+  Q: 45.0
+  E: 0.0
+  M: 77.7
+  library: allamiro/tamir-agent-skills
+  url: https://github.com/allamiro/tamir-agent-skills/tree/4e54f4948b2c1d4c81f4ad8f34eed4ef6295ecbd/systems-biology-skills/skills/pharmacokinetic-modeling
+  commit: 4e54f4948b2c1d4c81f4ad8f34eed4ef6295ecbd
+  tags: compartmental PK; NCA; Emax
+  licence: Apache-2.0
+  last_commit: '2026-10-15'
+  stars: 0
+  forks: 0
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 5
+    rubric_applicable: 10
+    Q_rubric: 50.0
+    major_errors: 0
+    minor_errors: 1
+    items:
+      R1:
+        answer: y
+        evidence: '"Use ode-dynamics for general ODE work, parameter-estimation-model-selection to compare
+          compartment models, and enzyme-kinetics for saturable metabolism rate laws." (SKILL.md description)'
+      R2:
+        answer: n
+        evidence: '0 of 10: "One-compartment, Bateman, AUC and Emax formulas: standard pharmacokinetics,
+          author knowledge, VERIFY".'
+      R3:
+        answer: y
+        evidence: '"If effect lags concentration (hysteresis loop in an effect–concentration plot), add
+          an effect compartment or an indirect-response model." (SKILL.md)'
+      R4:
+        answer: y
+        evidence: '"a common rule of thumb is below 20 percent: VERIFY your guideline" (SKILL.md)'
+      R5:
+        answer: n
+        evidence: Nothing ties evaluation depth to intended use.
+      R6:
+        answer: y
+        evidence: '"One-compartment, Bateman, AUC and Emax formulas: standard pharmacokinetics, author
+          knowledge, VERIFY against a pharmacokinetics text" (SKILL.md)'
+      R7:
+        answer: y
+        evidence: '"pk.py iv --dose 100 --V 20 --CL 5 --t 2" (scripts/pk.py docstring) runs with standard-library
+          Python.'
+      R8:
+        answer: n
+        evidence: The repository has no .github/workflows.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: The committed example answer did not invoke the skill ("Skills invoked in the sample
+          run | none").
+    errors:
+    - severity: minor
+      quote: '"log trapezoids while they fall if `--log-down` is set, plus extrapolation to infinity."
+        (SKILL.md)'
+      reason: scripts/pk.py returns AUC to the last observation only; it fits no terminal slope and does
+        not extrapolate.
+  expertise:
+    authors:
+    - name: Tamir Suliman
+      share: 1.0
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5)'
+      h_field: 0
+  maintenance:
+    recency: 95.3
+    days_since_change: 17
+    usability: 60
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: aira-clinpharm
+  name: co-scientist-clinical-pharmacology
+  category: task
+  rank: null
+  rank_range: ''
+  S: 27.8
+  Q: 45.0
+  E: 0.0
+  M: 75.0
+  library: nahisaho/aira
+  url: https://github.com/nahisaho/aira/tree/f59dd41972253c85f91b966c46cba4fbde9507e0/skills/co-scientist/skills/co-scientist-clinical-pharmacology
+  commit: f59dd41972253c85f91b966c46cba4fbde9507e0
+  tags: clinical pharmacology; population PK
+  licence: MIT
+  last_commit: '2026-05-03'
+  stars: 4
+  forks: 2
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 6
+    Q_rubric: 50.0
+    major_errors: 0
+    minor_errors: 1
+    items:
+      R1:
+        answer: n
+        evidence: No scope exclusion; only a "Use This Skill When" list.
+      R2:
+        answer: n
+        evidence: '0 of 10: no source named.'
+      R3:
+        answer: y
+        evidence: '"If any gate fails: identify the specific failing check, fix the issue, and re-validate
+          before proceeding." (SKILL.md) Generic.'
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds anywhere in the file.
+      R5:
+        answer: n
+        evidence: Nothing ties evaluation depth to intended use.
+      R6:
+        answer: y
+        evidence: '"State limitations, uncertainty, and any validation or sensitivity checks performed."
+          (SKILL.md)'
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors:
+    - severity: minor
+      quote: '"Multiple primaries require alpha correction" (SKILL.md)'
+      reason: Co-primary endpoints that must all succeed need no alpha adjustment (FDA Multiple Endpoints
+        guidance 2022).
+  expertise:
+    authors:
+    - name: nahisaho (repository owner)
+      share: 1.0
+      openalex: null
+      evidence: 'not looked up: api.openalex.org was unreachable from this run, so the share scores 0
+        (Section 4.5); commits by a shared account, so the repository owner'
+      h_field: 0
+  maintenance:
+    recency: 50.1
+    days_since_change: 182
+    usability: 100
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: true
+      version: true
+  note: A templated persona with no code, one of 216 in the library. Its text shares 2% of its lines with
+    the same author's satori skill. nahisaho/coreclaw-marketplace holds a copy.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: gcp-in-vivo-pk
+  name: in-vivo-pk-analysis
+  category: task
+  rank: null
+  rank_range: ''
+  S: 20.9
+  Q: 29.4
+  E: 0.0
+  M: 76.6
+  library: GoogleCloudPlatform/LifeSciences
+  url: https://github.com/GoogleCloudPlatform/LifeSciences/tree/4151403d767785699677b0d1c00c8ae0f502602e/applications/open-agentic-science-engine/skills/in-vivo-pk-analysis
+  commit: 4151403d767785699677b0d1c00c8ae0f502602e
+  tags: NCA; allometric scaling; DDI
+  licence: Apache-2.0
+  last_commit: '2026-10-07'
+  stars: 53
+  forks: 36
+  archived: false
+  flags:
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 4
+    rubric_applicable: 9
+    Q_rubric: 44.4
+    major_errors: 0
+    minor_errors: 3
+    items:
+      R1:
+        answer: y
+        evidence: '"**Do not use when:** You need predicted ADMET endpoints from molecular descriptors
+          ... -> admet-property-prediction." (SKILL.md)'
+      R2:
+        answer: n
+        evidence: 3 to 4 of 10 sampled recommendations name a source (Boxenbaum 1982, Mahmood and Balian
+          1996, FDA 2020 DDI guidance).
+      R3:
+        answer: y
+        evidence: '"`STOP` means fix or report before running anything" (SKILL.md)'
+      R4:
+        answer: y
+        evidence: '"The therapeutic_exposure_adequacy threshold ... is UNRESOLVED -- no universal default
+          exists. Do not invent a value." (SKILL.md)'
+      R5:
+        answer: na
+        evidence: ''
+      R6:
+        answer: y
+        evidence: '"A clean NCA or scaling result does not substitute for clinical PK data -- these are
+          preclinical estimates." (SKILL.md)'
+      R7:
+        answer: n
+        evidence: Only templates with placeholder inputs, e.g. "oase pk nca <study_file>"; no example
+          input is bundled.
+      R8:
+        answer: n
+        evidence: pr-checks.yml runs the application's unit tests, not the skill's commands.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No committed outputs from a real run.
+    errors:
+    - severity: minor
+      quote: '"the rule of exponents requires data from at least two species for reliable CL prediction."
+        (SKILL.md)'
+      reason: The rule of exponents was built on three or more species (Mahmood and Balian 1996).
+    - severity: minor
+      quote: '"\"possible interaction\" means \"do a clinical" (SKILL.md)'
+      reason: Under the FDA 2020 guidance a result above the cut-off leads to further evaluation, which
+        may be a static or PBPK model, and the text contradicts the skill's own two-tier verdicts.
+    - severity: minor
+      quote: '"The `pk.nca_assumes_linearity` relay fires on every NCA run." (SKILL.md)'
+      reason: The same file says this qualifier moved to the method_caveat field, so no such relay fires.
+  expertise:
+    authors:
+    - name: Google (organisation account)
+      share: 1.0
+      openalex: null
+      evidence: 'not found: committed under an organisation; no authors named'
+      h_field: 0
+  maintenance:
+    recency: 93.2
+    days_since_change: 25
+    usability: 60
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: One of 61 skills in the repository; the per-library cap applies.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: inflexa-pkpd
+  name: pkpd-clinical-response
+  category: task
+  rank: null
+  rank_range: ''
+  S: 17.1
+  Q: 20.0
+  E: 0.0
+  M: 81.5
+  library: inflexa-ai/inflexa
+  url: https://github.com/inflexa-ai/inflexa/tree/31ee216044b26bbc103730ee7df51170b083a6eb/skills/pkpd-clinical-response
+  commit: 31ee216044b26bbc103730ee7df51170b083a6eb
+  tags: PK/PD; exposure-response
+  licence: Apache-2.0
+  last_commit: '2026-08-31'
+  stars: 35
+  forks: 4
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 2
+    rubric_applicable: 10
+    Q_rubric: 20.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: The Do NOT list is bad practice, not scope.
+      R2:
+        answer: n
+        evidence: Cites none; references are the skill's own files.
+      R3:
+        answer: y
+        evidence: '"A covariate that lowers the objective function without reducing between-subject variability
+          on its parameter has explained nothing. Report both, with the shrinkage."'
+      R4:
+        answer: n
+        evidence: '"Use NCA terminal half-life if the terminal phase has fewer than 3 points or R-squared
+          < 0.8" is given bare.'
+      R5:
+        answer: y
+        evidence: 'Method chosen from the question and the sampling design: two-stage for rich data and
+          covariate questions, NLME otherwise.'
+      R6:
+        answer: n
+        evidence: No statement of the limits of its own output.
+      R7:
+        answer: n
+        evidence: Code lives in reference files; the skill shows a decision tree.
+      R8:
+        answer: n
+        evidence: No test of the skill in CI.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Robert Krajla
+      share: 0.894
+      openalex: https://openalex.org/A5140646698
+      evidence: ORCID 0009-0009-7758-0684, from inflexa CITATION.cff
+      h_field: 0
+    - name: Radu Andrei Tanasa
+      share: 0.106
+      openalex: https://openalex.org/A5103178966
+      evidence: ORCID 0009-0007-2817-4589, from inflexa CITATION.cff
+      h_field: 0
+  maintenance:
+    recency: 83.0
+    days_since_change: 62
+    usability: 80
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: true
+  note: ''
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: hiyenwong-quantum
+  name: quantum-compartmental-pkpd
+  category: task
+  rank: null
+  rank_range: ''
+  S: 16.9
+  Q: 23.3
+  E: 0.0
+  M: 64.4
+  library: hiyenwong/ai_collection
+  url: https://github.com/hiyenwong/ai_collection/tree/a0d161b748b62bde63af984646c7ce64cc268260/collection/skills/other/quantum-compartmental-pkpd
+  commit: a0d161b748b62bde63af984646c7ce64cc268260
+  tags: simulation
+  licence: null
+  last_commit: '2026-07-10'
+  stars: 3
+  forks: 0
+  archived: false
+  flags:
+  - no licence
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 3
+    rubric_applicable: 9
+    Q_rubric: 33.3
+    major_errors: 0
+    minor_errors: 2
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: y
+        evidence: Built on one cited source, arXiv:2605.09691.
+      R3:
+        answer: n
+        evidence: No guidance when a check fails.
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds.
+      R5:
+        answer: na
+        evidence: Simulation method.
+      R6:
+        answer: y
+        evidence: '"Classical ODE solvers remain more efficient for simple compartmental models"'
+      R7:
+        answer: n
+        evidence: The circuit reuses rotation angles and encodes no PK quantity; it does not run a PK
+          model.
+      R8:
+        answer: n
+        evidence: CI validates skill format only and is failing.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors:
+    - severity: minor
+      quote: '"Controlled rotations model drug transfer rates"'
+      reason: The example circuit has no link between its parameters and any rate constant.
+    - severity: minor
+      quote: '"Variational optimization handles nonlinear mixed-effects models"'
+      reason: Unsupported claim; nothing in the skill estimates between-subject variability.
+  expertise:
+    authors:
+    - name: Robin (hiyenwong)
+      share: 1.0
+      openalex: null
+      evidence: 'not found: no surname on the GitHub profile'
+      h_field: 0
+  maintenance:
+    recency: 68.8
+    days_since_change: 114
+    usability: 60
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: true
+  note: Auto-generated from an arXiv paper; three near-identical copies in the same collection.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: biostat-pk
+  name: pharmacokinetics
+  category: task
+  rank: null
+  rank_range: ''
+  S: 14.8
+  Q: 20.0
+  E: 0.0
+  M: 58.4
+  library: choxos/BiostatAgent
+  url: https://github.com/choxos/BiostatAgent/tree/a55c0591107181cdac9ce78813dc0abac3281caa/plugins/r-tidy-modeling/skills/pharmacokinetics
+  commit: a55c0591107181cdac9ce78813dc0abac3281caa
+  tags: PK analysis; PKNCA; mrgsolve; nlmixr2
+  licence: MIT
+  last_commit: '2026-05-27'
+  stars: 12
+  forks: 1
+  archived: false
+  flags:
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 2
+    rubric_applicable: 10
+    Q_rubric: 20.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: 'One closing line: "Follow FDA/EMA guidance for NCA intervals and BE limits".'
+      R3:
+        answer: n
+        evidence: Diagnostics are plotted, not interpreted.
+      R4:
+        answer: y
+        evidence: The only thresholds are the regulatory 80–125% BE limits, stated as such.
+      R5:
+        answer: n
+        evidence: Nothing ties the analysis to intended use.
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: y
+        evidence: Complete PKNCA, mrgsolve and nlmixr2 examples with inline data.
+      R8:
+        answer: n
+        evidence: CI validates the marketplace packaging, not the code.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Ahmad Sofi-Mahmudi
+      share: 1.0
+      openalex: https://openalex.org/A5075399321
+      evidence: ORCID 0000-0001-6829-0823 on OpenAlex; no field works
+      h_field: 0
+  maintenance:
+    recency: 56.7
+    days_since_change: 158
+    usability: 60
+    checks:
+      licence: true
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: Same skill as choxos/TidyRModelling (merged as a copy).
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: momentum-covariate
+  name: covariate-test
+  category: task
+  rank: null
+  rank_range: ''
+  S: 11.5
+  Q: 16.7
+  E: 16.0
+  M: 0
+  library: momentummetrix/PK_Claude
+  url: https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/covariate-test
+  commit: c245ed331bf9234cc88ea57be9d5debd3ab02c1f
+  tags: covariate modeling; NONMEM
+  licence: null
+  last_commit: '2026-02-16'
+  stars: 1
+  forks: 0
+  archived: true
+  flags:
+  - no licence
+  - archived
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 6
+    Q_rubric: 16.7
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: y
+        evidence: Forward-addition and backward-elimination decisions at stated dOFV cut-offs.
+      R4:
+        answer: n
+        evidence: '"dOFV >= 3.84 (p < 0.05, 1 df)" and "6.63" are given without the multiplicity or clinical-relevance
+          context.'
+      R5:
+        answer: n
+        evidence: Nothing ties the covariate search to intended use.
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: na
+        evidence: ''
+      R8:
+        answer: na
+        evidence: ''
+      R9:
+        answer: na
+        evidence: ''
+      R10:
+        answer: na
+        evidence: ''
+    errors: []
+  expertise:
+    authors:
+    - name: Justus Bingham
+      share: 1.0
+      openalex: https://openalex.org/A5087848914
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 4
+  maintenance:
+    recency: 29.3
+    days_since_change: 258
+    usability: 40
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: Repository archived.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: momentum-nca
+  name: nca-analysis
+  category: task
+  rank: null
+  rank_range: ''
+  S: 9.0
+  Q: 11.1
+  E: 16.0
+  M: 0
+  library: momentummetrix/PK_Claude
+  url: https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/nca-analysis
+  commit: c245ed331bf9234cc88ea57be9d5debd3ab02c1f
+  tags: NCA
+  licence: null
+  last_commit: '2026-02-17'
+  stars: 1
+  forks: 0
+  archived: true
+  flags:
+  - no licence
+  - archived
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 9
+    Q_rubric: 11.1
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Fetches PKNCA documentation at run time; its own rules cite none.
+      R3:
+        answer: n
+        evidence: '"Flag any issues" only.'
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds.
+      R5:
+        answer: na
+        evidence: NCA, not model building or evaluation.
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: n
+        evidence: Points to a template; no runnable code in the skill.
+      R8:
+        answer: n
+        evidence: No continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Justus Bingham
+      share: 1.0
+      openalex: https://openalex.org/A5087848914
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 4
+  maintenance:
+    recency: 29.6
+    days_since_change: 257
+    usability: 40
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: Repository archived.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: momentum-simulate
+  name: simulate-pk
+  category: task
+  rank: null
+  rank_range: ''
+  S: 9.0
+  Q: 11.1
+  E: 16.0
+  M: 0
+  library: momentummetrix/PK_Claude
+  url: https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/simulate-pk
+  commit: c245ed331bf9234cc88ea57be9d5debd3ab02c1f
+  tags: simulation
+  licence: null
+  last_commit: '2026-02-17'
+  stars: 1
+  forks: 0
+  archived: true
+  flags:
+  - no licence
+  - archived
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 9
+    Q_rubric: 11.1
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: n
+        evidence: No guidance when a check fails.
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds.
+      R5:
+        answer: na
+        evidence: Simulation, not model building or evaluation.
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: n
+        evidence: Points to a template; no runnable code in the skill.
+      R8:
+        answer: n
+        evidence: No continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Justus Bingham
+      share: 1.0
+      openalex: https://openalex.org/A5087848914
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 4
+  maintenance:
+    recency: 29.6
+    days_since_change: 257
+    usability: 40
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: Repository archived.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: momentum-model-eval
+  name: model-eval
+  category: task
+  rank: null
+  rank_range: ''
+  S: 8.5
+  Q: 10.0
+  E: 16.0
+  M: 0
+  library: momentummetrix/PK_Claude
+  url: https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/model-eval
+  commit: c245ed331bf9234cc88ea57be9d5debd3ab02c1f
+  tags: model evaluation; NONMEM
+  licence: null
+  last_commit: '2026-02-16'
+  stars: 1
+  forks: 0
+  archived: true
+  flags:
+  - no licence
+  - archived
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 10
+    Q_rubric: 10.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: n
+        evidence: '"If convergence OR covariance failed, report immediately and flag" stops at flagging.'
+      R4:
+        answer: y
+        evidence: '"high RSE, high shrinkage" with no numeric cut-offs.'
+      R5:
+        answer: n
+        evidence: Nothing ties evaluation to intended use.
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: n
+        evidence: Depends on library(aipharma), an internal package that is not public.
+      R8:
+        answer: n
+        evidence: No continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Justus Bingham
+      share: 1.0
+      openalex: https://openalex.org/A5087848914
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 4
+  maintenance:
+    recency: 29.3
+    days_since_change: 258
+    usability: 40
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: Repository archived.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: momentum-er
+  name: er-analysis
+  category: task
+  rank: null
+  rank_range: ''
+  S: 8.5
+  Q: 10.0
+  E: 16.0
+  M: 0
+  library: momentummetrix/PK_Claude
+  url: https://github.com/momentummetrix/PK_Claude/tree/c245ed331bf9234cc88ea57be9d5debd3ab02c1f/.claude/skills/er-analysis
+  commit: c245ed331bf9234cc88ea57be9d5debd3ab02c1f
+  tags: exposure-response
+  licence: null
+  last_commit: '2026-02-17'
+  stars: 1
+  forks: 0
+  archived: true
+  flags:
+  - no licence
+  - archived
+  - author match probable
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 1
+    rubric_applicable: 10
+    Q_rubric: 10.0
+    major_errors: 0
+    minor_errors: 0
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: n
+        evidence: No guidance when a check fails.
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds.
+      R5:
+        answer: n
+        evidence: Nothing ties the analysis to intended use.
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: n
+        evidence: Fragments such as glm(..., family = binomial) only.
+      R8:
+        answer: n
+        evidence: No continuous integration.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors: []
+  expertise:
+    authors:
+    - name: Justus Bingham
+      share: 1.0
+      openalex: https://openalex.org/A5087848914
+      evidence: 'probable: the only OpenAlex author of that name with 3 or more field works'
+      h_field: 4
+  maintenance:
+    recency: 29.6
+    days_since_change: 257
+    usability: 40
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: Repository archived. Silent on confounding between exposure and prognosis.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+- id: satori-clinpharm
+  name: scientific-clinical-pharmacology
+  category: task
+  rank: null
+  rank_range: ''
+  S: 3.5
+  Q: 0
+  E: 0.0
+  M: 34.5
+  library: nahisaho/satori
+  url: https://github.com/nahisaho/satori/tree/20787d90a5bd957922dac1ec18d4f708d5df7551/src/.github/skills/scientific-clinical-pharmacology
+  commit: 20787d90a5bd957922dac1ec18d4f708d5df7551
+  tags: clinical pharmacology; population PK
+  licence: null
+  last_commit: '2026-02-15'
+  stars: 3
+  forks: 2
+  archived: false
+  flags:
+  - no licence
+  - major error
+  - authors not found
+  - no evidence of use
+  also_in_library: []
+  quality:
+    rubric_yes: 2
+    rubric_applicable: 10
+    Q_rubric: 20.0
+    major_errors: 1
+    minor_errors: 1
+    items:
+      R1:
+        answer: n
+        evidence: No statement of what the skill excludes.
+      R2:
+        answer: n
+        evidence: Cites none.
+      R3:
+        answer: n
+        evidence: No guidance when a check fails.
+      R4:
+        answer: y
+        evidence: Gives no numeric thresholds.
+      R5:
+        answer: n
+        evidence: Nothing ties the analysis to intended use.
+      R6:
+        answer: n
+        evidence: No statement of the limits of its output.
+      R7:
+        answer: y
+        evidence: Complete Python functions.
+      R8:
+        answer: n
+        evidence: CI runs the package's JavaScript tests, not the skill.
+      R9:
+        answer: n
+        evidence: Follows R8.
+      R10:
+        answer: n
+        evidence: No stored outputs.
+    errors:
+    - severity: major
+      quote: 'popk_estimation(): "eta_cl = 0.0 / eta_v = 0.0" while returning "omega_cl" and "omega_v"'
+      reason: The between-subject variances never enter the objective function, so the function is a pooled
+        fit labelled as NLME and its omega estimates are arbitrary.
+    - severity: minor
+      quote: 'simulate_pk(): "t_half = 0.693 * params.get(\"v\", params.get(\"v1\", 50)) / params[\"cl\"]"
+        for the 2-compartment model'
+      reason: For a two-compartment model 0.693·V1/CL is not the terminal half-life.
+  expertise:
+    authors:
+    - name: Hisaho Nakata
+      share: 1.0
+      openalex: null
+      evidence: 'not found: the only OpenAlex author of that name is a physicist, affiliation does not
+        match'
+      h_field: 0
+  maintenance:
+    recency: 29.0
+    days_since_change: 259
+    usability: 40
+    checks:
+      licence: false
+      frontmatter: true
+      install: true
+      dependencies: false
+      version: false
+  note: Known-answer fixture 2. Skill text is in Japanese.
+  U: 0.0
+  use:
+    points: 0
+    proven: false
+    people: []
+evaluation_resources:
+- name: PMxbench, ISoP AI/ML SIG Agentic Workflows
+  url: https://github.com/AIML-SIG/Agentic-workflows
+  licence: MIT
+  stars: 18
+  forks: 4
+  last_commit: '2026-10-06'
+  contents: One simulated population PK study with a known answer, a submission format (one YAML file)
+    and a leaderboard.
+  authors: ISoP AI/ML SIG Agentic Pharmacometrics subgroup
+- name: Agent Skills vs PMxAgent NCA benchmark
+  url: https://github.com/heyiamnotacoder/pmxagent-skills-benchmark
+  licence: MIT (benchmark data CC BY-NC, from the PMxAgent paper)
+  stars: 0
+  forks: 0
+  last_commit: '2026-09-28'
+  contents: Eight task folders, led by the PMxAgent NCA benchmark (182 drugs, 1,820 subjects, PKanalix
+    reference), run with and without skills; frozen skills, scoring code and raw run evidence archived
+    on Zenodo.
+  authors: Dhruvik (heyiamnotacoder)
+- name: nlmixr2llm vitals evaluation
+  url: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/evals
+  licence: BSD-3-Clause
+  stars: 8
+  forks: 3
+  last_commit: '2026-10-23'
+  contents: Questions with grading targets, asked of the same model with and without the nlmixr2llm skills,
+    plus a 17-question stress kit with hidden code checks; no stored results.
+  authors: Matthew Fidler (nlmixr2)
+copies:
+- of: kdense-pkpd
+  count: 77
+  note: Copies of K-Dense-AI/scientific-agent-skills pkpd-modeling in other repositories and mirrors,
+    found by code search on 2026-11-01 (77 hits outside the original, in 69 repositories). One is a deliberate
+    installation (kimmingul/NanumCsvViewer, 20 skills); the rest are in repositories of 2,000 or more
+    skill files, or mirrors.
+- of: kdense-pharmacokineticist and kdense-clinpharm
+  repos:
+  - Mr-Nobody-Anonymous/All-skills
+  - raktim-mondol/dsh-researchcraft
+  - raktim-mondol/hermes-plugin-researchcraft
+  - stanfish06/skillquarium
+  - Tashima-Tarsh/Disha6.6
+  - raktim-mondol/academic-harness
+- of: pchelle-gof, pchelle-covariate, pchelle-dataset, pchelle-report, pchelle-r-nonmem-utils
+  repos:
+  - pchelle/ferx.utils
+  note: Identical files, added later.
+- of: biostat-pk
+  repos:
+  - choxos/TidyRModelling
+- of: aira-clinpharm
+  repos:
+  - nahisaho/coreclaw-marketplace
+excluded:
+- item: htlin222/drug-drug-skill
+  reason: Drug interaction assessment for clinical use; not a task in Section 3.
+- item: billdenney/claude_runner
+  reason: General agent-runner skills; pharmacometric terms appear only incidentally.
+- item: pchelle/nonmem.utils describe-design
+  reason: A copy of a general Posit code-documentation skill; not pharmacometric.
+- item: K-Dense-AI admet-prediction and other scientific-agents personas
+  reason: Not pharmacometric.
+- item: PeterBloomingdale/pmxagent
+  reason: An agent platform without a skill file.
+- item: pharmacometricsai/nonmem-library
+  reason: A library of control streams, not a skill file.
+- item: marianklose/llm-agentic-workflow-sandbox
+  reason: No skill file.
+- item: hiyenwong/ai_collection "NCA" skills
+  reason: Neural cellular automata, a false positive on the term NCA.
+- item: the-vibey-project/vibey biomed-structural-systems-biology-and-pharmacology
+  reason: A general biomedical engineering reference; PK/PD is one of four sections.
+- item: nexvigilant/.true KSB-D10-K0031
+  reason: A pharmacovigilance curriculum entry, not instructions for a pharmacometric task.
+- item: eightmm/codex-science translational-pharmacology-evidence
+  reason: Evidence synthesis on targets, trials and regulation; not a task in Section 3.
+- item: lxyeternal/MalSkillBench clinical-pk-navigator
+  reason: A sample in a benchmark of malicious skills.
+- item: mattfidler/codefactor.skill
+  reason: Code-quality reports; nlmixr2 and rxode2 appear only as example repositories.
+- item: danlinyu/cm-committee andrew-gelman-perspective
+  reason: A statistics persona that mentions pharmacometrics in passing.
+- item: Prekzursil/agent-skills-toolchain phenibut-compchem
+  reason: Computational chemistry; PBPK and PK-Sim appear only in passing.
+- item: olaTechie/scientific-paper-writer dose-response
+  reason: Guidance for writing up a study type, not for doing the analysis.
+- item: ianrexexanes/nca-conversion, pskoett/pmx-skills, juglanshutao-sudo/pmx-three-views, ColeHu/vrm2pmx,
+    pmxt-dev/molt-pmxt
+  reason: False positives on NCA or PMX (marketing, product management, 3D model formats).
+- item: giljae/pmx-skills-gemini
+  reason: Archived; its skills contain no pharmacometric term.
+- item: DanielMoj/pbpk-literature, stiigg/r-nonmem-pkpd-portfolio, seotarek/MedOrqis
+  reason: No pharmacometric skill file.
+- item: about 60 repositories matched only by the term nonmem
+  reason: The search term matches words such as nonmember; none of these holds a pharmacometric skill.

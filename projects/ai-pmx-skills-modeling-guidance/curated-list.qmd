@@ -121,40 +121,64 @@ score for them.
 
 ## This Month's Run
 
-**October 2026**, run on 2026-10-07, and reissued the same day under criteria
-version 2, which replaced adoption with use and ranks only skills with evidence
-of use. Five of the 40 skills have that evidence. Discovery searched
-GitHub code and repositories with the queries in [`discovery.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/discovery.yml), cloned 25
-repositories and scored 40 skills. Copies were merged into their originals: 37
-copies of K-Dense's `pkpd-modeling` alone. Exclusions and copies are listed in
-[`list/2026-10.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/list/2026-10.yml).
-
-**Four skills were added on 2026-10-09, outside the run, at Andy's request.**
-Discovery missed [nlmixr2/AI-assisted-MIDD](https://github.com/nlmixr2/AI-assisted-MIDD),
-an NCA, popPK and simulation project template created six days before the run.
-Its three analysis skills and its data-validation skill were scored by the same
-criteria, in the same single pass. The other 14 skills in the repository are
-the database, logging, report and QC steps around those four, and were not
-scored. The four have no evidence of use yet, so they are listed under
-Unproven.
+**November 2026**, run on 2026-11-01 under criteria version 2. Five of the 53
+scored skills have evidence of use and are ranked. The data are in
+[`list/2026-11.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/list/2026-11.yml),
+and the queries with their hit counts in
+[`discovery.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/discovery.yml).
 
 **Both known-answer checks passed.** The error audit reported both errors in
-[`fixtures.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/fixtures.yml) as major before anything was scored.
+[`fixtures.yml`](https://github.com/iamstein/TrinityMetrics/blob/main/projects/ai-pmx-skills-modeling-guidance/fixtures.yml)
+as major before anything was scored.
 
-This first run departs from the specification in four ways:
+**Nine skills were added**, all under Unproven: nlmixr2llm's new `design`
+skill, RConsortium's `admiral-adpc`, namlink's `pbpk-apriori`, NVIDIA's
+`nvqsp`, Google's `in-vivo-pk-analysis`, X-Science's `dmpk-adme-strategy`,
+tamir-agent-skills' `pharmacokinetic-modeling`, aira's
+`co-scientist-clinical-pharmacology` and MathWorks' `simbiology-build-model`.
+None was removed. The nlmixr2llm repository moved to the nlmixr2 organisation.
 
-1. **One scoring pass.** The rubric and the error audit were each run once, by
-   the same model. The second independent pass, the judge-agreement figure and
-   the test-retest correlation were not produced, so a difference of a few
-   points between two skills is within the noise of a single judgement.
-2. **Large libraries were pre-screened.** In libraries of 30 or more skills, the
-   most pharmacometric skills were chosen by keyword before scoring, and the
-   per-library cap applied to those.
-3. **No benchmark score.** No evaluation resource yet covers a listed skill's
-   task with expected findings.
-4. **Use is measured from GitHub issues, pull requests, comments and
-   installations only.** GitHub Discussions were not searched, and no listed
-   skill ships in a package with download statistics.
+**Ranks changed in the tool table.** Three skills changed by 10 or more points:
+
+- **nlmixr2llm `interop`** rose from 3rd to 1st (40.4 to 58.2). This month's
+  second judge and tie-break counted its hand-offs to other skills and found
+  that continuous integration runs three of its reference-file examples, which
+  October's single pass did not.
+- **nlmixr2llm `estimation`** fell from 1st to 3rd (51.0 to 27.8). The audit
+  rated two of its rules major errors: removing an ETA because between-subject
+  variability exceeds 100%, and removing one because shrinkage exceeds 30%.
+  Its expertise score also fell from 52 to 13, because Matthew Fidler now wrote
+  75% of its lines and OpenAlex could not be reached to score him.
+- **nlmixr2lib `extract-literature-model`** fell from 47.6 to 21.9, still
+  Unproven. The audit found four major errors in its NONMEM translation rules,
+  among them a `S1 = V/1000` rule that puts concentrations out by a factor of
+  1,000.
+
+All three sets of errors were in the October files, which October's single
+audit scored. Unchanged skills keep October's answers, so they have had one
+audit and the rescored skills two.
+
+**The two rubric judges agreed on 88% of items** (153 of 174), across the 18
+skills rescored this month. Three items fell below the 85% threshold: R1, R7
+and R8. A third judge decided all 21 disagreements.
+
+**OpenAlex was unreachable from the run.** Contributors added since October,
+and the authors of the nine new skills, score 0 on expertise and carry the
+⚠️ authors-not-found flag until a run can look them up.
+
+This run departs from the specification in four further ways. All are listed
+in the data file's `run` block:
+
+1. **All passes used one model.** The rubric's two judges, the tie-break and
+   the error audit all ran on the same model, where Section 4.1 asks for the
+   audit to use a different one. The test-retest correlation was not produced.
+2. **No benchmark score.** The nlmixr2llm vitals evaluation and RConsortium's
+   `admiral-adpc` benchmark now cover listed skills with expected answers.
+   Running them needs model access and R, which the run did not have.
+3. **Use is measured from the authors of issues and pull requests**, found by
+   GitHub search. Commenters and GitHub Discussions were not read.
+4. **Large libraries were not read skill by skill.** Only the skills that the
+   discovery terms matched were considered.
 
 ## Proposed Changes to the Criteria
 
@@ -176,3 +200,16 @@ The run proposes these for Andy to accept or reject in [`criteria.yml`](https://
 4. **Decide how organisations count for expertise.** Skills published under an
    organisation or a bot account score 0 on E, however expert the team. A
    named-author list, where the organisation publishes one, could stand in.
+5. **Reword R1.** The judges agreed on 67% of R1 answers. Say whether handing
+   named work to another skill counts as stating what the skill does not do,
+   and whether a statement of what the underlying software cannot do counts.
+   This run counted the first and not the second.
+6. **Reword R7.** The judges agreed on 78% of R7 answers, splitting on command
+   templates with placeholder inputs. Say whether an example must run on
+   bundled or public data as written.
+7. **Reword R8.** The judges agreed on 83% of R8 answers. Say whether
+   continuous integration that renders the skill's outputs, or runs only some
+   of its examples, counts.
+8. **Re-audit unchanged skills every three months**, alongside expertise.
+   This month two skills gained major errors that were in their files in
+   October. Their unchanged neighbours have had only October's single audit.
