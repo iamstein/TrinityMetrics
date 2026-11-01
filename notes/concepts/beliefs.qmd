@@ -1,0 +1,138 @@
+---
+title: "Beliefs"
+subtitle: "Reflective judgment, dispositional belief, and the cases where they diverge"
+description: >
+  Notes on the divergence between what a person judges true on reflection and
+  what their conduct presupposes: Gendler's alief, belief as a disposition to
+  act, Hume and Strawson on free will, and C. S. Lewis on living normally under
+  the threat of catastrophe.
+categories: [Concept notes, wisdom]
+date: last-modified
+toc: false
+---
+
+There are two criteria for saying that a person believes a proposition. By the
+first, **reflective judgment**, they believe it if, when they consider the
+question, they judge it true and would sincerely assert it. By the second,
+**dispositional belief**, they believe it if they are disposed to act, feel and
+reason as though it were true. The two usually agree. These notes concern the
+cases where they do not, which raise two questions: which of the two attitudes
+counts as the belief, and which should give way to the other.
+
+## Two Cases
+
+- **Free will.** I am not persuaded that free will exists, in the sense of
+  being able to have chosen otherwise than I did. My conduct presupposes that
+  it does: I deliberate as though the outcome were open, hold myself
+  responsible for what I choose, and feel gratitude and resentment toward
+  others for what they choose.
+- **AI risk.** I judge it plausible that advanced AI will cause a serious
+  catastrophe within a few years. My conduct presupposes that it will not: I
+  am still being a dad and living normally, and I plan as though the near
+  future will resemble the present.
+
+## Accounts of the Divergence
+
+- **Alief.** Tamar Gendler, "Alief and Belief" (*Journal of Philosophy*,
+  2008). An alief is an automatic, associative attitude, triggered by features
+  of the immediate situation, that produces a feeling and an inclination to
+  act. It can contradict a belief the person holds at the same moment.
+  Gendler's example is the glass walkway over the Grand Canyon: a visitor
+  believes the walkway will hold, aliefs that it will not, and trembles.
+  Aliefs are changed by habituation and repeated exposure more readily than by
+  evidence or argument.
+- **Belief as a disposition to act.** Alexander Bain, in *The Emotions and the
+  Will* (1859), defined belief as "that upon which a man is prepared to act".
+  Charles Sanders Peirce built on that definition in "How to Make Our Ideas
+  Clear" (1878), where he wrote that "the essence of belief is the
+  establishment of a habit", and in 1907 he called pragmatism "scarce more
+  than a corollary" of Bain's definition. By this criterion the attitude that
+  governs conduct is the belief, and an assertion that conduct does not
+  support is something less.
+- **In-between belief.** Eric Schwitzgebel, "In-Between Believing"
+  (*Philosophical Quarterly*, 2001) and "Acting Contrary to Our Professed
+  Beliefs" (*Pacific Philosophical Quarterly*, 2010). Belief is a cluster of
+  dispositions, and when some of the dispositions point one way and some the
+  other, the person is neither accurately described as believing nor as
+  disbelieving. His 2010 example is a professor who sincerely judges that all
+  races are equally intelligent and whose spontaneous judgments of individual
+  students are racially biased.
+- **Somatic markers.** Antonio Damasio, *Descartes' Error* (1994). Bodily
+  states associated with the past outcomes of similar choices bias decisions,
+  and narrow the options considered, before and during explicit reasoning.
+  Damasio's evidence is patients with damage to the ventromedial prefrontal
+  cortex, who reason through a choice normally and still choose badly.
+
+## Free Will
+
+- **Hume and backgammon.** In the conclusion to Book 1 of *A Treatise of Human
+  Nature* (1739), Hume's skeptical arguments leave him unable to trust reason,
+  and the doubt does not survive ordinary life: "I dine, I play a game of
+  back-gammon, I converse, and am merry with my friends; and when after three
+  or four hours' amusement, I wou'd return to these speculations, they appear
+  so cold, and strain'd, and ridiculous, that I cannot find in my heart to
+  enter into them any farther." The passage concerns his skepticism about
+  reason in general, not free will specifically; it is cited here as the
+  classic description of a reflective conclusion that conduct does not follow.
+  Hume's own position on free will, in Book 2 of the *Treatise* and Section 8
+  of the *Enquiry*, is that liberty and necessity are compatible.
+- **Reactive attitudes.** P. F. Strawson, "Freedom and Resentment"
+  (*Proceedings of the British Academy*, 1962). Resentment, gratitude, blame
+  and love are constitutive of relationships between people, and the
+  commitment to them is too deeply rooted for a general theoretical conviction
+  such as determinism to remove. Strawson argues further that even if giving
+  them up were possible, the choice would rightly be made on what it would do
+  to human life, not on whether determinism is true.
+- **Acting under the idea of freedom.** Immanuel Kant, *Groundwork of the
+  Metaphysics of Morals* (1785), Section III: a being that cannot act except
+  under the idea of freedom is, in a practical respect, free. Deliberation
+  presupposes that the outcome is open, whatever the metaphysical facts.
+
+## Catastrophe and Ordinary Life
+
+- **C. S. Lewis, "On Living in an Atomic Age" (1948).** Collected in *Present
+  Concerns* (1986). Lewis observes that everyone was already under sentence of
+  death before the bomb was invented, and that earlier generations lived
+  through plague and war. If the bomb comes, he wants it to find people
+  "doing sensible and human things", such as working, reading and bathing the
+  children, "not huddled together like frightened sheep and thinking about
+  bombs."
+- **Luther's apple tree.** "Even if I knew that tomorrow the world would go to
+  pieces, I would still plant my apple tree." The saying is attributed to
+  Martin Luther but appears nowhere in his writings. Its earliest documented
+  use is a circular letter of 5 October 1944 by Karl Lotz, a pastor of the
+  Confessing Church in Hesse, who already treated it as a known saying of
+  Luther's.
+- **Workability.** [Acceptance and Commitment
+  Therapy](acceptance-and-commitment-therapy.qmd) evaluates a thought by
+  whether acting on it serves the person's values, and sets aside whether the
+  thought is true. Applied here, the forecast can be held as possibly correct
+  while conduct is governed by values.
+
+## Questions to Sit With
+
+- **When does the divergence have a cost?** Only when the reflective judgment,
+  if it governed conduct, would produce different actions. Determinism
+  prescribes no different action, since a choice still has to be made, so the
+  divergence over free will costs nothing. For AI risk the test is what I
+  would do differently if my conduct followed my judgment. If the answer is
+  little beyond what I already do, judgment and conduct agree on the action
+  and diverge only in feeling.
+- **Which attitude should give way?** In Gendler's example the reflective
+  belief is correct and the alief is the error. In the AI case either could be
+  the error: the judgment may be right and the calm a failure to update, or
+  the calm may be tracking something the judgment overstates. The distinction
+  between the two attitudes does not settle which; the evidence for the
+  proposition does.
+- **Can argument change a dispositional belief?** Gendler's account, and the
+  practice of exposure therapy, suggest that it mostly cannot, and that
+  repeated experience does. The converse question is whether a reflective
+  judgment should be revised when conduct will not follow it.
+
+## Related Notes
+
+- [Acceptance and Commitment Therapy](acceptance-and-commitment-therapy.qmd).
+  Defusion, observing a thought as a thought, is one way to hold a judgment
+  without being governed by it.
+- [Stories](stories.qmd). Cowen on the danger of a story that is too good to
+  question.
