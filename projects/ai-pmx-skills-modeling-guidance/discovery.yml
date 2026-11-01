@@ -1,26 +1,28 @@
 # Discovery queries for the PMx Skills Index (Specification 2, Section 6, step 2).
-month: 2026-10
+month: 2026-11
 code_search:
   query: '"<term>" filename:SKILL.md'
+  note: Totals are the first page's total_count on 2026-11-01; GitHub reported different totals on later
+    pages of the same query.
   hits:
-    PBPK: 94
-    PKNCA: 23
-    PsN: 3904
-    clinical pharmacology: 313
-    exposure-response: 116
-    monolix: 75
-    mrgsolve: 22
-    nlmixr2: 71
+    clinical pharmacology: 353
+    exposure-response: 152
+    monolix: 119
+    mrgsolve: 28
+    nlmixr2: 113
     noncompartmental: 0
-    nonmem: 187
-    pharmacokinetic: 1556
-    pharmacometric: 56
-    pharmacometrics: 26
-    pk-sim: 106
-    population pharmacokinetic: 8
-    pumas: 43
-    rxode2: 48
-    simcyp: 66
+    nonmem: 278
+    PBPK: 127
+    pharmacokinetic: 1662
+    pharmacometric: 77
+    pharmacometrics: 34
+    pk-sim: 122
+    PKNCA: 28
+    population pharmacokinetic: 10
+    PsN: 4528
+    pumas: 55
+    rxode2: 65
+    simcyp: 108
 repository_search:
 - pharmacometrics skills
 - pharmacometric skill
@@ -39,6 +41,24 @@ repository_search:
 - pharmacometrics llm
 - pharmacometrics benchmark llm
 - pumas claude
+repository_search_hits:
+  pharmacometrics skills: 3
+  pharmacometric skill: 2
+  nonmem skill: 3
+  nonmem claude: 1
+  monolix skill: 0
+  nlmixr2 skill: 1
+  nlmixr2 claude: 1
+  pkpd skills: 2
+  pharmacokinetics claude skills: 0
+  clinical pharmacology skills: 2
+  pmx skills: 8
+  pbpk skill: 1
+  nca skill claude: 3
+  pharmacometrics agent: 5
+  pharmacometrics llm: 3
+  pharmacometrics benchmark llm: 0
+  pumas claude: 2
 known_indexes:
 - AIML-SIG/Agentic-workflows
 - the 2026-10-02 review
@@ -47,6 +67,9 @@ not_searched:
 - GitLab and Codeberg
 - Agent Skills marketplaces
 result:
-  repositories_cloned: 25
-  skills_scored: 40
-  evaluation_resources: 2
+  candidate_repositories_from_code_search: 505
+  candidate_repositories_read: 21
+  repositories_cloned: 45
+  skills_scored: 53
+  new_skills: 9
+  evaluation_resources: 3

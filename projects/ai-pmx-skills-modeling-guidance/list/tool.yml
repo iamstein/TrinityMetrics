@@ -1,36 +1,36 @@
-- title: nlmixr2llm · estimation
-  path: https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/estimation
-  rank: '1'
-  library: john-harrold/nlmixr2llm
-  tags: nlmixr2; estimation
-  S: 51.0
-  Q: 52.1
-  E: 52.0
-  M: 85.6
-  U: 30.0
-  flags: ''
-  evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-estimation)'
-- title: nlmixr2llm · simulation
-  path: https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/simulation
-  rank: 1 (1–2)
-  library: john-harrold/nlmixr2llm
-  tags: rxode2; simulation
-  S: 46.9
-  Q: 42.9
-  E: 52.0
-  M: 85.6
-  U: 30.0
-  flags: ''
-  evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-simulation)'
 - title: nlmixr2llm · interop
-  path: https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/interop
-  rank: '3'
-  library: john-harrold/nlmixr2llm
+  path: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/inst/skills/interop
+  rank: '1'
+  library: nlmixr2/nlmixr2llm
   tags: nlmixr2; NONMEM; Monolix; model conversion
-  S: 40.4
-  Q: 28.6
-  E: 52.0
-  M: 85.6
+  S: 58.2
+  Q: 71.4
+  E: 44.7
+  M: 88.8
   U: 30.0
-  flags: ''
+  flags: ⚠️ authors not found
   evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-interop)'
+- title: nlmixr2llm · simulation
+  path: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/inst/skills/simulation
+  rank: '2'
+  library: nlmixr2/nlmixr2llm
+  tags: rxode2; simulation
+  S: 48.1
+  Q: 57.1
+  E: 30.2
+  M: 88.8
+  U: 30.0
+  flags: ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-simulation)'
+- title: nlmixr2llm · estimation
+  path: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/inst/skills/estimation
+  rank: '3'
+  library: nlmixr2/nlmixr2llm
+  tags: nlmixr2; estimation
+  S: 27.8
+  Q: 21.4
+  E: 13.0
+  M: 88.8
+  U: 30.0
+  flags: ❌ major error · ⚠️ authors not found
+  evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-estimation)'

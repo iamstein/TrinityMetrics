@@ -1,24 +1,24 @@
 - title: scientific-agent-skills · pkpd-modeling
-  path: https://github.com/K-Dense-AI/scientific-agent-skills/tree/92ace75ac21efe19a620434e0ca4e356081fe807/skills/pkpd-modeling
+  path: https://github.com/K-Dense-AI/scientific-agent-skills/tree/5f2bc0341354fd5590aef76a533ada1e1e5b4e62/skills/pkpd-modeling
   rank: '1'
   library: K-Dense-AI/scientific-agent-skills
   tags: PK/PD modeling; NCA; population PK
-  S: 58.4
+  S: 60.1
   Q: 90.0
   E: 0.0
-  M: 99.2
-  U: 40.0
+  M: 95.8
+  U: 50.0
   flags: ''
   evidence: '[evidence](curated-list-evidence.html#kdense-pkpd)'
 - title: nlmixr2llm · reporting
-  path: https://github.com/john-harrold/nlmixr2llm/tree/ac6b240cc6dd4735c62d0532f567c3cb20f88c87/inst/skills/reporting
+  path: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/inst/skills/reporting
   rank: 2 (1–2)
-  library: john-harrold/nlmixr2llm
+  library: nlmixr2/nlmixr2llm
   tags: model evaluation; report writing; nlmixr2
-  S: 50.1
-  Q: 50.0
-  E: 52.0
-  M: 85.6
+  S: 54.8
+  Q: 60.0
+  E: 51.5
+  M: 88.8
   U: 30.0
-  flags: ''
+  flags: ⚠️ authors not found
   evidence: '[evidence](curated-list-evidence.html#nlmixr2llm-reporting)'

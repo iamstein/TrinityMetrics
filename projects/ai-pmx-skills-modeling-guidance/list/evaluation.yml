@@ -10,3 +10,9 @@
   licence: MIT (benchmark data CC BY-NC, from the PMxAgent paper)
   last_commit: '2026-09-28'
   authors: Dhruvik (heyiamnotacoder)
+- title: nlmixr2llm vitals evaluation
+  path: https://github.com/nlmixr2/nlmixr2llm/tree/50f236acea6de31ced5780abbb4c27a26c2f88cc/evals
+  contents: Questions with grading targets, asked of the same model with and without the nlmixr2llm skills, plus a 17-question stress kit with hidden code checks; no stored results.
+  licence: BSD-3-Clause
+  last_commit: '2026-10-23'
+  authors: Matthew Fidler (nlmixr2)
