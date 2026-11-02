@@ -16,6 +16,11 @@ toc: false
 > — Voltaire, letter to Frederick II of Prussia, 6 April 1767 ("Le doute
 > n'est pas un état bien agréable, mais l'assurance est un état ridicule.")
 
+> To believe in anything for certain is a leap of faith.
+>
+> — [Podcast episode on
+> Spotify](https://open.spotify.com/episode/2zh2SLNlD7b3yXIdcGRKca)
+
 There are two criteria for saying that a person believes a proposition. By the
 first, **reflective judgment**, they believe it if, when they consider the
 question, they judge it true and would sincerely assert it. By the second,
