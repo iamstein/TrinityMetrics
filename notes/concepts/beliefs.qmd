@@ -18,8 +18,8 @@ toc: false
 
 > To believe in anything for certain is a leap of faith.
 >
-> — [Podcast episode on
-> Spotify](https://open.spotify.com/episode/2zh2SLNlD7b3yXIdcGRKca)
+> — *Philosophize This!*, [Episode #041, "Belief"](https://open.spotify.com/episode/2zh2SLNlD7b3yXIdcGRKca),
+> hosted by Stephen West
 
 There are two criteria for saying that a person believes a proposition. By the
 first, **reflective judgment**, they believe it if, when they consider the
