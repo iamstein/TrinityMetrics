@@ -11,6 +11,11 @@ date: last-modified
 toc: false
 ---
 
+> Doubt is not a pleasant condition, but certainty is absurd.
+>
+> — Voltaire, letter to Frederick II of Prussia, 6 April 1767 ("Le doute
+> n'est pas un état bien agréable, mais l'assurance est un état ridicule.")
+
 There are two criteria for saying that a person believes a proposition. By the
 first, **reflective judgment**, they believe it if, when they consider the
 question, they judge it true and would sincerely assert it. By the second,
